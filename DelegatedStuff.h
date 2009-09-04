@@ -1,5 +1,5 @@
 #import <Cocoa/Cocoa.h>
-#import "MetaLoader.h"
+#import "MZMetaLoader.h"
 
 @interface DelegatedStuff : NSObject {
     IBOutlet NSWindow* window;
@@ -7,7 +7,7 @@
     IBOutlet NSBox *searchBox;
     IBOutlet NSTabView *tabView;
     IBOutlet NSSplitView *splitView;
-    IBOutlet MetaLoader *loader;
+    IBOutlet MZMetaLoader *loader;
     IBOutlet NSArrayController* filesController;
     IBOutlet NSTextView *shortDescription;
 }

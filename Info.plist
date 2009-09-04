@@ -34,5 +34,7 @@
 	<string>http://maven-group.org/metaz/versions.xml</string>
 	<key>SUEnableAutomaticChecks</key>
 	<string>YES</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>sparkle_public.pem</string>
 </dict>
 </plist>
