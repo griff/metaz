@@ -1,0 +1,392 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1B119D1F103F17D5004C93D3 /* DelegatedStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119D1E103F17D5004C93D3 /* DelegatedStuff.m */; };
+		1B119FC9104300ED004C93D3 /* MetaEdits.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119FC8104300ED004C93D3 /* MetaEdits.m */; };
+		1B119FCF10443655004C93D3 /* MetaLoaded.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119FCE10443655004C93D3 /* MetaLoaded.m */; };
+		1B119FD710444DC4004C93D3 /* MZMetaLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119FD610444DC4004C93D3 /* MZMetaLoader.m */; };
+		1B11A00710457B0D004C93D3 /* RubyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B11A00610457B0D004C93D3 /* RubyCocoa.framework */; };
+		1B11A02510457B76004C93D3 /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B11A02410457B76004C93D3 /* rb_main.rb */; };
+		1B11A02710457FB2004C93D3 /* AtomicParsleyWrapper.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B11A02610457FB2004C93D3 /* AtomicParsleyWrapper.rb */; };
+		1B11A28B104DF1EC004C93D3 /* FilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A28A104DF1EC004C93D3 /* FilesTableView.m */; };
+		1B11A2F7104DFFB7004C93D3 /* RBTableView.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B11A2F6104DFFB7004C93D3 /* RBTableView.rb */; };
+		1B11A2FA104E0085004C93D3 /* tableview.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1B11A2F9104E0085004C93D3 /* tableview.txt */; };
+		1B11A47E104E627F004C93D3 /* MZConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A47D104E627F004C93D3 /* MZConstants.m */; };
+		1B11A59F104EB75B004C93D3 /* RBMetaLoaded.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B11A59E104EB75B004C93D3 /* RBMetaLoaded.rb */; };
+		1B78A49B105032A50072D89E /* MZDataMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78A49A105032A50072D89E /* MZDataMethod.m */; };
+		1BB6BB06105072B7001D3D1D /* MZTags.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BB6BB04105072B7001D3D1D /* MZTags.strings */; };
+		1BB6BB0A10507DBB001D3D1D /* MZDynamicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */; };
+		1BB6BE7E1050BC00001D3D1D /* SearchMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BE7D1050BC00001D3D1D /* SearchMeta.m */; };
+		1BB6BE811050BC88001D3D1D /* MZMetaSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BE801050BC88001D3D1D /* MZMetaSearcher.m */; };
+		1BB6BE931050C500001D3D1D /* MZSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BE921050C500001D3D1D /* MZSearchResult.m */; };
+		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		1B119D1D103F17D5004C93D3 /* DelegatedStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegatedStuff.h; sourceTree = "<group>"; };
+		1B119D1E103F17D5004C93D3 /* DelegatedStuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegatedStuff.m; sourceTree = "<group>"; };
+		1B119FC7104300ED004C93D3 /* MetaEdits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaEdits.h; sourceTree = "<group>"; };
+		1B119FC8104300ED004C93D3 /* MetaEdits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEdits.m; sourceTree = "<group>"; };
+		1B119FCA104304C5004C93D3 /* MetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaData.h; sourceTree = "<group>"; };
+		1B119FCD10443655004C93D3 /* MetaLoaded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaLoaded.h; sourceTree = "<group>"; };
+		1B119FCE10443655004C93D3 /* MetaLoaded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaLoaded.m; sourceTree = "<group>"; };
+		1B119FD510444DC4004C93D3 /* MZMetaLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMetaLoader.h; sourceTree = "<group>"; };
+		1B119FD610444DC4004C93D3 /* MZMetaLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMetaLoader.m; sourceTree = "<group>"; };
+		1B11A00610457B0D004C93D3 /* RubyCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RubyCocoa.framework; path = /System/Library/Frameworks/RubyCocoa.framework; sourceTree = "<absolute>"; };
+		1B11A02410457B76004C93D3 /* rb_main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
+		1B11A02610457FB2004C93D3 /* AtomicParsleyWrapper.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AtomicParsleyWrapper.rb; sourceTree = "<group>"; };
+		1B11A02810458471004C93D3 /* MZDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDataProvider.h; sourceTree = "<group>"; };
+		1B11A289104DF1EC004C93D3 /* FilesTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesTableView.h; sourceTree = "<group>"; };
+		1B11A28A104DF1EC004C93D3 /* FilesTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesTableView.m; sourceTree = "<group>"; };
+		1B11A2F6104DFFB7004C93D3 /* RBTableView.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = RBTableView.rb; sourceTree = "<group>"; };
+		1B11A2F9104E0085004C93D3 /* tableview.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tableview.txt; sourceTree = "<group>"; };
+		1B11A47C104E627F004C93D3 /* MZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZConstants.h; sourceTree = "<group>"; };
+		1B11A47D104E627F004C93D3 /* MZConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZConstants.m; sourceTree = "<group>"; };
+		1B11A59E104EB75B004C93D3 /* RBMetaLoaded.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = RBMetaLoaded.rb; sourceTree = "<group>"; };
+		1B78A499105032A50072D89E /* MZDataMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDataMethod.h; sourceTree = "<group>"; };
+		1B78A49A105032A50072D89E /* MZDataMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZDataMethod.m; sourceTree = "<group>"; };
+		1BB6BB05105072B7001D3D1D /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/MZTags.strings; sourceTree = "<group>"; };
+		1BB6BB0810507DBB001D3D1D /* MZDynamicObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDynamicObject.h; sourceTree = "<group>"; };
+		1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZDynamicObject.m; sourceTree = "<group>"; };
+		1BB6BE7C1050BC00001D3D1D /* SearchMeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMeta.h; sourceTree = "<group>"; };
+		1BB6BE7D1050BC00001D3D1D /* SearchMeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMeta.m; sourceTree = "<group>"; };
+		1BB6BE7F1050BC88001D3D1D /* MZMetaSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMetaSearcher.h; sourceTree = "<group>"; };
+		1BB6BE801050BC88001D3D1D /* MZMetaSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMetaSearcher.m; sourceTree = "<group>"; };
+		1BB6BE821050BD3A001D3D1D /* MZSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSearchProvider.h; sourceTree = "<group>"; };
+		1BB6BE911050C500001D3D1D /* MZSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSearchResult.h; sourceTree = "<group>"; };
+		1BB6BE921050C500001D3D1D /* MZSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZSearchResult.m; sourceTree = "<group>"; };
+		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32CA4F630368D1EE00C91783 /* MetaZ_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaZ_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* MetaZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetaZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				1B11A00710457B0D004C93D3 /* RubyCocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1B119D1D103F17D5004C93D3 /* DelegatedStuff.h */,
+				1B119D1E103F17D5004C93D3 /* DelegatedStuff.m */,
+				1B119FC7104300ED004C93D3 /* MetaEdits.h */,
+				1B119FC8104300ED004C93D3 /* MetaEdits.m */,
+				1B119FCA104304C5004C93D3 /* MetaData.h */,
+				1B119FCD10443655004C93D3 /* MetaLoaded.h */,
+				1B119FCE10443655004C93D3 /* MetaLoaded.m */,
+				1B119FD510444DC4004C93D3 /* MZMetaLoader.h */,
+				1B119FD610444DC4004C93D3 /* MZMetaLoader.m */,
+				1B11A02610457FB2004C93D3 /* AtomicParsleyWrapper.rb */,
+				1B11A02810458471004C93D3 /* MZDataProvider.h */,
+				1B11A289104DF1EC004C93D3 /* FilesTableView.h */,
+				1B11A28A104DF1EC004C93D3 /* FilesTableView.m */,
+				1B11A2F6104DFFB7004C93D3 /* RBTableView.rb */,
+				1B11A47C104E627F004C93D3 /* MZConstants.h */,
+				1B11A47D104E627F004C93D3 /* MZConstants.m */,
+				1B11A59E104EB75B004C93D3 /* RBMetaLoaded.rb */,
+				1B78A499105032A50072D89E /* MZDataMethod.h */,
+				1B78A49A105032A50072D89E /* MZDataMethod.m */,
+				1BB6BB0810507DBB001D3D1D /* MZDynamicObject.h */,
+				1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */,
+				1BB6BE7C1050BC00001D3D1D /* SearchMeta.h */,
+				1BB6BE7D1050BC00001D3D1D /* SearchMeta.m */,
+				1BB6BE7F1050BC88001D3D1D /* MZMetaSearcher.h */,
+				1BB6BE801050BC88001D3D1D /* MZMetaSearcher.m */,
+				1BB6BE821050BD3A001D3D1D /* MZSearchProvider.h */,
+				1BB6BE911050C500001D3D1D /* MZSearchResult.h */,
+				1BB6BE921050C500001D3D1D /* MZSearchResult.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1B11A00610457B0D004C93D3 /* RubyCocoa.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* MetaZ.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* MetaZ */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = MetaZ;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* MetaZ_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+				1B11A02410457B76004C93D3 /* rb_main.rb */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1BB6BB04105072B7001D3D1D /* MZTags.strings */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+				1B11A2F9104E0085004C93D3 /* tableview.txt */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* MetaZ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "MetaZ" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MetaZ;
+			productInstallPath = "$(HOME)/Applications";
+			productName = MetaZ;
+			productReference = 8D1107320486CEB800E47090 /* MetaZ.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MetaZ" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* MetaZ */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* MetaZ */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
+				1B11A02510457B76004C93D3 /* rb_main.rb in Resources */,
+				1B11A02710457FB2004C93D3 /* AtomicParsleyWrapper.rb in Resources */,
+				1B11A2F7104DFFB7004C93D3 /* RBTableView.rb in Resources */,
+				1B11A2FA104E0085004C93D3 /* tableview.txt in Resources */,
+				1B11A59F104EB75B004C93D3 /* RBMetaLoaded.rb in Resources */,
+				1BB6BB06105072B7001D3D1D /* MZTags.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				1B119D1F103F17D5004C93D3 /* DelegatedStuff.m in Sources */,
+				1B119FC9104300ED004C93D3 /* MetaEdits.m in Sources */,
+				1B119FCF10443655004C93D3 /* MetaLoaded.m in Sources */,
+				1B119FD710444DC4004C93D3 /* MZMetaLoader.m in Sources */,
+				1B11A28B104DF1EC004C93D3 /* FilesTableView.m in Sources */,
+				1B11A47E104E627F004C93D3 /* MZConstants.m in Sources */,
+				1B78A49B105032A50072D89E /* MZDataMethod.m in Sources */,
+				1BB6BB0A10507DBB001D3D1D /* MZDynamicObject.m in Sources */,
+				1BB6BE7E1050BC00001D3D1D /* SearchMeta.m in Sources */,
+				1BB6BE811050BC88001D3D1D /* MZMetaSearcher.m in Sources */,
+				1BB6BE931050C500001D3D1D /* MZSearchResult.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1BB6BB04105072B7001D3D1D /* MZTags.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1BB6BB05105072B7001D3D1D /* English */,
+			);
+			name = MZTags.strings;
+			sourceTree = "<group>";
+		};
+		1DDD58140DA1D0A300B32029 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1DDD58150DA1D0A300B32029 /* English */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MetaZ_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = MetaZ;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MetaZ_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = MetaZ;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "MetaZ" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MetaZ" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

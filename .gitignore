@@ -1,0 +1,4 @@
+.DS_Store
+MetaZ.xcodeproj/*.mode1v3
+MetaZ.xcodeproj/*.pbxuser
+build
