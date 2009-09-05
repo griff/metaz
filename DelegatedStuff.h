@@ -9,7 +9,9 @@
     IBOutlet NSSplitView *splitView;
     IBOutlet MZMetaLoader *loader;
     IBOutlet NSArrayController* filesController;
-    IBOutlet NSTextView *shortDescription;
+    IBOutlet NSNumberFormatter* episodeFormatter;
+    IBOutlet NSNumberFormatter* seasonFormatter;
+    IBOutlet NSSegmentedControl* filesSegmentControl;
 }
 - (void)splitView:(NSSplitView *)sender resizeSubviewsWithOldSize:(NSSize)oldSize;
 - (NSSize)windowWillResize:(NSWindow *)window toSize:(NSSize)proposedFrameSize;
@@ -25,7 +27,8 @@
 - (IBAction)segmentClicked:(id)sender;
 - (IBAction)selectNextFile:(id)sender;
 - (IBAction)selectPreviousFile:(id)sender;
-- (IBAction)testyMe:(id)sender;
+- (IBAction)showPreferences:(id)sender;
+//- (IBAction)testyMe:(id)sender;
 - (IBAction)revertChanges:(id)sender;
 - (IBAction)openFile:(id)sender;
 - (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo;

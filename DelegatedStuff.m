@@ -5,6 +5,36 @@
 #define FILESBOX_WIDTH 150.0
 
 @implementation DelegatedStuff
+
+-(void)awakeFromNib {
+    [seasonFormatter setNilSymbol:@""];
+    [episodeFormatter setNilSymbol:@""];
+    [filesController addObserver:self
+                      forKeyPath:@"arrangedObjects.@count"
+                         options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial
+                         context:nil];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    int value = [[object valueForKeyPath:keyPath] intValue];
+    if(value > 0)
+        [filesSegmentControl setEnabled:YES forSegment:1];
+    else
+        [filesSegmentControl setEnabled:NO forSegment:1];
+    
+    /*
+    id cnt = [change objectForKey:NSKeyValueChangeNewKey];
+    NSNumber* count = cnt;
+    NSArray* keys = [change allKeys];
+    for(NSString* key in keys)
+        NSLog(@"Wee key %@ %@", key, [change objectForKey:key]);
+    if(cnt != [NSNull null])
+        NSLog(@"Wee count %d", [count intValue]);
+    else
+        NSLog(@"Wee flom %@", value);
+    */
+}
+
 - (NSSize)windowWillResize:(NSWindow *)window toSize:(NSSize)proposedFrameSize {
     CGFloat divider = [splitView dividerThickness];
     CGFloat minwidth = [[splitView window] frame].size.width - [splitView frame].size.width;
@@ -346,14 +376,11 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem {
     SEL action = [anItem action];
-    SEL selectNextFile = @selector(selectNextFile:);
-    SEL selectPreviousFile = @selector(selectPreviousFile:);
-    SEL revertChanges = @selector(revertChanges:);
-    if(action == selectNextFile)
+    if(action == @selector(selectNextFile:))
         return [filesController canSelectNext];
-    if(action == selectPreviousFile)
+    if(action == @selector(selectPreviousFile:))
         return [filesController canSelectPrevious];
-    if(action == revertChanges)
+    if(action == @selector(revertChanges:))
     {
         return [[filesController selectedObjects] count] >= 1 &&
             findBinding(window) != nil;
@@ -393,6 +420,10 @@ NSDictionary* findBinding(NSWindow* window) {
     id observed = [dict objectForKey:NSObservedObjectKey];
     NSString* keyPath = [dict objectForKey:NSObservedKeyPathKey];
     [observed setValue:[NSNumber numberWithBool:NO] forKeyPath:[keyPath stringByAppendingString:@"Changed"]];
+}
+
+- (IBAction)showPreferences:(id)sender {
+
 }
 
 - (IBAction)testyMe:(id)sender {

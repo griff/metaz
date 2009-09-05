@@ -8,8 +8,8 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="469"/>
-			<integer value="205"/>
+			<integer value="1199"/>
+			<integer value="476"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -65,6 +65,14 @@
 								<object class="NSMenuItem" id="238522557">
 									<reference key="NSMenu" ref="110575045"/>
 									<string key="NSTitle">About MetaZ</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
+								<object class="NSMenuItem" id="215303654">
+									<reference key="NSMenu" ref="110575045"/>
+									<string key="NSTitle">Check for Updates...</string>
 									<string key="NSKeyEquiv"/>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="35465992"/>
@@ -131,7 +139,7 @@
 								</object>
 								<object class="NSMenuItem" id="755159360">
 									<reference key="NSMenu" ref="110575045"/>
-									<string key="NSTitle">Hide NewApplication</string>
+									<string key="NSTitle">Hide MetaZ</string>
 									<string key="NSKeyEquiv">h</string>
 									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
@@ -169,7 +177,7 @@
 								</object>
 								<object class="NSMenuItem" id="632727374">
 									<reference key="NSMenu" ref="110575045"/>
-									<string key="NSTitle">Quit NewApplication</string>
+									<string key="NSTitle">Quit MetaZ</string>
 									<string key="NSKeyEquiv">q</string>
 									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
@@ -2544,7 +2552,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 										<object class="NSTabViewItem" id="148595672">
 											<string key="NSIdentifier">video</string>
 											<object class="NSView" key="NSView" id="140341971">
-												<nil key="NSNextResponder"/>
+												<reference key="NSNextResponder" ref="625271791"/>
 												<int key="NSvFlags">256</int>
 												<object class="NSMutableArray" key="NSSubviews">
 													<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3166,13 +3174,15 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 																						<bool key="EncodedWithXMLCoder">YES</bool>
 																						<string>allowsFloats</string>
 																						<string>formatterBehavior</string>
-																						<string>minimum</string>
+																						<string>nilSymbol</string>
+																						<string>numberStyle</string>
 																					</object>
 																					<object class="NSMutableArray" key="dict.values">
 																						<bool key="EncodedWithXMLCoder">YES</bool>
 																						<reference ref="6"/>
 																						<integer value="1040"/>
-																						<real value="0.000000e+00" id="917897660"/>
+																						<string/>
+																						<reference ref="8"/>
 																					</object>
 																				</object>
 																				<string key="NS.positiveformat">#</string>
@@ -3183,13 +3193,13 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 																					<nil key="NSString"/>
 																				</object>
 																				<object class="NSAttributedString" key="NS.nil">
-																					<nil key="NSString"/>
+																					<string key="NSString"/>
 																				</object>
 																				<object class="NSAttributedString" key="NS.nan">
 																					<string key="NSString">NaN</string>
 																					<reference key="NSAttributes" ref="270928348"/>
 																				</object>
-																				<reference key="NS.min" ref="917897660"/>
+																				<reference key="NS.min" ref="23221730"/>
 																				<reference key="NS.max" ref="23221730"/>
 																				<object class="NSDecimalNumberHandler" key="NS.rounding">
 																					<int key="NS.roundingmode">3</int>
@@ -3331,6 +3341,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 													</object>
 												</object>
 												<string key="NSFrame">{{10, 33}, {449, 502}}</string>
+												<reference key="NSSuperview" ref="625271791"/>
 											</object>
 											<string key="NSLabel">Video</string>
 											<reference key="NSColor" ref="823073024"/>
@@ -3339,7 +3350,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 										<object class="NSTabViewItem" id="461223667">
 											<string key="NSIdentifier">sorting</string>
 											<object class="NSView" key="NSView" id="281785005">
-												<reference key="NSNextResponder" ref="625271791"/>
+												<nil key="NSNextResponder"/>
 												<int key="NSvFlags">256</int>
 												<object class="NSMutableArray" key="NSSubviews">
 													<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3869,7 +3880,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 													</object>
 												</object>
 												<string key="NSFrame">{{10, 33}, {449, 502}}</string>
-												<reference key="NSSuperview" ref="625271791"/>
 											</object>
 											<string key="NSLabel">Sorting</string>
 											<reference key="NSColor" ref="823073024"/>
@@ -4120,13 +4130,13 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 											<reference key="NSTabView" ref="625271791"/>
 										</object>
 									</object>
-									<reference key="NSSelectedTabViewItem" ref="461223667"/>
+									<reference key="NSSelectedTabViewItem" ref="148595672"/>
 									<reference key="NSFont" ref="350022779"/>
 									<int key="NSTvFlags">0</int>
 									<bool key="NSDrawsBackground">YES</bool>
 									<object class="NSMutableArray" key="NSSubviews">
 										<bool key="EncodedWithXMLCoder">YES</bool>
-										<reference ref="281785005"/>
+										<reference ref="140341971"/>
 									</object>
 								</object>
 								<object class="NSBox" id="343736847">
@@ -4241,7 +4251,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 																	<reference key="NSBackgroundColor" ref="600445500"/>
 																	<reference key="NSGridColor" ref="999592587"/>
 																	<double key="NSRowHeight">1.700000e+01</double>
-																	<int key="NSTvFlags">-541065216</int>
+																	<int key="NSTvFlags">-809500672</int>
 																	<string key="NSAutosaveName">files</string>
 																	<int key="NSColumnAutoresizingStyle">4</int>
 																	<int key="NSDraggingSourceMaskForLocal">15</int>
@@ -4461,8 +4471,11 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<bool key="NSFilterRestrictsInsertion">YES</bool>
 				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
 			</object>
-			<object class="NSCustomObject" id="525428891">
+			<object class="NSCustomObject" id="104323459">
 				<string key="NSClassName">MZMetaSearcher</string>
+			</object>
+			<object class="NSCustomObject" id="931879071">
+				<string key="NSClassName">SUUpdater</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -6454,6 +6467,46 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					</object>
 					<int key="connectionID">1192</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">episodeFormatter</string>
+						<reference key="source" ref="12014701"/>
+						<reference key="destination" ref="826961246"/>
+					</object>
+					<int key="connectionID">1194</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">seasonFormatter</string>
+						<reference key="source" ref="12014701"/>
+						<reference key="destination" ref="273850488"/>
+					</object>
+					<int key="connectionID">1195</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">filesSegmentControl</string>
+						<reference key="source" ref="12014701"/>
+						<reference key="destination" ref="828894944"/>
+					</object>
+					<int key="connectionID">1196</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showPreferences:</string>
+						<reference key="source" ref="12014701"/>
+						<reference key="destination" ref="609285721"/>
+					</object>
+					<int key="connectionID">1197</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">checkForUpdates:</string>
+						<reference key="source" ref="931879071"/>
+						<reference key="destination" ref="215303654"/>
+					</object>
+					<int key="connectionID">1200</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -6735,6 +6788,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<reference ref="1046388886"/>
 							<reference ref="1056857174"/>
 							<reference ref="342932134"/>
+							<reference ref="215303654"/>
 						</object>
 						<reference key="parent" ref="694149608"/>
 					</object>
@@ -9132,9 +9186,19 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1193</int>
-						<reference key="object" ref="525428891"/>
+						<reference key="object" ref="104323459"/>
 						<reference key="parent" ref="1049"/>
 						<string key="objectName">Meta Search</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1198</int>
+						<reference key="object" ref="931879071"/>
+						<reference key="parent" ref="1049"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1199</int>
+						<reference key="object" ref="215303654"/>
+						<reference key="parent" ref="110575045"/>
 					</object>
 				</object>
 			</object>
@@ -9154,8 +9218,11 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>111.IBPluginDependency</string>
 					<string>111.ImportedFromIB2</string>
 					<string>1193.IBPluginDependency</string>
+					<string>1198.IBPluginDependency</string>
+					<string>1199.IBPluginDependency</string>
 					<string>129.IBPluginDependency</string>
 					<string>129.ImportedFromIB2</string>
+					<string>130.IBEditorWindowLastContentRect</string>
 					<string>130.IBPluginDependency</string>
 					<string>130.ImportedFromIB2</string>
 					<string>130.editorWindowContentRectSynchronizationRect</string>
@@ -9608,7 +9675,10 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
+					<string>{{853, 193}, {64, 6}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{436, 809}, {64, 6}}</string>
@@ -9699,7 +9769,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{525, 802}, {197, 73}}</string>
-					<string>{{606, 259}, {412, 20}}</string>
+					<string>{{520, 375}, {412, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{74, 862}</string>
@@ -9831,7 +9901,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{258, 442}, {235, 183}}</string>
+					<string>{{532, 172}, {232, 203}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{23, 794}, {245, 183}}</string>
@@ -10082,7 +10152,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1193</int>
+			<int key="maxID">1200</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -10110,9 +10180,9 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<string>showAdvancedTab:</string>
 							<string>showChapterTab:</string>
 							<string>showInfoTab:</string>
+							<string>showPreferences:</string>
 							<string>showSortTab:</string>
 							<string>showVideoTab:</string>
-							<string>testyMe:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -10133,22 +10203,26 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>episodeFormatter</string>
 							<string>filesBox</string>
 							<string>filesController</string>
+							<string>filesSegmentControl</string>
 							<string>loader</string>
 							<string>searchBox</string>
-							<string>shortDescription</string>
+							<string>seasonFormatter</string>
 							<string>splitView</string>
 							<string>tabView</string>
 							<string>window</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSNumberFormatter</string>
 							<string>NSBox</string>
 							<string>NSArrayController</string>
-							<string>MetaLoader</string>
+							<string>NSSegmentedControl</string>
+							<string>MZMetaLoader</string>
 							<string>NSBox</string>
-							<string>NSTextView</string>
+							<string>NSNumberFormatter</string>
 							<string>NSSplitView</string>
 							<string>NSTabView</string>
 							<string>NSWindow</string>
@@ -10230,6 +10304,36 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<string key="majorKey">IBUserSource</string>
 						<string key="minorKey"/>
 					</object>
+				</object>
+			</object>
+			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBDocumentRelativeSource</string>
+						<string key="minorKey">../Sparkle.framework/Versions/A/Headers/SUAppcast.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="746746371">
+						<string key="majorKey">IBDocumentRelativeSource</string>
+						<string key="minorKey">../Sparkle.framework/Versions/A/Headers/SUUpdater.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SUUpdater</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">checkForUpdates:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">delegate</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<reference key="sourceIdentifier" ref="746746371"/>
 				</object>
 			</object>
 		</object>

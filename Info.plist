@@ -14,14 +14,18 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>${PRODUCT_NAME}</string>
+	<key>CFBundleGetInfoString</key>
+	<string>Copyright 2009 Brian Olsen</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2009, Brian Olsen</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.2a</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
-	<key>CFBundleShortVersionString</key>
-	<string>0.1a</string>
+	<string>${GITV}</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
@@ -29,11 +33,11 @@
 	<key>SmartCrashReports_CompanyName</key>
 	<string>Maven-Group</string>
 	<key>SmartCrashReports_EmailTicket</key>
-	<string>1212?????</string>
-	<key>SUFeedURL</key>
-	<string>http://maven-group.org/metaz/versions.xml</string>
+	<string>SCR-6246806ACD</string>
 	<key>SUEnableAutomaticChecks</key>
 	<string>YES</string>
+	<key>SUFeedURL</key>
+	<string>http://griff.github.com/metaz/releases.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>sparkle_public.pem</string>
 </dict>
