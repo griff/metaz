@@ -1,15 +1,15 @@
 //
-//  MZDataMethod.m
+//  MZMethodData.m
 //  MetaZ
 //
 //  Created by Brian Olsen on 03/09/09.
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import "MZDataMethod.h"
+#import "MZMethodData.h"
 
 
-@implementation MZDataMethod
+@implementation MZMethodData
 @synthesize selector;
 @synthesize signature;
 @synthesize key;
@@ -22,27 +22,27 @@
 }
 
 +(SEL)setterSelectorForKey:(NSString *)aKey {
-    return NSSelectorFromString([MZDataMethod setterForKey:aKey]);
+    return NSSelectorFromString([MZMethodData setterForKey:aKey]);
 }
 
-+(MZDataMethod *)methodSetterForKey:(NSString *)aKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
-    return [MZDataMethod methodSetterForKey:aKey withRealKey:aKey ofType:aType withObjCType:aObjcType];
++(MZMethodData *)methodSetterForKey:(NSString *)aKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
+    return [MZMethodData methodSetterForKey:aKey withRealKey:aKey ofType:aType withObjCType:aObjcType];
 }
 
-+(MZDataMethod *)methodSetterForKey:(NSString *)aKey withRealKey:(NSString *)aRealKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
++(MZMethodData *)methodSetterForKey:(NSString *)aKey withRealKey:(NSString *)aRealKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
     char sigc[sizeof(aObjcType)+3] = "v@:";
     if(strlcat(sigc, aObjcType, sizeof(sigc)) >= sizeof(sigc))
         @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"Bad type" userInfo:nil];
     NSMethodSignature* sig = [NSMethodSignature signatureWithObjCTypes:sigc];
-    SEL sel = NSSelectorFromString([MZDataMethod setterForKey:aKey]);
-    return [MZDataMethod methodWithSelector:sel andSignature:sig forKey:aRealKey ofType:aType];
+    SEL sel = NSSelectorFromString([MZMethodData setterForKey:aKey]);
+    return [MZMethodData methodWithSelector:sel andSignature:sig forKey:aRealKey ofType:aType];
 }
 
-+(MZDataMethod *)methodGetterForKey:(NSString *)aKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
-    return [MZDataMethod methodGetterForKey:aKey withRealKey:aKey ofType:aType withObjCType:aObjcType];
++(MZMethodData *)methodGetterForKey:(NSString *)aKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
+    return [MZMethodData methodGetterForKey:aKey withRealKey:aKey ofType:aType withObjCType:aObjcType];
 }
 
-+(MZDataMethod *)methodGetterForKey:(NSString *)aKey withRealKey:(NSString *)aRealKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
++(MZMethodData *)methodGetterForKey:(NSString *)aKey withRealKey:(NSString *)aRealKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
     char sigc[sizeof(aObjcType)+2];
     if(strlcpy(sigc, aObjcType, sizeof(sigc)) >= sizeof(sigc))
         @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"Bad type" userInfo:nil];
@@ -51,11 +51,11 @@
     
     NSMethodSignature* sig = [NSMethodSignature signatureWithObjCTypes:sigc];
     SEL sel = NSSelectorFromString(aKey);
-    return [MZDataMethod methodWithSelector:sel andSignature:sig forKey:aRealKey ofType:aType];
+    return [MZMethodData methodWithSelector:sel andSignature:sig forKey:aRealKey ofType:aType];
 }
 
-+(MZDataMethod *)methodWithSelector:(SEL )aSelector andSignature:(NSMethodSignature *)aSignature forKey:(NSString *)aKey ofType:(NSUInteger)aType {
-  MZDataMethod * ret = [[MZDataMethod alloc] initWithSelector:aSelector andSignature:aSignature forKey:aKey ofType:aType];
++(MZMethodData *)methodWithSelector:(SEL )aSelector andSignature:(NSMethodSignature *)aSignature forKey:(NSString *)aKey ofType:(NSUInteger)aType {
+  MZMethodData * ret = [[MZMethodData alloc] initWithSelector:aSelector andSignature:aSignature forKey:aKey ofType:aType];
   return [ret autorelease];
 }
 

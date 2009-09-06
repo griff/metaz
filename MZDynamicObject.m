@@ -7,7 +7,7 @@
 //
 
 #import "MZDynamicObject.h"
-#import "MZDataMethod.h"
+#import "MZMethodData.h"
 
 @implementation MZDynamicObject
 
@@ -23,27 +23,27 @@
 }
 
 -(void)addMethodSetterForKey:(NSString *)aKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
-    MZDataMethod* method = [MZDataMethod methodSetterForKey:aKey ofType:aType withObjCType:aObjcType];
+    MZMethodData* method = [MZMethodData methodSetterForKey:aKey ofType:aType withObjCType:aObjcType];
     [methods setObject:method forKey:NSStringFromSelector([method selector])];
 }
 
 -(void)addMethodSetterForKey:(NSString *)aKey withRealKey:(NSString *)aRealKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
-    MZDataMethod* method = [MZDataMethod methodSetterForKey:aKey withRealKey:aRealKey ofType:aType withObjCType:aObjcType];
+    MZMethodData* method = [MZMethodData methodSetterForKey:aKey withRealKey:aRealKey ofType:aType withObjCType:aObjcType];
     [methods setObject:method forKey:NSStringFromSelector([method selector])];
 }
 
 -(void)addMethodGetterForKey:(NSString *)aKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
-    MZDataMethod* method = [MZDataMethod methodGetterForKey:aKey ofType:aType withObjCType:aObjcType];
+    MZMethodData* method = [MZMethodData methodGetterForKey:aKey ofType:aType withObjCType:aObjcType];
     [methods setObject:method forKey:NSStringFromSelector([method selector])];
 }
 
 -(void)addMethodGetterForKey:(NSString *)aKey withRealKey:(NSString *)aRealKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
-    MZDataMethod* method = [MZDataMethod methodGetterForKey:aKey withRealKey:aRealKey ofType:aType withObjCType:aObjcType];
+    MZMethodData* method = [MZMethodData methodGetterForKey:aKey withRealKey:aRealKey ofType:aType withObjCType:aObjcType];
     [methods setObject:method forKey:NSStringFromSelector([method selector])];
 }
 
 -(void)addMethodWithSelector:(SEL)aSelector andSignature:(NSMethodSignature *)aSignature forKey:(NSString *)aKey ofType:(NSUInteger)aType {
-    MZDataMethod* method = [MZDataMethod methodWithSelector:aSelector andSignature:aSignature forKey:aKey ofType:aType];
+    MZMethodData* method = [MZMethodData methodWithSelector:aSelector andSignature:aSignature forKey:aKey ofType:aType];
     [methods setObject:method forKey:NSStringFromSelector(aSelector)];
 }
 
@@ -63,7 +63,7 @@
     NSMethodSignature *ret = [super methodSignatureForSelector:aSelector];
     if(ret == nil)
     {
-        MZDataMethod* method = [methods objectForKey:NSStringFromSelector(aSelector)];
+        MZMethodData* method = [methods objectForKey:NSStringFromSelector(aSelector)];
         if(method != nil)
             ret = [method signature];
     }
@@ -71,7 +71,7 @@
 }
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
-    MZDataMethod* method = [methods objectForKey:NSStringFromSelector([anInvocation selector])];
+    MZMethodData* method = [methods objectForKey:NSStringFromSelector([anInvocation selector])];
     if(method != nil)
         [self handleDataForKey:[method key] ofType:[method type] forInvocation:anInvocation];
     else
@@ -82,15 +82,15 @@
  These don't work for methods that return something else than id
  
 - (id)valueForUndefinedKey:(NSString *)aKey {
-    MZDataMethod* method = [methods objectForKey:aKey];
+    MZMethodData* method = [methods objectForKey:aKey];
     if(method != nil)
         return [self performSelector:[method selector]];
     return [super valueForUndefinedKey:aKey];
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
-    NSString* setterKey = [MZDataMethod setterForKey:key];
-    MZDataMethod* method = [methods objectForKey:setterKey];
+    NSString* setterKey = [MZMethodData setterForKey:key];
+    MZMethodData* method = [methods objectForKey:setterKey];
     if(method != nil)
         [self performSelector:[method selector] withObject:value];
     else

@@ -7,7 +7,7 @@
 //
 
 #import "MetaEdits.h"
-#import "MZDataMethod.h"
+#import "MZMethodData.h"
 
 @implementation MetaEdits
 @synthesize undoManager;
@@ -93,7 +93,7 @@
         [self willChangeValueForKey:changedKey];
         [self willChangeValueForKey:aKey];
         
-        [[self undoManager] registerUndoWithTarget:self selector:[MZDataMethod setterSelectorForKey:aKey] object:oldValue];
+        [[self undoManager] registerUndoWithTarget:self selector:[MZMethodData setterSelectorForKey:aKey] object:oldValue];
         if([[self undoManager] isUndoing])
             [[self undoManager] setActionName:[@"Set " stringByAppendingString:aKey]];
         else
@@ -115,7 +115,7 @@
         [self willChangeValueForKey:aKey];
         
         [[[self undoManager] prepareWithInvocationTarget:self] setterChanged:NO forKey:aKey];
-        //[[self undoManager] registerUndoWithTarget:self selector:[MZDataMethod setterSelectorForKey:changedKey] object:[NSNumber numberWithBool:NO]];
+        //[[self undoManager] registerUndoWithTarget:self selector:[MZMethodData setterSelectorForKey:changedKey] object:[NSNumber numberWithBool:NO]];
         [[self undoManager] setActionName:[@"Set " stringByAppendingString:aKey]];
         
         //oldValue = [lastCache objectForKey:aKey];
@@ -147,11 +147,11 @@
     if(oldValue==nil)
     {
         [[[self undoManager] prepareWithInvocationTarget:self] setterChanged:NO forKey:aKey];
-        //[[self undoManager] registerUndoWithTarget:self selector:[MZDataMethod setterSelectorForKey:changedKey] object:[NSNumber numberWithBool:NO]];
+        //[[self undoManager] registerUndoWithTarget:self selector:[MZMethodData setterSelectorForKey:changedKey] object:[NSNumber numberWithBool:NO]];
         [[self undoManager] setActionName:[@"Set " stringByAppendingString:aKey]];
     } else
     {
-        [[self undoManager] registerUndoWithTarget:self selector:[MZDataMethod setterSelectorForKey:aKey] object:oldValue];
+        [[self undoManager] registerUndoWithTarget:self selector:[MZMethodData setterSelectorForKey:aKey] object:oldValue];
         [[self undoManager] setActionName:[@"Changed " stringByAppendingString:aKey]];
     }
     //[lastCache removeObjectForKey:aKey];

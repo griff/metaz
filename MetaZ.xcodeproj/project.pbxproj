@@ -17,7 +17,7 @@
 		1B11A28B104DF1EC004C93D3 /* FilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A28A104DF1EC004C93D3 /* FilesTableView.m */; };
 		1B11A47E104E627F004C93D3 /* MZConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A47D104E627F004C93D3 /* MZConstants.m */; };
 		1B5AC76F10532E5200F9CE36 /* MetaEditPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */; };
-		1B78A49B105032A50072D89E /* MZDataMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78A49A105032A50072D89E /* MZDataMethod.m */; };
+		1B78A49B105032A50072D89E /* MZMethodData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78A49A105032A50072D89E /* MZMethodData.m */; };
 		1BA325CD10545BBB00276F57 /* MetaZKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1BA325E110545CD900276F57 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		1BB3609D105416D000188DD1 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB3609C105416D000188DD1 /* AppController.m */; };
@@ -83,12 +83,12 @@
 		1B11A47D104E627F004C93D3 /* MZConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZConstants.m; sourceTree = "<group>"; };
 		1B5AC76D10532E5200F9CE36 /* MetaEditPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaEditPanel.h; sourceTree = "<group>"; };
 		1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditPanel.m; sourceTree = "<group>"; };
-		1B78A499105032A50072D89E /* MZDataMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDataMethod.h; sourceTree = "<group>"; };
-		1B78A49A105032A50072D89E /* MZDataMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZDataMethod.m; sourceTree = "<group>"; };
+		1B78A499105032A50072D89E /* MZMethodData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMethodData.h; sourceTree = "<group>"; };
+		1B78A49A105032A50072D89E /* MZMethodData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMethodData.m; sourceTree = "<group>"; };
 		1BA325C410545ACA00276F57 /* MetaZKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MetaZKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BA325C510545ACA00276F57 /* MetaZKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MetaZKit-Info.plist"; sourceTree = "<group>"; };
-		1BB3609B105416D000188DD1 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
-		1BB3609C105416D000188DD1 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
+		1BB3609B105416D000188DD1 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppController.h; path = App/src/AppController.h; sourceTree = "<group>"; };
+		1BB3609C105416D000188DD1 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppController.m; path = App/src/AppController.m; sourceTree = "<group>"; };
 		1BB3611A105421F100188DD1 /* FilesUndoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesUndoController.h; sourceTree = "<group>"; };
 		1BB3611B105421F100188DD1 /* FilesUndoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesUndoController.m; sourceTree = "<group>"; };
 		1BB6BB05105072B7001D3D1D /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/MZTags.strings; sourceTree = "<group>"; };
@@ -135,18 +135,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1BB3609B105416D000188DD1 /* AppController.h */,
-				1BB3609C105416D000188DD1 /* AppController.m */,
 				1B11A02610457FB2004C93D3 /* AtomicParsleyWrapper.rb */,
-				1B119D1D103F17D5004C93D3 /* ResizeController.h */,
-				1B119D1E103F17D5004C93D3 /* ResizeController.m */,
-				1B11A289104DF1EC004C93D3 /* FilesTableView.h */,
-				1B11A28A104DF1EC004C93D3 /* FilesTableView.m */,
-				1BB3611A105421F100188DD1 /* FilesUndoController.h */,
-				1BB3611B105421F100188DD1 /* FilesUndoController.m */,
 				1B119FCA104304C5004C93D3 /* MetaData.h */,
-				1B5AC76D10532E5200F9CE36 /* MetaEditPanel.h */,
-				1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */,
 				1B119FC7104300ED004C93D3 /* MetaEdits.h */,
 				1B119FC8104300ED004C93D3 /* MetaEdits.m */,
 				1B119FCD10443655004C93D3 /* MetaLoaded.h */,
@@ -155,8 +145,8 @@
 				1BB6BE7D1050BC00001D3D1D /* SearchMeta.m */,
 				1B11A47C104E627F004C93D3 /* MZConstants.h */,
 				1B11A47D104E627F004C93D3 /* MZConstants.m */,
-				1B78A499105032A50072D89E /* MZDataMethod.h */,
-				1B78A49A105032A50072D89E /* MZDataMethod.m */,
+				1B78A499105032A50072D89E /* MZMethodData.h */,
+				1B78A49A105032A50072D89E /* MZMethodData.m */,
 				1B11A02810458471004C93D3 /* MZDataProvider.h */,
 				1BB6BB0810507DBB001D3D1D /* MZDynamicObject.h */,
 				1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */,
@@ -226,6 +216,16 @@
 		1BA325BD10545A2800276F57 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1BB3609B105416D000188DD1 /* AppController.h */,
+				1BB3609C105416D000188DD1 /* AppController.m */,
+				1B11A289104DF1EC004C93D3 /* FilesTableView.h */,
+				1B11A28A104DF1EC004C93D3 /* FilesTableView.m */,
+				1BB3611A105421F100188DD1 /* FilesUndoController.h */,
+				1BB3611B105421F100188DD1 /* FilesUndoController.m */,
+				1B5AC76D10532E5200F9CE36 /* MetaEditPanel.h */,
+				1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */,
+				1B119D1D103F17D5004C93D3 /* ResizeController.h */,
+				1B119D1E103F17D5004C93D3 /* ResizeController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -420,7 +420,7 @@
 				1B119FD710444DC4004C93D3 /* MZMetaLoader.m in Sources */,
 				1B11A28B104DF1EC004C93D3 /* FilesTableView.m in Sources */,
 				1B11A47E104E627F004C93D3 /* MZConstants.m in Sources */,
-				1B78A49B105032A50072D89E /* MZDataMethod.m in Sources */,
+				1B78A49B105032A50072D89E /* MZMethodData.m in Sources */,
 				1BB6BB0A10507DBB001D3D1D /* MZDynamicObject.m in Sources */,
 				1BB6BE7E1050BC00001D3D1D /* SearchMeta.m in Sources */,
 				1BB6BE811050BC88001D3D1D /* MZMetaSearcher.m in Sources */,
