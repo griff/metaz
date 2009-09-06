@@ -9,8 +9,8 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="1259"/>
-			<integer value="205"/>
 			<integer value="475"/>
+			<integer value="205"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -10524,7 +10524,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">AppController.h</string>
+						<string key="minorKey">App/src/AppController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -10532,7 +10532,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string key="superclassName">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">AtomicParsleyWrapper.rb</string>
+						<string key="minorKey">App/src/AtomicParsleyWrapper.rb</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -10566,7 +10566,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">FilesTableView.h</string>
+						<string key="minorKey">App/src/FilesTableView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -10578,7 +10578,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">FilesUndoController.h</string>
+						<string key="minorKey">App/src/FilesUndoController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -10590,7 +10590,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">MZMetaLoader.h</string>
+						<string key="minorKey">App/src/MZMetaLoader.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -10602,7 +10602,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">MZMetaSearcher.h</string>
+						<string key="minorKey">App/src/MZMetaSearcher.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -10614,7 +10614,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">MetaEditPanel.h</string>
+						<string key="minorKey">App/src/MetaEditPanel.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -10654,7 +10654,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">ResizeController.h</string>
+						<string key="minorKey">App/src/ResizeController.h</string>
 					</object>
 				</object>
 			</object>
@@ -10664,14 +10664,14 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string key="className">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBDocumentRelativeSource</string>
-						<string key="minorKey">../Sparkle.framework/Versions/A/Headers/SUAppcast.h</string>
+						<string key="minorKey">../../Sparkle.framework/Versions/A/Headers/SUAppcast.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="746746371">
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="894029683">
 						<string key="majorKey">IBDocumentRelativeSource</string>
-						<string key="minorKey">../Sparkle.framework/Versions/A/Headers/SUUpdater.h</string>
+						<string key="minorKey">../../Sparkle.framework/Versions/A/Headers/SUUpdater.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -10685,12 +10685,12 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<string key="NS.key.0">delegate</string>
 						<string key="NS.object.0">id</string>
 					</object>
-					<reference key="sourceIdentifier" ref="746746371"/>
+					<reference key="sourceIdentifier" ref="894029683"/>
 				</object>
 			</object>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.LastKnownRelativeProjectPath">../MetaZ.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../../MetaZ.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 	</data>
 </archive>

@@ -8,29 +8,39 @@
 
 /* Begin PBXBuildFile section */
 		1B119D1F103F17D5004C93D3 /* ResizeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119D1E103F17D5004C93D3 /* ResizeController.m */; };
-		1B119FC9104300ED004C93D3 /* MetaEdits.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119FC8104300ED004C93D3 /* MetaEdits.m */; };
-		1B119FCF10443655004C93D3 /* MetaLoaded.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119FCE10443655004C93D3 /* MetaLoaded.m */; };
 		1B119FD710444DC4004C93D3 /* MZMetaLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119FD610444DC4004C93D3 /* MZMetaLoader.m */; };
 		1B11A00710457B0D004C93D3 /* RubyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B11A00610457B0D004C93D3 /* RubyCocoa.framework */; };
 		1B11A02510457B76004C93D3 /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B11A02410457B76004C93D3 /* rb_main.rb */; };
 		1B11A02710457FB2004C93D3 /* AtomicParsleyWrapper.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B11A02610457FB2004C93D3 /* AtomicParsleyWrapper.rb */; };
 		1B11A28B104DF1EC004C93D3 /* FilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A28A104DF1EC004C93D3 /* FilesTableView.m */; };
-		1B11A47E104E627F004C93D3 /* MZConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A47D104E627F004C93D3 /* MZConstants.m */; };
 		1B5AC76F10532E5200F9CE36 /* MetaEditPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */; };
-		1B78A49B105032A50072D89E /* MZMethodData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78A49A105032A50072D89E /* MZMethodData.m */; };
 		1BA325CD10545BBB00276F57 /* MetaZKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1BA325E110545CD900276F57 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		1BA326191054643300276F57 /* MetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B119FCA104304C5004C93D3 /* MetaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BA3261A1054643300276F57 /* MetaEdits.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B119FC7104300ED004C93D3 /* MetaEdits.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BA3261B1054643300276F57 /* MetaEdits.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119FC8104300ED004C93D3 /* MetaEdits.m */; };
+		1BA3261C1054643300276F57 /* MetaLoaded.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B119FCD10443655004C93D3 /* MetaLoaded.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BA3261D1054643300276F57 /* MetaLoaded.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119FCE10443655004C93D3 /* MetaLoaded.m */; };
+		1BA3261E1054643300276F57 /* SearchMeta.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB6BE7C1050BC00001D3D1D /* SearchMeta.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BA3261F1054643300276F57 /* SearchMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BE7D1050BC00001D3D1D /* SearchMeta.m */; };
+		1BA326201054643300276F57 /* MZConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B11A47C104E627F004C93D3 /* MZConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BA326211054643300276F57 /* MZConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A47D104E627F004C93D3 /* MZConstants.m */; };
+		1BA326221054643300276F57 /* MZMethodData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B78A499105032A50072D89E /* MZMethodData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BA326231054643300276F57 /* MZMethodData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78A49A105032A50072D89E /* MZMethodData.m */; };
+		1BA326241054643300276F57 /* MZDataProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B11A02810458471004C93D3 /* MZDataProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BA326251054643300276F57 /* MZDynamicObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB6BB0810507DBB001D3D1D /* MZDynamicObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BA326261054643300276F57 /* MZDynamicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */; };
+		1BA326271054643300276F57 /* MZSearchProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB6BE821050BD3A001D3D1D /* MZSearchProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BA3269D10546EC800276F57 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BA3269B10546EC800276F57 /* InfoPlist.strings */; };
+		1BA326A010546F4600276F57 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA3269E10546F4600276F57 /* MainMenu.xib */; };
+		1BA326A310546F9700276F57 /* MZTags.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BA326A110546F9700276F57 /* MZTags.strings */; };
+		1BA326C61054723000276F57 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1BB3609D105416D000188DD1 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB3609C105416D000188DD1 /* AppController.m */; };
 		1BB3611C105421F100188DD1 /* FilesUndoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB3611B105421F100188DD1 /* FilesUndoController.m */; };
-		1BB6BB06105072B7001D3D1D /* MZTags.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BB6BB04105072B7001D3D1D /* MZTags.strings */; };
-		1BB6BB0A10507DBB001D3D1D /* MZDynamicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */; };
-		1BB6BE7E1050BC00001D3D1D /* SearchMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BE7D1050BC00001D3D1D /* SearchMeta.m */; };
 		1BB6BE811050BC88001D3D1D /* MZMetaSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BE801050BC88001D3D1D /* MZMetaSearcher.m */; };
 		1BB6BF341050E5E2001D3D1D /* sparkle_public.pem in Resources */ = {isa = PBXBuildFile; fileRef = 1BB6BF331050E5E2001D3D1D /* sparkle_public.pem */; };
 		1BB6C10B1052B155001D3D1D /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB6C10A1052B154001D3D1D /* Sparkle.framework */; };
 		1BB6C11F1052B1C1001D3D1D /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB6C10A1052B154001D3D1D /* Sparkle.framework */; };
-		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
-		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -61,52 +71,53 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		1B119D1D103F17D5004C93D3 /* ResizeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResizeController.h; sourceTree = "<group>"; };
-		1B119D1E103F17D5004C93D3 /* ResizeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResizeController.m; sourceTree = "<group>"; };
-		1B119FC7104300ED004C93D3 /* MetaEdits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaEdits.h; sourceTree = "<group>"; };
-		1B119FC8104300ED004C93D3 /* MetaEdits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEdits.m; sourceTree = "<group>"; };
-		1B119FCA104304C5004C93D3 /* MetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaData.h; sourceTree = "<group>"; };
-		1B119FCD10443655004C93D3 /* MetaLoaded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaLoaded.h; sourceTree = "<group>"; };
-		1B119FCE10443655004C93D3 /* MetaLoaded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaLoaded.m; sourceTree = "<group>"; };
-		1B119FD510444DC4004C93D3 /* MZMetaLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMetaLoader.h; sourceTree = "<group>"; };
-		1B119FD610444DC4004C93D3 /* MZMetaLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMetaLoader.m; sourceTree = "<group>"; };
+		1B119D1D103F17D5004C93D3 /* ResizeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResizeController.h; path = App/src/ResizeController.h; sourceTree = "<group>"; };
+		1B119D1E103F17D5004C93D3 /* ResizeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResizeController.m; path = App/src/ResizeController.m; sourceTree = "<group>"; };
+		1B119FC7104300ED004C93D3 /* MetaEdits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaEdits.h; path = Framework/src/MetaEdits.h; sourceTree = "<group>"; };
+		1B119FC8104300ED004C93D3 /* MetaEdits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MetaEdits.m; path = Framework/src/MetaEdits.m; sourceTree = "<group>"; };
+		1B119FCA104304C5004C93D3 /* MetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaData.h; path = Framework/src/MetaData.h; sourceTree = "<group>"; };
+		1B119FCD10443655004C93D3 /* MetaLoaded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaLoaded.h; path = Framework/src/MetaLoaded.h; sourceTree = "<group>"; };
+		1B119FCE10443655004C93D3 /* MetaLoaded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MetaLoaded.m; path = Framework/src/MetaLoaded.m; sourceTree = "<group>"; };
+		1B119FD510444DC4004C93D3 /* MZMetaLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MZMetaLoader.h; path = App/src/MZMetaLoader.h; sourceTree = "<group>"; };
+		1B119FD610444DC4004C93D3 /* MZMetaLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MZMetaLoader.m; path = App/src/MZMetaLoader.m; sourceTree = "<group>"; };
 		1B11A00610457B0D004C93D3 /* RubyCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RubyCocoa.framework; path = /System/Library/Frameworks/RubyCocoa.framework; sourceTree = "<absolute>"; };
-		1B11A02410457B76004C93D3 /* rb_main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = rb_main.rb; sourceTree = "<group>"; };
-		1B11A02610457FB2004C93D3 /* AtomicParsleyWrapper.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AtomicParsleyWrapper.rb; sourceTree = "<group>"; };
-		1B11A02810458471004C93D3 /* MZDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDataProvider.h; sourceTree = "<group>"; };
-		1B11A289104DF1EC004C93D3 /* FilesTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesTableView.h; sourceTree = "<group>"; };
-		1B11A28A104DF1EC004C93D3 /* FilesTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesTableView.m; sourceTree = "<group>"; };
-		1B11A47C104E627F004C93D3 /* MZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZConstants.h; sourceTree = "<group>"; };
-		1B11A47D104E627F004C93D3 /* MZConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZConstants.m; sourceTree = "<group>"; };
-		1B5AC76D10532E5200F9CE36 /* MetaEditPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaEditPanel.h; sourceTree = "<group>"; };
-		1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditPanel.m; sourceTree = "<group>"; };
-		1B78A499105032A50072D89E /* MZMethodData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMethodData.h; sourceTree = "<group>"; };
-		1B78A49A105032A50072D89E /* MZMethodData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMethodData.m; sourceTree = "<group>"; };
+		1B11A02410457B76004C93D3 /* rb_main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = rb_main.rb; path = App/src/rb_main.rb; sourceTree = "<group>"; };
+		1B11A02610457FB2004C93D3 /* AtomicParsleyWrapper.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = AtomicParsleyWrapper.rb; path = App/src/AtomicParsleyWrapper.rb; sourceTree = "<group>"; };
+		1B11A02810458471004C93D3 /* MZDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MZDataProvider.h; path = Framework/src/MZDataProvider.h; sourceTree = "<group>"; };
+		1B11A289104DF1EC004C93D3 /* FilesTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilesTableView.h; path = App/src/FilesTableView.h; sourceTree = "<group>"; };
+		1B11A28A104DF1EC004C93D3 /* FilesTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilesTableView.m; path = App/src/FilesTableView.m; sourceTree = "<group>"; };
+		1B11A47C104E627F004C93D3 /* MZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MZConstants.h; path = Framework/src/MZConstants.h; sourceTree = "<group>"; };
+		1B11A47D104E627F004C93D3 /* MZConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MZConstants.m; path = Framework/src/MZConstants.m; sourceTree = "<group>"; };
+		1B5AC76D10532E5200F9CE36 /* MetaEditPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaEditPanel.h; path = App/src/MetaEditPanel.h; sourceTree = "<group>"; };
+		1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MetaEditPanel.m; path = App/src/MetaEditPanel.m; sourceTree = "<group>"; };
+		1B78A499105032A50072D89E /* MZMethodData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MZMethodData.h; path = Framework/src/MZMethodData.h; sourceTree = "<group>"; };
+		1B78A49A105032A50072D89E /* MZMethodData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MZMethodData.m; path = Framework/src/MZMethodData.m; sourceTree = "<group>"; };
 		1BA325C410545ACA00276F57 /* MetaZKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MetaZKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1BA325C510545ACA00276F57 /* MetaZKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MetaZKit-Info.plist"; sourceTree = "<group>"; };
+		1BA325C510545ACA00276F57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Framework/Info.plist; sourceTree = "<group>"; };
+		1BA3268210546CB500276F57 /* MetaZKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaZKit_Prefix.pch; path = Framework/MetaZKit_Prefix.pch; sourceTree = "<group>"; };
+		1BA3269C10546EC800276F57 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = App/English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1BA3269F10546F4600276F57 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		1BA326A210546F9700276F57 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/MZTags.strings; sourceTree = "<group>"; };
 		1BB3609B105416D000188DD1 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppController.h; path = App/src/AppController.h; sourceTree = "<group>"; };
 		1BB3609C105416D000188DD1 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppController.m; path = App/src/AppController.m; sourceTree = "<group>"; };
-		1BB3611A105421F100188DD1 /* FilesUndoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesUndoController.h; sourceTree = "<group>"; };
-		1BB3611B105421F100188DD1 /* FilesUndoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesUndoController.m; sourceTree = "<group>"; };
-		1BB6BB05105072B7001D3D1D /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/MZTags.strings; sourceTree = "<group>"; };
-		1BB6BB0810507DBB001D3D1D /* MZDynamicObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDynamicObject.h; sourceTree = "<group>"; };
-		1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZDynamicObject.m; sourceTree = "<group>"; };
-		1BB6BE7C1050BC00001D3D1D /* SearchMeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMeta.h; sourceTree = "<group>"; };
-		1BB6BE7D1050BC00001D3D1D /* SearchMeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMeta.m; sourceTree = "<group>"; };
-		1BB6BE7F1050BC88001D3D1D /* MZMetaSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMetaSearcher.h; sourceTree = "<group>"; };
-		1BB6BE801050BC88001D3D1D /* MZMetaSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMetaSearcher.m; sourceTree = "<group>"; };
-		1BB6BE821050BD3A001D3D1D /* MZSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSearchProvider.h; sourceTree = "<group>"; };
+		1BB3611A105421F100188DD1 /* FilesUndoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilesUndoController.h; path = App/src/FilesUndoController.h; sourceTree = "<group>"; };
+		1BB3611B105421F100188DD1 /* FilesUndoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilesUndoController.m; path = App/src/FilesUndoController.m; sourceTree = "<group>"; };
+		1BB6BB0810507DBB001D3D1D /* MZDynamicObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MZDynamicObject.h; path = Framework/src/MZDynamicObject.h; sourceTree = "<group>"; };
+		1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MZDynamicObject.m; path = Framework/src/MZDynamicObject.m; sourceTree = "<group>"; };
+		1BB6BE7C1050BC00001D3D1D /* SearchMeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchMeta.h; path = Framework/src/SearchMeta.h; sourceTree = "<group>"; };
+		1BB6BE7D1050BC00001D3D1D /* SearchMeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchMeta.m; path = Framework/src/SearchMeta.m; sourceTree = "<group>"; };
+		1BB6BE7F1050BC88001D3D1D /* MZMetaSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MZMetaSearcher.h; path = App/src/MZMetaSearcher.h; sourceTree = "<group>"; };
+		1BB6BE801050BC88001D3D1D /* MZMetaSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MZMetaSearcher.m; path = App/src/MZMetaSearcher.m; sourceTree = "<group>"; };
+		1BB6BE821050BD3A001D3D1D /* MZSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MZSearchProvider.h; path = Framework/src/MZSearchProvider.h; sourceTree = "<group>"; };
 		1BB6BF331050E5E2001D3D1D /* sparkle_public.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparkle_public.pem; sourceTree = "<group>"; };
 		1BB6C10A1052B154001D3D1D /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = SOURCE_ROOT; };
-		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = App/src/main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		32CA4F630368D1EE00C91783 /* MetaZ_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaZ_Prefix.pch; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* MetaZ_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaZ_Prefix.pch; path = App/MetaZ_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = App/Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MetaZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetaZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -123,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BA326C61054723000276F57 /* MetaZKit.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				1B11A00710457B0D004C93D3 /* RubyCocoa.framework in Frameworks */,
 				1BB6C10B1052B155001D3D1D /* Sparkle.framework in Frameworks */,
@@ -135,7 +147,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1B11A02610457FB2004C93D3 /* AtomicParsleyWrapper.rb */,
 				1B119FCA104304C5004C93D3 /* MetaData.h */,
 				1B119FC7104300ED004C93D3 /* MetaEdits.h */,
 				1B119FC8104300ED004C93D3 /* MetaEdits.m */,
@@ -150,10 +161,6 @@
 				1B11A02810458471004C93D3 /* MZDataProvider.h */,
 				1BB6BB0810507DBB001D3D1D /* MZDynamicObject.h */,
 				1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */,
-				1B119FD510444DC4004C93D3 /* MZMetaLoader.h */,
-				1B119FD610444DC4004C93D3 /* MZMetaLoader.m */,
-				1BB6BE7F1050BC88001D3D1D /* MZMetaSearcher.h */,
-				1BB6BE801050BC88001D3D1D /* MZMetaSearcher.m */,
 				1BB6BE821050BD3A001D3D1D /* MZSearchProvider.h */,
 			);
 			name = Classes;
@@ -182,8 +189,8 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* MetaZ.app */,
 				1BA325C410545ACA00276F57 /* MetaZKit.framework */,
+				8D1107320486CEB800E47090 /* MetaZ.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -191,24 +198,19 @@
 		1BA32591105458EE00276F57 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				1BA325921054596300276F57 /* Classes */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				1BA3268110546C9700276F57 /* Other Sources */,
 				1BA325D210545CA600276F57 /* Resources */,
 			);
 			name = Framework;
-			sourceTree = "<group>";
-		};
-		1BA325921054596300276F57 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Classes;
 			sourceTree = "<group>";
 		};
 		1BA325BC10545A1B00276F57 /* App */ = {
 			isa = PBXGroup;
 			children = (
 				1BA325BD10545A2800276F57 /* Classes */,
-				1BA325BE10545A2F00276F57 /* Resources */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -216,6 +218,7 @@
 		1BA325BD10545A2800276F57 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1B11A02610457FB2004C93D3 /* AtomicParsleyWrapper.rb */,
 				1BB3609B105416D000188DD1 /* AppController.h */,
 				1BB3609C105416D000188DD1 /* AppController.m */,
 				1B11A289104DF1EC004C93D3 /* FilesTableView.h */,
@@ -224,24 +227,31 @@
 				1BB3611B105421F100188DD1 /* FilesUndoController.m */,
 				1B5AC76D10532E5200F9CE36 /* MetaEditPanel.h */,
 				1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */,
+				1B119FD510444DC4004C93D3 /* MZMetaLoader.h */,
+				1B119FD610444DC4004C93D3 /* MZMetaLoader.m */,
+				1BB6BE7F1050BC88001D3D1D /* MZMetaSearcher.h */,
+				1BB6BE801050BC88001D3D1D /* MZMetaSearcher.m */,
 				1B119D1D103F17D5004C93D3 /* ResizeController.h */,
 				1B119D1E103F17D5004C93D3 /* ResizeController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		1BA325BE10545A2F00276F57 /* Resources */ = {
+		1BA325D210545CA600276F57 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1BA326A110546F9700276F57 /* MZTags.strings */,
+				1BA325C510545ACA00276F57 /* Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		1BA325D210545CA600276F57 /* Resources */ = {
+		1BA3268110546C9700276F57 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1BA3268210546CB500276F57 /* MetaZKit_Prefix.pch */,
 			);
-			name = Resources;
+			name = "Other Sources";
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* MetaZ */ = {
@@ -249,12 +259,8 @@
 			children = (
 				1BA325BC10545A1B00276F57 /* App */,
 				1BA32591105458EE00276F57 /* Framework */,
-				080E96DDFE201D6D7F000001 /* Classes */,
-				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				1BA325C510545ACA00276F57 /* MetaZKit-Info.plist */,
 			);
 			name = MetaZ;
 			sourceTree = "<group>";
@@ -272,11 +278,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1BB6BF331050E5E2001D3D1D /* sparkle_public.pem */,
-				1BB6BB04105072B7001D3D1D /* MZTags.strings */,
 				8D1107310486CEB800E47090 /* Info.plist */,
-				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
-				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+				1BA3269B10546EC800276F57 /* InfoPlist.strings */,
+				1BA3269E10546F4600276F57 /* MainMenu.xib */,
+				1BB6BF331050E5E2001D3D1D /* sparkle_public.pem */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -297,6 +302,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BA326191054643300276F57 /* MetaData.h in Headers */,
+				1BA3261A1054643300276F57 /* MetaEdits.h in Headers */,
+				1BA3261C1054643300276F57 /* MetaLoaded.h in Headers */,
+				1BA3261E1054643300276F57 /* SearchMeta.h in Headers */,
+				1BA326201054643300276F57 /* MZConstants.h in Headers */,
+				1BA326221054643300276F57 /* MZMethodData.h in Headers */,
+				1BA326241054643300276F57 /* MZDataProvider.h in Headers */,
+				1BA326251054643300276F57 /* MZDynamicObject.h in Headers */,
+				1BA326271054643300276F57 /* MZSearchProvider.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +379,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BA326A310546F9700276F57 /* MZTags.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,12 +387,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				1B11A02510457B76004C93D3 /* rb_main.rb in Resources */,
 				1B11A02710457FB2004C93D3 /* AtomicParsleyWrapper.rb in Resources */,
-				1BB6BB06105072B7001D3D1D /* MZTags.strings in Resources */,
 				1BB6BF341050E5E2001D3D1D /* sparkle_public.pem in Resources */,
+				1BA3269D10546EC800276F57 /* InfoPlist.strings in Resources */,
+				1BA326A010546F4600276F57 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +420,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BA3261B1054643300276F57 /* MetaEdits.m in Sources */,
+				1BA3261D1054643300276F57 /* MetaLoaded.m in Sources */,
+				1BA3261F1054643300276F57 /* SearchMeta.m in Sources */,
+				1BA326211054643300276F57 /* MZConstants.m in Sources */,
+				1BA326231054643300276F57 /* MZMethodData.m in Sources */,
+				1BA326261054643300276F57 /* MZDynamicObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,14 +435,8 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				1B119D1F103F17D5004C93D3 /* ResizeController.m in Sources */,
-				1B119FC9104300ED004C93D3 /* MetaEdits.m in Sources */,
-				1B119FCF10443655004C93D3 /* MetaLoaded.m in Sources */,
 				1B119FD710444DC4004C93D3 /* MZMetaLoader.m in Sources */,
 				1B11A28B104DF1EC004C93D3 /* FilesTableView.m in Sources */,
-				1B11A47E104E627F004C93D3 /* MZConstants.m in Sources */,
-				1B78A49B105032A50072D89E /* MZMethodData.m in Sources */,
-				1BB6BB0A10507DBB001D3D1D /* MZDynamicObject.m in Sources */,
-				1BB6BE7E1050BC00001D3D1D /* SearchMeta.m in Sources */,
 				1BB6BE811050BC88001D3D1D /* MZMetaSearcher.m in Sources */,
 				1B5AC76F10532E5200F9CE36 /* MetaEditPanel.m in Sources */,
 				1BB3609D105416D000188DD1 /* AppController.m in Sources */,
@@ -441,28 +455,28 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+		1BA3269B10546EC800276F57 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				089C165DFE840E0CC02AAC07 /* English */,
+				1BA3269C10546EC800276F57 /* English */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		1BB6BB04105072B7001D3D1D /* MZTags.strings */ = {
+		1BA3269E10546F4600276F57 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1BB6BB05105072B7001D3D1D /* English */,
-			);
-			name = MZTags.strings;
-			sourceTree = "<group>";
-		};
-		1DDD58140DA1D0A300B32029 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1DDD58150DA1D0A300B32029 /* English */,
+				1BA3269F10546F4600276F57 /* English */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		1BA326A110546F9700276F57 /* MZTags.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1BA326A210546F9700276F57 /* English */,
+			);
+			name = MZTags.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -481,8 +495,8 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "MetaZKit-Info.plist";
+				GCC_PREFIX_HEADER = Framework/MetaZKit_Prefix.pch;
+				INFOPLIST_FILE = Framework/Info.plist;
 				INSTALL_PATH = "@loader_path/../Frameworks";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -536,8 +550,8 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = MetaZ_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
+				GCC_PREFIX_HEADER = App/MetaZ_Prefix.pch;
+				INFOPLIST_FILE = App/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = MetaZ;
 			};

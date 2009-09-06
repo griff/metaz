@@ -13,7 +13,6 @@
 
 @interface MetaEdits : MetaLoaded {
     id<MetaData> provider;
-    //NSMutableDictionary* lastCache;
     NSUndoManager* undoManager;
     NSUndoManager* multiUndoManager;
 }

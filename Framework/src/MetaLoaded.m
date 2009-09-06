@@ -22,7 +22,7 @@
 
 -(id)initWithDictionary:(NSDictionary *)dict {
     self = [self initWithKeys:[dict allKeys]];
-    loadedFileName = [dict objectForKey:@"fileName"];
+    loadedFileName = [dict objectForKey:MZFileNameTag];
     tags = [[NSDictionary alloc]initWithDictionary:dict];
     return self;
 }
