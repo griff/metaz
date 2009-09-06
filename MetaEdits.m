@@ -10,6 +10,7 @@
 #import "MZDataMethod.h"
 
 @implementation MetaEdits
+@synthesize undoManager;
 @synthesize multiUndoManager;
 
 -(id)initWithProvider:(id<MetaData>)aProvider {
@@ -63,7 +64,8 @@
 }
 
 -(BOOL)changed {
-    return [tags count] > 0;
+    int count = [tags objectForKey:MZFileNameTag] != nil ? 1 : 0;
+    return [tags count] > count;
 }
 
 -(id)getterValueForKey:(NSString *)aKey {

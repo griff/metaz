@@ -18,13 +18,14 @@
 		1B11A47E104E627F004C93D3 /* MZConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A47D104E627F004C93D3 /* MZConstants.m */; };
 		1B5AC76F10532E5200F9CE36 /* MetaEditPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */; };
 		1B78A49B105032A50072D89E /* MZDataMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78A49A105032A50072D89E /* MZDataMethod.m */; };
+		1BA325CD10545BBB00276F57 /* MetaZKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
+		1BA325E110545CD900276F57 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		1BB3609D105416D000188DD1 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB3609C105416D000188DD1 /* AppController.m */; };
 		1BB3611C105421F100188DD1 /* FilesUndoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB3611B105421F100188DD1 /* FilesUndoController.m */; };
 		1BB6BB06105072B7001D3D1D /* MZTags.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BB6BB04105072B7001D3D1D /* MZTags.strings */; };
 		1BB6BB0A10507DBB001D3D1D /* MZDynamicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */; };
 		1BB6BE7E1050BC00001D3D1D /* SearchMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BE7D1050BC00001D3D1D /* SearchMeta.m */; };
 		1BB6BE811050BC88001D3D1D /* MZMetaSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BE801050BC88001D3D1D /* MZMetaSearcher.m */; };
-		1BB6BE931050C500001D3D1D /* MZSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BE921050C500001D3D1D /* MZSearchResult.m */; };
 		1BB6BF341050E5E2001D3D1D /* sparkle_public.pem in Resources */ = {isa = PBXBuildFile; fileRef = 1BB6BF331050E5E2001D3D1D /* sparkle_public.pem */; };
 		1BB6C10B1052B155001D3D1D /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB6C10A1052B154001D3D1D /* Sparkle.framework */; };
 		1BB6C11F1052B1C1001D3D1D /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB6C10A1052B154001D3D1D /* Sparkle.framework */; };
@@ -34,6 +35,16 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		1BA325CB10545BAE00276F57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			remoteInfo = MetaZKit;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		1BB6C11E1052B199001D3D1D /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -41,6 +52,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				1BA325CD10545BBB00276F57 /* MetaZKit.framework in Copy Frameworks */,
 				1BB6C11F1052B1C1001D3D1D /* Sparkle.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
@@ -73,6 +85,8 @@
 		1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditPanel.m; sourceTree = "<group>"; };
 		1B78A499105032A50072D89E /* MZDataMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDataMethod.h; sourceTree = "<group>"; };
 		1B78A49A105032A50072D89E /* MZDataMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZDataMethod.m; sourceTree = "<group>"; };
+		1BA325C410545ACA00276F57 /* MetaZKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MetaZKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BA325C510545ACA00276F57 /* MetaZKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MetaZKit-Info.plist"; sourceTree = "<group>"; };
 		1BB3609B105416D000188DD1 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		1BB3609C105416D000188DD1 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 		1BB3611A105421F100188DD1 /* FilesUndoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesUndoController.h; sourceTree = "<group>"; };
@@ -85,8 +99,6 @@
 		1BB6BE7F1050BC88001D3D1D /* MZMetaSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMetaSearcher.h; sourceTree = "<group>"; };
 		1BB6BE801050BC88001D3D1D /* MZMetaSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMetaSearcher.m; sourceTree = "<group>"; };
 		1BB6BE821050BD3A001D3D1D /* MZSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSearchProvider.h; sourceTree = "<group>"; };
-		1BB6BE911050C500001D3D1D /* MZSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSearchResult.h; sourceTree = "<group>"; };
-		1BB6BE921050C500001D3D1D /* MZSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZSearchResult.m; sourceTree = "<group>"; };
 		1BB6BF331050E5E2001D3D1D /* sparkle_public.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparkle_public.pem; sourceTree = "<group>"; };
 		1BB6C10A1052B154001D3D1D /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = SOURCE_ROOT; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -99,6 +111,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1BA325C210545ACA00276F57 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BA325E110545CD900276F57 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -145,8 +165,6 @@
 				1BB6BE7F1050BC88001D3D1D /* MZMetaSearcher.h */,
 				1BB6BE801050BC88001D3D1D /* MZMetaSearcher.m */,
 				1BB6BE821050BD3A001D3D1D /* MZSearchProvider.h */,
-				1BB6BE911050C500001D3D1D /* MZSearchResult.h */,
-				1BB6BE921050C500001D3D1D /* MZSearchResult.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -175,18 +193,68 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* MetaZ.app */,
+				1BA325C410545ACA00276F57 /* MetaZKit.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		1BA32591105458EE00276F57 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				1BA325921054596300276F57 /* Classes */,
+				1BA325D210545CA600276F57 /* Resources */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		1BA325921054596300276F57 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1BA325BC10545A1B00276F57 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1BA325BD10545A2800276F57 /* Classes */,
+				1BA325BE10545A2F00276F57 /* Resources */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
+		1BA325BD10545A2800276F57 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1BA325BE10545A2F00276F57 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		1BA325D210545CA600276F57 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* MetaZ */ = {
 			isa = PBXGroup;
 			children = (
+				1BA325BC10545A1B00276F57 /* App */,
+				1BA32591105458EE00276F57 /* Framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				1BA325C510545ACA00276F57 /* MetaZKit-Info.plist */,
 			);
 			name = MetaZ;
 			sourceTree = "<group>";
@@ -224,7 +292,35 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		1BA325BF10545ACA00276F57 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		1BA325C310545ACA00276F57 /* MetaZKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1BA325C810545ACB00276F57 /* Build configuration list for PBXNativeTarget "MetaZKit" */;
+			buildPhases = (
+				1BA325BF10545ACA00276F57 /* Headers */,
+				1BA325C010545ACA00276F57 /* Resources */,
+				1BA325C110545ACA00276F57 /* Sources */,
+				1BA325C210545ACA00276F57 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MetaZKit;
+			productName = MetaZKit;
+			productReference = 1BA325C410545ACA00276F57 /* MetaZKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		8D1107260486CEB800E47090 /* MetaZ */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "MetaZ" */;
@@ -238,6 +334,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1BA325CC10545BAE00276F57 /* PBXTargetDependency */,
 			);
 			name = MetaZ;
 			productInstallPath = "$(HOME)/Applications";
@@ -258,11 +355,19 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* MetaZ */,
+				1BA325C310545ACA00276F57 /* MetaZKit */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1BA325C010545ACA00276F57 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D1107290486CEB800E47090 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -297,6 +402,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1BA325C110545ACA00276F57 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -312,7 +424,6 @@
 				1BB6BB0A10507DBB001D3D1D /* MZDynamicObject.m in Sources */,
 				1BB6BE7E1050BC00001D3D1D /* SearchMeta.m in Sources */,
 				1BB6BE811050BC88001D3D1D /* MZMetaSearcher.m in Sources */,
-				1BB6BE931050C500001D3D1D /* MZSearchResult.m in Sources */,
 				1B5AC76F10532E5200F9CE36 /* MetaEditPanel.m in Sources */,
 				1BB3609D105416D000188DD1 /* AppController.m in Sources */,
 				1BB3611C105421F100188DD1 /* FilesUndoController.m in Sources */,
@@ -320,6 +431,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1BA325CC10545BAE00276F57 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			targetProxy = 1BA325CB10545BAE00276F57 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
@@ -349,6 +468,60 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1BA325C610545ACB00276F57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "MetaZKit-Info.plist";
+				INSTALL_PATH = "@loader_path/../Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = MetaZKit;
+			};
+			name = Debug;
+		};
+		1BA325C710545ACB00276F57 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "MetaZKit-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = MetaZKit;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -417,6 +590,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1BA325C810545ACB00276F57 /* Build configuration list for PBXNativeTarget "MetaZKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1BA325C610545ACB00276F57 /* Debug */,
+				1BA325C710545ACB00276F57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "MetaZ" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

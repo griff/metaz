@@ -17,6 +17,7 @@
     NSUndoManager* undoManager;
     NSUndoManager* multiUndoManager;
 }
+@property(readonly) NSUndoManager* undoManager;
 @property(retain)   NSUndoManager* multiUndoManager;
 
 -(id)initWithProvider:(id<MetaData>)aProvider;

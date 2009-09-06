@@ -51,10 +51,25 @@ static MZMetaLoader* sharedLoader = nil;
     return ret;
 }
 
+-(void)fixTitle:(MetaEdits* )edits {
+    NSString* title = [edits title];
+    if(title == nil)
+    {
+        [[edits undoManager] disableUndoRegistration];
+        NSString* loadedFileName = [edits loadedFileName];
+        NSAssert(loadedFileName != nil, @"Bad loaded file name");
+        NSAssert( ((NSNull*)loadedFileName) != [NSNull null], @"Bad loaded file name" );
+        NSString* newTitle = [loadedFileName substringToIndex:[loadedFileName length] - [[loadedFileName pathExtension] length] - 1];
+        [edits setTitle:newTitle];
+        [[edits undoManager] enableUndoRegistration];
+    }
+}
+
 -(void)loadFromFile:(NSString *)fileName {
     [self willChangeValueForKey:@"files"];
     MetaLoaded* loaded = [provider loadFromFile:fileName];
     MetaEdits* edits = [[MetaEdits alloc] initWithProvider:loaded];
+    [self fixTitle:edits];
     [files addObject:edits];
     [self didChangeValueForKey:@"files"];
 }
@@ -65,15 +80,7 @@ static MZMetaLoader* sharedLoader = nil;
     {
         MetaLoaded* loaded = [provider loadFromFile:fileName];
         MetaEdits* edits = [[MetaEdits alloc] initWithProvider:loaded];
-        NSString* title = [edits title];
-        if(title == nil)
-        {
-            NSString* loadedFileName = [edits fileName];
-            NSAssert(loadedFileName != nil, @"Bad loaded file name");
-            NSAssert( ((NSNull*)loadedFileName) != [NSNull null], @"Bad loaded file name" );
-            NSString* newTitle = [loadedFileName substringToIndex:[loadedFileName length] - [[loadedFileName pathExtension] length] - 1];
-            [edits setTitle:newTitle];
-        }
+        [self fixTitle:edits];
         [files addObject:edits];
     }
     [self didChangeValueForKey:@"files"];
