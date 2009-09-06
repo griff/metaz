@@ -9,7 +9,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="1259"/>
-			<integer value="24"/>
+			<integer value="205"/>
 			<integer value="475"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -4438,7 +4438,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<string key="NSFrameAutosaveName">mainwindow</string>
 			</object>
-			<object class="NSCustomObject" id="801875532">
+			<object class="NSCustomObject" id="1053022543">
 				<string key="NSClassName">AppController</string>
 			</object>
 			<object class="NSCustomObject" id="12014701">
@@ -4522,7 +4522,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<bool key="NSFilterRestrictsInsertion">YES</bool>
 				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
 			</object>
-			<object class="NSCustomObject" id="723809485">
+			<object class="NSCustomObject" id="488851568">
 				<string key="NSClassName">FilesUndoController</string>
 			</object>
 			<object class="NSCustomObject" id="104323459">
@@ -4531,28 +4531,28 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 			<object class="NSCustomObject" id="931879071">
 				<string key="NSClassName">SUUpdater</string>
 			</object>
-			<object class="NSMenu" id="929002822">
+			<object class="NSMenu" id="601124815">
 				<string key="NSTitle"/>
 				<object class="NSMutableArray" key="NSMenuItems">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="NSMenuItem" id="1031541672">
-						<reference key="NSMenu" ref="929002822"/>
+					<object class="NSMenuItem" id="936538229">
+						<reference key="NSMenu" ref="601124815"/>
 						<string key="NSTitle">Search for Cover Art</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="35465992"/>
 						<reference key="NSMixedImage" ref="502551668"/>
 					</object>
-					<object class="NSMenuItem" id="742381040">
-						<reference key="NSMenu" ref="929002822"/>
+					<object class="NSMenuItem" id="394145538">
+						<reference key="NSMenu" ref="601124815"/>
 						<string key="NSTitle">Trim</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="35465992"/>
 						<reference key="NSMixedImage" ref="502551668"/>
 					</object>
-					<object class="NSMenuItem" id="455762667">
-						<reference key="NSMenu" ref="929002822"/>
+					<object class="NSMenuItem" id="788106011">
+						<reference key="NSMenu" ref="601124815"/>
 						<string key="NSTitle">Item 3</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
@@ -5727,7 +5727,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">menu</string>
 						<reference key="source" ref="83431714"/>
-						<reference key="destination" ref="929002822"/>
+						<reference key="destination" ref="601124815"/>
 					</object>
 					<int key="connectionID">1263</int>
 				</object>
@@ -6529,16 +6529,8 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">blaView</string>
-						<reference key="source" ref="12014701"/>
-						<reference key="destination" ref="478888935"/>
-					</object>
-					<int key="connectionID">1293</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">episodeFormatter</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="826961246"/>
 					</object>
 					<int key="connectionID">1295</int>
@@ -6546,7 +6538,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">seasonFormatter</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="273850488"/>
 					</object>
 					<int key="connectionID">1296</int>
@@ -6554,7 +6546,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">filesController</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="35104934"/>
 					</object>
 					<int key="connectionID">1298</int>
@@ -6562,7 +6554,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">filesSegmentControl</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="828894944"/>
 					</object>
 					<int key="connectionID">1299</int>
@@ -6570,7 +6562,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">tabView</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="625271791"/>
 					</object>
 					<int key="connectionID">1300</int>
@@ -6578,7 +6570,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">segmentClicked:</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="828894944"/>
 					</object>
 					<int key="connectionID">1302</int>
@@ -6586,7 +6578,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">showPreferences:</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="609285721"/>
 					</object>
 					<int key="connectionID">1303</int>
@@ -6594,7 +6586,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">openFile:</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="722745758"/>
 					</object>
 					<int key="connectionID">1304</int>
@@ -6602,7 +6594,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">revertChanges:</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="402276915"/>
 					</object>
 					<int key="connectionID">1305</int>
@@ -6610,7 +6602,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">showInfoTab:</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="346461748"/>
 					</object>
 					<int key="connectionID">1306</int>
@@ -6618,7 +6610,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">showVideoTab:</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="192752951"/>
 					</object>
 					<int key="connectionID">1307</int>
@@ -6626,7 +6618,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">showSortTab:</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="67926796"/>
 					</object>
 					<int key="connectionID">1308</int>
@@ -6634,7 +6626,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">showAdvancedTab:</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="550659289"/>
 					</object>
 					<int key="connectionID">1309</int>
@@ -6642,7 +6634,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">showChapterTab:</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="799512685"/>
 					</object>
 					<int key="connectionID">1310</int>
@@ -6650,7 +6642,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">selectPreviousFile:</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="208526632"/>
 					</object>
 					<int key="connectionID">1311</int>
@@ -6658,7 +6650,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">selectNextFile:</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="452284327"/>
 					</object>
 					<int key="connectionID">1312</int>
@@ -6666,7 +6658,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">filesController</string>
-						<reference key="source" ref="723809485"/>
+						<reference key="source" ref="488851568"/>
 						<reference key="destination" ref="35104934"/>
 					</object>
 					<int key="connectionID">1314</int>
@@ -6674,15 +6666,15 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">undoController</string>
-						<reference key="source" ref="801875532"/>
-						<reference key="destination" ref="723809485"/>
+						<reference key="source" ref="1053022543"/>
+						<reference key="destination" ref="488851568"/>
 					</object>
 					<int key="connectionID">1315</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">resizeController</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="12014701"/>
 					</object>
 					<int key="connectionID">1316</int>
@@ -6690,7 +6682,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">window</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="972006081"/>
 					</object>
 					<int key="connectionID">1317</int>
@@ -6699,14 +6691,14 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="972006081"/>
-						<reference key="destination" ref="801875532"/>
+						<reference key="destination" ref="1053022543"/>
 					</object>
 					<int key="connectionID">1318</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">shortDescription</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="478888935"/>
 					</object>
 					<int key="connectionID">1319</int>
@@ -6714,7 +6706,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">longDescription</string>
-						<reference key="source" ref="801875532"/>
+						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="261739186"/>
 					</object>
 					<int key="connectionID">1320</int>
@@ -6723,9 +6715,41 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">undoController</string>
 						<reference key="source" ref="625271791"/>
-						<reference key="destination" ref="723809485"/>
+						<reference key="destination" ref="488851568"/>
 					</object>
 					<int key="connectionID">1321</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">undoController</string>
+						<reference key="source" ref="488786011"/>
+						<reference key="destination" ref="488851568"/>
+					</object>
+					<int key="connectionID">1322</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">filesView</string>
+						<reference key="source" ref="1053022543"/>
+						<reference key="destination" ref="488786011"/>
+					</object>
+					<int key="connectionID">1323</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">purchaseDateFormatter</string>
+						<reference key="source" ref="1053022543"/>
+						<reference key="destination" ref="257809127"/>
+					</object>
+					<int key="connectionID">1324</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">dateFormatter</string>
+						<reference key="source" ref="1053022543"/>
+						<reference key="destination" ref="583696197"/>
+					</object>
+					<int key="connectionID">1325</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -9422,38 +9446,38 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1259</int>
-						<reference key="object" ref="929002822"/>
+						<reference key="object" ref="601124815"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="1031541672"/>
-							<reference ref="742381040"/>
-							<reference ref="455762667"/>
+							<reference ref="936538229"/>
+							<reference ref="394145538"/>
+							<reference ref="788106011"/>
 						</object>
 						<reference key="parent" ref="1049"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1260</int>
-						<reference key="object" ref="1031541672"/>
-						<reference key="parent" ref="929002822"/>
+						<reference key="object" ref="936538229"/>
+						<reference key="parent" ref="601124815"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1261</int>
-						<reference key="object" ref="742381040"/>
-						<reference key="parent" ref="929002822"/>
+						<reference key="object" ref="394145538"/>
+						<reference key="parent" ref="601124815"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1262</int>
-						<reference key="object" ref="455762667"/>
-						<reference key="parent" ref="929002822"/>
+						<reference key="object" ref="788106011"/>
+						<reference key="parent" ref="601124815"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1294</int>
-						<reference key="object" ref="801875532"/>
+						<reference key="object" ref="1053022543"/>
 						<reference key="parent" ref="1049"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1313</int>
-						<reference key="object" ref="723809485"/>
+						<reference key="object" ref="488851568"/>
 						<reference key="parent" ref="1049"/>
 					</object>
 				</object>
@@ -10424,7 +10448,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1321</int>
+			<int key="maxID">1325</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -10467,10 +10491,13 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>dateFormatter</string>
 							<string>episodeFormatter</string>
 							<string>filesController</string>
 							<string>filesSegmentControl</string>
+							<string>filesView</string>
 							<string>longDescription</string>
+							<string>purchaseDateFormatter</string>
 							<string>resizeController</string>
 							<string>seasonFormatter</string>
 							<string>shortDescription</string>
@@ -10480,10 +10507,13 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSDateFormatter</string>
 							<string>NSNumberFormatter</string>
 							<string>NSArrayController</string>
 							<string>NSSegmentedControl</string>
+							<string>NSTableView</string>
 							<string>NSTextView</string>
+							<string>NSDateFormatter</string>
 							<string>ResizeController</string>
 							<string>NSNumberFormatter</string>
 							<string>NSTextView</string>
@@ -10522,8 +10552,17 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">filesController</string>
-						<string key="NS.object.0">NSArrayController</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>filesController</string>
+							<string>undoController</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSArrayController</string>
+							<string>FilesUndoController</string>
+						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>

@@ -16,24 +16,30 @@
     NSTabView *tabView;
     NSNumberFormatter* episodeFormatter;
     NSNumberFormatter* seasonFormatter;
+    NSDateFormatter* dateFormatter;
+    NSDateFormatter* purchaseDateFormatter;
     NSSegmentedControl* filesSegmentControl;
     NSArrayController* filesController;
     ResizeController* resizeController;
     FilesUndoController* undoController;
     NSTextView* shortDescription;
     NSTextView* longDescription;
+    NSTableView* filesView;
     NSUndoManager* undoManager;
 }
 @property (nonatomic, retain) IBOutlet NSWindow* window;
 @property (nonatomic, retain) IBOutlet NSTabView *tabView;
 @property (nonatomic, retain) IBOutlet NSNumberFormatter* episodeFormatter;
 @property (nonatomic, retain) IBOutlet NSNumberFormatter* seasonFormatter;
+@property (nonatomic, retain) IBOutlet NSDateFormatter* dateFormatter;
+@property (nonatomic, retain) IBOutlet NSDateFormatter* purchaseDateFormatter;
 @property (nonatomic, retain) IBOutlet NSSegmentedControl* filesSegmentControl;
 @property (nonatomic, retain) IBOutlet NSArrayController* filesController;
 @property (nonatomic, retain) IBOutlet ResizeController* resizeController;
 @property (nonatomic, retain) IBOutlet FilesUndoController* undoController;
 @property (nonatomic, retain) IBOutlet NSTextView* shortDescription;
 @property (nonatomic, retain) IBOutlet NSTextView* longDescription;
+@property (nonatomic, retain) IBOutlet NSTableView* filesView;
 
 #pragma mark - actions
 - (IBAction)showAdvancedTab:(id)sender;

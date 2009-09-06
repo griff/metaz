@@ -14,12 +14,15 @@
 @synthesize tabView;
 @synthesize episodeFormatter;
 @synthesize seasonFormatter;
+@synthesize dateFormatter;
+@synthesize purchaseDateFormatter;
 @synthesize filesSegmentControl;
 @synthesize filesController;
 @synthesize undoController;
 @synthesize resizeController;
 @synthesize shortDescription;
 @synthesize longDescription;
+@synthesize filesView;
 
 #pragma mark - initialization
 
@@ -27,6 +30,10 @@
     undoManager = [[NSUndoManager alloc] init];
     [seasonFormatter setNilSymbol:@""];
     [episodeFormatter setNilSymbol:@""];
+    [dateFormatter setLenient:YES];
+    [purchaseDateFormatter setLenient:YES];
+    [dateFormatter setDefaultDate:nil];
+    [purchaseDateFormatter setDefaultDate:nil];
     [filesController addObserver:self
                       forKeyPath:@"arrangedObjects.@count"
                          options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial
@@ -39,12 +46,15 @@
     [tabView release];
     [episodeFormatter release];
     [seasonFormatter release];
+    [dateFormatter release];
+    [purchaseDateFormatter release];
     [filesSegmentControl release];
     [filesController release];
     [undoController release];
     [resizeController release];
     [shortDescription release];
     [longDescription release];
+    [filesView release];
     [undoManager release];
     [super dealloc];
 }
@@ -198,7 +208,7 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)aWindow {
     NSResponder* responder = [aWindow firstResponder];
-    if(responder == shortDescription || responder == longDescription)
+    if(responder == shortDescription || responder == longDescription || responder == filesView)
     {
         NSUndoManager * man = [undoController undoManager];
         if(man != nil)

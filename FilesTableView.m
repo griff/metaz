@@ -9,9 +9,11 @@
 #import "FilesTableView.h"
 
 @implementation FilesTableView
+@synthesize undoController;
 @synthesize filesController;
 
 -(void)dealloc {
+    [undoController release];
     [filesController release];
     [super dealloc];
 }
@@ -63,6 +65,13 @@
         }
     }
     [super keyDown:theEvent];
+}
+
+-(NSUndoManager *)undoManager {
+    NSUndoManager* man = [undoController undoManager];
+    if(man != nil)
+        return man;
+    return [super undoManager];
 }
 
 @end

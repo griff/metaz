@@ -10,8 +10,9 @@
 
 @protocol MetaData <NSObject>
 
-@optional
+@required
 -(NSString *)loadedFileName;
+@optional
 -(NSString *)fileName;
 -(NSString *)title;
 -(NSString *)artist;

@@ -7,11 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "FilesUndoController.h"
 
 @interface FilesTableView : NSTableView {
     NSArrayController* filesController;
+    FilesUndoController* undoController;
 }
+@property (nonatomic, retain) IBOutlet FilesUndoController* undoController;
 @property (nonatomic, retain) IBOutlet NSArrayController* filesController;
 
 -(IBAction)delete:(id)sender;
