@@ -8,16 +8,20 @@
 
 #import "MetaEdits.h"
 #import "MZDataMethod.h"
-
+#import "ProxyUndoManager.h"
 
 @implementation MetaEdits
+@synthesize multiUndoManager;
 
 -(id)initWithProvider:(id<MetaData>)aProvider {
     NSArray* keys = [aProvider providedKeys];
     self = [super initWithKeys:keys];
+    //undoManager = [[ProxyUndoManager alloc] initWithUndoManager:[[NSUndoManager alloc] init] andType:2];
+    undoManager = [[NSUndoManager alloc] init];
+    multiUndoManager = nil;
     provider = [aProvider retain];
     tags = [[NSMutableDictionary alloc] init];
-    lastCache = [[NSMutableDictionary alloc] init];
+    //lastCache = [[NSMutableDictionary alloc] init]; Use undo manager instead
 
     for(NSString *key in keys)
     {
@@ -26,9 +30,9 @@
                       options: NSKeyValueObservingOptionPrior|NSKeyValueObservingOptionOld
                       context: nil];
         NSString* changedKey = [key stringByAppendingString:@"Changed"];
-        [self addMethodGetterForKey:changedKey ofType:2 withObjCType:@encode(BOOL)];
+        [self addMethodGetterForKey:changedKey withRealKey:key ofType:2 withObjCType:@encode(BOOL)];
         [self addMethodSetterForKey:key ofType:3 withObjCType:@encode(id)];
-        [self addMethodSetterForKey:changedKey ofType:4 withObjCType:@encode(BOOL)];
+        [self addMethodSetterForKey:changedKey withRealKey:key ofType:4 withObjCType:@encode(BOOL)];
     }
 
     return self;
@@ -39,12 +43,24 @@
     for(NSString *key in keys)
         [provider removeObserver:self forKeyPath: key];
     [provider release];
-    [lastCache release];
+    [undoManager release];
+    if(multiUndoManager) [multiUndoManager release];
+    //[lastCache release];
     [super dealloc];
 }
 
 -(NSArray *)providedKeys {
     return [provider providedKeys];
+}
+
+-(NSString *)loadedFileName {
+    return [provider loadedFileName];
+}
+
+-(NSUndoManager *)undoManager {
+    if(multiUndoManager)
+        return multiUndoManager;
+    return undoManager;
 }
 
 -(BOOL)changed {
@@ -72,8 +88,20 @@
     {
         if([tags count] == 1)
             [self willChangeValueForKey:@"changed"];
-        [lastCache setObject:oldValue forKey:aKey];
+        NSString* changedKey = [aKey stringByAppendingString:@"Changed"];
+        [self willChangeValueForKey:changedKey];
+        [self willChangeValueForKey:aKey];
+        
+        [[self undoManager] registerUndoWithTarget:self selector:[MZDataMethod setterSelectorForKey:aKey] object:oldValue];
+        if([[self undoManager] isUndoing])
+            [[self undoManager] setActionName:[@"Set " stringByAppendingString:aKey]];
+        else
+            [[self undoManager] setActionName:[@"Reverted " stringByAppendingString:aKey]];
+        
+        //[lastCache setObject:oldValue forKey:aKey];
         [tags removeObjectForKey:aKey];
+        [self didChangeValueForKey:aKey];
+        [self didChangeValueForKey:changedKey];
         if([tags count] == 0)
             [self didChangeValueForKey:@"changed"];
     }
@@ -81,9 +109,16 @@
     {
         if([tags count] == 0)
             [self willChangeValueForKey:@"changed"];
+        NSString* changedKey = [aKey stringByAppendingString:@"Changed"];
+        [self willChangeValueForKey:changedKey];
         [self willChangeValueForKey:aKey];
-        oldValue = [lastCache objectForKey:aKey];
-        if(oldValue==nil)
+        
+        [[[self undoManager] prepareWithInvocationTarget:self] setterChanged:NO forKey:aKey];
+        //[[self undoManager] registerUndoWithTarget:self selector:[MZDataMethod setterSelectorForKey:changedKey] object:[NSNumber numberWithBool:NO]];
+        [[self undoManager] setActionName:[@"Set " stringByAppendingString:aKey]];
+        
+        //oldValue = [lastCache objectForKey:aKey];
+        //if(oldValue==nil)
             oldValue = [self performSelector:NSSelectorFromString(aKey)];
 
         if(oldValue == nil)
@@ -91,24 +126,37 @@
 
         [tags setObject:oldValue forKey:aKey];
         [self didChangeValueForKey:aKey];
+        [self didChangeValueForKey:changedKey];
         if([tags count] == 1)
             [self didChangeValueForKey:@"changed"];
     }
 }
 
 -(void)setterValue:(id)aValue forKey:(NSString *)aKey {
-    BOOL changedUpdated = [tags objectForKey:aKey] == nil;
+    id oldValue = [tags objectForKey:aKey];
     NSString* changedKey = [aKey stringByAppendingString:@"Changed"];
     if(aValue == nil)
         aValue = [NSNull null];
-    if(changedUpdated) {
+    if(oldValue == nil) {
         [self willChangeValueForKey:changedKey];
         if([tags count] == 0)
             [self willChangeValueForKey:@"changed"];
     }
-    [lastCache removeObjectForKey:aKey];
+    [self willChangeValueForKey:aKey];
+    if(oldValue==nil)
+    {
+        [[[self undoManager] prepareWithInvocationTarget:self] setterChanged:NO forKey:aKey];
+        //[[self undoManager] registerUndoWithTarget:self selector:[MZDataMethod setterSelectorForKey:changedKey] object:[NSNumber numberWithBool:NO]];
+        [[self undoManager] setActionName:[@"Set " stringByAppendingString:aKey]];
+    } else
+    {
+        [[self undoManager] registerUndoWithTarget:self selector:[MZDataMethod setterSelectorForKey:aKey] object:oldValue];
+        [[self undoManager] setActionName:[@"Changed " stringByAppendingString:aKey]];
+    }
+    //[lastCache removeObjectForKey:aKey];
     [tags setObject:aValue forKey:aKey];
-    if(changedUpdated) {
+    [self didChangeValueForKey:aKey];
+    if(oldValue == nil) {
         [self didChangeValueForKey:changedKey];
         if([tags count] == 1)
             [self didChangeValueForKey:@"changed"];
@@ -176,15 +224,19 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    id value = [tags objectForKey:keyPath];
-    if(value == nil)
+    if(object == provider)
     {
-        NSNumber * prior = [change objectForKey:NSKeyValueChangeNotificationIsPriorKey];
-        if([prior boolValue])
-            [self willChangeValueForKey:keyPath];
-        else
-            [self didChangeValueForKey:keyPath];
+        id value = [tags objectForKey:keyPath];
+        if(value == nil)
+        {
+            NSNumber * prior = [change objectForKey:NSKeyValueChangeNotificationIsPriorKey];
+            if([prior boolValue])
+                [self willChangeValueForKey:keyPath];
+            else
+                [self didChangeValueForKey:keyPath];
+        }
     }
+    //[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 
 /*

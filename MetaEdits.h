@@ -13,10 +13,17 @@
 
 @interface MetaEdits : MetaLoaded {
     id<MetaData> provider;
-    NSMutableDictionary* lastCache;
+    //NSMutableDictionary* lastCache;
+    NSUndoManager* undoManager;
+    NSUndoManager* multiUndoManager;
 }
+@property(retain)   NSUndoManager* multiUndoManager;
 
 -(id)initWithProvider:(id<MetaData>)aProvider;
+
+-(NSUndoManager *)undoManager;
+-(NSString *)loadedFileName;
+
 -(BOOL)changed;
 
 -(BOOL)getterChangedForKey:(NSString *)aKey;

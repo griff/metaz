@@ -38,7 +38,7 @@ class AtomicParsleyWrapper < NSObject
         MetaLoaded.alloc.initWithDictionary_(dict);
     end
 
-	objc_method("saveChanges:toFile:", [:void, :id, :id]) do |data, fileName|
+	objc_method("saveChanges:", [:void, :id]) do |data|
         
     end
 end

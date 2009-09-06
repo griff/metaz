@@ -10,6 +10,7 @@
 #import "MetaEdits.h"
 
 @implementation MetaLoaded
+@synthesize loadedFileName;
 
 -(id)initWithKeys:(NSArray *)keys
 {
@@ -21,6 +22,7 @@
 
 -(id)initWithDictionary:(NSDictionary *)dict {
     self = [self initWithKeys:[dict allKeys]];
+    loadedFileName = [dict objectForKey:@"fileName"];
     tags = [[NSDictionary alloc]initWithDictionary:dict];
     return self;
 }

@@ -47,6 +47,15 @@
     return [provider providedKeys];
 }
 
+-(NSString *)loadedFileName {
+    return [provider loadedFileName];
+}
+
+-(NSString *)fileName {
+    return [provider fileName];
+}
+
+
 -(id)getterValueForKey:(NSString *)aKey {
     id ret = nil;
     @try {
@@ -67,9 +76,7 @@
 
 - (id)valueForUndefinedKey:(NSString *)key {
     if([self respondsToSelector:NSSelectorFromString(key)])
-    {
         return [self getterValueForKey:key];
-    }
     return [super valueForUndefinedKey:key];
 }
 

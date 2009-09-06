@@ -2,3 +2,5 @@
 *.mode1v3
 *.pbxuser
 build
+junk
+sparkle_private.pem

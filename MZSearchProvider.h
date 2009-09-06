@@ -8,7 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MetaData.h"
-#import "MZSearchResult.h"
 
 @protocol MZSearchProvider <NSObject>
 -(NSArray *)search:(id<MetaData>)data;

@@ -8,10 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @protocol MetaData <NSObject>
 
 @optional
+-(NSString *)loadedFileName;
 -(NSString *)fileName;
 -(NSString *)title;
 -(NSString *)artist;
@@ -22,5 +22,8 @@
 -(NSString *)longDescription;
 
 -(NSArray *)providedKeys;
+
+- (void)addObserver:(NSObject *)anObserver forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context;
+- (void)removeObserver:(NSObject *)anObserver forKeyPath:(NSString *)keyPath;
 
 @end

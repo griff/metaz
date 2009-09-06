@@ -11,11 +11,36 @@
 @implementation MZMetaLoader
 @synthesize files;
 
+#pragma mark - initialization 
+
+static MZMetaLoader* sharedLoader = nil;
+
++(MZMetaLoader *)sharedLoader {
+    if(!sharedLoader)
+        [[MZMetaLoader alloc] init];
+    return sharedLoader;
+}
+
 -(id)init {
     self = [super init];
-    files = [[NSMutableArray alloc] init];
+
+    if(sharedLoader)
+    {
+        [self release];
+        self = [sharedLoader retain];
+    } else if(self)
+    {
+        files = [[NSMutableArray alloc] init];
+        sharedLoader = [self retain];
+    }
     return self;
 }
+
+-(void)dealloc {
+    [files release];
+    [super dealloc];
+}
+
 
 -(NSArray *)types {
     return [provider types];

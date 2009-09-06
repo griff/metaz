@@ -12,7 +12,9 @@
 
 @interface MetaLoaded : MZDynamicObject <MetaData> {
     NSDictionary* tags;
+    NSString* loadedFileName;
 }
+@property(readonly) NSString* loadedFileName;
 
 -(id)initWithKeys:(NSArray *)keys;
 -(id)initWithDictionary:(NSDictionary *)dict;

@@ -16,6 +16,8 @@
 }
 @property(readonly) NSArray* files;
 
++(MZMetaLoader *)sharedLoader;
+
 -(NSArray *)types;
 -(NSArray *)extensions;
 -(void)loadFromFile:(NSString *)fileName;

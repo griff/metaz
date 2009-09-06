@@ -8,8 +8,9 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1199"/>
-			<integer value="476"/>
+			<integer value="1259"/>
+			<integer value="24"/>
+			<integer value="475"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -35,9 +36,6 @@
 			</object>
 			<object class="NSCustomObject" id="1050">
 				<string key="NSClassName">NSApplication</string>
-			</object>
-			<object class="NSCustomObject" id="12014701">
-				<string key="NSClassName">DelegatedStuff</string>
 			</object>
 			<object class="NSMenu" id="649796088">
 				<string key="NSTitle">AMainMenu</string>
@@ -1384,7 +1382,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 										<object class="NSTabViewItem" id="320200182">
 											<string key="NSIdentifier">info</string>
 											<object class="NSView" key="NSView" id="453092425">
-												<nil key="NSNextResponder"/>
+												<reference key="NSNextResponder" ref="625271791"/>
 												<int key="NSvFlags">256</int>
 												<object class="NSMutableArray" key="NSSubviews">
 													<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1887,16 +1885,15 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 															<string key="NSKeyEquivalent">r</string>
 															<int key="NSPeriodicDelay">400</int>
 															<int key="NSPeriodicInterval">75</int>
-															<object class="NSMenuItem" key="NSMenuItem" id="274921995">
+															<object class="NSMenuItem" key="NSMenuItem" id="407253525">
 																<reference key="NSMenu" ref="522708563"/>
-																<string key="NSTitle">G</string>
+																<string key="NSTitle">No Rating</string>
 																<string key="NSKeyEquiv"/>
 																<int key="NSMnemonicLoc">2147483647</int>
 																<int key="NSState">1</int>
 																<reference key="NSOnImage" ref="35465992"/>
 																<reference key="NSMixedImage" ref="502551668"/>
 																<string key="NSAction">_popUpItemAction:</string>
-																<int key="NSTag">1</int>
 																<reference key="NSTarget" ref="222738323"/>
 															</object>
 															<bool key="NSMenuItemRespectAlignment">YES</bool>
@@ -1904,17 +1901,18 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 																<string key="NSTitle">OtherViews</string>
 																<object class="NSMutableArray" key="NSMenuItems">
 																	<bool key="EncodedWithXMLCoder">YES</bool>
-																	<object class="NSMenuItem" id="407253525">
+																	<reference ref="407253525"/>
+																	<object class="NSMenuItem" id="274921995">
 																		<reference key="NSMenu" ref="522708563"/>
-																		<string key="NSTitle">No Rating</string>
+																		<string key="NSTitle">G</string>
 																		<string key="NSKeyEquiv"/>
 																		<int key="NSMnemonicLoc">2147483647</int>
 																		<reference key="NSOnImage" ref="35465992"/>
 																		<reference key="NSMixedImage" ref="502551668"/>
 																		<string key="NSAction">_popUpItemAction:</string>
+																		<int key="NSTag">1</int>
 																		<reference key="NSTarget" ref="222738323"/>
 																	</object>
-																	<reference ref="274921995"/>
 																	<object class="NSMenuItem" id="918671773">
 																		<reference key="NSMenu" ref="522708563"/>
 																		<string key="NSTitle">PG</string>
@@ -2050,7 +2048,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 																	</object>
 																	<object class="NSMenuItem" id="797204717">
 																		<reference key="NSMenu" ref="522708563"/>
-																		<string key="NSTitle">Unrated</string>
+																		<string key="NSTitle">Unrated (TV)</string>
 																		<string key="NSKeyEquiv"/>
 																		<int key="NSMnemonicLoc">2147483647</int>
 																		<reference key="NSOnImage" ref="35465992"/>
@@ -2061,7 +2059,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 																	</object>
 																</object>
 															</object>
-															<int key="NSSelectedIndex">1</int>
 															<int key="NSPreferredEdge">1</int>
 															<bool key="NSUsesItemFromMenu">YES</bool>
 															<bool key="NSAltersState">YES</bool>
@@ -2262,6 +2259,29 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 																					<object class="NSTextView" id="478888935">
 																						<reference key="NSNextResponder" ref="920021145"/>
 																						<int key="NSvFlags">2322</int>
+																						<object class="NSMutableSet" key="NSDragTypes">
+																							<bool key="EncodedWithXMLCoder">YES</bool>
+																							<object class="NSMutableArray" key="set.sortedObjects">
+																								<bool key="EncodedWithXMLCoder">YES</bool>
+																								<string>Apple HTML pasteboard type</string>
+																								<string>Apple PDF pasteboard type</string>
+																								<string>Apple PICT pasteboard type</string>
+																								<string>Apple PNG pasteboard type</string>
+																								<string>Apple URL pasteboard type</string>
+																								<string>CorePasteboardFlavorType 0x6D6F6F76</string>
+																								<string>CorePasteboardFlavorType 0x75726C20</string>
+																								<string>NSColor pasteboard type</string>
+																								<string>NSFilenamesPboardType</string>
+																								<string>NSStringPboardType</string>
+																								<string>NeXT Encapsulated PostScript v1.2 pasteboard type</string>
+																								<string>NeXT RTFD pasteboard type</string>
+																								<string>NeXT Rich Text Format v1.0 pasteboard type</string>
+																								<string>NeXT TIFF v4.0 pasteboard type</string>
+																								<string>NeXT font pasteboard type</string>
+																								<string>NeXT ruler pasteboard type</string>
+																								<string>WebURLsWithTitlesPboardType</string>
+																							</object>
+																						</object>
 																						<string key="NSFrameSize">{402, 14}</string>
 																						<reference key="NSSuperview" ref="920021145"/>
 																						<object class="NSTextContainer" key="NSTextContainer" id="412133568">
@@ -2435,6 +2455,29 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 																					<object class="NSTextView" id="261739186">
 																						<reference key="NSNextResponder" ref="503477675"/>
 																						<int key="NSvFlags">2322</int>
+																						<object class="NSMutableSet" key="NSDragTypes">
+																							<bool key="EncodedWithXMLCoder">YES</bool>
+																							<object class="NSMutableArray" key="set.sortedObjects">
+																								<bool key="EncodedWithXMLCoder">YES</bool>
+																								<string>Apple HTML pasteboard type</string>
+																								<string>Apple PDF pasteboard type</string>
+																								<string>Apple PICT pasteboard type</string>
+																								<string>Apple PNG pasteboard type</string>
+																								<string>Apple URL pasteboard type</string>
+																								<string>CorePasteboardFlavorType 0x6D6F6F76</string>
+																								<string>CorePasteboardFlavorType 0x75726C20</string>
+																								<string>NSColor pasteboard type</string>
+																								<string>NSFilenamesPboardType</string>
+																								<string>NSStringPboardType</string>
+																								<string>NeXT Encapsulated PostScript v1.2 pasteboard type</string>
+																								<string>NeXT RTFD pasteboard type</string>
+																								<string>NeXT Rich Text Format v1.0 pasteboard type</string>
+																								<string>NeXT TIFF v4.0 pasteboard type</string>
+																								<string>NeXT font pasteboard type</string>
+																								<string>NeXT ruler pasteboard type</string>
+																								<string>WebURLsWithTitlesPboardType</string>
+																							</object>
+																						</object>
 																						<string key="NSFrameSize">{402, 14}</string>
 																						<reference key="NSSuperview" ref="503477675"/>
 																						<object class="NSTextContainer" key="NSTextContainer" id="211752949">
@@ -2457,7 +2500,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 																							<int key="NSTCFlags">1</int>
 																						</object>
 																						<object class="NSTextViewSharedData" key="NSSharedData">
-																							<int key="NSFlags">12275</int>
+																							<int key="NSFlags">11251</int>
 																							<reference key="NSBackgroundColor" ref="600445500"/>
 																							<reference key="NSInsertionColor" ref="779643715"/>
 																							<object class="NSDictionary" key="NSSelectedAttributes">
@@ -2544,6 +2587,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 													</object>
 												</object>
 												<string key="NSFrame">{{10, 33}, {449, 502}}</string>
+												<reference key="NSSuperview" ref="625271791"/>
 											</object>
 											<string key="NSLabel">Info</string>
 											<reference key="NSColor" ref="823073024"/>
@@ -2552,7 +2596,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 										<object class="NSTabViewItem" id="148595672">
 											<string key="NSIdentifier">video</string>
 											<object class="NSView" key="NSView" id="140341971">
-												<reference key="NSNextResponder" ref="625271791"/>
+												<nil key="NSNextResponder"/>
 												<int key="NSvFlags">256</int>
 												<object class="NSMutableArray" key="NSSubviews">
 													<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3341,7 +3385,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 													</object>
 												</object>
 												<string key="NSFrame">{{10, 33}, {449, 502}}</string>
-												<reference key="NSSuperview" ref="625271791"/>
 											</object>
 											<string key="NSLabel">Video</string>
 											<reference key="NSColor" ref="823073024"/>
@@ -4130,13 +4173,13 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 											<reference key="NSTabView" ref="625271791"/>
 										</object>
 									</object>
-									<reference key="NSSelectedTabViewItem" ref="148595672"/>
+									<reference key="NSSelectedTabViewItem" ref="320200182"/>
 									<reference key="NSFont" ref="350022779"/>
 									<int key="NSTvFlags">0</int>
 									<bool key="NSDrawsBackground">YES</bool>
 									<object class="NSMutableArray" key="NSSubviews">
 										<bool key="EncodedWithXMLCoder">YES</bool>
-										<reference ref="140341971"/>
+										<reference ref="453092425"/>
 									</object>
 								</object>
 								<object class="NSBox" id="343736847">
@@ -4395,6 +4438,12 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 				<string key="NSFrameAutosaveName">mainwindow</string>
 			</object>
+			<object class="NSCustomObject" id="801875532">
+				<string key="NSClassName">AppController</string>
+			</object>
+			<object class="NSCustomObject" id="12014701">
+				<string key="NSClassName">ResizeController</string>
+			</object>
 			<object class="NSCustomObject" id="808096356">
 				<string key="NSClassName">MZMetaLoader</string>
 			</object>
@@ -4462,6 +4511,8 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>dateChanged</string>
 					<string>ratingChanged</string>
 					<string>videoTypeChanged</string>
+					<string>rating</string>
+					<string>videoType</string>
 				</object>
 				<bool key="NSEditable">YES</bool>
 				<object class="_NSManagedProxy" key="_NSManagedProxy"/>
@@ -4471,11 +4522,44 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<bool key="NSFilterRestrictsInsertion">YES</bool>
 				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
 			</object>
+			<object class="NSCustomObject" id="723809485">
+				<string key="NSClassName">FilesUndoController</string>
+			</object>
 			<object class="NSCustomObject" id="104323459">
 				<string key="NSClassName">MZMetaSearcher</string>
 			</object>
 			<object class="NSCustomObject" id="931879071">
 				<string key="NSClassName">SUUpdater</string>
+			</object>
+			<object class="NSMenu" id="929002822">
+				<string key="NSTitle"/>
+				<object class="NSMutableArray" key="NSMenuItems">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="NSMenuItem" id="1031541672">
+						<reference key="NSMenu" ref="929002822"/>
+						<string key="NSTitle">Search for Cover Art</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="35465992"/>
+						<reference key="NSMixedImage" ref="502551668"/>
+					</object>
+					<object class="NSMenuItem" id="742381040">
+						<reference key="NSMenu" ref="929002822"/>
+						<string key="NSTitle">Trim</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="35465992"/>
+						<reference key="NSMixedImage" ref="502551668"/>
+					</object>
+					<object class="NSMenuItem" id="455762667">
+						<reference key="NSMenu" ref="929002822"/>
+						<string key="NSTitle">Item 3</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="35465992"/>
+						<reference key="NSMixedImage" ref="502551668"/>
+					</object>
+				</object>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -4738,46 +4822,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<int key="connectionID">779</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">showInfoTab:</string>
-						<reference key="source" ref="12014701"/>
-						<reference key="destination" ref="346461748"/>
-					</object>
-					<int key="connectionID">782</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">showVideoTab:</string>
-						<reference key="source" ref="12014701"/>
-						<reference key="destination" ref="192752951"/>
-					</object>
-					<int key="connectionID">783</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">showAdvancedTab:</string>
-						<reference key="source" ref="12014701"/>
-						<reference key="destination" ref="550659289"/>
-					</object>
-					<int key="connectionID">784</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">showSortTab:</string>
-						<reference key="source" ref="12014701"/>
-						<reference key="destination" ref="67926796"/>
-					</object>
-					<int key="connectionID">785</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">showChapterTab:</string>
-						<reference key="source" ref="12014701"/>
-						<reference key="destination" ref="799512685"/>
-					</object>
-					<int key="connectionID">786</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="842184806"/>
@@ -4808,14 +4852,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<reference key="destination" ref="842184806"/>
 					</object>
 					<int key="connectionID">797</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">delegate</string>
-						<reference key="source" ref="972006081"/>
-						<reference key="destination" ref="12014701"/>
-					</object>
-					<int key="connectionID">798</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -4858,52 +4894,12 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<int key="connectionID">834</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">openFile:</string>
-						<reference key="source" ref="12014701"/>
-						<reference key="destination" ref="722745758"/>
-					</object>
-					<int key="connectionID">840</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">window</string>
-						<reference key="source" ref="12014701"/>
-						<reference key="destination" ref="972006081"/>
-					</object>
-					<int key="connectionID">843</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">loader</string>
-						<reference key="source" ref="12014701"/>
-						<reference key="destination" ref="808096356"/>
-					</object>
-					<int key="connectionID">844</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">provider</string>
 						<reference key="source" ref="808096356"/>
 						<reference key="destination" ref="14985901"/>
 					</object>
 					<int key="connectionID">845</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">segmentClicked:</string>
-						<reference key="source" ref="12014701"/>
-						<reference key="destination" ref="828894944"/>
-					</object>
-					<int key="connectionID">846</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">filesController</string>
-						<reference key="source" ref="12014701"/>
-						<reference key="destination" ref="35104934"/>
-					</object>
-					<int key="connectionID">847</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -4994,96 +4990,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<int key="connectionID">879</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">selectPreviousFile:</string>
-						<reference key="source" ref="12014701"/>
-						<reference key="destination" ref="208526632"/>
-					</object>
-					<int key="connectionID">888</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">selectNextFile:</string>
-						<reference key="source" ref="12014701"/>
-						<reference key="destination" ref="452284327"/>
-					</object>
-					<int key="connectionID">889</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">revertChanges:</string>
-						<reference key="source" ref="12014701"/>
-						<reference key="destination" ref="402276915"/>
-					</object>
-					<int key="connectionID">922</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.tvShow</string>
-						<reference key="source" ref="254526824"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="254526824"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.tvShow</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.tvShow</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<boolean value="YES" id="5"/>
-									<string>Show</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">946</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.tvEpisodeID</string>
-						<reference key="source" ref="248258510"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="248258510"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.tvEpisodeID</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.tvEpisodeID</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Episode ID</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">948</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: selection.tvShow</string>
 						<reference key="source" ref="809298855"/>
@@ -5153,211 +5059,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						</object>
 					</object>
 					<int key="connectionID">958</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.title</string>
-						<reference key="source" ref="517802510"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="517802510"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.title</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.title</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Title</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">960</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.titleChanged</string>
-						<reference key="source" ref="1064729056"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="1064729056"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.titleChanged</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.titleChanged</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSRaisesForNotApplicableKeys</string>
-								<reference key="NS.object.0" ref="6"/>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">961</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.artist</string>
-						<reference key="source" ref="331627751"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="331627751"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.artist</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.artist</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Artist (Show)</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">963</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.artistChanged</string>
-						<reference key="source" ref="833170040"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="833170040"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.artistChanged</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.artistChanged</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSRaisesForNotApplicableKeys</string>
-								<reference key="NS.object.0" ref="6"/>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">964</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.genre</string>
-						<reference key="source" ref="975797990"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="975797990"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.genre</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.genre</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Genre</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">980</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.album</string>
-						<reference key="source" ref="947691462"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="947691462"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.album</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.album</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Album</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">982</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.albumArtist</string>
-						<reference key="source" ref="902948971"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="902948971"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.albumArtist</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.albumArtist</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Album Artist</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">984</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -5441,37 +5142,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.shortDescription</string>
-						<reference key="source" ref="478888935"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="478888935"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.shortDescription</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.shortDescription</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1001</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: selection.shortDescriptionChanged</string>
 						<reference key="source" ref="206228647"/>
 						<reference key="destination" ref="35104934"/>
@@ -5492,37 +5162,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.longDescription</string>
-						<reference key="source" ref="261739186"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="261739186"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.longDescription</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.longDescription</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1004</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: selection.longDescriptionChanged</string>
 						<reference key="source" ref="153703973"/>
 						<reference key="destination" ref="35104934"/>
@@ -5540,171 +5179,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						</object>
 					</object>
 					<int key="connectionID">1005</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.actors</string>
-						<reference key="source" ref="554059842"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="554059842"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.actors</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.actors</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Cast</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1032</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.director</string>
-						<reference key="source" ref="282656741"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="282656741"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.director</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.director</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Director</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1033</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.producer</string>
-						<reference key="source" ref="695145033"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="695145033"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.producer</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.producer</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Producer</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1034</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.screenwriter</string>
-						<reference key="source" ref="1032947777"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="1032947777"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.screenwriter</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.screenwriter</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Screenwriter</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1040</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.tvNetwork</string>
-						<reference key="source" ref="23004704"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="23004704"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.tvNetwork</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.tvNetwork</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>TV Network</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1061</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -5801,138 +5275,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.sortTvShow</string>
-						<reference key="source" ref="174665337"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="174665337"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.sortTvShow</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.sortTvShow</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Sort Show</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1097</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.sortArtist</string>
-						<reference key="source" ref="202272963"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="202272963"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.sortArtist</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.sortArtist</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Sort Artist</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1103</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.sortAlbumArtist</string>
-						<reference key="source" ref="761923508"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="761923508"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.sortAlbumArtist</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.sortAlbumArtist</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Sort Album Artist</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1109</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.sortAlbum</string>
-						<reference key="source" ref="106251056"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="106251056"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.sortAlbum</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.sortAlbum</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Sort Album</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1115</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: selection.dateChanged</string>
 						<reference key="source" ref="534179270"/>
 						<reference key="destination" ref="35104934"/>
@@ -5953,39 +5295,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.date</string>
-						<reference key="source" ref="259055752"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="259055752"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.date</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.date</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Date</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1137</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: selection.ratingChanged</string>
 						<reference key="source" ref="356528871"/>
 						<reference key="destination" ref="35104934"/>
@@ -6003,39 +5312,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						</object>
 					</object>
 					<int key="connectionID">1140</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.purchaseDate</string>
-						<reference key="source" ref="1043258830"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="1043258830"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.purchaseDate</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.purchaseDate</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Purchase Date</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1142</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -6239,72 +5515,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.tvEpisode</string>
-						<reference key="source" ref="127609820"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="127609820"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.tvEpisode</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.tvEpisode</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Episode</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1174</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.tvSeason</string>
-						<reference key="source" ref="775208848"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="775208848"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">value: selection.tvSeason</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.tvSeason</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSRaisesForNotApplicableKeys</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
-									<string>Season</string>
-									<string>Not Applicable</string>
-									<reference ref="6"/>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1176</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: selection.sortTitleChanged</string>
 						<reference key="source" ref="233859876"/>
 						<reference key="destination" ref="35104934"/>
@@ -6435,6 +5645,722 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<int key="connectionID">1191</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">checkForUpdates:</string>
+						<reference key="source" ref="931879071"/>
+						<reference key="destination" ref="215303654"/>
+					</object>
+					<int key="connectionID">1200</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.artistChanged</string>
+						<reference key="source" ref="833170040"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="833170040"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.artistChanged</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.artistChanged</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSRaisesForNotApplicableKeys</string>
+								<reference key="NS.object.0" ref="6"/>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1210</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.titleChanged</string>
+						<reference key="source" ref="1064729056"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="1064729056"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.titleChanged</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.titleChanged</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSRaisesForNotApplicableKeys</string>
+								<reference key="NS.object.0" ref="6"/>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1211</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedTag: selection.videoType</string>
+						<reference key="source" ref="66190735"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="66190735"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">selectedTag: selection.videoType</string>
+							<string key="NSBinding">selectedTag</string>
+							<string key="NSKeyPath">selection.videoType</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>Video Type</string>
+									<string>Not Applicable</string>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1234</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">menu</string>
+						<reference key="source" ref="83431714"/>
+						<reference key="destination" ref="929002822"/>
+					</object>
+					<int key="connectionID">1263</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedValue: selection.rating</string>
+						<reference key="source" ref="855723559"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="855723559"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">selectedValue: selection.rating</string>
+							<string key="NSBinding">selectedValue</string>
+							<string key="NSKeyPath">selection.rating</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>Rating</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1267</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.shortDescription</string>
+						<reference key="source" ref="478888935"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="478888935"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.shortDescription</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.shortDescription</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSAllowsEditingMultipleValuesSelection</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<reference ref="6"/>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1269</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.longDescription</string>
+						<reference key="source" ref="261739186"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="261739186"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.longDescription</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.longDescription</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSAllowsEditingMultipleValuesSelection</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<reference ref="6"/>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1270</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.purchaseDate</string>
+						<reference key="source" ref="1043258830"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="1043258830"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.purchaseDate</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.purchaseDate</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>Purchase Date</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1271</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.albumArtist</string>
+						<reference key="source" ref="902948971"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="902948971"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.albumArtist</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.albumArtist</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>Album Artist</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1272</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.album</string>
+						<reference key="source" ref="947691462"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="947691462"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.album</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.album</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>Album</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1273</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.genre</string>
+						<reference key="source" ref="975797990"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="975797990"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.genre</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.genre</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>Genre</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1274</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.date</string>
+						<reference key="source" ref="259055752"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="259055752"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.date</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.date</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>Date</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1275</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.artist</string>
+						<reference key="source" ref="331627751"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="331627751"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.artist</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.artist</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>Artist (Show)</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1276</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.title</string>
+						<reference key="source" ref="517802510"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="517802510"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.title</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.title</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSAllowsEditingMultipleValuesSelection</string>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<reference ref="6"/>
+									<string>Disabled for Multiple</string>
+									<string>Title</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1277</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.actors</string>
+						<reference key="source" ref="554059842"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="554059842"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.actors</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.actors</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>Cast</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1278</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.director</string>
+						<reference key="source" ref="282656741"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="282656741"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.director</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.director</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>Director</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1279</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.producer</string>
+						<reference key="source" ref="695145033"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="695145033"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.producer</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.producer</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>Producer</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1280</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.screenwriter</string>
+						<reference key="source" ref="1032947777"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="1032947777"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.screenwriter</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.screenwriter</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>Screenwriter</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1281</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.tvShow</string>
+						<reference key="source" ref="254526824"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="254526824"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.tvShow</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.tvShow</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>Show</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1282</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.tvEpisodeID</string>
+						<reference key="source" ref="248258510"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="248258510"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.tvEpisodeID</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.tvEpisodeID</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSAllowsEditingMultipleValuesSelection</string>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<reference ref="6"/>
+									<string>Disabled for Multiple</string>
+									<string>Episode ID</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1283</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.tvSeason</string>
+						<reference key="source" ref="775208848"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="775208848"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.tvSeason</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.tvSeason</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>Season</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1284</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.tvEpisode</string>
+						<reference key="source" ref="127609820"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="127609820"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.tvEpisode</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.tvEpisode</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSAllowsEditingMultipleValuesSelection</string>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<reference ref="6"/>
+									<string>Disabled for Multiple</string>
+									<string>Episode</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1285</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.tvNetwork</string>
+						<reference key="source" ref="23004704"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="23004704"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.tvNetwork</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.tvNetwork</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>TV Network</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1286</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: selection.sortTitle</string>
 						<reference key="source" ref="123755856"/>
@@ -6449,14 +6375,16 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSMutableArray" key="dict.sortedKeys">
 									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSContinuouslyUpdatesValue</string>
+									<string>NSAllowsEditingMultipleValuesSelection</string>
+									<string>NSMultipleValuesPlaceholder</string>
 									<string>NSNoSelectionPlaceholder</string>
 									<string>NSNotApplicablePlaceholder</string>
 									<string>NSRaisesForNotApplicableKeys</string>
 								</object>
 								<object class="NSMutableArray" key="dict.values">
 									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="5"/>
+									<reference ref="6"/>
+									<string>Disabled for Multiple</string>
 									<string>Sort Title</string>
 									<string>Not Applicable</string>
 									<reference ref="6"/>
@@ -6465,47 +6393,339 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1192</int>
+					<int key="connectionID">1287</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.sortArtist</string>
+						<reference key="source" ref="202272963"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="202272963"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.sortArtist</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.sortArtist</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>Sort Artist</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1288</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.sortAlbumArtist</string>
+						<reference key="source" ref="761923508"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="761923508"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.sortAlbumArtist</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.sortAlbumArtist</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>Sort Album Artist</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1289</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.sortAlbum</string>
+						<reference key="source" ref="106251056"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="106251056"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.sortAlbum</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.sortAlbum</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>Sort Album</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1290</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.sortTvShow</string>
+						<reference key="source" ref="174665337"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="174665337"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.sortTvShow</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.sortTvShow</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSRaisesForNotApplicableKeys</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>Editing Multiple</string>
+									<string>Sort Show</string>
+									<string>Not Applicable</string>
+									<reference ref="6"/>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1291</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">blaView</string>
+						<reference key="source" ref="12014701"/>
+						<reference key="destination" ref="478888935"/>
+					</object>
+					<int key="connectionID">1293</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">episodeFormatter</string>
-						<reference key="source" ref="12014701"/>
+						<reference key="source" ref="801875532"/>
 						<reference key="destination" ref="826961246"/>
 					</object>
-					<int key="connectionID">1194</int>
+					<int key="connectionID">1295</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">seasonFormatter</string>
-						<reference key="source" ref="12014701"/>
+						<reference key="source" ref="801875532"/>
 						<reference key="destination" ref="273850488"/>
 					</object>
-					<int key="connectionID">1195</int>
+					<int key="connectionID">1296</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">filesController</string>
+						<reference key="source" ref="801875532"/>
+						<reference key="destination" ref="35104934"/>
+					</object>
+					<int key="connectionID">1298</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">filesSegmentControl</string>
-						<reference key="source" ref="12014701"/>
+						<reference key="source" ref="801875532"/>
 						<reference key="destination" ref="828894944"/>
 					</object>
-					<int key="connectionID">1196</int>
+					<int key="connectionID">1299</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">tabView</string>
+						<reference key="source" ref="801875532"/>
+						<reference key="destination" ref="625271791"/>
+					</object>
+					<int key="connectionID">1300</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">segmentClicked:</string>
+						<reference key="source" ref="801875532"/>
+						<reference key="destination" ref="828894944"/>
+					</object>
+					<int key="connectionID">1302</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">showPreferences:</string>
-						<reference key="source" ref="12014701"/>
+						<reference key="source" ref="801875532"/>
 						<reference key="destination" ref="609285721"/>
 					</object>
-					<int key="connectionID">1197</int>
+					<int key="connectionID">1303</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">checkForUpdates:</string>
-						<reference key="source" ref="931879071"/>
-						<reference key="destination" ref="215303654"/>
+						<string key="label">openFile:</string>
+						<reference key="source" ref="801875532"/>
+						<reference key="destination" ref="722745758"/>
 					</object>
-					<int key="connectionID">1200</int>
+					<int key="connectionID">1304</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">revertChanges:</string>
+						<reference key="source" ref="801875532"/>
+						<reference key="destination" ref="402276915"/>
+					</object>
+					<int key="connectionID">1305</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showInfoTab:</string>
+						<reference key="source" ref="801875532"/>
+						<reference key="destination" ref="346461748"/>
+					</object>
+					<int key="connectionID">1306</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showVideoTab:</string>
+						<reference key="source" ref="801875532"/>
+						<reference key="destination" ref="192752951"/>
+					</object>
+					<int key="connectionID">1307</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showSortTab:</string>
+						<reference key="source" ref="801875532"/>
+						<reference key="destination" ref="67926796"/>
+					</object>
+					<int key="connectionID">1308</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showAdvancedTab:</string>
+						<reference key="source" ref="801875532"/>
+						<reference key="destination" ref="550659289"/>
+					</object>
+					<int key="connectionID">1309</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showChapterTab:</string>
+						<reference key="source" ref="801875532"/>
+						<reference key="destination" ref="799512685"/>
+					</object>
+					<int key="connectionID">1310</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">selectPreviousFile:</string>
+						<reference key="source" ref="801875532"/>
+						<reference key="destination" ref="208526632"/>
+					</object>
+					<int key="connectionID">1311</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">selectNextFile:</string>
+						<reference key="source" ref="801875532"/>
+						<reference key="destination" ref="452284327"/>
+					</object>
+					<int key="connectionID">1312</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">filesController</string>
+						<reference key="source" ref="723809485"/>
+						<reference key="destination" ref="35104934"/>
+					</object>
+					<int key="connectionID">1314</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">undoController</string>
+						<reference key="source" ref="801875532"/>
+						<reference key="destination" ref="723809485"/>
+					</object>
+					<int key="connectionID">1315</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">resizeController</string>
+						<reference key="source" ref="801875532"/>
+						<reference key="destination" ref="12014701"/>
+					</object>
+					<int key="connectionID">1316</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">window</string>
+						<reference key="source" ref="801875532"/>
+						<reference key="destination" ref="972006081"/>
+					</object>
+					<int key="connectionID">1317</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="972006081"/>
+						<reference key="destination" ref="801875532"/>
+					</object>
+					<int key="connectionID">1318</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">shortDescription</string>
+						<reference key="source" ref="801875532"/>
+						<reference key="destination" ref="478888935"/>
+					</object>
+					<int key="connectionID">1319</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">longDescription</string>
+						<reference key="source" ref="801875532"/>
+						<reference key="destination" ref="261739186"/>
+					</object>
+					<int key="connectionID">1320</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">undoController</string>
+						<reference key="source" ref="625271791"/>
+						<reference key="destination" ref="723809485"/>
+					</object>
+					<int key="connectionID">1321</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -7909,13 +8129,13 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<reference ref="416137509"/>
 							<reference ref="715363385"/>
 							<reference ref="61420084"/>
-							<reference ref="775208848"/>
 							<reference ref="994821936"/>
 							<reference ref="88710929"/>
 							<reference ref="248258510"/>
 							<reference ref="521276975"/>
 							<reference ref="378008002"/>
 							<reference ref="254526824"/>
+							<reference ref="775208848"/>
 						</object>
 						<reference key="parent" ref="140341971"/>
 					</object>
@@ -8158,7 +8378,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="42774875"/>
-							<reference ref="282656741"/>
 							<reference ref="283012465"/>
 							<reference ref="436377421"/>
 							<reference ref="258781301"/>
@@ -8166,12 +8385,13 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<reference ref="840733487"/>
 							<reference ref="1019082414"/>
 							<reference ref="971724062"/>
-							<reference ref="554059842"/>
 							<reference ref="687030513"/>
 							<reference ref="1032947777"/>
 							<reference ref="695145033"/>
 							<reference ref="964054161"/>
+							<reference ref="554059842"/>
 							<reference ref="66190735"/>
+							<reference ref="282656741"/>
 						</object>
 						<reference key="parent" ref="140341971"/>
 					</object>
@@ -8447,21 +8667,21 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 							<reference ref="279513291"/>
 							<reference ref="349774702"/>
 							<reference ref="114319664"/>
-							<reference ref="855723559"/>
 							<reference ref="975797990"/>
-							<reference ref="947691462"/>
 							<reference ref="833170040"/>
 							<reference ref="534179270"/>
 							<reference ref="356528871"/>
 							<reference ref="572854791"/>
 							<reference ref="183612391"/>
-							<reference ref="1043258830"/>
 							<reference ref="373957059"/>
 							<reference ref="205905921"/>
 							<reference ref="43450610"/>
 							<reference ref="821074785"/>
 							<reference ref="902948971"/>
 							<reference ref="1005636947"/>
+							<reference ref="947691462"/>
+							<reference ref="1043258830"/>
+							<reference ref="855723559"/>
 						</object>
 						<reference key="parent" ref="320200182"/>
 					</object>
@@ -8481,8 +8701,8 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="206228647"/>
-							<reference ref="295279541"/>
 							<reference ref="546067083"/>
+							<reference ref="295279541"/>
 						</object>
 						<reference key="parent" ref="707117679"/>
 						<string key="objectName">Short Description</string>
@@ -9200,6 +9420,42 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<reference key="object" ref="215303654"/>
 						<reference key="parent" ref="110575045"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1259</int>
+						<reference key="object" ref="929002822"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="1031541672"/>
+							<reference ref="742381040"/>
+							<reference ref="455762667"/>
+						</object>
+						<reference key="parent" ref="1049"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1260</int>
+						<reference key="object" ref="1031541672"/>
+						<reference key="parent" ref="929002822"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1261</int>
+						<reference key="object" ref="742381040"/>
+						<reference key="parent" ref="929002822"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1262</int>
+						<reference key="object" ref="455762667"/>
+						<reference key="parent" ref="929002822"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1294</int>
+						<reference key="object" ref="801875532"/>
+						<reference key="parent" ref="1049"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1313</int>
+						<reference key="object" ref="723809485"/>
+						<reference key="parent" ref="1049"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -9220,14 +9476,21 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>1193.IBPluginDependency</string>
 					<string>1198.IBPluginDependency</string>
 					<string>1199.IBPluginDependency</string>
+					<string>1259.IBEditorWindowLastContentRect</string>
+					<string>1259.IBPluginDependency</string>
+					<string>1260.IBPluginDependency</string>
+					<string>1261.IBPluginDependency</string>
+					<string>1262.IBPluginDependency</string>
 					<string>129.IBPluginDependency</string>
 					<string>129.ImportedFromIB2</string>
+					<string>1294.IBPluginDependency</string>
 					<string>130.IBEditorWindowLastContentRect</string>
 					<string>130.IBPluginDependency</string>
 					<string>130.ImportedFromIB2</string>
 					<string>130.editorWindowContentRectSynchronizationRect</string>
 					<string>131.IBPluginDependency</string>
 					<string>131.ImportedFromIB2</string>
+					<string>1313.IBPluginDependency</string>
 					<string>134.IBPluginDependency</string>
 					<string>134.ImportedFromIB2</string>
 					<string>136.IBPluginDependency</string>
@@ -9353,6 +9616,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>464.IBPluginDependency</string>
 					<string>465.IBPluginDependency</string>
 					<string>469.IBPluginDependency</string>
+					<string>471.CustomClassName</string>
 					<string>471.IBAttributePlaceholdersKey</string>
 					<string>471.IBPluginDependency</string>
 					<string>472.IBPluginDependency</string>
@@ -9676,14 +9940,21 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>{{146, 679}, {192, 63}}</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{853, 193}, {64, 6}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{436, 809}, {64, 6}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -9721,7 +9992,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{792, -4}, {244, 263}}</string>
+					<string>{{624, 325}, {244, 263}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{187, 434}, {243, 243}}</string>
@@ -9765,17 +10036,17 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{720, 231}, {197, 73}}</string>
+					<string>{{718, 515}, {197, 73}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{525, 802}, {197, 73}}</string>
-					<string>{{520, 375}, {412, 20}}</string>
+					<string>{{438, 588}, {412, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{74, 862}</string>
 					<string>{{6, 978}, {478, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{836, 56}, {235, 203}}</string>
+					<string>{{668, 385}, {235, 203}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{475, 832}, {234, 43}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -9797,7 +10068,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>{{84, 222}, {1082, 575}}</string>
 					<reference ref="9"/>
 					<string>{{33, 99}, {480, 360}}</string>
-					<reference ref="5"/>
+					<boolean value="YES"/>
 					<string>{3.40282e+38, 3.40282e+38}</string>
 					<string>{403, 478}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -9809,6 +10080,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>MetaEditPanel</string>
 					<object class="NSMutableDictionary">
 						<string key="NS.key.0">InitialTabViewItem</string>
 						<object class="IBInitialTabViewItemAttribute" key="NS.object.0">
@@ -9901,7 +10173,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{532, 172}, {232, 203}}</string>
+					<string>{{450, 385}, {232, 203}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{23, 794}, {245, 183}}</string>
@@ -9909,7 +10181,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{641, 359}, {122, 293}}</string>
+					<string>{{641, 359}, {141, 293}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -10109,7 +10381,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{584, 281}, {130, 23}}</string>
+					<string>{{582, 565}, {130, 23}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{145, 474}, {199, 203}}</string>
@@ -10152,21 +10424,13 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1200</int>
+			<int key="maxID">1321</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
-					<string key="className">AtomicParsleyWrapper</string>
-					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">AtomicParsleyWrapper.rb</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">DelegatedStuff</string>
+					<string key="className">AppController</string>
 					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -10204,41 +10468,41 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>episodeFormatter</string>
-							<string>filesBox</string>
 							<string>filesController</string>
 							<string>filesSegmentControl</string>
-							<string>loader</string>
-							<string>searchBox</string>
+							<string>longDescription</string>
+							<string>resizeController</string>
 							<string>seasonFormatter</string>
-							<string>splitView</string>
+							<string>shortDescription</string>
 							<string>tabView</string>
+							<string>undoController</string>
 							<string>window</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSNumberFormatter</string>
-							<string>NSBox</string>
 							<string>NSArrayController</string>
 							<string>NSSegmentedControl</string>
-							<string>MZMetaLoader</string>
-							<string>NSBox</string>
+							<string>NSTextView</string>
+							<string>ResizeController</string>
 							<string>NSNumberFormatter</string>
-							<string>NSSplitView</string>
+							<string>NSTextView</string>
 							<string>NSTabView</string>
+							<string>FilesUndoController</string>
 							<string>NSWindow</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">DelegatedStuff.h</string>
+						<string key="minorKey">AppController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">DelegatedStuff</string>
+					<string key="className">AtomicParsleyWrapper</string>
 					<string key="superclassName">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBUserSource</string>
-						<string key="minorKey"/>
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">AtomicParsleyWrapper.rb</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -10267,6 +10531,18 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">FilesUndoController</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">filesController</string>
+						<string key="NS.object.0">NSArrayController</string>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">FilesUndoController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">MZMetaLoader</string>
 					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="outlets">
@@ -10291,6 +10567,18 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">MetaEditPanel</string>
+					<string key="superclassName">NSTabView</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">undoController</string>
+						<string key="NS.object.0">FilesUndoController</string>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">MetaEditPanel.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBUserSource</string>
@@ -10303,6 +10591,31 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBUserSource</string>
 						<string key="minorKey"/>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">ResizeController</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>filesBox</string>
+							<string>searchBox</string>
+							<string>splitView</string>
+							<string>tabView</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSBox</string>
+							<string>NSBox</string>
+							<string>NSSplitView</string>
+							<string>NSTabView</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">ResizeController.h</string>
 					</object>
 				</object>
 			</object>

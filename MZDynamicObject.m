@@ -27,8 +27,18 @@
     [methods setObject:method forKey:NSStringFromSelector([method selector])];
 }
 
+-(void)addMethodSetterForKey:(NSString *)aKey withRealKey:(NSString *)aRealKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
+    MZDataMethod* method = [MZDataMethod methodSetterForKey:aKey withRealKey:aRealKey ofType:aType withObjCType:aObjcType];
+    [methods setObject:method forKey:NSStringFromSelector([method selector])];
+}
+
 -(void)addMethodGetterForKey:(NSString *)aKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
     MZDataMethod* method = [MZDataMethod methodGetterForKey:aKey ofType:aType withObjCType:aObjcType];
+    [methods setObject:method forKey:NSStringFromSelector([method selector])];
+}
+
+-(void)addMethodGetterForKey:(NSString *)aKey withRealKey:(NSString *)aRealKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
+    MZDataMethod* method = [MZDataMethod methodGetterForKey:aKey withRealKey:aRealKey ofType:aType withObjCType:aObjcType];
     [methods setObject:method forKey:NSStringFromSelector([method selector])];
 }
 

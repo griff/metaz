@@ -9,6 +9,12 @@
 #import "FilesTableView.h"
 
 @implementation FilesTableView
+@synthesize filesController;
+
+-(void)dealloc {
+    [filesController release];
+    [super dealloc];
+}
 
 -(IBAction)delete:(id)sender {
     [filesController remove:sender];

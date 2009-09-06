@@ -21,8 +21,11 @@
 @property(readonly) NSString* key;
 
 +(NSString *)setterForKey:(NSString *)aKey;
++(SEL)setterSelectorForKey:(NSString *)aKey;
 +(MZDataMethod *)methodSetterForKey:(NSString *)aKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType;
++(MZDataMethod *)methodSetterForKey:(NSString *)aKey withRealKey:(NSString *)aRealKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType;
 +(MZDataMethod *)methodGetterForKey:(NSString *)aKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType;
++(MZDataMethod *)methodGetterForKey:(NSString *)aKey withRealKey:(NSString *)aRealKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType;
 +(MZDataMethod *)methodWithSelector:(SEL )aSelector andSignature:(NSMethodSignature *)aSignature forKey:(NSString *)aKey ofType:(NSUInteger)aType;
 
 -(id)initWithSelector:(SEL)aSelector andSignature:(NSMethodSignature *)aSignature forKey:(NSString *)aKey ofType:(NSUInteger)aType;

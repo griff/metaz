@@ -17,4 +17,7 @@
 
 -(id)initWithProvider:(id<MetaData>)aProvider andController:(NSArrayController *)aController;
 
+-(NSString *)loadedFileName;
+-(NSString *)fileName;
+
 @end

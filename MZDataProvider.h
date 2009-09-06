@@ -15,6 +15,6 @@
 -(NSArray *)extensions;
 -(NSArray *)providedKeys;
 -(MetaLoaded *)loadFromFile:(NSString *)fileName;
--(void)saveChanges:(MetaEdits *)data toFile:(NSString *)fileName;
+-(void)saveChanges:(MetaEdits *)data;
 
 @end

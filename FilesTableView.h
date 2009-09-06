@@ -10,8 +10,9 @@
 
 
 @interface FilesTableView : NSTableView {
-    IBOutlet NSArrayController* filesController;    
+    NSArrayController* filesController;
 }
+@property (nonatomic, retain) IBOutlet NSArrayController* filesController;
 
 -(IBAction)delete:(id)sender;
 -(IBAction)beginEnterEdit:(id)sender;
