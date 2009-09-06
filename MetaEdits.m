@@ -8,7 +8,6 @@
 
 #import "MetaEdits.h"
 #import "MZDataMethod.h"
-#import "ProxyUndoManager.h"
 
 @implementation MetaEdits
 @synthesize multiUndoManager;

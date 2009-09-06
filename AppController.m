@@ -118,8 +118,16 @@ NSDictionary* findBinding(NSWindow* window) {
         return [filesController canSelectPrevious];
     if(action == @selector(revertChanges:))
     {
-        return [[filesController selectedObjects] count] >= 1 &&
-            findBinding(window) != nil;
+        NSDictionary* dict = findBinding(window);
+        if([[filesController selectedObjects] count] >= 1 && dict != nil)
+        {
+            id observed = [dict objectForKey:NSObservedObjectKey];
+            NSString* keyPath = [dict objectForKey:NSObservedKeyPathKey];
+            BOOL changed = [[observed valueForKeyPath:[keyPath stringByAppendingString:@"Changed"]] boolValue];
+            return changed;
+        }
+        else 
+            return NO;
     }
     return YES;
 }

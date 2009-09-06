@@ -15,7 +15,6 @@
 		1B11A02510457B76004C93D3 /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B11A02410457B76004C93D3 /* rb_main.rb */; };
 		1B11A02710457FB2004C93D3 /* AtomicParsleyWrapper.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B11A02610457FB2004C93D3 /* AtomicParsleyWrapper.rb */; };
 		1B11A28B104DF1EC004C93D3 /* FilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A28A104DF1EC004C93D3 /* FilesTableView.m */; };
-		1B11A2FA104E0085004C93D3 /* tableview.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1B11A2F9104E0085004C93D3 /* tableview.txt */; };
 		1B11A47E104E627F004C93D3 /* MZConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A47D104E627F004C93D3 /* MZConstants.m */; };
 		1B5AC76F10532E5200F9CE36 /* MetaEditPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */; };
 		1B78A49B105032A50072D89E /* MZDataMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78A49A105032A50072D89E /* MZDataMethod.m */; };
@@ -68,7 +67,6 @@
 		1B11A02810458471004C93D3 /* MZDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDataProvider.h; sourceTree = "<group>"; };
 		1B11A289104DF1EC004C93D3 /* FilesTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesTableView.h; sourceTree = "<group>"; };
 		1B11A28A104DF1EC004C93D3 /* FilesTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesTableView.m; sourceTree = "<group>"; };
-		1B11A2F9104E0085004C93D3 /* tableview.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tableview.txt; sourceTree = "<group>"; };
 		1B11A47C104E627F004C93D3 /* MZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZConstants.h; sourceTree = "<group>"; };
 		1B11A47D104E627F004C93D3 /* MZConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZConstants.m; sourceTree = "<group>"; };
 		1B5AC76D10532E5200F9CE36 /* MetaEditPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaEditPanel.h; sourceTree = "<group>"; };
@@ -211,7 +209,6 @@
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
-				1B11A2F9104E0085004C93D3 /* tableview.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -274,7 +271,6 @@
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				1B11A02510457B76004C93D3 /* rb_main.rb in Resources */,
 				1B11A02710457FB2004C93D3 /* AtomicParsleyWrapper.rb in Resources */,
-				1B11A2FA104E0085004C93D3 /* tableview.txt in Resources */,
 				1BB6BB06105072B7001D3D1D /* MZTags.strings in Resources */,
 				1BB6BF341050E5E2001D3D1D /* sparkle_public.pem in Resources */,
 			);

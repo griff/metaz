@@ -1,5 +1,4 @@
 #import "ResizeController.h"
-#import "ProxyUndoManager.h"
 
 #define SEARCHBOX_WIDTH 100.0
 #define TABVIEW_WIDTH 363.0
