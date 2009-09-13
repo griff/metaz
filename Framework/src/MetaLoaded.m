@@ -15,20 +15,23 @@
 -(id)initWithKeys:(NSArray *)keys
 {
     self = [super init];
+    tags = nil;
+    loadedFileName = nil;
     for(NSString *key in keys)
         [self addMethodGetterForKey:key ofType:1 withObjCType:@encode(id)];
     return self;
 }
 
--(id)initWithDictionary:(NSDictionary *)dict {
+-(id)initWithFilename:(NSString *)aFileName dictionary:(NSDictionary *)dict {
     self = [self initWithKeys:[dict allKeys]];
-    loadedFileName = [dict objectForKey:MZFileNameTag];
+    loadedFileName = [aFileName retain];
     tags = [[NSDictionary alloc]initWithDictionary:dict];
     return self;
 }
 
 - (void)dealloc {
     if(tags) [tags release];
+    [loadedFileName release];
     [super dealloc];
 }
 
@@ -54,6 +57,46 @@
         return [self getterValueForKey:key];
     }
     return [super valueForUndefinedKey:key];
+}
+
+#pragma mark - NSCoding implementation
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    NSDictionary* dict;
+    NSString* loadedFile;
+    if([decoder allowsKeyedCoding])
+    {
+        loadedFile = [decoder decodeObjectForKey:@"loadedFileName"];
+        dict = [decoder decodeObjectForKey:@"tags"];
+    }
+    else
+    {
+        loadedFile = [decoder decodeObject];
+        dict = [decoder decodeObject];
+    }
+    return [self initWithFilename:loadedFile dictionary:dict];
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    if([encoder allowsKeyedCoding])
+    {
+        [encoder encodeObject:loadedFileName forKey:@"loadedFileName"];
+        [encoder encodeObject:tags forKey:@"tags"];
+    }
+    else
+    {
+        [encoder encodeObject:loadedFileName];
+        [encoder encodeObject:tags];
+    }
+}
+
+#pragma mark - NSCopying implementation
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    return [[MetaLoaded alloc] initWithFilename:loadedFileName dictionary:tags];
 }
 
 /*

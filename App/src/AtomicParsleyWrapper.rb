@@ -35,7 +35,7 @@ class AtomicParsleyWrapper < NSObject
         providedKeys.each{|e| dict.setObject_forKey_(NSNull.null, e) }
         dict.setObject_forKey_(File.basename(file), "fileName");
         dict.setObject_forKey_("Burn Notice", "tvShow");
-        MetaLoaded.alloc.initWithDictionary_(dict);
+        MetaLoaded.alloc.initWithFilename_andDictionary_(file, dict);
     end
 
 	objc_method("saveChanges:", [:void, :id]) do |data|

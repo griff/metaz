@@ -35,7 +35,7 @@
         @throw [NSException exceptionWithName:NSInvalidArgumentException reason:@"Bad type" userInfo:nil];
     NSMethodSignature* sig = [NSMethodSignature signatureWithObjCTypes:sigc];
     SEL sel = NSSelectorFromString([MZMethodData setterForKey:aKey]);
-    return [MZMethodData methodWithSelector:sel andSignature:sig forKey:aRealKey ofType:aType];
+    return [MZMethodData methodWithSelector:sel signature:sig forKey:aRealKey ofType:aType];
 }
 
 +(MZMethodData *)methodGetterForKey:(NSString *)aKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
@@ -51,15 +51,15 @@
     
     NSMethodSignature* sig = [NSMethodSignature signatureWithObjCTypes:sigc];
     SEL sel = NSSelectorFromString(aKey);
-    return [MZMethodData methodWithSelector:sel andSignature:sig forKey:aRealKey ofType:aType];
+    return [MZMethodData methodWithSelector:sel signature:sig forKey:aRealKey ofType:aType];
 }
 
-+(MZMethodData *)methodWithSelector:(SEL )aSelector andSignature:(NSMethodSignature *)aSignature forKey:(NSString *)aKey ofType:(NSUInteger)aType {
-  MZMethodData * ret = [[MZMethodData alloc] initWithSelector:aSelector andSignature:aSignature forKey:aKey ofType:aType];
++(MZMethodData *)methodWithSelector:(SEL )aSelector signature:(NSMethodSignature *)aSignature forKey:(NSString *)aKey ofType:(NSUInteger)aType {
+  MZMethodData * ret = [[MZMethodData alloc] initWithSelector:aSelector signature:aSignature forKey:aKey ofType:aType];
   return [ret autorelease];
 }
 
--(id)initWithSelector:(SEL)aSelector andSignature:(NSMethodSignature*)aSignature forKey:(NSString *)aKey ofType:(NSUInteger)aType {
+-(id)initWithSelector:(SEL)aSelector signature:(NSMethodSignature*)aSignature forKey:(NSString *)aKey ofType:(NSUInteger)aType {
     self = [super init];
     selector = aSelector;
     signature = [aSignature retain];

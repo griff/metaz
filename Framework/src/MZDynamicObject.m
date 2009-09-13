@@ -42,8 +42,8 @@
     [methods setObject:method forKey:NSStringFromSelector([method selector])];
 }
 
--(void)addMethodWithSelector:(SEL)aSelector andSignature:(NSMethodSignature *)aSignature forKey:(NSString *)aKey ofType:(NSUInteger)aType {
-    MZMethodData* method = [MZMethodData methodWithSelector:aSelector andSignature:aSignature forKey:aKey ofType:aType];
+-(void)addMethodWithSelector:(SEL)aSelector signature:(NSMethodSignature *)aSignature forKey:(NSString *)aKey ofType:(NSUInteger)aType {
+    MZMethodData* method = [MZMethodData methodWithSelector:aSelector signature:aSignature forKey:aKey ofType:aType];
     [methods setObject:method forKey:NSStringFromSelector(aSelector)];
 }
 

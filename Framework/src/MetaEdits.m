@@ -8,21 +8,24 @@
 
 #import "MetaEdits.h"
 #import "MZMethodData.h"
+#import "MetaChangeNotification.h"
+
 
 @implementation MetaEdits
 @synthesize undoManager;
 @synthesize multiUndoManager;
 
+#pragma mark - initialization
+
 -(id)initWithProvider:(id<MetaData>)aProvider {
-    NSArray* keys = [aProvider providedKeys];
-    self = [super initWithKeys:keys];
+    self = [super init];
     //undoManager = [[ProxyUndoManager alloc] initWithUndoManager:[[NSUndoManager alloc] init] andType:2];
     undoManager = [[NSUndoManager alloc] init];
     multiUndoManager = nil;
     provider = [aProvider retain];
     tags = [[NSMutableDictionary alloc] init];
-    //lastCache = [[NSMutableDictionary alloc] init]; Use undo manager instead
 
+    NSArray* keys = [aProvider providedKeys];
     for(NSString *key in keys)
     {
         [provider addObserver: self 
@@ -30,11 +33,18 @@
                       options: NSKeyValueObservingOptionPrior|NSKeyValueObservingOptionOld
                       context: nil];
         NSString* changedKey = [key stringByAppendingString:@"Changed"];
+        [self addMethodGetterForKey:key ofType:1 withObjCType:@encode(id)];
         [self addMethodGetterForKey:changedKey withRealKey:key ofType:2 withObjCType:@encode(BOOL)];
         [self addMethodSetterForKey:key ofType:3 withObjCType:@encode(id)];
         [self addMethodSetterForKey:changedKey withRealKey:key ofType:4 withObjCType:@encode(BOOL)];
     }
 
+    return self;
+}
+
+-(id)initForCopyWithProvider:(id<MetaData>)aProvider tags:(NSDictionary *)dict {
+    self = [self initWithProvider:aProvider];
+    [tags addEntriesFromDictionary:dict];
     return self;
 }
 
@@ -45,7 +55,6 @@
     [provider release];
     [undoManager release];
     if(multiUndoManager) [multiUndoManager release];
-    //[lastCache release];
     [super dealloc];
 }
 
@@ -58,8 +67,6 @@
 }
 
 -(NSUndoManager *)undoManager {
-    if(multiUndoManager)
-        return multiUndoManager;
     return undoManager;
 }
 
@@ -94,12 +101,25 @@
         [self willChangeValueForKey:aKey];
         
         [[self undoManager] registerUndoWithTarget:self selector:[MZMethodData setterSelectorForKey:aKey] object:oldValue];
+        NSString* actionKey = NSLocalizedStringFromTableInBundle(aKey, @"MZTags", [NSBundle bundleForClass:[self class]], @"Name for tag");
         if([[self undoManager] isUndoing])
-            [[self undoManager] setActionName:[@"Set " stringByAppendingString:aKey]];
+            [[self undoManager] setActionName:[@"Set " stringByAppendingString:actionKey]];
         else
-            [[self undoManager] setActionName:[@"Reverted " stringByAppendingString:aKey]];
+            [[self undoManager] setActionName:[@"Reverted " stringByAppendingString:actionKey]];
+        if(multiUndoManager)
+        {
+            if([multiUndoManager isUndoing])
+            {
+                [[multiUndoManager prepareWithInvocationTarget:self] redo];
+                [multiUndoManager setActionName:[@"Set " stringByAppendingString:actionKey]];
+            }
+            else
+            {
+                [[multiUndoManager prepareWithInvocationTarget:self] undo];
+                [multiUndoManager setActionName:[@"Reverted " stringByAppendingString:actionKey]];
+            }
+        }
         
-        //[lastCache setObject:oldValue forKey:aKey];
         [tags removeObjectForKey:aKey];
         [self didChangeValueForKey:aKey];
         [self didChangeValueForKey:changedKey];
@@ -115,17 +135,25 @@
         [self willChangeValueForKey:aKey];
         
         [[[self undoManager] prepareWithInvocationTarget:self] setterChanged:NO forKey:aKey];
-        //[[self undoManager] registerUndoWithTarget:self selector:[MZMethodData setterSelectorForKey:changedKey] object:[NSNumber numberWithBool:NO]];
-        [[self undoManager] setActionName:[@"Set " stringByAppendingString:aKey]];
+        NSString* actionKey = NSLocalizedStringFromTableInBundle(aKey, @"MZTags", [NSBundle bundleForClass:[self class]], @"Name for tag");
+        [[self undoManager] setActionName:[@"Set " stringByAppendingString:actionKey]];
+        if(multiUndoManager)
+        {
+            if([multiUndoManager isUndoing])
+                [[multiUndoManager prepareWithInvocationTarget:self] redo];
+            else
+                [[multiUndoManager prepareWithInvocationTarget:self] undo];
+            [multiUndoManager setActionName:[@"Set " stringByAppendingString:actionKey]];
+        }
         
-        //oldValue = [lastCache objectForKey:aKey];
-        //if(oldValue==nil)
-            oldValue = [self performSelector:NSSelectorFromString(aKey)];
+        [self willStoreValueForKey:aKey];
+        oldValue = [self performSelector:NSSelectorFromString(aKey)];
 
         if(oldValue == nil)
             oldValue = [NSNull null];
 
         [tags setObject:oldValue forKey:aKey];
+        [self didStoreValueForKey:aKey];
         [self didChangeValueForKey:aKey];
         [self didChangeValueForKey:changedKey];
         if([tags count] == 1)
@@ -147,14 +175,30 @@
     if(oldValue==nil)
     {
         [[[self undoManager] prepareWithInvocationTarget:self] setterChanged:NO forKey:aKey];
-        //[[self undoManager] registerUndoWithTarget:self selector:[MZMethodData setterSelectorForKey:changedKey] object:[NSNumber numberWithBool:NO]];
-        [[self undoManager] setActionName:[@"Set " stringByAppendingString:aKey]];
+        NSString* actionKey = NSLocalizedStringFromTableInBundle(aKey, @"MZTags", [NSBundle bundleForClass:[self class]], @"Name for tag");
+        [[self undoManager] setActionName:[@"Set " stringByAppendingString:actionKey]];
+        if(multiUndoManager)
+        {
+            if([multiUndoManager isUndoing])
+                [[multiUndoManager prepareWithInvocationTarget:self] redo];
+            else
+                [[multiUndoManager prepareWithInvocationTarget:self] undo];
+            [multiUndoManager setActionName:[@"Set " stringByAppendingString:actionKey]];
+        }
     } else
     {
         [[self undoManager] registerUndoWithTarget:self selector:[MZMethodData setterSelectorForKey:aKey] object:oldValue];
-        [[self undoManager] setActionName:[@"Changed " stringByAppendingString:aKey]];
+        NSString* actionKey = NSLocalizedStringFromTableInBundle(aKey, @"MZTags", [NSBundle bundleForClass:[self class]], @"Name for tag");
+        [[self undoManager] setActionName:[@"Changed " stringByAppendingString:actionKey]];
+        if(multiUndoManager)
+        {
+            if([multiUndoManager isUndoing])
+                [[multiUndoManager prepareWithInvocationTarget:self] redo];
+            else
+                [[multiUndoManager prepareWithInvocationTarget:self] undo];
+            [multiUndoManager setActionName:[@"Changed " stringByAppendingString:actionKey]];
+        }
     }
-    //[lastCache removeObjectForKey:aKey];
     [tags setObject:aValue forKey:aKey];
     [self didChangeValueForKey:aKey];
     if(oldValue == nil) {
@@ -238,6 +282,47 @@
         }
     }
     //[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+}
+
+#pragma mark - NSCoding implementation
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    id aProvider;
+    if([decoder allowsKeyedCoding])
+        aProvider = [decoder decodeObjectForKey:@"provider"];
+    else
+        aProvider = [decoder decodeObject];
+        
+    self = [self initWithProvider:aProvider];
+    
+    if([decoder allowsKeyedCoding])
+        [tags addEntriesFromDictionary:[decoder decodeObjectForKey:@"tags"]];
+    else
+        [tags addEntriesFromDictionary:[decoder decodeObject]];
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    if([encoder allowsKeyedCoding])
+    {
+        [encoder encodeObject:provider forKey:@"provider"];
+        [encoder encodeObject:tags forKey:@"tags"];
+    }
+    else
+    {
+        [encoder encodeObject:provider];
+        [encoder encodeObject:tags];
+    }
+}
+
+#pragma mark - NSCopying implementation
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    id ret = [[provider copyWithZone:zone] autorelease];
+    return [[MetaEdits alloc] initForCopyWithProvider:ret tags:tags];
 }
 
 /*

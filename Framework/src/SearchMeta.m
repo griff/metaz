@@ -7,11 +7,12 @@
 //
 
 #import "SearchMeta.h"
+#import "MetaChangeNotification.h"
 
 
 @implementation SearchMeta
 
--(id)initWithProvider:(id<MetaData>)aProvider andController:(NSArrayController *)aController {
+-(id)initWithProvider:(id<MetaData>)aProvider controller:(NSArrayController *)aController {
     self = [super init];
     searchController = [aController retain];
     provider = [aProvider retain];
@@ -69,6 +70,17 @@
     return ret;
 }
 
+-(void)willStoreValueForKey:(NSString *)key
+{
+    [provider willStoreValueForKey:key];
+}
+
+-(void)didStoreValueForKey:(NSString *)key
+{
+    [provider didStoreValueForKey:key];
+}
+
+
 -(void)handleDataForKey:(NSString *)aKey ofType:(NSUInteger)aType forInvocation:(NSInvocation *)anInvocation {
     id ret = [self getterValueForKey:aKey];
     [anInvocation setReturnValue:&ret];
@@ -98,5 +110,50 @@
             [self didChangeValueForKey:key];
     }
 }
+
+#pragma mark - NSCoding implementation
+
+- (Class)classForCoder {
+    return [provider classForCoder];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    // Not possible
+    NSException* myException = [NSException
+        exceptionWithName:@"NotImplementedException"
+                   reason:@"Method is not implemented in class"
+                 userInfo:nil];
+    @throw myException;
+/*
+    NSDictionary* dict;
+    NSString* loadedFile;
+    if([decoder allowsKeyedCoding])
+    {
+        loadedFile = [decoder decodeObjectForKey:@"loadedFileName"];
+        dict = [decoder decodeObjectForKey:@"tags"];
+    }
+    else
+    {
+        loadedFile = [decoder decodeObject];
+        dict = [decoder decodeObject];
+    }
+    return [self initWithFilename:loadedFile dictionary:dict];
+*/
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [provider encodeWithCoder:encoder];
+}
+
+#pragma mark - NSCopying implementation
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    // For now simple remove SearchMeta from the chain
+    return [provider copyWithZone:zone];
+}
+
 
 @end

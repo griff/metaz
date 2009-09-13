@@ -10,14 +10,14 @@
 #import "MetaData.h"
 #import "MZDynamicObject.h"
 
-@interface MetaLoaded : MZDynamicObject <MetaData> {
+@interface MetaLoaded : MZDynamicObject <MetaData, NSCopying> {
     NSDictionary* tags;
     NSString* loadedFileName;
 }
 @property(readonly) NSString* loadedFileName;
 
 -(id)initWithKeys:(NSArray *)keys;
--(id)initWithDictionary:(NSDictionary *)dict;
+-(id)initWithFilename:(NSString *)aFileName dictionary:(NSDictionary *)dict;
 
 -(NSArray *)providedKeys;
 

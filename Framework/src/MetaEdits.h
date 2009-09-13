@@ -10,9 +10,9 @@
 #import "MetaLoaded.h"
 #import "MetaData.h"
 
-
-@interface MetaEdits : MetaLoaded {
-    id<MetaData> provider;
+@interface MetaEdits : MZDynamicObject <MetaData, NSCopying, NSCoding> {
+    NSMutableDictionary* tags;
+    NSObject<MetaData>* provider;
     NSUndoManager* undoManager;
     NSUndoManager* multiUndoManager;
 }
@@ -25,7 +25,9 @@
 -(NSString *)loadedFileName;
 
 -(BOOL)changed;
+-(NSArray *)providedKeys;
 
+-(id)getterValueForKey:(NSString *)aKey;
 -(BOOL)getterChangedForKey:(NSString *)aKey;
 -(void)setterChanged:(BOOL)aValue forKey:(NSString *)aKey;
 -(void)setterValue:(id)aValue forKey:(NSString *)aKey;

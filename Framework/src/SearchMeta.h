@@ -11,11 +11,11 @@
 #import "MZDynamicObject.h"
 
 @interface SearchMeta : MZDynamicObject <MetaData> {
-    id<MetaData> provider;
+    NSObject<MetaData>* provider;
     IBOutlet NSArrayController* searchController;
 }
 
--(id)initWithProvider:(id<MetaData>)aProvider andController:(NSArrayController *)aController;
+-(id)initWithProvider:(id<MetaData>)aProvider controller:(NSArrayController *)aController;
 
 -(NSString *)loadedFileName;
 -(NSString *)fileName;
