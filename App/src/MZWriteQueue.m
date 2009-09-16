@@ -8,18 +8,33 @@
 
 #import "MZWriteQueue.h"
 
-@interface MZWriteQueue (Private)
-- (void)registerAsObserver;
-- (void)unregisterAsObserver;
-@end
-
 @implementation MZWriteQueue
+@synthesize queue;
+
+static MZWriteQueue* sharedQueue = nil;
+
++(MZWriteQueue *)sharedQueue {
+    if(!sharedQueue)
+        [[[MZWriteQueue alloc] init] release];
+    return sharedQueue;
+}
 
 -(id)init
 {
     self = [super init];
-    fileName = [[@"MetaZ" stringByAppendingPathComponent:@"Write.queue"] retain];
-    queue = [[NSMutableArray alloc] init];
+
+    if(sharedQueue)
+    {
+        [self release];
+        self = [sharedQueue retain];
+    } else if(self)
+    {
+        status = QueueStopped;
+        fileName = [[@"MetaZ" stringByAppendingPathComponent:@"Write.queue"] retain];
+        queue = [[NSMutableArray alloc] init];
+        //[self loadQueueWithError:NULL];
+        sharedQueue = [self retain];
+    }
     return self;
 }
 
@@ -27,47 +42,61 @@
 {
     [fileName release];
     [queue release];
+    [super dealloc];
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)note
+-(BOOL)started
 {
-    [self loadQueueWithError:NULL];
-    if([queue count] > 0)
-    {
-        //Make alert about reloading queue;
-        if( NO )
-        {
-            [queue removeAllObjects];
-        }
-    }
+    return status > QueueStopped;
 }
 
-- (void)registerAsObserver
+-(BOOL)paused
 {
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidFinishLaunching:) name:NSApplicationDidFinishLaunchingNotification object:NSApp];
-	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDriverDidFinish:) name:SUUpdateDriverFinishedNotification object:nil];
+    return status == QueuePaused;
 }
 
-- (void)unregisterAsObserver
+-(void)start
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    if(status == QueueStopped)
+        status = QueueRunning;
+}
+
+-(void)pause
+{
+    if(status == QueueRunning)
+        status = QueuePaused;
+}
+
+-(void)resume
+{
+    if(status == QueuePaused)
+        status = QueueRunning;
+}
+
+-(void)stop
+{
+    if(status != QueueStopped)
+        status = QueueStopped;
 }
 
 -(BOOL)loadQueueWithError:(NSError **)error
 {
+    NSFileManager *mgr = [NSFileManager defaultManager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     for(NSString * path in paths)
     {
         NSString *destinationPath = [path stringByAppendingPathComponent: fileName];
         if([mgr fileExistsAtPath:destinationPath])
         {
-            id ret = [NSKeyedUnarchiver unarchiveObjectWithFile:fileName];
+            id ret = [NSKeyedUnarchiver unarchiveObjectWithFile:destinationPath];
             if(!ret)
             {
                 // Make NSError;
                 return NO;
             }
+            [self willChangeValueForKey:@"queue"];
             [queue addObjectsFromArray: ret];
+            [self didChangeValueForKey:@"queue"];
             return YES;
         }
     }
@@ -81,11 +110,26 @@
 
 -(BOOL)saveQueueWithError:(NSError **)error
 {
+    NSFileManager *mgr = [NSFileManager defaultManager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     if([queue count] > 0)
     {
         if ([paths count] > 0)
         {
+            NSString *destinationDir = [[paths objectAtIndex:0]
+                        stringByAppendingPathComponent: @"MetaZ"];
+            BOOL isDir;
+            if([mgr fileExistsAtPath:destinationDir isDirectory:&isDir])
+            {
+                if(!isDir)
+                {
+                    [mgr removeItemAtPath:destinationDir error:error];
+                    [mgr createDirectoryAtPath:destinationDir withIntermediateDirectories:YES attributes:nil error:error];
+                }
+            }
+            else
+                [mgr createDirectoryAtPath:destinationDir withIntermediateDirectories:YES attributes:nil error:error];
+            
             NSString *destinationPath = [[paths objectAtIndex:0]
                         stringByAppendingPathComponent: fileName];
             if(![NSKeyedArchiver archiveRootObject:queue toFile:destinationPath])
@@ -102,7 +146,6 @@
     }
     else
     {
-        NSFileManager *mgr = [NSFileManager defaultManager];
         for(NSString * path in paths)
         {
             NSString *destinationPath = [path stringByAppendingPathComponent: fileName];
@@ -111,6 +154,13 @@
         }
     }
     return YES;
+}
+
+-(void)removeAllObjects
+{
+    [self willChangeValueForKey:@"queue"];
+    [queue removeAllObjects];
+    [self didChangeValueForKey:@"queue"];
 }
 
 -(void)addArrayToQueue:(NSArray *)anArray

@@ -17,7 +17,7 @@ static MZMetaLoader* sharedLoader = nil;
 
 +(MZMetaLoader *)sharedLoader {
     if(!sharedLoader)
-        [[MZMetaLoader alloc] init];
+        [[[MZMetaLoader alloc] init] release];
     return sharedLoader;
 }
 
@@ -49,6 +49,13 @@ static MZMetaLoader* sharedLoader = nil;
 -(NSArray *)extensions {
     NSArray* ret = [provider extensions];
     return ret;
+}
+
+-(void)removeAllObjects
+{
+    [self willChangeValueForKey:@"files"];
+    [files removeAllObjects];
+    [self didChangeValueForKey:@"files"];
 }
 
 -(void)fixTitle:(MetaEdits* )edits {

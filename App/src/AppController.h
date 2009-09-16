@@ -10,6 +10,7 @@
 #import "MZMetaLoader.h"
 #import "FilesUndoController.h"
 #import "ResizeController.h"
+#import "ImageWindowController.h"
 
 @interface AppController : NSObject {
     NSWindow* window;
@@ -26,6 +27,8 @@
     NSTextView* longDescription;
     NSTableView* filesView;
     NSUndoManager* undoManager;
+    NSImageView* imageView;
+    ImageWindowController* imageEditController;
 }
 @property (nonatomic, retain) IBOutlet NSWindow* window;
 @property (nonatomic, retain) IBOutlet NSTabView *tabView;
@@ -40,8 +43,10 @@
 @property (nonatomic, retain) IBOutlet NSTextView* shortDescription;
 @property (nonatomic, retain) IBOutlet NSTextView* longDescription;
 @property (nonatomic, retain) IBOutlet NSTableView* filesView;
+@property (nonatomic, retain) IBOutlet NSImageView* imageView;
 
 #pragma mark - actions
+
 - (IBAction)showAdvancedTab:(id)sender;
 - (IBAction)showChapterTab:(id)sender;
 - (IBAction)showInfoTab:(id)sender;
@@ -52,6 +57,7 @@
 - (IBAction)selectPreviousFile:(id)sender;
 - (IBAction)showPreferences:(id)sender;
 - (IBAction)revertChanges:(id)sender;
+- (IBAction)showImageEditor:(id)sender;
 - (IBAction)openFile:(id)sender;
 - (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo;
 

@@ -20,6 +20,7 @@
 
 -(NSArray *)types;
 -(NSArray *)extensions;
+-(void)removeAllObjects;
 -(void)loadFromFile:(NSString *)fileName;
 -(void)loadFromFiles:(NSArray *)fileNames;
 

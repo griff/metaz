@@ -23,6 +23,7 @@
 @synthesize shortDescription;
 @synthesize longDescription;
 @synthesize filesView;
+@synthesize imageView;
 
 #pragma mark - initialization
 
@@ -56,6 +57,8 @@
     [longDescription release];
     [filesView release];
     [undoManager release];
+    [imageView release];
+    if(imageEditController) [imageEditController release];
     [super dealloc];
 }
 
@@ -174,6 +177,13 @@ NSDictionary* findBinding(NSWindow* window) {
     id observed = [dict objectForKey:NSObservedObjectKey];
     NSString* keyPath = [dict objectForKey:NSObservedKeyPathKey];
     [observed setValue:[NSNumber numberWithBool:NO] forKeyPath:[keyPath stringByAppendingString:@"Changed"]];
+}
+
+- (IBAction)showImageEditor:(id)sender
+{
+    if(!imageEditController)
+        imageEditController = [[ImageWindowController alloc] initWithImageView:imageView];
+    [imageEditController showWindow:self];
 }
 
 - (IBAction)showPreferences:(id)sender {
