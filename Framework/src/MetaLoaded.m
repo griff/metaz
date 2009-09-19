@@ -96,7 +96,8 @@
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    return [[MetaLoaded alloc] initWithFilename:loadedFileName dictionary:tags];
+    //return [[MetaLoaded alloc] initWithFilename:loadedFileName dictionary:tags];
+    return [self retain];
 }
 
 /*

@@ -14,11 +14,19 @@
     NSImageView* sourceImageView;
     NSSegmentedControl* moveSelectTool;
     NSMenu* selectMenu;
+    NSString* currentSelect;
 }
 @property (nonatomic, retain) IBOutlet IKImageView* imageView;
 @property (nonatomic, retain) IBOutlet NSSegmentedControl* moveSelectTool;
 @property (nonatomic, retain) IBOutlet NSMenu* selectMenu;
 
-- (id)initWithImageView:(NSImageView *)aImageView;
+- (IBAction)crop:(id)sender;
+- (IBAction)moveSelect:(id)sender;
+- (IBAction)selectRectangle:(id)sender;
+- (IBAction)selectEllipse:(id)sender;
+- (IBAction)selectLasso:(id)sender;
 
+- (id)initWithImageView:(NSImageView *)aImageView;
+//- (void)imageDidChange:(IKImageView *)imageView; 
+- (void)imageDidChange:(IKImageView *)imageView imageState:(id)state image:(CGImageRef)image; 
 @end

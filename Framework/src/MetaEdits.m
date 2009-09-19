@@ -42,12 +42,6 @@
     return self;
 }
 
--(id)initForCopyWithProvider:(id<MetaData>)aProvider tags:(NSDictionary *)dict {
-    self = [self initWithProvider:aProvider];
-    [tags addEntriesFromDictionary:dict];
-    return self;
-}
-
 - (void)dealloc {
     NSArray* keys = [provider providedKeys];
     for(NSString *key in keys)
@@ -322,7 +316,9 @@
 - (id)copyWithZone:(NSZone *)zone
 {
     id ret = [[provider copyWithZone:zone] autorelease];
-    return [[MetaEdits alloc] initForCopyWithProvider:ret tags:tags];
+    MetaEdits* copy = [[MetaEdits allocWithZone:zone] initWithProvider:ret];
+    [copy->tags addEntriesFromDictionary:tags];
+    return copy;
 }
 
 /*
