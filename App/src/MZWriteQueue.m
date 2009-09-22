@@ -156,15 +156,27 @@ static MZWriteQueue* sharedQueue = nil;
     return YES;
 }
 
+- (void)removeObjectAtIndex:(NSUInteger)index
+{
+    [self willChangeValueForKey:@"queue"];
+    [queue removeObjectAtIndex:index];
+    [self saveQueueWithError:NULL];
+    [self didChangeValueForKey:@"queue"];
+}
+
 -(void)removeAllObjects
 {
     [self willChangeValueForKey:@"queue"];
     [queue removeAllObjects];
+    [self saveQueueWithError:NULL];
     [self didChangeValueForKey:@"queue"];
 }
 
 -(void)addArrayToQueue:(NSArray *)anArray
 {
+    NSAssert(anArray, @"An array argument");
+    if([anArray count] == 0)
+        return;
     [self willChangeValueForKey:@"queue"];
     for(MetaEdits* edit in anArray)
         [queue addObject:[edit copy]];
@@ -174,6 +186,7 @@ static MZWriteQueue* sharedQueue = nil;
 
 -(void)addObjectToQueue:(MetaEdits *)anEdit
 {
+    NSAssert(anEdit, @"A value argument");
     [self willChangeValueForKey:@"queue"];
     [queue addObject:[anEdit copy]];
     [self saveQueueWithError:NULL];

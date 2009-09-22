@@ -278,6 +278,11 @@
     //[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 
+- (BOOL)isEqual:(id)other
+{
+    return [super isEqual:other];
+}
+
 #pragma mark - NSCoding implementation
 
 - (id)initWithCoder:(NSCoder *)decoder

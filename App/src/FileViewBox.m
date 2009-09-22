@@ -39,6 +39,7 @@
             label = [[decoder decodeObject] retain];
             disclosure = [[decoder decodeObject] retain];
         }
+        /*
         if(disclosure)
         {
             NSLog(@"self %@", self);
@@ -46,6 +47,7 @@
             NSLog(@"Label %@", label);
             NSLog(@"Button %@\n\n", disclosure);
         }
+        */
         if(disclosure)
         {
             [disclosure setTarget:self];
@@ -62,10 +64,12 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
+    /*
     NSLog(@"Prototype %@", self);
     NSLog(@"TabView %@", tabView);
     NSLog(@"Label %@", label);
     NSLog(@"Button %@\n\n", disclosure);
+    */
     [super encodeWithCoder:encoder];
     if([encoder allowsKeyedCoding])
     {
@@ -79,6 +83,16 @@
         [encoder encodeObject:label];
         [encoder encodeObject:disclosure];
     }
+}
+
+- (void)removeFromSuperviewWithoutNeedingDisplay
+{
+    [super removeFromSuperviewWithoutNeedingDisplay];
+}
+
+- (void)removeFromSuperview
+{
+    [super removeFromSuperview];
 }
 
 - (void)bind:(NSString *)binding toObject:(id)observableController withKeyPath:(NSString *)keyPath options:(NSDictionary *)options
@@ -101,10 +115,12 @@
     NSString* tab = [[tabView selectedTabViewItem] identifier];
     if([tab isEqual:@"pending"])
     {
+        /*
         NSCollectionView * parent = (NSCollectionView*)[self superview];
         NSCollectionViewItem * proto = [parent itemPrototype];
         NSMethodSignature * sig = [proto methodSignatureForSelector:@selector(_applyTargetConfigurationWithoutAnimation:)];
         NSLog(@"resize %d %s%s%s%s", [sig numberOfArguments], [sig methodReturnType], [sig getArgumentTypeAtIndex:0], [sig getArgumentTypeAtIndex:1], [sig getArgumentTypeAtIndex:2]);
+        */
         newSize.height = 43;
     }
     [super setFrameSize:newSize];

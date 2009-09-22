@@ -11,7 +11,6 @@
 		1B0DEC3F10607A9A009D293F /* MuhMa.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEC3E10607A9A009D293F /* MuhMa.m */; };
 		1B0DEC7F10609DC6009D293F /* MGCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEC7E10609DC6009D293F /* MGCollectionView.m */; };
 		1B0DED251060C741009D293F /* LabelM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DED241060C741009D293F /* LabelM.m */; };
-		1B0DED3A1060DDF5009D293F /* CollectionViewItemHack.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DED391060DDF5009D293F /* CollectionViewItemHack.m */; };
 		1B0DEDD81060F7B6009D293F /* ImageWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEDD71060F7B6009D293F /* ImageWindowController.m */; };
 		1B0DEDDB10610132009D293F /* ImageEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B0DEDD910610132009D293F /* ImageEdit.xib */; };
 		1B0DEDE010610412009D293F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0DEDDF10610412009D293F /* Quartz.framework */; };
@@ -106,8 +105,6 @@
 		1B0DEC7E10609DC6009D293F /* MGCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCollectionView.m; sourceTree = "<group>"; };
 		1B0DED231060C741009D293F /* LabelM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelM.h; sourceTree = "<group>"; };
 		1B0DED241060C741009D293F /* LabelM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelM.m; sourceTree = "<group>"; };
-		1B0DED381060DDF5009D293F /* CollectionViewItemHack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewItemHack.h; sourceTree = "<group>"; };
-		1B0DED391060DDF5009D293F /* CollectionViewItemHack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewItemHack.m; sourceTree = "<group>"; };
 		1B0DEDD61060F7B6009D293F /* ImageWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageWindowController.h; sourceTree = "<group>"; };
 		1B0DEDD71060F7B6009D293F /* ImageWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageWindowController.m; sourceTree = "<group>"; };
 		1B0DEDDA10610132009D293F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/ImageEdit.xib; sourceTree = "<group>"; };
@@ -313,8 +310,6 @@
 				1B0DEC7E10609DC6009D293F /* MGCollectionView.m */,
 				1B0DED231060C741009D293F /* LabelM.h */,
 				1B0DED241060C741009D293F /* LabelM.m */,
-				1B0DED381060DDF5009D293F /* CollectionViewItemHack.h */,
-				1B0DED391060DDF5009D293F /* CollectionViewItemHack.m */,
 				1B0DEDD61060F7B6009D293F /* ImageWindowController.h */,
 				1B0DEDD71060F7B6009D293F /* ImageWindowController.m */,
 			);
@@ -578,7 +573,6 @@
 				1B0DEC3F10607A9A009D293F /* MuhMa.m in Sources */,
 				1B0DEC7F10609DC6009D293F /* MGCollectionView.m in Sources */,
 				1B0DED251060C741009D293F /* LabelM.m in Sources */,
-				1B0DED3A1060DDF5009D293F /* CollectionViewItemHack.m in Sources */,
 				1B0DEDD81060F7B6009D293F /* ImageWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

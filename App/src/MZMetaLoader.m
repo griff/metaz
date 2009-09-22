@@ -63,7 +63,7 @@ static MZMetaLoader* sharedLoader = nil;
     if(title == nil)
     {
         [[edits undoManager] disableUndoRegistration];
-        NSString* loadedFileName = [edits loadedFileName];
+        NSString* loadedFileName = [edits fileName];
         NSAssert(loadedFileName != nil, @"Bad loaded file name");
         NSAssert( ((NSNull*)loadedFileName) != [NSNull null], @"Bad loaded file name" );
         NSString* newTitle = [loadedFileName substringToIndex:[loadedFileName length] - [[loadedFileName pathExtension] length] - 1];

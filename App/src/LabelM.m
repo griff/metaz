@@ -13,6 +13,7 @@
 
 - (void)bind:(NSString *)binding toObject:(id)observableController withKeyPath:(NSString *)keyPath options:(NSDictionary *)options
 {
+    NSLog(@"Binding %@ to observer %@ with keypath %@ self %@", binding, observableController, keyPath, [observableController valueForKeyPath:@"self"]);
     [super bind:binding toObject:observableController withKeyPath:keyPath options:options];
 }
 

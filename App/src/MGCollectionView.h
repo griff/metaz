@@ -29,6 +29,8 @@
 }
 
 - (void)addItem:(MGCollectionViewItem *)item atIndex:(NSUInteger)index;
+- (void)moveItem:(MGCollectionViewItem *)item toIndex:(NSUInteger)index;
+- (void)removeObject:(MGCollectionViewItem *)item;
 - (void)removeItemAtIndex:(NSUInteger)index;
 - (void)removeAllItems;
 - (int)numberOfItems;

@@ -91,6 +91,7 @@
 
 - (IBAction)startStopEncoding:(id)sender
 {
+    [[MZWriteQueue sharedQueue] removeObjectAtIndex:1];
 }
 
 - (IBAction)pauseResumeEncoding:(id)sender

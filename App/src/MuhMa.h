@@ -12,12 +12,16 @@
 @class MuhMaItem;
 
 @interface MuhMa : NSObject {
-    IBOutlet NSArrayController* queues;
-    IBOutlet MGCollectionView* collectionView;
+    NSArrayController* queues;
+    MGCollectionView* collectionView;
     MuhMaItem* itemPrototype;
     NSArray* content;
+    NSMutableArray* _targetItems;
+    NSViewAnimation* _animation;
 }
-@property(retain) IBOutlet MuhMaItem* itemPrototype;
+@property(nonatomic, retain) IBOutlet NSArrayController* queues;
+@property(nonatomic, retain) IBOutlet MGCollectionView* collectionView;
+@property(nonatomic, retain) IBOutlet MuhMaItem* itemPrototype;
 @property(retain) NSArray* content;
 
 + (void)initialize;
@@ -28,9 +32,15 @@
 
 @interface MuhMaItem : NSViewController <NSCoding, NSCopying> {
     BOOL selected;
-    MuhMa* parent;
+    MuhMa* _itemOwnerView;
     NSData* archived;
+    BOOL _removalNeeded;
+    NSRect _targetViewFrameRect;
+    MGCollectionViewItem* item;
 }
+@property(readonly) MuhMa* parent;
+@property(readonly) MGCollectionViewItem* item;
+//@property(nonatomic, retain) IBOutlet NSView* view;
 
 - (void)setSelected:(BOOL)flag;
 - (BOOL)isSelected;
