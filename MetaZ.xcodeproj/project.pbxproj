@@ -33,6 +33,7 @@
 		1B5AC76F10532E5200F9CE36 /* MetaEditPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */; };
 		1B9B393F106C0FA200928C83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B9B393D106C0FA200928C83 /* Localizable.strings */; };
 		1B9B39F7106C862000928C83 /* NSArray-Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9B39F6106C862000928C83 /* NSArray-Mapping.m */; };
+		1B9B3AB5106CC14B00928C83 /* MetaZKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B9B3AB4106CC14B00928C83 /* MetaZKit.h */; };
 		1BA325CD10545BBB00276F57 /* MetaZKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1BA325E110545CD900276F57 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		1BA326191054643300276F57 /* MetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B119FCA104304C5004C93D3 /* MetaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -152,6 +153,7 @@
 		1B9B393E106C0FA200928C83 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = App/English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1B9B39F5106C862000928C83 /* NSArray-Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray-Mapping.h"; sourceTree = "<group>"; };
 		1B9B39F6106C862000928C83 /* NSArray-Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray-Mapping.m"; sourceTree = "<group>"; };
+		1B9B3AB4106CC14B00928C83 /* MetaZKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaZKit.h; sourceTree = "<group>"; };
 		1BA325C410545ACA00276F57 /* MetaZKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MetaZKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BA325C510545ACA00276F57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Framework/Info.plist; sourceTree = "<group>"; };
 		1BA3268210546CB500276F57 /* MetaZKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaZKit_Prefix.pch; path = Framework/MetaZKit_Prefix.pch; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				1BD6E601105B355800E40151 /* MetaChangeNotification.m */,
 				1B090C80106A899300D88083 /* MZTag.h */,
 				1B090C81106A899300D88083 /* MZTag.m */,
+				1B9B3AB4106CC14B00928C83 /* MetaZKit.h */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -430,6 +433,7 @@
 				1BA326241054643300276F57 /* MZDataProvider.h in Headers */,
 				1BA326251054643300276F57 /* MZDynamicObject.h in Headers */,
 				1BA326271054643300276F57 /* MZSearchProvider.h in Headers */,
+				1B9B3AB5106CC14B00928C83 /* MetaZKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,9 +714,9 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "MetaZKit-Info.plist";
-				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				GCC_PREFIX_HEADER = Framework/MetaZKit_Prefix.pch;
+				INFOPLIST_FILE = Framework/Info.plist;
+				INSTALL_PATH = "@loader_path/../Frameworks";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -757,8 +761,8 @@
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = MetaZ_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
+				GCC_PREFIX_HEADER = App/MetaZ_Prefix.pch;
+				INFOPLIST_FILE = App/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = MetaZ;
 			};

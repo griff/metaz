@@ -8,6 +8,7 @@
 
 #import "MetaEdits.h"
 #import "MZMethodData.h"
+#import "MZConstants.h"
 //#import "MetaChangeNotification.h"
 
 

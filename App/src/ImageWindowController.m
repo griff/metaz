@@ -74,15 +74,15 @@ NSData* tiffForCGImage(CGImageRef cgImage) {
     }
 }
 
-- (void)imageDidChange:(IKImageView *)imageView imageState:(id)state image:(CGImageRef)image
+- (void)imageDidChange:(IKImageView *)aImageView imageState:(id)state image:(CGImageRef)image
 //- (void)imageDidChange:(IKImageView *)aImageView
 {
-    NSDictionary* imageProps = imageView.imageProperties;
+    NSDictionary* imageProps = aImageView.imageProperties;
     for(NSString* key in [imageProps allKeys])
         NSLog(@"Key %@ Value %@", key, [imageProps objectForKey:key]);
     [sourceImageView removeObserver:self forKeyPath:@"image"];
-    [sourceImageView setImage:[ImageWindowController rotateImage:[[NSBitmapImageRep alloc] initWithCGImage:[imageView image]]
-                                                       byDegrees:imageView.rotationAngle]];
+    [sourceImageView setImage:[ImageWindowController rotateImage:[[NSBitmapImageRep alloc] initWithCGImage:[aImageView image]]
+                                                       byDegrees:aImageView.rotationAngle]];
     [sourceImageView addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:IMAGE_CTX];
 }
 
