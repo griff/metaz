@@ -9,10 +9,14 @@
 #import "MetaEdits.h"
 
 @protocol MZDataProvider <NSObject>
-
 @required
+
+/*!
+ @abstract Returns array of UTIs supported by this provider.
+ @result The UTIs supported by this provider.
+ */
 -(NSArray *)types;
--(NSArray *)extensions;
+
 -(NSArray *)providedKeys;
 -(MetaLoaded *)loadFromFile:(NSString *)fileName;
 -(void)saveChanges:(MetaEdits *)data;

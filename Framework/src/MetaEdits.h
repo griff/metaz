@@ -10,6 +10,8 @@
 #import "MetaLoaded.h"
 #import "MetaData.h"
 
+#define MZMetaEditsDataType @"MZMetaEditsDataType"
+
 @interface MetaEdits : MZDynamicObject <MetaData, NSCopying, NSCoding> {
     NSMutableDictionary* tags;
     NSObject<MetaData>* provider;

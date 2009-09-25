@@ -16,6 +16,8 @@
 @property (nonatomic, retain) IBOutlet FilesUndoController* undoController;
 @property (nonatomic, retain) IBOutlet NSArrayController* filesController;
 
++ (void)initialize;
+
 -(IBAction)delete:(id)sender;
 -(IBAction)beginEnterEdit:(id)sender;
 

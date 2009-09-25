@@ -8,7 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface FileViewBox : NSBox {
     NSTabView* tabView;
     NSTextField* label;
@@ -19,7 +18,6 @@
 @property (nonatomic, retain) IBOutlet NSButton* disclosure;
 
 - (IBAction)switchTab:(id)sender;
-
-- (void)awakeFromNib;
+- (IBAction)removeItem:(id)sender;
 
 @end

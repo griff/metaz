@@ -17,15 +17,42 @@
     self = [super initWithWindowNibName:windowNibName owner:self];
     if(self)
     {
-        controller = [owner retain];
+        controller = owner;
     }
     return self;
 }
 
 -(void)dealloc
 {
-    [controller release];
+    //[controller release];
     [super dealloc];
+}
+
+- (NSToolbarItem *)playBtn
+{
+    return [controller playBtn2];
+}
+
+- (void)setPlayBtn:(NSToolbarItem *)newBtn
+{
+    [controller setPlayBtn2:newBtn];
+    [controller updateButtons];
+}
+
+- (NSToolbarItem *)pauseBtn
+{
+    return [controller pauseBtn2];
+}
+
+- (void)setPauseBtn:(NSToolbarItem *)newBtn
+{
+    [controller setPauseBtn2:newBtn];
+    [controller updateButtons];
+}
+
+- (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem
+{
+    return [controller validateUserInterfaceItem:anItem];
 }
 
 - (IBAction)startStopEncoding:(id)sender
@@ -40,33 +67,6 @@
 
 - (void)tabView:(NSTabView *)aTabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
 {
-    NSView* sv = [aTabView superview];
-    NSView* box = [sv superview];
-    NSCollectionView* colview = (NSCollectionView*)[box superview];
-    NSRect tabRect = [aTabView frame];
-    NSRect svRect = [sv frame];
-    NSRect boxRect = [box frame];
-    if([[tabViewItem identifier] isEqual:@"pending"])
-    {
-        boxRect.size.height = 43;
-        svRect.size.height = 41;
-        tabRect.size.height = 41;
-    } else
-    {
-        boxRect.size.height = 53;
-        svRect.size.height = 51;
-        tabRect.size.height = 51;
-    }
-    [box setFrameSize:boxRect.size];
-    [sv setFrame:svRect];
-    [aTabView setFrame:tabRect];
-    [box setNeedsDisplay:YES];
-    [sv setNeedsDisplay:YES];
-    [aTabView setNeedsDisplay:YES];
-    [colview setNeedsDisplay:YES];
-    NSRect tabRect2 = [aTabView frame];
-    NSRect svRect2 = [sv frame];
-    NSRect rect2 = [box frame];
 }
 
 @end

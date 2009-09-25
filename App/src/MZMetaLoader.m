@@ -93,4 +93,27 @@ static MZMetaLoader* sharedLoader = nil;
     [self didChangeValueForKey:@"files"];
 }
 
+- (void)moveObjects:(NSArray *)objects toIndex:(NSUInteger)index
+{
+    [self willChangeValueForKey:@"files"];
+    NSMutableIndexSet* idx = [[[NSMutableIndexSet alloc] init] autorelease];
+    for(MetaEdits* edit in objects)
+    {
+        for(int i=[files count]-1; i>=0; i--)
+        {
+            MetaEdits* ob = [files objectAtIndex:i];
+            if(ob == edit)
+                [idx addIndex:i];
+        }
+    }
+    [files removeObjectsAtIndexes:idx];
+
+    index -= [idx countOfIndexesInRange:NSMakeRange(0, index)];
+    for(int i=[objects count]-1; i>=0; i--)
+    {
+        [files insertObject:[objects objectAtIndex:i] atIndex:index];
+    }
+    [self didChangeValueForKey:@"files"];
+}
+
 @end

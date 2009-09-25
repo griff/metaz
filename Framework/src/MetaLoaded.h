@@ -16,11 +16,13 @@
 }
 @property(readonly) NSString* loadedFileName;
 
--(id)initWithKeys:(NSArray *)keys;
--(id)initWithFilename:(NSString *)aFileName dictionary:(NSDictionary *)dict;
++ (id)metaWithFilename:(NSString *)aFileName dictionary:(NSDictionary *)dict;
 
--(NSArray *)providedKeys;
+- (id)initWithKeys:(NSArray *)keys;
+- (id)initWithFilename:(NSString *)aFileName dictionary:(NSDictionary *)dict;
 
--(id)getterValueForKey:(NSString *)aKey;
+- (NSArray *)providedKeys;
+
+- (id)getterValueForKey:(NSString *)aKey;
 
 @end

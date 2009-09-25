@@ -7,7 +7,7 @@
 //
 
 #import "FileViewBox.h"
-#import "BtnStuff.h"
+#import "MyQueueCollectionView.h"
 
 @implementation FileViewBox
 @synthesize tabView;
@@ -39,37 +39,12 @@
             label = [[decoder decodeObject] retain];
             disclosure = [[decoder decodeObject] retain];
         }
-        /*
-        if(disclosure)
-        {
-            NSLog(@"self %@", self);
-            NSLog(@"TabView %@", tabView);
-            NSLog(@"Label %@", label);
-            NSLog(@"Button %@\n\n", disclosure);
-        }
-        */
-        if(disclosure)
-        {
-            [disclosure setTarget:self];
-            [disclosure setAction:@selector(switchTab:)];
-            /*
-            BtnStuff * prox = [[BtnStuff alloc] initWithProxy:self];
-            [self release];
-            return prox;
-            */
-        }
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    /*
-    NSLog(@"Prototype %@", self);
-    NSLog(@"TabView %@", tabView);
-    NSLog(@"Label %@", label);
-    NSLog(@"Button %@\n\n", disclosure);
-    */
     [super encodeWithCoder:encoder];
     if([encoder allowsKeyedCoding])
     {
@@ -85,6 +60,7 @@
     }
 }
 
+/*
 - (void)removeFromSuperviewWithoutNeedingDisplay
 {
     [super removeFromSuperviewWithoutNeedingDisplay];
@@ -114,15 +90,7 @@
 {
     NSString* tab = [[tabView selectedTabViewItem] identifier];
     if([tab isEqual:@"pending"])
-    {
-        /*
-        NSCollectionView * parent = (NSCollectionView*)[self superview];
-        NSCollectionViewItem * proto = [parent itemPrototype];
-        NSMethodSignature * sig = [proto methodSignatureForSelector:@selector(_applyTargetConfigurationWithoutAnimation:)];
-        NSLog(@"resize %d %s%s%s%s", [sig numberOfArguments], [sig methodReturnType], [sig getArgumentTypeAtIndex:0], [sig getArgumentTypeAtIndex:1], [sig getArgumentTypeAtIndex:2]);
-        */
         newSize.height = 43;
-    }
     [super setFrameSize:newSize];
 }
 
@@ -140,15 +108,34 @@
 {
     [super setFrameRotation:angle];
 }
+*/
 
 - (IBAction)switchTab:(id)sender
 {
+    MGCollectionView* colview = (MGCollectionView*)[self superview];
+    NSRect frame = [self frame];
+
     NSTabViewItem * item = [tabView selectedTabViewItem];
-    NSString* value = [label stringValue];
     if([[item identifier] isEqual:@"pending"])
+    {
         [tabView selectTabViewItemWithIdentifier:@"action"];
+        frame.size.height = 53;
+    }
     else
+    {
         [tabView selectTabViewItemWithIdentifier:@"pending"];
+        frame.size.height = 43;
+    }
+    [self setFrame:frame];
+    [colview setNeedsLayout:YES];
+}
+
+- (IBAction)removeItem:(id)sender
+{
+    MyQueueCollectionView* colview = (MyQueueCollectionView*)[self superview];
+    id object = [colview representedObjectForView:self];
+    if(object)
+        [colview removeObject:object];
 }
 
 @end

@@ -13,7 +13,7 @@ ns_import :MetaLoaded
 
 class AtomicParsleyWrapper < NSObject
     def types
-        NSArray.arrayWithArray ['video/mpeg4']
+        NSArray.arrayWithArray ['public.mpeg-4', 'com.apple.quicktime-movie', 'com.apple.protected-mpeg-4-video']
     end
     
     def extensions

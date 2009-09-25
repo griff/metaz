@@ -17,23 +17,29 @@ typedef enum {
 
 @interface MZWriteQueue : NSObject {
     NSString* fileName;
-    NSMutableArray* queue;
+    NSMutableArray* queueItems;
     RunStatus status;
 }
 @property(readonly) BOOL started;
 @property(readonly) BOOL paused;
-@property(readonly) NSArray* queue;
+@property(readonly) NSArray* queueItems;
+@property(readonly) RunStatus status;
 
-+(MZWriteQueue *)sharedQueue;
++ (MZWriteQueue *)sharedQueue;
++ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key;
 
 -(void)start;
 -(void)pause;
 -(void)resume;
 -(void)stop;
--(void)removeAllObjects;
 -(BOOL)loadQueueWithError:(NSError **)error;
 -(BOOL)saveQueueWithError:(NSError **)error;
--(void)addArrayToQueue:(NSArray *)anArray;
--(void)addObjectToQueue:(MetaEdits *)anEdit;
+-(void)removeAllQueueItems;
+-(void)removeObjectFromQueueItemsAtIndex:(NSUInteger)index;
+-(void)removeQueueItemsAtIndexes:(NSIndexSet *)indexes;
+-(void)insertObject:(MetaEdits *)anEdit inQueueItemsAtIndex:(NSUInteger)index;
+-(void)insertQueueItems:(NSArray *)edits atIndexes:(NSIndexSet *)indexes;
+-(void)addQueueItems:(NSArray *)anArray;
+-(void)addQueueItemsObject:(MetaEdits *)anEdit;
 
 @end

@@ -22,6 +22,7 @@ NSString* const MZPurchaseDateTag = @"purchaseDate";
 NSString* const MZShortDescriptionTag = @"shortDescription";
 NSString* const MZLongDescriptionTag = @"longDescription";
 
+
 // Video
 NSString* const MZVideoTypeTag = @"videoType";
 NSString* const MZActorsTag = @"actors";
@@ -34,12 +35,14 @@ NSString* const MZTVSeasonTag = @"tvSeason";
 NSString* const MZTVEpisodeTag = @"tvEpisode";
 NSString* const MZTVNetworkTag = @"tvNetwork";
 
+
 // Sort
 NSString* const MZSortTitleTag = @"sortTitle";
 NSString* const MZSortArtistTag = @"sortArtist";
 NSString* const MZSortAlbumTag = @"sortAlbum";
 NSString* const MZSortAlbumArtistTag = @"sortAlbumArtist";
 NSString* const MZSortTVShowTag = @"sortTvShow";
+
 
 // MetaX Advanced
 NSString* const MZFeedURLTag = @"feedURL";
@@ -58,6 +61,7 @@ NSString* const MZEncodingToolTag = @"encodingTool";
 NSString* const MZCommentTag = @"comment";
 NSString* const MZGaplessTag = @"gapless";
 NSString* const MZCompilationTag = @"compilation";
+
 
 NSString* const MZChaptersTag = @"chapters";
 NSString* const MZChapterNamesTag = @"chapterNames";

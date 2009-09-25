@@ -4,8 +4,111 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>m4v</string>
+			</array>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>video/x-m4v</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>protected MPEG-4 movie</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>M4V</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.apple.protected-mpeg-4-video</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<false/>
+			<key>NSPersistentStoreTypeKey</key>
+			<string>Binary</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>mov</string>
+				<string>qt</string>
+			</array>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>video/quicktime</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>QuickTime movie</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.apple.quicktime-movie</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<false/>
+			<key>NSPersistentStoreTypeKey</key>
+			<string>Binary</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>m4a</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>MPEG-4 audio</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>M4A</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.mpeg-4-audio</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<false/>
+			<key>NSPersistentStoreTypeKey</key>
+			<string>Binary</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>mp4</string>
+			</array>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>video/mp4</string>
+				<string>video/mp4v</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>MPEG-4 content</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>mpg4</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.mpeg-4</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<false/>
+			<key>NSPersistentStoreTypeKey</key>
+			<string>Binary</string>
+		</dict>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleGetInfoString</key>
+	<string>Copyright 2009 Brian Olsen</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
@@ -14,10 +117,6 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>${PRODUCT_NAME}</string>
-	<key>CFBundleGetInfoString</key>
-	<string>Copyright 2009 Brian Olsen</string>
-	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2009, Brian Olsen</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -26,19 +125,45 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>${GITV}</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2009, Brian Olsen</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>SmartCrashReports_CompanyName</key>
-	<string>Maven-Group</string>
-	<key>SmartCrashReports_EmailTicket</key>
-	<string>SCR-6246806ACD</string>
 	<key>SUEnableAutomaticChecks</key>
 	<string>YES</string>
 	<key>SUFeedURL</key>
 	<string>http://griff.github.com/metaz/releases.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>sparkle_public.pem</string>
+	<key>SmartCrashReports_CompanyName</key>
+	<string>Maven-Group</string>
+	<key>SmartCrashReports_EmailTicket</key>
+	<string>SCR-6246806ACD</string>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeDescription</key>
+			<string>protected MPEG-4 movie</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.movie</string>
+			</array>
+			<key>UTTypeIdentifier</key>
+			<string>com.apple.protected-mpeg-4-video</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>M4V</string>
+				</array>
+				<key>public.filename-extension</key>
+				<array>
+					<string>m4v</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>

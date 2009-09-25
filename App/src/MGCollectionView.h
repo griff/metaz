@@ -1,5 +1,5 @@
 //
-//  MGCollectionView.h
+//  MuhMa.h
 //  MetaZ
 //
 //  Created by Brian Olsen on 16/09/09.
@@ -9,45 +9,70 @@
 #import <Cocoa/Cocoa.h>
 
 @class MGCollectionViewItem;
+@class MGCollectionView;
 
-@protocol MGCollectionViewTarget <NSObject>
+/*
+enum {
+    MGCollectionViewDropOn = 0,
+    MGCollectionViewDropBefore = 1,
+};
+typedef NSInteger MGCollectionViewDropOperation;
 
-- (NSDragOperation)dragOperationForFiles: (NSArray *)filePaths;
-- (void)dragFiles:(NSArray *)filePaths toIndex:(NSUInteger)index;
-- (void)dragItemsAtIndexes:(NSIndexSet *)indexes toIndex:(NSUInteger)index;
-- (BOOL)shouldRemoveItemsAtIndexes:(NSIndexSet *)indexes;
-- (void)performDoubleClickActionForIndex:(NSUInteger)index;
-- (void)onSelectionDidChange;
-- (NSArray *)filePathsForIndexes:(NSIndexSet *)indexes;
+@protocol NSCollectionViewDelegate
+
+- (BOOL)collectionView:(MGCollectionView *)collectionView
+   writeItemsAtIndexes:(NSIndexSet *)indexes
+          toPasteboard:(NSPasteboard *)pasteboard;
+
+@optional
+- (BOOL)collectionView:(MGCollectionView *)collectionView
+ canDragItemsAtIndexes:(NSIndexSet *)indexes
+             withEvent:(NSEvent *)event;
+             
+- (NSDragOperation)collectionView:(MGCollectionView *)collectionView
+                     validateDrop:(id < NSDraggingInfo >)draggingInfo
+                    proposedIndex:(NSInteger *)proposedDropIndex
+                    dropOperation:(MGCollectionViewDropOperation *)proposedDropOperation;
 
 @end
+*/
 
 @interface MGCollectionView : NSView {
-    IBOutlet id<MGCollectionViewTarget> target;
-    NSMutableArray *items;
+    MGCollectionViewItem* itemPrototype;
+    NSArray* content;
+    NSMutableArray* _targetItems;
+    NSViewAnimation* _animation;
+    NSRect _targetViewFrameRect;
     BOOL needsLayout;
+    NSArray* backgroundColors;
+    BOOL usesAlternatingRowBackgroundColors;
+    NSArray* items;
 }
+@property(nonatomic, retain) IBOutlet MGCollectionViewItem* itemPrototype;
+@property(copy) NSArray* content;
+@property(copy) NSArray* backgroundColors;
+@property(readwrite) BOOL usesAlternatingRowBackgroundColors;
+@property(readonly) NSArray* items;
 
-- (void)addItem:(MGCollectionViewItem *)item atIndex:(NSUInteger)index;
-- (void)moveItem:(MGCollectionViewItem *)item toIndex:(NSUInteger)index;
-- (void)removeObject:(MGCollectionViewItem *)item;
-- (void)removeItemAtIndex:(NSUInteger)index;
-- (void)removeAllItems;
-- (int)numberOfItems;
++ (void)initialize;
 
-- (NSIndexSet *)selectionIndexes;
-//- (void)setSelectionIndexes:(NSIndexSet *)indexes;
-- (void)selectIndexes:(NSIndexSet *)indexes byExtendingSelection:(BOOL)extend;
-- (void)selectAll:(id)sender;
-- (void)deselectAll:(id)sender;
+- (MGCollectionViewItem *)newItemForRepresentedObject:(id)object;
+
+- (void)setNeedsLayout:(BOOL)flag;
+
+- (id)representedObjectForView:(NSView *)view;
 
 @end
 
-@interface MGCollectionViewItem : NSView
-{
-   BOOL isSelected;
-   NSPoint mouseDownPos;
-   int dragTargetType;
-   NSMutableDictionary *cachedTextColors;
+
+@interface MGCollectionViewItem : NSViewController <NSCoding, NSCopying> {
+    BOOL selected;
+    MGCollectionView* _itemOwnerView;
+    NSData* archived;
+    BOOL _removalNeeded;
+    NSRect _targetViewFrameRect;
 }
+@property(readonly) MGCollectionView* collectionView;
+@property(readwrite) BOOL selected;
+
 @end

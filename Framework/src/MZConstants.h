@@ -13,6 +13,7 @@ FOUNDATION_EXPORT NSString* const MZPurchaseDateTag;
 FOUNDATION_EXPORT NSString* const MZShortDescriptionTag;
 FOUNDATION_EXPORT NSString* const MZLongDescriptionTag;
 
+
 // Video
 FOUNDATION_EXPORT NSString* const MZVideoTypeTag;
 FOUNDATION_EXPORT NSString* const MZActorsTag;
@@ -24,6 +25,7 @@ FOUNDATION_EXPORT NSString* const MZTVEpisodeIDTag;
 FOUNDATION_EXPORT NSString* const MZTVSeasonTag;
 FOUNDATION_EXPORT NSString* const MZTVEpisodeTag;
 FOUNDATION_EXPORT NSString* const MZTVNetworkTag;
+
 
 // Sort
 FOUNDATION_EXPORT NSString* const MZSortTitleTag;
@@ -49,6 +51,7 @@ FOUNDATION_EXPORT NSString* const MZEncodingToolTag;
 FOUNDATION_EXPORT NSString* const MZCommentTag;
 FOUNDATION_EXPORT NSString* const MZGaplessTag;
 FOUNDATION_EXPORT NSString* const MZCompilationTag;
+
 
 FOUNDATION_EXPORT NSString* const MZChaptersTag;
 FOUNDATION_EXPORT NSString* const MZChapterNamesTag;

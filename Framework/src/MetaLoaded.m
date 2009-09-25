@@ -12,6 +12,11 @@
 @implementation MetaLoaded
 @synthesize loadedFileName;
 
++ (id)metaWithFilename:(NSString *)aFileName dictionary:(NSDictionary *)dict;
+{
+    return [[[self alloc] initWithFilename:aFileName dictionary:dict] autorelease];
+}
+
 -(id)initWithKeys:(NSArray *)keys
 {
     self = [super init];

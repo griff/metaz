@@ -16,12 +16,13 @@
 }
 @property(readonly) NSArray* files;
 
-+(MZMetaLoader *)sharedLoader;
++ (MZMetaLoader *)sharedLoader;
 
--(NSArray *)types;
--(NSArray *)extensions;
--(void)removeAllObjects;
--(void)loadFromFile:(NSString *)fileName;
--(void)loadFromFiles:(NSArray *)fileNames;
+- (NSArray *)types;
+- (NSArray *)extensions;
+- (void)removeAllObjects;
+- (void)loadFromFile:(NSString *)fileName;
+- (void)loadFromFiles:(NSArray *)fileNames;
+- (void)moveObjects:(NSArray *)objects toIndex:(NSUInteger)index;
 
 @end

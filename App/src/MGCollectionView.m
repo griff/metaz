@@ -7,1111 +7,693 @@
 //
 
 #import "MGCollectionView.h"
+#include <math.h>
 
-#define ASSERT(expr) NSAssert(expr, @"Assertion failed");
+#if defined(__LP64__) && __LP64__
+#define CGFloatMax(x,y) fmax(x,y)
+#else	/* !defined(__LP64__) || !__LP64__ */
+typedef float CGFloat;
+#define CGFloatMax(x,y) fmaxf(x,y)
+#endif	/* !defined(__LP64__) || !__LP64__ */
 
-static const float DRAG_START_DISTANCE = 10;
-static const float DRAG_IMAGE_ALPHA = 0.5;
-static NSString * const DRAG_ITEM_TYPE = @"MGCollectionViewDragType";
-
-typedef enum
-{
-    DragTargetType_None,
-    DragTargetType_Top,
-    DragTargetType_Bottom,
-} DragTargetType;
 
 @interface MGCollectionView (Private)
-
-// Override NSView
-- (void)moveDown: (id)sender;
-- (void)moveUp: (id)sender;
-- (BOOL)isFlipped;
-- (void)keyDown: (NSEvent *)event;
-- (void)deleteBackward: (id)sender;
-- (void)deleteForward: (id)sender;
-- (NSDragOperation)draggingEntered: (id<NSDraggingInfo>)sender;
-- (void)draggingExited: (id<NSDraggingInfo>)sender;
-- (BOOL)prepareForDragOperation: (id<NSDraggingInfo>)sender;
-- (BOOL)performDragOperation: (id<NSDraggingInfo>)sender;
-- (NSDragOperation)draggingUpdated: (id<NSDraggingInfo>)sender;
-- (BOOL)wantsPeriodicDraggingUpdates;
-- (NSDragOperation)draggingSourceOperationMaskForLocal: (BOOL)isLocal;
-- (void)resizeWithOldSuperviewSize: (NSSize)oldBoundsSize;
-
-// Internal methods
-- (void)setNeedsLayout: (BOOL)flag;
-- (void)performLayout;
-- (void)startDrag: (NSEvent *)event
-         withItem: (MGCollectionViewItem *)item;
-- (NSImage *)dragImageForIndexes:(NSIndexSet *)indexes
-                     dragPoint: (NSPoint *)dragPoint;
-- (void)itemClicked: (MGCollectionViewItem *)item
-              event: (NSEvent *)event;
-- (void)setAllItemsSelected: (BOOL)selected;
-- (void)growSelectionToItem: (MGCollectionViewItem *)item;
-- (void)moveSelection: (BOOL)moveUp
-          byExtending: (BOOL)byExtending;
-- (void)scrollToItem: (MGCollectionViewItem *)item;
-- (void)maintainNonEmptySelection: (NSUInteger)index;
-- (void)removeItemsAtIndexes:(NSIndexSet *)indexes;
-- (int)indexFromDragTarget: (NSView *)targetView
-              draggingInfo: (id<NSDraggingInfo>)draggingInfo;
-- (void)setDragTarget: (NSView *)targetView
-         draggingInfo: (id<NSDraggingInfo>)draggingInfo;
-- (void)setIndex: (int)index
-    isDragTarget: (BOOL)isDragTarget;
-- (id<MGCollectionViewTarget>)target;
-- (int)dragTargetIndex;
-- (void)maximizeViewWidth: (id)sender;
-- (void)onKeyWindowChanged:(NSNotification *)notification;
-- (void)onKeyWindowUpdated:(NSNotification *)notification;
-- (void)testSelectionChanged:(NSIndexSet *)oldSelection;
-- (NSArray *)filePathsForIndexes:(NSIndexSet *)indexes;
-
+- (void)_removeTargetItem:(MGCollectionViewItem*)item;
+- (void)_applyTargetConfiguration:(BOOL)animate;
+- (void)_contentChanged:(BOOL)changed regenerate:(BOOL)regenerate;
+- (void)_computeTargetItemsByRegenerating:(BOOL)regenerate;
+- (void)_animateAtEndOfEvent;
+- (void)animationDidEnd:(NSAnimation *)animation;
+- (void)layout;
+- (void)layoutWithAnimation:(BOOL)animation;
 @end
 
-@interface MGCollectionViewItem (Private)
-
-// Override NSView
-- (NSMenu *)menuForEvent:(NSEvent *)event;
-- (NSView *)hitTest: (NSPoint)point;
-- (void)mouseDown: (NSEvent *)event;
-- (void)mouseUp: (NSEvent *)event;
-- (void)mouseDragged: (NSEvent *)event;
-- (BOOL)acceptsFirstResponder;
-
-// Internal methods
-- (void)setIsSelected: (BOOL)flag;
-- (BOOL)isSelected;
-- (MGCollectionView *)collectionView;
-- (BOOL)isLeftClickEvent: (NSEvent *)event;
-- (void)setDragTargetType: (DragTargetType)type;
-- (DragTargetType)dragTargetType;
-- (void)updateHighlightState;
-- (void)setHighlight: (BOOL)isHighlighted
-        forTextField: (NSTextField *)textField;
-- (BOOL)shouldDrawSecondaryHighlight;
-
+@interface MGCollectionViewItem (Private) 
+- (void)_finishHideAnimation;
+- (NSRect)_targetViewFrameRect;
+- (void)_setTargetViewFrameRect:(NSRect)frame;
+- (BOOL)_isRemovalNeeded;
+- (void)_setRemovalNeeded:(BOOL)needed;
+- (void)_applyTargetConfigurationWithoutAnimation;
+- (void)_applyTargetConfigurationWithAnimationMoveAndResize:(NSDictionary**)resize show:(NSDictionary**)show hide:(NSDictionary**)hide;
+- (void)_copyConnectionsOfView:(id)protoView referenceObject:(id)protoObject toView:(id)view referenceObject:(id)object;
+- (void)_setItemOwnerView:(MGCollectionView *)owner;
 @end
-
-
-static float
-PointDistance(NSPoint start,
-              NSPoint end)
-{
-    float deltaX = end.x - start.x;
-    float deltaY = end.y - start.y;
-    return sqrt(deltaX * deltaX + deltaY * deltaY);
-}
 
 @implementation MGCollectionView
+@dynamic itemPrototype;
+@dynamic content;
+@dynamic backgroundColors;
+@dynamic usesAlternatingRowBackgroundColors;
+@synthesize items;
 
-- (id)initWithFrame: (NSRect)frame
++ (void)initialize
 {
-    if ((self = [super initWithFrame:frame])) {
-        items = [[NSMutableArray alloc] init];
+    [self exposeBinding:NSContentBinding];
+}
+
+- (id)initWithFrame:(NSRect)frame
+{
+    self = [super initWithFrame:frame];
+    if(self)
+    {
+        _targetItems = [[NSMutableArray alloc] initWithCapacity:0];
+        items = [[NSArray array] retain];
+        _targetViewFrameRect = frame;
+        usesAlternatingRowBackgroundColors = YES;
     }
     return self;
 }
 
-/*
-- (MuhMaItem *)itemPrototype
+-(void)dealloc
 {
-    NSLog(@"Bad call");
-}
-*/
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [itemPrototype release];
+    [content release];
+    [_animation release];
+    [_targetItems release];
     [items release];
-    items = nil;
     [super dealloc];
 }
 
-- (void)viewWillMoveToWindow:(NSWindow *)newWindow
+- (void)_removeTargetItem:(MGCollectionViewItem*)item
 {
-    NSWindow * window = [self window];
-    if(window != nil)
+    [_targetItems removeObject:item];
+}
+
+- (MGCollectionViewItem *)newItemForRepresentedObject:(id)object
+{
+    MGCollectionViewItem* ret = [itemPrototype copy];
+    [ret _setItemOwnerView:self];
+    ret.representedObject = object;
+    return ret;
+}
+
+- (void)animationDidEnd:(NSAnimation *)animation
+{
+    for(MGCollectionViewItem* item in [NSArray arrayWithArray:_targetItems])
     {
-        [[NSNotificationCenter defaultCenter]
-                removeObserver:self
-                          name:NSWindowDidBecomeKeyNotification
-                        object:window];
-        [[NSNotificationCenter defaultCenter]
-                removeObserver:self
-                          name:NSWindowDidResignKeyNotification
-                        object:window];
-                        /*
-        [[NSNotificationCenter defaultCenter]
-                removeObserver:self
-                          name:NSWindowDidUpdateNotification
-                        object:window];
-                        */
+        if([item _isRemovalNeeded])
+            [item _finishHideAnimation];
     }
-}
 
-- (void)viewDidMoveToWindow
-{
-    NSWindow * window = [self window];
-    if(window != nil)
-    {
-        [[NSNotificationCenter defaultCenter]
-                addObserver:self
-                   selector:@selector(onKeyWindowChanged:)
-                       name:NSWindowDidBecomeKeyNotification
-                     object:window];
-        [[NSNotificationCenter defaultCenter]
-                addObserver:self
-                   selector:@selector(onKeyWindowChanged:)
-                       name:NSWindowDidResignKeyNotification
-                     object:window];
-                     /*
-        [[NSNotificationCenter defaultCenter]
-                addObserver:self
-                   selector:@selector(onKeyWindowUpdated:)
-                       name:NSWindowDidUpdateNotification
-                     object:window];
-                     */
-    }    
-}
-
-- (void)awakeFromNib
-{
-    NSAssert(!self.target || [self.target conformsToProtocol: @protocol(MGCollectionViewTarget)], @"Bad target");
-/*
-   [[NSNotificationCenter defaultCenter]
-      addObserver:self
-         selector:@selector(onKeyWindowChanged:)
-             name:NSWindowDidBecomeKeyNotification
-           object:[self window]];
-   [[NSNotificationCenter defaultCenter]
-      addObserver:self
-         selector:@selector(onKeyWindowChanged:)
-             name:NSWindowDidResignKeyNotification
-           object:[self window]];
-*/
-    [[[self enclosingScrollView] contentView] setCopiesOnScroll:NO];
-
-    [self registerForDraggedTypes:
-        [NSArray arrayWithObjects:NSFilenamesPboardType, DRAG_ITEM_TYPE, nil]];
-
-    [self maximizeViewWidth:nil];
-}
-
-
-- (void)drawRect: (NSRect)rect
-{
-    /*
-     * XXX: This is a hack to work around autohide scrollbars not working
-     * correctly. When removing an item causes the vertical scrollbar to
-     * be hidden our items don't automatically resize to fit the new width.
-     *
-     * Until that bug is fixed this hack disables the "needsLayout" optimization
-     * and forces a layout on every dray. The layout code is pretty fast so this
-     * isn't very expensive.
-     */
-    needsLayout = YES;
-
-    if (needsLayout) {
-        [self performLayout];
-        [self maintainNonEmptySelection:0];
-    }
-    [super drawRect:rect];
-
-    [[NSColor colorWithCalibratedRed:214.0/255.0
-                               green:221.0/255.0
-                                blue:229.0/255.0
-                               alpha:1.0] set];
-    NSRectFill([self bounds]);
-}
-
-
-- (void)addItem:(MGCollectionViewItem *)item  atIndex:(NSUInteger)index
-{
-    ASSERT(item);
-    ASSERT(index >= 0);
-    [items insertObject:item atIndex:index];
-    [item setAutoresizingMask:NSViewWidthSizable | NSViewMinYMargin];
-    [self addSubview:item];
-    [self setNeedsLayout:YES];
-}
-
-- (void)moveItem:(MGCollectionViewItem *)item toIndex:(NSUInteger)index
-{
-    ASSERT(item);
-    ASSERT(index >= 0);
-    [item retain]; // Make sure item stays alive
-    [items removeObject:item];
-    [items insertObject:item atIndex:index];
-    [item release];
-    [self setNeedsLayout:YES];
-}
-
-- (void)removeObject:(MGCollectionViewItem *)item
-{
-    ASSERT(item);
-    NSUInteger index = [items indexOfObject:item];
-    if(index == NSNotFound)
-        return;
-    [self removeItemAtIndex:index];
-}
-
-- (void)removeItemAtIndex: (NSUInteger)index
-{
-    [self removeItemsAtIndexes: [NSIndexSet indexSetWithIndex:index]];
-    [self maintainNonEmptySelection:index];
-}
-
-- (void)removeAllItems
-{
-    [items removeAllObjects];
-    [self setNeedsLayout:YES];
+    [_animation release];
+    _animation = nil;
     [self setNeedsDisplay:YES];
 }
 
-
-- (int)numberOfItems
+- (void)_animateAtEndOfEvent
 {
-    return [items count];
+    [self _applyTargetConfiguration:YES];
 }
 
-
-- (NSIndexSet *)selectionIndexes
+- (void)_applyTargetConfiguration:(BOOL)animate
 {
-    NSMutableIndexSet *selectionIndexes = [[NSMutableIndexSet alloc] init];
-    NSUInteger count = [items count];
-    NSUInteger i;
-    for (i = 0; i < count; i++) {
-        MGCollectionViewItem *item = [items objectAtIndex:i];
-        if ([item isSelected]) {
-            [selectionIndexes addIndex:i];
+    NSRect frame = self.frame;
+    NSArray* itritems = [NSArray arrayWithArray:_targetItems];
+    if(animate)
+    {
+        NSMutableArray* animations = [NSMutableArray arrayWithCapacity:[_targetItems count]];
+        for(MGCollectionViewItem* item in itritems)
+        {
+            NSDictionary* resize = nil;
+            NSDictionary* show = nil;
+            NSDictionary* hide = nil;
+            [item _applyTargetConfigurationWithAnimationMoveAndResize:&resize show:&show hide:&hide];
+            if(hide)
+                [animations addObject:hide];
+            else if(show)
+                [animations addObject:show];
+            else if(resize)
+                [animations addObject:resize];
         }
-    }
-    return [selectionIndexes autorelease];
-}
-
-- (void)selectIndexes:(NSIndexSet *)indexes byExtendingSelection:(BOOL)extend
-{
-    NSIndexSet* oldSelection = [self selectionIndexes];
-    if(!extend)
-        [self setAllItemsSelected:NO];
-    for(MGCollectionViewItem* item in [items objectsAtIndexes:indexes])
-        [item setIsSelected:YES];
-    [self testSelectionChanged:oldSelection];
-}
-
-- (void)selectAll: (id)sender
-{
-    NSIndexSet *oldSelection = [self selectionIndexes];
-    [self setAllItemsSelected:YES];
-    [self testSelectionChanged:oldSelection];
-}
-
-- (void)deselectAll:(id)sender
-{
-    NSIndexSet *oldSelection = [self selectionIndexes];
-    [self setAllItemsSelected:NO];
-    [self testSelectionChanged:oldSelection];
-}
-
-@end // MGCollectionView
-
-
-@implementation MGCollectionView (Private)
-
-
-- (void)setNeedsLayout: (BOOL)flag
-{
-    needsLayout = flag;
-}
-
-
-- (void)performLayout
-{
-    // Calculate the total height.
-    float myHeight = 0;
-    NSEnumerator *e = [items objectEnumerator];
-    MGCollectionViewItem *item;
-    while ((item = [e nextObject])) {
-        myHeight += [item frame].size.height;
-    }
-
-    // Resize the collection view to fit.
-    NSRect myFrame = [self frame];
-    [self setFrameSize:NSMakeSize(myFrame.size.width, myHeight)];
-    if (myFrame.size.height != myHeight) {
-        [self setNeedsDisplay:YES];
-    }
-
-    // Layout all the items.
-    float yPos = 0;
-    e = [items objectEnumerator];
-    while ((item = [e nextObject])) {
-        NSRect oldItemFrame = [item frame];
-        NSRect newItemFrame;
-        newItemFrame.origin.y = yPos;
-        newItemFrame.origin.x = 0;
-        newItemFrame.size.width = myFrame.size.width;
-        newItemFrame.size.height = oldItemFrame.size.height;
-        [item setFrame:newItemFrame];
-
-        yPos += newItemFrame.size.height;
-        if (!NSEqualRects(newItemFrame, oldItemFrame)) {
-            [item setNeedsDisplay:YES];
+        if(!NSEqualRects(frame, _targetViewFrameRect))
+        {
+            NSArray *keys = [NSArray arrayWithObjects:NSViewAnimationTargetKey, NSViewAnimationStartFrameKey, NSViewAnimationEndFrameKey, nil];
+            NSArray *objects = [NSArray arrayWithObjects:self, [NSValue valueWithRect:frame], [NSValue valueWithRect:_targetViewFrameRect], nil];
+            [animations addObject:[NSDictionary dictionaryWithObjects:objects forKeys:keys]];
         }
+        if(animations.count > 0)
+        {
+            [_animation release];
+            _animation = [[NSViewAnimation alloc] initWithViewAnimations:animations];
+            [_animation setDuration:0.5];    // half a second.
+            [_animation setAnimationCurve:NSAnimationEaseIn];
+            
+            [_animation setAnimationBlockingMode:NSAnimationNonblocking];
+            [_animation setDelegate:self];
+            // Run the animation.
+            [_animation startAnimation];
+        }
+    } else
+    {
+        [self setFrame: _targetViewFrameRect];
+        for(MGCollectionViewItem* item in itritems)
+            [item _applyTargetConfigurationWithoutAnimation];
+        if(!NSEqualRects(frame, _targetViewFrameRect))
+            [self setNeedsDisplay:YES];
     }
-
-    [self setNeedsLayout:NO];
 }
-
 
 - (BOOL)isFlipped
 {
     return YES;
 }
 
-
-- (void)startDrag: (NSEvent *)event
-         withItem: (MGCollectionViewItem *)item
-{
-    // If the dragged item is selected then drag all selected items too.
-    NSIndexSet *dragIndexes = nil;
-    if ([item isSelected]) {
-        dragIndexes = [self selectionIndexes];
-    } else {
-        dragIndexes = [NSIndexSet indexSetWithIndex:[items indexOfObject:item]];
-    }
-
-    // Write data to the paste board.
-    NSPasteboard *pboard = [NSPasteboard pasteboardWithName:NSDragPboard];
-    [pboard declareTypes:[NSArray arrayWithObjects:DRAG_ITEM_TYPE,
-                                                   NSFilenamesPboardType,
-                                                   nil]
-                   owner:self];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dragIndexes];
-    [pboard setPropertyList:data
-                    forType:DRAG_ITEM_TYPE];
-    [pboard setPropertyList:[self filePathsForIndexes:dragIndexes]
-                    forType:NSFilenamesPboardType];
-
-    // Generate the drag image from the dragged items.
-    NSPoint dragPos;
-    NSImage *dragImage = [self dragImageForIndexes:dragIndexes dragPoint:&dragPos];
-
-    // Start the drag.
-    [self dragImage:dragImage
-                 at:dragPos
-             offset:NSZeroSize
-              event:event
-         pasteboard:pboard
-             source:self
-          slideBack:YES];
-}
-
-
-- (NSImage *)dragImageForIndexes: (NSIndexSet *)indexes
-                     dragPoint: (NSPoint *)dragPoint
-{
-    // Make an image as big as the visible rect.
-    NSRect dragRect = [self convertRect:[self visibleRect]
-                               fromView:[self superview]];
-    NSImage *dragImage =
-       [[[NSImage alloc] initWithSize:dragRect.size] autorelease];
-
-    /*
-    NSEnumerator *e = [indexes objectEnumerator];
-    NSNumber *indexNumber;
-    while ((indexNumber = [e nextObject])) {
-        MGCollectionViewItem *item =
-            [items objectAtIndex:[indexNumber intValue]];
-    */
-    for(MGCollectionViewItem *item in [items objectsAtIndexes:indexes])
-    {
-        NSRect itemRect = [item visibleRect];
-        if (NSEqualRects(itemRect, NSZeroRect)) {
-            continue;
-        }
-
-        // Get an image of the dragged view without the selection.
-        BOOL oldSelectedValue = [item isSelected];
-        [item setIsSelected:NO];
-        NSData *itemAsPDF = [item dataWithPDFInsideRect:itemRect];
-        [item setIsSelected:oldSelectedValue];
-        NSImage *itemImage = [[NSImage alloc] initWithData:itemAsPDF];
-
-        // Convert from our flipped axis into the image's non-flipped axis.
-        NSPoint pos = [item frame].origin;
-        pos.y = dragRect.origin.y + dragRect.size.height - pos.y;
-        pos.y -= itemRect.size.height;
-
-        // Drag the view's image into the drag image.
-        [dragImage lockFocus];
-        [itemImage drawAtPoint:pos
-                      fromRect:NSZeroRect
-                     operation:NSCompositeSourceOver
-                      fraction:DRAG_IMAGE_ALPHA];
-        [dragImage unlockFocus];
-
-        [itemImage release];
-    }
-
-    ASSERT(dragPoint);
-    *dragPoint = NSMakePoint(dragRect.origin.x,
-                             dragRect.origin.y + dragRect.size.height);
-
-    return dragImage;
-}
-
-
-- (void)itemClicked: (MGCollectionViewItem *)item
-              event: (NSEvent *)event
-{
-    NSIndexSet *oldSelection = [self selectionIndexes];
-
-    if (([event modifierFlags] & NSCommandKeyMask) != 0) {
-        [item setIsSelected:![item isSelected]];
-    } else if (([event modifierFlags] & NSShiftKeyMask) != 0) {
-        [self growSelectionToItem:item];
-    } else {
-        [self setAllItemsSelected:NO];
-        [item setIsSelected:YES];
-        if ([event clickCount] == 2) {
-            [[self target]
-                performDoubleClickActionForIndex:[items indexOfObject:item]];
-        }
-    }
-    [self scrollToItem:item];
-
-    [self testSelectionChanged:oldSelection];
-}
-
-
-- (void)setAllItemsSelected:(BOOL)selected
-{
-    NSEnumerator *e = [items objectEnumerator];
-    MGCollectionViewItem *item;
-    while ((item = [e nextObject])) {
-        [item setIsSelected:selected];
-    }
-}
-
-
-- (void)growSelectionToItem: (MGCollectionViewItem *)item
-{
-    NSIndexSet *oldSelection = [self selectionIndexes];
-
-    NSUInteger itemIndex = [items indexOfObject:item];
-    NSUInteger startIndex = [oldSelection firstIndex];
-    NSUInteger endIndex = [oldSelection lastIndex];
-
-    if (itemIndex < startIndex) {
-        startIndex = itemIndex;
-    } else if (itemIndex > endIndex) {
-        endIndex = itemIndex;
-    }
-
-    NSUInteger i;
-    for (i = startIndex; i <= endIndex; i++) {
-        [[items objectAtIndex:i] setIsSelected:YES];
-    }
-
-    [self testSelectionChanged:oldSelection];
-}
-
-
-- (void)moveDown: (id)sender
-{
-    BOOL shift = ([[NSApp currentEvent] modifierFlags] & NSShiftKeyMask) != 0;
-    [self moveSelection:NO byExtending:shift];
-}
-
-
-- (void)moveUp: (id)sender
-{
-    BOOL shift = ([[NSApp currentEvent] modifierFlags] & NSShiftKeyMask) != 0;
-    [self moveSelection:YES byExtending:shift];
-}
-
-
-- (void)moveSelection: (BOOL)moveUp
-          byExtending: (BOOL)byExtending
-{
-    if ([items count] == 0) {
-        return;
-    }
-    NSIndexSet *oldSelection = [self selectionIndexes];
-
-    NSUInteger index = NSNotFound;
-    if (moveUp) {
-        NSUInteger firstIndex = [oldSelection firstIndex];
-        firstIndex--;
-        if (firstIndex >= 0) {
-            index = firstIndex;
-        }
-    } else {
-        NSUInteger lastIndex = [oldSelection lastIndex];
-        lastIndex++;
-        if (lastIndex < [items count]) {
-            index = lastIndex;
-        }
-    }
-
-    if (index != NSNotFound) {
-        if (!byExtending) {
-            [self setAllItemsSelected:NO];
-        }
-        MGCollectionViewItem *item = [items objectAtIndex:index];
-        [item setIsSelected:YES];
-        [self scrollToItem:item];
-    }
-
-    [self testSelectionChanged:oldSelection];
-}
-
-
-- (void)scrollToItem: (MGCollectionViewItem *)item
-{
-    NSRect itemFrame = [item frame];
-    NSPoint top, bottom;
-    bottom.y = NSMaxY(itemFrame);
-    top.y = NSMinY(itemFrame);
-    top.x = 0;
-    bottom.x = 0;
-
-    NSRect visibleRect = [self visibleRect];
-    BOOL bottomVisible = NSPointInRect(bottom, visibleRect);
-    BOOL topVisible = NSPointInRect(top, visibleRect);
-    if (!topVisible || !bottomVisible) {
-        NSPoint scrollPos;
-        if (!bottomVisible) {
-            scrollPos.y = bottom.y - visibleRect.size.height;
-        } else {
-            scrollPos.y = top.y;
-        }
-        scrollPos.x = 0;
-
-        NSClipView *clipView = [[self enclosingScrollView] contentView];
-        [clipView scrollToPoint:[clipView constrainScrollPoint:scrollPos]];
-        [[self enclosingScrollView] reflectScrolledClipView:clipView];
-    }
-}
-
-
-- (void)maintainNonEmptySelection: (NSUInteger)index
-{
-    NSIndexSet *oldSelection = [self selectionIndexes];
-    if ([items count] > 0 && [oldSelection count] == 0) {
-        NSUInteger selectionIndex = index;
-        if (selectionIndex < 0) {
-            selectionIndex = 0;
-        } else if (selectionIndex >= [items count]) {
-            selectionIndex = [items count] - 1;
-        }
-        [[items objectAtIndex:selectionIndex] setIsSelected:YES];
-
-        [self testSelectionChanged:oldSelection];
-    }
-}
-
-
-- (void)keyDown: (NSEvent *)event
-{
-    unichar u = [[event charactersIgnoringModifiers] characterAtIndex: 0];
-
-    if (u == NSDeleteCharacter ||
-        u == NSDeleteFunctionKey) {
-        // Forward or backward delete.
-        [self interpretKeyEvents:[NSArray arrayWithObject:event]];
-    } else if (u == NSEnterCharacter ||
-               u == NSCarriageReturnCharacter) {
-        NSIndexSet *indexes = [self selectionIndexes];
-        if ([indexes count] > 0) {
-            [[self target] performDoubleClickActionForIndex:
-                [indexes firstIndex]];
-        }
-    } else {
-        [super keyDown:event];
-    }
-}
-
-
-- (void)deleteBackward: (id)sender
-{
-    NSIndexSet *indexes = [self selectionIndexes];
-    if ([indexes count] > 0 &&
-            [[self target] shouldRemoveItemsAtIndexes:indexes]) {
-        [self removeItemsAtIndexes:indexes];
-        [self maintainNonEmptySelection:[indexes firstIndex] - 1];
-        [[self window] makeFirstResponder:self];
-    }
-}
-
-
-- (void)deleteForward: (id)sender
-{
-    NSIndexSet *indexes = [self selectionIndexes];
-    if ([indexes count] > 0 &&
-            [[self target] shouldRemoveItemsAtIndexes:indexes]) {
-        [self removeItemsAtIndexes:indexes];
-        [self maintainNonEmptySelection:[indexes firstIndex]];
-        [[self window] makeFirstResponder:self];
-    }
-}
-
-
-- (void)removeItemsAtIndexes: (NSIndexSet *)indexes
-{
-    if ([indexes count] == 0) {
-        return;
-    }
-   
-    NSArray* to_remove = [items objectsAtIndexes:indexes];
-    for(MGCollectionViewItem *item in to_remove)
-        [item removeFromSuperview];
-        
-    [items removeObjectsAtIndexes:indexes];
-
-    /*
-     * Need to force the layout to change right away so that scrolling and
-     * selection code will work.
-     */
-    [self performLayout];
-}
-
-
-- (NSDragOperation)draggingEntered: (id<NSDraggingInfo>)sender
-{
-    return [self draggingUpdated:sender];
-}
-
-
-- (void)draggingExited: (id<NSDraggingInfo>)sender
-{
-    [self setDragTarget:nil draggingInfo:sender];
-}
-
-
-- (BOOL)prepareForDragOperation: (id<NSDraggingInfo>)sender
-{
-    BOOL acceptDrop = NO;
-    NSArray *dragTypes = [[sender draggingPasteboard] types];
-
-    if ([dragTypes containsObject:DRAG_ITEM_TYPE]) {
-        acceptDrop = YES;
-    } else if ([dragTypes containsObject:NSFilenamesPboardType]) {
-        NSArray *filePaths = [[sender draggingPasteboard]
-            propertyListForType:NSFilenamesPboardType];
-        if(self.target)
-            acceptDrop = [[self target] dragOperationForFiles:filePaths] !=
-                    NSDragOperationNone;
-    }
-
-    if (!acceptDrop) {
-        [self setDragTarget:nil draggingInfo:sender];
-    }
-    return acceptDrop;
-}
-
-
-- (BOOL)performDragOperation: (id<NSDraggingInfo>)sender
-{
-    int destIndex = [self dragTargetIndex];
-    ASSERT(destIndex != NSNotFound);
-    [self setDragTarget:nil draggingInfo:sender];
-
-    NSArray *dragTypes = [[sender draggingPasteboard] types];
-    if ([dragTypes containsObject:DRAG_ITEM_TYPE]) {
-        NSIndexSet* indexes = [NSKeyedUnarchiver unarchiveObjectWithData: [[sender draggingPasteboard] 
-                                    dataForType:DRAG_ITEM_TYPE]];
-        /*
-        NSArray *indexes = [[sender draggingPasteboard]
-                propertyListForType:DRAG_ITEM_TYPE];
-        */
-        [[self target] dragItemsAtIndexes:indexes toIndex:destIndex];         
-    } else if ([dragTypes containsObject:NSFilenamesPboardType]) {
-        NSArray *filePaths = [[sender draggingPasteboard]
-            propertyListForType:NSFilenamesPboardType];
-        [[self target] dragFiles:filePaths toIndex:destIndex];
-    }
-    return YES;
-}
-
-
-- (NSDragOperation)draggingUpdated: (id<NSDraggingInfo>)sender
-{
-    NSPoint dragPos = [[self superview] convertPoint:[sender draggingLocation]
-                                           fromView:nil];
-    NSView *targetView = [self hitTest:dragPos];
-
-    NSDragOperation dragOperation = NSDragOperationNone;
-    NSArray *dragTypes = [[sender draggingPasteboard] types];
-    if ([dragTypes containsObject:DRAG_ITEM_TYPE]) {
-        dragOperation = NSDragOperationMove;
-    } else if ([dragTypes containsObject:NSFilenamesPboardType]) {
-        NSArray *filePaths = [[sender draggingPasteboard]
-            propertyListForType:NSFilenamesPboardType];
-        if(self.target)
-            dragOperation = [[self target] dragOperationForFiles:filePaths];
-    }
-
-    if (dragOperation == NSDragOperationNone) {
-        [self setDragTarget:nil draggingInfo:sender];
-    } else {
-        [self setDragTarget:targetView draggingInfo:sender];
-    }
-    return dragOperation;
-}
-
-
-- (BOOL)wantsPeriodicDraggingUpdates
-{
-    return NO;
-}
-
-
-- (NSDragOperation)draggingSourceOperationMaskForLocal: (BOOL)isLocal
-{
-    if (isLocal) {
-        return NSDragOperationMove;
-    } else {
-        return NSDragOperationLink;
-    }
-}
-
-
-- (int)indexFromDragTarget: (NSView *)targetView
-              draggingInfo: (id<NSDraggingInfo>)draggingInfo
-{
-    int index = NSNotFound;
-    if (targetView &&
-            [targetView isKindOfClass:[MGCollectionViewItem class]]) {
-        index = [items indexOfObject:targetView];
-    }
-
-    if (index != NSNotFound) {
-        MGCollectionViewItem *item =
-            [items objectAtIndex:index];
-        NSPoint viewPos = [item convertPoint:[draggingInfo draggingLocation]
-                                    fromView:nil];
-        NSRect bounds = [item bounds];
-        if (viewPos.y < bounds.size.height / 2.0) {
-            index = fmin(index + 1, [items count]);
-        }
-    }
-
-    return index;
-}
-
-
-- (void)setDragTarget: (NSView *)targetView
-         draggingInfo: (id<NSDraggingInfo>)draggingInfo
-{
-    int newDragTargetIndex = [self indexFromDragTarget:targetView
-                                          draggingInfo:draggingInfo];
-    int curDragTargetIndex = [self dragTargetIndex];
-    if (newDragTargetIndex != curDragTargetIndex) {
-        [self setIndex:curDragTargetIndex isDragTarget:NO];
-        [self setIndex:newDragTargetIndex isDragTarget:YES];
-    }
-}
-
-
-- (void)setIndex: (int)index
-    isDragTarget: (BOOL)isDragTarget
-{
-    if (index != NSNotFound) {
-        DragTargetType dragTargetType = isDragTarget ? DragTargetType_Top :
-                                                       DragTargetType_None;
-        int actualIndex = index;
-        if (actualIndex == [items count]) {
-            actualIndex = [items count] - 1;
-            if (isDragTarget) {
-                dragTargetType = DragTargetType_Bottom;
-            }
-        }
-        [[items objectAtIndex:actualIndex] setDragTargetType:dragTargetType];
-    }
-}
-
-
-- (id<MGCollectionViewTarget>)target
-{
-    return target;
-}
-
-
-- (int)dragTargetIndex
-{
-    int count = [items count];
-    int i;
-    for (i = 0; i < count; i++) {
-        MGCollectionViewItem *item = [items objectAtIndex:i];
-        if ([item dragTargetType] == DragTargetType_Top) {
-            return i;
-        } else if ([item dragTargetType] == DragTargetType_Bottom) {
-            return i + 1;
-        }
-    }
-    return NSNotFound;
-}
-
-
-- (void)resizeWithOldSuperviewSize: (NSSize)oldBoundsSize
+- (void)resizeWithOldSuperviewSize:(NSSize)oldBoundsSize
 {
     [super resizeWithOldSuperviewSize:oldBoundsSize];
-    [self performSelector:@selector(maximizeViewWidth:) withObject:nil afterDelay:0.10];
-    //[self maximizeViewWidth:nil];
+    
+}
+
+- (void)resizeSubviewsWithOldSize:(NSSize)oldBoundsSize
+{
+//    [super resizeSubviewsWithOldSize:oldBoundsSize];
+    if(!_animation)
+        [self layoutWithAnimation:NO];
+}
+
+- (void)_contentChanged:(BOOL)changed regenerate:(BOOL)regenerate
+{
+    [self _computeTargetItemsByRegenerating:regenerate];
+    if(!regenerate)
+        [self performSelector:@selector(_animateAtEndOfEvent) withObject:nil afterDelay:0.10];
+    else
+        [self _applyTargetConfiguration:NO];
+
+}
+
+- (void)_computeTargetItemsByRegenerating:(BOOL)regenerate
+{
+    NSMutableArray* existing = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray* newitems = [NSMutableArray arrayWithCapacity:10];
+    NSMutableIndexSet* foundSet = [[[NSMutableIndexSet alloc] init] autorelease];
+    NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:10];
+    NSUInteger len = [content count];
+    NSUInteger len2 = [_targetItems count];
+    for(NSUInteger y=0; y<len2; y++)
+    {
+        MGCollectionViewItem* item = [_targetItems objectAtIndex:y];
+        id object = [item representedObject];
+        BOOL found = NO;
+        if(!regenerate)
+        {
+            for(NSUInteger i=0; i<len;i++)
+            {
+                id newObj = [content objectAtIndex:i];
+                if(object == newObj)
+                {
+                    [foundSet addIndex:i];
+                    [dict setObject:[NSNumber numberWithUnsignedInt:y] forKey:[NSNumber numberWithUnsignedInt:i]];
+                    found = YES;
+                    break;
+                }
+            }
+        }
+        if(!found)
+        {
+            [item _setRemovalNeeded:YES];
+            [existing addObject:item];
+        }
+    }
+
+    CGFloat yPos = 0;
+    NSRect myFrame = self.frame;
+    for(NSUInteger i=0; i<len;i++)
+    {
+        id object = [content objectAtIndex:i];
+        MGCollectionViewItem* item;
+        if([foundSet containsIndex:i])
+        {
+            item = [_targetItems objectAtIndex:[[dict objectForKey:[NSNumber numberWithUnsignedInt:i]] unsignedIntValue]];
+        } else  // Not Found = New Item
+        {
+            item = [self newItemForRepresentedObject:object];
+        }
+
+        NSRect oldFrame = item.view.frame;
+        NSRect frame = NSZeroRect;
+        frame.origin.y = yPos;
+        frame.origin.x = 0;
+        frame.size.width = myFrame.size.width;
+        frame.size.height = oldFrame.size.height;
+        [item _setTargetViewFrameRect:frame];
+        yPos += frame.size.height;
+
+        [existing addObject:item];
+        [newitems addObject:item];
+    }
+    
+    NSScrollView* scrollView = [self enclosingScrollView];
+    if([scrollView documentView] == self)
+    {
+        NSRect scrollFrame = [[scrollView contentView] frame];
+        CGFloat width = scrollFrame.size.width;
+        if(scrollFrame.size.height > yPos)
+            yPos = scrollFrame.size.height;
+        if([scrollView autohidesScrollers] && [scrollView horizontalScroller])
+        {
+            CGFloat scrollerWidth = [[[scrollView horizontalScroller] class] scrollerWidth];
+            if(myFrame.size.height > scrollFrame.size.height) //scroller is visible
+            {
+                if(yPos == scrollFrame.size.height) // scroller is going to be hiden
+                {
+                    for(MGCollectionViewItem * item in existing)
+                    {
+                        if(![item _isRemovalNeeded])
+                        {
+                            NSRect oldFrame = [item _targetViewFrameRect];
+                            oldFrame.size.width += scrollerWidth;
+                            [item _setTargetViewFrameRect:oldFrame];
+                        }
+                    }
+                    width += scrollerWidth;
+                }
+            } else // Scroller is invisible
+            {
+                if(yPos > scrollFrame.size.height) // scroller is going to be shown
+                {
+                    for(MGCollectionViewItem * item in existing)
+                    {
+                        if(![item _isRemovalNeeded])
+                        {
+                            NSRect oldFrame = [item _targetViewFrameRect];
+                            oldFrame.size.width -= scrollerWidth;
+                            [item _setTargetViewFrameRect:oldFrame];
+                        }
+                    }
+                    width -= scrollerWidth;
+                }
+            }
+        }
+        // Resize the collection view to fit.
+        _targetViewFrameRect = NSMakeRect(myFrame.origin.x, myFrame.origin.y, width, yPos);
+    }
+
+    [_targetItems release];
+    _targetItems = [existing retain];
+    [self setNeedsLayout:NO];
+    [self willChangeValueForKey:@"items"];
+    [items release];
+    items = [[NSArray arrayWithArray:newitems] retain];
+    [self didChangeValueForKey:@"items"];
+}
+
+- (id)representedObjectForView:(NSView *)view
+{
+    if(view == self || view == [[self window] contentView])
+        return nil;
+    for(MGCollectionViewItem* item in items)
+    {
+        if(item.view == view)
+            return [item representedObject];
+    }
+    return [self representedObjectForView:[view superview]];
+}
+
+- (void)setContent:(NSArray *)aContent
+{
+    [content release];
+    content = [[NSArray alloc] initWithArray:aContent];
+    [self _contentChanged:YES regenerate:NO];
+}
+
+- (NSArray *)content
+{
+    return content;
+}
+
+- (void)setNeedsLayout: (BOOL)flag
+{
+    needsLayout = flag;
+    if(needsLayout)
+        [self performSelector:@selector(layout) withObject:nil afterDelay:0.10];
 }
 
 
-- (void)maximizeViewWidth: (id)sender
+- (void)layout
 {
-    float width = [[[self enclosingScrollView] contentView] frame].size.width;
-    NSRect myOldFrame = [self frame];
-    if (myOldFrame.size.width != width) {
-        [self setFrameSize:NSMakeSize(width, myOldFrame.size.height)];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(layout) object:nil];
+    [self layoutWithAnimation:YES];
+}
+
+- (void)layoutWithAnimation:(BOOL)animate
+{
+    [self _computeTargetItemsByRegenerating:NO];
+    if(animate)
+        [self performSelector:@selector(_animateAtEndOfEvent) withObject:nil afterDelay:0.10];
+    else
+        [self _applyTargetConfiguration:NO];
+}
+
+- (void)setBackgroundColors:(NSArray *)colors
+{
+    if(colors && [colors count] == 0)
+        colors = nil;
+    if((backgroundColors == nil && colors != nil) ||
+        (backgroundColors != nil && colors == nil) ||
+        (backgroundColors && colors && ![backgroundColors isEqualToArray:colors]))
+    {
         [self setNeedsDisplay:YES];
     }
+    [backgroundColors release];
+    if(colors)
+        backgroundColors = [NSArray arrayWithArray:colors];
+    else
+        backgroundColors = nil;
 }
 
-- (void)onKeyWindowUpdated: (NSNotification *)notification
+- (void)setUsesAlternatingRowBackgroundColors:(BOOL)useAlternatingRowColors
 {
-    NSLog(@"Updated window");
+    if(!backgroundColors && usesAlternatingRowBackgroundColors!=useAlternatingRowColors)
+        [self setNeedsDisplay:YES];
+    usesAlternatingRowBackgroundColors = useAlternatingRowColors;
 }
 
-- (void)onKeyWindowChanged: (NSNotification *)notification
+- (void)drawRect:(NSRect)rect
 {
-    [self setNeedsDisplay:YES];
-
-    NSEnumerator *e = [items objectEnumerator];
-    MGCollectionViewItem *item;
-    while ((item = [e nextObject])) {
-        [item updateHighlightState];
-    }
-}
-
-
-- (void)testSelectionChanged: (NSIndexSet *)oldSelection
-{
-    BOOL didChange = NO;
-    if (!oldSelection) {
-        didChange = YES;
-    } else {
-        NSIndexSet *newSelection = [self selectionIndexes];
-        didChange = ![oldSelection isEqualToIndexSet:newSelection];
+    if (needsLayout) {
+        [self layout];
     }
 
-    if (didChange) {
-        [[self target] onSelectionDidChange];
+    [super drawRect:rect];
+
+    NSArray* colors = backgroundColors;
+    if(!colors)
+    {
+        if(usesAlternatingRowBackgroundColors)
+            colors = [NSColor controlAlternatingRowBackgroundColors];
+        else
+            colors = [NSArray arrayWithObject:[NSColor controlBackgroundColor]];
     }
+    NSUInteger count = [colors count];
+    NSAssert(count>0, @"We need colors");
+    if(count == 1)
+    {
+        [[colors objectAtIndex:0] set];
+        NSRectFill([self bounds]);
+        return;
+    }
+    NSUInteger coloridx = 0;
+    
+    CGFloat ypos = 0;
+    for(MGCollectionViewItem* item in _targetItems)
+    {
+        if(![item _isRemovalNeeded])
+        {
+            [[colors objectAtIndex:coloridx] set];
+            NSRect frame = item.view.frame;
+            ypos = CGFloatMax(ypos, frame.origin.y + frame.size.height);
+            NSRectFill(frame);
+            coloridx = (coloridx + 1) % count;
+        }
+     }
+     
+     NSRect bounds = self.bounds;
+     if(bounds.size.height > ypos)
+     {
+        CGFloat height = self.itemPrototype.view.frame.size.height;
+        NSUInteger missing = (bounds.size.height - ypos) / height;
+        for(NSUInteger i=0; i<missing; i++)
+        {
+            [[colors objectAtIndex:coloridx] set];
+            NSRect frame = NSZeroRect;
+            frame.origin.y = ypos;
+            frame.size.width = bounds.size.width;
+            frame.size.height = height;
+            NSRectFill(frame);
+            ypos+=height;
+            coloridx = (coloridx + 1) % count;
+        }
+        [[colors objectAtIndex:coloridx] set];
+        NSRect frame = NSZeroRect;
+        frame.origin.y = ypos;
+        frame.size.width = bounds.size.width;
+        frame.size.height = bounds.size.height - ypos;
+        NSRectFill(frame);
+        coloridx = (coloridx + 1) % count;
+     }
 }
 
-
-- (NSArray *)filePathsForIndexes: (NSIndexSet *)indexes
+- (void)setItemPrototype:(MGCollectionViewItem *)item
 {
-    return [[self target] filePathsForIndexes:indexes];
+    [itemPrototype release];
+    itemPrototype = [item retain];
+    [self _contentChanged:NO regenerate:YES];
 }
 
+- (MGCollectionViewItem*)itemPrototype
+{
+    return itemPrototype;
+}
 
-@end // MGCollectionView (Private)
-
+@end
 
 @implementation MGCollectionViewItem
+@dynamic collectionView;
+@synthesize selected;
 
-
-- (void)dealloc
+- (id)initWithCoder:(NSCoder *)decoder
 {
-    [cachedTextColors release];
-    cachedTextColors = nil;
+    self = [super initWithCoder:decoder];
+    if(self)
+    {
+        self.view = [decoder decodeObjectForKey:@"view"];
+        selected = [decoder decodeBoolForKey:@"selected"];
+        _itemOwnerView = [decoder decodeObjectForKey:@"_itemOwnerView"];
+        _removalNeeded = [decoder decodeBoolForKey:@"_removalNeeded"];
+        _targetViewFrameRect = [decoder decodeRectForKey:@"_targetViewFrameRect"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:self.view forKey:@"view"];
+    [encoder encodeBool:selected forKey:@"selected"];
+    [encoder encodeObject:_itemOwnerView forKey:@"_itemOwnerView"];
+    [encoder encodeBool:_removalNeeded forKey:@"_removalNeeded"];
+    [encoder encodeRect:_targetViewFrameRect forKey:@"_targetViewFrameRect"];
+}
+
+-(void)dealloc
+{
+    [archived release];
     [super dealloc];
 }
 
-- (void)awakeFromNib
+- (void)loadView
 {
-    [self setNextResponder:[self superview]];
+    [super loadView];
 }
-
-
-- (void)drawRect: (NSRect)rect
-{
-    [super drawRect:rect];
-
-    if ([self isSelected]) {
-        if ([self shouldDrawSecondaryHighlight]) {
-            [[NSColor grayColor] set];
-        } else {
-            [[NSColor blueColor] set];
-        }
-        NSRectFill(rect);
-    }
-
-    if (dragTargetType != DragTargetType_None) {
-        NSRect dRect = [self bounds];
-        if (dragTargetType == DragTargetType_Top) {
-            dRect.origin.y = dRect.size.height - 2.0;
-        }
-        dRect.size.height = 2;
-        [[NSColor blackColor] set];
-        NSRectFill(dRect);
-    }
-}
-
-
-@end // MGCollectionViewItem
-
-@implementation MGCollectionViewItem (Private)
-
-
-- (NSMenu *)menuForEvent:(NSEvent *)event
-{
-    if (![self isSelected]) {
-        [[self collectionView] itemClicked:self event:event];
-    }
-    return [[self superview] menuForEvent:event];
-}
-
-
-- (NSView *)hitTest: (NSPoint)point
-{
-    NSView *result = [super hitTest:point];
-    if (result && ![result isKindOfClass:[NSButton class]]) {
-        return self;
-    } else {
-        return result;
-    }
-}
-
-
-- (void)mouseDown: (NSEvent *)event
-{
-    if ([self isLeftClickEvent:event]) {
-        mouseDownPos = [event locationInWindow];
-    }
-}
-
-
-- (void)mouseUp: (NSEvent *)event
-{
-    if ([self isLeftClickEvent:event]) {
-        [[self collectionView] itemClicked:self event:event];
-    }
-}
-
-
-- (void)mouseDragged: (NSEvent *)event
-{
-    if ([self isLeftClickEvent:event]) {
-        NSPoint mouseDragPos = [event locationInWindow];
-        float distance = PointDistance(mouseDragPos, mouseDownPos);
-        if (distance > DRAG_START_DISTANCE) {
-            [[self collectionView] startDrag:event withItem:self];
-        }
-    }
-}
-
-
-- (BOOL)acceptsFirstResponder
-{
-    return NO;
-}
-
-
-- (void)setIsSelected: (BOOL)flag
-{
-    if (isSelected != flag) {
-        isSelected = flag;
-        [self updateHighlightState];
-        [self setNeedsDisplay:YES];
-    }
-}
-
-
-- (BOOL)isSelected
-{
-    return isSelected;
-}
-
 
 - (MGCollectionView *)collectionView
 {
-    ASSERT([[self superview] isKindOfClass:[MGCollectionView class]]);
-    return (MGCollectionView *)[self superview];
+    return _itemOwnerView;
 }
 
-
-- (BOOL)isLeftClickEvent: (NSEvent *)event
+- (id)copyWithZone:(NSZone *)zone
 {
-    return [event buttonNumber] == 0 &&
-          ([event modifierFlags] & NSControlKeyMask) == 0;
+    if(!archived)
+        archived = [[NSKeyedArchiver archivedDataWithRootObject:self] retain];
+    MGCollectionViewItem* ret = [NSKeyedUnarchiver unarchiveObjectWithData:archived];
+    [ret setRepresentedObject:nil];
+    [self _copyConnectionsOfView:[self view] referenceObject:self toView:[ret view] referenceObject:ret];
+    return ret;
 }
 
-
-- (void)setDragTargetType: (DragTargetType)type
+- (void)_finishHideAnimation
 {
-    if (dragTargetType != type) {
-        dragTargetType = type;
-        [self setNeedsDisplay:YES];
+    [self retain];
+    [self.view removeFromSuperview];
+    [_itemOwnerView _removeTargetItem:self];
+    [self release];
+}
+
+- (NSRect)_targetViewFrameRect
+{
+    return _targetViewFrameRect;
+}
+
+- (void)_setTargetViewFrameRect:(NSRect)frame
+{
+    _targetViewFrameRect = frame;
+}
+
+- (BOOL)_isRemovalNeeded
+{
+    return _removalNeeded;
+}
+
+- (void)_setRemovalNeeded:(BOOL)needed
+{
+    _removalNeeded = needed;
+}
+
+- (void)_setItemOwnerView:(MGCollectionView *)owner
+{
+    _itemOwnerView = owner;
+}
+
+- (void)_applyTargetConfigurationWithoutAnimation
+{
+    NSView* superview = [self.view superview];
+    NSRect frame = [self.view frame];
+    if(_removalNeeded)
+    {
+        if(superview)
+            [self _finishHideAnimation];
+    } else if(!superview)
+    {
+        self.view.frame = _targetViewFrameRect;
+        [_itemOwnerView addSubview:self.view];
+        [self.view setNeedsDisplay:YES];
+    } else if(!NSEqualRects(frame, _targetViewFrameRect))
+    {
+        self.view.frame = _targetViewFrameRect;
+        [self.view setNeedsDisplay:YES];
     }
 }
 
-
-- (DragTargetType)dragTargetType
+- (void)_applyTargetConfigurationWithAnimationMoveAndResize:(NSDictionary**)resize show:(NSDictionary**)show hide:(NSDictionary**)hide
 {
-    return dragTargetType;
+    NSView* superview = [self.view superview];
+    NSRect frame = [self.view frame];
+    if(_removalNeeded)
+    {
+        if(superview)
+        {
+            NSArray *keys = [NSArray arrayWithObjects:NSViewAnimationTargetKey, NSViewAnimationEffectKey, NSViewAnimationStartFrameKey, NSViewAnimationEndFrameKey, nil];
+            NSArray *objects = [NSArray arrayWithObjects:self.view, NSViewAnimationFadeOutEffect, [NSValue valueWithRect:frame], [NSValue valueWithRect:frame], nil];
+            *hide = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+        }
+    }
+    else if(!superview)
+    {
+        [self.view setHidden:YES];
+        [_itemOwnerView addSubview:self.view];
+        NSArray *keys = [NSArray arrayWithObjects:NSViewAnimationTargetKey, NSViewAnimationEffectKey, NSViewAnimationStartFrameKey, NSViewAnimationEndFrameKey, nil];
+        NSArray *objects = [NSArray arrayWithObjects:self.view, NSViewAnimationFadeInEffect, [NSValue valueWithRect:_targetViewFrameRect], [NSValue valueWithRect:_targetViewFrameRect], nil];
+        *show = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    }
+    else if(!NSEqualRects(frame, _targetViewFrameRect))
+    {
+        NSArray *keys = [NSArray arrayWithObjects:NSViewAnimationTargetKey, NSViewAnimationStartFrameKey, NSViewAnimationEndFrameKey, nil];
+        NSArray *objects = [NSArray arrayWithObjects:self.view, [NSValue valueWithRect:frame], [NSValue valueWithRect:_targetViewFrameRect], nil];
+        *resize = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    }
 }
 
-
-- (void)updateHighlightState
+- (void)_copyConnectionsOfView:(id)protoView referenceObject:(id)protoObject toView:(id)view referenceObject:(id)object
 {
-    BOOL isHighlighted = [self isSelected] &&
-                        ![self shouldDrawSecondaryHighlight];
+    if([protoView respondsToSelector:@selector(delegate)])
+    {
+        id delegate = [protoView delegate];
+        if(delegate)
+        {
+            id theView = view;
+            id newDelegate = [theView delegate];
+            if(delegate == protoObject)
+                [theView setDelegate:object];
+            else if(!newDelegate) // Only set to proto delegate if external from the encoding ei. new delegate is nil
+                [theView setDelegate:delegate];
+        }
+    }
+    if([protoView respondsToSelector:@selector(target)])
+    {
+        id target = [protoView target];
+        if(target)
+        {
+            id newTarget = [view target];
+            if(target == protoObject)
+            {
+                [view setTarget:object];
+                if([protoView respondsToSelector:@selector(action)])
+                    [view setAction:[protoView action]];
+            }
+            else if(!newTarget) // Only set to proto target if external from the encoding ei. new target is nil
+            {
+                [view setTarget:target];
+                if([protoView respondsToSelector:@selector(action)])
+                    [view setAction:[protoView action]];
+            }
+        }
+    }
+    
+    for(NSString* binding in [protoView exposedBindings])
+    {
+        NSDictionary* dict = [protoView infoForBinding:binding];
+        if(dict)
+        {
+            id target = [[dict objectForKey:NSObservedObjectKey] valueForKeyPath:@"self"];
+            NSDictionary* newDict = [view infoForBinding:binding];
+            if(target == protoObject)
+            {
+                [view unbind:binding];
+                [view      bind:binding
+                       toObject:object 
+                    withKeyPath:[dict objectForKey:NSObservedKeyPathKey]
+                        options:[dict objectForKey:NSOptionsKey]];
+            } else if(!newDict)
+            {
+                //id newTarget = [newDict objectForKey:NSObservedObjectKey];
+                [view      bind:binding
+                       toObject:target 
+                    withKeyPath:[dict objectForKey:NSObservedKeyPathKey]
+                        options:[dict objectForKey:NSOptionsKey]];
+            }
+        }
+    }
 
-    NSEnumerator *e = [[self subviews] objectEnumerator];
-    id subview;
-    while ((subview = [e nextObject])) {
-        if ([subview isKindOfClass:[NSTextField class]]) {
-            [self setHighlight:isHighlighted
-                forTextField:(NSTextField *)subview];                  
-        } else if ([subview respondsToSelector:@selector(setIsSelected:)]) {
-            [subview setIsSelected:isHighlighted];
+    // TabViews need special handling
+    if([protoView isKindOfClass:[NSTabView class]])
+    {
+        NSAssert([view isKindOfClass:[NSTabView class]], @"Both view and protoView must be NSTabView");
+
+        NSArray* protoTabViewItems = [protoView tabViewItems];
+        NSArray* tabViewItems = [view tabViewItems];
+        NSAssert([protoTabViewItems count] == [tabViewItems count], @"Proto and view must have same number of tab items");
+        
+        NSEnumerator* eProto = [protoTabViewItems objectEnumerator];
+        NSEnumerator* eSub = [tabViewItems objectEnumerator];
+    
+        id nextView = nil;
+        id nextProto = nil;
+        while( (nextView = [eSub nextObject]) && (nextProto = [eProto nextObject]) )
+        {
+            [self _copyConnectionsOfView:nextProto referenceObject:protoObject toView:nextView referenceObject:object];
+        }
+    }
+    else
+    {
+        if(![protoView isKindOfClass:[NSView class]])
+        {
+            NSAssert(![view isKindOfClass:[NSView class]], @"Both view and protoView must not be NSView");
+            if(![protoView respondsToSelector:@selector(view)])
+                return;
+            protoView = [protoView view];
+            view = [view view];
+            
+            if(![protoView isKindOfClass:[NSView class]]) // Still not a view
+                return;
+        }
+        NSArray* protoSubviews = [protoView subviews];
+        NSArray* subviews = [view subviews];
+        NSAssert([protoSubviews count] == [subviews count], @"Proto and view must have same number of subviews");
+
+        NSEnumerator* eProto = [protoSubviews objectEnumerator];
+        NSEnumerator* eSub = [subviews objectEnumerator];
+    
+        NSView* nextView = nil;
+        NSView* nextProto = nil;
+        while( (nextView = [eSub nextObject]) && (nextProto = [eProto nextObject]) )
+        {
+            [self _copyConnectionsOfView:nextProto referenceObject:protoObject toView:nextView referenceObject:object];
         }
     }
 }
 
 
-- (void)setHighlight: (BOOL)isHighlighted
-        forTextField: (NSTextField *)textField
-{
-    NSNumber *key = [NSNumber numberWithInt:[textField hash]];
-
-    if (!cachedTextColors) {
-        cachedTextColors = [[NSMutableDictionary alloc] init];
-    }
-
-    if (isHighlighted) {
-        if (![cachedTextColors objectForKey:key]) {
-            [cachedTextColors setObject:[textField textColor] forKey:key];
-            [textField setTextColor:[NSColor whiteColor]];
-        }
-    } else {
-        if ([cachedTextColors objectForKey:key]) {
-            [textField setTextColor:[cachedTextColors objectForKey:key]];
-            [cachedTextColors removeObjectForKey:key];
-        }
-    }
-}
+@end
 
 
-- (BOOL)shouldDrawSecondaryHighlight
-{
-    if ([[self window] isKeyWindow]) {
-        return NO;
-    } else {
-        return YES;
-    }
-}
-
-
-@end // MGCollectionViewItem (Private)

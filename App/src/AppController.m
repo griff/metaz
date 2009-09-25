@@ -8,6 +8,19 @@
 
 #import "AppController.h"
 
+NSArray* MZUTIFilenameExtension(NSArray* utis)
+{
+    NSMutableArray* ret = [NSMutableArray arrayWithCapacity:utis.count];
+    for(NSString* uti in utis)
+    {
+        NSDictionary* dict = (NSDictionary*)UTTypeCopyDeclaration((CFStringRef)uti);
+        [dict writeToFile:[NSString stringWithFormat:@"/Users/bro/Documents/Maven-Group/MetaZ/%@.plist", uti] atomically:NO];
+        NSDictionary* tags = [dict objectForKey:(NSString*)kUTTypeTagSpecificationKey];
+        NSArray* extensions = [tags objectForKey:(NSString*)kUTTagClassFilenameExtension];
+        [ret addObjectsFromArray:extensions];
+    }
+    return ret;
+}
 
 @implementation AppController
 @synthesize window;
@@ -26,6 +39,20 @@
 @synthesize imageView;
 
 #pragma mark - initialization
+
++ (void)initialize
+{
+    static BOOL initialized = NO;
+    /* Make sure code only gets executed once. */
+    if (initialized == YES) return;
+    initialized = YES;
+ 
+    NSArray* sendTypes = [NSArray arrayWithObjects:NSTIFFPboardType, nil];
+    NSArray* returnTypes = [NSArray arrayWithObjects:NSTIFFPboardType, nil];
+    [NSApp registerServicesMenuSendTypes:sendTypes
+                    returnTypes:returnTypes];
+    return;
+}
 
 -(void)awakeFromNib {
     undoManager = [[NSUndoManager alloc] init];
@@ -99,7 +126,7 @@
     int clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
 
     if(clickedSegmentTag == 0)
-        [self openFile:sender];
+        [self openDocument:sender];
     else
         [filesController remove:sender];
 }
@@ -108,7 +135,7 @@ NSResponder* findResponder(NSWindow* window) {
     NSResponder* oldResponder =  [window firstResponder];
     if([oldResponder isKindOfClass:[NSTextView class]] && [window fieldEditor:NO forObject:nil] != nil)
     {
-        NSResponder* delegate = [oldResponder delegate];
+        NSResponder* delegate = [((NSTextView*)oldResponder) delegate];
         if([delegate isKindOfClass:[NSTextField class]])
             oldResponder = delegate;
     }
@@ -190,8 +217,15 @@ NSDictionary* findBinding(NSWindow* window) {
 
 }
 
-- (IBAction)openFile:(id)sender {
-    NSArray *fileTypes = [[MZMetaLoader sharedLoader] extensions];
+- (IBAction)openDocument:(id)sender {
+    NSArray *fileTypes = [[MZMetaLoader sharedLoader] types];
+
+    NSArray* utis = MZUTIFilenameExtension(fileTypes);
+    for(NSString* uti in utis)
+    {
+        NSLog(@"Found UTI %@", uti);
+    }
+    
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setAllowsMultipleSelection:YES];
     [oPanel setCanChooseFiles:YES];
@@ -225,6 +259,20 @@ NSDictionary* findBinding(NSWindow* window) {
             return man;
     }
     return undoManager;
+}
+
+#pragma mark - as application delegate
+
+- (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
+{
+    [[MZMetaLoader sharedLoader] loadFromFile:filename];
+    return YES;
+}
+
+- (void)application:(NSApplication *)sender openFiles:(NSArray *)filenames
+{
+    [[MZMetaLoader sharedLoader] loadFromFiles: filenames];
+    [sender replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
 }
 
 

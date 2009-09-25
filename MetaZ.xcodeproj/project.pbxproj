@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B090A691069474600D88083 /* MyQueueCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B090A681069474600D88083 /* MyQueueCollectionView.m */; };
+		1B090C7C106A855400D88083 /* AtomicParsley32 in Resources */ = {isa = PBXBuildFile; fileRef = 1B090C7B106A855400D88083 /* AtomicParsley32 */; };
+		1B090C7F106A859500D88083 /* AtomicParsleyDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B090C7E106A859500D88083 /* AtomicParsleyDataProvider.m */; };
+		1B090C82106A899300D88083 /* MZTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B090C81106A899300D88083 /* MZTag.m */; };
 		1B0DEA93105F1D76009D293F /* BtnStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEA92105F1D76009D293F /* BtnStuff.m */; };
-		1B0DEC3F10607A9A009D293F /* MuhMa.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEC3E10607A9A009D293F /* MuhMa.m */; };
-		1B0DEC7F10609DC6009D293F /* MGCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEC7E10609DC6009D293F /* MGCollectionView.m */; };
+		1B0DEC3F10607A9A009D293F /* MGCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEC3E10607A9A009D293F /* MGCollectionView.m */; };
+		1B0DEC7F10609DC6009D293F /* MGCollectionViewOrig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEC7E10609DC6009D293F /* MGCollectionViewOrig.m */; };
 		1B0DED251060C741009D293F /* LabelM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DED241060C741009D293F /* LabelM.m */; };
 		1B0DEDD81060F7B6009D293F /* ImageWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEDD71060F7B6009D293F /* ImageWindowController.m */; };
 		1B0DEDDB10610132009D293F /* ImageEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B0DEDD910610132009D293F /* ImageEdit.xib */; };
@@ -27,6 +31,8 @@
 		1B11A02710457FB2004C93D3 /* AtomicParsleyWrapper.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B11A02610457FB2004C93D3 /* AtomicParsleyWrapper.rb */; };
 		1B11A28B104DF1EC004C93D3 /* FilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A28A104DF1EC004C93D3 /* FilesTableView.m */; };
 		1B5AC76F10532E5200F9CE36 /* MetaEditPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */; };
+		1B9B393F106C0FA200928C83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B9B393D106C0FA200928C83 /* Localizable.strings */; };
+		1B9B39F7106C862000928C83 /* NSArray-Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9B39F6106C862000928C83 /* NSArray-Mapping.m */; };
 		1BA325CD10545BBB00276F57 /* MetaZKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1BA325E110545CD900276F57 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		1BA326191054643300276F57 /* MetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B119FCA104304C5004C93D3 /* MetaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -97,12 +103,19 @@
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		1B090A671069474600D88083 /* MyQueueCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyQueueCollectionView.h; sourceTree = "<group>"; };
+		1B090A681069474600D88083 /* MyQueueCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyQueueCollectionView.m; sourceTree = "<group>"; };
+		1B090C7B106A855400D88083 /* AtomicParsley32 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = AtomicParsley32; path = App/resources/AtomicParsley32; sourceTree = "<group>"; };
+		1B090C7D106A859500D88083 /* AtomicParsleyDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicParsleyDataProvider.h; sourceTree = "<group>"; };
+		1B090C7E106A859500D88083 /* AtomicParsleyDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicParsleyDataProvider.m; sourceTree = "<group>"; };
+		1B090C80106A899300D88083 /* MZTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTag.h; sourceTree = "<group>"; };
+		1B090C81106A899300D88083 /* MZTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTag.m; sourceTree = "<group>"; };
 		1B0DEA91105F1D76009D293F /* BtnStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BtnStuff.h; sourceTree = "<group>"; };
 		1B0DEA92105F1D76009D293F /* BtnStuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BtnStuff.m; sourceTree = "<group>"; };
-		1B0DEC3D10607A9A009D293F /* MuhMa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MuhMa.h; sourceTree = "<group>"; };
-		1B0DEC3E10607A9A009D293F /* MuhMa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MuhMa.m; sourceTree = "<group>"; };
-		1B0DEC7D10609DC6009D293F /* MGCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGCollectionView.h; sourceTree = "<group>"; };
-		1B0DEC7E10609DC6009D293F /* MGCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCollectionView.m; sourceTree = "<group>"; };
+		1B0DEC3D10607A9A009D293F /* MGCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGCollectionView.h; sourceTree = "<group>"; };
+		1B0DEC3E10607A9A009D293F /* MGCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCollectionView.m; sourceTree = "<group>"; };
+		1B0DEC7D10609DC6009D293F /* MGCollectionViewOrig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGCollectionViewOrig.h; sourceTree = "<group>"; };
+		1B0DEC7E10609DC6009D293F /* MGCollectionViewOrig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCollectionViewOrig.m; sourceTree = "<group>"; };
 		1B0DED231060C741009D293F /* LabelM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelM.h; sourceTree = "<group>"; };
 		1B0DED241060C741009D293F /* LabelM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelM.m; sourceTree = "<group>"; };
 		1B0DEDD61060F7B6009D293F /* ImageWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageWindowController.h; sourceTree = "<group>"; };
@@ -136,6 +149,9 @@
 		1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditPanel.m; sourceTree = "<group>"; };
 		1B78A499105032A50072D89E /* MZMethodData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMethodData.h; sourceTree = "<group>"; };
 		1B78A49A105032A50072D89E /* MZMethodData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMethodData.m; sourceTree = "<group>"; };
+		1B9B393E106C0FA200928C83 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = App/English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1B9B39F5106C862000928C83 /* NSArray-Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray-Mapping.h"; sourceTree = "<group>"; };
+		1B9B39F6106C862000928C83 /* NSArray-Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray-Mapping.m"; sourceTree = "<group>"; };
 		1BA325C410545ACA00276F57 /* MetaZKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MetaZKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BA325C510545ACA00276F57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Framework/Info.plist; sourceTree = "<group>"; };
 		1BA3268210546CB500276F57 /* MetaZKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaZKit_Prefix.pch; path = Framework/MetaZKit_Prefix.pch; sourceTree = "<group>"; };
@@ -221,6 +237,8 @@
 				1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */,
 				1BB6BE821050BD3A001D3D1D /* MZSearchProvider.h */,
 				1BD6E601105B355800E40151 /* MetaChangeNotification.m */,
+				1B090C80106A899300D88083 /* MZTag.h */,
+				1B090C81106A899300D88083 /* MZTag.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -304,14 +322,20 @@
 				1BF5ADBC105E0B8E005DD03E /* FileViewBox.m */,
 				1B0DEA91105F1D76009D293F /* BtnStuff.h */,
 				1B0DEA92105F1D76009D293F /* BtnStuff.m */,
-				1B0DEC3D10607A9A009D293F /* MuhMa.h */,
-				1B0DEC3E10607A9A009D293F /* MuhMa.m */,
-				1B0DEC7D10609DC6009D293F /* MGCollectionView.h */,
-				1B0DEC7E10609DC6009D293F /* MGCollectionView.m */,
+				1B0DEC3D10607A9A009D293F /* MGCollectionView.h */,
+				1B0DEC3E10607A9A009D293F /* MGCollectionView.m */,
+				1B0DEC7D10609DC6009D293F /* MGCollectionViewOrig.h */,
+				1B0DEC7E10609DC6009D293F /* MGCollectionViewOrig.m */,
 				1B0DED231060C741009D293F /* LabelM.h */,
 				1B0DED241060C741009D293F /* LabelM.m */,
 				1B0DEDD61060F7B6009D293F /* ImageWindowController.h */,
 				1B0DEDD71060F7B6009D293F /* ImageWindowController.m */,
+				1B090A671069474600D88083 /* MyQueueCollectionView.h */,
+				1B090A681069474600D88083 /* MyQueueCollectionView.m */,
+				1B090C7D106A859500D88083 /* AtomicParsleyDataProvider.h */,
+				1B090C7E106A859500D88083 /* AtomicParsleyDataProvider.m */,
+				1B9B39F5106C862000928C83 /* NSArray-Mapping.h */,
+				1B9B39F6106C862000928C83 /* NSArray-Mapping.m */,
 			);
 			name = Classes;
 			path = App/src;
@@ -358,6 +382,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1B9B393D106C0FA200928C83 /* Localizable.strings */,
+				1B090C7B106A855400D88083 /* AtomicParsley32 */,
 				1B0DEEB8106139E8009D293F /* RotateLeft.tif */,
 				1B0DEEB9106139E8009D293F /* RotateRight.tif */,
 				1B0DEEBA106139E8009D293F /* SizeToFit.tif */,
@@ -499,6 +525,8 @@
 				1B0DEEC1106139E8009D293F /* ZoomActualSize.tif in Resources */,
 				1B0DEEC2106139E8009D293F /* ZoomIn.tif in Resources */,
 				1B0DEEC3106139E8009D293F /* ZoomOut.tif in Resources */,
+				1B090C7C106A855400D88083 /* AtomicParsley32 in Resources */,
+				1B9B393F106C0FA200928C83 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,10 +598,14 @@
 				1BF5AD4B105DFC92005DD03E /* QueueWindowController.m in Sources */,
 				1BF5ADBD105E0B8E005DD03E /* FileViewBox.m in Sources */,
 				1B0DEA93105F1D76009D293F /* BtnStuff.m in Sources */,
-				1B0DEC3F10607A9A009D293F /* MuhMa.m in Sources */,
-				1B0DEC7F10609DC6009D293F /* MGCollectionView.m in Sources */,
+				1B0DEC3F10607A9A009D293F /* MGCollectionView.m in Sources */,
+				1B0DEC7F10609DC6009D293F /* MGCollectionViewOrig.m in Sources */,
 				1B0DED251060C741009D293F /* LabelM.m in Sources */,
 				1B0DEDD81060F7B6009D293F /* ImageWindowController.m in Sources */,
+				1B090A691069474600D88083 /* MyQueueCollectionView.m in Sources */,
+				1B090C7F106A859500D88083 /* AtomicParsleyDataProvider.m in Sources */,
+				1B090C82106A899300D88083 /* MZTag.m in Sources */,
+				1B9B39F7106C862000928C83 /* NSArray-Mapping.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +626,14 @@
 				1B0DEDDA10610132009D293F /* English */,
 			);
 			name = ImageEdit.xib;
+			sourceTree = "<group>";
+		};
+		1B9B393D106C0FA200928C83 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B9B393E106C0FA200928C83 /* English */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		1BA3269B10546EC800276F57 /* InfoPlist.strings */ = {

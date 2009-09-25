@@ -9,7 +9,8 @@
 #import "MZWriteQueue.h"
 
 @implementation MZWriteQueue
-@synthesize queue;
+@synthesize queueItems;
+@synthesize status;
 
 static MZWriteQueue* sharedQueue = nil;
 
@@ -17,6 +18,11 @@ static MZWriteQueue* sharedQueue = nil;
     if(!sharedQueue)
         [[[MZWriteQueue alloc] init] release];
     return sharedQueue;
+}
+
++ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key
+{
+    return !([key isEqual:@"queueItems"] || [key isEqual:@"status"]);
 }
 
 -(id)init
@@ -31,7 +37,7 @@ static MZWriteQueue* sharedQueue = nil;
     {
         status = QueueStopped;
         fileName = [[@"MetaZ" stringByAppendingPathComponent:@"Write.queue"] retain];
-        queue = [[NSMutableArray alloc] init];
+        queueItems = [[NSMutableArray alloc] init];
         //[self loadQueueWithError:NULL];
         sharedQueue = [self retain];
     }
@@ -41,7 +47,7 @@ static MZWriteQueue* sharedQueue = nil;
 -(void)dealloc
 {
     [fileName release];
-    [queue release];
+    [queueItems release];
     [super dealloc];
 }
 
@@ -58,25 +64,41 @@ static MZWriteQueue* sharedQueue = nil;
 -(void)start
 {
     if(status == QueueStopped)
+    {
+        [self willChangeValueForKey:@"status"];
         status = QueueRunning;
+        [self didChangeValueForKey:@"status"];
+    }
 }
 
 -(void)pause
 {
     if(status == QueueRunning)
+    {
+        [self willChangeValueForKey:@"status"];
         status = QueuePaused;
+        [self didChangeValueForKey:@"status"];
+    }
 }
 
 -(void)resume
 {
     if(status == QueuePaused)
+    {
+        [self willChangeValueForKey:@"status"];
         status = QueueRunning;
+        [self didChangeValueForKey:@"status"];
+    }
 }
 
 -(void)stop
 {
     if(status != QueueStopped)
+    {
+        [self willChangeValueForKey:@"status"];
         status = QueueStopped;
+        [self didChangeValueForKey:@"status"];
+    }
 }
 
 -(BOOL)loadQueueWithError:(NSError **)error
@@ -94,9 +116,9 @@ static MZWriteQueue* sharedQueue = nil;
                 // Make NSError;
                 return NO;
             }
-            [self willChangeValueForKey:@"queue"];
-            [queue addObjectsFromArray: ret];
-            [self didChangeValueForKey:@"queue"];
+            [self willChangeValueForKey:@"queueItems"];
+            [queueItems addObjectsFromArray: ret];
+            [self didChangeValueForKey:@"queueItems"];
             return YES;
         }
     }
@@ -112,7 +134,7 @@ static MZWriteQueue* sharedQueue = nil;
 {
     NSFileManager *mgr = [NSFileManager defaultManager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    if([queue count] > 0)
+    if([queueItems count] > 0)
     {
         if ([paths count] > 0)
         {
@@ -132,7 +154,7 @@ static MZWriteQueue* sharedQueue = nil;
             
             NSString *destinationPath = [[paths objectAtIndex:0]
                         stringByAppendingPathComponent: fileName];
-            if(![NSKeyedArchiver archiveRootObject:queue toFile:destinationPath])
+            if(![NSKeyedArchiver archiveRootObject:queueItems toFile:destinationPath])
             {
                 //Make NSError;
                 return NO;
@@ -156,41 +178,75 @@ static MZWriteQueue* sharedQueue = nil;
     return YES;
 }
 
-- (void)removeObjectAtIndex:(NSUInteger)index
+-(void)removeAllQueueItems
 {
-    [self willChangeValueForKey:@"queue"];
-    [queue removeObjectAtIndex:index];
+    [self willChangeValueForKey:@"queueItems"];
+    [queueItems removeAllObjects];
     [self saveQueueWithError:NULL];
-    [self didChangeValueForKey:@"queue"];
+    [self didChangeValueForKey:@"queueItems"];
 }
 
--(void)removeAllObjects
+-(void)removeObjectFromQueueItemsAtIndex:(NSUInteger)index
 {
-    [self willChangeValueForKey:@"queue"];
-    [queue removeAllObjects];
+    [self willChangeValueForKey:@"queueItems"];
+    [queueItems removeObjectAtIndex:index];
     [self saveQueueWithError:NULL];
-    [self didChangeValueForKey:@"queue"];
+    [self didChangeValueForKey:@"queueItems"];
 }
 
--(void)addArrayToQueue:(NSArray *)anArray
+-(void)removeQueueItemsAtIndexes:(NSIndexSet *)indexes
+{
+    [self willChangeValueForKey:@"queueItems"];
+    [queueItems removeObjectsAtIndexes:indexes];
+    [self saveQueueWithError:NULL];
+    [self didChangeValueForKey:@"queueItems"];
+}
+
+-(void)insertObject:(MetaEdits *)anEdit inQueueItemsAtIndex:(NSUInteger)index
+{
+    NSAssert(anEdit, @"A value argument");
+    [self willChangeValueForKey:@"queueItems"];
+    [queueItems insertObject:[anEdit copy] atIndex:index];
+    [self saveQueueWithError:NULL];
+    [self didChangeValueForKey:@"queueItems"];
+}
+
+-(void)insertQueueItems:(NSArray *)edits atIndexes:(NSIndexSet *)indexes;
+{
+    NSUInteger currentIndex = [indexes firstIndex];
+    NSUInteger i, count = [indexes count];
+    NSAssert([edits count] == count, @"Array and indexes must contain same count");
+ 
+    [self willChangeValueForKey:@"queueItems"];
+    for (i = 0; i < count; i++)
+    {
+        MetaEdits* edit = [edits objectAtIndex:i];
+        [queueItems insertObject:[edit copy] atIndex:currentIndex];
+        currentIndex = [indexes indexGreaterThanIndex:currentIndex];
+    }
+    [self saveQueueWithError:NULL];
+    [self didChangeValueForKey:@"queueItems"];
+}
+
+-(void)addQueueItems:(NSArray *)anArray
 {
     NSAssert(anArray, @"An array argument");
     if([anArray count] == 0)
         return;
-    [self willChangeValueForKey:@"queue"];
+    [self willChangeValueForKey:@"queueItems"];
     for(MetaEdits* edit in anArray)
-        [queue addObject:[edit copy]];
+        [queueItems addObject:[edit copy]];
     [self saveQueueWithError:NULL];
-    [self didChangeValueForKey:@"queue"];
+    [self didChangeValueForKey:@"queueItems"];
 }
 
--(void)addObjectToQueue:(MetaEdits *)anEdit
+-(void)addQueueItemsObject:(MetaEdits *)anEdit
 {
     NSAssert(anEdit, @"A value argument");
-    [self willChangeValueForKey:@"queue"];
-    [queue addObject:[anEdit copy]];
+    [self willChangeValueForKey:@"queueItems"];
+    [queueItems addObject:[anEdit copy]];
     [self saveQueueWithError:NULL];
-    [self didChangeValueForKey:@"queue"];
+    [self didChangeValueForKey:@"queueItems"];
 }
 
 @end

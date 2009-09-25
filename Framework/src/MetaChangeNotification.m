@@ -6,7 +6,7 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import "MetaChangeNotification.h"
+#import "MetaData.h"
 
 @implementation NSObject (ChangeNotification)
 

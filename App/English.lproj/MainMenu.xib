@@ -8,9 +8,9 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="475"/>
-			<integer value="1259"/>
+			<integer value="477"/>
 			<integer value="81"/>
+			<integer value="1259"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1391,6 +1391,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 															</object>
 															<string key="NSFrame">{{1, 17}, {162, 460}}</string>
 															<reference key="NSSuperview" ref="17429188"/>
+															<reference key="NSNextKeyView" ref="184141390"/>
 															<reference key="NSDocView" ref="184141390"/>
 															<reference key="NSBGColor" ref="340821762"/>
 															<int key="NScvFlags">4</int>
@@ -1423,6 +1424,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 															</object>
 															<string key="NSFrame">{{1, 0}, {162, 17}}</string>
 															<reference key="NSSuperview" ref="17429188"/>
+															<reference key="NSNextKeyView" ref="837681142"/>
 															<reference key="NSDocView" ref="837681142"/>
 															<reference key="NSBGColor" ref="340821762"/>
 															<int key="NScvFlags">4</int>
@@ -1431,6 +1433,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 													</object>
 													<string key="NSFrame">{{18, 14}, {164, 478}}</string>
 													<reference key="NSSuperview" ref="875384942"/>
+													<reference key="NSNextKeyView" ref="706794953"/>
 													<int key="NSsFlags">562</int>
 													<reference key="NSVScroller" ref="741406893"/>
 													<reference key="NSHScroller" ref="479258953"/>
@@ -2449,6 +2452,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 																				</object>
 																				<string key="NSFrame">{{1, 1}, {402, 79}}</string>
 																				<reference key="NSSuperview" ref="295279541"/>
+																				<reference key="NSNextKeyView" ref="478888935"/>
 																				<reference key="NSDocView" ref="478888935"/>
 																				<reference key="NSBGColor" ref="600445500"/>
 																				<object class="NSCursor" key="NSCursor" id="473545961">
@@ -2479,6 +2483,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 																		</object>
 																		<string key="NSFrame">{{20, 6}, {404, 81}}</string>
 																		<reference key="NSSuperview" ref="363386417"/>
+																		<reference key="NSNextKeyView" ref="920021145"/>
 																		<int key="NSsFlags">530</int>
 																		<reference key="NSVScroller" ref="404374772"/>
 																		<reference key="NSHScroller" ref="323938381"/>
@@ -2630,6 +2635,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 																				</object>
 																				<string key="NSFrame">{{1, 1}, {402, 83}}</string>
 																				<reference key="NSSuperview" ref="218289576"/>
+																				<reference key="NSNextKeyView" ref="261739186"/>
 																				<reference key="NSDocView" ref="261739186"/>
 																				<reference key="NSBGColor" ref="600445500"/>
 																				<reference key="NSCursor" ref="473545961"/>
@@ -2658,6 +2664,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 																		</object>
 																		<string key="NSFrame">{{20, 20}, {404, 85}}</string>
 																		<reference key="NSSuperview" ref="1012520108"/>
+																		<reference key="NSNextKeyView" ref="503477675"/>
 																		<int key="NSsFlags">530</int>
 																		<reference key="NSVScroller" ref="400985211"/>
 																		<reference key="NSHScroller" ref="686500917"/>
@@ -4382,7 +4389,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 																	<reference key="NSBackgroundColor" ref="600445500"/>
 																	<reference key="NSGridColor" ref="999592587"/>
 																	<double key="NSRowHeight">1.700000e+01</double>
-																	<int key="NSTvFlags">-809500672</int>
+																	<int key="NSTvFlags">-876609536</int>
 																	<string key="NSAutosaveName">files</string>
 																	<int key="NSColumnAutoresizingStyle">4</int>
 																	<int key="NSDraggingSourceMaskForLocal">15</int>
@@ -4392,6 +4399,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 															</object>
 															<string key="NSFrame">{{1, 17}, {298, 444}}</string>
 															<reference key="NSSuperview" ref="443955039"/>
+															<reference key="NSNextKeyView" ref="488786011"/>
 															<reference key="NSDocView" ref="488786011"/>
 															<object class="NSColor" key="NSBGColor">
 																<int key="NSColorSpace">1</int>
@@ -4428,6 +4436,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 															</object>
 															<string key="NSFrame">{{1, 0}, {298, 17}}</string>
 															<reference key="NSSuperview" ref="443955039"/>
+															<reference key="NSNextKeyView" ref="670202650"/>
 															<reference key="NSDocView" ref="670202650"/>
 															<reference key="NSBGColor" ref="340821762"/>
 															<int key="NScvFlags">4</int>
@@ -4436,6 +4445,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 													</object>
 													<string key="NSFrame">{{18, 45}, {315, 477}}</string>
 													<reference key="NSSuperview" ref="564195696"/>
+													<reference key="NSNextKeyView" ref="456417635"/>
 													<int key="NSsFlags">50</int>
 													<reference key="NSVScroller" ref="548141389"/>
 													<reference key="NSHScroller" ref="844866987"/>
@@ -4549,7 +4559,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				<string key="NSClassName">MZMetaLoader</string>
 			</object>
 			<object class="NSCustomObject" id="14985901">
-				<string key="NSClassName">AtomicParsleyWrapper</string>
+				<string key="NSClassName">AtomicParsleyDataProvider</string>
 			</object>
 			<object class="NSArrayController" id="35104934">
 				<object class="NSMutableArray" key="NSDeclaredKeys">
@@ -6684,14 +6694,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">openFile:</string>
-						<reference key="source" ref="1053022543"/>
-						<reference key="destination" ref="722745758"/>
-					</object>
-					<int key="connectionID">1304</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">revertChanges:</string>
 						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="402276915"/>
@@ -6852,26 +6854,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">displayPatternValue1: queue.@count</string>
-						<reference key="source" ref="25764030"/>
-						<reference key="destination" ref="107141262"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="25764030"/>
-							<reference key="NSDestination" ref="107141262"/>
-							<string key="NSLabel">displayPatternValue1: queue.@count</string>
-							<string key="NSBinding">displayPatternValue1</string>
-							<string key="NSKeyPath">queue.@count</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSDisplayPattern</string>
-								<string key="NS.object.0">%{value1}@ file(s) pending in queue</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1333</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: started</string>
 						<reference key="source" ref="362149766"/>
 						<reference key="destination" ref="107141262"/>
@@ -6949,6 +6931,58 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<reference key="destination" ref="394145538"/>
 					</object>
 					<int key="connectionID">1351</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">displayPatternValue1: queueItems.@count</string>
+						<reference key="source" ref="25764030"/>
+						<reference key="destination" ref="107141262"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="25764030"/>
+							<reference key="NSDestination" ref="107141262"/>
+							<string key="NSLabel">displayPatternValue1: queueItems.@count</string>
+							<string key="NSBinding">displayPatternValue1</string>
+							<string key="NSKeyPath">queueItems.@count</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSDisplayPattern</string>
+								<string key="NS.object.0">%{value1}@ file(s) pending in queue</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1352</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="1021"/>
+						<reference key="destination" ref="1053022543"/>
+					</object>
+					<int key="connectionID">1353</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openDocument:</string>
+						<reference key="source" ref="1053022543"/>
+						<reference key="destination" ref="722745758"/>
+					</object>
+					<int key="connectionID">1354</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">pauseBtn</string>
+						<reference key="source" ref="1003405073"/>
+						<reference key="destination" ref="362149766"/>
+					</object>
+					<int key="connectionID">1355</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">playBtn</string>
+						<reference key="source" ref="1003405073"/>
+						<reference key="destination" ref="143563378"/>
+					</object>
+					<int key="connectionID">1356</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -10712,7 +10746,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1351</int>
+			<int key="maxID">1356</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -10724,7 +10758,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>openFile:</string>
+							<string>openDocument:</string>
 							<string>revertChanges:</string>
 							<string>segmentClicked:</string>
 							<string>selectNextFile:</string>
@@ -10796,11 +10830,11 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">AtomicParsleyWrapper</string>
+					<string key="className">AtomicParsleyDataProvider</string>
 					<string key="superclassName">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">App/src/AtomicParsleyWrapper.rb</string>
+						<string key="minorKey">App/src/AtomicParsleyDataProvider.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -10850,7 +10884,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">MGCollectionView</string>
+					<string key="className">MGCollectionViewOrig</string>
 					<string key="superclassName">NSView</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -10871,7 +10905,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">MGCollectionView.h</string>
+						<string key="minorKey">App/src/MGCollectionViewOrig.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -10961,12 +10995,23 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">mainWindow</string>
-						<string key="NS.object.0">NSWindow</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>mainWindow</string>
+							<string>pauseBtn</string>
+							<string>playBtn</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSWindow</string>
+							<string>NSToolbarItem</string>
+							<string>NSToolbarItem</string>
+						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">QueueController.h</string>
+						<string key="minorKey">App/src/QueueController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

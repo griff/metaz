@@ -7,8 +7,6 @@
 //
 
 #import "SearchMeta.h"
-#import "MetaChangeNotification.h"
-
 
 @implementation SearchMeta
 

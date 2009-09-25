@@ -12,7 +12,7 @@
 #import "ResizeController.h"
 #import "ImageWindowController.h"
 
-@interface AppController : NSObject {
+@interface AppController : NSObject <NSUserInterfaceValidations> {
     NSWindow* window;
     NSTabView *tabView;
     NSNumberFormatter* episodeFormatter;
@@ -45,6 +45,8 @@
 @property (nonatomic, retain) IBOutlet NSTableView* filesView;
 @property (nonatomic, retain) IBOutlet NSImageView* imageView;
 
++ (void)initialize;
+
 #pragma mark - actions
 
 - (IBAction)showAdvancedTab:(id)sender;
@@ -58,12 +60,16 @@
 - (IBAction)showPreferences:(id)sender;
 - (IBAction)revertChanges:(id)sender;
 - (IBAction)showImageEditor:(id)sender;
-- (IBAction)openFile:(id)sender;
+- (IBAction)openDocument:(id)sender;
 - (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo;
 
 #pragma mark - as window delegate
 - (NSSize)windowWillResize:(NSWindow *)window toSize:(NSSize)proposedFrameSize;
 - (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window;
 
+#pragma mark - as application delegate
+
+- (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename;
+- (void)application:(NSApplication *)sender openFiles:(NSArray *)filenames;
 
 @end

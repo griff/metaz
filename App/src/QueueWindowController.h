@@ -10,10 +10,12 @@
 #import "QueueController.h"
 
 
-@interface QueueWindowController : NSWindowController {
+@interface QueueWindowController : NSWindowController <NSUserInterfaceValidations> {
     QueueController *controller;
 }
 @property (readonly) QueueController* controller;
+@property (nonatomic, retain) IBOutlet NSToolbarItem* playBtn;
+@property (nonatomic, retain) IBOutlet NSToolbarItem* pauseBtn;
 
 - (IBAction)startStopEncoding:(id)sender;
 - (IBAction)pauseResumeEncoding:(id)sender;
