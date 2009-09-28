@@ -6,11 +6,11 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import "MetaData.h"
+#import <MetaZKit/MetaData.h>
 
 @protocol MZSearchProvider <NSObject>
--(NSArray *)search:(id<MetaData>)data;
--(NSArray *)search:(NSString *)data;
-
+- (NSImage *)icon;
+- (NSString *)identifier;
+- (NSArray *)search:(id<MetaData>)data;
+- (NSArray *)search:(NSString *)data;
 @end

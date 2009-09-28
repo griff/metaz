@@ -7,6 +7,24 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeIconFile</key>
+			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>mzplugin</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>MetaZ Plugin</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSTypeIsPackage</key>
+			<true/>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
+			</array>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>m4v</string>
@@ -120,7 +138,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.3a</string>
+	<string>0.4a</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -141,6 +159,28 @@
 	<string>Maven-Group</string>
 	<key>SmartCrashReports_EmailTicket</key>
 	<string>SCR-6246806ACD</string>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeIconFile</key>
+			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
+			<key>UTTypeDescription</key>
+			<string>MetaZ Plugin</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>com.apple.plugin</string>
+			</array>
+			<key>UTTypeIdentifier</key>
+			<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>mzplugin</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict>

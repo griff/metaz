@@ -150,10 +150,12 @@
 
 - (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem
 {
+    /*
     if([anItem action] == @selector(showQueue:))
     {
         return [[writeQueue queueItems] count] > 0;
     }
+    */
     if([anItem action] == @selector(startStopEncoding:))
     {
         return [[writeQueue queueItems] count] > 0 || 

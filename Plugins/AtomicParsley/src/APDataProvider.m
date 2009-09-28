@@ -1,22 +1,21 @@
 //
-//  AtomicParsleyMetaProvider.m
+//  APMetaProvider.m
 //  MetaZ
 //
 //  Created by Brian Olsen on 23/09/09.
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import "AtomicParsleyDataProvider.h"
-#import "MZTag.h"
+#import "APDataProvider.h"
 #import "NSArray-Mapping.h"
 
-@interface AtomicParsleyDataProvider (Private)
+@interface APDataProvider (Private)
 
 - (NSString *)launchPath;
 
 @end
 
-@implementation AtomicParsleyDataProvider
+@implementation APDataProvider
 
 - (id)init
 {
@@ -26,7 +25,6 @@
         types = [[NSArray alloc] initWithObjects:
             @"public.mpeg-4", @"com.apple.quicktime-movie",
             @"com.apple.protected-mpeg-4-video", nil];
-        extensions = [[NSArray alloc] initWithObjects:@"mp4", @"m4v", @"m4a", nil];
         keys = [[MZTag allKnownTags] retain];
         NSArray* mapkeys = [NSArray arrayWithObjects:
             @"©nam", @"©ART", @"©day", @"com.apple.iTunes;iTunEXTC", @"©gen",
@@ -54,20 +52,19 @@
 - (void)dealloc
 {
     [types release];
-    [extensions release];
     [keys release];
     [mapping release];
     [super dealloc];
 }
 
+- (NSString *)identifier
+{
+    return @"org.maven-group.MetaZ.AtomicParsleyPlugin";
+}
+
 -(NSArray *)types
 {
     return types;
-}
-
--(NSArray *)extensions
-{
-    return extensions;
 }
 
 -(NSArray *)providedKeys
@@ -163,11 +160,20 @@
     }
         
     [retdict setObject:[fileName lastPathComponent] forKey:MZFileNameTag];
-    return [MetaLoaded metaWithFilename:fileName dictionary:retdict];
+    return [MetaLoaded metaWithOwner:self filename:fileName dictionary:retdict];
 }
 
--(void)saveChanges:(MetaEdits *)data
+-(BOOL)saveChanges:(MetaEdits *)data
+          delegate:(id)delgate statusUpdateSelector:(SEL)statusUpdateSelector
 {
+    NSTask* task = [[NSTask alloc] init];
+    [task setLaunchPath:[self launchPath]];
+    [task setArguments:[NSArray arrayWithObjects:[data fileName], @"-t", nil]];
+    NSPipe* out = [NSPipe pipe];
+    [task setStandardOutput:out];
+    [task launch];
+
+    return NO;
 }
 
 - (NSString *)launchPath

@@ -11,6 +11,7 @@
 #import "FilesUndoController.h"
 #import "ResizeController.h"
 #import "ImageWindowController.h"
+#import "PreferencesWindowController.h"
 
 @interface AppController : NSObject <NSUserInterfaceValidations> {
     NSWindow* window;
@@ -29,6 +30,7 @@
     NSUndoManager* undoManager;
     NSImageView* imageView;
     ImageWindowController* imageEditController;
+    PreferencesWindowController* prefController;
 }
 @property (nonatomic, retain) IBOutlet NSWindow* window;
 @property (nonatomic, retain) IBOutlet NSTabView *tabView;

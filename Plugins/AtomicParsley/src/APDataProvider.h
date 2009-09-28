@@ -7,11 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MZDataProvider.h"
+#import <MetaZKit/MetaZKit.h>
 
-@interface AtomicParsleyDataProvider : NSObject <MZDataProvider> {
+@interface APDataProvider : NSObject <MZDataProvider> {
     NSArray* types;
-    NSArray* extensions;
     NSArray* keys;
     NSDictionary* mapping;
 }

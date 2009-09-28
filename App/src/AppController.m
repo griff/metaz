@@ -85,7 +85,8 @@ NSArray* MZUTIFilenameExtension(NSArray* utis)
     [filesView release];
     [undoManager release];
     [imageView release];
-    if(imageEditController) [imageEditController release];
+    [imageEditController release];
+    [prefController release];
     [super dealloc];
 }
 
@@ -210,11 +211,45 @@ NSDictionary* findBinding(NSWindow* window) {
 {
     if(!imageEditController)
         imageEditController = [[ImageWindowController alloc] initWithImageView:imageView];
+    [[NSNotificationCenter defaultCenter] 
+                addObserver:self 
+                 selector:@selector(imageEditorDidClose:)
+                     name:NSWindowWillCloseNotification
+                   object:[imageEditController window]];
     [imageEditController showWindow:self];
 }
 
-- (IBAction)showPreferences:(id)sender {
+- (void)imageEditorDidClose:(NSNotification *)note
+{
+    [[NSNotificationCenter defaultCenter] 
+           removeObserver:self 
+                     name:NSWindowWillCloseNotification
+                   object:[note object]];
+    [imageEditController release];
+    imageEditController = nil;
+}
 
+
+- (IBAction)showPreferences:(id)sender
+{
+    if(!prefController)
+        prefController = [[PreferencesWindowController alloc] init];
+    [[NSNotificationCenter defaultCenter] 
+                addObserver:self 
+                 selector:@selector(preferencesDidClose:)
+                     name:NSWindowWillCloseNotification
+                   object:[prefController window]];
+    [prefController showWindow:self];
+}
+
+- (void)preferencesDidClose:(NSNotification *)note
+{
+    [[NSNotificationCenter defaultCenter] 
+           removeObserver:self 
+                     name:NSWindowWillCloseNotification
+                   object:[note object]];
+    [prefController release];
+    prefController = nil;
 }
 
 - (IBAction)openDocument:(id)sender {

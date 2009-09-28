@@ -6,10 +6,7 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
-/*!
- @protocol MetaData
+/*! @protocol MetaData
  @abstract Informal protocol for all objects that store meta data
  @discussion An IOCommandGate instance is an extremely light weight mechanism that
  executes an action on the driver's work-loop...
@@ -21,6 +18,7 @@
 @protocol MetaData <NSObject, NSCopying, NSCoding>
 
 @required
+- (id)owner;
 - (NSString *)loadedFileName;
 - (NSArray *)providedKeys;
 

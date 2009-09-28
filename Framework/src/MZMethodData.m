@@ -6,7 +6,7 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import "MZMethodData.h"
+#import <MetaZKit/MZMethodData.h>
 
 
 @implementation MZMethodData

@@ -6,12 +6,15 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import "MetaData.h"
-#import "MetaLoaded.h"
-#import "MetaEdits.h"
-#import "SearchMeta.h"
-#import "MZConstants.h"
-#import "MZMethodData.h"
-#import "MZDynamicObject.h"
-#import "MZSearchProvider.h"
-#import "MZTag.h"
+#import <MetaZKit/MetaData.h>
+#import <MetaZKit/MetaEdits.h>
+#import <MetaZKit/MetaLoaded.h>
+#import <MetaZKit/SearchMeta.h>
+#import <MetaZKit/MZConstants.h>
+#import <MetaZKit/MZMethodData.h>
+#import <MetaZKit/MZDataProvider.h>
+#import <MetaZKit/MZDynamicObject.h>
+#import <MetaZKit/MZSearchProvider.h>
+#import <MetaZKit/MZTag.h>
+#import <MetaZKit/MZPlugin.h>
+#import <MetaZKit/MZPluginController.h>

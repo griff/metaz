@@ -7,8 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MetaData.h"
-#import "MZDynamicObject.h"
+#import <MetaZKit/MetaData.h>
+#import <MetaZKit/MZDynamicObject.h>
 
 @interface SearchMeta : MZDynamicObject <MetaData> {
     NSObject<MetaData>* provider;

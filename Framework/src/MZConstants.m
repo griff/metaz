@@ -6,7 +6,7 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import "MZConstants.h"
+#import <MetaZKit/MZConstants.h>
 
 // Info
 NSString* const MZFileNameTag = @"fileName";

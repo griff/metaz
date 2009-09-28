@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <Quartz/Quartz.h>
+#import "IKImageView-Missing.h"
 
 @interface ImageWindowController : NSWindowController {
     IKImageView* imageView;
@@ -28,5 +28,5 @@
 
 - (id)initWithImageView:(NSImageView *)aImageView;
 //- (void)imageDidChange:(IKImageView *)imageView; 
-- (void)imageDidChange:(IKImageView *)imageView imageState:(id)state image:(CGImageRef)image; 
+- (void)imageDidChange:(IKImageView *)imageView imageState:(IKImageState*)state image:(CGImageRef)image; 
 @end

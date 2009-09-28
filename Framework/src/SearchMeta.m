@@ -6,7 +6,7 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import "SearchMeta.h"
+#import <MetaZKit/SearchMeta.h>
 
 @implementation SearchMeta
 
@@ -40,6 +40,11 @@
     [provider release];
     [searchController release];
     [super dealloc];
+}
+
+- (id)owner
+{
+    return [provider owner];
 }
 
 -(NSArray *)providedKeys {

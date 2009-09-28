@@ -6,8 +6,8 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import "MZTag.h"
-#import "MZConstants.h"
+#import <MetaZKit/MZTag.h>
+#import <MetaZKit/MZConstants.h>
 
 @interface MZTagCollections : NSObject
 {

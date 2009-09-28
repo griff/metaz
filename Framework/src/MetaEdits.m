@@ -6,10 +6,10 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import "MetaEdits.h"
-#import "MZMethodData.h"
-#import "MZConstants.h"
-//#import "MetaChangeNotification.h"
+#import <MetaZKit/MetaEdits.h>
+#import <MetaZKit/MZMethodData.h>
+#import <MetaZKit/MZConstants.h>
+//#import <MetaZKit/MetaChangeNotification.h>
 
 
 @implementation MetaEdits
@@ -51,6 +51,11 @@
     [undoManager release];
     if(multiUndoManager) [multiUndoManager release];
     [super dealloc];
+}
+
+- (id)owner
+{
+    return [provider owner];
 }
 
 -(NSArray *)providedKeys {

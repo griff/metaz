@@ -278,7 +278,9 @@
         if([bestType isEqualToString:NSFilenamesPboardType])
         {
             NSArray* filenames = [pboard propertyListForType:NSFilenamesPboardType];
-            [[MZMetaLoader sharedLoader] loadFromFiles:filenames];
+            for(NSString* file in filenames)
+                NSLog(@"File %@ of type %@", file, [[NSWorkspace sharedWorkspace] typeOfFile:file error:NULL]);
+            [[MZMetaLoader sharedLoader] loadFromFiles:filenames toIndex:row];
             return YES;
         }
         if([bestType isEqualToString:NSStringPboardType])
@@ -289,7 +291,7 @@
             if([mgr fileExistsAtPath:[filename stringByExpandingTildeInPath]
                         isDirectory:&dir] && !dir)
             {
-                [[MZMetaLoader sharedLoader] loadFromFile:filename];
+                [[MZMetaLoader sharedLoader] loadFromFile:filename toIndex:row];
                 return YES;
             }
         }

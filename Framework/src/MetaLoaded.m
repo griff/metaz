@@ -6,37 +6,36 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import "MetaLoaded.h"
-//#import "MetaEdits.h"
+#import <MetaZKit/MetaLoaded.h>
+#import <MetaZKit/MZPluginController.h>
+//#import <MetaZKit/MetaEdits.h>
 
 @implementation MetaLoaded
 @synthesize loadedFileName;
+@synthesize owner;
 
-+ (id)metaWithFilename:(NSString *)aFileName dictionary:(NSDictionary *)dict;
++ (id)metaWithOwner:(id)theOwner filename:(NSString *)aFileName dictionary:(NSDictionary *)dict;
 {
-    return [[[self alloc] initWithFilename:aFileName dictionary:dict] autorelease];
+    return [[[self alloc] initWithOwner:theOwner filename:aFileName dictionary:dict] autorelease];
 }
 
--(id)initWithKeys:(NSArray *)keys
-{
+-(id)initWithOwner:(id)theOwner filename:(NSString *)aFileName dictionary:(NSDictionary *)dict {
     self = [super init];
-    tags = nil;
-    loadedFileName = nil;
-    for(NSString *key in keys)
-        [self addMethodGetterForKey:key ofType:1 withObjCType:@encode(id)];
-    return self;
-}
-
--(id)initWithFilename:(NSString *)aFileName dictionary:(NSDictionary *)dict {
-    self = [self initWithKeys:[dict allKeys]];
-    loadedFileName = [aFileName retain];
-    tags = [[NSDictionary alloc]initWithDictionary:dict];
+    if(self)
+    {
+        owner = [theOwner retain];
+        loadedFileName = [aFileName retain];
+        tags = [[NSDictionary alloc]initWithDictionary:dict];
+        for(NSString *key in [dict allKeys])
+            [self addMethodGetterForKey:key ofType:1 withObjCType:@encode(id)];
+    }
     return self;
 }
 
 - (void)dealloc {
-    if(tags) [tags release];
+    [tags release];
     [loadedFileName release];
+    [owner release];
     [super dealloc];
 }
 
@@ -70,17 +69,29 @@
 {
     NSDictionary* dict;
     NSString* loadedFile;
+    id theOwner;
+    NSString * ownerId;
     if([decoder allowsKeyedCoding])
     {
         loadedFile = [decoder decodeObjectForKey:@"loadedFileName"];
         dict = [decoder decodeObjectForKey:@"tags"];
+        theOwner = [decoder decodeObjectForKey:@"owner"];
+        if(!theOwner)
+            ownerId = [decoder decodeObjectForKey:@"ownerId"];
     }
     else
     {
         loadedFile = [decoder decodeObject];
         dict = [decoder decodeObject];
+        theOwner = [decoder decodeObject];
+        ownerId = [decoder decodeObject];
     }
-    return [self initWithFilename:loadedFile dictionary:dict];
+    if(!theOwner)
+    {
+        theOwner = [[MZPluginController sharedInstance]
+            dataProviderWithIdentifier:ownerId];
+    }
+    return [self initWithOwner:theOwner filename:loadedFile dictionary:dict];
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder
@@ -89,11 +100,15 @@
     {
         [encoder encodeObject:loadedFileName forKey:@"loadedFileName"];
         [encoder encodeObject:tags forKey:@"tags"];
+        [encoder encodeConditionalObject:owner forKey:@"owner"];
+        [encoder encodeObject:[owner identifier] forKey:@"ownerId"];
     }
     else
     {
         [encoder encodeObject:loadedFileName];
         [encoder encodeObject:tags];
+        [encoder encodeConditionalObject:owner];
+        [encoder encodeObject:[owner identifier]];
     }
 }
 
@@ -104,14 +119,5 @@
     //return [[MetaLoaded alloc] initWithFilename:loadedFileName dictionary:tags];
     return [self retain];
 }
-
-/*
-- (id)valueForUndefinedKey:(NSString *)key {
-    id ret = [tags objectForKey:key];
-    if(ret == nil)
-        return [super valueForUndefinedKey:key];
-    return ret;
-}
-*/
 
 @end

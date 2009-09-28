@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MetaEdits.h"
+#import <MetaZKit/MetaZKit.h>
 
 @interface FilesUndoController : NSObject {
     NSArrayController* filesController;

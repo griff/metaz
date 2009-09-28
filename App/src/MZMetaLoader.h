@@ -7,11 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MZDataProvider.h"
-
+#import <MetaZKit/MetaZKit.h>
 
 @interface MZMetaLoader : NSObject {
-    IBOutlet id<MZDataProvider> provider;
     NSMutableArray* files;
 }
 @property(readonly) NSArray* files;
@@ -19,10 +17,12 @@
 + (MZMetaLoader *)sharedLoader;
 
 - (NSArray *)types;
-- (NSArray *)extensions;
 - (void)removeAllObjects;
 - (void)loadFromFile:(NSString *)fileName;
 - (void)loadFromFiles:(NSArray *)fileNames;
+- (void)loadFromFile:(NSString *)fileName toIndex:(NSUInteger)index;
+- (void)loadFromFiles:(NSArray *)fileNames toIndex:(NSUInteger)index;
+- (void)loadFromFiles:(NSArray *)fileNames toIndexes:(NSIndexSet*)indexes;
 - (void)moveObjects:(NSArray *)objects toIndex:(NSUInteger)index;
 
 @end

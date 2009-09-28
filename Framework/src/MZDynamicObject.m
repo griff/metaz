@@ -6,8 +6,8 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import "MZDynamicObject.h"
-#import "MZMethodData.h"
+#import <MetaZKit/MZDynamicObject.h>
+#import <MetaZKit/MZMethodData.h>
 
 @implementation MZDynamicObject
 

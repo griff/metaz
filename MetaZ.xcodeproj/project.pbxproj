@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1B090A691069474600D88083 /* MyQueueCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B090A681069474600D88083 /* MyQueueCollectionView.m */; };
-		1B090C7C106A855400D88083 /* AtomicParsley32 in Resources */ = {isa = PBXBuildFile; fileRef = 1B090C7B106A855400D88083 /* AtomicParsley32 */; };
-		1B090C7F106A859500D88083 /* AtomicParsleyDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B090C7E106A859500D88083 /* AtomicParsleyDataProvider.m */; };
-		1B090C82106A899300D88083 /* MZTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B090C81106A899300D88083 /* MZTag.m */; };
 		1B0DEA93105F1D76009D293F /* BtnStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEA92105F1D76009D293F /* BtnStuff.m */; };
 		1B0DEC3F10607A9A009D293F /* MGCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEC3E10607A9A009D293F /* MGCollectionView.m */; };
 		1B0DEC7F10609DC6009D293F /* MGCollectionViewOrig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEC7E10609DC6009D293F /* MGCollectionViewOrig.m */; };
@@ -33,24 +30,8 @@
 		1B5AC76F10532E5200F9CE36 /* MetaEditPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */; };
 		1B9B393F106C0FA200928C83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B9B393D106C0FA200928C83 /* Localizable.strings */; };
 		1B9B39F7106C862000928C83 /* NSArray-Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9B39F6106C862000928C83 /* NSArray-Mapping.m */; };
-		1B9B3AB5106CC14B00928C83 /* MetaZKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B9B3AB4106CC14B00928C83 /* MetaZKit.h */; };
 		1BA325CD10545BBB00276F57 /* MetaZKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1BA325E110545CD900276F57 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		1BA326191054643300276F57 /* MetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B119FCA104304C5004C93D3 /* MetaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1BA3261A1054643300276F57 /* MetaEdits.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B119FC7104300ED004C93D3 /* MetaEdits.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1BA3261B1054643300276F57 /* MetaEdits.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119FC8104300ED004C93D3 /* MetaEdits.m */; };
-		1BA3261C1054643300276F57 /* MetaLoaded.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B119FCD10443655004C93D3 /* MetaLoaded.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1BA3261D1054643300276F57 /* MetaLoaded.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119FCE10443655004C93D3 /* MetaLoaded.m */; };
-		1BA3261E1054643300276F57 /* SearchMeta.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB6BE7C1050BC00001D3D1D /* SearchMeta.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1BA3261F1054643300276F57 /* SearchMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BE7D1050BC00001D3D1D /* SearchMeta.m */; };
-		1BA326201054643300276F57 /* MZConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B11A47C104E627F004C93D3 /* MZConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1BA326211054643300276F57 /* MZConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A47D104E627F004C93D3 /* MZConstants.m */; };
-		1BA326221054643300276F57 /* MZMethodData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B78A499105032A50072D89E /* MZMethodData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1BA326231054643300276F57 /* MZMethodData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78A49A105032A50072D89E /* MZMethodData.m */; };
-		1BA326241054643300276F57 /* MZDataProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B11A02810458471004C93D3 /* MZDataProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1BA326251054643300276F57 /* MZDynamicObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB6BB0810507DBB001D3D1D /* MZDynamicObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1BA326261054643300276F57 /* MZDynamicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */; };
-		1BA326271054643300276F57 /* MZSearchProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB6BE821050BD3A001D3D1D /* MZSearchProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BA3269D10546EC800276F57 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BA3269B10546EC800276F57 /* InfoPlist.strings */; };
 		1BA326A010546F4600276F57 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA3269E10546F4600276F57 /* MainMenu.xib */; };
 		1BA326A310546F9700276F57 /* MZTags.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BA326A110546F9700276F57 /* MZTags.strings */; };
@@ -61,7 +42,6 @@
 		1BB6BF341050E5E2001D3D1D /* sparkle_public.pem in Resources */ = {isa = PBXBuildFile; fileRef = 1BB6BF331050E5E2001D3D1D /* sparkle_public.pem */; };
 		1BB6C10B1052B155001D3D1D /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB6C10A1052B154001D3D1D /* Sparkle.framework */; };
 		1BB6C11F1052B1C1001D3D1D /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB6C10A1052B154001D3D1D /* Sparkle.framework */; };
-		1BD6E603105B355800E40151 /* MetaChangeNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD6E601105B355800E40151 /* MetaChangeNotification.m */; };
 		1BD6E752105DADCC00E40151 /* AddToQueue.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74D105DADCC00E40151 /* AddToQueue.tiff */; };
 		1BD6E753105DADCC00E40151 /* Pause.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74E105DADCC00E40151 /* Pause.tiff */; };
 		1BD6E754105DADCC00E40151 /* Play.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74F105DADCC00E40151 /* Play.tiff */; };
@@ -70,6 +50,41 @@
 		1BD6E7A2105DC33400E40151 /* QueueController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD6E7A1105DC33400E40151 /* QueueController.m */; };
 		1BD6E7A3105DC34500E40151 /* MZWriteQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA326EF1054823100276F57 /* MZWriteQueue.m */; };
 		1BD6E7A8105DC4D000E40151 /* Queue.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E7A6105DC4D000E40151 /* Queue.xib */; };
+		1BEA6B3B106CF01B004B1A7F /* PosterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6B3A106CF01B004B1A7F /* PosterView.m */; };
+		1BEA6B81106D66AD004B1A7F /* faded_cow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BEA6B80106D66AD004B1A7F /* faded_cow.png */; };
+		1BEA6C95106E7203004B1A7F /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6C94106E7203004B1A7F /* Utilities.m */; };
+		1BEA6DDA106ED837004B1A7F /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BEA6DD8106ED837004B1A7F /* PreferencesWindow.xib */; };
+		1BEA6DDD106ED8E4004B1A7F /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6DDC106ED8E4004B1A7F /* PreferencesWindowController.m */; };
+		1BEA6E8C106EF4CD004B1A7F /* APDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6E8B106EF4CD004B1A7F /* APDataProvider.m */; };
+		1BEA6E91106EF534004B1A7F /* AtomicParsleyPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6E90106EF534004B1A7F /* AtomicParsleyPlugin.m */; };
+		1BEA6E92106EF63C004B1A7F /* AtomicParsley32 in Resources */ = {isa = PBXBuildFile; fileRef = 1B090C7B106A855400D88083 /* AtomicParsley32 */; };
+		1BEA6E97106EF662004B1A7F /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
+		1BEA6F33106EF6FC004B1A7F /* AtomicParsleyPlugin.mzplugin in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1BEA6E72106EF2A0004B1A7F /* AtomicParsleyPlugin.mzplugin */; };
+		1BEA6F9A106EFC3F004B1A7F /* MetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B119FCA104304C5004C93D3 /* MetaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BEA6F9B106EFC3F004B1A7F /* MetaEdits.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B119FC7104300ED004C93D3 /* MetaEdits.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BEA6F9C106EFC3F004B1A7F /* MetaEdits.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119FC8104300ED004C93D3 /* MetaEdits.m */; };
+		1BEA6F9D106EFC3F004B1A7F /* MetaLoaded.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B119FCD10443655004C93D3 /* MetaLoaded.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BEA6F9E106EFC3F004B1A7F /* MetaLoaded.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119FCE10443655004C93D3 /* MetaLoaded.m */; };
+		1BEA6F9F106EFC3F004B1A7F /* SearchMeta.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB6BE7C1050BC00001D3D1D /* SearchMeta.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BEA6FA0106EFC3F004B1A7F /* SearchMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BE7D1050BC00001D3D1D /* SearchMeta.m */; };
+		1BEA6FA1106EFC3F004B1A7F /* MZConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B11A47C104E627F004C93D3 /* MZConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BEA6FA2106EFC3F004B1A7F /* MZConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A47D104E627F004C93D3 /* MZConstants.m */; };
+		1BEA6FA3106EFC3F004B1A7F /* MZMethodData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B78A499105032A50072D89E /* MZMethodData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BEA6FA4106EFC3F004B1A7F /* MZMethodData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78A49A105032A50072D89E /* MZMethodData.m */; };
+		1BEA6FA5106EFC3F004B1A7F /* MZDataProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B11A02810458471004C93D3 /* MZDataProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BEA6FA6106EFC3F004B1A7F /* MZDynamicObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB6BB0810507DBB001D3D1D /* MZDynamicObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BEA6FA7106EFC3F004B1A7F /* MZDynamicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */; };
+		1BEA6FA8106EFC3F004B1A7F /* MZSearchProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB6BE821050BD3A001D3D1D /* MZSearchProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BEA6FA9106EFC3F004B1A7F /* MetaChangeNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD6E601105B355800E40151 /* MetaChangeNotification.m */; };
+		1BEA6FAA106EFC3F004B1A7F /* MZTag.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B090C80106A899300D88083 /* MZTag.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BEA6FAB106EFC3F004B1A7F /* MZTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B090C81106A899300D88083 /* MZTag.m */; };
+		1BEA6FAC106EFC3F004B1A7F /* MetaZKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B9B3AB4106CC14B00928C83 /* MetaZKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BEA6FAD106EFC3F004B1A7F /* MZPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BEA6C2A106E613C004B1A7F /* MZPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BEA6FAE106EFC3F004B1A7F /* MZPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6C2B106E613C004B1A7F /* MZPlugin.m */; };
+		1BEA6FAF106EFC3F004B1A7F /* MZPluginController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BEA6DAC106EC632004B1A7F /* MZPluginController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BEA6FB0106EFC3F004B1A7F /* MZPluginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6DAD106EC632004B1A7F /* MZPluginController.m */; };
+		1BEA6FB1106EFC3F004B1A7F /* MZPlugin-Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BEA6E48106EEF34004B1A7F /* MZPlugin-Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		1BEA6FB2106EFC3F004B1A7F /* MZPlugin-Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6E49106EEF34004B1A7F /* MZPlugin-Private.m */; };
 		1BF5AD4B105DFC92005DD03E /* QueueWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5AD4A105DFC92005DD03E /* QueueWindowController.m */; };
 		1BF5ADBD105E0B8E005DD03E /* FileViewBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5ADBC105E0B8E005DD03E /* FileViewBox.m */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -83,6 +98,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1BA325C310545ACA00276F57;
 			remoteInfo = MetaZKit;
+		};
+		1BEA6E77106EF2B0004B1A7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			remoteInfo = MetaZKit;
+		};
+		1BEA6F29106EF693004B1A7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1BEA6E71106EF2A0004B1A7F /* AtomicParsleyPlugin */;
+			remoteInfo = AtomicParsleyPlugin;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -99,6 +128,17 @@
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1BEA6F2F106EF6D5004B1A7F /* Copy Plugins */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1BEA6F33106EF6FC004B1A7F /* AtomicParsleyPlugin.mzplugin in Copy Plugins */,
+			);
+			name = "Copy Plugins";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -107,8 +147,6 @@
 		1B090A671069474600D88083 /* MyQueueCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyQueueCollectionView.h; sourceTree = "<group>"; };
 		1B090A681069474600D88083 /* MyQueueCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyQueueCollectionView.m; sourceTree = "<group>"; };
 		1B090C7B106A855400D88083 /* AtomicParsley32 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = AtomicParsley32; path = App/resources/AtomicParsley32; sourceTree = "<group>"; };
-		1B090C7D106A859500D88083 /* AtomicParsleyDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicParsleyDataProvider.h; sourceTree = "<group>"; };
-		1B090C7E106A859500D88083 /* AtomicParsleyDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicParsleyDataProvider.m; sourceTree = "<group>"; };
 		1B090C80106A899300D88083 /* MZTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTag.h; sourceTree = "<group>"; };
 		1B090C81106A899300D88083 /* MZTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTag.m; sourceTree = "<group>"; };
 		1B0DEA91105F1D76009D293F /* BtnStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BtnStuff.h; sourceTree = "<group>"; };
@@ -184,6 +222,27 @@
 		1BD6E7A0105DC33400E40151 /* QueueController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueController.h; sourceTree = "<group>"; };
 		1BD6E7A1105DC33400E40151 /* QueueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueController.m; sourceTree = "<group>"; };
 		1BD6E7A7105DC4D000E40151 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/Queue.xib; sourceTree = "<group>"; };
+		1BEA6B39106CF01B004B1A7F /* PosterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterView.h; sourceTree = "<group>"; };
+		1BEA6B3A106CF01B004B1A7F /* PosterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterView.m; sourceTree = "<group>"; };
+		1BEA6B80106D66AD004B1A7F /* faded_cow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = faded_cow.png; path = App/resources/faded_cow.png; sourceTree = "<group>"; };
+		1BEA6C2A106E613C004B1A7F /* MZPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZPlugin.h; sourceTree = "<group>"; };
+		1BEA6C2B106E613C004B1A7F /* MZPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZPlugin.m; sourceTree = "<group>"; };
+		1BEA6C93106E7203004B1A7F /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		1BEA6C94106E7203004B1A7F /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		1BEA6D4F106E8B7C004B1A7F /* IKImageView-Missing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IKImageView-Missing.h"; sourceTree = "<group>"; };
+		1BEA6DAC106EC632004B1A7F /* MZPluginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZPluginController.h; sourceTree = "<group>"; };
+		1BEA6DAD106EC632004B1A7F /* MZPluginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZPluginController.m; sourceTree = "<group>"; };
+		1BEA6DD9106ED837004B1A7F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
+		1BEA6DDB106ED8E4004B1A7F /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
+		1BEA6DDC106ED8E4004B1A7F /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
+		1BEA6E48106EEF34004B1A7F /* MZPlugin-Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MZPlugin-Private.h"; sourceTree = "<group>"; };
+		1BEA6E49106EEF34004B1A7F /* MZPlugin-Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MZPlugin-Private.m"; sourceTree = "<group>"; };
+		1BEA6E72106EF2A0004B1A7F /* AtomicParsleyPlugin.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AtomicParsleyPlugin.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BEA6E8A106EF4CD004B1A7F /* APDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APDataProvider.h; sourceTree = "<group>"; };
+		1BEA6E8B106EF4CD004B1A7F /* APDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APDataProvider.m; sourceTree = "<group>"; };
+		1BEA6E8D106EF522004B1A7F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/AtomicParsley/Info.plist; sourceTree = "<group>"; };
+		1BEA6E8F106EF534004B1A7F /* AtomicParsleyPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicParsleyPlugin.h; sourceTree = "<group>"; };
+		1BEA6E90106EF534004B1A7F /* AtomicParsleyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicParsleyPlugin.m; sourceTree = "<group>"; };
 		1BF5AD49105DFC92005DD03E /* QueueWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueWindowController.h; sourceTree = "<group>"; };
 		1BF5AD4A105DFC92005DD03E /* QueueWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueWindowController.m; sourceTree = "<group>"; };
 		1BF5ADBB105E0B8E005DD03E /* FileViewBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewBox.h; sourceTree = "<group>"; };
@@ -202,6 +261,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BA325E110545CD900276F57 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1BEA6E70106EF2A0004B1A7F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BEA6E97106EF662004B1A7F /* MetaZKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +309,12 @@
 				1B090C80106A899300D88083 /* MZTag.h */,
 				1B090C81106A899300D88083 /* MZTag.m */,
 				1B9B3AB4106CC14B00928C83 /* MetaZKit.h */,
+				1BEA6C2A106E613C004B1A7F /* MZPlugin.h */,
+				1BEA6C2B106E613C004B1A7F /* MZPlugin.m */,
+				1BEA6DAC106EC632004B1A7F /* MZPluginController.h */,
+				1BEA6DAD106EC632004B1A7F /* MZPluginController.m */,
+				1BEA6E48106EEF34004B1A7F /* MZPlugin-Private.h */,
+				1BEA6E49106EEF34004B1A7F /* MZPlugin-Private.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -273,6 +346,7 @@
 			children = (
 				1BA325C410545ACA00276F57 /* MetaZKit.framework */,
 				8D1107320486CEB800E47090 /* MetaZ.app */,
+				1BEA6E72106EF2A0004B1A7F /* AtomicParsleyPlugin.mzplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -335,10 +409,15 @@
 				1B0DEDD71060F7B6009D293F /* ImageWindowController.m */,
 				1B090A671069474600D88083 /* MyQueueCollectionView.h */,
 				1B090A681069474600D88083 /* MyQueueCollectionView.m */,
-				1B090C7D106A859500D88083 /* AtomicParsleyDataProvider.h */,
-				1B090C7E106A859500D88083 /* AtomicParsleyDataProvider.m */,
 				1B9B39F5106C862000928C83 /* NSArray-Mapping.h */,
 				1B9B39F6106C862000928C83 /* NSArray-Mapping.m */,
+				1BEA6B39106CF01B004B1A7F /* PosterView.h */,
+				1BEA6B3A106CF01B004B1A7F /* PosterView.m */,
+				1BEA6C93106E7203004B1A7F /* Utilities.h */,
+				1BEA6C94106E7203004B1A7F /* Utilities.m */,
+				1BEA6D4F106E8B7C004B1A7F /* IKImageView-Missing.h */,
+				1BEA6DDB106ED8E4004B1A7F /* PreferencesWindowController.h */,
+				1BEA6DDC106ED8E4004B1A7F /* PreferencesWindowController.m */,
 			);
 			name = Classes;
 			path = App/src;
@@ -361,9 +440,48 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		1BEA6E68106EF248004B1A7F /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				1BEA6E69106EF251004B1A7F /* AtomicParsley */,
+			);
+			name = Plugins;
+			sourceTree = "<group>";
+		};
+		1BEA6E69106EF251004B1A7F /* AtomicParsley */ = {
+			isa = PBXGroup;
+			children = (
+				1BEA6E6B106EF270004B1A7F /* Classes */,
+				1BEA6E87106EF40C004B1A7F /* Resources */,
+			);
+			name = AtomicParsley;
+			sourceTree = "<group>";
+		};
+		1BEA6E6B106EF270004B1A7F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1BEA6E8F106EF534004B1A7F /* AtomicParsleyPlugin.h */,
+				1BEA6E90106EF534004B1A7F /* AtomicParsleyPlugin.m */,
+				1BEA6E8A106EF4CD004B1A7F /* APDataProvider.h */,
+				1BEA6E8B106EF4CD004B1A7F /* APDataProvider.m */,
+			);
+			name = Classes;
+			path = Plugins/AtomicParsley/src;
+			sourceTree = "<group>";
+		};
+		1BEA6E87106EF40C004B1A7F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1BEA6E8D106EF522004B1A7F /* Info.plist */,
+				1B090C7B106A855400D88083 /* AtomicParsley32 */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		29B97314FDCFA39411CA2CEA /* MetaZ */ = {
 			isa = PBXGroup;
 			children = (
+				1BEA6E68106EF248004B1A7F /* Plugins */,
 				1BA325BC10545A1B00276F57 /* App */,
 				1BA32591105458EE00276F57 /* Framework */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -385,8 +503,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1BEA6DD8106ED837004B1A7F /* PreferencesWindow.xib */,
+				1BEA6B80106D66AD004B1A7F /* faded_cow.png */,
 				1B9B393D106C0FA200928C83 /* Localizable.strings */,
-				1B090C7B106A855400D88083 /* AtomicParsley32 */,
 				1B0DEEB8106139E8009D293F /* RotateLeft.tif */,
 				1B0DEEB9106139E8009D293F /* RotateRight.tif */,
 				1B0DEEBA106139E8009D293F /* SizeToFit.tif */,
@@ -424,16 +543,20 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BA326191054643300276F57 /* MetaData.h in Headers */,
-				1BA3261A1054643300276F57 /* MetaEdits.h in Headers */,
-				1BA3261C1054643300276F57 /* MetaLoaded.h in Headers */,
-				1BA3261E1054643300276F57 /* SearchMeta.h in Headers */,
-				1BA326201054643300276F57 /* MZConstants.h in Headers */,
-				1BA326221054643300276F57 /* MZMethodData.h in Headers */,
-				1BA326241054643300276F57 /* MZDataProvider.h in Headers */,
-				1BA326251054643300276F57 /* MZDynamicObject.h in Headers */,
-				1BA326271054643300276F57 /* MZSearchProvider.h in Headers */,
-				1B9B3AB5106CC14B00928C83 /* MetaZKit.h in Headers */,
+				1BEA6F9A106EFC3F004B1A7F /* MetaData.h in Headers */,
+				1BEA6F9B106EFC3F004B1A7F /* MetaEdits.h in Headers */,
+				1BEA6F9D106EFC3F004B1A7F /* MetaLoaded.h in Headers */,
+				1BEA6F9F106EFC3F004B1A7F /* SearchMeta.h in Headers */,
+				1BEA6FA1106EFC3F004B1A7F /* MZConstants.h in Headers */,
+				1BEA6FA3106EFC3F004B1A7F /* MZMethodData.h in Headers */,
+				1BEA6FA5106EFC3F004B1A7F /* MZDataProvider.h in Headers */,
+				1BEA6FA6106EFC3F004B1A7F /* MZDynamicObject.h in Headers */,
+				1BEA6FA8106EFC3F004B1A7F /* MZSearchProvider.h in Headers */,
+				1BEA6FAA106EFC3F004B1A7F /* MZTag.h in Headers */,
+				1BEA6FAC106EFC3F004B1A7F /* MetaZKit.h in Headers */,
+				1BEA6FAD106EFC3F004B1A7F /* MZPlugin.h in Headers */,
+				1BEA6FAF106EFC3F004B1A7F /* MZPluginController.h in Headers */,
+				1BEA6FB1106EFC3F004B1A7F /* MZPlugin-Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +567,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1BA325C810545ACB00276F57 /* Build configuration list for PBXNativeTarget "MetaZKit" */;
 			buildPhases = (
+				1BEA6D70106EA6D1004B1A7F /* Build Documentation */,
 				1BA325BF10545ACA00276F57 /* Headers */,
 				1BA325C010545ACA00276F57 /* Resources */,
 				1BA325C110545ACA00276F57 /* Sources */,
@@ -458,10 +582,29 @@
 			productReference = 1BA325C410545ACA00276F57 /* MetaZKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		1BEA6E71106EF2A0004B1A7F /* AtomicParsleyPlugin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1BEA6E76106EF2A1004B1A7F /* Build configuration list for PBXNativeTarget "AtomicParsleyPlugin" */;
+			buildPhases = (
+				1BEA6E6E106EF2A0004B1A7F /* Resources */,
+				1BEA6E6F106EF2A0004B1A7F /* Sources */,
+				1BEA6E70106EF2A0004B1A7F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1BEA6E78106EF2B0004B1A7F /* PBXTargetDependency */,
+			);
+			name = AtomicParsleyPlugin;
+			productName = AtomicParsleyPlugin;
+			productReference = 1BEA6E72106EF2A0004B1A7F /* AtomicParsleyPlugin.mzplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
 		8D1107260486CEB800E47090 /* MetaZ */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "MetaZ" */;
 			buildPhases = (
+				1BEA6F2F106EF6D5004B1A7F /* Copy Plugins */,
 				1B0DEDBD1060ED91009D293F /* Build Documentation */,
 				1BB6C11E1052B199001D3D1D /* Copy Frameworks */,
 				8D1107290486CEB800E47090 /* Resources */,
@@ -473,6 +616,7 @@
 			);
 			dependencies = (
 				1BA325CC10545BAE00276F57 /* PBXTargetDependency */,
+				1BEA6F2A106EF693004B1A7F /* PBXTargetDependency */,
 			);
 			name = MetaZ;
 			productInstallPath = "$(HOME)/Applications";
@@ -494,6 +638,7 @@
 			targets = (
 				8D1107260486CEB800E47090 /* MetaZ */,
 				1BA325C310545ACA00276F57 /* MetaZKit */,
+				1BEA6E71106EF2A0004B1A7F /* AtomicParsleyPlugin */,
 			);
 		};
 /* End PBXProject section */
@@ -504,6 +649,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BA326A310546F9700276F57 /* MZTags.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1BEA6E6E106EF2A0004B1A7F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BEA6E92106EF63C004B1A7F /* AtomicParsley32 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,8 +682,9 @@
 				1B0DEEC1106139E8009D293F /* ZoomActualSize.tif in Resources */,
 				1B0DEEC2106139E8009D293F /* ZoomIn.tif in Resources */,
 				1B0DEEC3106139E8009D293F /* ZoomOut.tif in Resources */,
-				1B090C7C106A855400D88083 /* AtomicParsley32 in Resources */,
 				1B9B393F106C0FA200928C83 /* Localizable.strings in Resources */,
+				1BEA6B81106D66AD004B1A7F /* faded_cow.png in Resources */,
+				1BEA6DDA106ED837004B1A7F /* PreferencesWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,6 +706,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "mkdir -p $TARGET_BUILD_DIR/Documentation\n/usr/bin/headerdoc2html -o $TARGET_BUILD_DIR/Documentation/ $SRCROOT/App/src/*.h && /usr/bin/gatherheaderdoc $TARGET_BUILD_DIR/Documentation\n";
+			showEnvVarsInLog = 0;
 		};
 		1BB6BF3B1050ED38001D3D1D /* Sparkle Sign  */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -568,6 +723,23 @@
 			shellScript = "set -o errexit\n\nexport GITV=`/opt/local/bin/git log -n1 --pretty=oneline --format=%h`\ndefaults write \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleVersion \"${GITV}\"\n\nif [ \"${CONFIGURATION}\" != \"Release\" ]; then exit; fi\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleShortVersionString)\nDOWNLOAD_BASE_URL=\"http://cloud.github.com/downloads/griff/metaz\"\nRELEASENOTES_URL=\"http://griff.github.com/metaz/release-notes.html#version-$VERSION\"\n\nARCHIVE_FILENAME=\"$PROJECT_NAME-$VERSION.zip\"\nDOWNLOAD_URL=\"$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME\"\nKEYCHAIN_PRIVKEY_NAME=\"MetaZ Sparkle Private\"\n\nWD=$PWD\ncd \"$BUILT_PRODUCTS_DIR\"\nrm -f \"$PROJECT_NAME\"*.zip\nditto -ck --keepParent \"$PROJECT_NAME.app\" \"$ARCHIVE_FILENAME\"\n\nditto -ck --keepParent \"$PROJECT_NAME.app.dSYM\" \"$PROJECT_NAME-$VERSION-$GITV+dYSM.zip\"\n\nSIZE=$(stat -f %z \"$ARCHIVE_FILENAME\")\nPUBDATE=$(date +\"%a, %d %b %G %T %z\")\nSIGNATURE=$(\n\topenssl dgst -sha1 -binary < \"$ARCHIVE_FILENAME\" \\\n\t| openssl dgst -dss1 -sign <(security find-generic-password -g -s \"$KEYCHAIN_PRIVKEY_NAME\" 2>&1 1>/dev/null | perl -pe '($_) = /\"(.+)\"/; s/\\\\012/\\n/g') \\\n\t| openssl enc -base64\n)\n\n[ $SIGNATURE ] || { echo Unable to load signing private key with name \"'$KEYCHAIN_PRIVKEY_NAME'\" from keychain; false; }\n\ncat > \"$PROJECT_NAME-$VERSION.xml\" <<EOF\n\t\t<item>\n\t\t\t<title>Version $VERSION</title>\n\t\t\t<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>\n\t\t\t<pubDate>$PUBDATE</pubDate>\n\t\t\t<enclosure\n\t\t\t\turl=\"$DOWNLOAD_URL\"\n\t\t\t\tsparkle:version=\"$GITV\"\n\t\t\t\tsparkle:shortVersionString=\"$VERSION\"\n\t\t\t\ttype=\"application/octet-stream\"\n\t\t\t\tlength=\"$SIZE\"\n\t\t\t\tsparkle:dsaSignature=\"$SIGNATURE\"\n\t\t\t/>\n\t\t</item>\nEOF\n\necho scp \"'$HOME/svn/my-cool-app/build/Release/$ARCHIVE_FILENAME'\" www.example.com:download/\necho scp \"'$WD/appcast.xml'\" www.example.com:web/software/my-cool-app/appcast.xml\n";
 			showEnvVarsInLog = 0;
 		};
+		1BEA6D70106EA6D1004B1A7F /* Build Documentation */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Framework/src/*.h",
+			);
+			name = "Build Documentation";
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(DOCUMENTATION_FOLDER_PATH)/MasterTOC.html",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mkdir -p $TARGET_BUILD_DIR/$DOCUMENTATION_FOLDER_PATH\n#/usr/bin/headerdoc2html -o $TARGET_BUILD_DIR/$DOCUMENTATION_FOLDER_PATH/ $SRCROOT/Framework/src/*.h && /usr/bin/gatherheaderdoc $TARGET_BUILD_DIR/$DOCUMENTATION_FOLDER_PATH\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -575,13 +747,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BA3261B1054643300276F57 /* MetaEdits.m in Sources */,
-				1BA3261D1054643300276F57 /* MetaLoaded.m in Sources */,
-				1BA3261F1054643300276F57 /* SearchMeta.m in Sources */,
-				1BA326211054643300276F57 /* MZConstants.m in Sources */,
-				1BA326231054643300276F57 /* MZMethodData.m in Sources */,
-				1BA326261054643300276F57 /* MZDynamicObject.m in Sources */,
-				1BD6E603105B355800E40151 /* MetaChangeNotification.m in Sources */,
+				1BEA6F9C106EFC3F004B1A7F /* MetaEdits.m in Sources */,
+				1BEA6F9E106EFC3F004B1A7F /* MetaLoaded.m in Sources */,
+				1BEA6FA0106EFC3F004B1A7F /* SearchMeta.m in Sources */,
+				1BEA6FA2106EFC3F004B1A7F /* MZConstants.m in Sources */,
+				1BEA6FA4106EFC3F004B1A7F /* MZMethodData.m in Sources */,
+				1BEA6FA7106EFC3F004B1A7F /* MZDynamicObject.m in Sources */,
+				1BEA6FA9106EFC3F004B1A7F /* MetaChangeNotification.m in Sources */,
+				1BEA6FAB106EFC3F004B1A7F /* MZTag.m in Sources */,
+				1BEA6FAE106EFC3F004B1A7F /* MZPlugin.m in Sources */,
+				1BEA6FB0106EFC3F004B1A7F /* MZPluginController.m in Sources */,
+				1BEA6FB2106EFC3F004B1A7F /* MZPlugin-Private.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1BEA6E6F106EF2A0004B1A7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BEA6E8C106EF4CD004B1A7F /* APDataProvider.m in Sources */,
+				1BEA6E91106EF534004B1A7F /* AtomicParsleyPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,9 +792,10 @@
 				1B0DED251060C741009D293F /* LabelM.m in Sources */,
 				1B0DEDD81060F7B6009D293F /* ImageWindowController.m in Sources */,
 				1B090A691069474600D88083 /* MyQueueCollectionView.m in Sources */,
-				1B090C7F106A859500D88083 /* AtomicParsleyDataProvider.m in Sources */,
-				1B090C82106A899300D88083 /* MZTag.m in Sources */,
 				1B9B39F7106C862000928C83 /* NSArray-Mapping.m in Sources */,
+				1BEA6B3B106CF01B004B1A7F /* PosterView.m in Sources */,
+				1BEA6C95106E7203004B1A7F /* Utilities.m in Sources */,
+				1BEA6DDD106ED8E4004B1A7F /* PreferencesWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,6 +806,16 @@
 			isa = PBXTargetDependency;
 			target = 1BA325C310545ACA00276F57 /* MetaZKit */;
 			targetProxy = 1BA325CB10545BAE00276F57 /* PBXContainerItemProxy */;
+		};
+		1BEA6E78106EF2B0004B1A7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			targetProxy = 1BEA6E77106EF2B0004B1A7F /* PBXContainerItemProxy */;
+		};
+		1BEA6F2A106EF693004B1A7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1BEA6E71106EF2A0004B1A7F /* AtomicParsleyPlugin */;
+			targetProxy = 1BEA6F29106EF693004B1A7F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -670,6 +866,14 @@
 				1BD6E7A7105DC4D000E40151 /* English */,
 			);
 			name = Queue.xib;
+			sourceTree = "<group>";
+		};
+		1BEA6DD8106ED837004B1A7F /* PreferencesWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1BEA6DD9106ED837004B1A7F /* English */,
+			);
+			name = PreferencesWindow.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -725,6 +929,62 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MetaZKit;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		1BEA6E74106EF2A1004B1A7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/AtomicParsley/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+					"-framework",
+					MetaZKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = AtomicParsleyPlugin;
+				WRAPPER_EXTENSION = mzplugin;
+			};
+			name = Debug;
+		};
+		1BEA6E75106EF2A1004B1A7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/AtomicParsley/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+					"-framework",
+					MetaZKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = AtomicParsleyPlugin;
+				WRAPPER_EXTENSION = mzplugin;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -802,6 +1062,15 @@
 			buildConfigurations = (
 				1BA325C610545ACB00276F57 /* Debug */,
 				1BA325C710545ACB00276F57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1BEA6E76106EF2A1004B1A7F /* Build configuration list for PBXNativeTarget "AtomicParsleyPlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1BEA6E74106EF2A1004B1A7F /* Debug */,
+				1BEA6E75106EF2A1004B1A7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

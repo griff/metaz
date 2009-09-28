@@ -7,8 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MetaLoaded.h"
-#import "MetaData.h"
+#import <MetaZKit/MetaData.h>
+#import <MetaZKit/MZDynamicObject.h>
 
 #define MZMetaEditsDataType @"MZMetaEditsDataType"
 

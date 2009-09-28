@@ -7,19 +7,13 @@
 //
 
 #import "ImageWindowController.h"
+#import "Utilities.h"
 
 #define IMAGE_CTX "imageCtx"
 #define IMAGE_CTX2 "imageCtx2"
 
 extern NSString *const IKToolModeSelectEllipse;
 extern NSString *const IKToolModeSelectLasso;
-
-@interface IKImageView (Missing)
-- (IBAction)crop:(id)sender;
-- (void)setImage:(NSImage *)image;
-- (BOOL) showsCheckerboard;
-- (void) setShowsCheckerboard: (BOOL) showsCheckerboard;
-@end
 
 NSData* tiffForCGImage(CGImageRef cgImage) {
   NSBitmapImageRep *imageRep = [[[NSBitmapImageRep alloc] initWithCGImage:cgImage] autorelease];
@@ -49,6 +43,7 @@ NSData* tiffForCGImage(CGImageRef cgImage) {
 {
     self = [super initWithWindowNibName:@"ImageEdit"];
     sourceImageView = [aImageView retain];
+    [sourceImageView addObserver:self forKeyPath:@"objectValue" options:NSKeyValueObservingOptionNew context:IMAGE_CTX];
     [sourceImageView addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:IMAGE_CTX];
     currentSelect = IKToolModeSelect;
     return self;
@@ -56,7 +51,9 @@ NSData* tiffForCGImage(CGImageRef cgImage) {
 
 - (void)dealloc
 {
+    [sourceImageView removeObserver:self forKeyPath:@"objectValue"];
     [sourceImageView removeObserver:self forKeyPath:@"image"];
+    [imageView removeObserver:self forKeyPath:@"rotationAngle"];
     [sourceImageView release];
     [imageView release];
     [moveSelectTool release];
@@ -66,37 +63,40 @@ NSData* tiffForCGImage(CGImageRef cgImage) {
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if(context == IMAGE_CTX && object == sourceImageView && [keyPath isEqual:@"image"] && imageView)
+    if(context == IMAGE_CTX && object == sourceImageView && imageView)
     {
-        [imageView removeObserver:self forKeyPath:@"image"];
-        [imageView setImage:[sourceImageView image]];
-        [imageView addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:IMAGE_CTX2];
+        [imageView setImage:[sourceImageView valueForKeyPath:keyPath]];
+        [imageView zoomImageToFit:self];
     }
 }
 
-- (void)imageDidChange:(IKImageView *)aImageView imageState:(id)state image:(CGImageRef)image
-//- (void)imageDidChange:(IKImageView *)aImageView
+- (void)imageDidChange:(IKImageView *)aImageView imageState:(IKImageState*)state image:(CGImageRef)image
 {
+    dumpMethods([aImageView class]);
+    CGFloat rotationAngle = [state rotationAngle];
+    int orientationTag = [state orientationTag];
     NSDictionary* imageProps = aImageView.imageProperties;
     for(NSString* key in [imageProps allKeys])
         NSLog(@"Key %@ Value %@", key, [imageProps objectForKey:key]);
-    [sourceImageView removeObserver:self forKeyPath:@"image"];
-    [sourceImageView setImage:[ImageWindowController rotateImage:[[NSBitmapImageRep alloc] initWithCGImage:[aImageView image]]
+    [sourceImageView removeObserver:self forKeyPath:@"objectValue"];
+    [sourceImageView setObjectValue:[ImageWindowController rotateImage:[[NSBitmapImageRep alloc] initWithCGImage:[aImageView image]]
                                                        byDegrees:aImageView.rotationAngle]];
-    [sourceImageView addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionNew context:IMAGE_CTX];
+    [sourceImageView addObserver:self forKeyPath:@"objectValue" options:NSKeyValueObservingOptionNew context:IMAGE_CTX];
 }
 
 - (void)awakeFromNib
 {
     [imageView setImage:[sourceImageView image]];
+    [imageView addObserver:self forKeyPath:@"rotationAngle" options:NSKeyValueObservingOptionNew context:IMAGE_CTX2];
     imageView.editable = YES;
-    imageView.supportsDragAndDrop = YES;
-    imageView.hasVerticalScroller = YES;
-    imageView.hasHorizontalScroller = YES;
-    imageView.autohidesScrollers = YES;
+    imageView.supportsDragAndDrop = NO; // TODO: fix sync on drag and drop
+    //imageView.hasVerticalScroller = YES;
+    //imageView.hasHorizontalScroller = YES;
+    imageView.autohidesScrollers = NO;
     imageView.currentToolMode = IKToolModeMove;
     imageView.doubleClickOpensImageEditPanel = YES;
     imageView.showsCheckerboard = YES;
+    [imageView zoomImageToFit:self];
     [[IKImageEditPanel sharedImageEditPanel] setHidesOnDeactivate: YES];
     [moveSelectTool setMenu:selectMenu forSegment:1];
     imageView.delegate = self;

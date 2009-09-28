@@ -6,20 +6,19 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import "MetaData.h"
-#import "MZDynamicObject.h"
+#import <MetaZKit/MetaData.h>
+#import <MetaZKit/MZDynamicObject.h>
 
 @interface MetaLoaded : MZDynamicObject <MetaData, NSCopying> {
     NSDictionary* tags;
     NSString* loadedFileName;
+    id owner;
 }
 @property(readonly) NSString* loadedFileName;
+@property(readonly) id owner;
 
-+ (id)metaWithFilename:(NSString *)aFileName dictionary:(NSDictionary *)dict;
-
-- (id)initWithKeys:(NSArray *)keys;
-- (id)initWithFilename:(NSString *)aFileName dictionary:(NSDictionary *)dict;
++ (id)metaWithOwner:(id)theOwner filename:(NSString *)aFileName dictionary:(NSDictionary *)dict;
+- (id)initWithOwner:(id)theOwner filename:(NSString *)aFileName dictionary:(NSDictionary *)dict;
 
 - (NSArray *)providedKeys;
 

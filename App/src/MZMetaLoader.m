@@ -43,12 +43,7 @@ static MZMetaLoader* sharedLoader = nil;
 
 
 -(NSArray *)types {
-    return [provider types];
-}
-
--(NSArray *)extensions {
-    NSArray* ret = [provider extensions];
-    return ret;
+    return [[MZPluginController sharedInstance] dataProviderTypes];
 }
 
 -(void)removeAllObjects
@@ -58,38 +53,48 @@ static MZMetaLoader* sharedLoader = nil;
     [self didChangeValueForKey:@"files"];
 }
 
--(void)fixTitle:(MetaEdits* )edits {
-    NSString* title = [edits title];
-    if(title == nil)
-    {
-        [[edits undoManager] disableUndoRegistration];
-        NSString* loadedFileName = [edits fileName];
-        NSAssert(loadedFileName != nil, @"Bad loaded file name");
-        NSAssert( ((NSNull*)loadedFileName) != [NSNull null], @"Bad loaded file name" );
-        NSString* newTitle = [loadedFileName substringToIndex:[loadedFileName length] - [[loadedFileName pathExtension] length] - 1];
-        [edits setTitle:newTitle];
-        [[edits undoManager] enableUndoRegistration];
-    }
+
+-(void)loadFromFile:(NSString *)fileName
+{
+    [self loadFromFile:fileName toIndex:[files count]];
 }
 
--(void)loadFromFile:(NSString *)fileName {
-    [self willChangeValueForKey:@"files"];
-    MetaLoaded* loaded = [provider loadFromFile:fileName];
-    MetaEdits* edits = [[MetaEdits alloc] initWithProvider:loaded];
-    [self fixTitle:edits];
-    [files addObject:edits];
-    [self didChangeValueForKey:@"files"];
+-(void)loadFromFiles:(NSArray *)fileNames
+{
+    [self loadFromFiles:fileNames toIndex:[files count]];
 }
 
--(void)loadFromFiles:(NSArray *)fileNames {
+- (void)loadFromFile:(NSString *)fileName toIndex:(NSUInteger)index
+{
+    NSAssert(fileName, @"Provided fileName");
+    [self loadFromFiles:[NSArray arrayWithObject:fileName] toIndex:index];
+}
+
+- (void)loadFromFiles:(NSArray *)fileNames toIndex:(NSUInteger)index
+{
+    NSAssert(fileNames, @"Provided filenames");
+    if([fileNames count]==0)
+        return;
+    [self loadFromFiles:fileNames
+              toIndexes:[NSIndexSet indexSetWithIndexesInRange:
+                    NSMakeRange(index, [fileNames count])]];
+}
+
+- (void)loadFromFiles:(NSArray *)fileNames toIndexes:(NSIndexSet*)indexes
+{
+    NSAssert(fileNames, @"Provided filenames");
+    if([fileNames count]==0)
+        return;
+    NSAssert([fileNames count]==[indexes count], @"Count of indexes and filenames");
+
     [self willChangeValueForKey:@"files"];
+    NSMutableArray* arr = [NSMutableArray arrayWithCapacity:[fileNames count]];
     for ( NSString* fileName in fileNames )
     {
-        MetaLoaded* loaded = [provider loadFromFile:fileName];
-        MetaEdits* edits = [[MetaEdits alloc] initWithProvider:loaded];
-        [self fixTitle:edits];
-        [files addObject:edits];
+        MetaEdits* edits = [[MZPluginController sharedInstance] loadDataFromFile:fileName];
+        [arr addObject:edits];
     }
+    [files insertObjects:arr atIndexes:indexes];
     [self didChangeValueForKey:@"files"];
 }
 
