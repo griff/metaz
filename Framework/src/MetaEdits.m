@@ -15,6 +15,7 @@
 @implementation MetaEdits
 @synthesize undoManager;
 @synthesize multiUndoManager;
+@synthesize tags;
 
 #pragma mark - initialization
 

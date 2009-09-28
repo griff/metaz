@@ -42,7 +42,7 @@ NSString* const MZSortArtistTag = @"sortArtist";
 NSString* const MZSortAlbumTag = @"sortAlbum";
 NSString* const MZSortAlbumArtistTag = @"sortAlbumArtist";
 NSString* const MZSortTVShowTag = @"sortTvShow";
-
+NSString* const MZSortComposerTag = @"sortComposer";
 
 // MetaX Advanced
 NSString* const MZFeedURLTag = @"feedURL";

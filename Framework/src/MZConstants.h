@@ -33,6 +33,7 @@ FOUNDATION_EXPORT NSString* const MZSortArtistTag;
 FOUNDATION_EXPORT NSString* const MZSortAlbumTag;
 FOUNDATION_EXPORT NSString* const MZSortAlbumArtistTag;
 FOUNDATION_EXPORT NSString* const MZSortTVShowTag;
+FOUNDATION_EXPORT NSString* const MZSortComposerTag;
 
 // MetaX Advanced
 FOUNDATION_EXPORT NSString* const MZFeedURLTag;

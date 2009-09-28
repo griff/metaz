@@ -29,7 +29,6 @@
 		1B11A28B104DF1EC004C93D3 /* FilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A28A104DF1EC004C93D3 /* FilesTableView.m */; };
 		1B5AC76F10532E5200F9CE36 /* MetaEditPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */; };
 		1B9B393F106C0FA200928C83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B9B393D106C0FA200928C83 /* Localizable.strings */; };
-		1B9B39F7106C862000928C83 /* NSArray-Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9B39F6106C862000928C83 /* NSArray-Mapping.m */; };
 		1BA325CD10545BBB00276F57 /* MetaZKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1BA325E110545CD900276F57 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		1BA3269D10546EC800276F57 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BA3269B10546EC800276F57 /* InfoPlist.strings */; };
@@ -85,6 +84,8 @@
 		1BEA6FB0106EFC3F004B1A7F /* MZPluginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6DAD106EC632004B1A7F /* MZPluginController.m */; };
 		1BEA6FB1106EFC3F004B1A7F /* MZPlugin-Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BEA6E48106EEF34004B1A7F /* MZPlugin-Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		1BEA6FB2106EFC3F004B1A7F /* MZPlugin-Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6E49106EEF34004B1A7F /* MZPlugin-Private.m */; };
+		1BEA718F10712A17004B1A7F /* NSArray-Mapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BEA718D10712A17004B1A7F /* NSArray-Mapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BEA719010712A17004B1A7F /* NSArray-Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA718E10712A17004B1A7F /* NSArray-Mapping.m */; };
 		1BF5AD4B105DFC92005DD03E /* QueueWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5AD4A105DFC92005DD03E /* QueueWindowController.m */; };
 		1BF5ADBD105E0B8E005DD03E /* FileViewBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5ADBC105E0B8E005DD03E /* FileViewBox.m */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -146,7 +147,7 @@
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1B090A671069474600D88083 /* MyQueueCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyQueueCollectionView.h; sourceTree = "<group>"; };
 		1B090A681069474600D88083 /* MyQueueCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyQueueCollectionView.m; sourceTree = "<group>"; };
-		1B090C7B106A855400D88083 /* AtomicParsley32 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = AtomicParsley32; path = App/resources/AtomicParsley32; sourceTree = "<group>"; };
+		1B090C7B106A855400D88083 /* AtomicParsley32 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = AtomicParsley32; path = Plugins/AtomicParsley/resources/AtomicParsley32; sourceTree = "<group>"; };
 		1B090C80106A899300D88083 /* MZTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTag.h; sourceTree = "<group>"; };
 		1B090C81106A899300D88083 /* MZTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTag.m; sourceTree = "<group>"; };
 		1B0DEA91105F1D76009D293F /* BtnStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BtnStuff.h; sourceTree = "<group>"; };
@@ -189,8 +190,6 @@
 		1B78A499105032A50072D89E /* MZMethodData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMethodData.h; sourceTree = "<group>"; };
 		1B78A49A105032A50072D89E /* MZMethodData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMethodData.m; sourceTree = "<group>"; };
 		1B9B393E106C0FA200928C83 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = App/English.lproj/Localizable.strings; sourceTree = "<group>"; };
-		1B9B39F5106C862000928C83 /* NSArray-Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray-Mapping.h"; sourceTree = "<group>"; };
-		1B9B39F6106C862000928C83 /* NSArray-Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray-Mapping.m"; sourceTree = "<group>"; };
 		1B9B3AB4106CC14B00928C83 /* MetaZKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaZKit.h; sourceTree = "<group>"; };
 		1BA325C410545ACA00276F57 /* MetaZKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MetaZKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BA325C510545ACA00276F57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Framework/Info.plist; sourceTree = "<group>"; };
@@ -243,6 +242,8 @@
 		1BEA6E8D106EF522004B1A7F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/AtomicParsley/Info.plist; sourceTree = "<group>"; };
 		1BEA6E8F106EF534004B1A7F /* AtomicParsleyPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicParsleyPlugin.h; sourceTree = "<group>"; };
 		1BEA6E90106EF534004B1A7F /* AtomicParsleyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicParsleyPlugin.m; sourceTree = "<group>"; };
+		1BEA718D10712A17004B1A7F /* NSArray-Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray-Mapping.h"; sourceTree = "<group>"; };
+		1BEA718E10712A17004B1A7F /* NSArray-Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray-Mapping.m"; sourceTree = "<group>"; };
 		1BF5AD49105DFC92005DD03E /* QueueWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueWindowController.h; sourceTree = "<group>"; };
 		1BF5AD4A105DFC92005DD03E /* QueueWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueWindowController.m; sourceTree = "<group>"; };
 		1BF5ADBB105E0B8E005DD03E /* FileViewBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewBox.h; sourceTree = "<group>"; };
@@ -290,6 +291,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1BEA718D10712A17004B1A7F /* NSArray-Mapping.h */,
+				1BEA718E10712A17004B1A7F /* NSArray-Mapping.m */,
 				1B119FCA104304C5004C93D3 /* MetaData.h */,
 				1B119FC7104300ED004C93D3 /* MetaEdits.h */,
 				1B119FC8104300ED004C93D3 /* MetaEdits.m */,
@@ -409,8 +412,6 @@
 				1B0DEDD71060F7B6009D293F /* ImageWindowController.m */,
 				1B090A671069474600D88083 /* MyQueueCollectionView.h */,
 				1B090A681069474600D88083 /* MyQueueCollectionView.m */,
-				1B9B39F5106C862000928C83 /* NSArray-Mapping.h */,
-				1B9B39F6106C862000928C83 /* NSArray-Mapping.m */,
 				1BEA6B39106CF01B004B1A7F /* PosterView.h */,
 				1BEA6B3A106CF01B004B1A7F /* PosterView.m */,
 				1BEA6C93106E7203004B1A7F /* Utilities.h */,
@@ -557,6 +558,7 @@
 				1BEA6FAD106EFC3F004B1A7F /* MZPlugin.h in Headers */,
 				1BEA6FAF106EFC3F004B1A7F /* MZPluginController.h in Headers */,
 				1BEA6FB1106EFC3F004B1A7F /* MZPlugin-Private.h in Headers */,
+				1BEA718F10712A17004B1A7F /* NSArray-Mapping.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,6 +760,7 @@
 				1BEA6FAE106EFC3F004B1A7F /* MZPlugin.m in Sources */,
 				1BEA6FB0106EFC3F004B1A7F /* MZPluginController.m in Sources */,
 				1BEA6FB2106EFC3F004B1A7F /* MZPlugin-Private.m in Sources */,
+				1BEA719010712A17004B1A7F /* NSArray-Mapping.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -792,7 +795,6 @@
 				1B0DED251060C741009D293F /* LabelM.m in Sources */,
 				1B0DEDD81060F7B6009D293F /* ImageWindowController.m in Sources */,
 				1B090A691069474600D88083 /* MyQueueCollectionView.m in Sources */,
-				1B9B39F7106C862000928C83 /* NSArray-Mapping.m in Sources */,
 				1BEA6B3B106CF01B004B1A7F /* PosterView.m in Sources */,
 				1BEA6C95106E7203004B1A7F /* Utilities.m in Sources */,
 				1BEA6DDD106ED8E4004B1A7F /* PreferencesWindowController.m in Sources */,

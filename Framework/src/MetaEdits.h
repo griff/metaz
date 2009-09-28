@@ -20,6 +20,7 @@
 }
 @property(readonly) NSUndoManager* undoManager;
 @property(retain)   NSUndoManager* multiUndoManager;
+@property(readonly) NSDictionary* tags;
 
 -(id)initWithProvider:(id<MetaData>)aProvider;
 

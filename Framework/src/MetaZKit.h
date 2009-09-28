@@ -18,3 +18,4 @@
 #import <MetaZKit/MZTag.h>
 #import <MetaZKit/MZPlugin.h>
 #import <MetaZKit/MZPluginController.h>
+#import <MetaZKit/NSArray-Mapping.h>

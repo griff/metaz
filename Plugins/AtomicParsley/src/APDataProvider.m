@@ -7,7 +7,6 @@
 //
 
 #import "APDataProvider.h"
-#import "NSArray-Mapping.h"
 
 @interface APDataProvider (Private)
 
@@ -26,25 +25,59 @@
             @"public.mpeg-4", @"com.apple.quicktime-movie",
             @"com.apple.protected-mpeg-4-video", nil];
         keys = [[MZTag allKnownTags] retain];
-        NSArray* mapkeys = [NSArray arrayWithObjects:
+        NSArray* readmapkeys = [NSArray arrayWithObjects:
             @"©nam", @"©ART", @"©day", @"com.apple.iTunes;iTunEXTC", @"©gen",
             @"©alb", @"aART", @"purd", @"desc",
             @"ldes", @"stik", @"tvsh", @"tven",
             @"tvsn", @"tves", @"tvnn", @"purl",
             @"egid",@"catg", @"keyw", @"rtng",
-            @"cprt", @"©grp", @"©too", @"©cmt",
-            @"sonm", @"soar", @"soaa", @"soal",
+            @"pcst" @"cprt", @"©grp", @"©too",
+            @"©cmt", @"pgap", @"cpil", @"sonm",
+            @"soar", @"soaa", @"soal",
             @"sosn", nil];
-        NSArray* mapvalues = [NSArray arrayWithObjects:
+        NSArray* readmapvalues = [NSArray arrayWithObjects:
             MZTitleTag, MZArtistTag, MZDateTag, MZRatingTag, MZGenreTag,
             MZAlbumTag, MZAlbumArtistTag, MZPurchaseDateTag, MZShortDescriptionTag,
             MZLongDescriptionTag, MZVideoTypeTag, MZTVShowTag, MZTVEpisodeIDTag,
             MZTVSeasonTag, MZTVEpisodeTag, MZTVNetworkTag, MZFeedURLTag,
             MZEpisodeURLTag, MZCategoryTag, MZKeywordTag, MZAdvisoryTag,
-            MZCopyrightTag, MZGroupingTag, MZEncodingToolTag, MZCommentTag,
-            MZSortTitleTag, MZSortArtistTag, MZSortAlbumArtistTag, MZSortAlbumTag,
+            MZPodcastTag, MZCopyrightTag, MZGroupingTag, MZEncodingToolTag,
+            MZCommentTag, MZGaplessTag, MZCompilationTag, MZSortTitleTag,
+            MZSortArtistTag, MZSortAlbumArtistTag, MZSortAlbumTag,
             MZSortTVShowTag,nil];
-        mapping = [[NSDictionary alloc] initWithObjects:mapvalues forKeys:mapkeys];
+        read_mapping = [[NSDictionary alloc]
+            initWithObjects:readmapvalues
+                    forKeys:readmapkeys];
+
+
+        NSArray* writemapkeys = [NSArray arrayWithObjects:
+            MZTitleTag, MZArtistTag, MZDateTag, MZRatingTag, MZGenreTag,
+            MZAlbumTag, MZAlbumArtistTag, MZPurchaseDateTag, MZShortDescriptionTag,
+            //MZLongDescriptionTag,
+            MZVideoTypeTag, MZTVShowTag, MZTVEpisodeIDTag,
+            MZTVSeasonTag, MZTVEpisodeTag, MZTVNetworkTag, MZFeedURLTag,
+            MZEpisodeURLTag, MZCategoryTag, MZKeywordTag, MZAdvisoryTag,
+            MZPodcastTag, MZCopyrightTag, MZGroupingTag, MZEncodingToolTag,
+            MZCommentTag, MZGaplessTag, MZCompilationTag,
+            nil];
+            //MZSortTitleTag, MZSortArtistTag, MZSortAlbumArtistTag,
+            //MZSortAlbumTag, MZSortTVShowTag,nil];
+        NSArray* writemapvalues = [NSArray arrayWithObjects:
+            @"title", @"artist", @"year", @"contentRating", @"genre",
+            @"album", @"albumArtist", @"purchaseDate", @"description",
+            //@"ldes",
+            @"stik", @"TVShowName", @"TVEpisode",
+            @"TVSeasonNum", @"TVEpisodeNum", @"TVNetwork", @"podcastURL",
+            @"podcastGUID",@"category", @"keyword", @"advisory",
+            @"podcastFlag", @"copyright", @"grouping", @"encodingTool",
+            @"comment", @"gapless", @"compilation",
+            nil];
+            //@"sonm", @"soar", @"soaa",
+            //@"soal", @"sosn", nil];
+        write_mapping = [[NSDictionary alloc]
+            initWithObjects:writemapvalues
+                    forKeys:writemapkeys];
+
     }
     return self;
 }
@@ -53,7 +86,8 @@
 {
     [types release];
     [keys release];
-    [mapping release];
+    [read_mapping release];
+    [write_mapping release];
     [super dealloc];
 }
 
@@ -104,11 +138,11 @@
         [retdict setObject:[NSNull null] forKey:key];
 
     // Store real parsed values using a simple key -> key mapping
-    for(NSString* map in [mapping allKeys])
+    for(NSString* map in [read_mapping allKeys])
     {
         id value = [dict objectForKey:map];
         if(value)
-            [retdict setObject:value forKey:[mapping objectForKey:map]];
+            [retdict setObject:value forKey:[read_mapping objectForKey:map]];
     }
     
     // Special handling for cast, directors, producers and screenwriters
@@ -163,12 +197,51 @@
     return [MetaLoaded metaWithOwner:self filename:fileName dictionary:retdict];
 }
 
+void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSString* sortType)
+{
+    id value = [changes objectForKey:tag];
+    if(value == [NSNull null])
+        value = @"";
+    if(value)
+    {
+        [args addObject:@"--sortOrder"];
+        [args addObject:sortType];
+        [args addObject:value];
+    }
+}
+
 -(BOOL)saveChanges:(MetaEdits *)data
           delegate:(id)delgate statusUpdateSelector:(SEL)statusUpdateSelector
 {
+    NSMutableArray* args = [NSMutableArray array];
+    [args addObject:[data loadedFileName]];
+    
+    NSDictionary* changes = [data tags];
+    for(NSString* key in [changes allKeys])
+    {
+        id value = [changes objectForKey:key];
+        if(value == [NSNull null])
+            value = @"";
+        NSString* map = [write_mapping objectForKey:key];
+        if(map)
+        {
+            [args addObject:[@"--" stringByAppendingString:map]];
+            [args addObject:value];
+        }
+    }
+    
+    // Sort tags
+    sortTags(args, changes, MZSortTitleTag, @"name");
+    sortTags(args, changes, MZSortArtistTag, @"artist");
+    sortTags(args, changes, MZSortAlbumArtistTag, @"albumartist");
+    sortTags(args, changes, MZSortAlbumTag, @"album");
+    sortTags(args, changes, MZSortTVShowTag, @"show");
+    sortTags(args, changes, MZSortComposerTag, @"composer");
+    
+
     NSTask* task = [[NSTask alloc] init];
     [task setLaunchPath:[self launchPath]];
-    [task setArguments:[NSArray arrayWithObjects:[data fileName], @"-t", nil]];
+    [task setArguments:args];
     NSPipe* out = [NSPipe pipe];
     [task setStandardOutput:out];
     [task launch];
