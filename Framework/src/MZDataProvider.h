@@ -10,7 +10,18 @@
 #import <MetaZKit/MetaLoaded.h>
 #import <MetaZKit/MetaEdits.h>
 
-/*! @protocol MZDataProvider
+@protocol MZDataWriteDelegate <NSObject>
+- (void)writeCanceled:(int)status;
+- (void)writeFinishedPercent:(int)percent;
+- (void)writeFinished;
+@end
+
+@protocol MZDataWriteController <NSObject>
+- (BOOL)isRunning;
+- (void)terminate;
+@end
+
+/*!
  @abstract Data provider
  */
 @protocol MZDataProvider <NSObject>
@@ -38,7 +49,7 @@
 /*!
  @abstract Saves any changes to the meta data.
  */
--(BOOL)saveChanges:(MetaEdits *)data
-          delegate:(id)delgate statusUpdateSelector:(SEL)statusUpdateSelector;
+-(id<MZDataWriteController>)saveChanges:(MetaEdits *)data
+          delegate:(id<MZDataWriteDelegate>)delegate;
 
 @end

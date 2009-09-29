@@ -7,6 +7,7 @@
 //
 
 #import "APDataProvider.h"
+#import "APWriteManager.h"
 
 @interface APDataProvider (Private)
 
@@ -21,6 +22,7 @@
     self = [super init];
     if(self)
     {
+        writes = [[NSMutableArray alloc] init];
         types = [[NSArray alloc] initWithObjects:
             @"public.mpeg-4", @"com.apple.quicktime-movie",
             @"com.apple.protected-mpeg-4-video", nil];
@@ -30,8 +32,8 @@
             @"©alb", @"aART", @"purd", @"desc",
             @"ldes", @"stik", @"tvsh", @"tven",
             @"tvsn", @"tves", @"tvnn", @"purl",
-            @"egid",@"catg", @"keyw", @"rtng",
-            @"pcst" @"cprt", @"©grp", @"©too",
+            @"egid", @"catg", @"keyw", @"rtng",
+            @"pcst", @"cprt", @"©grp", @"©too",
             @"©cmt", @"pgap", @"cpil", @"sonm",
             @"soar", @"soaa", @"soal",
             @"sosn", nil];
@@ -84,6 +86,7 @@
 
 - (void)dealloc
 {
+    [writes release];
     [types release];
     [keys release];
     [read_mapping release];
@@ -210,8 +213,9 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     }
 }
 
--(BOOL)saveChanges:(MetaEdits *)data
-          delegate:(id)delgate statusUpdateSelector:(SEL)statusUpdateSelector
+
+-(id<MZDataWriteController>)saveChanges:(MetaEdits *)data
+          delegate:(id<MZDataWriteDelegate>)delegate;
 {
     NSMutableArray* args = [NSMutableArray array];
     [args addObject:[data loadedFileName]];
@@ -242,11 +246,14 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     NSTask* task = [[NSTask alloc] init];
     [task setLaunchPath:[self launchPath]];
     [task setArguments:args];
-    NSPipe* out = [NSPipe pipe];
-    [task setStandardOutput:out];
-    [task launch];
-
-    return NO;
+    
+    APWriteManager* manager = [APWriteManager
+            managerWithTask:task
+                   delegate:delegate];
+    [manager launch];
+    [writes addObject:manager];
+    
+    return manager;
 }
 
 - (NSString *)launchPath

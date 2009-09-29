@@ -120,4 +120,9 @@
     return [self retain];
 }
 
+- (id<MetaData>)queueCopy
+{
+    return [self copy];
+}
+
 @end

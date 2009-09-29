@@ -158,5 +158,9 @@
     return [provider copyWithZone:zone];
 }
 
+- (id<MetaData>)queueCopy
+{
+    return [provider copy];
+}
 
 @end

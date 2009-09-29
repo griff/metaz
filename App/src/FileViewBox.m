@@ -110,24 +110,28 @@
 }
 */
 
-- (IBAction)switchTab:(id)sender
+- (void)tabView:(NSTabView *)aTabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
 {
     MGCollectionView* colview = (MGCollectionView*)[self superview];
     NSRect frame = [self frame];
 
     NSTabViewItem * item = [tabView selectedTabViewItem];
-    if([[item identifier] isEqual:@"pending"])
-    {
-        [tabView selectTabViewItemWithIdentifier:@"action"];
+    if([[item identifier] isEqual:@"action"])
         frame.size.height = 53;
-    }
     else
-    {
-        [tabView selectTabViewItemWithIdentifier:@"pending"];
         frame.size.height = 43;
-    }
     [self setFrame:frame];
     [colview setNeedsLayout:YES];
+
+}
+
+- (IBAction)switchTab:(id)sender
+{
+    NSTabViewItem * item = [tabView selectedTabViewItem];
+    if([[item identifier] isEqual:@"pending"])
+        [tabView selectTabViewItemWithIdentifier:@"action"];
+    else
+        [tabView selectTabViewItemWithIdentifier:@"pending"];
 }
 
 - (IBAction)removeItem:(id)sender

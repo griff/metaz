@@ -7,7 +7,7 @@
 //
 
 #import "QueueWindowController.h"
-
+#import "MGCollectionView.h"
 
 @implementation QueueWindowController
 @synthesize controller;
@@ -63,10 +63,6 @@
 - (IBAction)pauseResumeEncoding:(id)sender
 {
     [controller pauseResumeEncoding:sender];
-}
-
-- (void)tabView:(NSTabView *)aTabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
-{
 }
 
 @end

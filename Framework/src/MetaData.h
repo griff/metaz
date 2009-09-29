@@ -21,6 +21,7 @@
 - (id)owner;
 - (NSString *)loadedFileName;
 - (NSArray *)providedKeys;
+- (id<MetaData>)queueCopy;
 
 @optional
 - (NSString *)fileName;

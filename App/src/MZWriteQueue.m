@@ -7,6 +7,7 @@
 //
 
 #import "MZWriteQueue.h"
+#import "MZWriteQueueStatus.h"
 
 @implementation MZWriteQueue
 @synthesize queueItems;
@@ -67,6 +68,8 @@ static MZWriteQueue* sharedQueue = nil;
     {
         [self willChangeValueForKey:@"status"];
         status = QueueRunning;
+        MZWriteQueueStatus* sts = [queueItems objectAtIndex:0];
+        [sts startWriting];
         [self didChangeValueForKey:@"status"];
     }
 }
@@ -97,12 +100,15 @@ static MZWriteQueue* sharedQueue = nil;
     {
         [self willChangeValueForKey:@"status"];
         status = QueueStopped;
+        MZWriteQueueStatus* sts = [queueItems objectAtIndex:0];
+        [sts stopWriting];
         [self didChangeValueForKey:@"status"];
     }
 }
 
 -(BOOL)loadQueueWithError:(NSError **)error
 {
+    return YES;
     NSFileManager *mgr = [NSFileManager defaultManager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     for(NSString * path in paths)
@@ -132,6 +138,7 @@ static MZWriteQueue* sharedQueue = nil;
 
 -(BOOL)saveQueueWithError:(NSError **)error
 {
+    return YES;
     NSFileManager *mgr = [NSFileManager defaultManager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     if([queueItems count] > 0)
@@ -206,7 +213,7 @@ static MZWriteQueue* sharedQueue = nil;
 {
     NSAssert(anEdit, @"A value argument");
     [self willChangeValueForKey:@"queueItems"];
-    [queueItems insertObject:[anEdit copy] atIndex:index];
+    [queueItems insertObject:[MZWriteQueueStatus statusWithEdits:anEdit] atIndex:index];
     [self saveQueueWithError:NULL];
     [self didChangeValueForKey:@"queueItems"];
 }
@@ -221,7 +228,7 @@ static MZWriteQueue* sharedQueue = nil;
     for (i = 0; i < count; i++)
     {
         MetaEdits* edit = [edits objectAtIndex:i];
-        [queueItems insertObject:[edit copy] atIndex:currentIndex];
+        [queueItems insertObject:[MZWriteQueueStatus statusWithEdits:edit] atIndex:currentIndex];
         currentIndex = [indexes indexGreaterThanIndex:currentIndex];
     }
     [self saveQueueWithError:NULL];
@@ -235,7 +242,9 @@ static MZWriteQueue* sharedQueue = nil;
         return;
     [self willChangeValueForKey:@"queueItems"];
     for(MetaEdits* edit in anArray)
-        [queueItems addObject:[edit copy]];
+    {
+        [queueItems addObject:[MZWriteQueueStatus statusWithEdits:edit]];
+    }
     [self saveQueueWithError:NULL];
     [self didChangeValueForKey:@"queueItems"];
 }
@@ -244,7 +253,7 @@ static MZWriteQueue* sharedQueue = nil;
 {
     NSAssert(anEdit, @"A value argument");
     [self willChangeValueForKey:@"queueItems"];
-    [queueItems addObject:[anEdit copy]];
+    [queueItems addObject:[MZWriteQueueStatus statusWithEdits:anEdit]];
     [self saveQueueWithError:NULL];
     [self didChangeValueForKey:@"queueItems"];
 }

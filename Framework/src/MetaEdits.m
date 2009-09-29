@@ -333,6 +333,14 @@
     return copy;
 }
 
+- (id<MetaData>)queueCopy
+{
+    id<MetaData> ret = [[provider copy] autorelease];
+    MetaEdits* copy = [[MetaEdits alloc] initWithProvider:ret];
+    [copy->tags addEntriesFromDictionary:tags];
+    return copy;
+}
+
 /*
 - (id)valueForUndefinedKey:(NSString *)key {
     if([key hasSuffix:@"Changed"])

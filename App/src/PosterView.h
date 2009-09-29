@@ -15,7 +15,7 @@
 
 - (void)awakeFromNib;
 
-- (void)mouseUp:(NSEvent *)theEvent;
+- (void)mouseDown:(NSEvent *)theEvent;
 - (void)keyDown:(NSEvent *)theEvent;
 
 - (void)setObjectValue:(id < NSCopying >)object;

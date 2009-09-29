@@ -14,6 +14,7 @@
     NSArray* keys;
     NSDictionary* read_mapping;
     NSDictionary* write_mapping;
+    NSMutableArray* writes;
 }
 
 - (id)init;
