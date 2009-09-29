@@ -13,7 +13,7 @@
 
 - (void)awakeFromNib
 {
-    dumpMethods([self superclass]);
+    //dumpMethods([self superclass]);
     actionHack = [self action];
     [self setAction:NULL];
 }

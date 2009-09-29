@@ -44,6 +44,7 @@
     [controller release];
     [playBtn release];
     [pauseBtn release];
+    [filesController release];
     [super dealloc];
 }
 
@@ -177,7 +178,7 @@
 
 - (IBAction)addToQueue:(id)sender
 {
-    NSArray* files = [[MZMetaLoader sharedLoader] files];
+    NSArray* files = [filesController arrangedObjects];
     [writeQueue addQueueItems:files];
     [[MZMetaLoader sharedLoader] removeAllObjects];
 }

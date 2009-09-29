@@ -8,6 +8,7 @@
 
 #import "FileViewBox.h"
 #import "MyQueueCollectionView.h"
+#import "MZWriteQueueStatus.h"
 
 @implementation FileViewBox
 @synthesize tabView;
@@ -110,28 +111,15 @@
 }
 */
 
-- (void)tabView:(NSTabView *)aTabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
+- (IBAction)switchDetails:(id)sender
 {
-    MGCollectionView* colview = (MGCollectionView*)[self superview];
-    NSRect frame = [self frame];
-
-    NSTabViewItem * item = [tabView selectedTabViewItem];
-    if([[item identifier] isEqual:@"action"])
-        frame.size.height = 53;
-    else
-        frame.size.height = 43;
-    [self setFrame:frame];
-    [colview setNeedsLayout:YES];
-
-}
-
-- (IBAction)switchTab:(id)sender
-{
+    /*
     NSTabViewItem * item = [tabView selectedTabViewItem];
     if([[item identifier] isEqual:@"pending"])
         [tabView selectTabViewItemWithIdentifier:@"action"];
     else
         [tabView selectTabViewItemWithIdentifier:@"pending"];
+    */
 }
 
 - (IBAction)removeItem:(id)sender
@@ -140,6 +128,15 @@
     id object = [colview representedObjectForView:self];
     if(object)
         [colview removeObject:object];
+}
+
+- (IBAction)revealItem:(id)sender
+{
+    MyQueueCollectionView* colview = (MyQueueCollectionView*)[self superview];
+    MZWriteQueueStatus* object = [colview representedObjectForView:self];
+    [[NSWorkspace sharedWorkspace]
+                      selectFile:[[object edits] loadedFileName]
+        inFileViewerRootedAtPath:@""];
 }
 
 @end

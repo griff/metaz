@@ -17,7 +17,8 @@
 @property (nonatomic, retain) IBOutlet NSTextField* label;
 @property (nonatomic, retain) IBOutlet NSButton* disclosure;
 
-- (IBAction)switchTab:(id)sender;
+- (IBAction)switchDetails:(id)sender;
 - (IBAction)removeItem:(id)sender;
+- (IBAction)revealItem:(id)sender;
 
 @end

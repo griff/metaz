@@ -258,6 +258,8 @@ static MZPluginController *gInstance = NULL;
 - (MetaEdits *)loadDataFromFile:(NSString *)path
 {
     id<MZDataProvider> provider = [self dataProviderForPath:path];
+    if(!provider)
+        return nil;
     MetaLoaded* loaded = [provider loadFromFile:path];
     id next = nil;
     if([[self delegate] respondsToSelector:@selector(pluginController:extraMetaDataForProvider:loaded:)])

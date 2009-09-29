@@ -11,6 +11,7 @@
 
 @implementation QueueWindowController
 @synthesize controller;
+@synthesize collectionView;
 
 - (id)initWithWindowNibName:(NSString *)windowNibName owner:(QueueController *)owner
 {
@@ -25,6 +26,7 @@
 -(void)dealloc
 {
     //[controller release];
+    [collectionView release];
     [super dealloc];
 }
 
@@ -64,5 +66,25 @@
 {
     [controller pauseResumeEncoding:sender];
 }
+
+- (void)tabView:(NSTabView *)aTabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
+{
+    NSView* box = [[aTabView superview] superview];
+    NSRect frame = [box frame];
+
+    CGFloat newHeight;
+    NSTabViewItem * item = [aTabView selectedTabViewItem];
+    if([[item identifier] isEqual:@"action"])
+        newHeight = 53;
+    else
+        newHeight = 43;
+    if(frame.size.height != newHeight)
+    {
+        frame.size.height = newHeight;
+        [box setFrame:frame];
+        [collectionView setNeedsLayout:YES];
+    }
+}
+
 
 @end

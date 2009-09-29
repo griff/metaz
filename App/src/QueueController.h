@@ -10,6 +10,7 @@
 #import "MZWriteQueue.h"
 
 @interface QueueController : NSObject <NSUserInterfaceValidations> {
+    NSArrayController* filesController;
     NSWindow* mainWindow;
     NSWindowController* controller;
     MZWriteQueue* writeQueue;
@@ -18,6 +19,7 @@
     NSToolbarItem* playBtn2;
     NSToolbarItem* pauseBtn2;
 }
+@property (nonatomic, retain) IBOutlet NSArrayController* filesController;
 @property (nonatomic, retain) IBOutlet NSWindow* mainWindow;
 @property (nonatomic, retain) IBOutlet NSToolbarItem* playBtn;
 @property (nonatomic, retain) IBOutlet NSToolbarItem* pauseBtn;

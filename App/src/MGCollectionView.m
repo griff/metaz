@@ -10,10 +10,9 @@
 #include <math.h>
 
 #if defined(__LP64__) && __LP64__
-#define CGFloatMax(x,y) fmax(x,y)
+#define MGFloatMax(x,y) fmax(x,y)
 #else	/* !defined(__LP64__) || !__LP64__ */
-typedef float CGFloat;
-#define CGFloatMax(x,y) fmaxf(x,y)
+#define MGFloatMax(x,y) fmaxf(x,y)
 #endif	/* !defined(__LP64__) || !__LP64__ */
 
 
@@ -103,6 +102,7 @@ typedef float CGFloat;
 
 - (void)_animateAtEndOfEvent
 {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_animateAtEndOfEvent) object:nil];
     [self _applyTargetConfiguration:YES];
 }
 
@@ -402,7 +402,7 @@ typedef float CGFloat;
         {
             [[colors objectAtIndex:coloridx] set];
             NSRect frame = item.view.frame;
-            ypos = CGFloatMax(ypos, frame.origin.y + frame.size.height);
+            ypos = MGFloatMax(ypos, frame.origin.y + frame.size.height);
             NSRectFill(frame);
             coloridx = (coloridx + 1) % count;
         }

@@ -28,18 +28,19 @@ typedef enum {
 + (MZWriteQueue *)sharedQueue;
 + (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key;
 
--(void)start;
--(void)pause;
--(void)resume;
--(void)stop;
--(BOOL)loadQueueWithError:(NSError **)error;
--(BOOL)saveQueueWithError:(NSError **)error;
--(void)removeAllQueueItems;
--(void)removeObjectFromQueueItemsAtIndex:(NSUInteger)index;
--(void)removeQueueItemsAtIndexes:(NSIndexSet *)indexes;
--(void)insertObject:(MetaEdits *)anEdit inQueueItemsAtIndex:(NSUInteger)index;
--(void)insertQueueItems:(NSArray *)edits atIndexes:(NSIndexSet *)indexes;
--(void)addQueueItems:(NSArray *)anArray;
--(void)addQueueItemsObject:(MetaEdits *)anEdit;
+- (void)start;
+- (void)pause;
+- (void)resume;
+- (void)stop;
+- (BOOL)loadQueueWithError:(NSError **)error;
+- (BOOL)saveQueueWithError:(NSError **)error;
+- (void)removeCompleted:(id)sender;
+- (void)removeAllQueueItems;
+- (void)removeObjectFromQueueItemsAtIndex:(NSUInteger)index;
+- (void)removeQueueItemsAtIndexes:(NSIndexSet *)indexes;
+- (void)insertObject:(MetaEdits *)anEdit inQueueItemsAtIndex:(NSUInteger)index;
+- (void)insertQueueItems:(NSArray *)edits atIndexes:(NSIndexSet *)indexes;
+- (void)addQueueItems:(NSArray *)anArray;
+- (void)addQueueItemsObject:(MetaEdits *)anEdit;
 
 @end

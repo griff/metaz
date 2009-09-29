@@ -91,8 +91,12 @@ static MZMetaLoader* sharedLoader = nil;
     NSMutableArray* arr = [NSMutableArray arrayWithCapacity:[fileNames count]];
     for ( NSString* fileName in fileNames )
     {
+        //NSLog(@"Loading file '%@'", fileName);
         MetaEdits* edits = [[MZPluginController sharedInstance] loadDataFromFile:fileName];
-        [arr addObject:edits];
+        if(edits)
+            [arr addObject:edits];
+        else
+            NSLog(@"Could no load file '%@'", fileName);
     }
     [files insertObjects:arr atIndexes:indexes];
     [self didChangeValueForKey:@"files"];

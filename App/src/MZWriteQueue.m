@@ -9,6 +9,11 @@
 #import "MZWriteQueue.h"
 #import "MZWriteQueueStatus.h"
 
+@interface MZWriteQueue (Private)
+- (void)startNextItem;
+@end
+
+
 @implementation MZWriteQueue
 @synthesize queueItems;
 @synthesize status;
@@ -68,8 +73,7 @@ static MZWriteQueue* sharedQueue = nil;
     {
         [self willChangeValueForKey:@"status"];
         status = QueueRunning;
-        MZWriteQueueStatus* sts = [queueItems objectAtIndex:0];
-        [sts startWriting];
+        [self startNextItem];
         [self didChangeValueForKey:@"status"];
     }
 }
@@ -100,10 +104,26 @@ static MZWriteQueue* sharedQueue = nil;
     {
         [self willChangeValueForKey:@"status"];
         status = QueueStopped;
-        MZWriteQueueStatus* sts = [queueItems objectAtIndex:0];
-        [sts stopWriting];
+        for(MZWriteQueueStatus* sts in queueItems)
+            [sts stopWriting];
         [self didChangeValueForKey:@"status"];
     }
+}
+
+- (void)startNextItem
+{
+    MZWriteQueueStatus* sts = nil;
+    int len = [queueItems count];
+    for(int i=0; i<len; i++)
+    {
+        sts = [queueItems objectAtIndex:i];
+        if(![sts completed])
+        {
+            [sts startWriting];
+            return;
+        }
+    }
+    [self stop];
 }
 
 -(BOOL)loadQueueWithError:(NSError **)error
@@ -183,6 +203,21 @@ static MZWriteQueue* sharedQueue = nil;
         }
     }
     return YES;
+}
+
+- (void)removeCompleted:(id)sender
+{
+    [self willChangeValueForKey:@"queueItems"];
+    NSMutableIndexSet* set = [[NSMutableIndexSet alloc] init];
+    int len = [queueItems count];
+    for(int i=0; i<len; i++)
+    {
+        if([[queueItems objectAtIndex:i] completed])
+            [set addIndex:i];
+    }
+    [queueItems removeObjectsAtIndexes:set];
+    [set release];
+    [self didChangeValueForKey:@"queueItems"];
 }
 
 -(void)removeAllQueueItems

@@ -11,7 +11,7 @@
 #import <MetaZKit/MetaEdits.h>
 
 @protocol MZDataWriteDelegate <NSObject>
-- (void)writeCanceled:(int)status;
+- (void)writeCanceled;
 - (void)writeFinishedPercent:(int)percent;
 - (void)writeFinished;
 @end

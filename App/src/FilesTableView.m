@@ -126,7 +126,18 @@
         NSString* str = [pb stringForType:NSStringPboardType];
         NSFileManager* mgr = [NSFileManager defaultManager];
         BOOL dir = NO;
-        return [mgr fileExistsAtPath:[str stringByExpandingTildeInPath] isDirectory:&dir] && !dir;
+        str = [str stringByExpandingTildeInPath];
+        return [mgr fileExistsAtPath:str isDirectory:&dir] && !dir &&
+            [[MZPluginController sharedInstance] dataProviderForPath:str] != nil;
+    }
+    if(bestType != nil && [bestType isEqualToString:NSFilenamesPboardType])
+    {
+        NSArray* filenames = [pb propertyListForType:NSFilenamesPboardType];
+        for(NSString* str in filenames)
+        {
+            if(![[MZPluginController sharedInstance] dataProviderForPath:str])
+                return NO;
+        }
     }
     return bestType != nil;
 }
@@ -240,9 +251,22 @@
             NSString* str = [pboard stringForType:NSStringPboardType];
             NSFileManager* mgr = [NSFileManager defaultManager];
             BOOL dir = NO;
-            if([mgr fileExistsAtPath:[str stringByExpandingTildeInPath] isDirectory:&dir] && !dir )
+            str = [str stringByExpandingTildeInPath];
+            if([mgr fileExistsAtPath:str isDirectory:&dir] && !dir &&
+                [[MZPluginController sharedInstance] dataProviderForPath:str])
+            {
                 return NSDragOperationMove | NSDragOperationDelete;
+            }
             return NSDragOperationNone;
+        }
+        if([bestType isEqualToString:NSFilenamesPboardType])
+        {
+            NSArray* filenames = [pboard propertyListForType:NSFilenamesPboardType];
+            for(NSString* str in filenames)
+            {
+                if(![[MZPluginController sharedInstance] dataProviderForPath:str])
+                    return NSDragOperationNone;
+            }
         }
         return NSDragOperationMove | NSDragOperationDelete;
     }
@@ -279,7 +303,10 @@
         {
             NSArray* filenames = [pboard propertyListForType:NSFilenamesPboardType];
             for(NSString* file in filenames)
-                NSLog(@"File %@ of type %@", file, [[NSWorkspace sharedWorkspace] typeOfFile:file error:NULL]);
+            {
+                if(![[MZPluginController sharedInstance] dataProviderForPath:file])
+                    return NO;
+            }
             [[MZMetaLoader sharedLoader] loadFromFiles:filenames toIndex:row];
             return YES;
         }
@@ -288,8 +315,9 @@
             NSString* filename = [pboard stringForType:NSStringPboardType];
             NSFileManager* mgr = [NSFileManager defaultManager];
             BOOL dir = NO;
-            if([mgr fileExistsAtPath:[filename stringByExpandingTildeInPath]
-                        isDirectory:&dir] && !dir)
+            filename = [filename stringByExpandingTildeInPath];
+            if([mgr fileExistsAtPath:filename isDirectory:&dir] && !dir &&
+                [[MZPluginController sharedInstance] dataProviderForPath:filename])
             {
                 [[MZMetaLoader sharedLoader] loadFromFile:filename toIndex:row];
                 return YES;

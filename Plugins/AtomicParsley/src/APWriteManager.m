@@ -73,7 +73,12 @@
 {
     int status = [[note object] terminationStatus];
     NSLog(@"Terminated status '%d'", status);
-    if([delegate respondsToSelector:@selector(writeFinished)])
+    if(terminated)
+    {
+        if([delegate respondsToSelector:@selector(writeCanceled)])
+            [delegate writeCanceled];
+    }
+    else if([delegate respondsToSelector:@selector(writeFinished)])
         [delegate writeFinished];
 }
 
