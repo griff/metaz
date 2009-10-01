@@ -8,6 +8,7 @@
 
 #import "MZWriteQueueStatus.h"
 #import "MZWriteQueue.h"
+#import "MZMetaLoader.h"
 
 @interface MZWriteQueue (Private)
 
@@ -65,12 +66,40 @@
         [controller terminate];
 }
 
+- (void)stopWritingAndRemove
+{
+    if(controller && [controller isRunning])
+    {
+        removeOnCancel = YES;
+        [controller terminate];
+    }
+    else
+    {
+        [[MZMetaLoader sharedLoader] reloadEdits:edits];
+        [[MZWriteQueue sharedQueue] removeObjectFromQueueItems:self];
+    }
+}
+
 - (void)writeCanceled
 {
     [self willChangeValueForKey:@"writing"];
     writing = 0;
     [self didChangeValueForKey:@"writing"];
-    [[MZWriteQueue sharedQueue] stop];
+    if(removeOnCancel)
+    {
+        [[MZMetaLoader sharedLoader] reloadEdits:edits];
+        [[MZWriteQueue sharedQueue] removeObjectFromQueueItems:self];
+        [[MZWriteQueue sharedQueue] startNextItem];
+    }
+    else
+    {
+        MZWriteQueue* q = [MZWriteQueue sharedQueue];
+        [q willChangeValueForKey:@"pendingItems"];
+        [q willChangeValueForKey:@"completedItems"];
+        [q stop];
+        [q didChangeValueForKey:@"pendingItems"];
+        [q didChangeValueForKey:@"completedItems"];
+    }
 }
 
 - (void)writeFinishedPercent:(int)newPercent

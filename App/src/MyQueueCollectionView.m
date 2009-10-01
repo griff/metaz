@@ -42,7 +42,7 @@
 
 -(void)removeObject:(id)object
 {
-    [queues removeObject:object];
+    [object stopWritingAndRemove];
 }
 
 @end

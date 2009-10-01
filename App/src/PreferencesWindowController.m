@@ -27,6 +27,9 @@
 - (void)awakeFromNib
 {
     [pluginsButton setImage:[[NSWorkspace sharedWorkspace] iconForFileType:@"mzplugin"]];
+    NSToolbar* toolbar = [pluginsButton toolbar];
+    NSString* ident = [[[toolbar items] objectAtIndex:0] itemIdentifier];
+    [toolbar setSelectedItemIdentifier:ident];
 }
 
 - (IBAction)selectTabFromTag:(id)sender;
@@ -46,6 +49,11 @@
 - (MZPluginController *)pluginController
 {
     return [MZPluginController sharedInstance];
+}
+
+- (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar
+{
+    return [[toolbar items] arrayByPerformingSelector:@selector(itemIdentifier)];
 }
 
 @end

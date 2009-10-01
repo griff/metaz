@@ -117,9 +117,8 @@
 - (BOOL)pasteboardHasTypes {
     // has the pasteboard got an expense?
     NSPasteboard *pb = [NSPasteboard generalPasteboard];
-    NSArray *types = [NSArray arrayWithObjects:MZFilesTableRows,
-            MZMetaEditsDataType, NSFilenamesPboardType,
-            NSStringPboardType, nil];
+    NSArray *types = [NSArray arrayWithObjects:MZMetaEditsDataType,
+            NSFilenamesPboardType, NSStringPboardType, nil];
     NSString *bestType = [pb availableTypeFromArray:types];
     if(bestType != nil && [bestType isEqualToString:NSStringPboardType])
     {
@@ -206,6 +205,11 @@
 }
 
 #pragma mark - drag'n'drop support
+- (void)draggedImage:(NSImage *)anImage endedAt:(NSPoint)aPoint operation:(NSDragOperation)operation
+{
+    [super draggedImage:anImage endedAt:aPoint operation:operation];
+}
+
 - (BOOL)tableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes
      toPasteboard:(NSPasteboard*)pboard
 {
@@ -243,6 +247,7 @@
     NSArray *types = [NSArray arrayWithObjects:MZFilesTableRows,
             MZMetaEditsDataType, NSFilenamesPboardType,
             NSStringPboardType, nil];
+    NSDragOperation operation = [info draggingSourceOperationMask];        
     NSString *bestType = [pboard availableTypeFromArray:types];
     if(bestType != nil)
     {
@@ -255,7 +260,7 @@
             if([mgr fileExistsAtPath:str isDirectory:&dir] && !dir &&
                 [[MZPluginController sharedInstance] dataProviderForPath:str])
             {
-                return NSDragOperationMove | NSDragOperationDelete;
+                return NSDragOperationGeneric;
             }
             return NSDragOperationNone;
         }
@@ -267,8 +272,9 @@
                 if(![[MZPluginController sharedInstance] dataProviderForPath:str])
                     return NSDragOperationNone;
             }
+            return NSDragOperationGeneric;
         }
-        return NSDragOperationMove | NSDragOperationDelete;
+        return NSDragOperationMove;
     }
     return NSDragOperationNone;
 }

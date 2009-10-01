@@ -134,8 +134,11 @@
 {
     MyQueueCollectionView* colview = (MyQueueCollectionView*)[self superview];
     MZWriteQueueStatus* object = [colview representedObjectForView:self];
+    NSString* fileName = [[object edits] loadedFileName];
+    if([object completed])
+        fileName = [[object edits] savedFileName];
     [[NSWorkspace sharedWorkspace]
-                      selectFile:[[object edits] loadedFileName]
+                      selectFile:fileName
         inFileViewerRootedAtPath:@""];
 }
 

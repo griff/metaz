@@ -148,6 +148,41 @@
             [retdict setObject:value forKey:[read_mapping objectForKey:map]];
     }
     
+    // Special image handling
+    NSString* covr = [dict objectForKey:@"covr"];
+    if(covr)
+    {
+        task = [[NSTask alloc] init];
+        [task setLaunchPath:[self launchPath]];
+        NSString* file = NSTemporaryDirectory();
+        if(!file)
+            file = @"/tmp";
+        
+        file = [file stringByAppendingPathComponent:
+            [NSString stringWithFormat:@"MetaZImage_%@",
+                [[NSProcessInfo processInfo] globallyUniqueString]]];
+        [task setArguments:[NSArray arrayWithObjects:fileName, @"-e", file, nil]];
+        [task launch];
+        [task waitUntilExit];
+        
+        file = [file stringByAppendingString:@"_artwork_1"];
+        
+        NSFileManager* mgr = [NSFileManager defaultManager];
+        BOOL isDir;
+        if([mgr fileExistsAtPath:[file stringByAppendingString:@".png"] isDirectory:&isDir] && !isDir)
+        {
+            NSImage* data = [[[NSImage alloc] initWithContentsOfFile:[file stringByAppendingString:@".png"]] autorelease];
+            [retdict setObject:data forKey:MZPictureTag];
+            [mgr removeItemAtPath:[file stringByAppendingString:@".png"] error:NULL];
+        }
+        else if([mgr fileExistsAtPath:[file stringByAppendingString:@".jpg"] isDirectory:&isDir] && !isDir)
+        {
+            NSImage* data = [[[NSImage alloc] initWithContentsOfFile:[file stringByAppendingString:@".jpg"]] autorelease];
+            [retdict setObject:data forKey:MZPictureTag];
+            [mgr removeItemAtPath:[file stringByAppendingString:@".jpg"] error:NULL];
+        }
+    }
+    
     // Special handling for cast, directors, producers and screenwriters
     NSString* iTunMOVIStr = [dict objectForKey:@"com.apple.iTunes;iTunMOVI"];
     if(iTunMOVIStr)
@@ -220,6 +255,9 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     NSMutableArray* args = [NSMutableArray array];
     [args addObject:[data loadedFileName]];
     
+    [args addObject:@"--output"];
+    [args addObject:[data savedTempFileName]];
+    
     NSDictionary* changes = [data tags];
     for(NSString* key in [changes allKeys])
     {
@@ -242,6 +280,40 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     sortTags(args, changes, MZSortTVShowTag, @"show");
     sortTags(args, changes, MZSortComposerTag, @"composer");
     
+    id pictureObj = [changes objectForKey:MZPictureTag];
+    NSString* pictureFile = nil;
+    if(pictureObj == [NSNull null])
+    {
+        [args addObject:@"--artwork"];
+        [args addObject:@"REMOVE_ALL"];
+    }
+    else if(pictureObj)
+    {
+        NSImage* picture = pictureObj;
+        pictureFile = NSTemporaryDirectory();
+        if(!pictureFile)
+            pictureFile = @"/tmp";
+        
+        pictureFile = [pictureFile stringByAppendingPathComponent:
+            [NSString stringWithFormat:@"MetaZImage_%@.png",
+                [[NSProcessInfo processInfo] globallyUniqueString]]];
+                
+        NSData *imageData = [picture TIFFRepresentation];
+        NSBitmapImageRep* imageRep = [NSBitmapImageRep imageRepWithData:imageData];
+        imageData = [imageRep representationUsingType:NSPNGFileType properties:[NSDictionary dictionary]];
+        if([imageData writeToFile:pictureFile atomically:NO])
+        {
+            [args addObject:@"--artwork"];
+            [args addObject:@"REMOVE_ALL"];
+            [args addObject:@"--artwork"];
+            [args addObject:pictureFile];
+        }
+        else
+        {
+            NSLog(@"Failed to write image to temp '%@'", pictureFile);
+            pictureFile = nil;
+        }
+    }
 
     NSTask* task = [[NSTask alloc] init];
     [task setLaunchPath:[self launchPath]];
@@ -249,7 +321,9 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     
     APWriteManager* manager = [APWriteManager
             managerWithTask:task
-                   delegate:delegate];
+                   delegate:delegate
+                      edits:data
+                pictureFile:pictureFile];
     [manager launch];
     [writes addObject:manager];
     

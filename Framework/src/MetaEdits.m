@@ -19,7 +19,7 @@
 
 #pragma mark - initialization
 
--(id)initWithProvider:(id<MetaData>)aProvider {
+- (id)initWithProvider:(id<MetaData>)aProvider {
     self = [super init];
     //undoManager = [[ProxyUndoManager alloc] initWithUndoManager:[[NSUndoManager alloc] init] andType:2];
     undoManager = [[NSUndoManager alloc] init];
@@ -59,15 +59,32 @@
     return [provider owner];
 }
 
--(NSArray *)providedKeys {
+- (NSArray *)providedKeys {
     return [provider providedKeys];
 }
 
--(NSString *)loadedFileName {
+- (NSString *)loadedFileName {
     return [provider loadedFileName];
 }
 
--(NSUndoManager *)undoManager {
+- (NSString *)savedFileName
+{
+    return [[[self loadedFileName] stringByDeletingLastPathComponent]
+        stringByAppendingPathComponent:[self fileName]];
+}
+
+- (NSString *)savedTempFileName
+{
+    NSString* tempFile = [self savedFileName];
+    NSString* ext = [tempFile pathExtension];
+    tempFile = [[tempFile stringByDeletingPathExtension] stringByAppendingString:@"MetaZ"];
+    if(ext && [ext length] > 0)
+        return [tempFile stringByAppendingFormat:@".%@", ext];
+    return tempFile;
+}
+
+
+- (NSUndoManager *)undoManager {
     return undoManager;
 }
 

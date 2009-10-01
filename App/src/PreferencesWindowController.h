@@ -23,5 +23,6 @@
 - (IBAction)removePlugin:(id)sender;
 
 - (MZPluginController *)pluginController;
+- (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar;
 
 @end

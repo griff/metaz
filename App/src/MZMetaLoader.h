@@ -24,5 +24,6 @@
 - (void)loadFromFiles:(NSArray *)fileNames toIndex:(NSUInteger)index;
 - (void)loadFromFiles:(NSArray *)fileNames toIndexes:(NSIndexSet*)indexes;
 - (void)moveObjects:(NSArray *)objects toIndex:(NSUInteger)index;
+- (void)reloadEdits:(MetaEdits *)edits;
 
 @end

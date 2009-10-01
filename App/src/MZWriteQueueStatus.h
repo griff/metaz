@@ -14,6 +14,7 @@
     int percent;
     int writing;
     BOOL completed;
+    BOOL removeOnCancel;
     id<MZDataWriteController> controller;
 }
 @property(readonly) MetaEdits* edits;
@@ -27,6 +28,7 @@
 
 - (void)startWriting;
 - (void)stopWriting;
+- (void)stopWritingAndRemove;
 
 - (void)writeCanceled;
 - (void)writeFinished;

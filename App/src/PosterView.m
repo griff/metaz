@@ -23,6 +23,7 @@
     [super setObjectValue:object];
     if(!object)
         [self setImage:[NSImage imageNamed:@"faded_cow"]];
+    
 }
 
 - (NSImage *)objectValue
@@ -42,9 +43,9 @@
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
-    NSLog(@"Test Down %d %d", [theEvent clickCount], [self ignoresMultiClick]);
+    //NSLog(@"Test Down %d %d", [theEvent clickCount], [self ignoresMultiClick]);
     if([theEvent clickCount] == 2 && [self isEnabled])
-        [self sendAction:actionHack to:[self target]];
+        [NSApp sendAction:actionHack to:[self target] from:self];
     [super mouseDown:theEvent];
 }
 

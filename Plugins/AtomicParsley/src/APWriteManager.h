@@ -12,15 +12,22 @@
 @interface APWriteManager : NSObject <MZDataWriteController> {
     NSTask* task;
     BOOL terminated;
+    NSString* pictureFile;
+    MetaEdits* edits;
     id<MZDataWriteDelegate> delegate;
 }
 @property(readonly) NSTask* task;
 @property(readonly) id<MZDataWriteDelegate> delegate;
+@property(readonly) MetaEdits* edits;
 
 + (id)managerWithTask:(NSTask *)task
-             delegate:(id<MZDataWriteDelegate>)delegate;
+             delegate:(id<MZDataWriteDelegate>)delegate
+                edits:(MetaEdits *)edits
+          pictureFile:(NSString *)file;
 - (id)initWithTask:(NSTask *)task
-          delegate:(id<MZDataWriteDelegate>)delegate;
+          delegate:(id<MZDataWriteDelegate>)delegate
+             edits:(MetaEdits *)edits
+       pictureFile:(NSString *)file;
 
 - (void)launch;
 

@@ -22,17 +22,19 @@
 @property(retain)   NSUndoManager* multiUndoManager;
 @property(readonly) NSDictionary* tags;
 
--(id)initWithProvider:(id<MetaData>)aProvider;
+- (id)initWithProvider:(id<MetaData>)aProvider;
 
--(NSUndoManager *)undoManager;
--(NSString *)loadedFileName;
+- (NSUndoManager *)undoManager;
+- (NSString *)loadedFileName;
+- (NSString *)savedFileName;
+- (NSString *)savedTempFileName;
 
--(BOOL)changed;
--(NSArray *)providedKeys;
+- (BOOL)changed;
+- (NSArray *)providedKeys;
 
--(id)getterValueForKey:(NSString *)aKey;
--(BOOL)getterChangedForKey:(NSString *)aKey;
--(void)setterChanged:(BOOL)aValue forKey:(NSString *)aKey;
--(void)setterValue:(id)aValue forKey:(NSString *)aKey;
+- (id)getterValueForKey:(NSString *)aKey;
+- (BOOL)getterChangedForKey:(NSString *)aKey;
+- (void)setterChanged:(BOOL)aValue forKey:(NSString *)aKey;
+- (void)setterValue:(id)aValue forKey:(NSString *)aKey;
 
 @end

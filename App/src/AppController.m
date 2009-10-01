@@ -233,12 +233,14 @@ NSDictionary* findBinding(NSWindow* window) {
 - (IBAction)showPreferences:(id)sender
 {
     if(!prefController)
+    {
         prefController = [[PreferencesWindowController alloc] init];
-    [[NSNotificationCenter defaultCenter] 
+        [[NSNotificationCenter defaultCenter] 
                 addObserver:self 
                  selector:@selector(preferencesDidClose:)
                      name:NSWindowWillCloseNotification
                    object:[prefController window]];
+    }
     [prefController showWindow:self];
 }
 

@@ -17,6 +17,7 @@
 @end
 
 @implementation QueueController
+@synthesize filesController;
 @synthesize mainWindow;
 @synthesize playBtn;
 @synthesize pauseBtn;

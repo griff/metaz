@@ -31,6 +31,17 @@ static MZWriteQueue* sharedQueue = nil;
     return !([key isEqual:@"queueItems"] || [key isEqual:@"status"]);
 }
 
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
+{
+    NSSet* sup = [super keyPathsForValuesAffectingValueForKey:key];
+    if([key isEqualToString:@"pendingItems"] ||
+        [key isEqualToString:@"completedItems"])
+    {
+        return [sup setByAddingObject:@"queueItems"];
+    }
+    return sup;
+}
+
 -(id)init
 {
     self = [super init];
@@ -119,16 +130,19 @@ static MZWriteQueue* sharedQueue = nil;
         sts = [queueItems objectAtIndex:i];
         if(![sts completed])
         {
+            [self willChangeValueForKey:@"pendingItems"];
             [sts startWriting];
+            [self didChangeValueForKey:@"pendingItems"];
+            [self saveQueueWithError:NULL];
             return;
         }
     }
     [self stop];
+    [self saveQueueWithError:NULL];
 }
 
 -(BOOL)loadQueueWithError:(NSError **)error
 {
-    return YES;
     NSFileManager *mgr = [NSFileManager defaultManager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     for(NSString * path in paths)
@@ -139,18 +153,33 @@ static MZWriteQueue* sharedQueue = nil;
             id ret = [NSKeyedUnarchiver unarchiveObjectWithFile:destinationPath];
             if(!ret)
             {
-                // Make NSError;
+                if(error != NULL)
+                {
+                    //Make NSError;
+                    NSDictionary* dict = [NSDictionary dictionaryWithObject:
+                        NSLocalizedString(@"Unarchiving of queue items failed", @"Unarchiving error")
+                        forKey:NSLocalizedDescriptionKey];
+                    *error = [NSError errorWithDomain:@"MetaZ" code:12 userInfo:dict];
+                }
                 return NO;
             }
             [self willChangeValueForKey:@"queueItems"];
-            [queueItems addObjectsFromArray: ret];
+            for(MetaEdits* edits in ret)
+                [queueItems addObject:[MZWriteQueueStatus statusWithEdits:edits]];
             [self didChangeValueForKey:@"queueItems"];
             return YES;
         }
     }
     if ([paths count] == 0)
     {
-        //Make NSError;
+        if(error != NULL)
+        {
+            //Make NSError;
+            NSDictionary* dict = [NSDictionary dictionaryWithObject:
+                NSLocalizedString(@"No search paths found", @"Search path error")
+                forKey:NSLocalizedDescriptionKey];
+            *error = [NSError errorWithDomain:@"MetaZ" code:10 userInfo:dict];
+        }
         return NO;
     }
     return YES;
@@ -158,10 +187,13 @@ static MZWriteQueue* sharedQueue = nil;
 
 -(BOOL)saveQueueWithError:(NSError **)error
 {
-    return YES;
     NSFileManager *mgr = [NSFileManager defaultManager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    if([queueItems count] > 0)
+    NSMutableArray* items = [NSMutableArray array];
+    for(MZWriteQueueStatus* obj in queueItems)
+        if(![obj completed])
+            [items addObject:[obj edits]];
+    if([items count] > 0)
     {
         if ([paths count] > 0)
         {
@@ -181,15 +213,29 @@ static MZWriteQueue* sharedQueue = nil;
             
             NSString *destinationPath = [[paths objectAtIndex:0]
                         stringByAppendingPathComponent: fileName];
-            if(![NSKeyedArchiver archiveRootObject:queueItems toFile:destinationPath])
+            if(![NSKeyedArchiver archiveRootObject:items toFile:destinationPath])
             {
-                //Make NSError;
+                if(error != NULL)
+                {
+                    //Make NSError;
+                    NSDictionary* dict = [NSDictionary dictionaryWithObject:
+                        NSLocalizedString(@"Archiving of queue items failed", @"Archiving error")
+                        forKey:NSLocalizedDescriptionKey];
+                    *error = [NSError errorWithDomain:@"MetaZ" code:11 userInfo:dict];
+                }
                 return NO;
             }
         }
         else
         {
-            // Make NSError;
+            if(error != NULL)
+            {
+                //Make NSError;
+                NSDictionary* dict = [NSDictionary dictionaryWithObject:
+                    NSLocalizedString(@"No search paths found", @"Search path error")
+                    forKey:NSLocalizedDescriptionKey];
+                *error = [NSError errorWithDomain:@"MetaZ" code:10 userInfo:dict];
+            }
             return NO;
         }
     }
@@ -204,6 +250,25 @@ static MZWriteQueue* sharedQueue = nil;
     }
     return YES;
 }
+
+- (NSArray *)pendingItems
+{
+    NSMutableArray* ret = [NSMutableArray array];
+    for(id obj in queueItems)
+        if([obj writing] == 0 && ![obj completed])
+            [ret addObject:obj];
+    return ret;
+}
+
+- (NSArray *)completedItems
+{
+    NSMutableArray* ret = [NSMutableArray array];
+    for(id obj in queueItems)
+        if([obj completed])
+            [ret addObject:obj];
+    return ret;
+}
+
 
 - (void)removeCompleted:(id)sender
 {
@@ -224,6 +289,14 @@ static MZWriteQueue* sharedQueue = nil;
 {
     [self willChangeValueForKey:@"queueItems"];
     [queueItems removeAllObjects];
+    [self saveQueueWithError:NULL];
+    [self didChangeValueForKey:@"queueItems"];
+}
+
+- (void)removeObjectFromQueueItems:(id)object
+{
+    [self willChangeValueForKey:@"queueItems"];
+    [queueItems removeObject:object];
     [self saveQueueWithError:NULL];
     [self didChangeValueForKey:@"queueItems"];
 }

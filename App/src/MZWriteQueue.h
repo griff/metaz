@@ -24,6 +24,8 @@ typedef enum {
 @property(readonly) BOOL paused;
 @property(readonly) NSArray* queueItems;
 @property(readonly) RunStatus status;
+@property(readonly) NSArray* pendingItems;
+@property(readonly) NSArray* completedItems;
 
 + (MZWriteQueue *)sharedQueue;
 + (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key;
@@ -36,6 +38,7 @@ typedef enum {
 - (BOOL)saveQueueWithError:(NSError **)error;
 - (void)removeCompleted:(id)sender;
 - (void)removeAllQueueItems;
+- (void)removeObjectFromQueueItems:(id)object;
 - (void)removeObjectFromQueueItemsAtIndex:(NSUInteger)index;
 - (void)removeQueueItemsAtIndexes:(NSIndexSet *)indexes;
 - (void)insertObject:(MetaEdits *)anEdit inQueueItemsAtIndex:(NSUInteger)index;

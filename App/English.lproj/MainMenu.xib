@@ -10,7 +10,7 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="81"/>
 			<integer value="1259"/>
-			<integer value="480"/>
+			<integer value="372"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -5120,26 +5120,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">data: selection.picture</string>
-						<reference key="source" ref="83431714"/>
-						<reference key="destination" ref="35104934"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="83431714"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">data: selection.picture</string>
-							<string key="NSBinding">data</string>
-							<string key="NSKeyPath">selection.picture</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSRaisesForNotApplicableKeys</string>
-								<reference key="NS.object.0" ref="6"/>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">952</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: selection.pictureChanged</string>
 						<reference key="source" ref="183612391"/>
 						<reference key="destination" ref="35104934"/>
@@ -6922,26 +6902,6 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 					<int key="connectionID">1351</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">displayPatternValue1: queueItems.@count</string>
-						<reference key="source" ref="25764030"/>
-						<reference key="destination" ref="107141262"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="25764030"/>
-							<reference key="NSDestination" ref="107141262"/>
-							<string key="NSLabel">displayPatternValue1: queueItems.@count</string>
-							<string key="NSBinding">displayPatternValue1</string>
-							<string key="NSKeyPath">queueItems.@count</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSDisplayPattern</string>
-								<string key="NS.object.0">%{value1}@ file(s) pending in queue</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1352</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="1021"/>
@@ -6988,6 +6948,46 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 						<reference key="destination" ref="35104934"/>
 					</object>
 					<int key="connectionID">1360</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.picture</string>
+						<reference key="source" ref="83431714"/>
+						<reference key="destination" ref="35104934"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="83431714"/>
+							<reference key="NSDestination" ref="35104934"/>
+							<string key="NSLabel">value: selection.picture</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.picture</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSRaisesForNotApplicableKeys</string>
+								<reference key="NS.object.0" ref="6"/>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1365</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">displayPatternValue1: pendingItems.@count</string>
+						<reference key="source" ref="25764030"/>
+						<reference key="destination" ref="107141262"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="25764030"/>
+							<reference key="NSDestination" ref="107141262"/>
+							<string key="NSLabel">displayPatternValue1: pendingItems.@count</string>
+							<string key="NSBinding">displayPatternValue1</string>
+							<string key="NSKeyPath">pendingItems.@count</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSDisplayPattern</string>
+								<string key="NS.object.0">%{value1}@ file(s) pending in queue</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1366</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -10746,7 +10746,7 @@ ELIAAAAAAAgACAAIAAgAAQABAAEAAQ</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1360</int>
+			<int key="maxID">1366</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

@@ -125,4 +125,11 @@ static MZMetaLoader* sharedLoader = nil;
     [self didChangeValueForKey:@"files"];
 }
 
+- (void)reloadEdits:(MetaEdits *)edits
+{
+    [self willChangeValueForKey:@"files"];
+    [files addObject:edits];
+    [self didChangeValueForKey:@"files"];
+}
+
 @end
