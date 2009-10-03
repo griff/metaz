@@ -12,13 +12,18 @@
 @interface PreferencesWindowController : NSWindowController {
     NSTabView* tabView;
     NSToolbarItem* pluginsButton;
-    NSView* pluginsView;
+    NSToolbarItem* foldersButton;
     NSView* generalView;
+    NSView* fileView;
+    NSView* pluginsView;
+    NSToolbar* toolbar;
     NSArray* views;
 }
 @property (nonatomic,retain) IBOutlet NSTabView* tabView;
 @property (nonatomic,retain) IBOutlet NSToolbarItem* pluginsButton;
+@property (nonatomic,retain) IBOutlet NSToolbarItem* foldersButton;
 @property (nonatomic,retain) IBOutlet NSView* generalView;
+@property (nonatomic,retain) IBOutlet NSView* fileView;
 @property (nonatomic,retain) IBOutlet NSView* pluginsView;
 
 - (id)init;

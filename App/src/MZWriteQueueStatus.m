@@ -111,12 +111,16 @@
 
 - (void)writeFinished
 {
+    MZWriteQueue* q = [MZWriteQueue sharedQueue];
+
     [self willChangeValueForKey:@"writing"];
     writing = 0;
     [self didChangeValueForKey:@"writing"];
+    [q willChangeValueForKey:@"completedItems"];
     [self willChangeValueForKey:@"completed"];
     completed = YES;
     [self didChangeValueForKey:@"completed"];
+    [q didChangeValueForKey:@"completedItems"];
     [[MZWriteQueue sharedQueue] startNextItem];
 }
 

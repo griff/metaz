@@ -13,14 +13,14 @@
 #define MZMetaEditsDataType @"MZMetaEditsDataType"
 
 @interface MetaEdits : MZDynamicObject <MetaData, NSCopying, NSCoding> {
-    NSMutableDictionary* tags;
+    NSMutableDictionary* changes;
     NSObject<MetaData>* provider;
     NSUndoManager* undoManager;
     NSUndoManager* multiUndoManager;
 }
 @property(readonly) NSUndoManager* undoManager;
 @property(retain)   NSUndoManager* multiUndoManager;
-@property(readonly) NSDictionary* tags;
+@property(readonly) NSDictionary* changes;
 
 - (id)initWithProvider:(id<MetaData>)aProvider;
 
@@ -30,7 +30,7 @@
 - (NSString *)savedTempFileName;
 
 - (BOOL)changed;
-- (NSArray *)providedKeys;
+- (NSArray *)providedTags;
 
 - (id)getterValueForKey:(NSString *)aKey;
 - (BOOL)getterChangedForKey:(NSString *)aKey;

@@ -19,3 +19,4 @@
 #import <MetaZKit/MZPlugin.h>
 #import <MetaZKit/MZPluginController.h>
 #import <MetaZKit/NSArray-Mapping.h>
+#import <MetaZKit/NSInvocation-Wrapping.h>

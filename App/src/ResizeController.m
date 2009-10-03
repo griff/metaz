@@ -12,6 +12,11 @@
 
 #pragma mark - initialization
 
+- (id)init
+{
+    return [super init];
+}
+
 -(void)dealloc {
     [filesBox release];
     [searchBox release];
@@ -82,7 +87,7 @@
 
     CGFloat oldWidth = 2*divider;
     for(int i=0; i<3; i++) if(amounts[i] > 0) oldWidth+=widths[i];
-    CGFloat amount = oldWidth - newSize.width;
+    //CGFloat amount = oldWidth - newSize.width;
     
     CGFloat w = newSize.width-2*divider;
     

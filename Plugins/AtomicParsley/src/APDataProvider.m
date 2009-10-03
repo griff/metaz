@@ -26,11 +26,13 @@
         types = [[NSArray alloc] initWithObjects:
             @"public.mpeg-4", @"com.apple.quicktime-movie",
             @"com.apple.protected-mpeg-4-video", nil];
-        keys = [[MZTag allKnownTags] retain];
+        tags = [[MZTag allKnownTags] retain];
         NSArray* readmapkeys = [NSArray arrayWithObjects:
             @"©nam", @"©ART", @"©day", @"com.apple.iTunes;iTunEXTC", @"©gen",
             @"©alb", @"aART", @"purd", @"desc",
-            @"ldes", @"stik", @"tvsh", @"tven",
+            @"ldes",
+            //@"stik",
+            @"tvsh", @"tven",
             @"tvsn", @"tves", @"tvnn", @"purl",
             @"egid", @"catg", @"keyw", @"rtng",
             @"pcst", @"cprt", @"©grp", @"©too",
@@ -38,37 +40,39 @@
             @"soar", @"soaa", @"soal",
             @"sosn", nil];
         NSArray* readmapvalues = [NSArray arrayWithObjects:
-            MZTitleTag, MZArtistTag, MZDateTag, MZRatingTag, MZGenreTag,
-            MZAlbumTag, MZAlbumArtistTag, MZPurchaseDateTag, MZShortDescriptionTag,
-            MZLongDescriptionTag, MZVideoTypeTag, MZTVShowTag, MZTVEpisodeIDTag,
-            MZTVSeasonTag, MZTVEpisodeTag, MZTVNetworkTag, MZFeedURLTag,
-            MZEpisodeURLTag, MZCategoryTag, MZKeywordTag, MZAdvisoryTag,
-            MZPodcastTag, MZCopyrightTag, MZGroupingTag, MZEncodingToolTag,
-            MZCommentTag, MZGaplessTag, MZCompilationTag, MZSortTitleTag,
-            MZSortArtistTag, MZSortAlbumArtistTag, MZSortAlbumTag,
-            MZSortTVShowTag,nil];
+            MZTitleTagIdent, MZArtistTagIdent, MZDateTagIdent, MZRatingTagIdent, MZGenreTagIdent,
+            MZAlbumTagIdent, MZAlbumArtistTagIdent, MZPurchaseDateTagIdent, MZShortDescriptionTagIdent,
+            MZLongDescriptionTagIdent,
+            //MZVideoTypeTagIdent,
+            MZTVShowTagIdent, MZTVEpisodeIDTagIdent,
+            MZTVSeasonTagIdent, MZTVEpisodeTagIdent, MZTVNetworkTagIdent, MZFeedURLTagIdent,
+            MZEpisodeURLTagIdent, MZCategoryTagIdent, MZKeywordTagIdent, MZAdvisoryTagIdent,
+            MZPodcastTagIdent, MZCopyrightTagIdent, MZGroupingTagIdent, MZEncodingToolTagIdent,
+            MZCommentTagIdent, MZGaplessTagIdent, MZCompilationTagIdent, MZSortTitleTagIdent,
+            MZSortArtistTagIdent, MZSortAlbumArtistTagIdent, MZSortAlbumTagIdent,
+            MZSortTVShowTagIdent,nil];
         read_mapping = [[NSDictionary alloc]
             initWithObjects:readmapvalues
                     forKeys:readmapkeys];
 
 
         NSArray* writemapkeys = [NSArray arrayWithObjects:
-            MZTitleTag, MZArtistTag, MZDateTag, MZRatingTag, MZGenreTag,
-            MZAlbumTag, MZAlbumArtistTag, MZPurchaseDateTag, MZShortDescriptionTag,
-            //MZLongDescriptionTag,
-            MZVideoTypeTag, MZTVShowTag, MZTVEpisodeIDTag,
-            MZTVSeasonTag, MZTVEpisodeTag, MZTVNetworkTag, MZFeedURLTag,
-            MZEpisodeURLTag, MZCategoryTag, MZKeywordTag, MZAdvisoryTag,
-            MZPodcastTag, MZCopyrightTag, MZGroupingTag, MZEncodingToolTag,
-            MZCommentTag, MZGaplessTag, MZCompilationTag,
+            MZTitleTagIdent, MZArtistTagIdent, MZDateTagIdent, MZRatingTagIdent, MZGenreTagIdent,
+            MZAlbumTagIdent, MZAlbumArtistTagIdent, MZPurchaseDateTagIdent, MZShortDescriptionTagIdent,
+            //MZLongDescriptionTagIdent, MZVideoTypeTagIdent,
+            MZTVShowTagIdent, MZTVEpisodeIDTagIdent,
+            MZTVSeasonTagIdent, MZTVEpisodeTagIdent, MZTVNetworkTagIdent, MZFeedURLTagIdent,
+            MZEpisodeURLTagIdent, MZCategoryTagIdent, MZKeywordTagIdent, MZAdvisoryTagIdent,
+            MZPodcastTagIdent, MZCopyrightTagIdent, MZGroupingTagIdent, MZEncodingToolTagIdent,
+            MZCommentTagIdent, MZGaplessTagIdent, MZCompilationTagIdent,
             nil];
-            //MZSortTitleTag, MZSortArtistTag, MZSortAlbumArtistTag,
-            //MZSortAlbumTag, MZSortTVShowTag,nil];
+            //MZSortTitleTagIdent, MZSortArtistTagIdent, MZSortAlbumArtistTagIdent,
+            //MZSortAlbumTagIdent, MZSortTVShowTagIdent,nil];
         NSArray* writemapvalues = [NSArray arrayWithObjects:
             @"title", @"artist", @"year", @"contentRating", @"genre",
             @"album", @"albumArtist", @"purchaseDate", @"description",
-            //@"ldes",
-            @"stik", @"TVShowName", @"TVEpisode",
+            //@"ldes", @"stik",
+            @"TVShowName", @"TVEpisode",
             @"TVSeasonNum", @"TVEpisodeNum", @"TVNetwork", @"podcastURL",
             @"podcastGUID",@"category", @"keyword", @"advisory",
             @"podcastFlag", @"copyright", @"grouping", @"encodingTool",
@@ -88,7 +92,7 @@
 {
     [writes release];
     [types release];
-    [keys release];
+    [tags release];
     [read_mapping release];
     [write_mapping release];
     [super dealloc];
@@ -104,9 +108,9 @@
     return types;
 }
 
--(NSArray *)providedKeys
+-(NSArray *)providedTags
 {
-    return keys;
+    return tags;
 }
 
 - (MetaLoaded *)loadFromFile:(NSString *)fileName
@@ -120,7 +124,8 @@
     
     NSData* data = [[out fileHandleForReading] readDataToEndOfFile];
     [task waitUntilExit];
-    NSString* str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [task release];
+    NSString* str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     NSArray* atoms = [str componentsSeparatedByString:@"Atom \""];
     
     NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithCapacity:[atoms count]];
@@ -135,10 +140,10 @@
         [dict setObject:content forKey:type];
     }
     
-    NSMutableDictionary* retdict = [NSMutableDictionary dictionaryWithCapacity:[keys count]];
+    NSMutableDictionary* retdict = [NSMutableDictionary dictionaryWithCapacity:[tags count]];
     // Initialize a null value for all known keys
-    for(NSString* key in keys)
-        [retdict setObject:[NSNull null] forKey:key];
+    for(MZTag* tag in tags)
+        [retdict setObject:[NSNull null] forKey:[tag identifier]];
 
     // Store real parsed values using a simple key -> key mapping
     for(NSString* map in [read_mapping allKeys])
@@ -146,6 +151,35 @@
         id value = [dict objectForKey:map];
         if(value)
             [retdict setObject:value forKey:[read_mapping objectForKey:map]];
+    }
+    
+    // Special video type handling (stik)
+    NSString* stik = [dict objectForKey:@"stik"];
+    if(stik)
+    {
+        MZVideoType stikNo = MZUnsetVideoType;
+        if([stik isEqualToString:@"Movie"])
+            stikNo = MZMovieVideoType;
+        else if([stik isEqualToString:@"Normal"])
+            stikNo = MZNormalVideoType;
+        else if([stik isEqualToString:@"Audiobook"])
+            stikNo = MZAudiobookVideoType;
+        else if([stik isEqualToString:@"Whacked Bookmark"])
+            stikNo = MZWhackedBookmarkVideoType;
+        else if([stik isEqualToString:@"Music Video"])
+            stikNo = MZMusicVideoType;
+        else if([stik isEqualToString:@"Short Film"])
+            stikNo = MZShortFilmVideoType;
+        else if([stik isEqualToString:@"TV Show"])
+            stikNo = MZTVShowVideoType;
+        else if([stik isEqualToString:@"Booklet"])
+            stikNo = MZBookletVideoType;
+        if(stikNo!=MZUnsetVideoType)
+        {
+            MZTag* tag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
+            [retdict setObject:[tag nullConvertValueToObject:&stikNo]
+                        forKey:MZVideoTypeTagIdent];
+        }
     }
     
     // Special image handling
@@ -164,6 +198,7 @@
         [task setArguments:[NSArray arrayWithObjects:fileName, @"-e", file, nil]];
         [task launch];
         [task waitUntilExit];
+        [task release];
         
         file = [file stringByAppendingString:@"_artwork_1"];
         
@@ -171,14 +206,14 @@
         BOOL isDir;
         if([mgr fileExistsAtPath:[file stringByAppendingString:@".png"] isDirectory:&isDir] && !isDir)
         {
-            NSImage* data = [[[NSImage alloc] initWithContentsOfFile:[file stringByAppendingString:@".png"]] autorelease];
-            [retdict setObject:data forKey:MZPictureTag];
+            NSData* data = [NSData dataWithContentsOfFile:[file stringByAppendingString:@".png"]];
+            [retdict setObject:data forKey:MZPictureTagIdent];
             [mgr removeItemAtPath:[file stringByAppendingString:@".png"] error:NULL];
         }
         else if([mgr fileExistsAtPath:[file stringByAppendingString:@".jpg"] isDirectory:&isDir] && !isDir)
         {
-            NSImage* data = [[[NSImage alloc] initWithContentsOfFile:[file stringByAppendingString:@".jpg"]] autorelease];
-            [retdict setObject:data forKey:MZPictureTag];
+            NSData* data = [NSData dataWithContentsOfFile:[file stringByAppendingString:@".jpg"]];
+            [retdict setObject:data forKey:MZPictureTagIdent];
             [mgr removeItemAtPath:[file stringByAppendingString:@".jpg"] error:NULL];
         }
     }
@@ -192,28 +227,28 @@
         if(value)
         {
             value = [value arrayByPerformingSelector:@selector(objectForKey:) withObject:@"name"];
-            [retdict setObject:[value componentsJoinedByString:@", "] forKey:MZActorsTag];
+            [retdict setObject:[value componentsJoinedByString:@", "] forKey:MZActorsTagIdent];
         }
 
         value = [iTunMOVI objectForKey:@"directors"];
         if(value)
         {
             value = [value arrayByPerformingSelector:@selector(objectForKey:) withObject:@"name"];
-            [retdict setObject:[value componentsJoinedByString:@", "] forKey:MZDirectorTag];
+            [retdict setObject:[value componentsJoinedByString:@", "] forKey:MZDirectorTagIdent];
         }
 
         value = [iTunMOVI objectForKey:@"producers"];
         if(value)
         {
             value = [value arrayByPerformingSelector:@selector(objectForKey:) withObject:@"name"];
-            [retdict setObject:[value componentsJoinedByString:@", "] forKey:MZProducerTag];
+            [retdict setObject:[value componentsJoinedByString:@", "] forKey:MZProducerTagIdent];
         }
 
         value = [iTunMOVI objectForKey:@"screenwriters"];
         if(value)
         {
             value = [value arrayByPerformingSelector:@selector(objectForKey:) withObject:@"name"];
-            [retdict setObject:[value componentsJoinedByString:@", "] forKey:MZScreenwriterTag];
+            [retdict setObject:[value componentsJoinedByString:@", "] forKey:MZScreenwriterTagIdent];
         }
     }
     
@@ -231,7 +266,7 @@
         // TODO
     }
         
-    [retdict setObject:[fileName lastPathComponent] forKey:MZFileNameTag];
+    [retdict setObject:[fileName lastPathComponent] forKey:MZFileNameTagIdent];
     return [MetaLoaded metaWithOwner:self filename:fileName dictionary:retdict];
 }
 
@@ -258,7 +293,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     [args addObject:@"--output"];
     [args addObject:[data savedTempFileName]];
     
-    NSDictionary* changes = [data tags];
+    NSDictionary* changes = [data changes];
     for(NSString* key in [changes allKeys])
     {
         id value = [changes objectForKey:key];
@@ -272,15 +307,58 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
         }
     }
     
-    // Sort tags
-    sortTags(args, changes, MZSortTitleTag, @"name");
-    sortTags(args, changes, MZSortArtistTag, @"artist");
-    sortTags(args, changes, MZSortAlbumArtistTag, @"albumartist");
-    sortTags(args, changes, MZSortAlbumTag, @"album");
-    sortTags(args, changes, MZSortTVShowTag, @"show");
-    sortTags(args, changes, MZSortComposerTag, @"composer");
+    id stikNo = [changes objectForKey:MZVideoTypeTagIdent];
+    if(stikNo)
+    {
+        MZVideoType stik;
+        MZTag* tag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
+        [tag nullConvertObject:stikNo toValue:&stik];
+        NSString* stikStr = nil;
+        switch (stik) {
+            case MZUnsetVideoType:
+                stikStr = @"";
+                break;
+            case MZMovieVideoType:
+                stikStr = @"Movie";
+                break;
+            case MZNormalVideoType:
+                stikStr = @"Normal";
+                break;
+            case MZAudiobookVideoType:
+                stikStr = @"Audiobook";
+                break;
+            case MZWhackedBookmarkVideoType:
+                stikStr = @"Whacked Bookmark";
+                break;
+            case MZMusicVideoType:
+                stikStr = @"Music Video";
+                break;
+            case MZShortFilmVideoType:
+                stikStr = @"Short Film";
+                break;
+            case MZTVShowVideoType:
+                stikStr = @"TV Show";
+                break;
+            case MZBookletVideoType:
+                stikStr = @"Booklet";
+                break;
+        }
+        if(stikStr)
+        {
+            [args addObject:@"--stik"];
+            [args addObject:stikStr];
+        }
+    }
     
-    id pictureObj = [changes objectForKey:MZPictureTag];
+    // Sort tags
+    sortTags(args, changes, MZSortTitleTagIdent, @"name");
+    sortTags(args, changes, MZSortArtistTagIdent, @"artist");
+    sortTags(args, changes, MZSortAlbumArtistTagIdent, @"albumartist");
+    sortTags(args, changes, MZSortAlbumTagIdent, @"album");
+    sortTags(args, changes, MZSortTVShowTagIdent, @"show");
+    sortTags(args, changes, MZSortComposerTagIdent, @"composer");
+    
+    id pictureObj = [changes objectForKey:MZPictureTagIdent];
     NSString* pictureFile = nil;
     if(pictureObj == [NSNull null])
     {
@@ -289,7 +367,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     }
     else if(pictureObj)
     {
-        NSImage* picture = pictureObj;
+        NSData* picture = pictureObj;
         pictureFile = NSTemporaryDirectory();
         if(!pictureFile)
             pictureFile = @"/tmp";
@@ -298,10 +376,10 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
             [NSString stringWithFormat:@"MetaZImage_%@.png",
                 [[NSProcessInfo processInfo] globallyUniqueString]]];
                 
-        NSData *imageData = [picture TIFFRepresentation];
-        NSBitmapImageRep* imageRep = [NSBitmapImageRep imageRepWithData:imageData];
-        imageData = [imageRep representationUsingType:NSPNGFileType properties:[NSDictionary dictionary]];
-        if([imageData writeToFile:pictureFile atomically:NO])
+        //NSData *imageData = [picture TIFFRepresentation];
+        NSBitmapImageRep* imageRep = [NSBitmapImageRep imageRepWithData:picture];
+        picture = [imageRep representationUsingType:NSPNGFileType properties:[NSDictionary dictionary]];
+        if([picture writeToFile:pictureFile atomically:NO])
         {
             [args addObject:@"--artwork"];
             [args addObject:@"REMOVE_ALL"];
@@ -315,7 +393,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
         }
     }
 
-    NSTask* task = [[NSTask alloc] init];
+    NSTask* task = [[[NSTask alloc] init] autorelease];
     [task setLaunchPath:[self launchPath]];
     [task setArguments:args];
     

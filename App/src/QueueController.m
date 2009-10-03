@@ -67,34 +67,42 @@
     RunStatus status = [writeQueue status];
     NSString* playLabel;
     NSString* pauseLabel;
+    NSString* playImage;
+    NSString* pauseImage;
     switch (status)
     {
         case QueueStopped:
-            playLabel = @"Play";
-            pauseLabel = @"Pause";
+            playLabel = NSLocalizedString(@"Play", @"Label for play button");
+            pauseLabel = NSLocalizedString(@"Pause", @"Label for pause button");
+            playImage = @"Play";
+            pauseImage = @"Pause";
             break;
         case QueueRunning:
-            playLabel = @"Stop";
-            pauseLabel = @"Pause";
+            playLabel = NSLocalizedString(@"Stop", @"Label for stop button");
+            pauseLabel = NSLocalizedString(@"Pause", @"Label for pause button");
+            playImage = @"Stop";
+            pauseImage = @"Pause";
             break;
         case QueuePaused:
-            playLabel = @"Stop";
-            pauseLabel = @"Play";
+            playLabel = NSLocalizedString(@"Stop", @"Label for stop button");
+            pauseLabel = NSLocalizedString(@"Play", @"Label for play button");
+            playImage = @"Stop";
+            pauseImage = @"Play";
             break;
     }
-    [playBtn setImage:[NSImage imageNamed:playLabel]];
-    [playBtn setLabel:NSLocalizedString(playLabel, @"Label for btn")];
-    [pauseBtn setImage:[NSImage imageNamed:pauseLabel]];
-    [pauseBtn setLabel:NSLocalizedString(pauseLabel, @"Label for btn")];
+    [playBtn setImage:[NSImage imageNamed:playImage]];
+    [playBtn setLabel:playLabel];
+    [pauseBtn setImage:[NSImage imageNamed:pauseImage]];
+    [pauseBtn setLabel:pauseLabel];
     if(playBtn2)
     {
-        [playBtn2 setImage:[NSImage imageNamed:playLabel]];
-        [playBtn2 setLabel:NSLocalizedString(playLabel, @"Label for btn")];
+        [playBtn2 setImage:[NSImage imageNamed:playImage]];
+        [playBtn2 setLabel:playLabel];
     }
     if(pauseBtn2)
     {
-        [pauseBtn2 setImage:[NSImage imageNamed:pauseLabel]];
-        [pauseBtn setLabel:NSLocalizedString(pauseLabel, @"Label for btn")];
+        [pauseBtn2 setImage:[NSImage imageNamed:pauseImage]];
+        [pauseBtn setLabel:pauseLabel];
     }
 }
 
@@ -109,6 +117,26 @@
         NSString* title = [NSString stringWithFormat:
                 NSLocalizedString(@"MetaZ Has Detected %d Pending Item(s) In Your Queue", @"Loaded queue message box text"),
                 count];
+        /*
+        NSAlert* alert = [[NSAlert alloc] init];
+        [alert setMessageText:title];
+        [alert setInformativeText:NSLocalizedString(@"Do you want to reload them ?", @"Loaded queue message question")];
+        [alert setAlertStyle:NSCriticalAlertStyle];
+        [alert addButtonWithTitle:NSLocalizedString(@"Reload Queue", @"Button text for reload queue action")];
+        [alert addButtonWithTitle:NSLocalizedString(@"Empty Queue", @"Button text for empty queue action")];
+        [alert setShowsSuppressionButton:YES];
+        [[alert suppressionButton] setTitle:@"Apply to all in queue"];
+        NSInteger returnCode = [alert runModal];
+        [alert release];
+        */
+        NSInteger returnCode = NSRunCriticalAlertPanel(title,
+                NSLocalizedString(@"Do you want to reload them ?", @"Loaded queue message question"),
+                NSLocalizedString(@"Reload Queue", @"Button text for reload queue action"), nil,
+                NSLocalizedString(@"Empty Queue", @"Button text for empty queue action")
+                );
+        if(returnCode == NSAlertOtherReturn)
+            [writeQueue removeAllQueueItems];
+        /*
         NSBeginCriticalAlertSheet(title, 
                 NSLocalizedString(@"Reload Queue", @"Button text for reload queue action"), nil,
                 NSLocalizedString(@"Empty Queue", @"Button text for empty queue action"),
@@ -116,6 +144,7 @@
                 self, nil, @selector(didDismissReload:returnCode:contextInfo:), nil,
                 NSLocalizedString(@"Do you want to reload them ?", @"Loaded queue message question")
                 );
+        */
     }
 }
 

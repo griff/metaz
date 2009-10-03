@@ -84,7 +84,7 @@
     MGCollectionViewItem* ret = [itemPrototype copy];
     [ret _setItemOwnerView:self];
     ret.representedObject = object;
-    return ret;
+    return [ret autorelease];
 }
 
 - (void)animationDidEnd:(NSAnimation *)animation
@@ -430,7 +430,7 @@
         frame.size.width = bounds.size.width;
         frame.size.height = bounds.size.height - ypos;
         NSRectFill(frame);
-        coloridx = (coloridx + 1) % count;
+        //coloridx = (coloridx + 1) % count;
      }
 }
 

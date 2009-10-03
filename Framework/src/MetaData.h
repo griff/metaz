@@ -5,6 +5,7 @@
 //  Created by Brian Olsen on 24/08/09.
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
+#import <MetaZKit/MZConstants.h>
 
 /*! @protocol MetaData
  @abstract Informal protocol for all objects that store meta data
@@ -20,7 +21,7 @@
 @required
 - (id)owner;
 - (NSString *)loadedFileName;
-- (NSArray *)providedKeys;
+- (NSArray *)providedTags;
 - (id<MetaData>)queueCopy;
 
 @optional
@@ -32,9 +33,11 @@
 - (NSString *)albumArtist;
 - (NSString *)shortDescription;
 - (NSString *)longDescription;
+- (MZVideoType)videoType;
 
 - (void)setFileName:(NSString *)aFileName;
 - (void)setTitle:(NSString *)aTitle;
+- (void)setVideoType:(MZVideoType)aVideoType;
 
 @end
 

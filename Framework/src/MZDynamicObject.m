@@ -80,11 +80,16 @@
 
 /*
  These don't work for methods that return something else than id
- 
+*/
+/*
 - (id)valueForUndefinedKey:(NSString *)aKey {
     MZMethodData* method = [methods objectForKey:aKey];
     if(method != nil)
-        return [self performSelector:[method selector]];
+    {
+        NSInvocation* inv = [NSInvocation invocationWithMethodSignature:[method signature]];
+        [self handleDataForKey:[method key] ofType:[method type] forInvocation:inv];
+        return [inv returnObject];
+    }
     return [super valueForUndefinedKey:aKey];
 }
 
@@ -92,7 +97,11 @@
     NSString* setterKey = [MZMethodData setterForKey:key];
     MZMethodData* method = [methods objectForKey:setterKey];
     if(method != nil)
-        [self performSelector:[method selector] withObject:value];
+    {
+        NSInvocation* inv = [NSInvocation invocationWithMethodSignature:[method signature]];
+        [inv setArgumentObject:value atIndex:0];
+        [self handleDataForKey:[method key] ofType:[method type] forInvocation:inv];
+    }
     else
         [super setValue:value forUndefinedKey:key];
 }

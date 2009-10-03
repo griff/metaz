@@ -41,7 +41,6 @@
                 [NSArray arrayWithObjects:MZFilesTableRows,
                     MZMetaEditsDataType, NSFilenamesPboardType,
                     NSStringPboardType, nil] ];
-        [self setDataSource:self];
     }
     return self;
 }
@@ -55,7 +54,6 @@
                 [NSArray arrayWithObjects:MZFilesTableRows,
                     MZMetaEditsDataType, NSFilenamesPboardType,
                     NSStringPboardType, nil] ];
-        [self setDataSource:self];
     }
     return self;
 }
@@ -85,6 +83,7 @@
     NSString *bestType = [pb availableTypeFromArray:types];
     if (bestType != nil)
     {
+        /*
         if([bestType isEqualToString:MZFilesTableRows])
         {
             NSData* data = [pb dataForType:MZFilesTableRows];
@@ -97,6 +96,7 @@
             NSArray* edits = [NSKeyedUnarchiver unarchiveObjectWithData:data];
             // TODO Support Meta edits paste here??
         }
+        */
         if([bestType isEqualToString:NSFilenamesPboardType])
         {
             NSArray* filenames = [pb propertyListForType:NSFilenamesPboardType];
@@ -247,7 +247,7 @@
     NSArray *types = [NSArray arrayWithObjects:MZFilesTableRows,
             MZMetaEditsDataType, NSFilenamesPboardType,
             NSStringPboardType, nil];
-    NSDragOperation operation = [info draggingSourceOperationMask];        
+    //NSDragOperation operation = [info draggingSourceOperationMask];        
     NSString *bestType = [pboard availableTypeFromArray:types];
     if(bestType != nil)
     {
@@ -313,8 +313,7 @@
                 if(![[MZPluginController sharedInstance] dataProviderForPath:file])
                     return NO;
             }
-            [[MZMetaLoader sharedLoader] loadFromFiles:filenames toIndex:row];
-            return YES;
+            return [[MZMetaLoader sharedLoader] loadFromFiles:filenames toIndex:row];
         }
         if([bestType isEqualToString:NSStringPboardType])
         {
@@ -325,8 +324,7 @@
             if([mgr fileExistsAtPath:filename isDirectory:&dir] && !dir &&
                 [[MZPluginController sharedInstance] dataProviderForPath:filename])
             {
-                [[MZMetaLoader sharedLoader] loadFromFile:filename toIndex:row];
-                return YES;
+                return [[MZMetaLoader sharedLoader] loadFromFile:filename toIndex:row];
             }
         }
     }
@@ -334,6 +332,12 @@
 }
 
 #pragma mark - general
+
+- (void)awakeFromNib
+{
+    [self setDataSource:self];
+}
+
 - (void)keyDown:(NSEvent *)theEvent {
     NSString* ns = [theEvent charactersIgnoringModifiers];
     NSUInteger modifierFlags = [theEvent modifierFlags]; 

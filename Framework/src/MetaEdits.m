@@ -9,13 +9,14 @@
 #import <MetaZKit/MetaEdits.h>
 #import <MetaZKit/MZMethodData.h>
 #import <MetaZKit/MZConstants.h>
+#import <MetaZKit/MZTag.h>
 //#import <MetaZKit/MetaChangeNotification.h>
 
 
 @implementation MetaEdits
 @synthesize undoManager;
 @synthesize multiUndoManager;
-@synthesize tags;
+@synthesize changes;
 
 #pragma mark - initialization
 
@@ -25,11 +26,12 @@
     undoManager = [[NSUndoManager alloc] init];
     multiUndoManager = nil;
     provider = [aProvider retain];
-    tags = [[NSMutableDictionary alloc] init];
+    changes = [[NSMutableDictionary alloc] init];
 
-    NSArray* keys = [aProvider providedKeys];
-    for(NSString *key in keys)
+    NSArray* tags = [aProvider providedTags];
+    for(MZTag* tag in tags)
     {
+        NSString* key = [tag identifier];
         [provider addObserver: self 
                    forKeyPath: key
                       options: NSKeyValueObservingOptionPrior|NSKeyValueObservingOptionOld
@@ -45,12 +47,13 @@
 }
 
 - (void)dealloc {
-    NSArray* keys = [provider providedKeys];
-    for(NSString *key in keys)
-        [provider removeObserver:self forKeyPath: key];
+    NSArray* tags = [provider providedTags];
+    for(MZTag *tag in tags)
+        [provider removeObserver:self forKeyPath: [tag identifier]];
+    [changes release];
     [provider release];
     [undoManager release];
-    if(multiUndoManager) [multiUndoManager release];
+    [multiUndoManager release];
     [super dealloc];
 }
 
@@ -59,8 +62,8 @@
     return [provider owner];
 }
 
-- (NSArray *)providedKeys {
-    return [provider providedKeys];
+- (NSArray *)providedTags {
+    return [provider providedTags];
 }
 
 - (NSString *)loadedFileName {
@@ -89,12 +92,15 @@
 }
 
 -(BOOL)changed {
-    int count = [tags objectForKey:MZFileNameTag] != nil ? 1 : 0;
-    return [tags count] > count;
+    /*
+    int count = [changes objectForKey:MZFileNameTag] != nil ? 1 : 0;
+    return [changes count] > count;
+    */
+    return [changes count] > 0;
 }
 
 -(id)getterValueForKey:(NSString *)aKey {
-    id ret = [tags objectForKey:aKey];
+    id ret = [changes objectForKey:aKey];
     if(ret != nil) // Not Changed
     {
         if(ret == [NSNull null])
@@ -105,21 +111,24 @@
 }
 
 -(BOOL)getterChangedForKey:(NSString *)aKey {
-    return [tags objectForKey:aKey] != nil;
+    return [changes objectForKey:aKey] != nil;
 }
 
 -(void)setterChanged:(BOOL)aValue forKey:(NSString *)aKey {
-    id oldValue = [tags objectForKey:aKey];
+    id oldValue = [changes objectForKey:aKey];
     if(!aValue && oldValue!=nil)
     {
-        if([tags count] == 1)
+        if([changes count] == 1)
             [self willChangeValueForKey:@"changed"];
         NSString* changedKey = [aKey stringByAppendingString:@"Changed"];
         [self willChangeValueForKey:changedKey];
         [self willChangeValueForKey:aKey];
         
         [[self undoManager] registerUndoWithTarget:self selector:[MZMethodData setterSelectorForKey:aKey] object:oldValue];
-        NSString* actionKey = NSLocalizedStringFromTableInBundle(aKey, @"MZTags", [NSBundle bundleForClass:[self class]], @"Name for tag");
+        MZTag* tag = [MZTag tagForIdentifier:aKey];
+        NSString* actionKey = [tag localizedName];
+        if(!actionKey)
+            actionKey = aKey;
         if([[self undoManager] isUndoing])
             [[self undoManager] setActionName:[@"Set " stringByAppendingString:actionKey]];
         else
@@ -138,22 +147,25 @@
             }
         }
         
-        [tags removeObjectForKey:aKey];
+        [changes removeObjectForKey:aKey];
         [self didChangeValueForKey:aKey];
         [self didChangeValueForKey:changedKey];
-        if([tags count] == 0)
+        if([changes count] == 0)
             [self didChangeValueForKey:@"changed"];
     }
     else if(aValue && oldValue==nil)
     {
-        if([tags count] == 0)
+        if([changes count] == 0)
             [self willChangeValueForKey:@"changed"];
         NSString* changedKey = [aKey stringByAppendingString:@"Changed"];
         [self willChangeValueForKey:changedKey];
         [self willChangeValueForKey:aKey];
         
         [[[self undoManager] prepareWithInvocationTarget:self] setterChanged:NO forKey:aKey];
-        NSString* actionKey = NSLocalizedStringFromTableInBundle(aKey, @"MZTags", [NSBundle bundleForClass:[self class]], @"Name for tag");
+        MZTag* tag = [MZTag tagForIdentifier:aKey];
+        NSString* actionKey = [tag localizedName];
+        if(!actionKey)
+            actionKey = aKey;
         [[self undoManager] setActionName:[@"Set " stringByAppendingString:actionKey]];
         if(multiUndoManager)
         {
@@ -170,30 +182,33 @@
         if(oldValue == nil)
             oldValue = [NSNull null];
 
-        [tags setObject:oldValue forKey:aKey];
+        [changes setObject:oldValue forKey:aKey];
         [self didStoreValueForKey:aKey];
         [self didChangeValueForKey:aKey];
         [self didChangeValueForKey:changedKey];
-        if([tags count] == 1)
+        if([changes count] == 1)
             [self didChangeValueForKey:@"changed"];
     }
 }
 
 -(void)setterValue:(id)aValue forKey:(NSString *)aKey {
-    id oldValue = [tags objectForKey:aKey];
+    id oldValue = [changes objectForKey:aKey];
     NSString* changedKey = [aKey stringByAppendingString:@"Changed"];
     if(aValue == nil)
         aValue = [NSNull null];
     if(oldValue == nil) {
         [self willChangeValueForKey:changedKey];
-        if([tags count] == 0)
+        if([changes count] == 0)
             [self willChangeValueForKey:@"changed"];
     }
     [self willChangeValueForKey:aKey];
     if(oldValue==nil)
     {
         [[[self undoManager] prepareWithInvocationTarget:self] setterChanged:NO forKey:aKey];
-        NSString* actionKey = NSLocalizedStringFromTableInBundle(aKey, @"MZTags", [NSBundle bundleForClass:[self class]], @"Name for tag");
+        MZTag* tag = [MZTag tagForIdentifier:aKey];
+        NSString* actionKey = [tag localizedName];
+        if(!actionKey)
+            actionKey = aKey;
         [[self undoManager] setActionName:[@"Set " stringByAppendingString:actionKey]];
         if(multiUndoManager)
         {
@@ -206,7 +221,10 @@
     } else
     {
         [[self undoManager] registerUndoWithTarget:self selector:[MZMethodData setterSelectorForKey:aKey] object:oldValue];
-        NSString* actionKey = NSLocalizedStringFromTableInBundle(aKey, @"MZTags", [NSBundle bundleForClass:[self class]], @"Name for tag");
+        MZTag* tag = [MZTag tagForIdentifier:aKey];
+        NSString* actionKey = [tag localizedName];
+        if(!actionKey)
+            actionKey = aKey;
         [[self undoManager] setActionName:[@"Changed " stringByAppendingString:actionKey]];
         if(multiUndoManager)
         {
@@ -217,11 +235,11 @@
             [multiUndoManager setActionName:[@"Changed " stringByAppendingString:actionKey]];
         }
     }
-    [tags setObject:aValue forKey:aKey];
+    [changes setObject:aValue forKey:aKey];
     [self didChangeValueForKey:aKey];
     if(oldValue == nil) {
         [self didChangeValueForKey:changedKey];
-        if([tags count] == 1)
+        if([changes count] == 1)
             [self didChangeValueForKey:@"changed"];
     }
 }
@@ -231,7 +249,7 @@
     if(aType == 1) // Get value
     {
         id ret = [self getterValueForKey:aKey];
-        [anInvocation setReturnValue: &ret];
+        [anInvocation setReturnObject:ret];
         return;
     }
     if( aType == 2) // Get Changed Value
@@ -242,8 +260,8 @@
     }
     if(aType == 3) // Set Value
     {
-        id value;
-        [anInvocation getArgument:&value atIndex:2];
+        id value = [anInvocation argumentObjectAtIndex:2];
+        //[anInvocation getArgument:&value atIndex:2];
         [self setterValue:value forKey:aKey];
         return;
     }
@@ -289,7 +307,7 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if(object == provider)
     {
-        id value = [tags objectForKey:keyPath];
+        id value = [changes objectForKey:keyPath];
         if(value == nil)
         {
             NSNumber * prior = [change objectForKey:NSKeyValueChangeNotificationIsPriorKey];
@@ -320,9 +338,9 @@
     self = [self initWithProvider:aProvider];
     
     if([decoder allowsKeyedCoding])
-        [tags addEntriesFromDictionary:[decoder decodeObjectForKey:@"tags"]];
+        [changes addEntriesFromDictionary:[decoder decodeObjectForKey:@"changes"]];
     else
-        [tags addEntriesFromDictionary:[decoder decodeObject]];
+        [changes addEntriesFromDictionary:[decoder decodeObject]];
     return self;
 }
 
@@ -331,12 +349,12 @@
     if([encoder allowsKeyedCoding])
     {
         [encoder encodeObject:provider forKey:@"provider"];
-        [encoder encodeObject:tags forKey:@"tags"];
+        [encoder encodeObject:changes forKey:@"changes"];
     }
     else
     {
         [encoder encodeObject:provider];
-        [encoder encodeObject:tags];
+        [encoder encodeObject:changes];
     }
 }
 
@@ -346,7 +364,7 @@
 {
     id ret = [[provider copyWithZone:zone] autorelease];
     MetaEdits* copy = [[MetaEdits allocWithZone:zone] initWithProvider:ret];
-    [copy->tags addEntriesFromDictionary:tags];
+    [copy->changes addEntriesFromDictionary:changes];
     return copy;
 }
 
@@ -354,7 +372,7 @@
 {
     id<MetaData> ret = [[provider copy] autorelease];
     MetaEdits* copy = [[MetaEdits alloc] initWithProvider:ret];
-    [copy->tags addEntriesFromDictionary:tags];
+    [copy->changes addEntriesFromDictionary:changes];
     return copy;
 }
 
@@ -364,12 +382,12 @@
     {
         NSString* valueKey = [key substringToIndex:[key length]-7];
         [provider valueForKey:valueKey]; // Fails when key not supported
-        id value = [tags objectForKey:valueKey];
+        id value = [changes objectForKey:valueKey];
         return [NSNumber numberWithBool:(value!=nil)];
     }
     BOOL changed = [[self valueForKey:[key stringByAppendingString:@"Changed"]] boolValue];
     if(changed)
-        return [tags objectForKey:key];
+        return [changes objectForKey:key];
     if(provider)
         return [provider valueForKey:key];
     return [super valueForUndefinedKey:key];
@@ -380,23 +398,23 @@
     {
         BOOL newChanged = [value boolValue];
         NSString* valueKey = [key substringToIndex:[key length]-7];
-        id oldValue = [tags objectForKey:valueKey];
+        id oldValue = [changes objectForKey:valueKey];
         if(!newChanged && oldValue!=nil)
-            [tags removeObjectForKey:valueKey];
+            [changes removeObjectForKey:valueKey];
         else if(newChanged && oldValue==nil)
         {
             oldValue = [self valueForKey:valueKey];
-            [tags setObject:oldValue forKey:valueKey];
+            [changes setObject:oldValue forKey:valueKey];
         }
         return;
     }
 
-    BOOL changedUpdated = [tags objectForKey:key] == nil;
+    BOOL changedUpdated = [changes objectForKey:key] == nil;
     NSString* changedKey = [key stringByAppendingString:@"Changed"];
     if(value == nil)
         value = [NSNull null];
     if(changedUpdated) [self willChangeValueForKey:changedKey];
-    [tags setObject:value forKey:key];
+    [changes setObject:value forKey:key];
     if(changedUpdated) [self didChangeValueForKey:changedKey];
 }
 */

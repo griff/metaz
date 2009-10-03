@@ -137,6 +137,8 @@
     NSString* fileName = [[object edits] loadedFileName];
     if([object completed])
         fileName = [[object edits] savedFileName];
+    else if([object writing])
+        fileName = [[object edits] savedTempFileName];
     [[NSWorkspace sharedWorkspace]
                       selectFile:fileName
         inFileViewerRootedAtPath:@""];

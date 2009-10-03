@@ -11,6 +11,6 @@
 @protocol MZSearchProvider <NSObject>
 - (NSImage *)icon;
 - (NSString *)identifier;
-- (NSArray *)search:(id<MetaData>)data;
-- (NSArray *)search:(NSString *)data;
+- (NSArray *)searchWithData:(id<MetaData>)data;
+- (NSArray *)searchWithString:(NSString *)data;
 @end

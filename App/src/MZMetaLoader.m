@@ -54,52 +54,154 @@ static MZMetaLoader* sharedLoader = nil;
 }
 
 
--(void)loadFromFile:(NSString *)fileName
+-(BOOL)loadFromFile:(NSString *)fileName
 {
-    [self loadFromFile:fileName toIndex:[files count]];
+    return [self loadFromFile:fileName toIndex:[files count]];
 }
 
--(void)loadFromFiles:(NSArray *)fileNames
+-(BOOL)loadFromFiles:(NSArray *)fileNames
 {
-    [self loadFromFiles:fileNames toIndex:[files count]];
+    return [self loadFromFiles:fileNames toIndex:[files count]];
 }
 
-- (void)loadFromFile:(NSString *)fileName toIndex:(NSUInteger)index
+- (BOOL)loadFromFile:(NSString *)fileName toIndex:(NSUInteger)index
 {
     NSAssert(fileName, @"Provided fileName");
-    [self loadFromFiles:[NSArray arrayWithObject:fileName] toIndex:index];
+    return [self loadFromFiles:[NSArray arrayWithObject:fileName] toIndex:index];
 }
 
-- (void)loadFromFiles:(NSArray *)fileNames toIndex:(NSUInteger)index
+- (BOOL)loadFromFiles:(NSArray *)fileNames toIndex:(NSUInteger)index
 {
     NSAssert(fileNames, @"Provided filenames");
     if([fileNames count]==0)
-        return;
-    [self loadFromFiles:fileNames
-              toIndexes:[NSIndexSet indexSetWithIndexesInRange:
+        return YES;
+    return [self loadFromFiles:fileNames
+                     toIndexes:[NSIndexSet indexSetWithIndexesInRange:
                     NSMakeRange(index, [fileNames count])]];
 }
 
-- (void)loadFromFiles:(NSArray *)fileNames toIndexes:(NSIndexSet*)indexes
+- (BOOL)loadFromFiles:(NSArray *)fileNames toIndexes:(NSIndexSet*)indexes
 {
     NSAssert(fileNames, @"Provided filenames");
     if([fileNames count]==0)
-        return;
+        return YES;
     NSAssert([fileNames count]==[indexes count], @"Count of indexes and filenames");
 
-    [self willChangeValueForKey:@"files"];
     NSMutableArray* arr = [NSMutableArray arrayWithCapacity:[fileNames count]];
+    int missingType = 0;
+    MZVideoType def = [[NSUserDefaults standardUserDefaults] integerForKey:@"incomingVideoType"];
     for ( NSString* fileName in fileNames )
     {
         //NSLog(@"Loading file '%@'", fileName);
         MetaEdits* edits = [[MZPluginController sharedInstance] loadDataFromFile:fileName];
         if(edits)
+        {
+            if(![edits videoType])
+            {
+                if(def<=MZUnsetVideoType)
+                    missingType++;
+                else
+                    [edits setVideoType:def];
+            }
             [arr addObject:edits];
+        }
         else
             NSLog(@"Could no load file '%@'", fileName);
     }
+    if(missingType>0)
+    {
+        def = MZUnsetVideoType;
+        NSInteger lastSelection = -1;
+        for(MetaEdits* edits in arr)
+        {
+            if(![edits videoType])
+            {
+                missingType--;
+                BOOL applyAll = NO;
+                if(def == MZUnsetVideoType)
+                {
+                    NSAlert* alert = [[NSAlert alloc] init];
+                    [alert setMessageText:
+                        [NSString stringWithFormat:
+                            NSLocalizedString(@"Video type for file \"%@\" could not be determined", @"Video type prompt"),
+                            [edits fileName]]];
+                    NSPopUpButton* sel = [[NSPopUpButton alloc] 
+                        initWithFrame:NSMakeRect(0, 0, 145, 25)
+                            pullsDown:NO];
+                        
+                    [sel addItemWithTitle:NSLocalizedString(@"Movie", @"Video type")];
+                    [sel addItemWithTitle:NSLocalizedString(@"Normal", @"Video type")];
+                    [sel addItemWithTitle:NSLocalizedString(@"Audiobook", @"Video type")];
+                    [sel addItemWithTitle:NSLocalizedString(@"Whacked Bookmark", @"Video type")];
+                    [sel addItemWithTitle:NSLocalizedString(@"Music Video", @"Video type")];
+                    [sel addItemWithTitle:NSLocalizedString(@"Short Film", @"Video type")];
+                    [sel addItemWithTitle:NSLocalizedString(@"TV Show", @"Video type")];
+                    [sel addItemWithTitle:NSLocalizedString(@"Booklet", @"Video type")];
+                
+                    if(lastSelection>=0)
+                        [sel selectItemAtIndex:lastSelection];
+
+                    [alert setAccessoryView:sel];
+                    [alert addButtonWithTitle:NSLocalizedString(@"OK", @"Button")];
+                    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Button")];
+
+                    if(missingType>0)
+                    {
+                        [alert setShowsSuppressionButton:YES];
+                        [[alert suppressionButton] setTitle:
+                            NSLocalizedString(@"Apply to all", @"Confirmation text")];
+                    }
+                    
+                    NSInteger returnCode = [alert runModal];
+                    lastSelection = [sel indexOfSelectedItem];
+                    if(missingType>0)
+                        applyAll = [[alert suppressionButton] state] == NSOnState;
+
+                    [sel release];
+                    [alert release];
+
+                    if(returnCode == NSAlertFirstButtonReturn)
+                    {
+                        switch (lastSelection) {
+                            case 0:
+                                def = MZMovieVideoType;
+                                break;
+                            case 1:
+                                def = MZNormalVideoType;
+                                break;
+                            case 2:
+                                def = MZAudiobookVideoType;
+                                break;
+                            case 3:
+                                def = MZWhackedBookmarkVideoType;
+                                break;
+                            case 4:
+                                def = MZMusicVideoType;
+                                break;
+                            case 5:
+                                def = MZShortFilmVideoType;
+                                break;
+                            case 6:
+                                def = MZTVShowVideoType;
+                                break;
+                            case 7:
+                                def = MZBookletVideoType;
+                                break;
+                        }
+                    } else
+                        return NO;
+                }
+                if(def!=-1)
+                    [edits setVideoType:def];
+                if(!applyAll)
+                    def = -1;
+            }
+        }
+    }
+    [self willChangeValueForKey:@"files"];
     [files insertObjects:arr atIndexes:indexes];
     [self didChangeValueForKey:@"files"];
+    return YES;
 }
 
 - (void)moveObjects:(NSArray *)objects toIndex:(NSUInteger)index

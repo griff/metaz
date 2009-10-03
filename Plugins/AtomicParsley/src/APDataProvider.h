@@ -11,7 +11,7 @@
 
 @interface APDataProvider : NSObject <MZDataProvider> {
     NSArray* types;
-    NSArray* keys;
+    NSArray* tags;
     NSDictionary* read_mapping;
     NSDictionary* write_mapping;
     NSMutableArray* writes;

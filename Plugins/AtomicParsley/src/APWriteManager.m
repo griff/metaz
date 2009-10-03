@@ -154,9 +154,9 @@
 {
     NSData* data = [[note userInfo]
             objectForKey:NSFileHandleNotificationDataItem];
-    NSString* str = [[NSString alloc]
+    NSString* str = [[[NSString alloc]
             initWithData:data
-                encoding:NSUTF8StringEncoding];
+                encoding:NSUTF8StringEncoding] autorelease];
     NSLog(@"Got data: '%@'", str);
     NSInteger percent = [str integerValue];
     if(percent > 0 && [delegate respondsToSelector:@selector(writeFinishedPercent:)])

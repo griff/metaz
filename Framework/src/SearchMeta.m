@@ -7,6 +7,7 @@
 //
 
 #import <MetaZKit/SearchMeta.h>
+#import <MetaZKit/MZTag.h>
 
 @implementation SearchMeta
 
@@ -14,9 +15,10 @@
     self = [super init];
     searchController = [aController retain];
     provider = [aProvider retain];
-    NSArray* keys = [aProvider providedKeys];
-    for(NSString *key in keys)
+    NSArray* tags = [aProvider providedTags];
+    for(MZTag* tag in tags)
     {
+        NSString* key = [tag identifier];
         [searchController addObserver:self 
                            forKeyPath:[@"selection." stringByAppendingString:key]
                               options:NSKeyValueObservingOptionPrior|NSKeyValueObservingOptionOld
@@ -31,9 +33,10 @@
 }
 
 - (void)dealloc {
-    NSArray* keys = [provider providedKeys];
-    for(NSString *key in keys)
+    NSArray* tags = [provider providedTags];
+    for(MZTag* tag in tags)
     {
+        NSString* key = [tag identifier];
         [searchController removeObserver:self forKeyPath: [@"selection." stringByAppendingString:key]];
         [provider removeObserver:self forKeyPath:key];
     }
@@ -47,8 +50,8 @@
     return [provider owner];
 }
 
--(NSArray *)providedKeys {
-    return [provider providedKeys];
+-(NSArray *)providedTags {
+    return [provider providedTags];
 }
 
 -(NSString *)loadedFileName {

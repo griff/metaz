@@ -11,6 +11,6 @@
 
 int main(int argc, const char *argv[])
 {
-    RBApplicationInit("rb_main.rb", argc, argv, nil);
+    //RBApplicationInit("rb_main.rb", argc, argv, nil);
     return NSApplicationMain(argc,  argv);
 }

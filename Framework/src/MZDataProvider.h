@@ -36,9 +36,9 @@
 -(NSArray *)types;
 
 /*!
- @abstract Returns keys provided by this provider.
+ @abstract Returns tags supported by this provider.
  */
--(NSArray *)providedKeys;
+-(NSArray *)providedTags;
 
 /*!
  @abstract Loads the supplied file and return the meta data loaded.

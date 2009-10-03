@@ -51,7 +51,14 @@ NSArray* MZUTIFilenameExtension(NSArray* utis)
     NSArray* returnTypes = [NSArray arrayWithObjects:NSTIFFPboardType, nil];
     [NSApp registerServicesMenuSendTypes:sendTypes
                     returnTypes:returnTypes];
-    return;
+    
+    NSBundle* bundle = [NSBundle mainBundle];
+    NSString* dictPath;
+    if (dictPath = [bundle pathForResource:@"FactorySettings" ofType:@"plist"])  {
+        NSDictionary* dict = [[NSDictionary alloc] initWithContentsOfFile:dictPath];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:dict];
+        [dict release];
+    }
 }
 
 -(void)awakeFromNib {
@@ -302,14 +309,15 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
 {
-    [[MZMetaLoader sharedLoader] loadFromFile:filename];
-    return YES;
+    return [[MZMetaLoader sharedLoader] loadFromFile:filename];
 }
 
 - (void)application:(NSApplication *)sender openFiles:(NSArray *)filenames
 {
-    [[MZMetaLoader sharedLoader] loadFromFiles: filenames];
-    [sender replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
+    if([[MZMetaLoader sharedLoader] loadFromFiles: filenames])
+        [sender replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
+    else
+        [sender replyToOpenOrPrint:NSApplicationDelegateReplyCancel];
 }
 
 

@@ -9,60 +9,59 @@
 #import <MetaZKit/MZConstants.h>
 
 // Info
-NSString* const MZFileNameTag = @"fileName";
-NSString* const MZPictureTag = @"picture";
-NSString* const MZTitleTag = @"title";
-NSString* const MZArtistTag = @"artist";
-NSString* const MZDateTag = @"date";
-NSString* const MZRatingTag = @"rating";
-NSString* const MZGenreTag = @"genre";
-NSString* const MZAlbumTag = @"album";
-NSString* const MZAlbumArtistTag = @"albumArtist";
-NSString* const MZPurchaseDateTag = @"purchaseDate";
-NSString* const MZShortDescriptionTag = @"shortDescription";
-NSString* const MZLongDescriptionTag = @"longDescription";
-
+NSString* const MZFileNameTagIdent = @"fileName";
+NSString* const MZPictureTagIdent = @"picture";
+NSString* const MZTitleTagIdent = @"title";
+NSString* const MZArtistTagIdent = @"artist";
+NSString* const MZDateTagIdent = @"date";
+NSString* const MZRatingTagIdent = @"rating";
+NSString* const MZGenreTagIdent = @"genre";
+NSString* const MZAlbumTagIdent = @"album";
+NSString* const MZAlbumArtistTagIdent = @"albumArtist";
+NSString* const MZPurchaseDateTagIdent = @"purchaseDate";
+NSString* const MZShortDescriptionTagIdent = @"shortDescription";
+NSString* const MZLongDescriptionTagIdent = @"longDescription";
 
 // Video
-NSString* const MZVideoTypeTag = @"videoType";
-NSString* const MZActorsTag = @"actors";
-NSString* const MZDirectorTag = @"director";
-NSString* const MZProducerTag = @"producer";
-NSString* const MZScreenwriterTag = @"screenwriter";
-NSString* const MZTVShowTag = @"tvShow";
-NSString* const MZTVEpisodeIDTag = @"tvEpisodeID";
-NSString* const MZTVSeasonTag = @"tvSeason";
-NSString* const MZTVEpisodeTag = @"tvEpisode";
-NSString* const MZTVNetworkTag = @"tvNetwork";
+NSString* const MZVideoTypeTagIdent = @"videoType";
+NSString* const MZActorsTagIdent = @"actors";
+NSString* const MZDirectorTagIdent = @"director";
+NSString* const MZProducerTagIdent = @"producer";
+NSString* const MZScreenwriterTagIdent = @"screenwriter";
+NSString* const MZTVShowTagIdent = @"tvShow";
+NSString* const MZTVEpisodeIDTagIdent = @"tvEpisodeID";
+NSString* const MZTVSeasonTagIdent = @"tvSeason";
+NSString* const MZTVEpisodeTagIdent = @"tvEpisode";
+NSString* const MZTVNetworkTagIdent = @"tvNetwork";
 
 
 // Sort
-NSString* const MZSortTitleTag = @"sortTitle";
-NSString* const MZSortArtistTag = @"sortArtist";
-NSString* const MZSortAlbumTag = @"sortAlbum";
-NSString* const MZSortAlbumArtistTag = @"sortAlbumArtist";
-NSString* const MZSortTVShowTag = @"sortTvShow";
-NSString* const MZSortComposerTag = @"sortComposer";
+NSString* const MZSortTitleTagIdent = @"sortTitle";
+NSString* const MZSortArtistTagIdent = @"sortArtist";
+NSString* const MZSortAlbumTagIdent = @"sortAlbum";
+NSString* const MZSortAlbumArtistTagIdent = @"sortAlbumArtist";
+NSString* const MZSortTVShowTagIdent = @"sortTvShow";
+NSString* const MZSortComposerTagIdent = @"sortComposer";
 
 // MetaX Advanced
-NSString* const MZFeedURLTag = @"feedURL";
-NSString* const MZEpisodeURLTag = @"episodeURL";
-NSString* const MZCategoryTag = @"category";
-NSString* const MZKeywordTag = @"keyword";
-NSString* const MZAdvisoryTag = @"advisory";
-NSString* const MZPodcastTag = @"podcast";
-NSString* const MZCopyrightTag = @"copyright";
-NSString* const MZTrackNumberTag = @"trackNo";
-NSString* const MZTrackCountTag = @"trackCount";
-NSString* const MZDiscNumberTag = @"discNo";
-NSString* const MZDiscCountTag = @"discCount";
-NSString* const MZGroupingTag = @"grouping";
-NSString* const MZEncodingToolTag = @"encodingTool";
-NSString* const MZCommentTag = @"comment";
-NSString* const MZGaplessTag = @"gapless";
-NSString* const MZCompilationTag = @"compilation";
+NSString* const MZFeedURLTagIdent = @"feedURL";
+NSString* const MZEpisodeURLTagIdent = @"episodeURL";
+NSString* const MZCategoryTagIdent = @"category";
+NSString* const MZKeywordTagIdent = @"keyword";
+NSString* const MZAdvisoryTagIdent = @"advisory";
+NSString* const MZPodcastTagIdent = @"podcast";
+NSString* const MZCopyrightTagIdent = @"copyright";
+NSString* const MZTrackNumberTagIdent = @"trackNo";
+NSString* const MZTrackCountTagIdent = @"trackCount";
+NSString* const MZDiscNumberTagIdent = @"discNo";
+NSString* const MZDiscCountTagIdent = @"discCount";
+NSString* const MZGroupingTagIdent = @"grouping";
+NSString* const MZEncodingToolTagIdent = @"encodingTool";
+NSString* const MZCommentTagIdent = @"comment";
+NSString* const MZGaplessTagIdent = @"gapless";
+NSString* const MZCompilationTagIdent = @"compilation";
 
 
-NSString* const MZChaptersTag = @"chapters";
-NSString* const MZChapterNamesTag = @"chapterNames";
+NSString* const MZChaptersTagIdent = @"chapters";
+NSString* const MZChapterNamesTagIdent = @"chapterNames";
 

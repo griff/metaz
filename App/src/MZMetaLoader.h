@@ -18,11 +18,11 @@
 
 - (NSArray *)types;
 - (void)removeAllObjects;
-- (void)loadFromFile:(NSString *)fileName;
-- (void)loadFromFiles:(NSArray *)fileNames;
-- (void)loadFromFile:(NSString *)fileName toIndex:(NSUInteger)index;
-- (void)loadFromFiles:(NSArray *)fileNames toIndex:(NSUInteger)index;
-- (void)loadFromFiles:(NSArray *)fileNames toIndexes:(NSIndexSet*)indexes;
+- (BOOL)loadFromFile:(NSString *)fileName;
+- (BOOL)loadFromFiles:(NSArray *)fileNames;
+- (BOOL)loadFromFile:(NSString *)fileName toIndex:(NSUInteger)index;
+- (BOOL)loadFromFiles:(NSArray *)fileNames toIndex:(NSUInteger)index;
+- (BOOL)loadFromFiles:(NSArray *)fileNames toIndexes:(NSIndexSet*)indexes;
 - (void)moveObjects:(NSArray *)objects toIndex:(NSUInteger)index;
 - (void)reloadEdits:(MetaEdits *)edits;
 

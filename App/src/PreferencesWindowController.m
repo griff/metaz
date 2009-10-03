@@ -11,7 +11,9 @@
 @implementation PreferencesWindowController
 @synthesize tabView;
 @synthesize pluginsButton;
+@synthesize foldersButton;
 @synthesize generalView;
+@synthesize fileView;
 @synthesize pluginsView;
 
 - (id)init
@@ -23,21 +25,31 @@
 {
     [tabView release];
     [pluginsButton release];
+    [foldersButton release];
     [generalView release];
+    [fileView release];
     [pluginsView release];
     [views release];
+    [toolbar release];
     [super dealloc];
 }
 
 - (void)awakeFromNib
 {
+    views = [[NSArray alloc] initWithObjects:generalView, fileView, pluginsView, nil];
     [pluginsButton setImage:[[NSWorkspace sharedWorkspace] iconForFileType:@"mzplugin"]];
-    NSToolbar* toolbar = [pluginsButton toolbar];
-    NSString* ident = [[[toolbar items] objectAtIndex:0] itemIdentifier];
+    [foldersButton setImage:[[NSWorkspace sharedWorkspace] iconForFileType:(NSString*)kUTTypeFolder]];
+    toolbar = [[pluginsButton toolbar] retain];
+    
+    int idx = [[NSUserDefaults standardUserDefaults] integerForKey:@"selectedPreferenceItem"];
+    if(idx<0 || idx>=[views count])
+        idx = 0;
+    
+    NSString* ident = [[[toolbar items] objectAtIndex:idx] itemIdentifier];
     [toolbar setSelectedItemIdentifier:ident];
-    views = [[NSArray alloc] initWithObjects:generalView, pluginsView, nil];
-    NSSize size = [generalView frame].size;
-    [[self window] setContentView:generalView];
+    NSView* view = [views objectAtIndex:idx];
+    NSSize size = [view frame].size;
+    [[self window] setContentView:view];
     [[self window] setContentSize:size];
 }
 
@@ -45,6 +57,9 @@
 {
     [[self window] setTitle:[sender label]];
     int tag = [sender tag];
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:tag forKey:@"selectedPreferenceItem"];
+    
     NSView* view = [views objectAtIndex:tag];
     NSSize size = [view frame].size;
     NSSize contentSize = [[[self window] contentView] frame].size;
@@ -71,9 +86,9 @@
     return [MZPluginController sharedInstance];
 }
 
-- (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar
+- (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)theToolbar
 {
-    return [[toolbar items] arrayByPerformingSelector:@selector(itemIdentifier)];
+    return [[theToolbar items] arrayByPerformingSelector:@selector(itemIdentifier)];
 }
 
 @end

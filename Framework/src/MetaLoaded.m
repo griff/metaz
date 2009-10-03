@@ -25,7 +25,7 @@
     {
         owner = [theOwner retain];
         loadedFileName = [aFileName retain];
-        tags = [[NSDictionary alloc]initWithDictionary:dict];
+        values = [[NSDictionary alloc]initWithDictionary:dict];
         for(NSString *key in [dict allKeys])
             [self addMethodGetterForKey:key ofType:1 withObjCType:@encode(id)];
     }
@@ -33,7 +33,7 @@
 }
 
 - (void)dealloc {
-    [tags release];
+    [values release];
     [loadedFileName release];
     [owner release];
     [super dealloc];
@@ -41,18 +41,18 @@
 
 -(void)handleDataForKey:(NSString *)aKey ofType:(NSUInteger)aType forInvocation:(NSInvocation *)anInvocation {
     id ret = [self getterValueForKey:aKey];
-    [anInvocation setReturnValue:&ret];
+    [anInvocation setReturnObject:ret];
 }
 
 -(id)getterValueForKey:(NSString *)aKey {
-    id ret = [tags objectForKey:aKey];
+    id ret = [values objectForKey:aKey];
     if(ret == [NSNull null])
         return nil;
     return ret;
 }
 
--(NSArray *)providedKeys {
-    return [tags allKeys];
+-(NSArray *)providedTags {
+    return [owner providedTags];
 }
 
 - (id)valueForUndefinedKey:(NSString *)key {
@@ -74,7 +74,7 @@
     if([decoder allowsKeyedCoding])
     {
         loadedFile = [decoder decodeObjectForKey:@"loadedFileName"];
-        dict = [decoder decodeObjectForKey:@"tags"];
+        dict = [decoder decodeObjectForKey:@"values"];
         theOwner = [decoder decodeObjectForKey:@"owner"];
         if(!theOwner)
             ownerId = [decoder decodeObjectForKey:@"ownerId"];
@@ -99,14 +99,14 @@
     if([encoder allowsKeyedCoding])
     {
         [encoder encodeObject:loadedFileName forKey:@"loadedFileName"];
-        [encoder encodeObject:tags forKey:@"tags"];
+        [encoder encodeObject:values forKey:@"values"];
         [encoder encodeConditionalObject:owner forKey:@"owner"];
         [encoder encodeObject:[owner identifier] forKey:@"ownerId"];
     }
     else
     {
         [encoder encodeObject:loadedFileName];
-        [encoder encodeObject:tags];
+        [encoder encodeObject:values];
         [encoder encodeConditionalObject:owner];
         [encoder encodeObject:[owner identifier]];
     }
@@ -116,7 +116,7 @@
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    //return [[MetaLoaded alloc] initWithFilename:loadedFileName dictionary:tags];
+    //return [[MetaLoaded alloc] initWithFilename:loadedFileName dictionary:values];
     return [self retain];
 }
 

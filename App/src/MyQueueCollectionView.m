@@ -7,7 +7,7 @@
 //
 
 #import "MyQueueCollectionView.h"
-
+#import "MZWriteQueueStatus.h"
 
 @implementation MyQueueCollectionView
 @synthesize queues;

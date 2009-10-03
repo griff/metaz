@@ -10,7 +10,7 @@
 #import <MetaZKit/MZDynamicObject.h>
 
 @interface MetaLoaded : MZDynamicObject <MetaData, NSCopying> {
-    NSDictionary* tags;
+    NSDictionary* values;
     NSString* loadedFileName;
     id owner;
 }
@@ -20,7 +20,7 @@
 + (id)metaWithOwner:(id)theOwner filename:(NSString *)aFileName dictionary:(NSDictionary *)dict;
 - (id)initWithOwner:(id)theOwner filename:(NSString *)aFileName dictionary:(NSDictionary *)dict;
 
-- (NSArray *)providedKeys;
+- (NSArray *)providedTags;
 
 - (id)getterValueForKey:(NSString *)aKey;
 
