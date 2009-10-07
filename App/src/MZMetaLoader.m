@@ -96,7 +96,7 @@ static MZMetaLoader* sharedLoader = nil;
         MetaEdits* edits = [[MZPluginController sharedInstance] loadDataFromFile:fileName];
         if(edits)
         {
-            if(![edits videoType])
+            if([edits videoType] == MZUnsetVideoType)
             {
                 if(def<=MZUnsetVideoType)
                     missingType++;
@@ -112,12 +112,12 @@ static MZMetaLoader* sharedLoader = nil;
     {
         def = MZUnsetVideoType;
         NSInteger lastSelection = -1;
+        BOOL applyAll = NO;
         for(MetaEdits* edits in arr)
         {
-            if(![edits videoType])
+            if([edits videoType] == MZUnsetVideoType)
             {
                 missingType--;
-                BOOL applyAll = NO;
                 if(def == MZUnsetVideoType)
                 {
                     NSAlert* alert = [[NSAlert alloc] init];
@@ -191,10 +191,10 @@ static MZMetaLoader* sharedLoader = nil;
                     } else
                         return NO;
                 }
-                if(def!=-1)
+                if(def!=MZUnsetVideoType)
                     [edits setVideoType:def];
                 if(!applyAll)
-                    def = -1;
+                    def = MZUnsetVideoType;
             }
         }
     }

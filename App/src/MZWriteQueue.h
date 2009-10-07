@@ -15,10 +15,17 @@ typedef enum {
     QueuePaused
 } RunStatus;
 
+typedef enum {
+    UseDefaultTrashHandling,
+    KeepTempFileTrashHandling,
+    RemoveTrashFailedTrashHandling
+} TrashHandling;
+
 @interface MZWriteQueue : NSObject {
     NSString* fileName;
     NSMutableArray* queueItems;
     RunStatus status;
+    TrashHandling removeWhenTrashFailes;
 }
 @property(readonly) BOOL started;
 @property(readonly) BOOL paused;
@@ -26,6 +33,7 @@ typedef enum {
 @property(readonly) RunStatus status;
 @property(readonly) NSArray* pendingItems;
 @property(readonly) NSArray* completedItems;
+@property(readwrite) TrashHandling removeWhenTrashFailes;
 
 + (MZWriteQueue *)sharedQueue;
 + (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key;

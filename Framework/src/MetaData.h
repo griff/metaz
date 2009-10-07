@@ -34,10 +34,12 @@
 - (NSString *)shortDescription;
 - (NSString *)longDescription;
 - (MZVideoType)videoType;
+- (MZRating)rating;
 
 - (void)setFileName:(NSString *)aFileName;
 - (void)setTitle:(NSString *)aTitle;
 - (void)setVideoType:(MZVideoType)aVideoType;
+- (void)setRating:(MZRating)aRating;
 
 @end
 

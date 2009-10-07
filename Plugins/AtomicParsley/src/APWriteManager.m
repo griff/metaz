@@ -110,6 +110,7 @@
     }
     else
     {
+        /*
         BOOL isDir = NO;
         if([mgr fileExistsAtPath:[edits savedTempFileName] isDirectory:&isDir] && !isDir)
         {
@@ -132,7 +133,6 @@
                 error = nil;
             }
         }
-        /*
         NSString* temp = [[edits loadedFileName] stringByDeletingLastPathComponent];
         NSInteger tag = 0;
         if(![[NSWorkspace sharedWorkspace]

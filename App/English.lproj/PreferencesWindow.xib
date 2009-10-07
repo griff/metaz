@@ -12,9 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="88"/>
 			<integer value="119"/>
 			<integer value="1"/>
+			<integer value="88"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -175,7 +175,7 @@
 				<string key="NSClassName">SUUpdater</string>
 			</object>
 			<object class="NSView" id="117353623">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -194,14 +194,12 @@
 										<int key="NSvFlags">256</int>
 										<string key="NSFrameSize">{156, 266}</string>
 										<reference key="NSSuperview" ref="632901297"/>
-										<reference key="NSWindow"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTableHeaderView" key="NSHeaderView" id="222886952">
 											<reference key="NSNextResponder" ref="798570101"/>
 											<int key="NSvFlags">256</int>
 											<string key="NSFrameSize">{156, 17}</string>
 											<reference key="NSSuperview" ref="798570101"/>
-											<reference key="NSWindow"/>
 											<reference key="NSTableView" ref="789887603"/>
 										</object>
 										<object class="_NSCornerView" key="NSCornerView" id="28587715">
@@ -209,7 +207,6 @@
 											<int key="NSvFlags">-2147483392</int>
 											<string key="NSFrame">{{-26, 0}, {16, 17}}</string>
 											<reference key="NSSuperview" ref="566088164"/>
-											<reference key="NSWindow"/>
 										</object>
 										<object class="NSMutableArray" key="NSTableColumns">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -300,7 +297,6 @@
 								</object>
 								<string key="NSFrame">{{1, 17}, {156, 266}}</string>
 								<reference key="NSSuperview" ref="566088164"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="789887603"/>
 								<reference key="NSDocView" ref="789887603"/>
 								<reference key="NSBGColor" ref="499604950"/>
@@ -311,7 +307,6 @@
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{142, 17}, {15, 262}}</string>
 								<reference key="NSSuperview" ref="566088164"/>
-								<reference key="NSWindow"/>
 								<reference key="NSTarget" ref="566088164"/>
 								<string key="NSAction">_doScroller:</string>
 								<double key="NSCurValue">37</double>
@@ -322,7 +317,6 @@
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{-100, -100}, {141, 15}}</string>
 								<reference key="NSSuperview" ref="566088164"/>
-								<reference key="NSWindow"/>
 								<int key="NSsFlags">1</int>
 								<reference key="NSTarget" ref="566088164"/>
 								<string key="NSAction">_doScroller:</string>
@@ -337,7 +331,6 @@
 								</object>
 								<string key="NSFrame">{{1, 0}, {156, 17}}</string>
 								<reference key="NSSuperview" ref="566088164"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="222886952"/>
 								<reference key="NSDocView" ref="222886952"/>
 								<reference key="NSBGColor" ref="499604950"/>
@@ -347,7 +340,6 @@
 						</object>
 						<string key="NSFrame">{{20, 50}, {158, 284}}</string>
 						<reference key="NSSuperview" ref="117353623"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="632901297"/>
 						<int key="NSsFlags">530</int>
 						<reference key="NSVScroller" ref="130250190"/>
@@ -362,7 +354,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 20}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="117353623"/>
-						<reference key="NSWindow"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="748338913">
 							<int key="NSCellFlags">67239424</int>
@@ -387,7 +378,6 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{186, 50}, {389, 284}}</string>
 						<reference key="NSSuperview" ref="117353623"/>
-						<reference key="NSWindow"/>
 						<string key="NSClassName">NSView</string>
 					</object>
 					<object class="NSButton" id="545828979">
@@ -395,7 +385,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{39, 20}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="117353623"/>
-						<reference key="NSWindow"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="157896482">
 							<int key="NSCellFlags">67239424</int>
@@ -417,8 +406,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{595, 354}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 			</object>
 			<object class="NSView" id="757553835">
 				<reference key="NSNextResponder"/>
@@ -797,6 +784,7 @@
 										<reference key="NSOnImage" ref="69376900"/>
 										<reference key="NSMixedImage" ref="618925258"/>
 										<string key="NSAction">_popUpItemAction:</string>
+										<int key="NSTag">-1</int>
 										<reference key="NSTarget" ref="85628273"/>
 									</object>
 									<object class="NSMenuItem" id="133247725">
@@ -901,8 +889,12 @@
 			<object class="NSUserDefaultsController" id="1040842103">
 				<object class="NSMutableArray" key="NSDeclaredKeys">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>typeOfAllIncomingFiles</string>
-					<string>incomingVideoType</string>
+					<string>ratingUK</string>
+					<string>ratingDE</string>
+					<string>ratingIE</string>
+					<string>ratingCA</string>
+					<string>ratingAU</string>
+					<string>ratingNZ</string>
 				</object>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
@@ -1090,6 +1082,102 @@
 						</object>
 					</object>
 					<int key="connectionID">193</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.ratingUK</string>
+						<reference key="source" ref="108108287"/>
+						<reference key="destination" ref="1040842103"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="108108287"/>
+							<reference key="NSDestination" ref="1040842103"/>
+							<string key="NSLabel">value: values.ratingUK</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.ratingUK</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">195</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.ratingDE</string>
+						<reference key="source" ref="62396957"/>
+						<reference key="destination" ref="1040842103"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="62396957"/>
+							<reference key="NSDestination" ref="1040842103"/>
+							<string key="NSLabel">value: values.ratingDE</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.ratingDE</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">197</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.ratingIE</string>
+						<reference key="source" ref="1059891213"/>
+						<reference key="destination" ref="1040842103"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="1059891213"/>
+							<reference key="NSDestination" ref="1040842103"/>
+							<string key="NSLabel">value: values.ratingIE</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.ratingIE</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">199</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.ratingCA</string>
+						<reference key="source" ref="1015869636"/>
+						<reference key="destination" ref="1040842103"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="1015869636"/>
+							<reference key="NSDestination" ref="1040842103"/>
+							<string key="NSLabel">value: values.ratingCA</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.ratingCA</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">201</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.ratingAU</string>
+						<reference key="source" ref="74527970"/>
+						<reference key="destination" ref="1040842103"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="74527970"/>
+							<reference key="NSDestination" ref="1040842103"/>
+							<string key="NSLabel">value: values.ratingAU</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.ratingAU</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">203</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.ratingNZ</string>
+						<reference key="source" ref="389506959"/>
+						<reference key="destination" ref="1040842103"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="389506959"/>
+							<reference key="NSDestination" ref="1040842103"/>
+							<string key="NSLabel">value: values.ratingNZ</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.ratingNZ</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">205</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1768,7 +1856,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">193</int>
+			<int key="maxID">205</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

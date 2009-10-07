@@ -22,8 +22,8 @@
 
 -(void)dealloc {
     [filesController removeObserver:self forKeyPath:@"selection.self"];
-    if(multipleUndoManager) [multipleUndoManager release];
-    if(selection) [selection release];
+    [multipleUndoManager release];
+    [selection release];
     [filesController release];
     [super dealloc];
 }
@@ -33,11 +33,8 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if(object == filesController && [@"selection.self" isEqual:keyPath])
     {
-        if(selection)
-        {
-            [selection release];
-            selection = nil;
-        }
+        [selection release];
+        selection = nil;
         //id newValue = [change objectForKey:NSKeyValueChangeNewKey];
         //id oldValue = [change objectForKey:NSKeyValueChangeOldKey];
         id value = [filesController valueForKeyPath:@"selection.self"];
@@ -50,7 +47,7 @@
 #pragma mark - implementation
 
 -(NSUndoManager *)undoManager; {
-    if(multipleUndoManager!=nil)
+    if(multipleUndoManager)
         return multipleUndoManager;
     if(selection)
         return [selection undoManager];

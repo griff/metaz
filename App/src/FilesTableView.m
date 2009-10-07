@@ -313,6 +313,11 @@
                 if(![[MZPluginController sharedInstance] dataProviderForPath:file])
                     return NO;
             }
+            /* Doesn't work
+            NSWindow* window = [self window];
+            [window orderFront:self];
+            [window makeMainWindow];
+            */
             return [[MZMetaLoader sharedLoader] loadFromFiles:filenames toIndex:row];
         }
         if([bestType isEqualToString:NSStringPboardType])
@@ -324,6 +329,7 @@
             if([mgr fileExistsAtPath:filename isDirectory:&dir] && !dir &&
                 [[MZPluginController sharedInstance] dataProviderForPath:filename])
             {
+                //[[self window] makeKeyAndOrderFront:self];
                 return [[MZMetaLoader sharedLoader] loadFromFile:filename toIndex:row];
             }
         }

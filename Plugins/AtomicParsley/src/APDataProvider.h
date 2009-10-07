@@ -14,6 +14,8 @@
     NSArray* tags;
     NSDictionary* read_mapping;
     NSDictionary* write_mapping;
+    NSDictionary* rating_read;
+    NSDictionary* rating_write;
     NSMutableArray* writes;
 }
 

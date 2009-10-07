@@ -7,16 +7,14 @@
 //
 
 #import "MZWriteQueue.h"
+#import "MZWriteQueue-Private.h"
 #import "MZWriteQueueStatus.h"
-
-@interface MZWriteQueue (Private)
-- (void)startNextItem;
-@end
 
 
 @implementation MZWriteQueue
 @synthesize queueItems;
 @synthesize status;
+@synthesize removeWhenTrashFailes;
 
 static MZWriteQueue* sharedQueue = nil;
 
@@ -57,6 +55,7 @@ static MZWriteQueue* sharedQueue = nil;
         queueItems = [[NSMutableArray alloc] init];
         //[self loadQueueWithError:NULL];
         sharedQueue = [self retain];
+        removeWhenTrashFailes = UseDefaultTrashHandling;
     }
     return self;
 }
@@ -117,8 +116,17 @@ static MZWriteQueue* sharedQueue = nil;
         status = QueueStopped;
         for(MZWriteQueueStatus* sts in queueItems)
             [sts stopWriting];
+        removeWhenTrashFailes = UseDefaultTrashHandling;
         [self didChangeValueForKey:@"status"];
     }
+}
+
+- (BOOL)hasNextItem
+{
+    for(id obj in queueItems)
+        if([obj writing] == 0 && ![obj completed])
+            return YES;
+    return NO;
 }
 
 - (void)startNextItem

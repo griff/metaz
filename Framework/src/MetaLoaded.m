@@ -8,6 +8,7 @@
 
 #import <MetaZKit/MetaLoaded.h>
 #import <MetaZKit/MZPluginController.h>
+#import <MetaZKit/MZTag.h>
 //#import <MetaZKit/MetaEdits.h>
 
 @implementation MetaLoaded
@@ -26,8 +27,11 @@
         owner = [theOwner retain];
         loadedFileName = [aFileName retain];
         values = [[NSDictionary alloc]initWithDictionary:dict];
-        for(NSString *key in [dict allKeys])
-            [self addMethodGetterForKey:key ofType:1 withObjCType:@encode(id)];
+        for(MZTag* tag in [owner providedTags])
+        {
+            NSString* key = [tag identifier];
+            [self addMethodGetterForKey:key ofType:1 withObjCType:[tag encoding]];
+        }
     }
     return self;
 }
@@ -46,9 +50,8 @@
 
 -(id)getterValueForKey:(NSString *)aKey {
     id ret = [values objectForKey:aKey];
-    if(ret == [NSNull null])
-        return nil;
-    return ret;
+    MZTag* tag = [MZTag tagForIdentifier:aKey];
+    return [tag convertObjectForRetrival:ret];
 }
 
 -(NSArray *)providedTags {

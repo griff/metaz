@@ -44,6 +44,7 @@
 		1BCC97031076B73C007EFF57 /* NSInvocation-Wrapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC97011076B73C007EFF57 /* NSInvocation-Wrapping.m */; };
 		1BCC98261076D1A3007EFF57 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB6C10A1052B154001D3D1D /* Sparkle.framework */; };
 		1BCC990710771262007EFF57 /* FactorySettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BCC990610771262007EFF57 /* FactorySettings.plist */; };
+		1BCC9C6B107C3E80007EFF57 /* RatingMenuHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC9C6A107C3E80007EFF57 /* RatingMenuHandler.m */; };
 		1BD6E752105DADCC00E40151 /* AddToQueue.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74D105DADCC00E40151 /* AddToQueue.tiff */; };
 		1BD6E753105DADCC00E40151 /* Pause.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74E105DADCC00E40151 /* Pause.tiff */; };
 		1BD6E754105DADCC00E40151 /* Play.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74F105DADCC00E40151 /* Play.tiff */; };
@@ -220,6 +221,9 @@
 		1BCC97001076B73C007EFF57 /* NSInvocation-Wrapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation-Wrapping.h"; sourceTree = "<group>"; };
 		1BCC97011076B73C007EFF57 /* NSInvocation-Wrapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation-Wrapping.m"; sourceTree = "<group>"; };
 		1BCC990610771262007EFF57 /* FactorySettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = FactorySettings.plist; path = App/resources/FactorySettings.plist; sourceTree = "<group>"; };
+		1BCC992110790355007EFF57 /* MZWriteQueue-Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MZWriteQueue-Private.h"; sourceTree = "<group>"; };
+		1BCC9C69107C3E80007EFF57 /* RatingMenuHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingMenuHandler.h; sourceTree = "<group>"; };
+		1BCC9C6A107C3E80007EFF57 /* RatingMenuHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingMenuHandler.m; sourceTree = "<group>"; };
 		1BD6E601105B355800E40151 /* MetaChangeNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaChangeNotification.m; sourceTree = "<group>"; };
 		1BD6E74D105DADCC00E40151 /* AddToQueue.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = AddToQueue.tiff; path = App/resources/AddToQueue.tiff; sourceTree = "<group>"; };
 		1BD6E74E105DADCC00E40151 /* Pause.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pause.tiff; path = App/resources/Pause.tiff; sourceTree = "<group>"; };
@@ -405,6 +409,7 @@
 				1BB6BE7F1050BC88001D3D1D /* MZMetaSearcher.h */,
 				1BB6BE801050BC88001D3D1D /* MZMetaSearcher.m */,
 				1BA326EE1054823100276F57 /* MZWriteQueue.h */,
+				1BCC992110790355007EFF57 /* MZWriteQueue-Private.h */,
 				1BA326EF1054823100276F57 /* MZWriteQueue.m */,
 				1BEA71CF10717785004B1A7F /* MZWriteQueueStatus.h */,
 				1BEA71D010717785004B1A7F /* MZWriteQueueStatus.m */,
@@ -435,6 +440,8 @@
 				1BEA6D4F106E8B7C004B1A7F /* IKImageView-Missing.h */,
 				1BEA6DDB106ED8E4004B1A7F /* PreferencesWindowController.h */,
 				1BEA6DDC106ED8E4004B1A7F /* PreferencesWindowController.m */,
+				1BCC9C69107C3E80007EFF57 /* RatingMenuHandler.h */,
+				1BCC9C6A107C3E80007EFF57 /* RatingMenuHandler.m */,
 			);
 			name = Classes;
 			path = App/src;
@@ -804,6 +811,7 @@
 				1BEA6C95106E7203004B1A7F /* Utilities.m in Sources */,
 				1BEA6DDD106ED8E4004B1A7F /* PreferencesWindowController.m in Sources */,
 				1BEA71D110717785004B1A7F /* MZWriteQueueStatus.m in Sources */,
+				1BCC9C6B107C3E80007EFF57 /* RatingMenuHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

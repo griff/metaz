@@ -471,7 +471,7 @@
     [super encodeWithCoder:encoder];
     [encoder encodeObject:self.view forKey:@"view"];
     [encoder encodeBool:selected forKey:@"selected"];
-    [encoder encodeObject:_itemOwnerView forKey:@"_itemOwnerView"];
+    [encoder encodeConditionalObject:_itemOwnerView forKey:@"_itemOwnerView"];
     [encoder encodeBool:_removalNeeded forKey:@"_removalNeeded"];
     [encoder encodeRect:_targetViewFrameRect forKey:@"_targetViewFrameRect"];
 }
@@ -496,7 +496,7 @@
 {
     if(!archived)
         archived = [[NSKeyedArchiver archivedDataWithRootObject:self] retain];
-    MGCollectionViewItem* ret = [NSKeyedUnarchiver unarchiveObjectWithData:archived];
+    MGCollectionViewItem* ret = [[NSKeyedUnarchiver unarchiveObjectWithData:archived] retain];
     [ret setRepresentedObject:nil];
     [self _copyConnectionsOfView:[self view] referenceObject:self toView:[ret view] referenceObject:ret];
     return ret;
@@ -572,6 +572,8 @@
     {
         [self.view setHidden:YES];
         [_itemOwnerView addSubview:self.view];
+        //[self.view setFrame:_targetViewFrameRect];
+        //[self.view setNeedsDisplay:NO];
         NSArray *keys = [NSArray arrayWithObjects:NSViewAnimationTargetKey, NSViewAnimationEffectKey, NSViewAnimationStartFrameKey, NSViewAnimationEndFrameKey, nil];
         NSArray *objects = [NSArray arrayWithObjects:self.view, NSViewAnimationFadeInEffect, [NSValue valueWithRect:_targetViewFrameRect], [NSValue valueWithRect:_targetViewFrameRect], nil];
         *show = [NSDictionary dictionaryWithObjects:objects forKeys:keys];

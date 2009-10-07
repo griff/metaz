@@ -26,34 +26,43 @@
 - (NSString *)identifier;
 - (NSString *)localizedName; 
 - (NSCell *)editorCell;
+- (const char*)encoding;
 - (id)convertValueToObject:(void*)buffer;
 - (void)convertObject:(id)obj toValue:(void*)buffer;
 - (id)nullConvertValueToObject:(void*)buffer;
 - (void)nullConvertObject:(id)obj toValue:(void*)buffer;
+- (id)convertObjectForRetrival:(id)obj;
+- (id)convertObjectForStorage:(id)obj;
 
 @end
 
 
 @interface MZStringTag : MZTag {
 }
-//+ (id)tagWithIdentifier:(NSString *)identifier;
 
 @end
+
 
 @interface MZDateTag : MZTag {
 }
-//+ (id)tagWithIdentifier:(NSString *)identifier;
 
 @end
+
 
 @interface MZIntegerTag : MZTag {
 }
-//+ (id)tagWithIdentifier:(NSString *)identifier;
 
 @end
 
+
 @interface MZBoolTag : MZTag {
 }
-//+ (id)tagWithIdentifier:(NSString *)identifier;
+
+@end
+
+@interface MZEnumTag : MZTag {
+}
++ (id)tag;
+- (int)nilValue;
 
 @end

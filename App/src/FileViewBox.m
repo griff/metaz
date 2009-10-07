@@ -61,7 +61,7 @@
     }
 }
 
-/*
+
 - (void)removeFromSuperviewWithoutNeedingDisplay
 {
     [super removeFromSuperviewWithoutNeedingDisplay];
@@ -87,6 +87,7 @@
     [super resizeWithOldSuperviewSize:oldBoundsSize];
 }
 
+/*
 -(void)setFrameSize:(NSSize)newSize
 {
     NSString* tab = [[tabView selectedTabViewItem] identifier];
@@ -94,6 +95,7 @@
         newSize.height = 43;
     [super setFrameSize:newSize];
 }
+*/
 
 -(void)setFrame:(NSRect)newFrame
 {
@@ -109,7 +111,7 @@
 {
     [super setFrameRotation:angle];
 }
-*/
+
 
 - (IBAction)switchDetails:(id)sender
 {

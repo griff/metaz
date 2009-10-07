@@ -9,7 +9,13 @@
 #import <MetaZKit/MZTag.h>
 #import <MetaZKit/MZConstants.h>
 
-@interface MZVideoTypeTagClass : MZTag {
+@interface MZVideoTypeTagClass : MZEnumTag {
+}
+- (id)init;
+
+@end
+
+@interface MZRatingTag : MZEnumTag {
 }
 - (id)init;
 
@@ -31,7 +37,7 @@
     [self registerTag:[MZStringTag tagWithIdentifier:MZTitleTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZArtistTagIdent]];
     [self registerTag:[MZDateTag tagWithIdentifier:MZDateTagIdent]];
-    [self registerTag:[MZStringTag tagWithIdentifier:MZRatingTagIdent]];
+    [self registerTag:[MZRatingTag tag]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZGenreTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZAlbumTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZAlbumArtistTagIdent]];
@@ -41,7 +47,7 @@
     [self registerTag:[MZStringTag tagWithIdentifier:MZAlbumArtistTagIdent]];
 
     // Video tags
-    [self registerTag:[[[MZVideoTypeTagClass alloc] init] autorelease]];
+    [self registerTag:[MZVideoTypeTagClass tag]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZActorsTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZDirectorTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZProducerTagIdent]];
@@ -213,6 +219,11 @@ static NSMutableDictionary *sharedTags = nil;
     return nil;
 }
 
+- (const char*)encoding
+{
+    return @encode(id);
+}
+
 - (id)convertValueToObject:(void*)buffer
 {
     return nil;
@@ -235,6 +246,19 @@ static NSMutableDictionary *sharedTags = nil;
     [self convertObject:obj toValue:buffer];
 }
 
+- (id)convertObjectForRetrival:(id)obj
+{
+    if(obj == [NSNull null])
+        return nil;
+    return obj;
+}
+
+- (id)convertObjectForStorage:(id)obj
+{
+    if(!obj)
+        return [NSNull null];
+    return obj;
+}
 
 @end
 
@@ -258,11 +282,12 @@ static NSMutableDictionary *sharedTags = nil;
     *str = obj;
 }
 
+/*
 - (id)copyWithZone:(NSZone*)zone
 {
-    [super copyWithZone:zone];
+    return [super copyWithZone:zone];
 }
-
+*/
 
 @end
 
@@ -345,6 +370,57 @@ static NSMutableDictionary *sharedTags = nil;
 @end
 
 
+@implementation MZEnumTag
+
++ (id)tag
+{
+    return [[[self alloc] init] autorelease];
+}
+
+- (const char*)encoding
+{
+    return @encode(int);
+}
+
+- (id)convertValueToObject:(void*)buffer
+{
+    int* value = (int*)buffer;
+    return [NSNumber numberWithInt:*value];
+}
+
+- (void)convertObject:(id)obj toValue:(void*)buffer
+{
+    int* ret = (int*)buffer;
+    if(!obj || obj == [NSNull null])
+        *ret = [self nilValue];
+    else
+        *ret = [obj intValue];
+}
+
+- (id)convertObjectForRetrival:(id)obj
+{
+    int ret = [self nilValue];
+    if(obj && obj != [NSNull null])
+        ret = [obj intValue];
+    return [NSNumber numberWithInt:ret];
+}
+
+- (id)convertObjectForStorage:(id)obj
+{
+    int ret = [self nilValue];
+    if(obj && obj != [NSNull null])
+        ret = [obj intValue];
+    return [NSNumber numberWithInt:ret];
+}
+
+- (int)nilValue
+{
+    return 0;
+}
+
+@end
+
+
 @implementation MZVideoTypeTagClass
 
 - (id)init
@@ -366,23 +442,51 @@ static NSMutableDictionary *sharedTags = nil;
     return cell;
 }
 
-- (id)convertValueToObject:(void*)buffer
+- (const char*)encoding
 {
-    MZVideoType* value = (int*)buffer;
-    if(*value == MZUnsetVideoType)
-        return nil;
-    return [NSNumber numberWithInt:*value];
+    return @encode(MZVideoType);
 }
 
-- (void)convertObject:(id)obj toValue:(void*)buffer
+- (int)nilValue
 {
-    MZVideoType* ret = (MZVideoType*)buffer;
-    if(!obj)
-        *ret = MZUnsetVideoType;
-    else
-        *ret = [obj intValue];
+    return MZUnsetVideoType;
 }
 
+@end
+
+
+@implementation MZRatingTag
+
+- (id)init
+{
+    return [super initWithIdentifier:MZRatingTagIdent];
+}
+
+- (NSCell *)editorCell
+{
+    NSPopUpButtonCell* cell = [[[NSPopUpButtonCell alloc] initTextCell:@"" pullsDown:NO] autorelease]; 
+    /*
+    [cell addItemWithTitle:NSLocalizedString(@"Movie", @"Video type") tag:MZMovieVideoType];
+    [cell addItemWithTitle:NSLocalizedString(@"Normal", @"Video type") tag:MZNormalVideoType];
+    [cell addItemWithTitle:NSLocalizedString(@"Audiobook", @"Video type") tag:MZAudiobookVideoType];
+    [cell addItemWithTitle:NSLocalizedString(@"Whacked Bookmark", @"Video type") tag:MZWhackedBookmarkVideoType];
+    [cell addItemWithTitle:NSLocalizedString(@"Music Video", @"Video type") tag:MZMusicVideoType];
+    [cell addItemWithTitle:NSLocalizedString(@"Short Film", @"Video type") tag:MZShortFilmVideoType];
+    [cell addItemWithTitle:NSLocalizedString(@"TV Show", @"Video type") tag:MZTVShowVideoType];
+    [cell addItemWithTitle:NSLocalizedString(@"Booklet", @"Video type") tag:MZBookletVideoType];
+    */
+    return cell;
+}
+
+- (const char*)encoding
+{
+    return @encode(MZRating);
+}
+
+- (int)nilValue
+{
+    return MZNoRating;
+}
 
 @end
 
