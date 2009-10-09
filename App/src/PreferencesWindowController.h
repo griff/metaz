@@ -10,7 +10,6 @@
 #import "MZPluginController.h"
 
 @interface PreferencesWindowController : NSWindowController {
-    NSTabView* tabView;
     NSToolbarItem* pluginsButton;
     NSToolbarItem* foldersButton;
     NSView* generalView;
@@ -19,7 +18,6 @@
     NSToolbar* toolbar;
     NSArray* views;
 }
-@property (nonatomic,retain) IBOutlet NSTabView* tabView;
 @property (nonatomic,retain) IBOutlet NSToolbarItem* pluginsButton;
 @property (nonatomic,retain) IBOutlet NSToolbarItem* foldersButton;
 @property (nonatomic,retain) IBOutlet NSView* generalView;
@@ -27,6 +25,8 @@
 @property (nonatomic,retain) IBOutlet NSView* pluginsView;
 
 - (id)init;
+
+- (IBAction)clearGenres:(id)sender;
 
 - (IBAction)selectTabFromTag:(id)sender;
 - (IBAction)addPlugin:(id)sender;

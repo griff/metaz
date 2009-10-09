@@ -9,7 +9,6 @@
 #import "PreferencesWindowController.h"
 
 @implementation PreferencesWindowController
-@synthesize tabView;
 @synthesize pluginsButton;
 @synthesize foldersButton;
 @synthesize generalView;
@@ -23,7 +22,6 @@
 
 - (void)dealloc
 {
-    [tabView release];
     [pluginsButton release];
     [foldersButton release];
     [generalView release];
@@ -53,7 +51,12 @@
     [[self window] setContentSize:size];
 }
 
-- (IBAction)selectTabFromTag:(id)sender;
+- (IBAction)clearGenres:(id)sender
+{
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"genres"];
+}
+
+- (IBAction)selectTabFromTag:(id)sender
 {
     [[self window] setTitle:[sender label]];
     int tag = [sender tag];

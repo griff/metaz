@@ -25,6 +25,7 @@
 @property (nonatomic, retain) IBOutlet NSMenu* menuCA;
 @property (nonatomic, retain) IBOutlet NSMenu* menuAU;
 @property (nonatomic, retain) IBOutlet NSMenu* menuNZ;
+@property (readwrite) NSString* ratingName;
 
 - (void)makeMenu;
 

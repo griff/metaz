@@ -65,3 +65,11 @@ NSString* const MZCompilationTagIdent = @"compilation";
 NSString* const MZChaptersTagIdent = @"chapters";
 NSString* const MZChapterNamesTagIdent = @"chapterNames";
 
+/* Notifications */
+NSString* const MZDataProviderLoadedNotification = @"MZDataProviderLoadedNotification";
+NSString* const MZDataProviderWritingStartedNotification = @"MZDataProviderWritingStartedNotification";
+NSString* const MZDataProviderWritingCanceledNotification = @"MZDataProviderWritingCanceledNotification";
+NSString* const MZDataProviderWritingFinishedNotification = @"MZDataProviderWritingFinishedNotification";
+
+NSString* const MZMetaEditsNotificationKey = @"MZMetaEditsNotificationKey";
+NSString* const MZDataWriteControllerNotificationKey = @"MZDataWriteControllerNotificationKey";

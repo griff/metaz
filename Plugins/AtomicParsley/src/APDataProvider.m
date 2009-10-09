@@ -65,7 +65,8 @@
             //MZRatingTagIdent,
             MZGenreTagIdent,
             MZAlbumTagIdent, MZAlbumArtistTagIdent, MZPurchaseDateTagIdent, MZShortDescriptionTagIdent,
-            //MZLongDescriptionTagIdent, MZVideoTypeTagIdent,
+            MZLongDescriptionTagIdent,
+            //MZVideoTypeTagIdent,
             MZTVShowTagIdent, MZTVEpisodeIDTagIdent,
             MZTVSeasonTagIdent, MZTVEpisodeTagIdent, MZTVNetworkTagIdent, MZFeedURLTagIdent,
             MZEpisodeURLTagIdent, MZCategoryTagIdent, MZKeywordTagIdent, MZAdvisoryTagIdent,
@@ -79,7 +80,8 @@
             //@"contentRating",
             @"genre",
             @"album", @"albumArtist", @"purchaseDate", @"description",
-            //@"ldes", @"stik",
+            @"longDescription",
+            //@"stik",
             @"TVShowName", @"TVEpisode",
             @"TVSeasonNum", @"TVEpisodeNum", @"TVNetwork", @"podcastURL",
             @"podcastGUID",@"category", @"keyword", @"advisory",
@@ -547,6 +549,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
         }
     }
     
+    // Special rating handling
     id rating = [changes objectForKey:MZRatingTagIdent];
     if(rating)
     {
@@ -560,6 +563,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
         }
     }
     
+    // Special video type handling
     id stikNo = [changes objectForKey:MZVideoTypeTagIdent];
     if(stikNo)
     {
@@ -611,6 +615,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     sortTags(args, changes, MZSortTVShowTagIdent, @"show");
     sortTags(args, changes, MZSortComposerTagIdent, @"composer");
     
+    // Special image handling
     id pictureObj = [changes objectForKey:MZPictureTagIdent];
     NSString* pictureFile = nil;
     if(pictureObj == [NSNull null])
@@ -645,16 +650,116 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
             pictureFile = nil;
         }
     }
+    
+    //Special handling for directors, producers, actors, screenwriters
+    NSString* actors = [changes objectForKey:MZActorsTagIdent];
+    NSString* directors = [changes objectForKey:MZDirectorTagIdent];
+    NSString* producers = [changes objectForKey:MZProducerTagIdent];
+    NSString* screenwriters = [changes objectForKey:MZScreenwriterTagIdent];
+    if(actors || directors || producers || screenwriters)
+    {
+        if(!actors)
+            actors = [data actors];
+        if(!directors)
+            directors = [data director];
+        if(!producers)
+            producers = [data producer];
+        if(!screenwriters)
+            screenwriters = [data screenwriter];
+        if(actors == (NSString*)[NSNull null])
+            actors = nil;
+        if(directors == (NSString*)[NSNull null])
+            directors = nil;
+        if(producers == (NSString*)[NSNull null])
+            producers = nil;
+        if(screenwriters == (NSString*)[NSNull null])
+            screenwriters = nil;
+
+        [args addObject:@"--rDNSatom"];
+        if(actors || directors || producers || screenwriters)
+        {
+            NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+            if(actors)
+            {
+                NSArray* arr = [actors componentsSeparatedByString:@","];
+                NSMutableArray* arr2 = [NSMutableArray array];
+                for(NSString* actor in arr)
+                {
+                    NSString* trimmed = [actor stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                    if([trimmed length] > 0) {
+                        NSDictionary* nameDict = [NSDictionary dictionaryWithObject:trimmed forKey:@"name"];
+                        [arr2 addObject:nameDict];
+                    }
+                }
+                [dict setObject:arr2 forKey:@"cast"];
+            }
+            if(directors)
+            {
+                NSArray* arr = [directors componentsSeparatedByString:@","];
+                NSMutableArray* arr2 = [NSMutableArray array];
+                for(NSString* actor in arr)
+                {
+                    NSString* trimmed = [actor stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                    if([trimmed length] > 0) {
+                        NSDictionary* nameDict = [NSDictionary dictionaryWithObject:trimmed forKey:@"name"];
+                        [arr2 addObject:nameDict];
+                    }
+                }
+                [dict setObject:arr2 forKey:@"directors"];
+            }
+            if(producers)
+            {
+                NSArray* arr = [producers componentsSeparatedByString:@","];
+                NSMutableArray* arr2 = [NSMutableArray array];
+                for(NSString* actor in arr)
+                {
+                    NSString* trimmed = [actor stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                    if([trimmed length] > 0) {
+                        NSDictionary* nameDict = [NSDictionary dictionaryWithObject:trimmed forKey:@"name"];
+                        [arr2 addObject:nameDict];
+                    }
+                }
+                [dict setObject:arr2 forKey:@"producers"];
+            }
+            if(screenwriters)
+            {
+                NSArray* arr = [screenwriters componentsSeparatedByString:@","];
+                NSMutableArray* arr2 = [NSMutableArray array];
+                for(NSString* actor in arr)
+                {
+                    NSString* trimmed = [actor stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+                    if([trimmed length] > 0) {
+                        NSDictionary* nameDict = [NSDictionary dictionaryWithObject:trimmed forKey:@"name"];
+                        [arr2 addObject:nameDict];
+                    }
+                }
+                [dict setObject:arr2 forKey:@"screenwriters"];
+            }
+            
+            NSData* xmlData = [NSPropertyListSerialization dataFromPropertyList:dict
+                                       format:NSPropertyListXMLFormat_v1_0
+                                       errorDescription:NULL];
+            NSString* movi = [[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding];
+            [args addObject:movi];
+        }
+        else {
+            [args addObject:@""];
+        }
+        [args addObject:@"name=iTunMOVI"];
+        [args addObject:@"domain=com.apple.iTunes"];
+    }
+
 
     NSTask* task = [[[NSTask alloc] init] autorelease];
     [task setLaunchPath:[self launchPath]];
     [task setArguments:args];
     
     APWriteManager* manager = [APWriteManager
-            managerWithTask:task
-                   delegate:delegate
-                      edits:data
-                pictureFile:pictureFile];
+            managerForProvider:self
+                          task:task
+                      delegate:delegate
+                         edits:data
+                   pictureFile:pictureFile];
     [manager launch];
     [writes addObject:manager];
     

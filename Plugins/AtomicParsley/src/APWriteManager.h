@@ -15,19 +15,23 @@
     NSString* pictureFile;
     MetaEdits* edits;
     id<MZDataWriteDelegate> delegate;
+    id<MZDataProvider> provider;
 }
 @property(readonly) NSTask* task;
 @property(readonly) id<MZDataWriteDelegate> delegate;
 @property(readonly) MetaEdits* edits;
+@property(readonly) id<MZDataProvider> provider;
 
-+ (id)managerWithTask:(NSTask *)task
++ (id)managerForProvider:(id<MZDataProvider>)provider
+                    task:(NSTask *)task
+                delegate:(id<MZDataWriteDelegate>)delegate
+                   edits:(MetaEdits *)edits
+             pictureFile:(NSString *)file;
+- (id)initForProvider:(id<MZDataProvider>)provider
+                 task:(NSTask *)task
              delegate:(id<MZDataWriteDelegate>)delegate
                 edits:(MetaEdits *)edits
           pictureFile:(NSString *)file;
-- (id)initWithTask:(NSTask *)task
-          delegate:(id<MZDataWriteDelegate>)delegate
-             edits:(MetaEdits *)edits
-       pictureFile:(NSString *)file;
 
 - (void)launch;
 

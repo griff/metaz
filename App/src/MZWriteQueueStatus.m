@@ -50,7 +50,7 @@
         [self didChangeValueForKey:@"percent"];
     }
     [self willChangeValueForKey:@"writing"];
-    controller = [[[edits owner] saveChanges:edits delegate:self] retain];
+    controller = [[[MZPluginController sharedInstance] saveChanges:edits delegate:self] retain];
     writing = 1;
     [self didChangeValueForKey:@"writing"];
 }
@@ -75,7 +75,9 @@
     }
 }
 
-- (void)writeCanceled
+- (void)dataProvider:(id<MZDataProvider>)provider 
+          controller:(id<MZDataWriteController>)controller
+        writeCanceledForEdits:(MetaEdits *)theEdits
 {
     [self willChangeValueForKey:@"writing"];
     writing = 0;
@@ -97,14 +99,18 @@
     }
 }
 
-- (void)writeFinishedPercent:(int)newPercent
+- (void)dataProvider:(id<MZDataProvider>)provider
+          controller:(id<MZDataWriteController>)controller
+        writeFinishedForEdits:(MetaEdits *)theEdits percent:(int)newPercent
 {
     [self willChangeValueForKey:@"percent"];
     percent = newPercent;
     [self didChangeValueForKey:@"percent"];
 }
 
-- (void)writeFinished
+- (void)dataProvider:(id<MZDataProvider>)provider
+          controller:(id<MZDataWriteController>)controller
+        writeFinishedForEdits:(MetaEdits *)theEdits
 {
     MZWriteQueue* q = [MZWriteQueue sharedQueue];
     NSFileManager* mgr = [NSFileManager defaultManager];

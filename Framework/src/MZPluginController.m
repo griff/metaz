@@ -9,6 +9,17 @@
 #import <MetaZKit/MZPluginController.h>
 #import "MZPlugin-Private.h"
 
+@interface MZWriteNotification : NSObject <MZDataWriteDelegate>
+{
+    id<MZDataWriteDelegate> delegate;
+}
+
++ (id)notifierWithDelegate:(id<MZDataWriteDelegate>)delegate;
+- (id)initWithDelegate:(id<MZDataWriteDelegate>)delegate;
+
+@end
+
+
 @implementation MZPluginController
 @synthesize delegate;
 
@@ -272,7 +283,99 @@ static MZPluginController *gInstance = NULL;
         next = loaded;
     MetaEdits* edits = [[MetaEdits alloc] initWithProvider:next];
     [self fixTitle:edits];
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:edits forKey:MZMetaEditsNotificationKey];
+    [[NSNotificationCenter defaultCenter]
+            postNotificationName:MZDataProviderLoadedNotification
+                          object:provider
+                        userInfo:userInfo];
     return [edits autorelease];
 }
 
+- (id<MZDataWriteController>)saveChanges:(MetaEdits *)data
+          delegate:(id<MZDataWriteDelegate>)theDelegate
+{
+    id<MZDataProvider> provider = [data owner];
+    id<MZDataWriteDelegate> otherDelegate = [MZWriteNotification notifierWithDelegate:theDelegate];
+    return [provider saveChanges:data delegate:otherDelegate];
+}
+
 @end
+
+
+@implementation MZWriteNotification
+
++ (id)notifierWithDelegate:(id<MZDataWriteDelegate>)delegate
+{
+    return [[[self alloc] initWithDelegate:delegate] autorelease];
+}
+
+- (id)initWithDelegate:(id<MZDataWriteDelegate>)theDelegate
+{
+    self = [super init];
+    if(self)
+        delegate = [theDelegate retain];
+    return self;
+}
+
+- (void)dealloc
+{
+    [delegate release];
+    [super dealloc];
+}
+
+- (void)dataProvider:(id<MZDataProvider>)provider
+          controller:(id<MZDataWriteController>)controller
+        writeStartedForEdits:(MetaEdits *)edits
+{
+    NSArray* keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, MZDataWriteControllerNotificationKey, nil];
+    NSArray* values = [NSArray arrayWithObjects:edits, controller, nil];
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObjects:values forKeys:keys];
+    [[NSNotificationCenter defaultCenter]
+            postNotificationName:MZDataProviderWritingStartedNotification
+                          object:provider
+                        userInfo:userInfo];
+    if([delegate respondsToSelector:@selector(dataProvider:controller:writeStartedForEdits:)])
+        [delegate dataProvider:provider controller:controller writeStartedForEdits:edits];
+}
+
+- (void)dataProvider:(id<MZDataProvider>)provider
+          controller:(id<MZDataWriteController>)controller
+        writeCanceledForEdits:(MetaEdits *)edits
+{
+    NSArray* keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, MZDataWriteControllerNotificationKey, nil];
+    NSArray* values = [NSArray arrayWithObjects:edits, controller, nil];
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObjects:values forKeys:keys];
+    [[NSNotificationCenter defaultCenter]
+            postNotificationName:MZDataProviderWritingCanceledNotification
+                          object:provider
+                        userInfo:userInfo];
+    if([delegate respondsToSelector:@selector(dataProvider:controller:writeCanceledForEdits:)])
+        [delegate dataProvider:provider controller:controller writeCanceledForEdits:edits];
+}
+
+- (void)dataProvider:(id<MZDataProvider>)provider
+          controller:(id<MZDataWriteController>)controller
+        writeFinishedForEdits:(MetaEdits *)edits percent:(int)percent
+{
+    if([delegate respondsToSelector:@selector(dataProvider:controller:writeFinishedForEdits:percent:)])
+        [delegate dataProvider:provider controller:controller writeFinishedForEdits:edits percent:percent];
+}
+
+- (void)dataProvider:(id<MZDataProvider>)provider
+          controller:(id<MZDataWriteController>)controller
+        writeFinishedForEdits:(MetaEdits *)edits
+{
+    NSArray* keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, MZDataWriteControllerNotificationKey, nil];
+    NSArray* values = [NSArray arrayWithObjects:edits, controller, nil];
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObjects:values forKeys:keys];
+    [[NSNotificationCenter defaultCenter]
+            postNotificationName:MZDataProviderWritingFinishedNotification
+                          object:provider
+                        userInfo:userInfo];
+
+    if([delegate respondsToSelector:@selector(dataProvider:controller:writeFinishedForEdits:)])
+        [delegate dataProvider:provider controller:controller writeFinishedForEdits:edits];
+}
+
+@end
+

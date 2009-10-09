@@ -30,8 +30,4 @@
 - (void)stopWriting;
 - (void)stopWritingAndRemove;
 
-- (void)writeCanceled;
-- (void)writeFinished;
-- (void)writeFinishedPercent:(int)percent;
-
 @end

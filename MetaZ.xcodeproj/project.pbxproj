@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1B090A691069474600D88083 /* MyQueueCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B090A681069474600D88083 /* MyQueueCollectionView.m */; };
-		1B0DEA93105F1D76009D293F /* BtnStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEA92105F1D76009D293F /* BtnStuff.m */; };
 		1B0DEC3F10607A9A009D293F /* MGCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEC3E10607A9A009D293F /* MGCollectionView.m */; };
 		1B0DEC7F10609DC6009D293F /* MGCollectionViewOrig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEC7E10609DC6009D293F /* MGCollectionViewOrig.m */; };
-		1B0DED251060C741009D293F /* LabelM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DED241060C741009D293F /* LabelM.m */; };
 		1B0DEDD81060F7B6009D293F /* ImageWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEDD71060F7B6009D293F /* ImageWindowController.m */; };
 		1B0DEDDB10610132009D293F /* ImageEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B0DEDD910610132009D293F /* ImageEdit.xib */; };
 		1B0DEDE010610412009D293F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0DEDDF10610412009D293F /* Quartz.framework */; };
@@ -45,6 +43,7 @@
 		1BCC98261076D1A3007EFF57 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB6C10A1052B154001D3D1D /* Sparkle.framework */; };
 		1BCC990710771262007EFF57 /* FactorySettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BCC990610771262007EFF57 /* FactorySettings.plist */; };
 		1BCC9C6B107C3E80007EFF57 /* RatingMenuHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC9C6A107C3E80007EFF57 /* RatingMenuHandler.m */; };
+		1BCC9D3F107E9C08007EFF57 /* GenreDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC9D3E107E9C08007EFF57 /* GenreDataSource.m */; };
 		1BD6E752105DADCC00E40151 /* AddToQueue.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74D105DADCC00E40151 /* AddToQueue.tiff */; };
 		1BD6E753105DADCC00E40151 /* Pause.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74E105DADCC00E40151 /* Pause.tiff */; };
 		1BD6E754105DADCC00E40151 /* Play.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74F105DADCC00E40151 /* Play.tiff */; };
@@ -156,14 +155,10 @@
 		1B090C7B106A855400D88083 /* AtomicParsley32 */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = AtomicParsley32; path = Plugins/AtomicParsley/resources/AtomicParsley32; sourceTree = "<group>"; };
 		1B090C80106A899300D88083 /* MZTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTag.h; sourceTree = "<group>"; };
 		1B090C81106A899300D88083 /* MZTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTag.m; sourceTree = "<group>"; };
-		1B0DEA91105F1D76009D293F /* BtnStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BtnStuff.h; sourceTree = "<group>"; };
-		1B0DEA92105F1D76009D293F /* BtnStuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BtnStuff.m; sourceTree = "<group>"; };
 		1B0DEC3D10607A9A009D293F /* MGCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGCollectionView.h; sourceTree = "<group>"; };
 		1B0DEC3E10607A9A009D293F /* MGCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCollectionView.m; sourceTree = "<group>"; };
 		1B0DEC7D10609DC6009D293F /* MGCollectionViewOrig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGCollectionViewOrig.h; sourceTree = "<group>"; };
 		1B0DEC7E10609DC6009D293F /* MGCollectionViewOrig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCollectionViewOrig.m; sourceTree = "<group>"; };
-		1B0DED231060C741009D293F /* LabelM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelM.h; sourceTree = "<group>"; };
-		1B0DED241060C741009D293F /* LabelM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelM.m; sourceTree = "<group>"; };
 		1B0DEDD61060F7B6009D293F /* ImageWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageWindowController.h; sourceTree = "<group>"; };
 		1B0DEDD71060F7B6009D293F /* ImageWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageWindowController.m; sourceTree = "<group>"; };
 		1B0DEDDA10610132009D293F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/ImageEdit.xib; sourceTree = "<group>"; };
@@ -224,6 +219,8 @@
 		1BCC992110790355007EFF57 /* MZWriteQueue-Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MZWriteQueue-Private.h"; sourceTree = "<group>"; };
 		1BCC9C69107C3E80007EFF57 /* RatingMenuHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingMenuHandler.h; sourceTree = "<group>"; };
 		1BCC9C6A107C3E80007EFF57 /* RatingMenuHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingMenuHandler.m; sourceTree = "<group>"; };
+		1BCC9D3D107E9C08007EFF57 /* GenreDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenreDataSource.h; sourceTree = "<group>"; };
+		1BCC9D3E107E9C08007EFF57 /* GenreDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenreDataSource.m; sourceTree = "<group>"; };
 		1BD6E601105B355800E40151 /* MetaChangeNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaChangeNotification.m; sourceTree = "<group>"; };
 		1BD6E74D105DADCC00E40151 /* AddToQueue.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = AddToQueue.tiff; path = App/resources/AddToQueue.tiff; sourceTree = "<group>"; };
 		1BD6E74E105DADCC00E40151 /* Pause.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pause.tiff; path = App/resources/Pause.tiff; sourceTree = "<group>"; };
@@ -421,14 +418,10 @@
 				1BF5AD4A105DFC92005DD03E /* QueueWindowController.m */,
 				1BF5ADBB105E0B8E005DD03E /* FileViewBox.h */,
 				1BF5ADBC105E0B8E005DD03E /* FileViewBox.m */,
-				1B0DEA91105F1D76009D293F /* BtnStuff.h */,
-				1B0DEA92105F1D76009D293F /* BtnStuff.m */,
 				1B0DEC3D10607A9A009D293F /* MGCollectionView.h */,
 				1B0DEC3E10607A9A009D293F /* MGCollectionView.m */,
 				1B0DEC7D10609DC6009D293F /* MGCollectionViewOrig.h */,
 				1B0DEC7E10609DC6009D293F /* MGCollectionViewOrig.m */,
-				1B0DED231060C741009D293F /* LabelM.h */,
-				1B0DED241060C741009D293F /* LabelM.m */,
 				1B0DEDD61060F7B6009D293F /* ImageWindowController.h */,
 				1B0DEDD71060F7B6009D293F /* ImageWindowController.m */,
 				1B090A671069474600D88083 /* MyQueueCollectionView.h */,
@@ -442,6 +435,8 @@
 				1BEA6DDC106ED8E4004B1A7F /* PreferencesWindowController.m */,
 				1BCC9C69107C3E80007EFF57 /* RatingMenuHandler.h */,
 				1BCC9C6A107C3E80007EFF57 /* RatingMenuHandler.m */,
+				1BCC9D3D107E9C08007EFF57 /* GenreDataSource.h */,
+				1BCC9D3E107E9C08007EFF57 /* GenreDataSource.m */,
 			);
 			name = Classes;
 			path = App/src;
@@ -801,10 +796,8 @@
 				1BD6E7A3105DC34500E40151 /* MZWriteQueue.m in Sources */,
 				1BF5AD4B105DFC92005DD03E /* QueueWindowController.m in Sources */,
 				1BF5ADBD105E0B8E005DD03E /* FileViewBox.m in Sources */,
-				1B0DEA93105F1D76009D293F /* BtnStuff.m in Sources */,
 				1B0DEC3F10607A9A009D293F /* MGCollectionView.m in Sources */,
 				1B0DEC7F10609DC6009D293F /* MGCollectionViewOrig.m in Sources */,
-				1B0DED251060C741009D293F /* LabelM.m in Sources */,
 				1B0DEDD81060F7B6009D293F /* ImageWindowController.m in Sources */,
 				1B090A691069474600D88083 /* MyQueueCollectionView.m in Sources */,
 				1BEA6B3B106CF01B004B1A7F /* PosterView.m in Sources */,
@@ -812,6 +805,7 @@
 				1BEA6DDD106ED8E4004B1A7F /* PreferencesWindowController.m in Sources */,
 				1BEA71D110717785004B1A7F /* MZWriteQueueStatus.m in Sources */,
 				1BCC9C6B107C3E80007EFF57 /* RatingMenuHandler.m in Sources */,
+				1BCC9D3F107E9C08007EFF57 /* GenreDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,6 +36,11 @@
 - (MZVideoType)videoType;
 - (MZRating)rating;
 
+- (NSString *)actors;
+- (NSString *)director;
+- (NSString *)producer;
+- (NSString *)screenwriter;
+
 - (void)setFileName:(NSString *)aFileName;
 - (void)setTitle:(NSString *)aTitle;
 - (void)setVideoType:(MZVideoType)aVideoType;

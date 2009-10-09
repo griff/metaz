@@ -50,6 +50,8 @@
 - (id<MZDataProvider>)dataProviderForType:(NSString *)uti;
 - (id<MZSearchProvider>)searchProviderWithIdentifier:(NSString *)identifier;
 - (MetaEdits *)loadDataFromFile:(NSString *)path;
+- (id<MZDataWriteController>)saveChanges:(MetaEdits *)data
+          delegate:(id<MZDataWriteDelegate>)delegate;
 - (BOOL)unloadPlugin:(MZPlugin *)plugin;
 
 @end

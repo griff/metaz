@@ -1,4 +1,11 @@
 
+#ifdef __cplusplus
+#define MZKIT_EXTERN		extern "C"
+#else
+#define MZKIT_EXTERN		extern
+#endif
+
+
 typedef enum
 {
     MZUnsetVideoType = -1,
@@ -125,59 +132,67 @@ typedef enum
 } MZRating;
 
 // Info
-FOUNDATION_EXPORT NSString* const MZFileNameTagIdent;
-FOUNDATION_EXPORT NSString* const MZPictureTagIdent;
-FOUNDATION_EXPORT NSString* const MZTitleTagIdent;
-FOUNDATION_EXPORT NSString* const MZArtistTagIdent;
-FOUNDATION_EXPORT NSString* const MZDateTagIdent;
-FOUNDATION_EXPORT NSString* const MZRatingTagIdent;
-FOUNDATION_EXPORT NSString* const MZGenreTagIdent;
-FOUNDATION_EXPORT NSString* const MZAlbumTagIdent;
-FOUNDATION_EXPORT NSString* const MZAlbumArtistTagIdent;
-FOUNDATION_EXPORT NSString* const MZPurchaseDateTagIdent;
-FOUNDATION_EXPORT NSString* const MZShortDescriptionTagIdent;
-FOUNDATION_EXPORT NSString* const MZLongDescriptionTagIdent;
+MZKIT_EXTERN NSString* const MZFileNameTagIdent;
+MZKIT_EXTERN NSString* const MZPictureTagIdent;
+MZKIT_EXTERN NSString* const MZTitleTagIdent;
+MZKIT_EXTERN NSString* const MZArtistTagIdent;
+MZKIT_EXTERN NSString* const MZDateTagIdent;
+MZKIT_EXTERN NSString* const MZRatingTagIdent;
+MZKIT_EXTERN NSString* const MZGenreTagIdent;
+MZKIT_EXTERN NSString* const MZAlbumTagIdent;
+MZKIT_EXTERN NSString* const MZAlbumArtistTagIdent;
+MZKIT_EXTERN NSString* const MZPurchaseDateTagIdent;
+MZKIT_EXTERN NSString* const MZShortDescriptionTagIdent;
+MZKIT_EXTERN NSString* const MZLongDescriptionTagIdent;
 
 // Video
-FOUNDATION_EXPORT NSString* const MZVideoTypeTagIdent;
-FOUNDATION_EXPORT NSString* const MZActorsTagIdent;
-FOUNDATION_EXPORT NSString* const MZDirectorTagIdent;
-FOUNDATION_EXPORT NSString* const MZProducerTagIdent;
-FOUNDATION_EXPORT NSString* const MZScreenwriterTagIdent;
-FOUNDATION_EXPORT NSString* const MZTVShowTagIdent;
-FOUNDATION_EXPORT NSString* const MZTVEpisodeIDTagIdent;
-FOUNDATION_EXPORT NSString* const MZTVSeasonTagIdent;
-FOUNDATION_EXPORT NSString* const MZTVEpisodeTagIdent;
-FOUNDATION_EXPORT NSString* const MZTVNetworkTagIdent;
+MZKIT_EXTERN NSString* const MZVideoTypeTagIdent;
+MZKIT_EXTERN NSString* const MZActorsTagIdent;
+MZKIT_EXTERN NSString* const MZDirectorTagIdent;
+MZKIT_EXTERN NSString* const MZProducerTagIdent;
+MZKIT_EXTERN NSString* const MZScreenwriterTagIdent;
+MZKIT_EXTERN NSString* const MZTVShowTagIdent;
+MZKIT_EXTERN NSString* const MZTVEpisodeIDTagIdent;
+MZKIT_EXTERN NSString* const MZTVSeasonTagIdent;
+MZKIT_EXTERN NSString* const MZTVEpisodeTagIdent;
+MZKIT_EXTERN NSString* const MZTVNetworkTagIdent;
 
 
 // Sort
-FOUNDATION_EXPORT NSString* const MZSortTitleTagIdent;
-FOUNDATION_EXPORT NSString* const MZSortArtistTagIdent;
-FOUNDATION_EXPORT NSString* const MZSortAlbumTagIdent;
-FOUNDATION_EXPORT NSString* const MZSortAlbumArtistTagIdent;
-FOUNDATION_EXPORT NSString* const MZSortTVShowTagIdent;
-FOUNDATION_EXPORT NSString* const MZSortComposerTagIdent;
+MZKIT_EXTERN NSString* const MZSortTitleTagIdent;
+MZKIT_EXTERN NSString* const MZSortArtistTagIdent;
+MZKIT_EXTERN NSString* const MZSortAlbumTagIdent;
+MZKIT_EXTERN NSString* const MZSortAlbumArtistTagIdent;
+MZKIT_EXTERN NSString* const MZSortTVShowTagIdent;
+MZKIT_EXTERN NSString* const MZSortComposerTagIdent;
 
 // MetaX Advanced
-FOUNDATION_EXPORT NSString* const MZFeedURLTagIdent;
-FOUNDATION_EXPORT NSString* const MZEpisodeURLTagIdent;
-FOUNDATION_EXPORT NSString* const MZCategoryTagIdent;
-FOUNDATION_EXPORT NSString* const MZKeywordTagIdent;
-FOUNDATION_EXPORT NSString* const MZAdvisoryTagIdent;
-FOUNDATION_EXPORT NSString* const MZPodcastTagIdent;
-FOUNDATION_EXPORT NSString* const MZCopyrightTagIdent;
-FOUNDATION_EXPORT NSString* const MZTrackNumberTagIdent;
-FOUNDATION_EXPORT NSString* const MZTrackCountTagIdent;
-FOUNDATION_EXPORT NSString* const MZDiscNumberTagIdent;
-FOUNDATION_EXPORT NSString* const MZDiscCountTagIdent;
-FOUNDATION_EXPORT NSString* const MZGroupingTagIdent;
-FOUNDATION_EXPORT NSString* const MZEncodingToolTagIdent;
-FOUNDATION_EXPORT NSString* const MZCommentTagIdent;
-FOUNDATION_EXPORT NSString* const MZGaplessTagIdent;
-FOUNDATION_EXPORT NSString* const MZCompilationTagIdent;
+MZKIT_EXTERN NSString* const MZFeedURLTagIdent;
+MZKIT_EXTERN NSString* const MZEpisodeURLTagIdent;
+MZKIT_EXTERN NSString* const MZCategoryTagIdent;
+MZKIT_EXTERN NSString* const MZKeywordTagIdent;
+MZKIT_EXTERN NSString* const MZAdvisoryTagIdent;
+MZKIT_EXTERN NSString* const MZPodcastTagIdent;
+MZKIT_EXTERN NSString* const MZCopyrightTagIdent;
+MZKIT_EXTERN NSString* const MZTrackNumberTagIdent;
+MZKIT_EXTERN NSString* const MZTrackCountTagIdent;
+MZKIT_EXTERN NSString* const MZDiscNumberTagIdent;
+MZKIT_EXTERN NSString* const MZDiscCountTagIdent;
+MZKIT_EXTERN NSString* const MZGroupingTagIdent;
+MZKIT_EXTERN NSString* const MZEncodingToolTagIdent;
+MZKIT_EXTERN NSString* const MZCommentTagIdent;
+MZKIT_EXTERN NSString* const MZGaplessTagIdent;
+MZKIT_EXTERN NSString* const MZCompilationTagIdent;
 
 
-FOUNDATION_EXPORT NSString* const MZChaptersTagIdent;
-FOUNDATION_EXPORT NSString* const MZChapterNamesTagIdent;
+MZKIT_EXTERN NSString* const MZChaptersTagIdent;
+MZKIT_EXTERN NSString* const MZChapterNamesTagIdent;
 
+/* Notifications */
+MZKIT_EXTERN NSString* const MZDataProviderLoadedNotification;
+MZKIT_EXTERN NSString* const MZDataProviderWritingStartedNotification;
+MZKIT_EXTERN NSString* const MZDataProviderWritingCanceledNotification;
+MZKIT_EXTERN NSString* const MZDataProviderWritingFinishedNotification;
+
+MZKIT_EXTERN NSString* const MZMetaEditsNotificationKey;
+MZKIT_EXTERN NSString* const MZDataWriteControllerNotificationKey;

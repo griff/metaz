@@ -10,15 +10,19 @@
 #import <MetaZKit/MetaLoaded.h>
 #import <MetaZKit/MetaEdits.h>
 
-@protocol MZDataWriteDelegate <NSObject>
-- (void)writeCanceled;
-- (void)writeFinishedPercent:(int)percent;
-- (void)writeFinished;
-@end
+@protocol MZDataProvider;
 
 @protocol MZDataWriteController <NSObject>
 - (BOOL)isRunning;
 - (void)terminate;
+@end
+
+@protocol MZDataWriteDelegate <NSObject>
+@optional
+- (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataWriteController>)controller writeStartedForEdits:(MetaEdits *)edits;
+- (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataWriteController>)controller writeCanceledForEdits:(MetaEdits *)edits;
+- (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataWriteController>)controller writeFinishedForEdits:(MetaEdits *)edits percent:(int)percent;
+- (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataWriteController>)controller writeFinishedForEdits:(MetaEdits *)edits;
 @end
 
 /*!
@@ -33,23 +37,24 @@
  @abstract Returns array of UTIs supported by this provider.
  @result The UTIs supported by this provider.
  */
--(NSArray *)types;
+- (NSArray *)types;
 
 /*!
  @abstract Returns tags supported by this provider.
  */
--(NSArray *)providedTags;
+- (NSArray *)providedTags;
 
 /*!
  @abstract Loads the supplied file and return the meta data loaded.
  */
--(MetaLoaded *)loadFromFile:(NSString *)fileName;
+- (MetaLoaded *)loadFromFile:(NSString *)fileName;
 
 
 /*!
  @abstract Saves any changes to the meta data.
  */
--(id<MZDataWriteController>)saveChanges:(MetaEdits *)data
+- (id<MZDataWriteController>)saveChanges:(MetaEdits *)data
           delegate:(id<MZDataWriteDelegate>)delegate;
 
 @end
+

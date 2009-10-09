@@ -42,6 +42,18 @@
     [d addObserver:self forKeyPath:@"ratingNZ" options:0 context:NULL];
 }
 
+/*
+- (NSString *)ratingName
+{
+    return nil;
+}
+
+- (void)setRatingName:(NSString *)rating
+{
+    
+}
+*/
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     [self makeMenu];

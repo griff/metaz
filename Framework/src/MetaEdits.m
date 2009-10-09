@@ -193,8 +193,23 @@
 -(void)setterValue:(id)aValue forKey:(NSString *)aKey {
     MZTag* tag = [MZTag tagForIdentifier:aKey];
     id oldValue = [changes objectForKey:aKey];
-    NSString* changedKey = [aKey stringByAppendingString:@"Changed"];
     aValue = [tag convertObjectForStorage:aValue];
+
+    /*
+    id currentValue = [provider valueForKey:aKey];
+    currentValue = [tag convertObjectForStorage:currentValue];
+    
+    // If reverted to old value 
+    if([aValue isEqual:currentValue])
+    {
+        if(oldValue == nil)
+            return;
+        [self setterChanged:NO forKey:aKey];
+        return;
+    }
+    */
+    
+    NSString* changedKey = [aKey stringByAppendingString:@"Changed"];
     if(oldValue == nil) {
         [self willChangeValueForKey:changedKey];
         if([changes count] == 0)

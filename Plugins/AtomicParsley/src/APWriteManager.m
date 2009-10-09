@@ -10,29 +10,34 @@
 
 
 @implementation APWriteManager
+@synthesize provider;
 @synthesize task;
 @synthesize delegate;
 @synthesize edits;
 
-+ (id)managerWithTask:(NSTask *)task
-             delegate:(id<MZDataWriteDelegate>)delegate
-                edits:(MetaEdits *)edits
-          pictureFile:(NSString *)file
++ (id)managerForProvider:(id<MZDataProvider>)provider
+                    task:(NSTask *)task
+                delegate:(id<MZDataWriteDelegate>)delegate
+                   edits:(MetaEdits *)edits
+             pictureFile:(NSString *)file
 {
-    return [[[self alloc] initWithTask:task
-                              delegate:delegate
-                                 edits:edits                              
-                           pictureFile:file] autorelease];
+    return [[[self alloc] initForProvider:provider
+                                     task:task
+                                 delegate:delegate
+                                    edits:edits                              
+                              pictureFile:file] autorelease];
 }
 
-- (id)initWithTask:(NSTask *)theTask
-          delegate:(id<MZDataWriteDelegate>)theDelegate
-             edits:(MetaEdits *)theEdits
-       pictureFile:(NSString *)file
+- (id)initForProvider:(id<MZDataProvider>)theProvider
+                 task:(NSTask *)theTask
+             delegate:(id<MZDataWriteDelegate>)theDelegate
+                edits:(MetaEdits *)theEdits
+          pictureFile:(NSString *)file
 {
     self = [super init];
     if(self)
     {
+        provider = [theProvider retain];
         task = [theTask retain];
         delegate = [theDelegate retain];
         edits = [theEdits retain];
@@ -47,6 +52,7 @@
 {
     if([task isRunning])
         [task terminate];
+    [provider release];
     [task release];
     [delegate release];
     [edits release];
@@ -69,6 +75,8 @@
     NSLog(@"Starting write %@", [[task arguments] componentsJoinedByString:@" "]);
     [[[task standardOutput] fileHandleForReading] readInBackgroundAndNotify];
     [task launch];
+    if([delegate respondsToSelector:@selector(dataProvider:controller:writeStartedForEdits:)])
+        [delegate dataProvider:provider controller:self writeStartedForEdits:edits];
 }
 
 - (BOOL)isRunning
@@ -105,8 +113,8 @@
             NSLog(@"Failed to remove temp write file %@", [error localizedDescription]);
             error = nil;
         }
-        if([delegate respondsToSelector:@selector(writeCanceled)])
-            [delegate writeCanceled];
+        if([delegate respondsToSelector:@selector(dataProvider:controller:writeCanceledForEdits:)])
+            [delegate dataProvider:provider controller:self writeCanceledForEdits:edits];
     }
     else
     {
@@ -145,8 +153,8 @@
         
         }
         */
-        if([delegate respondsToSelector:@selector(writeFinished)])
-            [delegate writeFinished];
+        if([delegate respondsToSelector:@selector(dataProvider:controller:writeFinishedForEdits:)])
+            [delegate dataProvider:provider controller:self writeFinishedForEdits:edits];
     }
 }
 
@@ -159,8 +167,8 @@
                 encoding:NSUTF8StringEncoding] autorelease];
     NSLog(@"Got data: '%@'", str);
     NSInteger percent = [str integerValue];
-    if(percent > 0 && [delegate respondsToSelector:@selector(writeFinishedPercent:)])
-        [delegate writeFinishedPercent:percent];
+    if(percent > 0 && [delegate respondsToSelector:@selector(dataProvider:controller:writeFinishedForEdits:percent:)])
+        [delegate dataProvider:provider controller:self writeFinishedForEdits:edits percent:percent];
         
     if([task isRunning])
     {

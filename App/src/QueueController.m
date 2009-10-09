@@ -208,6 +208,11 @@
 
 - (IBAction)addToQueue:(id)sender
 {
+    if(![mainWindow makeFirstResponder:mainWindow])
+    {
+        [mainWindow endEditingFor:nil];
+    }
+
     NSArray* files = [filesController arrangedObjects];
     [writeQueue addQueueItems:files];
     [[MZMetaLoader sharedLoader] removeAllObjects];
