@@ -1230,7 +1230,7 @@
 																			</object>
 																			<object class="NSImageCell" key="NSDataCell" id="573033295">
 																				<int key="NSCellFlags">67239424</int>
-																				<int key="NSCellFlags2">131072</int>
+																				<int key="NSCellFlags2">33685504</int>
 																				<reference key="NSSupport" ref="26"/>
 																				<int key="NSAlign">0</int>
 																				<int key="NSScale">0</int>
@@ -1880,8 +1880,8 @@
 													</object>
 													<object class="NSPopUpButton" id="855723559">
 														<reference key="NSNextResponder" ref="453092425"/>
-														<int key="NSvFlags">265</int>
-														<string key="NSFrame">{{293, 364}, {131, 26}}</string>
+														<int key="NSvFlags">266</int>
+														<string key="NSFrame">{{219, 364}, {205, 26}}</string>
 														<reference key="NSSuperview" ref="453092425"/>
 														<bool key="NSEnabled">YES</bool>
 														<object class="NSPopUpButtonCell" key="NSCell" id="222738323">
@@ -4628,6 +4628,9 @@
 			<object class="NSCustomObject" id="1003405073">
 				<string key="NSClassName">QueueController</string>
 			</object>
+			<object class="NSCustomObject" id="608427214">
+				<string key="NSClassName">RatingMenuHandler</string>
+			</object>
 			<object class="NSMenu" id="511519593">
 				<string key="NSTitle"/>
 				<object class="NSMutableArray" key="NSMenuItems">
@@ -5351,9 +5354,6 @@
 						<int key="NSTag">82</int>
 					</object>
 				</object>
-			</object>
-			<object class="NSCustomObject" id="608427214">
-				<string key="NSClassName">RatingMenuHandler</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -7670,20 +7670,37 @@
 					<int key="connectionID">1497</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">selectedTag: selection.rating</string>
-						<reference key="source" ref="855723559"/>
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">dataSource</string>
+						<reference key="source" ref="975797990"/>
+						<reference key="destination" ref="292328499"/>
+					</object>
+					<int key="connectionID">1505</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">filesController</string>
+						<reference key="source" ref="608427214"/>
 						<reference key="destination" ref="35104934"/>
+					</object>
+					<int key="connectionID">1506</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedValue: ratingName</string>
+						<reference key="source" ref="855723559"/>
+						<reference key="destination" ref="608427214"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="855723559"/>
-							<reference key="NSDestination" ref="35104934"/>
-							<string key="NSLabel">selectedTag: selection.rating</string>
-							<string key="NSBinding">selectedTag</string>
-							<string key="NSKeyPath">selection.rating</string>
+							<reference key="NSDestination" ref="608427214"/>
+							<string key="NSLabel">selectedValue: ratingName</string>
+							<string key="NSBinding">selectedValue</string>
+							<string key="NSKeyPath">ratingName</string>
 							<object class="NSDictionary" key="NSOptions">
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSArray" key="dict.sortedKeys">
 									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
 									<string>NSNoSelectionPlaceholder</string>
 									<string>NSNotApplicablePlaceholder</string>
 									<string>NSNullPlaceholder</string>
@@ -7691,24 +7708,17 @@
 								</object>
 								<object class="NSMutableArray" key="dict.values">
 									<bool key="EncodedWithXMLCoder">YES</bool>
-									<real value="0.0"/>
-									<real value="0.0"/>
-									<real value="0.0"/>
+									<string>Editing Multiple</string>
+									<string>Rating</string>
+									<string>Not Applicable</string>
+									<string>NULL Rating</string>
 									<boolean value="NO"/>
 								</object>
 							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1503</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">dataSource</string>
-						<reference key="source" ref="975797990"/>
-						<reference key="destination" ref="292328499"/>
-					</object>
-					<int key="connectionID">1505</int>
+					<int key="connectionID">1513</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -11149,10 +11159,8 @@
 					<string>1489.IBPluginDependency</string>
 					<string>149.IBPluginDependency</string>
 					<string>149.ImportedFromIB2</string>
-					<string>1490.IBPluginDependency</string>
 					<string>150.IBPluginDependency</string>
 					<string>150.ImportedFromIB2</string>
-					<string>1504.IBPluginDependency</string>
 					<string>19.IBPluginDependency</string>
 					<string>19.ImportedFromIB2</string>
 					<string>195.IBPluginDependency</string>
@@ -11704,9 +11712,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -12141,7 +12147,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1505</int>
+			<int key="maxID">1513</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -12433,6 +12439,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>filesController</string>
 							<string>menuAU</string>
 							<string>menuCA</string>
 							<string>menuDE</string>
@@ -12443,6 +12450,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSArrayController</string>
 							<string>NSMenu</string>
 							<string>NSMenu</string>
 							<string>NSMenu</string>

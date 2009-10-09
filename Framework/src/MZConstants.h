@@ -22,7 +22,7 @@ typedef enum
 
 typedef enum
 {
-    MZNoRating,
+    MZNoRating = 0,
 
     //US
     MZ_G_Rating,

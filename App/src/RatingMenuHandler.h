@@ -17,6 +17,9 @@
     NSMenu* menuCA;
     NSMenu* menuAU;
     NSMenu* menuNZ;
+    NSArrayController* filesController;
+    id cachedOld;
+    BOOL useCached;
 }
 @property (nonatomic, retain) IBOutlet NSPopUpButton* ratingButton;
 @property (nonatomic, retain) IBOutlet NSMenu* menuUK;
@@ -25,7 +28,8 @@
 @property (nonatomic, retain) IBOutlet NSMenu* menuCA;
 @property (nonatomic, retain) IBOutlet NSMenu* menuAU;
 @property (nonatomic, retain) IBOutlet NSMenu* menuNZ;
-@property (readwrite) NSString* ratingName;
+@property (nonatomic, retain) IBOutlet NSArrayController* filesController;
+@property (retain) NSString* ratingName;
 
 - (void)makeMenu;
 
