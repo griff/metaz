@@ -8,9 +8,18 @@
 
 #import <MetaZKit/MetaData.h>
 
+@protocol MZSearchProvider;
+
+@protocol MZSearchProviderDelegate <NSObject>
+- (void) searchProvider:(id<MZSearchProvider>)provider result:(NSArray*)result;
+@optional
+- (void) searchFinished;
+@end
+
+
 @protocol MZSearchProvider <NSObject>
 - (NSImage *)icon;
 - (NSString *)identifier;
-- (NSArray *)searchWithData:(id<MetaData>)data;
-- (NSArray *)searchWithString:(NSString *)data;
+- (NSArray *)supportedSearchTags;
+- (BOOL)searchWithData:(NSDictionary *)data delegate:(id<MZSearchProviderDelegate>)delegate;
 @end

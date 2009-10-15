@@ -51,7 +51,9 @@
 - (id<MZSearchProvider>)searchProviderWithIdentifier:(NSString *)identifier;
 - (MetaEdits *)loadDataFromFile:(NSString *)path;
 - (id<MZDataWriteController>)saveChanges:(MetaEdits *)data
-          delegate:(id<MZDataWriteDelegate>)delegate;
+                                delegate:(id<MZDataWriteDelegate>)delegate;
+- (void)searchAllWithData:(NSDictionary *)data
+                 delegate:(id<MZSearchProviderDelegate>)delegate;
 - (BOOL)unloadPlugin:(MZPlugin *)plugin;
 
 @end

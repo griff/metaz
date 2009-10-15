@@ -43,9 +43,13 @@
     [super dealloc];
 }
 
--(void)handleDataForKey:(NSString *)aKey ofType:(NSUInteger)aType forInvocation:(NSInvocation *)anInvocation {
-    id ret = [self getterValueForKey:aKey];
-    [anInvocation setReturnObject:ret];
+-(NSArray *)providedTags {
+    return [owner providedTags];
+}
+
+- (id<MetaData>)pure
+{
+    return self;
 }
 
 -(id)getterValueForKey:(NSString *)aKey {
@@ -54,10 +58,12 @@
     return [tag convertObjectForRetrival:ret];
 }
 
--(NSArray *)providedTags {
-    return [owner providedTags];
+-(void)handleDataForKey:(NSString *)aKey ofType:(NSUInteger)aType forInvocation:(NSInvocation *)anInvocation {
+    id ret = [self getterValueForKey:aKey];
+    [anInvocation setReturnObject:ret];
 }
 
+/*
 - (id)valueForUndefinedKey:(NSString *)key {
     if([self respondsToSelector:NSSelectorFromString(key)])
     {
@@ -65,6 +71,7 @@
     }
     return [super valueForUndefinedKey:key];
 }
+*/
 
 #pragma mark - NSCoding implementation
 

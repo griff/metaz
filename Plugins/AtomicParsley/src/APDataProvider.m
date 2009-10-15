@@ -11,11 +11,48 @@
 
 @interface APDataProvider (Private)
 
++ (NSString *)launchPath;
++ (NSString *)launchChapsPath;
 - (NSString *)launchPath;
+- (NSString *)launchChapsPath;
 
 @end
 
 @implementation APDataProvider
+
++ (void)removeChaptersFromFile:(NSString *)filePath
+{
+    NSTask* task = [[NSTask alloc] init];
+    [task setLaunchPath:[self launchChapsPath]];
+    [task setArguments:[NSArray arrayWithObjects:@"-r", filePath, nil]];
+    [task launch];
+    [task waitUntilExit];
+    [task release];
+}
+
++ (void)importChaptersFromFile:(NSString *)chaptersFile toFile:(NSString *)filePath
+{
+    
+    NSTask* task = [[NSTask alloc] init];
+    [task setLaunchPath:[self launchChapsPath]];
+    [task setArguments:[NSArray arrayWithObjects:@"--import", chaptersFile, filePath, nil]];
+    [task launch];
+    [task waitUntilExit];
+    [task release];
+}
+
++ (NSString *)launchPath
+{
+    NSBundle* myBundle = [NSBundle bundleForClass:[self class]];
+    return [myBundle pathForResource:@"AtomicParsley32" ofType:nil];
+}
+
++ (NSString *)launchChapsPath
+{
+    NSBundle* myBundle = [NSBundle bundleForClass:[self class]];
+    return [myBundle pathForResource:@"mp4chaps" ofType:nil];
+}
+
 
 - (id)init
 {
@@ -509,6 +546,50 @@
     }
         
     [retdict setObject:[fileName lastPathComponent] forKey:MZFileNameTagIdent];
+    
+    // Chapter reading
+    {
+        task = [[NSTask alloc] init];
+        [task setLaunchPath:[self launchChapsPath]];
+        [task setArguments:[NSArray arrayWithObjects:@"-l", fileName, nil]];
+        NSPipe* out = [NSPipe pipe];
+        [task setStandardOutput:out];
+        [task launch];
+
+        NSData* data = [[out fileHandleForReading] readDataToEndOfFile];
+        [task waitUntilExit];
+        [task release];
+
+        NSString* str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+        NSArray* lines = [str componentsSeparatedByString:@"\tChapter #"];
+        if([lines count]>1)
+        {
+            NSMutableArray* chapters = [NSMutableArray array];
+            int len = [lines count];
+            for(int i=1; i<len; i++)
+            {
+                NSString* line = [[lines objectAtIndex:i]
+                    stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+                NSString* startStr = [line substringWithRange:NSMakeRange(6, 12)];
+                NSString* durationStr = [line substringWithRange:NSMakeRange(21, 12)];
+                NSString* name = [line substringWithRange:NSMakeRange(37, [line length]-38)];
+                //NSLog(@"Found args: '%@' '%@' '%@'", start, duration, name);
+
+                MZTimeCode* start = [MZTimeCode timeCodeWithString:startStr];
+                MZTimeCode* duration = [MZTimeCode timeCodeWithString:durationStr];
+
+                if(!start || !duration)
+                    break;
+                    
+                MZTimedTextItem* item = [MZTimedTextItem textItemWithStart:start duration:duration text:name];
+                [chapters addObject:item];
+            }
+            if([chapters count] == len-1)
+                [retdict setObject:chapters forKey:MZChaptersTagIdent];
+        }
+    }
+    
     return [MetaLoaded metaWithOwner:self filename:fileName dictionary:retdict];
 }
 
@@ -637,7 +718,9 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
         //NSData *imageData = [picture TIFFRepresentation];
         NSBitmapImageRep* imageRep = [NSBitmapImageRep imageRepWithData:picture];
         picture = [imageRep representationUsingType:NSPNGFileType properties:[NSDictionary dictionary]];
-        if([picture writeToFile:pictureFile atomically:NO])
+
+        NSError* error = nil;
+        if([picture writeToFile:pictureFile options:0 error:&error])
         {
             [args addObject:@"--artwork"];
             [args addObject:@"REMOVE_ALL"];
@@ -646,7 +729,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
         }
         else
         {
-            NSLog(@"Failed to write image to temp '%@'", pictureFile);
+            NSLog(@"Failed to write image to temp '%@' %@", pictureFile, [error localizedDescription]);
             pictureFile = nil;
         }
     }
@@ -749,6 +832,35 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
         [args addObject:@"domain=com.apple.iTunes"];
     }
 
+    // Special chapters handling
+    id chaptersObj = [changes objectForKey:MZChaptersTagIdent];
+    NSString* chaptersFile = nil;
+    if(chaptersObj == [NSNull null])
+    {
+        chaptersFile = @"";
+    }
+    else if(chaptersObj)
+    {
+        NSArray* chapters = chaptersObj;
+        chaptersFile = NSTemporaryDirectory();
+        if(!chaptersFile)
+            chaptersFile = @"/tmp";
+        
+        chaptersFile = [chaptersFile stringByAppendingPathComponent:
+            [NSString stringWithFormat:@"MetaZChapters_%@.txt",
+                [[NSProcessInfo processInfo] globallyUniqueString]]];
+
+        NSString* data = [[chapters arrayByPerformingSelector:@selector(description)]
+            componentsJoinedByString:@"\n"];
+                
+        NSError* error = nil;
+        if(![data writeToFile:chaptersFile atomically:NO encoding:NSUTF8StringEncoding error:&error])
+        {
+            NSLog(@"Failed to write chapters to temp '%@' %@", chaptersFile, [error localizedDescription]);
+            chaptersFile = nil;
+        }
+    }
+
 
     NSTask* task = [[[NSTask alloc] init] autorelease];
     [task setLaunchPath:[self launchPath]];
@@ -759,17 +871,29 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
                           task:task
                       delegate:delegate
                          edits:data
-                   pictureFile:pictureFile];
+                   pictureFile:pictureFile
+                  chaptersFile:chaptersFile];
     [manager launch];
     [writes addObject:manager];
     
     return manager;
 }
 
+- (void)removeWriteManager:(id)writeManager
+{
+    [writes removeObject:writeManager];
+}
+
+
 - (NSString *)launchPath
 {
-    NSBundle* myBundle = [NSBundle bundleForClass:[self class]];
-    return [myBundle pathForResource:@"AtomicParsley32" ofType:nil];
+    return [[self class] launchPath];
 }
+
+- (NSString *)launchChapsPath
+{
+    return [[self class] launchChapsPath];
+}
+
 
 @end

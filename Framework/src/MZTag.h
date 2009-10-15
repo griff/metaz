@@ -14,13 +14,13 @@
 + (NSArray *)videoTags;
 + (NSArray *)sortTags;
 + (NSArray *)advancedTags;
++ (NSArray *)chapterTags;
 + (NSArray *)allKnownTags;
 + (NSString *)localizedNameForKnownIdentifier:(NSString *)identifier;
 + (void)registerTag:(MZTag *)tag;
 + (MZTag *)tagForIdentifier:(NSString *)identifier;
 
 + (id)tagWithIdentifier:(NSString *)identifier;
-
 - (id)initWithIdentifier:(NSString *)identifier;
 
 - (NSString *)identifier;
@@ -33,6 +33,7 @@
 - (void)nullConvertObject:(id)obj toValue:(void*)buffer;
 - (id)convertObjectForRetrival:(id)obj;
 - (id)convertObjectForStorage:(id)obj;
+- (id)objectFromString:(NSString *)str;
 
 @end
 

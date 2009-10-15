@@ -15,12 +15,15 @@
 @interface MetaEdits : MZDynamicObject <MetaData, NSCopying, NSCoding> {
     NSMutableDictionary* changes;
     NSObject<MetaData>* provider;
+    NSObject<TagData>* pure;
     NSUndoManager* undoManager;
     NSUndoManager* multiUndoManager;
 }
 @property(readonly) NSUndoManager* undoManager;
 @property(retain)   NSUndoManager* multiUndoManager;
 @property(readonly) NSDictionary* changes;
+@property(readonly) NSObject<MetaData>* provider;
+@property(readonly) id<TagData> pure;
 
 - (id)initWithProvider:(id<MetaData>)aProvider;
 

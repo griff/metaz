@@ -7,6 +7,8 @@
 //
 
 #import "AppController.h"
+#import "UndoTableView.h"
+#import "MZMetaSearcher.h"
 
 NSArray* MZUTIFilenameExtension(NSArray* utis)
 {
@@ -22,6 +24,26 @@ NSArray* MZUTIFilenameExtension(NSArray* utis)
     return ret;
 }
 
+
+NSResponder* findResponder(NSWindow* window) {
+    NSResponder* oldResponder =  [window firstResponder];
+    if([oldResponder isKindOfClass:[NSTextView class]] && [window fieldEditor:NO forObject:nil] != nil)
+    {
+        NSResponder* delegate = [((NSTextView*)oldResponder) delegate];
+        if([delegate isKindOfClass:[NSTextField class]])
+            oldResponder = delegate;
+    }
+    return oldResponder;
+}
+
+NSDictionary* findBinding(NSWindow* window) {
+    NSResponder* oldResponder = findResponder(window);
+    NSDictionary* dict = [oldResponder infoForBinding:NSValueBinding];
+    if(dict == nil)
+        dict = [oldResponder infoForBinding:NSDataBinding];
+    return dict;
+}
+
 @implementation AppController
 @synthesize window;
 @synthesize tabView;
@@ -35,8 +57,10 @@ NSArray* MZUTIFilenameExtension(NSArray* utis)
 @synthesize resizeController;
 @synthesize shortDescription;
 @synthesize longDescription;
-@synthesize filesView;
 @synthesize imageView;
+@synthesize searchIndicator;
+@synthesize searchController;
+@synthesize searchField;
 
 #pragma mark - initialization
 
@@ -61,7 +85,9 @@ NSArray* MZUTIFilenameExtension(NSArray* utis)
     }
 }
 
--(void)awakeFromNib {
+-(void)awakeFromNib
+{
+    [[MZPluginController sharedInstance] setDelegate:self];
     undoManager = [[NSUndoManager alloc] init];
     [seasonFormatter setNilSymbol:@""];
     [episodeFormatter setNilSymbol:@""];
@@ -70,13 +96,24 @@ NSArray* MZUTIFilenameExtension(NSArray* utis)
     [dateFormatter setDefaultDate:nil];
     [purchaseDateFormatter setDefaultDate:nil];
     [filesController addObserver:self
-                      forKeyPath:@"arrangedObjects.@count"
+                      forKeyPath:@"selection.title"
                          options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial
                          context:nil];
+    [filesController addObserver:self
+                      forKeyPath:@"selection.pure"
+                         options:0
+                         context:nil];
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(finishedSearch:)
+               name:MZSearchFinishedNotification
+             object:nil];
 }
 
 -(void)dealloc {
-    [filesController removeObserver:self forKeyPath:@"arrangedObjects.@count"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [filesController removeObserver:self forKeyPath:@"selection.title"];
+    [filesController removeObserver:self forKeyPath:@"selection.pure"];
     [window release];
     [tabView release];
     [episodeFormatter release];
@@ -85,27 +122,78 @@ NSArray* MZUTIFilenameExtension(NSArray* utis)
     [purchaseDateFormatter release];
     [filesSegmentControl release];
     [filesController release];
-    [undoController release];
     [resizeController release];
+    [undoController release];
     [shortDescription release];
     [longDescription release];
-    [filesView release];
     [undoManager release];
     [imageView release];
     [imageEditController release];
     [prefController release];
+    [searchIndicator release];
+    [searchController release];
+    [searchField release];
     [super dealloc];
 }
 
 #pragma mark - as observer
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    int value = [[object valueForKeyPath:keyPath] intValue];
-    if(value > 0)
-        [filesSegmentControl setEnabled:YES forSegment:1];
-    else
-        [filesSegmentControl setEnabled:NO forSegment:1];
+    if([keyPath isEqual:@"selection.title"] && object == filesController)
+    {
+        id value = [object valueForKeyPath:keyPath];
+        if(value == NSMultipleValuesMarker ||
+           value == NSNotApplicableMarker ||
+           value == NSNoSelectionMarker ||
+           value == [NSNull null] ||
+           value == nil)
+        {
+            [window setTitle:@"MetaZ"];
+        }
+        else
+        {
+            [window setTitle:[NSString stringWithFormat:@"MetaZ - %@", value]];
+        }
+
+        if(value == NSNoSelectionMarker)
+            [filesSegmentControl setEnabled:NO forSegment:1];
+        else
+            [filesSegmentControl setEnabled:YES forSegment:1];
+    }
+    if([keyPath isEqual:@"selection.pure"] && object == filesController)
+    {
+        id videoType = NSNotApplicableMarker;
+        @try {
+            videoType = [filesController valueForKeyPath:@"selection.pure.videoType"];
+        }
+        @catch (NSException * e) {
+            if(![[e name] isEqual:@"NSUnknownKeyException"])
+                NSLog(@"Auch %@", e);
+        }
+        
+        if(videoType == nil || videoType == [NSNull null] || videoType == NSMultipleValuesMarker ||
+            videoType == NSNoSelectionMarker || videoType == NSNotApplicableMarker)
+        {
+        }
+        id titleId = [filesController valueForKeyPath:@"selection.title"];
+        if(titleId != nil && titleId != NSMultipleValuesMarker &&
+            titleId != NSNoSelectionMarker && titleId != NSNotApplicableMarker)
+        {
+            [searchField setStringValue:titleId];
+        }
+    }
 }
+
+
+#pragma mark - as MZPluginControllerDelegate
+
+- (id<MetaData>)pluginController:(MZPluginController *)controller
+        extraMetaDataForProvider:(id<MZDataProvider>)provider
+                          loaded:(MetaLoaded*)loaded
+{
+    return [[[SearchMeta alloc] initWithProvider:loaded controller:searchController] autorelease];
+}
+
 
 #pragma mark - actions
 
@@ -129,6 +217,16 @@ NSArray* MZUTIFilenameExtension(NSArray* utis)
     [tabView selectTabViewItemWithIdentifier:@"video"];    
 }
 
+- (IBAction)startSearch:(id)sender;
+{
+    NSString* term = [sender stringValue];
+    NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+    [dict setObject:term forKey:MZTitleTagIdent];
+    [searchIndicator startAnimation:sender];
+    [searchController setSortDescriptors:nil];
+    [[MZMetaSearcher sharedSearcher] startSearchWithData:dict];
+}
+
 - (IBAction)segmentClicked:(id)sender {
     int clickedSegment = [sender selectedSegment];
     int clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
@@ -137,47 +235,6 @@ NSArray* MZUTIFilenameExtension(NSArray* utis)
         [self openDocument:sender];
     else
         [filesController remove:sender];
-}
-
-NSResponder* findResponder(NSWindow* window) {
-    NSResponder* oldResponder =  [window firstResponder];
-    if([oldResponder isKindOfClass:[NSTextView class]] && [window fieldEditor:NO forObject:nil] != nil)
-    {
-        NSResponder* delegate = [((NSTextView*)oldResponder) delegate];
-        if([delegate isKindOfClass:[NSTextField class]])
-            oldResponder = delegate;
-    }
-    return oldResponder;
-}
-
-NSDictionary* findBinding(NSWindow* window) {
-    NSResponder* oldResponder = findResponder(window);
-    NSDictionary* dict = [oldResponder infoForBinding:NSValueBinding];
-    if(dict == nil)
-        dict = [oldResponder infoForBinding:NSDataBinding];
-    return dict;
-}
-
-- (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem {
-    SEL action = [anItem action];
-    if(action == @selector(selectNextFile:))
-        return [filesController canSelectNext];
-    if(action == @selector(selectPreviousFile:))
-        return [filesController canSelectPrevious];
-    if(action == @selector(revertChanges:))
-    {
-        NSDictionary* dict = findBinding(window);
-        if([[filesController selectedObjects] count] >= 1 && dict != nil)
-        {
-            id observed = [dict objectForKey:NSObservedObjectKey];
-            NSString* keyPath = [dict objectForKey:NSObservedKeyPathKey];
-            BOOL changed = [[observed valueForKeyPath:[keyPath stringByAppendingString:@"Changed"]] boolValue];
-            return changed;
-        }
-        else 
-            return NO;
-    }
-    return YES;
 }
 
 - (IBAction)selectNextFile:(id)sender {
@@ -226,17 +283,6 @@ NSDictionary* findBinding(NSWindow* window) {
     [imageEditController showWindow:self];
 }
 
-- (void)imageEditorDidClose:(NSNotification *)note
-{
-    [[NSNotificationCenter defaultCenter] 
-           removeObserver:self 
-                     name:NSWindowWillCloseNotification
-                   object:[note object]];
-    [imageEditController release];
-    imageEditController = nil;
-}
-
-
 - (IBAction)showPreferences:(id)sender
 {
     if(!prefController)
@@ -249,16 +295,6 @@ NSDictionary* findBinding(NSWindow* window) {
                    object:[prefController window]];
     }
     [prefController showWindow:self];
-}
-
-- (void)preferencesDidClose:(NSNotification *)note
-{
-    [[NSNotificationCenter defaultCenter] 
-           removeObserver:self 
-                     name:NSWindowWillCloseNotification
-                   object:[note object]];
-    [prefController release];
-    prefController = nil;
 }
 
 - (IBAction)openDocument:(id)sender {
@@ -283,6 +319,58 @@ NSDictionary* findBinding(NSWindow* window) {
                        contextInfo: nil];
 }
 
+#pragma mark - user interface validation
+
+- (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem {
+    SEL action = [anItem action];
+    if(action == @selector(selectNextFile:))
+        return [filesController canSelectNext];
+    if(action == @selector(selectPreviousFile:))
+        return [filesController canSelectPrevious];
+    if(action == @selector(revertChanges:))
+    {
+        NSDictionary* dict = findBinding(window);
+        if([[filesController selectedObjects] count] >= 1 && dict != nil)
+        {
+            id observed = [dict objectForKey:NSObservedObjectKey];
+            NSString* keyPath = [dict objectForKey:NSObservedKeyPathKey];
+            BOOL changed = [[observed valueForKeyPath:[keyPath stringByAppendingString:@"Changed"]] boolValue];
+            return changed;
+        }
+        else 
+            return NO;
+    }
+    return YES;
+}
+
+#pragma mark - callbacks
+
+- (void)finishedSearch:(NSNotification *)note
+{
+    NSLog(@"Finished search");
+    [searchIndicator stopAnimation:self];
+}
+
+- (void)imageEditorDidClose:(NSNotification *)note
+{
+    [[NSNotificationCenter defaultCenter] 
+           removeObserver:self 
+                     name:NSWindowWillCloseNotification
+                   object:[note object]];
+    [imageEditController release];
+    imageEditController = nil;
+}
+
+- (void)preferencesDidClose:(NSNotification *)note
+{
+    [[NSNotificationCenter defaultCenter] 
+           removeObserver:self 
+                     name:NSWindowWillCloseNotification
+                   object:[note object]];
+    [prefController release];
+    prefController = nil;
+}
+
 - (void)openPanelDidEnd:(NSOpenPanel *)oPanel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo {
     if (returnCode == NSOKButton)
         [[MZMetaLoader sharedLoader] loadFromFiles: [oPanel filenames]];
@@ -296,7 +384,9 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)aWindow {
     NSResponder* responder = [aWindow firstResponder];
-    if(responder == shortDescription || responder == longDescription || responder == filesView)
+    if(responder == shortDescription || 
+        responder == longDescription ||
+        [responder isKindOfClass:[UndoTableView class]])
     {
         NSUndoManager * man = [undoController undoManager];
         if(man != nil)

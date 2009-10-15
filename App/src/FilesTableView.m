@@ -65,13 +65,18 @@
 }
 
 #pragma mark - actions
--(IBAction)delete:(id)sender {
+-(IBAction)delete:(id)sender
+{
+    if([self selectedRow] >= 0)
+    {
+        NSRect rowRect = [self rectOfRow:[self selectedRow]];
+        NSPoint point = NSMakePoint(
+            rowRect.origin.x + rowRect.size.width/2,
+            rowRect.origin.y + rowRect.size.height/2);
+        point = [[self window] convertBaseToScreen:[self convertPointToBase:point]];
+        NSShowAnimationEffect(NSAnimationEffectDisappearingItemDefault,point,NSZeroSize,nil,Nil,NULL);
+    }
     [filesController remove:sender];
-}
-
--(IBAction)beginEnterEdit:(id)sender {
-    NSInteger row = [self selectedRow];
-    [self editColumn:0 row:row withEvent:nil select:YES];
 }
 
 -(IBAction)paste:(id)sender
@@ -352,6 +357,7 @@
         unichar ch = [ns characterAtIndex:0];
         //NSLog(@"keyDown %x %x", ch, NSNewlineCharacter);
         switch(ch) {
+            /*
             case NSNewlineCharacter:
                 //NSLog(@"Caught NL");
             case NSCarriageReturnCharacter:
@@ -363,6 +369,7 @@
                     return;
                 }
                 break;
+            */
             case NSBackspaceCharacter:
             case NSDeleteCharacter:
                 if([self numberOfSelectedRows] > 0 && (modifierFlags & NSCommandKeyMask) == NSCommandKeyMask )

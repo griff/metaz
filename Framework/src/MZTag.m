@@ -82,6 +82,10 @@
     [self registerTag:[MZStringTag tagWithIdentifier:MZCommentTagIdent]];
     [self registerTag:[MZBoolTag tagWithIdentifier:MZGaplessTagIdent]];
     [self registerTag:[MZBoolTag tagWithIdentifier:MZCompilationTagIdent]];
+    
+    // Chapter tags
+    [self registerTag:[MZTag tagWithIdentifier:MZChaptersTagIdent]];
+    [self registerTag:[MZTag tagWithIdentifier:MZChapterNamesTagIdent]];
 }
 
 static NSMutableDictionary *sharedTags = nil;
@@ -102,76 +106,85 @@ static NSMutableDictionary *sharedTags = nil;
 + (NSArray*)infoTags
 {
     return [NSArray arrayWithObjects:
-        [[self class] tagForIdentifier:MZFileNameTagIdent],
-        [[self class] tagForIdentifier:MZPictureTagIdent],
-        [[self class] tagForIdentifier:MZTitleTagIdent],
-        [[self class] tagForIdentifier:MZArtistTagIdent],
-        [[self class] tagForIdentifier:MZDateTagIdent],
-        [[self class] tagForIdentifier:MZRatingTagIdent],
-        [[self class] tagForIdentifier:MZGenreTagIdent],
-        [[self class] tagForIdentifier:MZAlbumTagIdent],
-        [[self class] tagForIdentifier:MZAlbumArtistTagIdent],
-        [[self class] tagForIdentifier:MZPurchaseDateTagIdent],
-        [[self class] tagForIdentifier:MZShortDescriptionTagIdent],
-        [[self class] tagForIdentifier:MZLongDescriptionTagIdent],
-        [[self class] tagForIdentifier:MZAlbumArtistTagIdent],
+        [self tagForIdentifier:MZFileNameTagIdent],
+        [self tagForIdentifier:MZPictureTagIdent],
+        [self tagForIdentifier:MZTitleTagIdent],
+        [self tagForIdentifier:MZArtistTagIdent],
+        [self tagForIdentifier:MZDateTagIdent],
+        [self tagForIdentifier:MZRatingTagIdent],
+        [self tagForIdentifier:MZGenreTagIdent],
+        [self tagForIdentifier:MZAlbumTagIdent],
+        [self tagForIdentifier:MZAlbumArtistTagIdent],
+        [self tagForIdentifier:MZPurchaseDateTagIdent],
+        [self tagForIdentifier:MZShortDescriptionTagIdent],
+        [self tagForIdentifier:MZLongDescriptionTagIdent],
+        [self tagForIdentifier:MZAlbumArtistTagIdent],
         nil];
 }
 
 + (NSArray*)videoTags
 {
     return [NSArray arrayWithObjects:
-        [[self class] tagForIdentifier:MZVideoTypeTagIdent],
-        [[self class] tagForIdentifier:MZActorsTagIdent],
-        [[self class] tagForIdentifier:MZDirectorTagIdent],
-        [[self class] tagForIdentifier:MZProducerTagIdent],
-        [[self class] tagForIdentifier:MZScreenwriterTagIdent],
-        [[self class] tagForIdentifier:MZTVShowTagIdent],
-        [[self class] tagForIdentifier:MZTVEpisodeIDTagIdent],
-        [[self class] tagForIdentifier:MZTVSeasonTagIdent],
-        [[self class] tagForIdentifier:MZTVEpisodeTagIdent],
-        [[self class] tagForIdentifier:MZTVNetworkTagIdent],
+        [self tagForIdentifier:MZVideoTypeTagIdent],
+        [self tagForIdentifier:MZActorsTagIdent],
+        [self tagForIdentifier:MZDirectorTagIdent],
+        [self tagForIdentifier:MZProducerTagIdent],
+        [self tagForIdentifier:MZScreenwriterTagIdent],
+        [self tagForIdentifier:MZTVShowTagIdent],
+        [self tagForIdentifier:MZTVEpisodeIDTagIdent],
+        [self tagForIdentifier:MZTVSeasonTagIdent],
+        [self tagForIdentifier:MZTVEpisodeTagIdent],
+        [self tagForIdentifier:MZTVNetworkTagIdent],
         nil];
 }
 
 + (NSArray*)sortTags
 {
     return [NSArray arrayWithObjects:
-        [[self class] tagForIdentifier:MZSortTitleTagIdent],
-        [[self class] tagForIdentifier:MZSortArtistTagIdent],
-        [[self class] tagForIdentifier:MZSortAlbumTagIdent],
-        [[self class] tagForIdentifier:MZSortAlbumArtistTagIdent],
-        [[self class] tagForIdentifier:MZSortTVShowTagIdent],
+        [self tagForIdentifier:MZSortTitleTagIdent],
+        [self tagForIdentifier:MZSortArtistTagIdent],
+        [self tagForIdentifier:MZSortAlbumTagIdent],
+        [self tagForIdentifier:MZSortAlbumArtistTagIdent],
+        [self tagForIdentifier:MZSortTVShowTagIdent],
         nil];
 }
 
 + (NSArray*)advancedTags
 {
     return [NSArray arrayWithObjects:
-        [[self class] tagForIdentifier:MZFeedURLTagIdent],
-        [[self class] tagForIdentifier:MZEpisodeURLTagIdent],
-        [[self class] tagForIdentifier:MZCategoryTagIdent],
-        [[self class] tagForIdentifier:MZKeywordTagIdent],
-        [[self class] tagForIdentifier:MZAdvisoryTagIdent],
-        [[self class] tagForIdentifier:MZPodcastTagIdent],
-        [[self class] tagForIdentifier:MZCopyrightTagIdent],
-        [[self class] tagForIdentifier:MZTrackNumberTagIdent],
-        [[self class] tagForIdentifier:MZTrackCountTagIdent],
-        [[self class] tagForIdentifier:MZDiscNumberTagIdent],
-        [[self class] tagForIdentifier:MZDiscCountTagIdent],
-        [[self class] tagForIdentifier:MZGroupingTagIdent],
-        [[self class] tagForIdentifier:MZEncodingToolTagIdent],
-        [[self class] tagForIdentifier:MZCommentTagIdent],
-        [[self class] tagForIdentifier:MZGaplessTagIdent],
-        [[self class] tagForIdentifier:MZCompilationTagIdent],
+        [self tagForIdentifier:MZFeedURLTagIdent],
+        [self tagForIdentifier:MZEpisodeURLTagIdent],
+        [self tagForIdentifier:MZCategoryTagIdent],
+        [self tagForIdentifier:MZKeywordTagIdent],
+        [self tagForIdentifier:MZAdvisoryTagIdent],
+        [self tagForIdentifier:MZPodcastTagIdent],
+        [self tagForIdentifier:MZCopyrightTagIdent],
+        [self tagForIdentifier:MZTrackNumberTagIdent],
+        [self tagForIdentifier:MZTrackCountTagIdent],
+        [self tagForIdentifier:MZDiscNumberTagIdent],
+        [self tagForIdentifier:MZDiscCountTagIdent],
+        [self tagForIdentifier:MZGroupingTagIdent],
+        [self tagForIdentifier:MZEncodingToolTagIdent],
+        [self tagForIdentifier:MZCommentTagIdent],
+        [self tagForIdentifier:MZGaplessTagIdent],
+        [self tagForIdentifier:MZCompilationTagIdent],
+        nil];
+}
+
++ (NSArray *)chapterTags
+{
+    return [NSArray arrayWithObjects:
+        [self tagForIdentifier:MZChaptersTagIdent],
+        [self tagForIdentifier:MZChapterNamesTagIdent],
         nil];
 }
 
 + (NSArray*)allKnownTags
 {
-    return [[[[self infoTags] arrayByAddingObjectsFromArray:[self videoTags]]
+    return [[[[[self infoTags] arrayByAddingObjectsFromArray:[self videoTags]]
                     arrayByAddingObjectsFromArray:[self sortTags]]
-                    arrayByAddingObjectsFromArray:[self advancedTags]];
+                    arrayByAddingObjectsFromArray:[self advancedTags]]
+                    arrayByAddingObjectsFromArray:[self chapterTags]];
 }
 
 + (NSString *)localizedNameForKnownIdentifier:(NSString *)identifier
@@ -226,10 +239,15 @@ static NSMutableDictionary *sharedTags = nil;
 
 - (id)convertValueToObject:(void*)buffer
 {
-    return nil;
+    id* v = (id*)buffer;
+    return *v;
 }
 
-- (void)convertObject:(id)obj toValue:(void*)buffer {}
+- (void)convertObject:(id)obj toValue:(void*)buffer
+{
+    id* v = (id*)buffer;
+    *v = obj;
+}
 
 - (id)nullConvertValueToObject:(void*)buffer
 {
@@ -260,6 +278,11 @@ static NSMutableDictionary *sharedTags = nil;
     return obj;
 }
 
+- (id)objectFromString:(NSString *)str
+{
+    return nil;
+}
+
 @end
 
 
@@ -270,24 +293,12 @@ static NSMutableDictionary *sharedTags = nil;
     return [[[NSTextFieldCell alloc] initTextCell:@""] autorelease]; 
 }
 
-- (id)convertValueToObject:(void*)buffer
+- (id)objectFromString:(NSString *)str
 {
-    NSString** str = (NSString**)buffer;
-    return *str;
+    if(!str || [str length]==0)
+        return nil;
+    return str;
 }
-
-- (void)convertObject:(id)obj toValue:(void*)buffer
-{
-    NSString** str = (NSString**)buffer;
-    *str = obj;
-}
-
-/*
-- (id)copyWithZone:(NSZone*)zone
-{
-    return [super copyWithZone:zone];
-}
-*/
 
 @end
 
@@ -309,6 +320,15 @@ static NSMutableDictionary *sharedTags = nil;
 {
     NSDate** str = (NSDate**)buffer;
     *str = obj;
+}
+
+- (id)objectFromString:(NSString *)str
+{
+    if(!str || [str length]==0)
+        return nil;
+    
+    //NSDateFormatter* format = [[NSDateFormatter alloc] init]
+    return [NSDate dateWithString:str];
 }
 
 @end
@@ -333,6 +353,15 @@ static NSMutableDictionary *sharedTags = nil;
     *str = obj;
 }
 
+- (id)objectFromString:(NSString *)str
+{
+    if(!str || [str length]==0)
+        return nil;
+    
+    NSInteger i = [str integerValue];
+    return [NSNumber numberWithInteger:i];
+}
+
 @end
 
 @implementation MZBoolTag : MZTag
@@ -352,6 +381,15 @@ static NSMutableDictionary *sharedTags = nil;
 {
     NSNumber** str = (NSNumber**)buffer;
     *str = obj;
+}
+
+- (id)objectFromString:(NSString *)str
+{
+    if(!str || [str length]==0)
+        return nil;
+    
+    BOOL value = [str boolValue];
+    return [NSNumber numberWithBool:value];
 }
 
 @end

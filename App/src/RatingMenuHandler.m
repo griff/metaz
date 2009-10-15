@@ -134,10 +134,12 @@ MZRating findRating(MZRating found, NSMenu* menu, NSString* title)
     {
         //for(NSString* key in [change allKeys])
         //    NSLog(@"Key - %@", key);
+        /*
         id old = [change objectForKey:NSKeyValueChangeOldKey];
         id newK = [change objectForKey:NSKeyValueChangeNewKey];
         id kind = [change objectForKey:@"kind"];
         id read = [filesController valueForKeyPath:@"selection.rating"];
+        */
         useCached = YES;
         [self willChangeValueForKey:@"ratingName"];
         useCached = NO;

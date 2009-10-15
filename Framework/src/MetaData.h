@@ -6,6 +6,7 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 #import <MetaZKit/MZConstants.h>
+#import <MetaZKit/TagData.h>
 
 /*! @protocol MetaData
  @abstract Informal protocol for all objects that store meta data
@@ -16,31 +17,16 @@
  @framework MetaZKit
  @availability 1.0
 */
-@protocol MetaData <NSObject, NSCopying, NSCoding>
+@protocol MetaData <TagData>
 
 @required
-- (id)owner;
 - (NSString *)loadedFileName;
 - (NSArray *)providedTags;
 - (id<MetaData>)queueCopy;
+@property (readonly) id<TagData> pure;
 
 @optional
 - (NSString *)fileName;
-- (NSString *)title;
-- (NSString *)artist;
-- (NSString *)genre;
-- (NSString *)album;
-- (NSString *)albumArtist;
-- (NSString *)shortDescription;
-- (NSString *)longDescription;
-- (MZVideoType)videoType;
-- (MZRating)rating;
-
-- (NSString *)actors;
-- (NSString *)director;
-- (NSString *)producer;
-- (NSString *)screenwriter;
-
 - (void)setFileName:(NSString *)aFileName;
 - (void)setTitle:(NSString *)aTitle;
 - (void)setVideoType:(MZVideoType)aVideoType;

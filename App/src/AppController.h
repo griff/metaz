@@ -13,7 +13,7 @@
 #import "ImageWindowController.h"
 #import "PreferencesWindowController.h"
 
-@interface AppController : NSObject <NSUserInterfaceValidations> {
+@interface AppController : NSObject <NSUserInterfaceValidations,MZPluginControllerDelegate> {
     NSWindow* window;
     NSTabView *tabView;
     NSNumberFormatter* episodeFormatter;
@@ -26,11 +26,13 @@
     FilesUndoController* undoController;
     NSTextView* shortDescription;
     NSTextView* longDescription;
-    NSTableView* filesView;
     NSUndoManager* undoManager;
     NSImageView* imageView;
     ImageWindowController* imageEditController;
     PreferencesWindowController* prefController;
+    NSProgressIndicator* searchIndicator;
+    NSArrayController* searchController;
+    NSSearchField* searchField;
 }
 @property (nonatomic, retain) IBOutlet NSWindow* window;
 @property (nonatomic, retain) IBOutlet NSTabView *tabView;
@@ -44,8 +46,10 @@
 @property (nonatomic, retain) IBOutlet FilesUndoController* undoController;
 @property (nonatomic, retain) IBOutlet NSTextView* shortDescription;
 @property (nonatomic, retain) IBOutlet NSTextView* longDescription;
-@property (nonatomic, retain) IBOutlet NSTableView* filesView;
 @property (nonatomic, retain) IBOutlet NSImageView* imageView;
+@property (nonatomic, retain) IBOutlet NSProgressIndicator* searchIndicator;
+@property (nonatomic, retain) IBOutlet NSArrayController* searchController;
+@property (nonatomic, retain) IBOutlet NSSearchField* searchField;
 
 + (void)initialize;
 
@@ -62,6 +66,7 @@
 - (IBAction)showPreferences:(id)sender;
 - (IBAction)revertChanges:(id)sender;
 - (IBAction)showImageEditor:(id)sender;
+- (IBAction)startSearch:(id)sender;
 - (IBAction)openDocument:(id)sender;
 - (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo;
 

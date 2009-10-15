@@ -8,30 +8,34 @@
 
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaZKit.h>
+#import "APDataProvider.h"
 
 @interface APWriteManager : NSObject <MZDataWriteController> {
     NSTask* task;
     BOOL terminated;
     NSString* pictureFile;
+    NSString* chaptersFile;
     MetaEdits* edits;
     id<MZDataWriteDelegate> delegate;
-    id<MZDataProvider> provider;
+    APDataProvider* provider;
 }
 @property(readonly) NSTask* task;
 @property(readonly) id<MZDataWriteDelegate> delegate;
 @property(readonly) MetaEdits* edits;
-@property(readonly) id<MZDataProvider> provider;
+@property(readonly) APDataProvider* provider;
 
-+ (id)managerForProvider:(id<MZDataProvider>)provider
++ (id)managerForProvider:(APDataProvider*)provider
                     task:(NSTask *)task
                 delegate:(id<MZDataWriteDelegate>)delegate
                    edits:(MetaEdits *)edits
-             pictureFile:(NSString *)file;
-- (id)initForProvider:(id<MZDataProvider>)provider
+             pictureFile:(NSString *)file
+            chaptersFile:(NSString *)chapterFile;
+- (id)initForProvider:(APDataProvider*)provider
                  task:(NSTask *)task
              delegate:(id<MZDataWriteDelegate>)delegate
                 edits:(MetaEdits *)edits
-          pictureFile:(NSString *)file;
+          pictureFile:(NSString *)file
+         chaptersFile:(NSString *)chapterFile;
 
 - (void)launch;
 

@@ -14,12 +14,6 @@
 - (void)setReturnObject:(id)value
 {
     const char* methodReturnType = [[self methodSignature] methodReturnType];
-    /*
-    const char* idt = @encode(id);
-    const char* intt = @encode(int);
-    const char* chart = @encode(char);
-    int r = strcmp(methodReturnType, @encode(id));
-    */
     if(strcmp(methodReturnType, @encode(id)) == 0)
         [self setReturnValue:&value];
     else if(strcmp(methodReturnType, @encode(int)) == 0)
@@ -30,6 +24,16 @@
     else if(strcmp(methodReturnType, @encode(char)) == 0)
     {
         char ret = [value charValue];
+        [self setReturnValue:&ret];
+    }
+    else if(strcmp(methodReturnType, @encode(NSInteger)) == 0)
+    {
+        NSInteger ret = [value integerValue];
+        [self setReturnValue:&ret];
+    }
+    else if(strcmp(methodReturnType, @encode(BOOL)) == 0)
+    {
+        BOOL ret = [value boolValue];
         [self setReturnValue:&ret];
     }
     else
@@ -60,6 +64,18 @@
         [self getReturnValue:&ret];
         return [NSNumber numberWithChar:ret];
     }
+    else if(strcmp(methodReturnType, @encode(NSInteger)) == 0)
+    {
+        NSInteger ret;
+        [self getReturnValue:&ret];
+        return [NSNumber numberWithInteger:ret];
+    }
+    else if(strcmp(methodReturnType, @encode(BOOL)) == 0)
+    {
+        BOOL ret;
+        [self getReturnValue:&ret];
+        return [NSNumber numberWithBool:ret];
+    }
     else
     {
         NSLog(@"Invalid type");
@@ -81,6 +97,16 @@
     else if(strcmp(methodReturnType, @encode(char)) == 0)
     {
         char ret = [argument charValue];
+        [self setArgument:&ret atIndex:idx];
+    }
+    else if(strcmp(methodReturnType, @encode(NSInteger)) == 0)
+    {
+        NSInteger ret = [argument integerValue];
+        [self setArgument:&ret atIndex:idx];
+    }
+    else if(strcmp(methodReturnType, @encode(BOOL)) == 0)
+    {
+        BOOL ret = [argument boolValue];
         [self setArgument:&ret atIndex:idx];
     }
     else
@@ -110,6 +136,18 @@
         char ret;
         [self getArgument:&ret atIndex:idx];
         return [NSNumber numberWithChar:ret];
+    }
+    else if(strcmp(methodReturnType, @encode(NSInteger)) == 0)
+    {
+        NSInteger ret;
+        [self getArgument:&ret atIndex:idx];
+        return [NSNumber numberWithInteger:ret];
+    }
+    else if(strcmp(methodReturnType, @encode(BOOL)) == 0)
+    {
+        BOOL ret;
+        [self getArgument:&ret atIndex:idx];
+        return [NSNumber numberWithBool:ret];
     }
     else
     {

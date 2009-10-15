@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "FilesUndoController.h"
+#import "UndoTableView.h"
 
-@interface FilesTableView : NSTableView {
+@interface FilesTableView : UndoTableView {
     NSArrayController* filesController;
     FilesUndoController* undoController;
 }
@@ -19,6 +20,5 @@
 + (void)initialize;
 
 -(IBAction)delete:(id)sender;
--(IBAction)beginEnterEdit:(id)sender;
 
 @end

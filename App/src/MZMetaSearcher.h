@@ -9,9 +9,14 @@
 #import <Cocoa/Cocoa.h>
 #import "MZSearchProvider.h"
 
-@interface MZMetaSearcher : NSObject {
-    IBOutlet id<MZSearchProvider> provider;
+@interface MZMetaSearcher : NSObject <MZSearchProviderDelegate> {
     NSMutableArray* results;
 }
+@property(readonly) NSArray* results;
+
++ (MZMetaSearcher *)sharedSearcher;
+
+- (void)startSearchWithData:(NSDictionary *)data;
+- (void)clearResults;
 
 @end

@@ -19,6 +19,10 @@
     NSMutableArray* writes;
 }
 
++ (void)removeChaptersFromFile:(NSString *)filePath;
++ (void)importChaptersFromFile:(NSString *)chaptersFile toFile:(NSString *)filePath;
+
 - (id)init;
+- (void)removeWriteManager:(id)writeManager;
 
 @end

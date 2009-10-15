@@ -193,6 +193,7 @@ MZKIT_EXTERN NSString* const MZDataProviderLoadedNotification;
 MZKIT_EXTERN NSString* const MZDataProviderWritingStartedNotification;
 MZKIT_EXTERN NSString* const MZDataProviderWritingCanceledNotification;
 MZKIT_EXTERN NSString* const MZDataProviderWritingFinishedNotification;
+MZKIT_EXTERN NSString* const MZSearchFinishedNotification;
 
 MZKIT_EXTERN NSString* const MZMetaEditsNotificationKey;
 MZKIT_EXTERN NSString* const MZDataWriteControllerNotificationKey;

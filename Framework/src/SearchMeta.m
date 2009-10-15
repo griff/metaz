@@ -11,36 +11,50 @@
 
 @implementation SearchMeta
 
--(id)initWithProvider:(id<MetaData>)aProvider controller:(NSArrayController *)aController {
+-(id)initWithProvider:(id<MetaData>)aProvider controller:(NSArrayController *)aController
+{
     self = [super init];
-    searchController = [aController retain];
-    provider = [aProvider retain];
-    NSArray* tags = [aProvider providedTags];
-    for(MZTag* tag in tags)
+    if(self)
     {
-        NSString* key = [tag identifier];
-        [searchController addObserver:self 
-                           forKeyPath:[@"selection." stringByAppendingString:key]
-                              options:NSKeyValueObservingOptionPrior|NSKeyValueObservingOptionOld
-                              context:nil];
+        searchController = [aController retain];
+        provider = [aProvider retain];
+        observeFix = [[MZPriorObserverFix alloc] initWithOther:searchController];
+        NSMutableArray* tags = [NSMutableArray arrayWithArray:[aProvider providedTags]];
+        [tags removeObject:[MZTag tagForIdentifier:MZFileNameTagIdent]];
+        for(MZTag* tag in tags)
+        {
+            NSString* key = [tag identifier];
+            [observeFix addObserver:self 
+                         forKeyPath:[@"selection." stringByAppendingString:key]
+                            options:NSKeyValueObservingOptionPrior
+                            context:NULL];
+            [provider addObserver:self 
+                       forKeyPath:key
+                          options:NSKeyValueObservingOptionPrior
+                          context:NULL];
+            [self addMethodGetterForKey:key ofType:1 withObjCType:[tag encoding]];
+        }
         [provider addObserver:self 
-                   forKeyPath:key
-                      options:NSKeyValueObservingOptionPrior|NSKeyValueObservingOptionOld
-                      context:nil];
-        [self addMethodGetterForKey:key ofType:1 withObjCType:@encode(id)];
+                   forKeyPath:MZFileNameTagIdent
+                      options:NSKeyValueObservingOptionPrior
+                      context:NULL];
     }
     return self;
 }
 
-- (void)dealloc {
-    NSArray* tags = [provider providedTags];
+- (void)dealloc
+{
+    NSMutableArray* tags = [NSMutableArray arrayWithArray:[provider providedTags]];
+    [tags removeObject:[MZTag tagForIdentifier:MZFileNameTagIdent]];
     for(MZTag* tag in tags)
     {
         NSString* key = [tag identifier];
-        [searchController removeObserver:self forKeyPath: [@"selection." stringByAppendingString:key]];
+        [observeFix removeObserver:self forKeyPath: [@"selection." stringByAppendingString:key]];
         [provider removeObserver:self forKeyPath:key];
     }
+    [provider removeObserver:self forKeyPath:MZFileNameTagIdent];
     [provider release];
+    [observeFix release];
     [searchController release];
     [super dealloc];
 }
@@ -50,29 +64,40 @@
     return [provider owner];
 }
 
--(NSArray *)providedTags {
+-(NSArray *)providedTags
+{
     return [provider providedTags];
 }
 
--(NSString *)loadedFileName {
+-(NSString *)loadedFileName
+{
     return [provider loadedFileName];
 }
 
--(NSString *)fileName {
+-(NSString *)fileName
+{
     return [provider fileName];
 }
 
+- (id<TagData>)pure
+{
+    return [provider pure];
+}
 
--(id)getterValueForKey:(NSString *)aKey {
+-(id)getterValueForKey:(NSString *)aKey
+{
     id ret = nil;
     @try {
         ret = [searchController valueForKeyPath:[@"selection." stringByAppendingString:aKey]];
     }
     @catch (NSException * e) {
-        NSLog(@"Auch %@", e);
+        if([[e name] isEqual:@"NSUnknownKeyException"])
+            ret = NSNotApplicableMarker;
+        else
+            NSLog(@"Auch %@", e);
     }
-    if(ret == nil)
-        return [provider performSelector:NSSelectorFromString(aKey)];
+    if(ret == nil || ret == NSNotApplicableMarker || ret == NSNoSelectionMarker)
+        return [provider valueForKey:aKey];
     return ret;
 }
 
@@ -87,18 +112,23 @@
 }
 
 
--(void)handleDataForKey:(NSString *)aKey ofType:(NSUInteger)aType forInvocation:(NSInvocation *)anInvocation {
+-(void)handleDataForKey:(NSString *)aKey ofType:(NSUInteger)aType forInvocation:(NSInvocation *)anInvocation
+{
     id ret = [self getterValueForKey:aKey];
-    [anInvocation setReturnValue:&ret];
+    [anInvocation setReturnObject:ret];
 }
 
-- (id)valueForUndefinedKey:(NSString *)key {
+/*
+- (id)valueForUndefinedKey:(NSString *)key
+{
     if([self respondsToSelector:NSSelectorFromString(key)])
         return [self getterValueForKey:key];
     return [super valueForUndefinedKey:key];
 }
+*/
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
     if(object == provider)
     {
         NSNumber * prior = [change objectForKey:NSKeyValueChangeNotificationIsPriorKey];
@@ -106,7 +136,7 @@
             [self willChangeValueForKey:keyPath];
         else
             [self didChangeValueForKey:keyPath];
-    } else if(object == searchController)
+    } else if(object == searchController || object == observeFix)
     {
         NSString* key = [keyPath substringFromIndex:10];
         NSNumber * prior = [change objectForKey:NSKeyValueChangeNotificationIsPriorKey];
@@ -119,7 +149,8 @@
 
 #pragma mark - NSCoding implementation
 
-- (Class)classForCoder {
+- (Class)classForCoder
+{
     return [provider classForCoder];
 }
 

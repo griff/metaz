@@ -20,12 +20,14 @@
                 delegate:(id<MZDataWriteDelegate>)delegate
                    edits:(MetaEdits *)edits
              pictureFile:(NSString *)file
+            chaptersFile:(NSString *)chapterFile
 {
     return [[[self alloc] initForProvider:provider
                                      task:task
                                  delegate:delegate
                                     edits:edits                              
-                              pictureFile:file] autorelease];
+                              pictureFile:file
+                             chaptersFile:chapterFile] autorelease];
 }
 
 - (id)initForProvider:(id<MZDataProvider>)theProvider
@@ -33,6 +35,7 @@
              delegate:(id<MZDataWriteDelegate>)theDelegate
                 edits:(MetaEdits *)theEdits
           pictureFile:(NSString *)file
+         chaptersFile:(NSString *)theChapterFile
 {
     self = [super init];
     if(self)
@@ -42,6 +45,7 @@
         delegate = [theDelegate retain];
         edits = [theEdits retain];
         pictureFile = [file retain];
+        chaptersFile = [theChapterFile retain];
         NSPipe* out = [NSPipe pipe];
         [task setStandardOutput:out];
     }
@@ -108,6 +112,14 @@
     }
     if(terminated)
     {
+        if(chaptersFile)
+        {
+            if(![mgr removeItemAtPath:chaptersFile error:&error])
+            {
+                NSLog(@"Failed to remove temp chapters file %@", [error localizedDescription]);
+                error = nil;
+            }
+        }
         if(![mgr removeItemAtPath:[edits savedTempFileName] error:&error])
         {
             NSLog(@"Failed to remove temp write file %@", [error localizedDescription]);
@@ -153,9 +165,32 @@
         
         }
         */
+        NSString* fileName;
+        BOOL isDir = NO;
+        if([mgr fileExistsAtPath:[edits savedTempFileName] isDirectory:&isDir] && !isDir)
+            fileName = [edits savedTempFileName];
+        else
+            fileName = [edits loadedFileName];
+
+        if(chaptersFile)
+        {
+            if([chaptersFile isEqualToString:@""])
+                [APDataProvider removeChaptersFromFile:fileName];
+            else
+            {
+                [APDataProvider importChaptersFromFile:chaptersFile toFile:fileName];
+                if(![mgr removeItemAtPath:chaptersFile error:&error])
+                {
+                    NSLog(@"Failed to remove temp chapters file %@", [error localizedDescription]);
+                    error = nil;
+                }
+            }
+        }
+        
         if([delegate respondsToSelector:@selector(dataProvider:controller:writeFinishedForEdits:)])
             [delegate dataProvider:provider controller:self writeFinishedForEdits:edits];
     }
+    [provider removeWriteManager:self];
 }
 
 - (void)handlerGotData:(NSNotification *)note

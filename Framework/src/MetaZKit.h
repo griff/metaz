@@ -18,5 +18,10 @@
 #import <MetaZKit/MZTag.h>
 #import <MetaZKit/MZPlugin.h>
 #import <MetaZKit/MZPluginController.h>
+#import <MetaZKit/MZTimeCode.h>
+#import <MetaZKit/MZTimedTextItem.h>
+#import <MetaZKit/MZRESTWrapper.h>
+#import <MetaZKit/MZSearchResult.h>
+#import <MetaZKit/MZPriorObserverFix.h>
 #import <MetaZKit/NSArray-Mapping.h>
 #import <MetaZKit/NSInvocation-Wrapping.h>

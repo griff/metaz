@@ -25,6 +25,7 @@
 - (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataWriteController>)controller writeFinishedForEdits:(MetaEdits *)edits;
 @end
 
+
 /*!
  @abstract Data provider
  */

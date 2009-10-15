@@ -19,6 +19,22 @@
 
 @end
 
+@interface MZSearchDelegate : NSObject <MZSearchProviderDelegate>
+{
+    id<MZSearchProviderDelegate> delegate;
+    NSUInteger performedSearches;
+    NSUInteger finishedSearches;
+}
+@property (readonly) NSUInteger performedSearches;
+@property (readonly) NSUInteger finishedSearches;
+
++ (id)searchWithDelegate:(id<MZSearchProviderDelegate>)delegate;
+- (id)initWithSearchDelegate:(id<MZSearchProviderDelegate>)delegate;
+
+- (void)performedSearch;
+
+@end
+
 
 @implementation MZPluginController
 @synthesize delegate;
@@ -292,11 +308,31 @@ static MZPluginController *gInstance = NULL;
 }
 
 - (id<MZDataWriteController>)saveChanges:(MetaEdits *)data
-          delegate:(id<MZDataWriteDelegate>)theDelegate
+                                delegate:(id<MZDataWriteDelegate>)theDelegate
 {
     id<MZDataProvider> provider = [data owner];
     id<MZDataWriteDelegate> otherDelegate = [MZWriteNotification notifierWithDelegate:theDelegate];
     return [provider saveChanges:data delegate:otherDelegate];
+}
+
+- (void)searchAllWithData:(NSDictionary *)data
+                 delegate:(id<MZSearchProviderDelegate>)theDelegate
+{
+    MZSearchDelegate* searchDelegate = [MZSearchDelegate searchWithDelegate:theDelegate];
+    for(MZPlugin* plugin in [self loadedPlugins])
+    {
+        NSArray* searchProviders = [plugin searchProviders];
+        for(id<MZSearchProvider> provider in searchProviders)
+        {
+            if([provider searchWithData:data delegate:searchDelegate])
+                [searchDelegate performedSearch];
+        }
+    }
+    if(searchDelegate.performedSearches == 0)
+    {
+        [searchDelegate performedSearch];
+        [searchDelegate searchFinished];
+    }
 }
 
 @end
@@ -375,6 +411,63 @@ static MZPluginController *gInstance = NULL;
 
     if([delegate respondsToSelector:@selector(dataProvider:controller:writeFinishedForEdits:)])
         [delegate dataProvider:provider controller:controller writeFinishedForEdits:edits];
+}
+
+@end
+
+
+@implementation MZSearchDelegate
+@synthesize performedSearches;
+@synthesize finishedSearches;
+
++ (id)searchWithDelegate:(id<MZSearchProviderDelegate>)theDelegate
+{
+    return [[[MZSearchDelegate alloc] initWithSearchDelegate:theDelegate] autorelease];
+}
+
+- (id)initWithSearchDelegate:(id<MZSearchProviderDelegate>)theDelegate
+{
+    self = [super init];
+    if(self)
+    {
+        delegate = [theDelegate retain];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [delegate release];
+    [super dealloc];
+}
+
+- (void)performedSearch
+{
+    performedSearches++;
+}
+
+- (void) searchProvider:(id<MZSearchProvider>)provider result:(NSArray*)result
+{
+    [delegate searchProvider:provider result:result];
+}
+
+- (void) searchFinished
+{
+    finishedSearches++;
+    if(finishedSearches==performedSearches)
+    {
+        /*
+        NSArray* keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, MZDataWriteControllerNotificationKey, nil];
+        NSArray* values = [NSArray arrayWithObjects:edits, controller, nil];
+        NSDictionary* userInfo = [NSDictionary dictionaryWithObjects:values forKeys:keys];
+        */
+        if([delegate respondsToSelector:@selector(searchFinished)])
+            [delegate searchFinished];
+        [[NSNotificationCenter defaultCenter]
+                postNotificationName:MZSearchFinishedNotification
+                              object:[MZPluginController sharedInstance]
+                            userInfo:nil];
+    }
 }
 
 @end
