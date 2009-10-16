@@ -50,7 +50,7 @@
     else
         key = keyPath;
             
-    id oldValue = [other valueForKey:key];
+    id oldValue = [other valueForKeyPath:[key stringByAppendingString:@".self"]];
     if(oldValue)
         [oldData setObject:oldValue forKey:key];
     NSInteger count = [[keyPathCount objectForKey:key] integerValue];
@@ -58,7 +58,7 @@
     [keyPathCount setObject:[NSNumber numberWithInteger:count] forKey:key];
 
     if(count == 1)
-        [other addObserver:self forKeyPath:key options:(options & ~NSKeyValueObservingOptionPrior) context:NULL];
+        [other addObserver:self forKeyPath:[key stringByAppendingString:@".self"] options:(options & ~NSKeyValueObservingOptionPrior) context:NULL];
 
     [super addObserver:observer forKeyPath:keyPath options:options context:context];
 }
@@ -77,7 +77,7 @@
 
     if(count == 0)
     {
-        [other removeObserver:self forKeyPath:key];
+        [other removeObserver:self forKeyPath:[key stringByAppendingString:@".self"]];
         [keyPathCount removeObjectForKey:key];
     }
     else
@@ -96,7 +96,7 @@
         key = keyPath;
 
     [self willChangeValueForKey:key];
-    id newValue = [other valueForKey:key];
+    id newValue = [other valueForKeyPath:[key stringByAppendingString:@".self"]];
     if(newValue)
         [oldData setObject:newValue forKey:key];
     else

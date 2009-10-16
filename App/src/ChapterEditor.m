@@ -291,6 +291,8 @@
         [self willChangeValueForKey:@"slideMin"];
         slideMin = newSlideMin;
         [self didChangeValueForKey:@"slideMin"];
+        [slider setNumberOfTickMarks:-newSlideMin+1];
+        [slider setIntegerValue:slide];
     }
     [self willChangeValueForKey:@"editorChapters"];
     [editorChapters release];

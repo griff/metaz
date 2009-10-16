@@ -66,14 +66,16 @@
     [anInvocation setReturnObject:ret];
 }
 
-/*
-- (id)valueForUndefinedKey:(NSString *)key
+#pragma mark - as observer
+
+- (void)observeValueForKeyPath:(NSString *)key ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if([self respondsToSelector:NSSelectorFromString(key)])
-        return [self getterValueForKey:key];
-    return [super valueForUndefinedKey:key];
+    NSNumber * prior = [change objectForKey:NSKeyValueChangeNotificationIsPriorKey];
+    if([prior boolValue])
+        [self willChangeValueForKey:key];
+    else
+        [self didChangeValueForKey:key];
 }
-*/
 
 #pragma mark - NSCoding implementation
 

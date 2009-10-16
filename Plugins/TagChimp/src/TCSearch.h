@@ -14,6 +14,7 @@
     id provider;
     MZRESTWrapper* wrapper;
     NSDictionary* mapping;
+    NSArray* ratingNames;
     BOOL canceled;
     id<MZSearchProviderDelegate> delegate;
 }

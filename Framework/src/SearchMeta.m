@@ -8,6 +8,7 @@
 
 #import <MetaZKit/SearchMeta.h>
 #import <MetaZKit/MZTag.h>
+#import <MetaZKit/NSObject-ProtectedKeyValue.h>
 
 @implementation SearchMeta
 
@@ -132,9 +133,17 @@
         NSString* key = [keyPath substringFromIndex:10];
         NSNumber * prior = [change objectForKey:NSKeyValueChangeNotificationIsPriorKey];
         if([prior boolValue])
+        {
+            //if([key isEqual:MZRatingTagIdent])
+            //NSLog(@"Changing %@ old: '%@'", key, [object protectedValueForKeyPath:keyPath]);
             [self willChangeValueForKey:key];
+        }
         else
+        {
             [self didChangeValueForKey:key];
+            //if([key isEqual:MZRatingTagIdent])
+            //NSLog(@"Changing %@ new: '%@'", key, [object protectedValueForKeyPath:keyPath]);
+        }
     }
 }
 

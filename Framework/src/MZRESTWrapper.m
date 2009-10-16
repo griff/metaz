@@ -239,6 +239,7 @@
 {
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
     int statusCode = [httpResponse statusCode];
+    NSLog(@"Got HTTP response %d", statusCode);
     switch (statusCode)
     {
         case 200:
@@ -250,8 +251,8 @@
             if ([delegate respondsToSelector:@selector(wrapper:didCreateResourceAtURL:)])
             {
                 [delegate wrapper:self didCreateResourceAtURL:url];
+                break;
             }
-            break;
         }
             
         // Here you could add more status code handling... for example 404 (not found),
@@ -272,6 +273,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
+    NSLog(@"Got HTTP response data %d", [data length]);    
     [receivedData appendData:data];
 }
 

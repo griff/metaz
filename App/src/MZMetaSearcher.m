@@ -83,12 +83,16 @@ static MZMetaSearcher* sharedSearcher = nil;
 
 - (void)clearResults
 {
-    [self willChangeValueForKey:@"results"];
-    if(!hasFake)
-        [results removeAllObjects];
-    else
-        [results removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, [results count]-1)]];
-    [self didChangeValueForKey:@"results"];
+    NSInteger expected = hasFake ? 1 : 0;
+    if([results count] > expected)
+    {
+        [self willChangeValueForKey:@"results"];
+        if(!hasFake)
+            [results removeAllObjects];
+        else
+            [results removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, [results count]-1)]];
+        [self didChangeValueForKey:@"results"];
+    }
 }
 
 

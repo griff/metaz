@@ -10,6 +10,7 @@
 
 
 @interface ChapterEditor : NSObject {
+    NSSlider* slider;
     NSArrayController* filesController;
     NSArray* editorChapters;
     NSArray* chapters;
@@ -20,6 +21,7 @@
     NSNumber* cachedChanged;
     BOOL useCachedChanged;
 }
+@property (nonatomic,retain) IBOutlet NSSlider* slider;
 @property (nonatomic,retain) IBOutlet NSArrayController* filesController;
 @property (readonly) NSArray* editorChapters;
 @property (nonatomic,retain) NSArray* chapters;

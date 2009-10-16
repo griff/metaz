@@ -429,7 +429,7 @@ static NSMutableDictionary *sharedTags = nil;
 - (void)convertObject:(id)obj toValue:(void*)buffer
 {
     int* ret = (int*)buffer;
-    if(!obj || obj == [NSNull null])
+    if(!obj || obj == [NSNull null] || ![obj respondsToSelector:@selector(intValue)])
         *ret = [self nilValue];
     else
         *ret = [obj intValue];
@@ -438,7 +438,7 @@ static NSMutableDictionary *sharedTags = nil;
 - (id)convertObjectForRetrival:(id)obj
 {
     int ret = [self nilValue];
-    if(obj && obj != [NSNull null])
+    if(obj && obj != [NSNull null] && [obj respondsToSelector:@selector(intValue)])
         ret = [obj intValue];
     return [NSNumber numberWithInt:ret];
 }
@@ -446,7 +446,7 @@ static NSMutableDictionary *sharedTags = nil;
 - (id)convertObjectForStorage:(id)obj
 {
     int ret = [self nilValue];
-    if(obj && obj != [NSNull null])
+    if(obj && obj != [NSNull null] && [obj respondsToSelector:@selector(intValue)])
         ret = [obj intValue];
     return [NSNumber numberWithInt:ret];
 }

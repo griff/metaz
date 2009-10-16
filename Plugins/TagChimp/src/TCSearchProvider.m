@@ -122,7 +122,9 @@
         [search release];
         search = nil;
     }
-    NSLog(@"Sent request '%@'", title);
+    NSLog(@"Sent request:");
+    for(NSString* key in [params allKeys])
+        NSLog(@"    '%@' -> '%@'", key, [params objectForKey:key]);
     MZRESTWrapper* wrapper = [[MZRESTWrapper alloc] init];
     search = [[TCSearch alloc] initWithProvider:self delegate:delegate wrapper:wrapper];
     wrapper.delegate = search;

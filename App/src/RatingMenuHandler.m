@@ -28,7 +28,7 @@
     [d removeObserver:self forKeyPath:@"ratingCA"];
     [d removeObserver:self forKeyPath:@"ratingAU"];
     [d removeObserver:self forKeyPath:@"ratingNZ"];
-    [filesController removeObserver:self forKeyPath:@"selection.rating"];
+    [observerFix removeObserver:self forKeyPath:@"selection.rating"];
     [ratingButton release];
     [menuUK release];
     [menuDE release];

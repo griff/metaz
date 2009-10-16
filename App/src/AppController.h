@@ -12,6 +12,7 @@
 #import "ResizeController.h"
 #import "ImageWindowController.h"
 #import "PreferencesWindowController.h"
+#import "SearchProfile.h"
 
 @interface AppController : NSObject <NSUserInterfaceValidations,MZPluginControllerDelegate> {
     NSWindow* window;
@@ -34,6 +35,7 @@
     NSArrayController* searchController;
     NSSearchField* searchField;
     NSInteger remainingInShortDescription;
+    SearchProfile* activeProfile;
 }
 @property (nonatomic, retain) IBOutlet NSWindow* window;
 @property (nonatomic, retain) IBOutlet NSTabView *tabView;
@@ -70,7 +72,7 @@
 - (IBAction)showImageEditor:(id)sender;
 - (IBAction)startSearch:(id)sender;
 - (IBAction)openDocument:(id)sender;
-- (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo;
+//- (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo;
 
 #pragma mark - as window delegate
 - (NSSize)windowWillResize:(NSWindow *)window toSize:(NSSize)proposedFrameSize;
