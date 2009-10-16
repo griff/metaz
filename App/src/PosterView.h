@@ -12,6 +12,7 @@
 @interface PosterView : NSImageView {
     SEL actionHack;
 }
+@property (readonly) NSString* imageSize;
 
 - (void)awakeFromNib;
 

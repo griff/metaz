@@ -86,16 +86,7 @@
 
 -(id)getterValueForKey:(NSString *)aKey
 {
-    id ret = nil;
-    @try {
-        ret = [searchController valueForKeyPath:[@"selection." stringByAppendingString:aKey]];
-    }
-    @catch (NSException * e) {
-        if([[e name] isEqual:@"NSUnknownKeyException"])
-            ret = NSNotApplicableMarker;
-        else
-            NSLog(@"Auch %@", e);
-    }
+    id ret = [searchController protectedValueForKeyPath:[@"selection." stringByAppendingString:aKey]];
     if(ret == nil || ret == NSNotApplicableMarker || ret == NSNoSelectionMarker)
         return [provider valueForKey:aKey];
     return ret;

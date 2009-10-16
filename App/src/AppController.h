@@ -33,6 +33,7 @@
     NSProgressIndicator* searchIndicator;
     NSArrayController* searchController;
     NSSearchField* searchField;
+    NSInteger remainingInShortDescription;
 }
 @property (nonatomic, retain) IBOutlet NSWindow* window;
 @property (nonatomic, retain) IBOutlet NSTabView *tabView;
@@ -50,6 +51,7 @@
 @property (nonatomic, retain) IBOutlet NSProgressIndicator* searchIndicator;
 @property (nonatomic, retain) IBOutlet NSArrayController* searchController;
 @property (nonatomic, retain) IBOutlet NSSearchField* searchField;
+@property (readonly) NSInteger remainingInShortDescription;
 
 + (void)initialize;
 

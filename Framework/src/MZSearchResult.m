@@ -56,6 +56,11 @@
         [values objectForKey:MZChapterNamesTagIdent] != nil;
 }
 
+- (NSString *)searchResultTitle
+{
+    return [self title];
+}
+
 -(id)getterValueForKey:(NSString *)aKey
 {
     id ret = [values objectForKey:aKey];

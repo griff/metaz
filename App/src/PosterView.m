@@ -8,6 +8,7 @@
 
 #import "PosterView.h"
 #import "Utilities.h"
+#import "Resources.h"
 
 @implementation PosterView
 
@@ -20,25 +21,36 @@
 
 - (void)setObjectValue:(id < NSCopying >)object
 {
+    [self willChangeValueForKey:@"imageSize"];
     [super setObjectValue:object];
+    [self didChangeValueForKey:@"imageSize"];
     if(!object)
-        [self setImage:[NSImage imageNamed:@"faded_cow"]];
-    
+        [self setImage:[NSImage imageNamed:MZFadedIcon]];
 }
 
 - (NSImage *)objectValue
 {
     NSImage* ret = [super objectValue];
-    if(ret == [NSImage imageNamed:@"faded_cow"])
+    if(ret == [NSImage imageNamed:MZFadedIcon])
         return nil;
     return ret;
 }
 
 - (void)setImage:(NSImage*)image
 {
+    [self willChangeValueForKey:@"imageSize"];
     if(!image)
-        image = [NSImage imageNamed:@"faded_cow"];
+        image = [NSImage imageNamed:MZFadedIcon];
     [super setImage:image];
+    [self didChangeValueForKey:@"imageSize"];
+}
+
+- (NSString*)imageSize
+{
+    NSSize size = [[self objectValue] size];
+    if(NSEqualSizes(size, NSZeroSize))
+        return NSLocalizedString(@"No Image", @"Text for size text field when no image is present");
+    return [NSString stringWithFormat:@"%.0fx%.0f", size.width, size.height];
 }
 
 - (void)mouseDown:(NSEvent *)theEvent
@@ -64,7 +76,7 @@
     {
         unichar ch = [ns characterAtIndex:0];
         if((ch==NSBackspaceCharacter || ch==NSDeleteCharacter) && 
-            [self image] == [NSImage imageNamed:@"faded_cow"])
+            [self image] == [NSImage imageNamed:MZFadedIcon])
         {
             NSBeep();
         }

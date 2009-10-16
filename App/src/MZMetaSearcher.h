@@ -11,8 +11,10 @@
 
 @interface MZMetaSearcher : NSObject <MZSearchProviderDelegate> {
     NSMutableArray* results;
+    BOOL hasFake;
 }
 @property(readonly) NSArray* results;
+@property(retain) id fakeResult;
 
 + (MZMetaSearcher *)sharedSearcher;
 

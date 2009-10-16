@@ -18,8 +18,7 @@
     NSMenu* menuAU;
     NSMenu* menuNZ;
     NSArrayController* filesController;
-    id cachedOld;
-    BOOL useCached;
+    MZPriorObserverFix* observerFix;
 }
 @property (nonatomic, retain) IBOutlet NSPopUpButton* ratingButton;
 @property (nonatomic, retain) IBOutlet NSMenu* menuUK;

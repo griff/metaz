@@ -37,14 +37,14 @@
     [menuAU release];
     [menuNZ release];
     [filesController release];
-    [cachedOld release];
+    [observerFix release];
     [super dealloc];
 }
 
 - (void)awakeFromNib
 {
     [self makeMenu];
-    cachedOld = [filesController valueForKeyPath:@"selection.rating"];
+    observerFix = [[MZPriorObserverFix alloc] initWithOther:filesController];
     NSUserDefaults* d = [NSUserDefaults standardUserDefaults];
     [d addObserver:self forKeyPath:@"ratingUK" options:0 context:NULL];
     [d addObserver:self forKeyPath:@"ratingDE" options:0 context:NULL];
@@ -52,11 +52,9 @@
     [d addObserver:self forKeyPath:@"ratingCA" options:0 context:NULL];
     [d addObserver:self forKeyPath:@"ratingAU" options:0 context:NULL];
     [d addObserver:self forKeyPath:@"ratingNZ" options:0 context:NULL];
-    [filesController addObserver:self
+    [observerFix addObserver:self
                       forKeyPath:@"selection.rating"
-                         options:NSKeyValueObservingOptionOld|
-//                                 NSKeyValueObservingOptionPrior|
-                                 NSKeyValueObservingOptionNew
+                         options:NSKeyValueObservingOptionPrior
                          context:NULL];
 }
 
@@ -70,11 +68,7 @@ NSString* findItem(NSMenu* menu, MZRating rating)
 
 - (NSString *)ratingName
 {
-    id value;
-    if(useCached)
-        value = cachedOld;
-    else
-        value = cachedOld = [filesController valueForKeyPath:@"selection.rating"];
+    id value = [filesController protectedValueForKeyPath:@"selection.rating"];
     if(value == NSMultipleValuesMarker || value == NSNoSelectionMarker || value == NSNotApplicableMarker)
         return (NSString*)value;
 
@@ -104,7 +98,7 @@ MZRating findRating(MZRating found, NSMenu* menu, NSString* title)
 
 - (void)setRatingName:(NSString *)newRating
 {
-    id value = [filesController valueForKeyPath:@"selection.rating"];
+    id value = [filesController protectedValueForKeyPath:@"selection.rating"];
     if(value == NSNoSelectionMarker || value == NSNotApplicableMarker)
         return;
 
@@ -130,20 +124,13 @@ MZRating findRating(MZRating found, NSMenu* menu, NSString* title)
     {
         [self makeMenu];
     }
-    else if(object == filesController)
+    if(object == filesController || object == observerFix)
     {
-        //for(NSString* key in [change allKeys])
-        //    NSLog(@"Key - %@", key);
-        /*
-        id old = [change objectForKey:NSKeyValueChangeOldKey];
-        id newK = [change objectForKey:NSKeyValueChangeNewKey];
-        id kind = [change objectForKey:@"kind"];
-        id read = [filesController valueForKeyPath:@"selection.rating"];
-        */
-        useCached = YES;
-        [self willChangeValueForKey:@"ratingName"];
-        useCached = NO;
-        [self didChangeValueForKey:@"ratingName"];
+        NSNumber * prior = [change objectForKey:NSKeyValueChangeNotificationIsPriorKey];
+        if([prior boolValue])
+            [self willChangeValueForKey:@"ratingName"];
+        else
+            [self didChangeValueForKey:@"ratingName"];
     }
 }
 

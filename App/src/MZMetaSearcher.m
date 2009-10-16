@@ -10,7 +10,6 @@
 
 
 @implementation MZMetaSearcher
-@synthesize results;
 
 #pragma mark - initialization 
 
@@ -43,6 +42,36 @@ static MZMetaSearcher* sharedSearcher = nil;
     [super dealloc];
 }
 
+#pragma mark - properties
+@synthesize results;
+
+- (id)fakeResult
+{
+    if(hasFake)
+        return [results objectAtIndex:0];
+    return nil;
+}
+
+- (void)setFakeResult:(id)result
+{
+    [self willChangeValueForKey:@"results"];
+    if(!result)
+    {
+        if(hasFake)
+            [results removeObjectAtIndex:0];
+        hasFake = NO;
+    }
+    else if(hasFake)
+    {
+        [results replaceObjectAtIndex:0 withObject:result];
+    }
+    else
+    {
+        [results insertObject:result atIndex:0];
+        hasFake = YES;
+    }
+    [self didChangeValueForKey:@"results"];
+}
 
 #pragma mark - Actions
 
@@ -55,8 +84,10 @@ static MZMetaSearcher* sharedSearcher = nil;
 - (void)clearResults
 {
     [self willChangeValueForKey:@"results"];
-    [results removeAllObjects];
-    //[results removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, [results count]-1)]];
+    if(!hasFake)
+        [results removeAllObjects];
+    else
+        [results removeObjectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, [results count]-1)]];
     [self didChangeValueForKey:@"results"];
 }
 

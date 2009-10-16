@@ -49,6 +49,11 @@
 		1B92BB1C10876FBA0057EFD7 /* PureMetaEdits.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B92BB1A10876FBA0057EFD7 /* PureMetaEdits.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		1B92BB1D10876FBA0057EFD7 /* PureMetaEdits.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BB1B10876FBA0057EFD7 /* PureMetaEdits.m */; };
 		1B92BB70108787260057EFD7 /* SearchProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BB6F108787260057EFD7 /* SearchProfile.m */; };
+		1B92BC0110887EF40057EFD7 /* FakeSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BC0010887EF40057EFD7 /* FakeSearchResult.m */; };
+		1B92BC04108880D60057EFD7 /* Resources.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BC03108880D60057EFD7 /* Resources.m */; };
+		1B92BC06108882710057EFD7 /* CowHead.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B92BC05108882710057EFD7 /* CowHead.png */; };
+		1B92BC57108890090057EFD7 /* NSObject-ProtectedKeyValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B92BC55108890090057EFD7 /* NSObject-ProtectedKeyValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B92BC58108890090057EFD7 /* NSObject-ProtectedKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BC56108890090057EFD7 /* NSObject-ProtectedKeyValue.m */; };
 		1B9B393F106C0FA200928C83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B9B393D106C0FA200928C83 /* Localizable.strings */; };
 		1BA325CD10545BBB00276F57 /* MetaZKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1BA325E110545CD900276F57 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -259,6 +264,13 @@
 		1B92BB1B10876FBA0057EFD7 /* PureMetaEdits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PureMetaEdits.m; sourceTree = "<group>"; };
 		1B92BB6E108787260057EFD7 /* SearchProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchProfile.h; sourceTree = "<group>"; };
 		1B92BB6F108787260057EFD7 /* SearchProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchProfile.m; sourceTree = "<group>"; };
+		1B92BBFF10887EF40057EFD7 /* FakeSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeSearchResult.h; sourceTree = "<group>"; };
+		1B92BC0010887EF40057EFD7 /* FakeSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeSearchResult.m; sourceTree = "<group>"; };
+		1B92BC02108880D60057EFD7 /* Resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resources.h; sourceTree = "<group>"; };
+		1B92BC03108880D60057EFD7 /* Resources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resources.m; sourceTree = "<group>"; };
+		1B92BC05108882710057EFD7 /* CowHead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CowHead.png; path = App/resources/CowHead.png; sourceTree = "<group>"; };
+		1B92BC55108890090057EFD7 /* NSObject-ProtectedKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject-ProtectedKeyValue.h"; sourceTree = "<group>"; };
+		1B92BC56108890090057EFD7 /* NSObject-ProtectedKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject-ProtectedKeyValue.m"; sourceTree = "<group>"; };
 		1B9B393E106C0FA200928C83 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = App/English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1B9B3AB4106CC14B00928C83 /* MetaZKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaZKit.h; sourceTree = "<group>"; };
 		1BA325C410545ACA00276F57 /* MetaZKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MetaZKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -394,6 +406,8 @@
 				1B119FCE10443655004C93D3 /* MetaLoaded.m */,
 				1BB6BE7C1050BC00001D3D1D /* SearchMeta.h */,
 				1BB6BE7D1050BC00001D3D1D /* SearchMeta.m */,
+				1B090C80106A899300D88083 /* MZTag.h */,
+				1B090C81106A899300D88083 /* MZTag.m */,
 				1B11A47C104E627F004C93D3 /* MZConstants.h */,
 				1B11A47D104E627F004C93D3 /* MZConstants.m */,
 				1B11A02810458471004C93D3 /* MZDataProvider.h */,
@@ -401,8 +415,6 @@
 				1B6E43C9108468B100DFE165 /* MZSearchResult.h */,
 				1B6E43CA108468B100DFE165 /* MZSearchResult.m */,
 				1BD6E601105B355800E40151 /* MetaChangeNotification.m */,
-				1B090C80106A899300D88083 /* MZTag.h */,
-				1B090C81106A899300D88083 /* MZTag.m */,
 				1BEA6C2A106E613C004B1A7F /* MZPlugin.h */,
 				1BEA6C2B106E613C004B1A7F /* MZPlugin.m */,
 				1BEA6DAC106EC632004B1A7F /* MZPluginController.h */,
@@ -415,16 +427,18 @@
 				1B040C41107FD1110027FA0D /* MZTimedTextItem.m */,
 				1B040EA21081A8F60027FA0D /* MZRESTWrapper.h */,
 				1B040EA31081A8F60027FA0D /* MZRESTWrapper.m */,
-				1BEA718D10712A17004B1A7F /* NSArray-Mapping.h */,
-				1BEA718E10712A17004B1A7F /* NSArray-Mapping.m */,
+				1BBB39A71087083600C9E17F /* MZPriorObserverFix.h */,
+				1BBB39A81087083600C9E17F /* MZPriorObserverFix.m */,
 				1B78A499105032A50072D89E /* MZMethodData.h */,
 				1B78A49A105032A50072D89E /* MZMethodData.m */,
 				1BB6BB0810507DBB001D3D1D /* MZDynamicObject.h */,
 				1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */,
 				1BCC97001076B73C007EFF57 /* NSInvocation-Wrapping.h */,
 				1BCC97011076B73C007EFF57 /* NSInvocation-Wrapping.m */,
-				1BBB39A71087083600C9E17F /* MZPriorObserverFix.h */,
-				1BBB39A81087083600C9E17F /* MZPriorObserverFix.m */,
+				1BEA718D10712A17004B1A7F /* NSArray-Mapping.h */,
+				1BEA718E10712A17004B1A7F /* NSArray-Mapping.m */,
+				1B92BC55108890090057EFD7 /* NSObject-ProtectedKeyValue.h */,
+				1B92BC56108890090057EFD7 /* NSObject-ProtectedKeyValue.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -586,6 +600,10 @@
 				1B040CD6108146140027FA0D /* ChapterItemWrapper.m */,
 				1B92BB6E108787260057EFD7 /* SearchProfile.h */,
 				1B92BB6F108787260057EFD7 /* SearchProfile.m */,
+				1B92BBFF10887EF40057EFD7 /* FakeSearchResult.h */,
+				1B92BC0010887EF40057EFD7 /* FakeSearchResult.m */,
+				1B92BC02108880D60057EFD7 /* Resources.h */,
+				1B92BC03108880D60057EFD7 /* Resources.m */,
 			);
 			name = Classes;
 			path = App/src;
@@ -675,6 +693,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1B92BC05108882710057EFD7 /* CowHead.png */,
 				1BEA6DD8106ED837004B1A7F /* PreferencesWindow.xib */,
 				1BEA6B80106D66AD004B1A7F /* faded_cow.png */,
 				1B9B393D106C0FA200928C83 /* Localizable.strings */,
@@ -739,6 +758,7 @@
 				1B040C42107FD1110027FA0D /* MZTimedTextItem.h in Headers */,
 				1B040EA41081A8F60027FA0D /* MZRESTWrapper.h in Headers */,
 				1B92BB1C10876FBA0057EFD7 /* PureMetaEdits.h in Headers */,
+				1B92BC57108890090057EFD7 /* NSObject-ProtectedKeyValue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -897,6 +917,7 @@
 				1BEA6B81106D66AD004B1A7F /* faded_cow.png in Resources */,
 				1BEA6DDA106ED837004B1A7F /* PreferencesWindow.xib in Resources */,
 				1BCC990710771262007EFF57 /* FactorySettings.plist in Resources */,
+				1B92BC06108882710057EFD7 /* CowHead.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -971,6 +992,7 @@
 				1B6E43CC108468B100DFE165 /* MZSearchResult.m in Sources */,
 				1BBB39AA1087083600C9E17F /* MZPriorObserverFix.m in Sources */,
 				1B92BB1D10876FBA0057EFD7 /* PureMetaEdits.m in Sources */,
+				1B92BC58108890090057EFD7 /* NSObject-ProtectedKeyValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1014,6 +1036,8 @@
 				1B040CF510814FCF0027FA0D /* ChapterItemWrapper.m in Sources */,
 				1B040DC4108176A70027FA0D /* UndoTableView.m in Sources */,
 				1B92BB70108787260057EFD7 /* SearchProfile.m in Sources */,
+				1B92BC0110887EF40057EFD7 /* FakeSearchResult.m in Sources */,
+				1B92BC04108880D60057EFD7 /* Resources.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

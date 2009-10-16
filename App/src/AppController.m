@@ -9,6 +9,7 @@
 #import "AppController.h"
 #import "UndoTableView.h"
 #import "MZMetaSearcher.h"
+#import "FakeSearchResult.h"
 
 NSArray* MZUTIFilenameExtension(NSArray* utis)
 {
@@ -16,7 +17,7 @@ NSArray* MZUTIFilenameExtension(NSArray* utis)
     for(NSString* uti in utis)
     {
         NSDictionary* dict = (NSDictionary*)UTTypeCopyDeclaration((CFStringRef)uti);
-        [dict writeToFile:[NSString stringWithFormat:@"/Users/bro/Documents/Maven-Group/MetaZ/%@.plist", uti] atomically:NO];
+        //[dict writeToFile:[NSString stringWithFormat:@"/Users/bro/Documents/Maven-Group/MetaZ/%@.plist", uti] atomically:NO];
         NSDictionary* tags = [dict objectForKey:(NSString*)kUTTypeTagSpecificationKey];
         NSArray* extensions = [tags objectForKey:(NSString*)kUTTagClassFilenameExtension];
         [ret addObjectsFromArray:extensions];
@@ -44,6 +45,8 @@ NSDictionary* findBinding(NSWindow* window) {
     return dict;
 }
 
+#define MaxShortDescription 256
+
 @implementation AppController
 @synthesize window;
 @synthesize tabView;
@@ -61,6 +64,7 @@ NSDictionary* findBinding(NSWindow* window) {
 @synthesize searchIndicator;
 @synthesize searchController;
 @synthesize searchField;
+@synthesize remainingInShortDescription;
 
 #pragma mark - initialization
 
@@ -84,10 +88,20 @@ NSDictionary* findBinding(NSWindow* window) {
         [dict release];
     }
 }
+- (id)init
+{
+    self = [super init];
+    if(self)
+    {
+        remainingInShortDescription = MaxShortDescription;
+    }
+    return self;
+}
 
 -(void)awakeFromNib
 {
     [[MZPluginController sharedInstance] setDelegate:self];
+    [[MZMetaSearcher sharedSearcher] setFakeResult:[FakeSearchResult resultWithController:filesController]];
     undoManager = [[NSUndoManager alloc] init];
     [seasonFormatter setNilSymbol:@""];
     [episodeFormatter setNilSymbol:@""];
@@ -101,6 +115,10 @@ NSDictionary* findBinding(NSWindow* window) {
                          context:nil];
     [filesController addObserver:self
                       forKeyPath:@"selection.pure"
+                         options:0
+                         context:nil];
+    [filesController addObserver:self
+                      forKeyPath:@"selection.shortDescription"
                          options:0
                          context:nil];
     [[NSNotificationCenter defaultCenter]
@@ -162,25 +180,31 @@ NSDictionary* findBinding(NSWindow* window) {
     }
     if([keyPath isEqual:@"selection.pure"] && object == filesController)
     {
-        id videoType = NSNotApplicableMarker;
-        @try {
-            videoType = [filesController valueForKeyPath:@"selection.pure.videoType"];
-        }
-        @catch (NSException * e) {
-            if(![[e name] isEqual:@"NSUnknownKeyException"])
-                NSLog(@"Auch %@", e);
-        }
+        id videoType = [filesController protectedValueForKeyPath:@"selection.pure.videoType"];
         
         if(videoType == nil || videoType == [NSNull null] || videoType == NSMultipleValuesMarker ||
             videoType == NSNoSelectionMarker || videoType == NSNotApplicableMarker)
         {
         }
-        id titleId = [filesController valueForKeyPath:@"selection.title"];
-        if(titleId != nil && titleId != NSMultipleValuesMarker &&
-            titleId != NSNoSelectionMarker && titleId != NSNotApplicableMarker)
+        id titleId = [filesController protectedValueForKeyPath:@"selection.pure.title"];
+        if(titleId == nil || titleId == NSMultipleValuesMarker ||
+            titleId == NSNoSelectionMarker || titleId == NSNotApplicableMarker)
         {
-            [searchField setStringValue:titleId];
+            titleId = @"";
         }
+
+        [searchField setStringValue:titleId];
+        [[MZMetaSearcher sharedSearcher] clearResults];
+    }
+    if([keyPath isEqual:@"selection.shortDescription"] && object == filesController)
+    {
+        NSInteger newRemain = 0;
+        id length = [filesController valueForKeyPath:@"selection.shortDescription.length"];
+        if([length respondsToSelector:@selector(integerValue)])
+            newRemain = [length integerValue];
+        [self willChangeValueForKey:@"remainingInShortDescription"];
+        remainingInShortDescription = MaxShortDescription-newRemain;
+        [self didChangeValueForKey:@"remainingInShortDescription"];
     }
 }
 
@@ -393,6 +417,14 @@ NSDictionary* findBinding(NSWindow* window) {
             return man;
     }
     return undoManager;
+}
+
+#pragma mark - as text delegate
+- (void)textDidChange:(NSNotification *)aNotification
+{
+    [self willChangeValueForKey:@"remainingInShortDescription"];
+    remainingInShortDescription = MaxShortDescription-[[shortDescription string] length];
+    [self didChangeValueForKey:@"remainingInShortDescription"];
 }
 
 #pragma mark - as application delegate

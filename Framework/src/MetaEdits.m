@@ -27,11 +27,11 @@
     self = [super init];
     if(self)
     {
-        pure = [[PureMetaEdits alloc] initWithEdits:self];
         undoManager = [[NSUndoManager alloc] init];
         multiUndoManager = nil;
         provider = [aProvider retain];
         changes = [[NSMutableDictionary alloc] init];
+        pure = [[PureMetaEdits alloc] initWithEdits:self];
 
         NSArray* tags = [aProvider providedTags];
         for(MZTag* tag in tags)

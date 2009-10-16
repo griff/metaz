@@ -21,6 +21,7 @@
 - (id)initWithOwner:(id)theOwner dictionary:(NSDictionary *)dict;
 
 - (BOOL)hasChapters;
+- (NSString *)searchResultTitle;
 - (id)getterValueForKey:(NSString *)aKey;
 
 @end
