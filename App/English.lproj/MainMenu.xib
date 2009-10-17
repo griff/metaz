@@ -12,7 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="495"/>
+			<integer value="475"/>
+			<integer value="29"/>
+			<integer value="1723"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -681,6 +683,40 @@
 									<string key="NSTitle">Zoom</string>
 									<string key="NSKeyEquiv"/>
 									<int key="NSKeyEquivModMask">1048576</int>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
+								<object class="NSMenuItem" id="185032788">
+									<reference key="NSMenu" ref="835318025"/>
+									<bool key="NSIsDisabled">YES</bool>
+									<bool key="NSIsSeparator">YES</bool>
+									<string key="NSTitle"/>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
+								<object class="NSMenuItem" id="855605535">
+									<reference key="NSMenu" ref="835318025"/>
+									<string key="NSTitle">Main Window</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
+								<object class="NSMenuItem" id="857925761">
+									<reference key="NSMenu" ref="835318025"/>
+									<string key="NSTitle">Queue</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
+								<object class="NSMenuItem" id="913923890">
+									<reference key="NSMenu" ref="835318025"/>
+									<string key="NSTitle">Image Editor</string>
+									<string key="NSKeyEquiv"/>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
@@ -1406,7 +1442,7 @@
 										<object class="NSTabViewItem" id="320200182">
 											<string key="NSIdentifier">info</string>
 											<object class="NSView" key="NSView" id="453092425">
-												<nil key="NSNextResponder"/>
+												<reference key="NSNextResponder" ref="625271791"/>
 												<int key="NSvFlags">256</int>
 												<object class="NSMutableArray" key="NSSubviews">
 													<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2285,6 +2321,29 @@
 																					<object class="NSTextView" id="478888935">
 																						<reference key="NSNextResponder" ref="920021145"/>
 																						<int key="NSvFlags">2322</int>
+																						<object class="NSMutableSet" key="NSDragTypes">
+																							<bool key="EncodedWithXMLCoder">YES</bool>
+																							<object class="NSArray" key="set.sortedObjects">
+																								<bool key="EncodedWithXMLCoder">YES</bool>
+																								<string>Apple HTML pasteboard type</string>
+																								<string>Apple PDF pasteboard type</string>
+																								<string>Apple PICT pasteboard type</string>
+																								<string>Apple PNG pasteboard type</string>
+																								<string>Apple URL pasteboard type</string>
+																								<string>CorePasteboardFlavorType 0x6D6F6F76</string>
+																								<string>NSColor pasteboard type</string>
+																								<string>NSFilenamesPboardType</string>
+																								<string>NSStringPboardType</string>
+																								<string>NeXT Encapsulated PostScript v1.2 pasteboard type</string>
+																								<string>NeXT RTFD pasteboard type</string>
+																								<string>NeXT Rich Text Format v1.0 pasteboard type</string>
+																								<string>NeXT TIFF v4.0 pasteboard type</string>
+																								<string>NeXT font pasteboard type</string>
+																								<string>NeXT ruler pasteboard type</string>
+																								<string>WebURLsWithTitlesPboardType</string>
+																								<string>public.url</string>
+																							</object>
+																						</object>
 																						<string key="NSFrameSize">{402, 14}</string>
 																						<reference key="NSSuperview" ref="920021145"/>
 																						<object class="NSTextContainer" key="NSTextContainer" id="412133568">
@@ -2459,6 +2518,29 @@
 																					<object class="NSTextView" id="261739186">
 																						<reference key="NSNextResponder" ref="503477675"/>
 																						<int key="NSvFlags">2322</int>
+																						<object class="NSMutableSet" key="NSDragTypes">
+																							<bool key="EncodedWithXMLCoder">YES</bool>
+																							<object class="NSArray" key="set.sortedObjects">
+																								<bool key="EncodedWithXMLCoder">YES</bool>
+																								<string>Apple HTML pasteboard type</string>
+																								<string>Apple PDF pasteboard type</string>
+																								<string>Apple PICT pasteboard type</string>
+																								<string>Apple PNG pasteboard type</string>
+																								<string>Apple URL pasteboard type</string>
+																								<string>CorePasteboardFlavorType 0x6D6F6F76</string>
+																								<string>NSColor pasteboard type</string>
+																								<string>NSFilenamesPboardType</string>
+																								<string>NSStringPboardType</string>
+																								<string>NeXT Encapsulated PostScript v1.2 pasteboard type</string>
+																								<string>NeXT RTFD pasteboard type</string>
+																								<string>NeXT Rich Text Format v1.0 pasteboard type</string>
+																								<string>NeXT TIFF v4.0 pasteboard type</string>
+																								<string>NeXT font pasteboard type</string>
+																								<string>NeXT ruler pasteboard type</string>
+																								<string>WebURLsWithTitlesPboardType</string>
+																								<string>public.url</string>
+																							</object>
+																						</object>
 																						<string key="NSFrameSize">{402, 14}</string>
 																						<reference key="NSSuperview" ref="503477675"/>
 																						<object class="NSTextContainer" key="NSTextContainer" id="211752949">
@@ -2569,6 +2651,7 @@
 													</object>
 												</object>
 												<string key="NSFrame">{{10, 33}, {449, 502}}</string>
+												<reference key="NSSuperview" ref="625271791"/>
 											</object>
 											<string key="NSLabel">Info</string>
 											<reference key="NSColor" ref="823073024"/>
@@ -3974,7 +4057,7 @@
 										<object class="NSTabViewItem" id="660121815">
 											<string key="NSIdentifier">chapters</string>
 											<object class="NSView" key="NSView" id="606374959">
-												<reference key="NSNextResponder" ref="625271791"/>
+												<nil key="NSNextResponder"/>
 												<int key="NSvFlags">256</int>
 												<object class="NSMutableArray" key="NSSubviews">
 													<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4225,20 +4308,19 @@
 													</object>
 												</object>
 												<string key="NSFrame">{{10, 33}, {449, 502}}</string>
-												<reference key="NSSuperview" ref="625271791"/>
 											</object>
 											<string key="NSLabel">Chapters</string>
 											<reference key="NSColor" ref="823073024"/>
 											<reference key="NSTabView" ref="625271791"/>
 										</object>
 									</object>
-									<reference key="NSSelectedTabViewItem" ref="660121815"/>
+									<reference key="NSSelectedTabViewItem" ref="320200182"/>
 									<reference key="NSFont" ref="350022779"/>
 									<int key="NSTvFlags">0</int>
 									<bool key="NSDrawsBackground">YES</bool>
 									<object class="NSMutableArray" key="NSSubviews">
 										<bool key="EncodedWithXMLCoder">YES</bool>
-										<reference ref="606374959"/>
+										<reference ref="453092425"/>
 									</object>
 								</object>
 								<object class="NSBox" id="343736847">
@@ -4515,148 +4597,6 @@
 				<string key="NSMinSize">{403, 556}</string>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
 				<string key="NSFrameAutosaveName">mainwindow</string>
-			</object>
-			<object class="NSCustomObject" id="1053022543">
-				<string key="NSClassName">AppController</string>
-			</object>
-			<object class="NSCustomObject" id="12014701">
-				<string key="NSClassName">ResizeController</string>
-			</object>
-			<object class="NSCustomObject" id="808096356">
-				<string key="NSClassName">MZMetaLoader</string>
-			</object>
-			<object class="NSCustomObject" id="292328499">
-				<string key="NSClassName">GenreDataSource</string>
-			</object>
-			<object class="NSArrayController" id="35104934">
-				<object class="NSMutableArray" key="NSDeclaredKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>fileName</string>
-					<string>changed</string>
-					<string>title</string>
-					<string>titleChanged</string>
-					<string>artist</string>
-					<string>artistChanged</string>
-					<string>show</string>
-					<string>genre</string>
-					<string>album</string>
-					<string>albumArtist</string>
-					<string>shortDescription</string>
-					<string>longDescription</string>
-					<string>@count</string>
-					<string>tvShow</string>
-					<string>tvShowChanged</string>
-					<string>genreChanged</string>
-					<string>albumChanged</string>
-					<string>albumArtistChanged</string>
-					<string>shortDescriptionChanged</string>
-					<string>longDescriptionChanged</string>
-					<string>tvShowSort</string>
-					<string>tvShowSortChanged</string>
-					<string>picture</string>
-					<string>tvEpisodeID</string>
-					<string>tvEpisodeIDChanged</string>
-					<string>tvEpisodeIDSupported</string>
-					<string>tvShowSupported</string>
-					<string>pictureChanged</string>
-					<string>date</string>
-					<string>purchaseDate</string>
-					<string>purchaseDateChanged</string>
-					<string>actors</string>
-					<string>actorsChanged</string>
-					<string>director</string>
-					<string>directorChanged</string>
-					<string>producerChanged</string>
-					<string>producer</string>
-					<string>screenwriter</string>
-					<string>screenwriterChanged</string>
-					<string>tvSeason</string>
-					<string>tvEpisode</string>
-					<string>tvNetwork</string>
-					<string>tvSeasonChanged</string>
-					<string>tvEpisodeChanged</string>
-					<string>tvNetworkChanged</string>
-					<string>sortTitle</string>
-					<string>sortTvShow</string>
-					<string>sortArtist</string>
-					<string>sortAlbumArtist</string>
-					<string>sortAlbum</string>
-					<string>sortTitleChanged</string>
-					<string>sortArtistChanged</string>
-					<string>sortAlbumArtistChanged</string>
-					<string>sortAlbumChanged</string>
-					<string>sortTvShowChanged</string>
-					<string>dateChanged</string>
-					<string>ratingChanged</string>
-					<string>videoTypeChanged</string>
-					<string>rating</string>
-					<string>videoType</string>
-					<string>chapters</string>
-					<string>chaptersChanged</string>
-					<string>self</string>
-					<string>loadedFileName</string>
-				</object>
-				<bool key="NSEditable">YES</bool>
-				<object class="_NSManagedProxy" key="_NSManagedProxy"/>
-				<bool key="NSAvoidsEmptySelection">YES</bool>
-				<bool key="NSPreservesSelection">YES</bool>
-				<bool key="NSSelectsInsertedObjects">YES</bool>
-				<bool key="NSFilterRestrictsInsertion">YES</bool>
-				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
-			</object>
-			<object class="NSCustomObject" id="488851568">
-				<string key="NSClassName">FilesUndoController</string>
-			</object>
-			<object class="NSArrayController" id="978113357">
-				<object class="NSMutableArray" key="NSDeclaredKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>text</string>
-					<string>duration</string>
-					<string>no</string>
-					<string>itemColor</string>
-				</object>
-				<bool key="NSEditable">YES</bool>
-				<object class="_NSManagedProxy" key="_NSManagedProxy"/>
-				<bool key="NSAvoidsEmptySelection">YES</bool>
-				<bool key="NSPreservesSelection">YES</bool>
-				<bool key="NSSelectsInsertedObjects">YES</bool>
-				<bool key="NSFilterRestrictsInsertion">YES</bool>
-				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
-			</object>
-			<object class="NSCustomObject" id="884984877">
-				<string key="NSClassName">ChapterEditor</string>
-			</object>
-			<object class="NSCustomObject" id="104323459">
-				<string key="NSClassName">MZMetaSearcher</string>
-			</object>
-			<object class="NSCustomObject" id="931879071">
-				<string key="NSClassName">SUUpdater</string>
-			</object>
-			<object class="NSCustomObject" id="107141262">
-				<string key="NSClassName">MZWriteQueue</string>
-			</object>
-			<object class="NSCustomObject" id="1003405073">
-				<string key="NSClassName">QueueController</string>
-			</object>
-			<object class="NSCustomObject" id="608427214">
-				<string key="NSClassName">RatingMenuHandler</string>
-			</object>
-			<object class="NSArrayController" id="4392112">
-				<object class="NSMutableArray" key="NSDeclaredKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>icon</string>
-					<string>title</string>
-					<string>hasChapters</string>
-					<string>@count</string>
-					<string>searchResultTitle</string>
-				</object>
-				<bool key="NSEditable">YES</bool>
-				<object class="_NSManagedProxy" key="_NSManagedProxy"/>
-				<bool key="NSAvoidsEmptySelection">YES</bool>
-				<bool key="NSPreservesSelection">YES</bool>
-				<bool key="NSSelectsInsertedObjects">YES</bool>
-				<bool key="NSFilterRestrictsInsertion">YES</bool>
-				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
 			</object>
 			<object class="NSMenu" id="511519593">
 				<string key="NSTitle"/>
@@ -5381,6 +5321,170 @@
 						<int key="NSTag">82</int>
 					</object>
 				</object>
+			</object>
+			<object class="NSMenu" id="951465662">
+				<string key="NSTitle"/>
+				<object class="NSMutableArray" key="NSMenuItems">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="NSMenuItem" id="1041670078">
+						<reference key="NSMenu" ref="951465662"/>
+						<string key="NSTitle">Edit Image</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="35465992"/>
+						<reference key="NSMixedImage" ref="502551668"/>
+					</object>
+					<object class="NSMenuItem" id="354434634">
+						<reference key="NSMenu" ref="951465662"/>
+						<string key="NSTitle">Search Google</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="35465992"/>
+						<reference key="NSMixedImage" ref="502551668"/>
+					</object>
+				</object>
+			</object>
+			<object class="NSCustomObject" id="1053022543">
+				<string key="NSClassName">AppController</string>
+			</object>
+			<object class="NSCustomObject" id="12014701">
+				<string key="NSClassName">ResizeController</string>
+			</object>
+			<object class="NSCustomObject" id="808096356">
+				<string key="NSClassName">MZMetaLoader</string>
+			</object>
+			<object class="NSCustomObject" id="292328499">
+				<string key="NSClassName">GenreDataSource</string>
+			</object>
+			<object class="NSArrayController" id="35104934">
+				<object class="NSMutableArray" key="NSDeclaredKeys">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>fileName</string>
+					<string>changed</string>
+					<string>title</string>
+					<string>titleChanged</string>
+					<string>artist</string>
+					<string>artistChanged</string>
+					<string>show</string>
+					<string>genre</string>
+					<string>album</string>
+					<string>albumArtist</string>
+					<string>shortDescription</string>
+					<string>longDescription</string>
+					<string>@count</string>
+					<string>tvShow</string>
+					<string>tvShowChanged</string>
+					<string>genreChanged</string>
+					<string>albumChanged</string>
+					<string>albumArtistChanged</string>
+					<string>shortDescriptionChanged</string>
+					<string>longDescriptionChanged</string>
+					<string>tvShowSort</string>
+					<string>tvShowSortChanged</string>
+					<string>picture</string>
+					<string>tvEpisodeID</string>
+					<string>tvEpisodeIDChanged</string>
+					<string>tvEpisodeIDSupported</string>
+					<string>tvShowSupported</string>
+					<string>pictureChanged</string>
+					<string>date</string>
+					<string>purchaseDate</string>
+					<string>purchaseDateChanged</string>
+					<string>actors</string>
+					<string>actorsChanged</string>
+					<string>director</string>
+					<string>directorChanged</string>
+					<string>producerChanged</string>
+					<string>producer</string>
+					<string>screenwriter</string>
+					<string>screenwriterChanged</string>
+					<string>tvSeason</string>
+					<string>tvEpisode</string>
+					<string>tvNetwork</string>
+					<string>tvSeasonChanged</string>
+					<string>tvEpisodeChanged</string>
+					<string>tvNetworkChanged</string>
+					<string>sortTitle</string>
+					<string>sortTvShow</string>
+					<string>sortArtist</string>
+					<string>sortAlbumArtist</string>
+					<string>sortAlbum</string>
+					<string>sortTitleChanged</string>
+					<string>sortArtistChanged</string>
+					<string>sortAlbumArtistChanged</string>
+					<string>sortAlbumChanged</string>
+					<string>sortTvShowChanged</string>
+					<string>dateChanged</string>
+					<string>ratingChanged</string>
+					<string>videoTypeChanged</string>
+					<string>rating</string>
+					<string>videoType</string>
+					<string>chapters</string>
+					<string>chaptersChanged</string>
+					<string>self</string>
+					<string>loadedFileName</string>
+				</object>
+				<bool key="NSEditable">YES</bool>
+				<object class="_NSManagedProxy" key="_NSManagedProxy"/>
+				<bool key="NSAvoidsEmptySelection">YES</bool>
+				<bool key="NSPreservesSelection">YES</bool>
+				<bool key="NSSelectsInsertedObjects">YES</bool>
+				<bool key="NSFilterRestrictsInsertion">YES</bool>
+				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
+			</object>
+			<object class="NSCustomObject" id="488851568">
+				<string key="NSClassName">FilesUndoController</string>
+			</object>
+			<object class="NSArrayController" id="978113357">
+				<object class="NSMutableArray" key="NSDeclaredKeys">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>text</string>
+					<string>duration</string>
+					<string>no</string>
+					<string>itemColor</string>
+				</object>
+				<bool key="NSEditable">YES</bool>
+				<object class="_NSManagedProxy" key="_NSManagedProxy"/>
+				<bool key="NSAvoidsEmptySelection">YES</bool>
+				<bool key="NSPreservesSelection">YES</bool>
+				<bool key="NSSelectsInsertedObjects">YES</bool>
+				<bool key="NSFilterRestrictsInsertion">YES</bool>
+				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
+			</object>
+			<object class="NSCustomObject" id="884984877">
+				<string key="NSClassName">ChapterEditor</string>
+			</object>
+			<object class="NSCustomObject" id="104323459">
+				<string key="NSClassName">MZMetaSearcher</string>
+			</object>
+			<object class="NSCustomObject" id="931879071">
+				<string key="NSClassName">SUUpdater</string>
+			</object>
+			<object class="NSCustomObject" id="107141262">
+				<string key="NSClassName">MZWriteQueue</string>
+			</object>
+			<object class="NSCustomObject" id="1003405073">
+				<string key="NSClassName">QueueController</string>
+			</object>
+			<object class="NSCustomObject" id="608427214">
+				<string key="NSClassName">RatingMenuHandler</string>
+			</object>
+			<object class="NSArrayController" id="4392112">
+				<object class="NSMutableArray" key="NSDeclaredKeys">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>icon</string>
+					<string>title</string>
+					<string>hasChapters</string>
+					<string>@count</string>
+					<string>searchResultTitle</string>
+				</object>
+				<bool key="NSEditable">YES</bool>
+				<object class="_NSManagedProxy" key="_NSManagedProxy"/>
+				<bool key="NSAvoidsEmptySelection">YES</bool>
+				<bool key="NSPreservesSelection">YES</bool>
+				<bool key="NSSelectsInsertedObjects">YES</bool>
+				<bool key="NSFilterRestrictsInsertion">YES</bool>
+				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -7993,7 +8097,7 @@
 						<string key="label">maxValue: slideMax</string>
 						<reference key="source" ref="335050006"/>
 						<reference key="destination" ref="884984877"/>
-						<object class="NSNibBindingConnector" key="connector" id="461511935">
+						<object class="NSNibBindingConnector" key="connector" id="297771873">
 							<reference key="NSSource" ref="335050006"/>
 							<reference key="NSDestination" ref="884984877"/>
 							<string key="NSLabel">maxValue: slideMax</string>
@@ -8009,13 +8113,13 @@
 						<string key="label">minValue: slideMin</string>
 						<reference key="source" ref="335050006"/>
 						<reference key="destination" ref="884984877"/>
-						<object class="NSNibBindingConnector" key="connector" id="583195862">
+						<object class="NSNibBindingConnector" key="connector" id="220333903">
 							<reference key="NSSource" ref="335050006"/>
 							<reference key="NSDestination" ref="884984877"/>
 							<string key="NSLabel">minValue: slideMin</string>
 							<string key="NSBinding">minValue</string>
 							<string key="NSKeyPath">slideMin</string>
-							<reference key="NSPreviousConnector" ref="461511935"/>
+							<reference key="NSPreviousConnector" ref="297771873"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -8196,7 +8300,7 @@
 							<string key="NSLabel">value: slide</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">slide</string>
-							<reference key="NSPreviousConnector" ref="583195862"/>
+							<reference key="NSPreviousConnector" ref="220333903"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
@@ -8209,6 +8313,30 @@
 						<reference key="destination" ref="335050006"/>
 					</object>
 					<int key="connectionID">1714</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showImageEditor:</string>
+						<reference key="source" ref="1053022543"/>
+						<reference key="destination" ref="1041670078"/>
+					</object>
+					<int key="connectionID">1727</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">menu</string>
+						<reference key="source" ref="83431714"/>
+						<reference key="destination" ref="951465662"/>
+					</object>
+					<int key="connectionID">1728</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">searchForImages:</string>
+						<reference key="source" ref="1053022543"/>
+						<reference key="destination" ref="354434634"/>
+					</object>
+					<int key="connectionID">1729</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -8570,6 +8698,10 @@
 							<reference ref="625202149"/>
 							<reference ref="575023229"/>
 							<reference ref="1011231497"/>
+							<reference ref="185032788"/>
+							<reference ref="855605535"/>
+							<reference ref="857925761"/>
+							<reference ref="913923890"/>
 						</object>
 						<reference key="parent" ref="713487014"/>
 					</object>
@@ -11537,6 +11669,46 @@
 						<reference key="object" ref="41559278"/>
 						<reference key="parent" ref="630822886"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1719</int>
+						<reference key="object" ref="185032788"/>
+						<reference key="parent" ref="835318025"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1720</int>
+						<reference key="object" ref="855605535"/>
+						<reference key="parent" ref="835318025"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1721</int>
+						<reference key="object" ref="857925761"/>
+						<reference key="parent" ref="835318025"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1722</int>
+						<reference key="object" ref="913923890"/>
+						<reference key="parent" ref="835318025"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1723</int>
+						<reference key="object" ref="951465662"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="1041670078"/>
+							<reference ref="354434634"/>
+						</object>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1724</int>
+						<reference key="object" ref="1041670078"/>
+						<reference key="parent" ref="951465662"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1725</int>
+						<reference key="object" ref="354434634"/>
+						<reference key="parent" ref="951465662"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -11694,6 +11866,14 @@
 					<string>1572.IBPluginDependency</string>
 					<string>1578.IBPluginDependency</string>
 					<string>1594.IBPluginDependency</string>
+					<string>1719.IBPluginDependency</string>
+					<string>1720.IBPluginDependency</string>
+					<string>1721.IBPluginDependency</string>
+					<string>1722.IBPluginDependency</string>
+					<string>1723.IBEditorWindowLastContentRect</string>
+					<string>1723.IBPluginDependency</string>
+					<string>1724.IBPluginDependency</string>
+					<string>1725.IBPluginDependency</string>
 					<string>19.IBPluginDependency</string>
 					<string>19.ImportedFromIB2</string>
 					<string>195.IBPluginDependency</string>
@@ -12104,7 +12284,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{791, 281}, {151, 23}}</string>
+					<string>{{789, 565}, {148, 23}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{596, 852}, {216, 23}}</string>
@@ -12253,6 +12433,14 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>{{83, 779}, {149, 43}}</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
@@ -12275,7 +12463,7 @@
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{624, 325}, {244, 263}}</string>
+					<string>{{624, 325}, {241, 263}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{187, 434}, {243, 243}}</string>
@@ -12319,7 +12507,7 @@
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{718, 515}, {194, 73}}</string>
+					<string>{{718, 445}, {194, 143}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{525, 802}, {197, 73}}</string>
@@ -12329,7 +12517,7 @@
 					<string>{74, 862}</string>
 					<string>{{6, 978}, {478, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{668, 385}, {235, 203}}</string>
+					<string>{{668, 385}, {232, 203}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{475, 832}, {234, 43}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -12687,7 +12875,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1714</int>
+			<int key="maxID">1729</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -12701,6 +12889,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>openDocument:</string>
 							<string>revertChanges:</string>
+							<string>searchForImages:</string>
 							<string>segmentClicked:</string>
 							<string>selectNextFile:</string>
 							<string>selectPreviousFile:</string>
@@ -12715,6 +12904,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

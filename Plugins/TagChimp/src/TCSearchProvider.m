@@ -112,6 +112,8 @@
         supportsEmptyTitle = YES;
     }
     
+    [params setObject:@"200" forKey:@"limit"];
+    
     if([title length] == 0 && !supportsEmptyTitle)
         return NO;
 

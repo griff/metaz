@@ -117,9 +117,7 @@
         [[NSUserDefaults standardUserDefaults] dictionaryForKey:
             defaultKey]];
     for(ProfileState* myState in tags)
-    {
         [states setObject:[NSNumber numberWithBool:myState.state] forKey:myState.tag];
-    }
     [[NSUserDefaults standardUserDefaults] setObject:states forKey:defaultKey];
 }
 

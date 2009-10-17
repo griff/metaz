@@ -71,6 +71,7 @@
 - (IBAction)revertChanges:(id)sender;
 - (IBAction)showImageEditor:(id)sender;
 - (IBAction)startSearch:(id)sender;
+- (IBAction)searchForImages:(id)sender;
 - (IBAction)openDocument:(id)sender;
 //- (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo;
 

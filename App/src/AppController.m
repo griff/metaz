@@ -8,6 +8,7 @@
 
 #import "AppController.h"
 #import "UndoTableView.h"
+#import "PosterView.h"
 #import "MZMetaSearcher.h"
 #import "FakeSearchResult.h"
 
@@ -196,7 +197,9 @@ NSDictionary* findBinding(NSWindow* window) {
     activeProfile = [profile retain];
     [activeProfile setCheckObject:filesController withPrefix:@"selection.pure."];
 
-    NSMenu* menu = [[NSMenu alloc] initWithTitle:@"Search menu"];
+    NSMenu* menu = [[NSMenu alloc] initWithTitle:
+        NSLocalizedString(@"Search terms", @"Search menu title")];
+    [menu addItemWithTitle:[menu title] action:nil keyEquivalent:@""];
     NSInteger i = 0;
     for(NSString* tagId in [profile tags])
     {
@@ -208,6 +211,7 @@ NSDictionary* findBinding(NSWindow* window) {
             [item setAction:@selector(switchItem:)];
             [item setTag:i];
             [item setState:NSOnState];
+            [item setIndentationLevel:1];
             [menu addItem:item];
             [item release];
         }
@@ -231,7 +235,8 @@ NSDictionary* findBinding(NSWindow* window) {
         }
     }
     [searchField setStringValue:mainValue];
-    [[MZMetaSearcher sharedSearcher] clearResults];
+    [searchField performClick:self];
+    //[[MZMetaSearcher sharedSearcher] clearResults];
 }
 
 #pragma mark - as observer
@@ -361,6 +366,42 @@ NSDictionary* findBinding(NSWindow* window) {
     [observed setValue:[NSNumber numberWithBool:NO] forKeyPath:[keyPath stringByAppendingString:@"Changed"]];
 }
 
+- (IBAction)searchForImages:(id)sender
+{
+    NSString* title = [filesController valueForKeyPath:@"selection.pure.title"];
+    
+    id videoType = [filesController protectedValueForKeyPath:@"selection.pure.videoType"];
+    MZVideoType vt;
+    MZTag* tag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
+    [tag convertObject:videoType toValue:&vt];
+    
+    NSString* query;
+    switch (vt) {
+        case MZTVShowVideoType:
+        {
+            NSString* show = [filesController valueForKeyPath:@"selection.pure.tvShow"];
+            if([show isKindOfClass:[NSString class]])
+            {
+                NSNumber* season = [filesController valueForKeyPath:@"selection.pure.tvSeason"];
+                if([season isKindOfClass:[NSNumber class]])
+                    query = [NSString stringWithFormat:@"\"%@\" season %d", show, [season intValue]];
+                else
+                    query = [NSString stringWithFormat:@"\"%@\"", show];
+                break;
+            }
+        }
+        default:
+            query = [NSString stringWithFormat:@"\"%@\"", title];
+            break;
+    }
+
+    NSString* str = [[NSString stringWithFormat:
+        @"http://images.google.com/images?q=%@&gbv=2&svnum=10&safe=active&sa=G&imgsz=small|medium|large|xlarge",
+        query] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL* url = [NSURL URLWithString:str];
+    [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
 - (IBAction)showImageEditor:(id)sender
 {
     if(!imageEditController)
@@ -430,6 +471,26 @@ NSDictionary* findBinding(NSWindow* window) {
         else 
             return NO;
     }
+    if(action == @selector(showImageEditor:))
+    {
+        id value = [filesController protectedValueForKeyPath:@"selection.picture"];
+        return [value isKindOfClass:[NSData class]];
+    }
+    if(action == @selector(searchForImages:))
+    {
+        id videoType = [filesController protectedValueForKeyPath:@"selection.pure.videoType"];
+        MZVideoType vt;
+        MZTag* tag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
+        [tag convertObject:videoType toValue:&vt];
+        if(vt == MZTVShowVideoType)
+        {
+            id show = [filesController valueForKeyPath:@"selection.pure.tvShow"];
+            if([show isKindOfClass:[NSString class]])
+                return YES;
+        }
+        id title = [filesController valueForKeyPath:@"selection.pure.title"];
+        return [title isKindOfClass:[NSString class]];
+    }
     return YES;
 }
 
@@ -476,7 +537,8 @@ NSDictionary* findBinding(NSWindow* window) {
     NSResponder* responder = [aWindow firstResponder];
     if(responder == shortDescription || 
         responder == longDescription ||
-        [responder isKindOfClass:[UndoTableView class]])
+        [responder isKindOfClass:[UndoTableView class]] ||
+        [responder isKindOfClass:[PosterView class]])
     {
         NSUndoManager * man = [undoController undoManager];
         if(man != nil)
