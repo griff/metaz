@@ -30,4 +30,6 @@
 - (void)stopWriting;
 - (void)stopWritingAndRemove;
 
+- (void)finished;
+
 @end

@@ -74,3 +74,6 @@ NSString* const MZSearchFinishedNotification = @"MZSearchFinishedNotification";
 
 NSString* const MZMetaEditsNotificationKey = @"MZMetaEditsNotificationKey";
 NSString* const MZDataWriteControllerNotificationKey = @"MZDataWriteControllerNotificationKey";
+
+// Standard alert ids
+NSString* const MZDataProviderFileAlreadyLoadedWarningKey = @"alerts.warnings.fileAlreadyLoaded";

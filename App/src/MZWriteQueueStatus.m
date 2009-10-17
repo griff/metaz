@@ -29,7 +29,8 @@
     self = [super init];
     if(self)
     {
-        edits = [theEdits queueCopy];
+        edits = [theEdits retain];
+        [edits prepareForQueue];
     }
     return self;
 }
@@ -53,6 +54,8 @@
     controller = [[[MZPluginController sharedInstance] saveChanges:edits delegate:self] retain];
     writing = 1;
     [self didChangeValueForKey:@"writing"];
+    if(!controller)
+        [self finished];
 }
 
 - (void)stopWriting
@@ -73,6 +76,20 @@
         [[MZMetaLoader sharedLoader] reloadEdits:edits];
         [[MZWriteQueue sharedQueue] removeObjectFromQueueItems:self];
     }
+}
+
+- (void)finished
+{
+    MZWriteQueue* q = [MZWriteQueue sharedQueue];
+    [self willChangeValueForKey:@"writing"];
+    writing = 0;
+    [self didChangeValueForKey:@"writing"];
+    [q willChangeValueForKey:@"completedItems"];
+    [self willChangeValueForKey:@"completed"];
+    completed = YES;
+    [self didChangeValueForKey:@"completed"];
+    [q didChangeValueForKey:@"completedItems"];
+    [[MZWriteQueue sharedQueue] startNextItem];
 }
 
 - (void)dataProvider:(id<MZDataProvider>)provider 
@@ -186,17 +203,7 @@
             error = nil;
         }
     }
-
-    [self willChangeValueForKey:@"writing"];
-    writing = 0;
-    [self didChangeValueForKey:@"writing"];
-    [q willChangeValueForKey:@"completedItems"];
-    [self willChangeValueForKey:@"completed"];
-    completed = YES;
-    [self didChangeValueForKey:@"completed"];
-    [q didChangeValueForKey:@"completedItems"];
-    [[MZWriteQueue sharedQueue] startNextItem];
+    [self finished];
 }
-
 
 @end

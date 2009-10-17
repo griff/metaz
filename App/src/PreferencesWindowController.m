@@ -53,7 +53,12 @@
 
 - (IBAction)clearGenres:(id)sender
 {
-    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"genres"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"genres"];
+}
+
+- (IBAction)clearAlerts:(id)sender
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"alerts"];
 }
 
 - (IBAction)selectTabFromTag:(id)sender

@@ -27,6 +27,7 @@
 - (id)init;
 
 - (IBAction)clearGenres:(id)sender;
+- (IBAction)clearAlerts:(id)sender;
 
 - (IBAction)selectTabFromTag:(id)sender;
 - (IBAction)addPlugin:(id)sender;

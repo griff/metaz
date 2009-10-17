@@ -22,7 +22,8 @@
 @required
 - (NSString *)loadedFileName;
 - (NSArray *)providedTags;
-- (id<MetaData>)queueCopy;
+- (void)prepareForQueue;
+- (void)prepareFromQueue;
 @property (readonly) id<TagData> pure;
 
 @optional

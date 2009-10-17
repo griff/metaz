@@ -24,4 +24,6 @@
 - (NSString *)searchResultTitle;
 - (id)getterValueForKey:(NSString *)aKey;
 
+- (NSMenu *)menu;
+
 @end

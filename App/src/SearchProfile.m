@@ -139,6 +139,11 @@
             if(value != nil && value != [NSNull null] && value != NSNoSelectionMarker &&
                 value != NSMultipleValuesMarker && value != NSNotApplicableMarker)
             {
+                if([value isKindOfClass:[NSString class]])
+                {
+                    value = [value stringByTrimmingCharactersInSet:
+                        [NSCharacterSet whitespaceCharacterSet]];
+                }
                 [dict setObject:value forKey:state.tag];
             }
         }

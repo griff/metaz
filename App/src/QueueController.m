@@ -72,7 +72,7 @@
     switch (status)
     {
         case QueueStopped:
-            playLabel = NSLocalizedString(@"Play", @"Label for play button");
+            playLabel = NSLocalizedString(@"Start", @"Label for start button");
             pauseLabel = NSLocalizedString(@"Pause", @"Label for pause button");
             playImage = @"Play";
             pauseImage = @"Pause";
@@ -85,7 +85,7 @@
             break;
         case QueuePaused:
             playLabel = NSLocalizedString(@"Stop", @"Label for stop button");
-            pauseLabel = NSLocalizedString(@"Play", @"Label for play button");
+            pauseLabel = NSLocalizedString(@"Start", @"Label for start button");
             playImage = @"Stop";
             pauseImage = @"Play";
             break;
@@ -189,7 +189,8 @@
     */
     if([anItem action] == @selector(startStopEncoding:))
     {
-        return [[writeQueue queueItems] count] > 0 || 
+        return [writeQueue status] != QueueStopped ||
+            [[writeQueue pendingItems] count] > 0 || 
             [[[MZMetaLoader sharedLoader] files] count] > 0;
     }
     if([anItem action] == @selector(pauseResumeEncoding:))
@@ -236,7 +237,7 @@
         [writeQueue stop];
     else
     {
-        if([[writeQueue queueItems] count] == 0)
+        if([[writeQueue pendingItems] count] == 0)
             [self addToQueue:sender];
         [writeQueue start];
     }

@@ -34,6 +34,7 @@
 - (id)convertObjectForRetrival:(id)obj;
 - (id)convertObjectForStorage:(id)obj;
 - (id)objectFromString:(NSString *)str;
+- (NSString *)stringForObject:(id)str;
 
 @end
 

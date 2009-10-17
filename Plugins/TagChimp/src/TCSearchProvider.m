@@ -7,6 +7,7 @@
 //
 
 #import "TCSearchProvider.h"
+#import "TagChimpPlugin.h"
 
 
 @implementation TCSearchProvider
@@ -16,6 +17,7 @@
     [search release];
     [icon release];
     [supportedSearchTags release];
+    [menu release];
     [super dealloc];
 }
 
@@ -49,6 +51,31 @@
         supportedSearchTags = [[NSArray alloc] initWithArray:ret];
     }
     return supportedSearchTags;
+}
+
+- (NSMenu *)menuForResult:(MZSearchResult *)result
+{
+    if(!menu)
+    {
+        menu = [[NSMenu alloc] initWithTitle:@"TagChimp"];
+        NSMenuItem* item = [menu addItemWithTitle:@"Edit" action:@selector(edit:) keyEquivalent:@""];
+        [item setTarget:self];
+    }
+    for(NSMenuItem* item in [menu itemArray])
+        [item setRepresentedObject:result];
+    return menu;
+}
+
+- (void)edit:(id)sender
+{
+    MZSearchResult* result = [sender representedObject];
+    NSString* tagChimpId = [result valueForKey:TagChimpIdTagIdent];
+    
+    NSString* str = [[NSString stringWithFormat:
+        @"https://www.tagchimp.com/tc/%@/",
+        tagChimpId] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL* url = [NSURL URLWithString:str];
+    [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 - (BOOL)searchWithData:(NSDictionary *)data delegate:(id<MZSearchProviderDelegate>)delegate;
@@ -114,9 +141,6 @@
     
     [params setObject:@"200" forKey:@"limit"];
     
-    if([title length] == 0 && !supportsEmptyTitle)
-        return NO;
-
     if(search)
     {
         // Finish last search;
@@ -124,6 +148,9 @@
         [search release];
         search = nil;
     }
+    if([title length] == 0 && !supportsEmptyTitle)
+        return NO;
+
     NSLog(@"Sent request:");
     for(NSString* key in [params allKeys])
         NSLog(@"    '%@' -> '%@'", key, [params objectForKey:key]);

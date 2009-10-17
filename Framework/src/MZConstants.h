@@ -197,3 +197,6 @@ MZKIT_EXTERN NSString* const MZSearchFinishedNotification;
 
 MZKIT_EXTERN NSString* const MZMetaEditsNotificationKey;
 MZKIT_EXTERN NSString* const MZDataWriteControllerNotificationKey;
+
+// Standard alert ids
+MZKIT_EXTERN NSString* const MZDataProviderFileAlreadyLoadedWarningKey;

@@ -269,17 +269,18 @@ static MZPluginController *gInstance = NULL;
 }
 
 -(void)fixTitle:(MetaEdits* )edits {
+    NSAssert([[edits fileName] isKindOfClass:[NSString class]], @"Bad file name");
+    NSAssert([[edits title] isKindOfClass:[NSString class]], @"Bad title");
+    /*
     NSString* title = [edits title];
     if(title == nil)
     {
         [[edits undoManager] disableUndoRegistration];
-        NSString* loadedFileName = [edits fileName];
-        NSAssert(loadedFileName != nil, @"Bad loaded file name");
-        NSAssert( ((NSNull*)loadedFileName) != [NSNull null], @"Bad loaded file name" );
         NSString* newTitle = [loadedFileName substringToIndex:[loadedFileName length] - [[loadedFileName pathExtension] length] - 1];
         [edits setTitle:newTitle];
         [[edits undoManager] enableUndoRegistration];
     }
+    */
 }
 
 - (MetaEdits *)loadDataFromFile:(NSString *)path
@@ -310,6 +311,10 @@ static MZPluginController *gInstance = NULL;
 - (id<MZDataWriteController>)saveChanges:(MetaEdits *)data
                                 delegate:(id<MZDataWriteDelegate>)theDelegate
 {
+    NSFileManager* mgr = [NSFileManager defaultManager];
+    BOOL isDir;
+    if(![mgr fileExistsAtPath:[data loadedFileName] isDirectory:&isDir] || isDir )
+        return nil;
     id<MZDataProvider> provider = [data owner];
     id<MZDataWriteDelegate> otherDelegate = [MZWriteNotification notifierWithDelegate:theDelegate];
     return [provider saveChanges:data delegate:otherDelegate];

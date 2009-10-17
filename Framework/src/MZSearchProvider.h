@@ -7,6 +7,7 @@
 //
 
 #import <MetaZKit/MetaData.h>
+#import <MetaZKit/MZSearchResult.h>
 
 @protocol MZSearchProvider;
 
@@ -22,4 +23,6 @@
 - (NSString *)identifier;
 - (NSArray *)supportedSearchTags;
 - (BOOL)searchWithData:(NSDictionary *)data delegate:(id<MZSearchProviderDelegate>)delegate;
+@optional
+- (NSMenu *)menuForResult:(MZSearchResult *)result;
 @end

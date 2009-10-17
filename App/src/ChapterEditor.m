@@ -17,6 +17,7 @@
 
 
 @implementation ChapterEditor
+@synthesize slider;
 @synthesize filesController;
 @synthesize editorChapters;
 @synthesize slideMin;

@@ -50,6 +50,13 @@
     return [owner icon];
 }
 
+- (NSMenu *)menu
+{
+    if([owner respondsToSelector:@selector(menuForResult:)])
+        return [owner menuForResult:self];
+    return nil;
+}
+
 - (BOOL)hasChapters
 {
     return [values objectForKey:MZChaptersTagIdent] != nil ||

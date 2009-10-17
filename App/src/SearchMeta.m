@@ -6,9 +6,7 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import <MetaZKit/SearchMeta.h>
-#import <MetaZKit/MZTag.h>
-#import <MetaZKit/NSObject-ProtectedKeyValue.h>
+#import "SearchMeta.h"
 
 @implementation SearchMeta
 
@@ -85,9 +83,41 @@
     return [provider pure];
 }
 
+- (void)prepareForQueue
+{
+    ignoreController = YES;
+    NSMutableArray* tags = [NSMutableArray arrayWithArray:[provider providedTags]];
+    [tags removeObject:[MZTag tagForIdentifier:MZFileNameTagIdent]];
+    for(MZTag* tag in tags)
+    {
+        NSString* key = [tag identifier];
+        [observeFix removeObserver:self forKeyPath: [@"selection." stringByAppendingString:key]];
+    }
+    [provider prepareForQueue];
+}
+
+- (void)prepareFromQueue
+{
+    ignoreController = NO;
+    NSMutableArray* tags = [NSMutableArray arrayWithArray:[provider providedTags]];
+    [tags removeObject:[MZTag tagForIdentifier:MZFileNameTagIdent]];
+    for(MZTag* tag in tags)
+    {
+        NSString* key = [tag identifier];
+        [observeFix addObserver:self 
+                     forKeyPath:[@"selection." stringByAppendingString:key]
+                        options:NSKeyValueObservingOptionPrior
+                        context:NULL];
+    }
+    [provider prepareFromQueue];
+}
+
+
 -(id)getterValueForKey:(NSString *)aKey
 {
-    id ret = [searchController protectedValueForKeyPath:[@"selection." stringByAppendingString:aKey]];
+    id ret = nil;
+    if(!ignoreController)
+        ret = [searchController protectedValueForKeyPath:[@"selection." stringByAppendingString:aKey]];
     if(ret == nil || ret == NSNotApplicableMarker || ret == NSNoSelectionMarker)
         return [provider valueForKey:aKey];
     return ret;
@@ -110,14 +140,6 @@
     [anInvocation setReturnObject:ret];
 }
 
-/*
-- (id)valueForUndefinedKey:(NSString *)key
-{
-    if([self respondsToSelector:NSSelectorFromString(key)])
-        return [self getterValueForKey:key];
-    return [super valueForUndefinedKey:key];
-}
-*/
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -128,7 +150,7 @@
             [self willChangeValueForKey:keyPath];
         else
             [self didChangeValueForKey:keyPath];
-    } else if(object == searchController || object == observeFix)
+    } else if(!ignoreController && (object == searchController || object == observeFix))
     {
         NSString* key = [keyPath substringFromIndex:10];
         NSNumber * prior = [change objectForKey:NSKeyValueChangeNotificationIsPriorKey];
@@ -149,52 +171,58 @@
 
 #pragma mark - NSCoding implementation
 
+/*
 - (Class)classForCoder
 {
     return [provider classForCoder];
 }
+*/
 
 - (id)initWithCoder:(NSCoder *)decoder
 {
-    // Not possible
-    NSException* myException = [NSException
-        exceptionWithName:@"NotImplementedException"
-                   reason:@"Method is not implemented in class"
-                 userInfo:nil];
-    @throw myException;
-/*
-    NSDictionary* dict;
-    NSString* loadedFile;
+    self = [super init];
+    [self release];
+    
+    MetaLoaded* theProvider;
     if([decoder allowsKeyedCoding])
-    {
-        loadedFile = [decoder decodeObjectForKey:@"loadedFileName"];
-        dict = [decoder decodeObjectForKey:@"tags"];
+        theProvider = [decoder decodeObjectForKey:@"provider"];
+    else {
+        theProvider = [decoder decodeObject];
     }
-    else
+    
+    id<MZPluginControllerDelegate> delegate = [[MZPluginController sharedInstance] delegate];
+    if([delegate respondsToSelector:@selector(pluginController:extraMetaDataForProvider:loaded:)])
     {
-        loadedFile = [decoder decodeObject];
-        dict = [decoder decodeObject];
+        SearchMeta* newMeta = [delegate pluginController:[MZPluginController sharedInstance]
+                extraMetaDataForProvider:[theProvider owner] loaded:theProvider];
+        if(newMeta)
+        {
+            newMeta->ignoreController = ignoreController;
+            return [newMeta retain];
+        }
     }
-    return [self initWithFilename:loadedFile dictionary:dict];
-*/
+    
+    // No delegate so delete myself.
+    [self release];
+    return [theProvider retain];
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [provider encodeWithCoder:encoder];
+    if([encoder allowsKeyedCoding])
+        [encoder encodeObject:provider forKey:@"provider"];
+    else
+        [encoder encodeObject:provider];
 }
 
 #pragma mark - NSCopying implementation
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    // For now simple remove SearchMeta from the chain
-    return [provider copyWithZone:zone];
-}
-
-- (id<MetaData>)queueCopy
-{
-    return [provider copy];
+    id theProvider = [[provider copyWithZone:zone] autorelease];
+    SearchMeta* ret = [[[self class] alloc] initWithProvider:theProvider controller:searchController];
+    ret->ignoreController = ignoreController;
+    return ret;
 }
 
 @end

@@ -13,5 +13,9 @@
 
 - (NSArray *)arrayByPerformingSelector:(SEL)aSelector;
 - (NSArray *)arrayByPerformingSelector:(SEL)aSelector withObject:(id)anObject;
+- (NSArray *)arrayByPerformingKey:(NSString *)key;
+- (NSArray *)arrayByPerformingKeyPath:(NSString *)keyPath;
+- (NSArray *)arrayByPerformingProtectedKey:(NSString *)key;
+- (NSArray *)arrayByPerformingProtectedKeyPath:(NSString *)keyPath;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "NSArray-Mapping.h"
-
+#import "NSObject-ProtectedKeyValue.h"
 
 @implementation NSArray (Mapping)
 
@@ -37,4 +37,56 @@
     return [NSArray arrayWithArray:ret];
 }
 
+- (NSArray *)arrayByPerformingKey:(NSString *)key
+{
+    NSMutableArray* ret = [NSMutableArray arrayWithCapacity:[self count]];
+    for(id obj in self)
+    {
+        obj = [obj valueForKey:key];
+        if(!obj)
+            obj = [NSNull null];
+        [ret addObject:obj];
+    }
+    return [NSArray arrayWithArray:ret];
+}
+
+- (NSArray *)arrayByPerformingKeyPath:(NSString *)keyPath
+{
+    NSMutableArray* ret = [NSMutableArray arrayWithCapacity:[self count]];
+    for(id obj in self)
+    {
+        obj = [obj valueForKeyPath:keyPath];
+        if(!obj)
+            obj = [NSNull null];
+        [ret addObject:obj];
+    }
+    return [NSArray arrayWithArray:ret];
+}
+
+
+- (NSArray *)arrayByPerformingProtectedKey:(NSString *)key
+{
+    NSMutableArray* ret = [NSMutableArray arrayWithCapacity:[self count]];
+    for(id obj in self)
+    {
+        obj = [obj protectedValueForKey:key];
+        if(!obj)
+            obj = [NSNull null];
+        [ret addObject:obj];
+    }
+    return [NSArray arrayWithArray:ret];
+}
+
+- (NSArray *)arrayByPerformingKeyProtectedPath:(NSString *)keyPath
+{
+    NSMutableArray* ret = [NSMutableArray arrayWithCapacity:[self count]];
+    for(id obj in self)
+    {
+        obj = [obj protectedValueForKeyPath:keyPath];
+        if(!obj)
+            obj = [NSNull null];
+        [ret addObject:obj];
+    }
+    return [NSArray arrayWithArray:ret];
+}
 @end

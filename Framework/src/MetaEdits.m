@@ -95,6 +95,16 @@
     return tempFile;
 }
 
+- (void)prepareForQueue
+{
+    [provider prepareForQueue];
+}
+
+- (void)prepareFromQueue
+{
+    [provider prepareFromQueue];
+}
+
 
 - (NSUndoManager *)undoManager
 {
@@ -440,14 +450,5 @@
     [copy->changes addEntriesFromDictionary:changes];
     return copy;
 }
-
-- (id<MetaData>)queueCopy
-{
-    id<MetaData> ret = [[provider copy] autorelease];
-    MetaEdits* copy = [[MetaEdits alloc] initWithProvider:ret];
-    [copy->changes addEntriesFromDictionary:changes];
-    return copy;
-}
-
 
 @end

@@ -7,13 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <MetaZKit/MetaData.h>
-#import <MetaZKit/MZDynamicObject.h>
-#import <MetaZKit/MZPriorObserverFix.h>
+#import <MetaZKit/MetaZKit.h>
 
 @interface SearchMeta : MZDynamicObject <MetaData> {
     NSObject<MetaData>* provider;
-    IBOutlet NSArrayController* searchController;
+    NSArrayController* searchController;
+    BOOL ignoreController;
     MZPriorObserverFix* observeFix;
 }
 

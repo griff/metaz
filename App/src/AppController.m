@@ -11,6 +11,7 @@
 #import "PosterView.h"
 #import "MZMetaSearcher.h"
 #import "FakeSearchResult.h"
+#import "SearchMeta.h"
 
 #define MaxShortDescription 256
 
@@ -314,7 +315,9 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (IBAction)startSearch:(id)sender;
 {
-    NSString* term = [sender stringValue];
+    NSString* term = [[sender stringValue] 
+        stringByTrimmingCharactersInSet:
+            [NSCharacterSet whitespaceCharacterSet]];
     NSMutableDictionary* dict = [activeProfile searchTerms];
     [dict setObject:term forKey:[activeProfile mainTag]];
     [searchIndicator startAnimation:sender];
@@ -368,7 +371,8 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (IBAction)searchForImages:(id)sender
 {
-    NSString* title = [filesController valueForKeyPath:@"selection.pure.title"];
+    NSString* title = [[filesController valueForKeyPath:@"selection.pure.title"]
+        stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
     id videoType = [filesController protectedValueForKeyPath:@"selection.pure.videoType"];
     MZVideoType vt;
@@ -382,6 +386,8 @@ NSDictionary* findBinding(NSWindow* window) {
             NSString* show = [filesController valueForKeyPath:@"selection.pure.tvShow"];
             if([show isKindOfClass:[NSString class]])
             {
+                show = [show stringByTrimmingCharactersInSet:
+                    [NSCharacterSet whitespaceCharacterSet]];
                 NSNumber* season = [filesController valueForKeyPath:@"selection.pure.tvSeason"];
                 if([season isKindOfClass:[NSNumber class]])
                     query = [NSString stringWithFormat:@"\"%@\" season %d", show, [season intValue]];

@@ -15,6 +15,7 @@
     TCSearch* search;
     NSImage* icon;
     NSArray* supportedSearchTags;
+    NSMenu* menu;
 }
 
 @end

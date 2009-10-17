@@ -7,6 +7,9 @@
 //
 
 #import "MZMetaLoader.h"
+#import "MZWriteQueue.h"
+#import "MZWriteQueueStatus.h"
+#import "NSUserDefaults-KeyPath.h"
 
 @implementation MZMetaLoader
 @synthesize files;
@@ -15,13 +18,15 @@
 
 static MZMetaLoader* sharedLoader = nil;
 
-+(MZMetaLoader *)sharedLoader {
++(MZMetaLoader *)sharedLoader
+{
     if(!sharedLoader)
         [[[MZMetaLoader alloc] init] release];
     return sharedLoader;
 }
 
--(id)init {
+-(id)init
+{
     self = [super init];
 
     if(sharedLoader)
@@ -36,13 +41,15 @@ static MZMetaLoader* sharedLoader = nil;
     return self;
 }
 
--(void)dealloc {
+-(void)dealloc
+{
     [files release];
     [super dealloc];
 }
 
 
--(NSArray *)types {
+-(NSArray *)types
+{
     return [[MZPluginController sharedInstance] dataProviderTypes];
 }
 
@@ -86,6 +93,81 @@ static MZMetaLoader* sharedLoader = nil;
     if([fileNames count]==0)
         return YES;
     NSAssert([fileNames count]==[indexes count], @"Count of indexes and filenames");
+    
+    BOOL suppressAlreadyLoadedWarning = [[NSUserDefaults standardUserDefaults]
+        boolForKeyPath:MZDataProviderFileAlreadyLoadedWarningKey];
+    NSMutableArray* realFileNames = [NSMutableArray arrayWithArray:fileNames];
+    NSMutableIndexSet* realIndexes = [[[NSMutableIndexSet alloc] initWithIndexSet:indexes] autorelease];
+        
+    NSArray* loadedFileNames = [files arrayByPerformingKeyPath:@"loadedFileName"];
+    NSMutableArray* queuedFileNames = [NSMutableArray array];
+    for(MZWriteQueueStatus* status in [[MZWriteQueue sharedQueue] queueItems])
+    {
+        if(![status completed])
+            [queuedFileNames addObject:[[status edits] loadedFileName]];
+    }
+    NSInteger index = [indexes lastIndex];
+    for(NSInteger i=[fileNames count]-1; i>=0; i--)
+    {
+        NSString* fileName = [fileNames objectAtIndex:i];
+        NSInteger idx = [loadedFileNames indexOfObject:fileName];
+        BOOL inQueue = NO;
+        if(idx == NSNotFound)
+        {
+            idx = [queuedFileNames indexOfObject:fileName];
+            inQueue = YES;
+        }
+            
+        if(idx != NSNotFound)
+        {
+            NSString* basefile = [fileName lastPathComponent];
+            if(!suppressAlreadyLoadedWarning)
+            {
+                NSAlert* alert = [[NSAlert alloc] init];
+                if(inQueue)
+                {
+                    [alert setMessageText:
+                        [NSString stringWithFormat:
+                            NSLocalizedString(@"File \"%@\" is already in queue", @"Already loaded warning message"),
+                                basefile]];
+                }
+                else
+                {
+                    [alert setMessageText:
+                        [NSString stringWithFormat:
+                            NSLocalizedString(@"File \"%@\" is already loaded", @"Already loaded warning message"),
+                                basefile]];
+                }
+                /*
+                [alert setInformativeText::
+                    [NSString stringWithFormat:
+                        NSLocalizedString(@"Do you wish to load it anyway?", @"Already loaded title prompt"),
+                            [edits fileName]]];
+                */
+                [alert setShowsSuppressionButton:YES];
+                [alert addButtonWithTitle:NSLocalizedString(@"OK", @"Button")];
+
+                [alert runModal];
+                suppressAlreadyLoadedWarning = [[alert suppressionButton] state] == NSOnState;
+                [[NSUserDefaults standardUserDefaults]
+                    setBool:suppressAlreadyLoadedWarning 
+                    forKeyPath:MZDataProviderFileAlreadyLoadedWarningKey];
+                [alert release];
+            }
+            [realFileNames removeObjectAtIndex:i];
+            [realIndexes removeIndex:index];
+            //if(index>=[files count])
+            //NSLog(@"Shifting %d", [indexes lastIndex]);
+            if([realIndexes countOfIndexesInRange:NSMakeRange(index, [indexes lastIndex]+1)] > 0)
+            {
+                //NSLog(@"Shifting %d", [indexes lastIndex]);
+                [realIndexes shiftIndexesStartingAtIndex:[indexes indexGreaterThanIndex:index] by:-1];
+            }
+        }
+        index = [indexes indexLessThanIndex:index];
+    }
+    fileNames = realFileNames;
+    indexes = realIndexes;
 
     NSMutableArray* arr = [NSMutableArray arrayWithCapacity:[fileNames count]];
     int missingType = 0;
@@ -230,6 +312,7 @@ static MZMetaLoader* sharedLoader = nil;
 - (void)reloadEdits:(MetaEdits *)edits
 {
     [self willChangeValueForKey:@"files"];
+    [edits prepareFromQueue];
     [files addObject:edits];
     [self didChangeValueForKey:@"files"];
 }

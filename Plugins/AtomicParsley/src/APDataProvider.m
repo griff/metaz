@@ -418,9 +418,11 @@
     // Store real parsed values using a simple key -> key mapping
     for(NSString* map in [read_mapping allKeys])
     {
-        id value = [dict objectForKey:map];
+        NSString* tagId = [read_mapping objectForKey:map];
+        MZTag* tag = [MZTag tagForIdentifier:tagId];
+        NSString* value = [dict objectForKey:map];
         if(value)
-            [retdict setObject:value forKey:[read_mapping objectForKey:map]];
+            [retdict setObject:[tag convertObjectForStorage:[tag objectFromString:value]] forKey:tagId];
     }
     
     // Special rating handling
@@ -546,6 +548,13 @@
     }
         
     [retdict setObject:[fileName lastPathComponent] forKey:MZFileNameTagIdent];
+    id title = [retdict objectForKey:MZTitleTagIdent];
+    if(![title isKindOfClass:[NSString class]])
+    {
+        NSString* basefile = [fileName lastPathComponent];
+        NSString* newTitle = [basefile substringToIndex:[basefile length] - [[basefile pathExtension] length] - 1];
+        [retdict setObject:newTitle forKey:MZTitleTagIdent];
+    }
     
     // Chapter reading
     {
@@ -619,6 +628,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     NSDictionary* changes = [data changes];
     for(NSString* key in [changes allKeys])
     {
+        MZTag* tag = [MZTag tagForIdentifier:key];
         id value = [changes objectForKey:key];
         if(value == [NSNull null])
             value = @"";
@@ -626,7 +636,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
         if(map)
         {
             [args addObject:[@"--" stringByAppendingString:map]];
-            [args addObject:value];
+            [args addObject:[tag stringForObject:value]];
         }
     }
     

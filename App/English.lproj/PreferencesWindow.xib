@@ -13,8 +13,8 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="119"/>
-			<integer value="1"/>
 			<integer value="88"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -619,7 +619,7 @@
 						<reference key="NSSuperview" ref="757553835"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="138375886">
-							<int key="NSCellFlags">-1543373312</int>
+							<int key="NSCellFlags">-2080244224</int>
 							<int key="NSCellFlags2">134217728</int>
 							<string key="NSContents">Reset all alerts</string>
 							<reference key="NSSupport" ref="908428889"/>
@@ -887,15 +887,6 @@
 				<reference key="NSSuperview"/>
 			</object>
 			<object class="NSUserDefaultsController" id="1040842103">
-				<object class="NSMutableArray" key="NSDeclaredKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>ratingUK</string>
-					<string>ratingDE</string>
-					<string>ratingIE</string>
-					<string>ratingCA</string>
-					<string>ratingAU</string>
-					<string>ratingNZ</string>
-				</object>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</object>
@@ -1085,22 +1076,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.ratingUK</string>
-						<reference key="source" ref="108108287"/>
-						<reference key="destination" ref="1040842103"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="108108287"/>
-							<reference key="NSDestination" ref="1040842103"/>
-							<string key="NSLabel">value: values.ratingUK</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.ratingUK</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">195</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.ratingDE</string>
 						<reference key="source" ref="62396957"/>
 						<reference key="destination" ref="1040842103"/>
@@ -1186,6 +1161,30 @@
 						<reference key="destination" ref="717734174"/>
 					</object>
 					<int key="connectionID">206</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.ratingUK</string>
+						<reference key="source" ref="108108287"/>
+						<reference key="destination" ref="1040842103"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="108108287"/>
+							<reference key="NSDestination" ref="1040842103"/>
+							<string key="NSLabel">value: values.ratingUK</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.ratingUK</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">208</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">clearAlerts:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="616295059"/>
+					</object>
+					<int key="connectionID">209</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1864,7 +1863,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">206</int>
+			<int key="maxID">209</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1877,6 +1876,13 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Framework/src/NSObject-ProtectedKeyValue.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">PreferencesWindowController</string>
 					<string key="superclassName">NSWindowController</string>
 					<object class="NSMutableDictionary" key="actions">
@@ -1884,12 +1890,14 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addPlugin:</string>
+							<string>clearAlerts:</string>
 							<string>clearGenres:</string>
 							<string>removePlugin:</string>
 							<string>selectTabFromTag:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

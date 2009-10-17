@@ -54,6 +54,9 @@
 		1B92BC06108882710057EFD7 /* CowHead.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B92BC05108882710057EFD7 /* CowHead.png */; };
 		1B92BC57108890090057EFD7 /* NSObject-ProtectedKeyValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B92BC55108890090057EFD7 /* NSObject-ProtectedKeyValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B92BC58108890090057EFD7 /* NSObject-ProtectedKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BC56108890090057EFD7 /* NSObject-ProtectedKeyValue.m */; };
+		1B92BFBB1089F9060057EFD7 /* SearchMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BFBA1089F9060057EFD7 /* SearchMeta.m */; };
+		1B92C0A3108A23BA0057EFD7 /* NSUserDefaults-KeyPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92C0A2108A23BA0057EFD7 /* NSUserDefaults-KeyPath.m */; };
+		1B92C0EB108A31680057EFD7 /* SearchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92C0EA108A31680057EFD7 /* SearchTableView.m */; };
 		1B9B393F106C0FA200928C83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B9B393D106C0FA200928C83 /* Localizable.strings */; };
 		1BA325CD10545BBB00276F57 /* MetaZKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1BA325E110545CD900276F57 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -97,8 +100,6 @@
 		1BEA6F9C106EFC3F004B1A7F /* MetaEdits.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119FC8104300ED004C93D3 /* MetaEdits.m */; };
 		1BEA6F9D106EFC3F004B1A7F /* MetaLoaded.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B119FCD10443655004C93D3 /* MetaLoaded.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA6F9E106EFC3F004B1A7F /* MetaLoaded.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119FCE10443655004C93D3 /* MetaLoaded.m */; };
-		1BEA6F9F106EFC3F004B1A7F /* SearchMeta.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB6BE7C1050BC00001D3D1D /* SearchMeta.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1BEA6FA0106EFC3F004B1A7F /* SearchMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BE7D1050BC00001D3D1D /* SearchMeta.m */; };
 		1BEA6FA1106EFC3F004B1A7F /* MZConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B11A47C104E627F004C93D3 /* MZConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA6FA2106EFC3F004B1A7F /* MZConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A47D104E627F004C93D3 /* MZConstants.m */; };
 		1BEA6FA3106EFC3F004B1A7F /* MZMethodData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B78A499105032A50072D89E /* MZMethodData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -271,6 +272,12 @@
 		1B92BC05108882710057EFD7 /* CowHead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CowHead.png; path = App/resources/CowHead.png; sourceTree = "<group>"; };
 		1B92BC55108890090057EFD7 /* NSObject-ProtectedKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject-ProtectedKeyValue.h"; sourceTree = "<group>"; };
 		1B92BC56108890090057EFD7 /* NSObject-ProtectedKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject-ProtectedKeyValue.m"; sourceTree = "<group>"; };
+		1B92BFB91089F9060057EFD7 /* SearchMeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMeta.h; sourceTree = "<group>"; };
+		1B92BFBA1089F9060057EFD7 /* SearchMeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMeta.m; sourceTree = "<group>"; };
+		1B92C0A1108A23BA0057EFD7 /* NSUserDefaults-KeyPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults-KeyPath.h"; sourceTree = "<group>"; };
+		1B92C0A2108A23BA0057EFD7 /* NSUserDefaults-KeyPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults-KeyPath.m"; sourceTree = "<group>"; };
+		1B92C0E9108A31680057EFD7 /* SearchTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableView.h; sourceTree = "<group>"; };
+		1B92C0EA108A31680057EFD7 /* SearchTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableView.m; sourceTree = "<group>"; };
 		1B9B393E106C0FA200928C83 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = App/English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1B9B3AB4106CC14B00928C83 /* MetaZKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaZKit.h; sourceTree = "<group>"; };
 		1BA325C410545ACA00276F57 /* MetaZKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MetaZKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -287,8 +294,6 @@
 		1BB3611B105421F100188DD1 /* FilesUndoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesUndoController.m; sourceTree = "<group>"; };
 		1BB6BB0810507DBB001D3D1D /* MZDynamicObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDynamicObject.h; sourceTree = "<group>"; };
 		1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZDynamicObject.m; sourceTree = "<group>"; };
-		1BB6BE7C1050BC00001D3D1D /* SearchMeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMeta.h; sourceTree = "<group>"; };
-		1BB6BE7D1050BC00001D3D1D /* SearchMeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMeta.m; sourceTree = "<group>"; };
 		1BB6BE7F1050BC88001D3D1D /* MZMetaSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMetaSearcher.h; sourceTree = "<group>"; };
 		1BB6BE801050BC88001D3D1D /* MZMetaSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMetaSearcher.m; sourceTree = "<group>"; };
 		1BB6BE821050BD3A001D3D1D /* MZSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSearchProvider.h; sourceTree = "<group>"; };
@@ -404,8 +409,6 @@
 				1B92BB1B10876FBA0057EFD7 /* PureMetaEdits.m */,
 				1B119FCD10443655004C93D3 /* MetaLoaded.h */,
 				1B119FCE10443655004C93D3 /* MetaLoaded.m */,
-				1BB6BE7C1050BC00001D3D1D /* SearchMeta.h */,
-				1BB6BE7D1050BC00001D3D1D /* SearchMeta.m */,
 				1B090C80106A899300D88083 /* MZTag.h */,
 				1B090C81106A899300D88083 /* MZTag.m */,
 				1B11A47C104E627F004C93D3 /* MZConstants.h */,
@@ -528,6 +531,8 @@
 				1B040DC2108176A70027FA0D /* UndoTableView.h */,
 				1B040DC3108176A70027FA0D /* UndoTableView.m */,
 				1BEA6D4F106E8B7C004B1A7F /* IKImageView-Missing.h */,
+				1B92C0E9108A31680057EFD7 /* SearchTableView.h */,
+				1B92C0EA108A31680057EFD7 /* SearchTableView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -604,6 +609,10 @@
 				1B92BC0010887EF40057EFD7 /* FakeSearchResult.m */,
 				1B92BC02108880D60057EFD7 /* Resources.h */,
 				1B92BC03108880D60057EFD7 /* Resources.m */,
+				1B92BFB91089F9060057EFD7 /* SearchMeta.h */,
+				1B92BFBA1089F9060057EFD7 /* SearchMeta.m */,
+				1B92C0A1108A23BA0057EFD7 /* NSUserDefaults-KeyPath.h */,
+				1B92C0A2108A23BA0057EFD7 /* NSUserDefaults-KeyPath.m */,
 			);
 			name = Classes;
 			path = App/src;
@@ -741,7 +750,6 @@
 				1BEA6F9A106EFC3F004B1A7F /* MetaData.h in Headers */,
 				1BEA6F9B106EFC3F004B1A7F /* MetaEdits.h in Headers */,
 				1BEA6F9D106EFC3F004B1A7F /* MetaLoaded.h in Headers */,
-				1BEA6F9F106EFC3F004B1A7F /* SearchMeta.h in Headers */,
 				1BEA6FA1106EFC3F004B1A7F /* MZConstants.h in Headers */,
 				1BEA6FA3106EFC3F004B1A7F /* MZMethodData.h in Headers */,
 				1BEA6FA5106EFC3F004B1A7F /* MZDataProvider.h in Headers */,
@@ -975,7 +983,6 @@
 			files = (
 				1BEA6F9C106EFC3F004B1A7F /* MetaEdits.m in Sources */,
 				1BEA6F9E106EFC3F004B1A7F /* MetaLoaded.m in Sources */,
-				1BEA6FA0106EFC3F004B1A7F /* SearchMeta.m in Sources */,
 				1BEA6FA2106EFC3F004B1A7F /* MZConstants.m in Sources */,
 				1BEA6FA4106EFC3F004B1A7F /* MZMethodData.m in Sources */,
 				1BEA6FA7106EFC3F004B1A7F /* MZDynamicObject.m in Sources */,
@@ -1038,6 +1045,9 @@
 				1B92BB70108787260057EFD7 /* SearchProfile.m in Sources */,
 				1B92BC0110887EF40057EFD7 /* FakeSearchResult.m in Sources */,
 				1B92BC04108880D60057EFD7 /* Resources.m in Sources */,
+				1B92BFBB1089F9060057EFD7 /* SearchMeta.m in Sources */,
+				1B92C0A3108A23BA0057EFD7 /* NSUserDefaults-KeyPath.m in Sources */,
+				1B92C0EB108A31680057EFD7 /* SearchTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

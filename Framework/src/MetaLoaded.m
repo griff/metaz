@@ -52,6 +52,15 @@
     return self;
 }
 
+- (void)prepareForQueue
+{
+}
+
+- (void)prepareFromQueue
+{
+}
+
+
 -(id)getterValueForKey:(NSString *)aKey {
     id ret = [values objectForKey:aKey];
     MZTag* tag = [MZTag tagForIdentifier:aKey];
@@ -128,11 +137,6 @@
 {
     //return [[MetaLoaded alloc] initWithFilename:loadedFileName dictionary:values];
     return [self retain];
-}
-
-- (id<MetaData>)queueCopy
-{
-    return [self copy];
 }
 
 @end

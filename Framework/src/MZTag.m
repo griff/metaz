@@ -283,6 +283,11 @@ static NSMutableDictionary *sharedTags = nil;
     return nil;
 }
 
+- (NSString *)stringForObject:(id)str
+{
+    return [str stringValue];
+}
+
 @end
 
 
@@ -299,6 +304,12 @@ static NSMutableDictionary *sharedTags = nil;
         return nil;
     return str;
 }
+
+- (NSString *)stringForObject:(id)str
+{
+    return str;
+}
+
 
 @end
 
