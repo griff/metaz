@@ -187,6 +187,7 @@ MZKIT_EXTERN NSString* const MZCompilationTagIdent;
 
 MZKIT_EXTERN NSString* const MZChaptersTagIdent;
 MZKIT_EXTERN NSString* const MZChapterNamesTagIdent;
+MZKIT_EXTERN NSString* const MZDurationTagIdent;
 
 /* Notifications */
 MZKIT_EXTERN NSString* const MZDataProviderLoadedNotification;

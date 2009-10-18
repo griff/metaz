@@ -44,7 +44,6 @@
 		1B6E43C810845F8200DFE165 /* TCSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E43C710845F8200DFE165 /* TCSearch.m */; };
 		1B6E43CB108468B100DFE165 /* MZSearchResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6E43C9108468B100DFE165 /* MZSearchResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B6E43CC108468B100DFE165 /* MZSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E43CA108468B100DFE165 /* MZSearchResult.m */; };
-		1B6E43D710846BDA00DFE165 /* TagData.h in Resources */ = {isa = PBXBuildFile; fileRef = 1B6E43D610846BDA00DFE165 /* TagData.h */; };
 		1B6E43DD10846DBC00DFE165 /* TagData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6E43D610846BDA00DFE165 /* TagData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B92BB1C10876FBA0057EFD7 /* PureMetaEdits.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B92BB1A10876FBA0057EFD7 /* PureMetaEdits.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		1B92BB1D10876FBA0057EFD7 /* PureMetaEdits.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BB1B10876FBA0057EFD7 /* PureMetaEdits.m */; };
@@ -886,7 +885,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BA326A310546F9700276F57 /* MZTags.strings in Resources */,
-				1B6E43D710846BDA00DFE165 /* TagData.h in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -961,7 +959,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mkdir -p $TARGET_BUILD_DIR/$DOCUMENTATION_FOLDER_PATH\n#/usr/bin/headerdoc2html -o $TARGET_BUILD_DIR/$DOCUMENTATION_FOLDER_PATH/ $SRCROOT/Framework/src/*.h && /usr/bin/gatherheaderdoc $TARGET_BUILD_DIR/$DOCUMENTATION_FOLDER_PATH\n";
+			shellScript = "mkdir -p $TARGET_BUILD_DIR/$DOCUMENTATION_FOLDER_PATH\n/usr/bin/headerdoc2html -o $TARGET_BUILD_DIR/$DOCUMENTATION_FOLDER_PATH/ $SRCROOT/Framework/src/*.h && /usr/bin/gatherheaderdoc $TARGET_BUILD_DIR/$DOCUMENTATION_FOLDER_PATH\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1197,6 +1195,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
+				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
@@ -1226,6 +1225,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;

@@ -14,7 +14,6 @@
  executes an action on the driver's work-loop...
  @see MetaEdits MetaEdits
  @see MetaLoaded MetaLoaded
- @framework MetaZKit
  @availability 1.0
 */
 @protocol MetaData <TagData>

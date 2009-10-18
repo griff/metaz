@@ -64,6 +64,7 @@ NSString* const MZCompilationTagIdent = @"compilation";
 
 NSString* const MZChaptersTagIdent = @"chapters";
 NSString* const MZChapterNamesTagIdent = @"chapterNames";
+NSString* const MZDurationTagIdent = @"duration";
 
 /* Notifications */
 NSString* const MZDataProviderLoadedNotification = @"MZDataProviderLoadedNotification";

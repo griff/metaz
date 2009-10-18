@@ -8,6 +8,7 @@
 
 #import <MetaZKit/MZTag.h>
 #import <MetaZKit/MZConstants.h>
+#import <MetaZKit/MZTimeCode.h>
 
 @interface MZVideoTypeTagClass : MZEnumTag {
 }
@@ -20,7 +21,6 @@
 - (id)init;
 
 @end
-
 
 @implementation MZTag
 
@@ -86,6 +86,8 @@
     // Chapter tags
     [self registerTag:[MZTag tagWithIdentifier:MZChaptersTagIdent]];
     [self registerTag:[MZTag tagWithIdentifier:MZChapterNamesTagIdent]];
+
+    [self registerTag:[MZTimeCodeTag tagWithIdentifier:MZDurationTagIdent]];
 }
 
 static NSMutableDictionary *sharedTags = nil;
@@ -181,10 +183,11 @@ static NSMutableDictionary *sharedTags = nil;
 
 + (NSArray*)allKnownTags
 {
-    return [[[[[self infoTags] arrayByAddingObjectsFromArray:[self videoTags]]
+    return [[[[[[self infoTags] arrayByAddingObjectsFromArray:[self videoTags]]
                     arrayByAddingObjectsFromArray:[self sortTags]]
                     arrayByAddingObjectsFromArray:[self advancedTags]]
-                    arrayByAddingObjectsFromArray:[self chapterTags]];
+                    arrayByAddingObjectsFromArray:[self chapterTags]] 
+                    arrayByAddingObject:[self tagForIdentifier:MZDurationTagIdent]];
 }
 
 + (NSString *)localizedNameForKnownIdentifier:(NSString *)identifier
@@ -401,6 +404,36 @@ static NSMutableDictionary *sharedTags = nil;
     
     BOOL value = [str boolValue];
     return [NSNumber numberWithBool:value];
+}
+
+@end
+
+
+@implementation MZTimeCodeTag
+
+- (NSCell *)editorCell
+{
+    return [[[NSTextFieldCell alloc] initTextCell:@""] autorelease]; 
+}
+
+- (id)convertValueToObject:(void*)buffer
+{
+    MZTimeCode** str = (MZTimeCode**)buffer;
+    return *str;
+}
+
+- (void)convertObject:(id)obj toValue:(void*)buffer
+{
+    MZTimeCode** str = (MZTimeCode**)buffer;
+    *str = obj;
+}
+
+- (id)objectFromString:(NSString *)str
+{
+    if(!str || [str length]==0)
+        return nil;
+    
+    return [MZTimeCode timeCodeWithString:str];
 }
 
 @end

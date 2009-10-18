@@ -24,6 +24,7 @@
 - (id)initWithString:(NSString *)str;
 - (id)initWithMillis:(NSUInteger)millis;
 
+- (NSString *)stringValue;
 - (NSString *)description;
 - (MZTimeCode *)addMillis:(NSUInteger)millis; 
 - (MZTimeCode *)addTimeCode:(MZTimeCode *)timeCode; 

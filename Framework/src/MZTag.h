@@ -6,7 +6,8 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-@interface MZTag : NSObject {
+@interface MZTag : NSObject
+{
     NSString* identifier;
 }
 
@@ -39,32 +40,33 @@
 @end
 
 
-@interface MZStringTag : MZTag {
-}
+@interface MZStringTag : MZTag {}
 
 @end
 
 
-@interface MZDateTag : MZTag {
-}
+@interface MZDateTag : MZTag {}
 
 @end
 
 
-@interface MZIntegerTag : MZTag {
-}
+@interface MZIntegerTag : MZTag {}
 
 @end
 
 
-@interface MZBoolTag : MZTag {
-}
+@interface MZBoolTag : MZTag {}
 
 @end
 
-@interface MZEnumTag : MZTag {
-}
+@interface MZEnumTag : MZTag {}
+
 + (id)tag;
 - (int)nilValue;
 
 @end
+
+@interface MZTimeCodeTag : MZTag {}
+
+@end
+

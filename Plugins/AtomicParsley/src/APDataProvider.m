@@ -570,6 +570,13 @@
         [task release];
 
         NSString* str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+
+        NSRange f = [str rangeOfString:@"Duration "];
+        NSString* movieDurationStr = [str substringWithRange:NSMakeRange(f.location+f.length, 12)];
+        //NSLog(@"Movie duration '%@'", movieDurationStr);
+        MZTimeCode* movieDuration = [MZTimeCode timeCodeWithString:movieDurationStr];
+        [retdict setObject:movieDuration forKey:MZDurationTagIdent];
+
         NSArray* lines = [str componentsSeparatedByString:@"\tChapter #"];
         if([lines count]>1)
         {

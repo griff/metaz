@@ -115,8 +115,12 @@
     return [MZTimeCode timeCodeWithMillis:millis + [timeCode millis]];
 }
 
-
 - (NSString *)description
+{
+    return [self stringValue];
+}
+
+- (NSString *)stringValue
 {
     return [NSString stringWithFormat:@"%02u:%02u:%02u.%03u",
         [self hour], [self min], [self sec], [self ms]];

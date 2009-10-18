@@ -108,7 +108,7 @@
 
     The default implementation returns the value of the NSMainNibFile key in
     the bundle's information property list. If the key does not exist, it
-    returns a default value of @"Main".
+    returns a default value of "Main".
  */
 - (NSString *)preferencesNibName;
 

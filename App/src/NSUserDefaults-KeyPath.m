@@ -8,7 +8,7 @@
 
 #import "NSUserDefaults-KeyPath.h"
 
-@interface NSUserDefaults (MZKeyPaths-Private)
+@interface NSUserDefaults (MZKeyPathsPrivate)
 
 - (id)valueForComponents:(NSArray *)components;
 - (void)setValue:(id)value forComponents:(NSArray *)components;
@@ -20,6 +20,7 @@
 
 - (id)valueForComponents:(NSArray *)components
 {
+    NSInteger len = [components count];
     NSString* name = [components objectAtIndex:0];
     NSDictionary* dict = [self dictionaryForKey:name];
     for(NSInteger i=1; i<len-1 && [dict isKindOfClass:[NSDictionary class]]; i++)
@@ -34,6 +35,7 @@
 
 - (void)setValue:(id)value forComponents:(NSArray *)components
 {
+    NSInteger len = [components count];
     NSString* name = [components objectAtIndex:0];
     NSMutableDictionary* dict;
     NSMutableDictionary* root = dict = [NSMutableDictionary dictionaryWithDictionary:[self dictionaryForKey:name]];
@@ -55,7 +57,7 @@
     if(len == 1)
         return [self boolForKey:defaultName];
         
-    id value = [valueForComponents:components];
+    id value = [self valueForComponents:components];
     if([value isKindOfClass:[NSNumber class]])
         return [value boolValue];
     return NO;
