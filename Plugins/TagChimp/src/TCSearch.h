@@ -9,17 +9,26 @@
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaZKit.h>
 
-@interface TCSearch : NSObject <MZRESTWrapperDelegate>
+@interface TCSearch : NSOperation <MZRESTWrapperDelegate>
 {
     id provider;
     MZRESTWrapper* wrapper;
     NSDictionary* mapping;
-    NSArray* ratingNames;
-    BOOL canceled;
+    //NSArray* ratingNames;
     id<MZSearchProviderDelegate> delegate;
+    NSURL* searchURL;
+    NSDictionary* parameters;
+    BOOL isFinished;
+    BOOL isExecuting;
 }
+@property(assign) BOOL isFinished;
+@property(assign) BOOL isExecuting;
 
-- (id)initWithProvider:(id)provider delegate:(id<MZSearchProviderDelegate>)delegate wrapper:(MZRESTWrapper *)wrapper;
+- (id)initWithProvider:(id)provider delegate:(id<MZSearchProviderDelegate>)delegate url:(NSURL *)url parameters:(NSDictionary *)params;
+- (void)start;
+- (BOOL)isConcurrent;
+- (BOOL)isExecuting;
+- (BOOL)isFinished;
 - (void)cancel;
 
 @end

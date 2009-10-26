@@ -10,6 +10,7 @@
 
 @interface MZRESTWrapper (Private)
 - (void)startConnection:(NSURLRequest *)request;
+- (void)terminateConnection;
 @end
 
 @implementation MZRESTWrapper
@@ -20,6 +21,7 @@
 @synthesize username;
 @synthesize password;
 @synthesize delegate;
+@synthesize connection;
 
 #pragma mark -
 #pragma mark Constructor and destructor
@@ -29,7 +31,7 @@
     if(self = [super init])
     {
         receivedData = [[NSMutableData alloc] init];
-        conn = nil;
+        connection = nil;
 
         asynchronous = YES;
         mimeType = @"text/html";
@@ -43,7 +45,7 @@
 
 - (void)dealloc
 {
-    [self cancelConnection]; 
+    [self terminateConnection]; 
     [receivedData release];
     receivedData = nil;
     self.mimeType = nil;
@@ -145,11 +147,18 @@
     [self startConnection:request];
 }
 
+- (void)terminateConnection
+{
+    NSURLConnection* conn = self.connection;
+    [conn cancel];
+    self.connection = nil;
+}
+
 - (void)cancelConnection
 {
-    [conn cancel];
-    [conn release];
-    conn = nil;
+    [self terminateConnection];
+    if ([delegate respondsToSelector:@selector(wrapperWasCanceled:)])
+        [delegate wrapperWasCanceled:self];
 }
 
 - (NSDictionary *)responseAsPropertyList
@@ -182,8 +191,8 @@
 {
     if (asynchronous)
     {
-        [self cancelConnection];
-        conn = [[NSURLConnection alloc] initWithRequest:request
+        [self terminateConnection];
+        NSURLConnection* conn = [[NSURLConnection alloc] initWithRequest:request
                                                delegate:self
                                        startImmediately:YES];
         
@@ -197,6 +206,10 @@
                 [delegate wrapper:self didFailWithError:error];
             }
         }
+        else {
+            self.connection = conn;
+        }
+
     }
     else
     {
@@ -279,19 +292,27 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    [self cancelConnection];
-    if ([delegate respondsToSelector:@selector(wrapper:didFailWithError:)])
-    {
-        [delegate wrapper:self didFailWithError:error];
+    @try {
+        if ([delegate respondsToSelector:@selector(wrapper:didFailWithError:)])
+        {
+            [delegate wrapper:self didFailWithError:error];
+        }
+    }
+    @finally {
+        [self terminateConnection];
     }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [self cancelConnection];
-    if ([delegate respondsToSelector:@selector(wrapper:didRetrieveData:)])
-    {
-        [delegate wrapper:self didRetrieveData:receivedData];
+    @try {
+        if ([delegate respondsToSelector:@selector(wrapper:didRetrieveData:)])
+        {
+            [delegate wrapper:self didRetrieveData:receivedData];
+        }
+    }
+    @finally {
+        [self terminateConnection];
     }
 }
 

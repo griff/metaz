@@ -20,8 +20,10 @@
 }
 
 /*!
- @methodgroup Loading and Unloading Plug-in Resources
+ * @name Loading and Unloading Plug-in Resources
+ * @methodgroup Loading and Unloading Plug-in Resources
  */
+//@{
 #pragma mark - Loading and Unloading Plug-in Resources 
 
 /*!
@@ -55,9 +57,9 @@
 - (void)willUnload;
 
 
-/*!
- @methodgroup Getting the Plug-in’s Custom Providers
+/*! @name Getting the Plug-in’s Custom Providers
  */
+//@{
 #pragma mark - Getting the Plug-in’s Custom Providers
 
 /*!
@@ -67,11 +69,11 @@
 /*!
  */
 - (NSArray *)searchProviders;
+//@}
 
-
-/*!
- @methodgroup Configuring Your Plug-in
+/*! @name Configuring Your Plug-in
  */
+//@{
 #pragma mark - Configuring Your Plug-in
 
 /*!
@@ -83,11 +85,11 @@
     default.
  */
 - (NSString *)label;
+//@}
 
-
-/*!
- @methodgroup Setting Up the Preferences View
+/*! @name Setting Up the Preferences View
  */
+//@{
 #pragma mark - Setting Up the Preferences View
 
 /*!
@@ -103,7 +105,7 @@
 - (NSView *)loadPreferencesView;
 
 /*!
- @abstract Returns the name of the plugins nib file.
+ @brief Returns the name of the plugins nib file.
  @discussion The name should not include the .nib extension.
 
     The default implementation returns the value of the NSMainNibFile key in
@@ -113,7 +115,7 @@
 - (NSString *)preferencesNibName;
 
 /*!
- @abstract Returns the custom view used to display your plug-in’s preferences.
+ @brief Returns the custom view used to display your plug-in’s preferences.
  @result The plug-ins custom preferences view.
  @discussion If your plug-in supports configurable preferences, you can
     override this method to return the view used to display those preferences.
@@ -130,4 +132,5 @@
  */
 - (void)setPreferencesView:(NSView *)view;
 
+//@}
 @end

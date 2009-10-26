@@ -23,7 +23,7 @@
 - (NSArray *)providedTags;
 - (void)prepareForQueue;
 - (void)prepareFromQueue;
-@property (readonly) id<TagData> pure;
+@property(readonly) id<TagData> pure;
 
 @optional
 - (NSString *)fileName;

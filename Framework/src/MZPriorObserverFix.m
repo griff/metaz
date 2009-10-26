@@ -97,6 +97,8 @@
 
     [self willChangeValueForKey:key];
     id newValue = [other valueForKeyPath:[key stringByAppendingString:@".self"]];
+    if(newValue == NSMultipleValuesMarker)
+        newValue = [other valueForKey:key]; 
     if(newValue)
         [oldData setObject:newValue forKey:key];
     else

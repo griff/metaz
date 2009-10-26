@@ -12,11 +12,63 @@
 
 @implementation PosterView
 
+- (void)dealloc
+{
+    [error release];
+    [super dealloc];
+}
+
 - (void)awakeFromNib
 {
     //dumpMethods([self superclass]);
     actionHack = [self action];
     [self setAction:NULL];
+}
+
+- (void)setStatus:(PosterImageStatus)newStatus
+{
+    [self willChangeValueForKey:@"imageSize"];
+    status = newStatus;
+    if(status != MZErrorPosterImage)
+    {
+        [error release];
+        error = nil;
+    }
+    if(status != MZOKPosterImage)
+        [self setObjectValue:nil];
+    [self didChangeValueForKey:@"imageSize"];
+}
+
+- (NSString *)statusImage
+{
+    switch (status) {
+        case MZErrorPosterImage:
+            return MZFadedIconError;
+        case MZFatalErrorPosterImage:
+            return MZFadedIconFatalError;
+        case MZMultiplePosterImage:
+        case MZNotApplicablePosterImage:
+            return MZFadedIconMultiple;
+    }
+    return MZFadedIcon;
+}
+
+- (void)reportError:(NSError *)theError
+{
+    [self willChangeValueForKey:@"imageSize"];
+    status = MZErrorPosterImage;
+    [error release];
+    error = [theError retain];
+    NSLog(@"Poster error: %d %@", [error code], [error domain]);
+    NSLog(@"    Description - %@", [error localizedDescription]);
+    NSLog(@"    Reason - %@", [error localizedFailureReason]);
+    NSLog(@"    Suggestion - %@", [error localizedRecoverySuggestion]);
+    if([error localizedRecoveryOptions])
+    {
+        for(NSString* str in [error localizedRecoveryOptions])
+            NSLog(@"        %@", str);
+    }
+    [self didChangeValueForKey:@"imageSize"];
 }
 
 - (void)setObjectValue:(id < NSCopying >)object
@@ -25,14 +77,19 @@
     [super setObjectValue:object];
     [self didChangeValueForKey:@"imageSize"];
     if(!object)
-        [self setImage:[NSImage imageNamed:MZFadedIcon]];
+        [self setImage:[NSImage imageNamed:[self statusImage]]];
 }
 
 - (NSImage *)objectValue
 {
     NSImage* ret = [super objectValue];
-    if(ret == [NSImage imageNamed:MZFadedIcon])
+    if(ret == [NSImage imageNamed:MZFadedIcon] ||
+        ret == [NSImage imageNamed:MZFadedIconError] ||
+        ret == [NSImage imageNamed:MZFadedIconFatalError] ||
+        ret == [NSImage imageNamed:MZFadedIconMultiple])
+    {
         return nil;
+    }
     return ret;
 }
 
@@ -40,13 +97,21 @@
 {
     [self willChangeValueForKey:@"imageSize"];
     if(!image)
-        image = [NSImage imageNamed:MZFadedIcon];
+        image = [NSImage imageNamed:[self statusImage]];
     [super setImage:image];
     [self didChangeValueForKey:@"imageSize"];
 }
 
 - (NSString*)imageSize
 {
+    if(error)
+        return [error localizedDescription];
+    switch (status) {
+        case MZMultiplePosterImage:
+            return NSLocalizedString(@"Editing Multiple", @"Text for size text field when editing multiple");
+        case MZNotApplicablePosterImage:
+            return NSLocalizedString(@"Not Applicable", @"Text for size text field when picture not applicable");
+    }
     NSSize size = [[self objectValue] size];
     if(NSEqualSizes(size, NSZeroSize))
         return NSLocalizedString(@"No Image", @"Text for size text field when no image is present");

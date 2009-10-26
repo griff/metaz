@@ -10,9 +10,9 @@
 #import <MetaZKit/MetaZKit.h>
 #import "APDataProvider.h"
 
-@interface APWriteManager : NSObject <MZDataWriteController> {
+@interface APWriteManager : NSOperation <MZDataWriteController> {
     NSTask* task;
-    BOOL terminated;
+    BOOL isFinished;
     NSString* pictureFile;
     NSString* chaptersFile;
     MetaEdits* edits;
@@ -23,6 +23,7 @@
 @property(readonly) id<MZDataWriteDelegate> delegate;
 @property(readonly) MetaEdits* edits;
 @property(readonly) APDataProvider* provider;
+@property(assign) BOOL isFinished;
 
 + (id)managerForProvider:(APDataProvider*)provider
                     task:(NSTask *)task
@@ -37,10 +38,13 @@
           pictureFile:(NSString *)file
          chaptersFile:(NSString *)chapterFile;
 
-- (void)launch;
+- (void)start;
 
-- (BOOL)isRunning;
-- (void)terminate;
+- (BOOL)isConcurrent;
+- (BOOL)isExecuting;
+- (BOOL)isFinished;
+
+- (void)cancel;
 
 - (void)taskTerminated:(NSNotification *)note;
 - (void)handlerGotData:(NSNotification *)note;

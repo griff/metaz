@@ -11,15 +11,20 @@
 #import <MetaZKit/MetaZKit.h>
 
 @implementation TCSearch
+@synthesize isFinished;
+@synthesize isExecuting;
 
-- (id)initWithProvider:(id)theProvider delegate:(id<MZSearchProviderDelegate>)theDelegate wrapper:(MZRESTWrapper *)theWrapper
+- (id)initWithProvider:(id)theProvider delegate:(id<MZSearchProviderDelegate>)theDelegate url:(NSURL *)url parameters:(NSDictionary *)params;
 {
     self = [super init];
     if(self)
     {
+        searchURL = [url retain];
+        parameters = [params retain];
         provider = [theProvider retain];
         delegate = [theDelegate retain];
-        wrapper = [theWrapper retain];
+        wrapper = [[MZRESTWrapper alloc] init];
+        wrapper.delegate = self;
         NSArray* tags = [NSArray arrayWithObjects:
             MZTitleTagIdent, MZGenreTagIdent,
             MZDirectorTagIdent, MZProducerTagIdent,
@@ -74,7 +79,6 @@
             // NZ-TV
             MZ_G_NZTV_Rating, MZ_PGR_Rating, MZ_AO_Rating, MZ_Unrated_NZTV_Rating,
         };
-        */
         ratingNames = [[NSArray alloc] initWithObjects:
             @"No Rating",
             // US
@@ -104,34 +108,74 @@
             @"G (NZ-TV)", @"PGR", @"AD", @"UNRATED (NZ-TV)",
             nil];
         NSAssert([ratingNames count] == MZ_Unrated_NZTV_Rating+1, @"Bad number of ratings");
+        */
     }
     return self;
 }
 
 - (void)dealloc
 {
+    self.isExecuting = NO;
+    self.isFinished = YES;
+    [parameters release];
+    [searchURL release];
     [wrapper cancelConnection];
     [wrapper release];
     [delegate release];
     [mapping release];
-    [ratingNames release];
+    //[ratingNames release];
     [super dealloc];
 }
 
+- (void)start
+{
+    self.isExecuting = YES;
+    if([self isCancelled])
+    {
+        [delegate searchFinished];
+        self.isExecuting = NO;
+        self.isFinished = YES;
+    }
+    else
+        [wrapper sendRequestTo:searchURL usingVerb:@"GET" withParameters:parameters];
+}
+
+- (BOOL)isConcurrent
+{
+    return YES;
+}
+
+/*
+- (BOOL)isExecuting
+{
+    return wrapper.connection != nil;
+}
+
+- (BOOL)isFinished
+{
+    return self.finished;
+}
+*/
+
 - (void)cancel
 {
-    canceled = YES;
-    [wrapper cancelConnection];
+    [super cancel];
+    if(self.isExecuting)
+        [wrapper cancelConnection];
 }
 
 #pragma mark - MZRESTWrapperDelegate
 
 - (void)wrapper:(MZRESTWrapper *)theWrapper didRetrieveData:(NSData *)data
 {
-    if(canceled)
-        return;
     //NSLog(@"Got response:\n%@", [theWrapper responseAsText]);
     NSXMLDocument* doc = [theWrapper responseAsXml];
+    
+    NSString* errorMessage = [[[doc nodesForXPath:@"/items/message/error" error:NULL]
+        arrayByPerformingSelector:@selector(stringValue)]
+            componentsJoinedByString:@", "];
+    if(![errorMessage isEqual:@""])
+        NSLog(@"TagChimp error: %@", errorMessage);
     NSArray* items = [doc nodesForXPath:@"/items/movie" error:NULL];
     NSMutableArray* results = [NSMutableArray array];
     NSLog(@"Got results %d", [items count]);
@@ -173,14 +217,20 @@
             }
         }
         
+        MZTag* ratingTag = [MZTag tagForIdentifier:MZRatingTagIdent];
         NSString* rating = [[[item nodesForXPath:@"movieTags/info/rating" error:NULL]
             arrayByPerformingSelector:@selector(stringValue)]
                 componentsJoinedByString:@", "];
+        NSNumber* ratingNr = [ratingTag objectFromString:rating];
+        if([ratingNr intValue] != MZNoRating)
+            [dict setObject:ratingNr forKey:MZRatingTagIdent];
+        /*
         NSInteger ratingNr = [ratingNames indexOfObject:rating];
         if(ratingNr != NSNotFound)
         {
             [dict setObject:[NSNumber numberWithInt:ratingNr] forKey:MZRatingTagIdent];
         }
+        */
         
         NSString* episodeId = [[[item nodesForXPath:@"movieTags/television/productionCode" error:NULL]
             arrayByPerformingSelector:@selector(stringValue)]
@@ -195,6 +245,29 @@
         {
             MZTag* tag = [MZTag tagForIdentifier:MZTVEpisodeIDTagIdent];
             [dict setObject:[tag objectFromString:episodeId] forKey:MZTVEpisodeIDTagIdent];
+        }
+        
+        NSString* coverArtLarge = [[[item nodesForXPath:@"movieTags/coverArtLarge" error:NULL]
+            arrayByPerformingSelector:@selector(stringValue)]
+                componentsJoinedByString:@", "];
+        NSString* coverArtSmall = [[[item nodesForXPath:@"movieTags/coverArtSmall" error:NULL]
+            arrayByPerformingSelector:@selector(stringValue)]
+                componentsJoinedByString:@", "];
+        if([coverArtLarge length] > 0)
+        {
+            /*
+            NSLog(@"TagChimp id %@", tagChimpId);
+            NSLog(@"Image small url: %@", coverArtSmall);
+            NSLog(@"Image large url: %@", coverArtLarge);
+            */
+            NSURL* url = [NSURL URLWithString:
+                [coverArtLarge stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            MZRemoteData* data = [MZRemoteData dataWithURL:url];
+            [dict setObject:data forKey:MZPictureTagIdent];
+            if([NSThread mainThread] != [NSThread currentThread])
+                [data performSelectorOnMainThread:@selector(loadData) withObject:nil waitUntilDone:NO];
+            else
+                [data loadData];
         }
         
         NSInteger totalChapters = [[[[item nodesForXPath:@"movieChapters/totalChapters" error:NULL]
@@ -253,21 +326,32 @@
     NSLog(@"Parsed results %d", [results count]);
     [delegate searchProvider:provider result:results];
     [delegate searchFinished];
+    self.isExecuting = NO;
+    self.isFinished = YES;
 }
 
 - (void)wrapper:(MZRESTWrapper *)theWrapper didFailWithError:(NSError *)error
 {
-    if(canceled)
-        return;
     NSLog(@"TagChimp search failed: %@", [error localizedDescription]);
     [delegate searchFinished];
+    self.isExecuting = NO;
+    self.isFinished = YES;
 }
 
 - (void)wrapper:(MZRESTWrapper *)theWrapper didReceiveStatusCode:(int)statusCode
 {
     NSLog(@"TagChimp got status code: %d", statusCode);
     [delegate searchFinished];
+    self.isExecuting = NO;
+    self.isFinished = YES;
 }
 
+- (void)wrapperWasCanceled:(MZRESTWrapper *)theWrapper
+{
+    if(self.isExecuting)
+        [delegate searchFinished];
+    self.isExecuting = NO;
+    self.isFinished = YES;
+}
 
 @end

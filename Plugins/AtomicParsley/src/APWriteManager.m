@@ -14,6 +14,7 @@
 @synthesize task;
 @synthesize delegate;
 @synthesize edits;
+@synthesize isFinished;
 
 + (id)managerForProvider:(id<MZDataProvider>)provider
                     task:(NSTask *)task
@@ -64,8 +65,10 @@
     [super dealloc];
 }
 
-- (void)launch
+- (void)start
 {
+    if([self isCancelled])
+        return;
     [[NSNotificationCenter defaultCenter]
             addObserver:self
                selector:@selector(handlerGotData:)
@@ -83,22 +86,33 @@
         [delegate dataProvider:provider controller:self writeStartedForEdits:edits];
 }
 
-- (BOOL)isRunning
+- (BOOL)isConcurrent
+{
+    return YES;
+}
+
+- (BOOL)isExecuting
 {
     return [task isRunning];
 }
 
-- (void)terminate
+/*
+- (BOOL)isFinished
 {
-    terminated = YES;
-    [task terminate];
+    return self.isFinished;
+}
+*/
+
+- (void)cancel
+{
+    [super cancel];
+    if([task isRunning])
+        [task terminate];
 }
 
 - (void)taskTerminated:(NSNotification *)note
 {
     int status = [[note object] terminationStatus];
-    if(status != 0)
-        terminated = YES;
 
     NSFileManager* mgr = [NSFileManager defaultManager];
     NSError* error = nil;
@@ -110,7 +124,7 @@
             error = nil;
         }
     }
-    if(terminated)
+    if([self isCancelled] || status != 0)
     {
         if(chaptersFile)
         {
@@ -190,11 +204,16 @@
         if([delegate respondsToSelector:@selector(dataProvider:controller:writeFinishedForEdits:)])
             [delegate dataProvider:provider controller:self writeFinishedForEdits:edits];
     }
+    //[self willChangeValueForKey:@"isFinished"];
+    self.isFinished = YES;
+    //[self didChangeValueForKey:@"finished"];
     [provider removeWriteManager:self];
 }
 
 - (void)handlerGotData:(NSNotification *)note
 {
+    if(self.isFinished)
+        return;
     NSData* data = [[note userInfo]
             objectForKey:NSFileHandleNotificationDataItem];
     NSString* str = [[[NSString alloc]

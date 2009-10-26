@@ -105,12 +105,19 @@ NSDictionary* findBinding(NSWindow* window) {
     {
         remainingInShortDescription = MaxShortDescription;
         activeProfile = [[SearchProfile unknownTypeProfile] retain];
+        [activeProfile addObserver:self forKeyPath:@"searchTerms" options:0 context:NULL];
     }
     return self;
 }
 
 -(void)awakeFromNib
 {
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(finishedSearch:)
+               name:MZSearchFinishedNotification
+             object:nil];
+
     [[MZPluginController sharedInstance] setDelegate:self];
     [[MZMetaSearcher sharedSearcher] setFakeResult:[FakeSearchResult resultWithController:filesController]];
     [self updateSearchMenu];
@@ -136,15 +143,11 @@ NSDictionary* findBinding(NSWindow* window) {
                       forKeyPath:@"selection.shortDescription"
                          options:0
                          context:nil];
-    [[NSNotificationCenter defaultCenter]
-        addObserver:self
-           selector:@selector(finishedSearch:)
-               name:MZSearchFinishedNotification
-             object:nil];
 }
 
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [activeProfile removeObserver:self forKeyPath:@"searchTerms"];
     [filesController removeObserver:self forKeyPath:@"selection.title"];
     [filesController removeObserver:self forKeyPath:@"selection.pure.videoType"];
     [window release];
@@ -194,22 +197,31 @@ NSDictionary* findBinding(NSWindow* window) {
     if([activeProfile.identifier isEqual:profile.identifier])
         return;
     */
+    [activeProfile removeObserver:self forKeyPath:@"searchTerms"];
     [activeProfile release];
     activeProfile = [profile retain];
     [activeProfile setCheckObject:filesController withPrefix:@"selection.pure."];
+    [activeProfile addObserver:self forKeyPath:@"searchTerms" options:0 context:NULL];
 
     NSMenu* menu = [[NSMenu alloc] initWithTitle:
         NSLocalizedString(@"Search terms", @"Search menu title")];
     [menu addItemWithTitle:[menu title] action:nil keyEquivalent:@""];
+    if([profile mainTag])
+    {
+        MZTag* tag = [MZTag tagForIdentifier:[profile mainTag]];
+        NSMenuItem* mainItem = [menu addItemWithTitle:[tag localizedName] action:NULL keyEquivalent:@""];
+        [mainItem setState:NSOnState];
+        [mainItem setIndentationLevel:1];
+    }
     NSInteger i = 0;
     for(NSString* tagId in [profile tags])
     {
         if(![tagId isEqual:MZVideoTypeTagIdent])
         {
             MZTag* tag = [MZTag tagForIdentifier:tagId];
-            NSMenuItem* item = [[NSMenuItem alloc] initWithTitle:[tag localizedName] action:NULL keyEquivalent:@""];
+            NSMenuItem* item = [[NSMenuItem alloc] initWithTitle:[tag localizedName]
+                action:@selector(switchItem:) keyEquivalent:@""];
             [item setTarget:profile];
-            [item setAction:@selector(switchItem:)];
             [item setTag:i];
             [item setState:NSOnState];
             [item setIndentationLevel:1];
@@ -236,7 +248,8 @@ NSDictionary* findBinding(NSWindow* window) {
         }
     }
     [searchField setStringValue:mainValue];
-    [searchField performClick:self];
+    [self startSearch:searchField];
+    //[searchField performClick:self];
     //[[MZMetaSearcher sharedSearcher] clearResults];
 }
 
@@ -278,6 +291,8 @@ NSDictionary* findBinding(NSWindow* window) {
         remainingInShortDescription = MaxShortDescription-newRemain;
         [self didChangeValueForKey:@"remainingInShortDescription"];
     }
+    if([keyPath isEqual:@"searchTerms"] && object == activeProfile)
+        [self startSearch:self];
 }
 
 
@@ -315,13 +330,14 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (IBAction)startSearch:(id)sender;
 {
-    NSString* term = [[sender stringValue] 
+    NSString* term = [[searchField stringValue] 
         stringByTrimmingCharactersInSet:
             [NSCharacterSet whitespaceCharacterSet]];
     NSMutableDictionary* dict = [activeProfile searchTerms];
     [dict setObject:term forKey:[activeProfile mainTag]];
-    [searchIndicator startAnimation:sender];
+    [searchIndicator startAnimation:searchField];
     [searchController setSortDescriptors:nil];
+    searches++;
     [[MZMetaSearcher sharedSearcher] startSearchWithData:dict];
 }
 
@@ -400,10 +416,20 @@ NSDictionary* findBinding(NSWindow* window) {
             query = [NSString stringWithFormat:@"\"%@\"", title];
             break;
     }
+    
+    // Escape even the "reserved" characters for URLs 
+    // as defined in http://www.ietf.org/rfc/rfc2396.txt
+    CFStringRef encodedValue = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, 
+                                                                       (CFStringRef)query,
+                                                                       NULL, 
+                                                                       (CFStringRef)@";/?:@&=+$,", 
+                                                                        kCFStringEncodingUTF8);
 
-    NSString* str = [[NSString stringWithFormat:
-        @"http://images.google.com/images?q=%@&gbv=2&svnum=10&safe=active&sa=G&imgsz=small|medium|large|xlarge",
-        query] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    query = (NSString*)encodedValue;
+    NSString* str = [NSString stringWithFormat:
+        @"http://images.google.com/images?q=%@&gbv=2&svnum=10&safe=active&sa=G&imgsz=small%%7Cmedium%%7Clarge%%7Cxlarge",
+        query];
+    CFRelease(encodedValue);
     NSURL* url = [NSURL URLWithString:str];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
@@ -456,6 +482,11 @@ NSDictionary* findBinding(NSWindow* window) {
                        contextInfo: nil];
 }
 
+- (IBAction)showPresets:(id)sender
+{
+    
+}
+
 #pragma mark - user interface validation
 
 - (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem {
@@ -504,8 +535,10 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (void)finishedSearch:(NSNotification *)note
 {
+    searches--;
     NSLog(@"Finished search");
-    [searchIndicator stopAnimation:self];
+    if(searches <= 0)
+        [searchIndicator stopAnimation:self];
 }
 
 - (void)imageEditorDidClose:(NSNotification *)note

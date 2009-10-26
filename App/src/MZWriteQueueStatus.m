@@ -60,16 +60,16 @@
 
 - (void)stopWriting
 {
-    if(controller && [controller isRunning])
-        [controller terminate];
+    if(controller && ![controller isFinished])
+        [controller cancel];
 }
 
 - (void)stopWritingAndRemove
 {
-    if(controller && [controller isRunning])
+    if(controller && ![controller isFinished])
     {
         removeOnCancel = YES;
-        [controller terminate];
+        [controller cancel];
     }
     else
     {

@@ -38,7 +38,7 @@
 + (NSArray *)pluginPaths;
 + (MZPluginController *)sharedInstance;
 
-@property(retain) id<MZPluginControllerDelegate> delegate;
+@property(assign) id<MZPluginControllerDelegate> delegate;
 
 - (NSArray *)plugins;
 - (NSArray *)loadedPlugins;

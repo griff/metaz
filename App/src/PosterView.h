@@ -8,9 +8,19 @@
 
 #import <Cocoa/Cocoa.h>
 
+typedef enum {
+    MZOKPosterImage,
+    MZEmptyPosterImage,
+    MZErrorPosterImage,
+    MZFatalErrorPosterImage,
+    MZMultiplePosterImage,
+    MZNotApplicablePosterImage
+} PosterImageStatus;
 
 @interface PosterView : NSImageView {
     SEL actionHack;
+    NSError* error;
+    PosterImageStatus status;
 }
 @property (readonly) NSString* imageSize;
 
@@ -18,6 +28,9 @@
 
 - (void)mouseDown:(NSEvent *)theEvent;
 - (void)keyDown:(NSEvent *)theEvent;
+
+- (void)setStatus:(PosterImageStatus)status;
+- (void)reportError:(NSError *)error;
 
 - (void)setObjectValue:(id < NSCopying >)object;
 - (NSImage *)objectValue;

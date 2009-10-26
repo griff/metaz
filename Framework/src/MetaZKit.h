@@ -20,6 +20,7 @@
 #import <MetaZKit/MZTimeCode.h>
 #import <MetaZKit/MZTimedTextItem.h>
 #import <MetaZKit/MZRESTWrapper.h>
+#import <MetaZKit/MZRemoteData.h>
 #import <MetaZKit/MZPriorObserverFix.h>
 #import <MetaZKit/MZMethodData.h>
 #import <MetaZKit/MZDynamicObject.h>

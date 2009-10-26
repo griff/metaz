@@ -58,7 +58,7 @@
     if(!menu)
     {
         menu = [[NSMenu alloc] initWithTitle:@"TagChimp"];
-        NSMenuItem* item = [menu addItemWithTitle:@"Edit" action:@selector(edit:) keyEquivalent:@""];
+        NSMenuItem* item = [menu addItemWithTitle:@"Edit in Browser" action:@selector(edit:) keyEquivalent:@""];
         [item setTarget:self];
     }
     for(NSMenuItem* item in [menu itemArray])
@@ -154,10 +154,8 @@
     NSLog(@"Sent request:");
     for(NSString* key in [params allKeys])
         NSLog(@"    '%@' -> '%@'", key, [params objectForKey:key]);
-    MZRESTWrapper* wrapper = [[MZRESTWrapper alloc] init];
-    search = [[TCSearch alloc] initWithProvider:self delegate:delegate wrapper:wrapper];
-    wrapper.delegate = search;
-    [wrapper sendRequestTo:searchURL usingVerb:@"GET" withParameters:params];
+    search = [[TCSearch alloc] initWithProvider:self delegate:delegate url:searchURL parameters:params];
+    [search start];
     return YES;
 }
 

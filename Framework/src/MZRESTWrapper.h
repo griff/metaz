@@ -20,6 +20,7 @@
 - (void)wrapper:(MZRESTWrapper *)wrapper didCreateResourceAtURL:(NSString *)url;
 - (void)wrapper:(MZRESTWrapper *)wrapper didFailWithError:(NSError *)error;
 - (void)wrapper:(MZRESTWrapper *)wrapper didReceiveStatusCode:(int)statusCode;
+- (void)wrapperWasCanceled:(MZRESTWrapper *)wrapper;
  
 @end 
 
@@ -28,7 +29,7 @@
 @private
     NSMutableData *receivedData;
     NSString *mimeType;
-    NSURLConnection *conn;
+    NSURLConnection *connection;
     BOOL asynchronous;
     NSObject<MZRESTWrapperDelegate> *delegate;
     NSString *username;
@@ -41,6 +42,7 @@
 @property (nonatomic, copy) NSString *username;
 @property (nonatomic, copy) NSString *password;
 @property (nonatomic, assign) NSObject<MZRESTWrapperDelegate> *delegate; // Do not retain delegates!
+@property (retain) NSURLConnection* connection;
  
 - (void)sendRequestTo:(NSURL *)url usingVerb:(NSString *)verb withParameters:(NSDictionary *)parameters;
 - (void)uploadData:(NSData *)data toURL:(NSURL *)url;

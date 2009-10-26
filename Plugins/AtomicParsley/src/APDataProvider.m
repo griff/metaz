@@ -890,7 +890,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
                          edits:data
                    pictureFile:pictureFile
                   chaptersFile:chaptersFile];
-    [manager launch];
+    [manager start];
     [writes addObject:manager];
     
     return manager;

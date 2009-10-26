@@ -105,12 +105,6 @@
     [provider prepareFromQueue];
 }
 
-
-- (NSUndoManager *)undoManager
-{
-    return undoManager;
-}
-
 -(BOOL)changed
 {
     /*

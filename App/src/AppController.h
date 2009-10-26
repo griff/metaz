@@ -36,6 +36,7 @@
     NSSearchField* searchField;
     NSInteger remainingInShortDescription;
     SearchProfile* activeProfile;
+    NSInteger searches;
 }
 @property (nonatomic, retain) IBOutlet NSWindow* window;
 @property (nonatomic, retain) IBOutlet NSTabView *tabView;
@@ -73,6 +74,7 @@
 - (IBAction)startSearch:(id)sender;
 - (IBAction)searchForImages:(id)sender;
 - (IBAction)openDocument:(id)sender;
+- (IBAction)showPresets:(id)sender;
 //- (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo;
 
 #pragma mark - as window delegate

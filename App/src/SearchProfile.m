@@ -111,7 +111,8 @@
     ProfileState* state = [tags objectAtIndex:tag];
     state.state = !state.state;
     [sender setState:(state.state ? NSOnState : NSOffState)];
-
+    
+    [self willChangeValueForKey:@"searchTerms"];
     NSString* defaultKey = [@"profiles." stringByAppendingString:identifier];
     NSMutableDictionary* states = [NSMutableDictionary dictionaryWithDictionary:
         [[NSUserDefaults standardUserDefaults] dictionaryForKey:
@@ -119,6 +120,7 @@
     for(ProfileState* myState in tags)
         [states setObject:[NSNumber numberWithBool:myState.state] forKey:myState.tag];
     [[NSUserDefaults standardUserDefaults] setObject:states forKey:defaultKey];
+    [self didChangeValueForKey:@"searchTerms"];
 }
 
 - (void)alterState:(NSMenuItem *)sender
@@ -155,10 +157,12 @@
 {
     NSInteger tag = [menuItem tag];
     ProfileState* state = [tags objectAtIndex:tag];
-    [menuItem setState:(state.state ? NSOnState : NSOffState)];
     id value = [self valueForUndefinedKey:state.tag];
-    return value != nil && value != [NSNull null] && value != NSNoSelectionMarker &&
+    BOOL ret = value != nil && value != [NSNull null] && value != NSNoSelectionMarker &&
                 value != NSMultipleValuesMarker && value != NSNotApplicableMarker;
+    
+    [menuItem setState:(state.state && ret ? NSOnState : NSOffState)];
+    return ret;
 }
 
 - (id)valueForUndefinedKey:(NSString *)key

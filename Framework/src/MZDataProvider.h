@@ -13,8 +13,9 @@
 @protocol MZDataProvider;
 
 @protocol MZDataWriteController <NSObject>
-- (BOOL)isRunning;
-- (void)terminate;
+- (BOOL)isExecuting;
+- (BOOL)isFinished;
+- (void)cancel;
 @end
 
 @protocol MZDataWriteDelegate <NSObject>

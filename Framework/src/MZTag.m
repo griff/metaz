@@ -16,7 +16,9 @@
 
 @end
 
-@interface MZRatingTag : MZEnumTag {
+@interface MZRatingTag : MZEnumTag
+{
+    NSArray* ratingNames;
 }
 - (id)init;
 
@@ -70,7 +72,7 @@
     [self registerTag:[MZStringTag tagWithIdentifier:MZEpisodeURLTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZCategoryTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZKeywordTagIdent]];
-    [self registerTag:[MZBoolTag tagWithIdentifier:MZAdvisoryTagIdent]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZAdvisoryTagIdent]];
     [self registerTag:[MZBoolTag tagWithIdentifier:MZPodcastTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZCopyrightTagIdent]];
     [self registerTag:[MZIntegerTag tagWithIdentifier:MZTrackNumberTagIdent]];
@@ -345,6 +347,15 @@ static NSMutableDictionary *sharedTags = nil;
     return [NSDate dateWithString:str];
 }
 
+- (NSString *)stringForObject:(id)str
+{
+    if(!str || str == [NSNull null])
+        return nil;
+    NSDate* date = str;
+    NSDateFormatter* format = [[NSDateFormatter alloc] initWithDateFormat:@"%Y-%m-%d" allowNaturalLanguage:NO];
+    return [format stringFromDate:date];
+}
+
 @end
 
 
@@ -541,22 +552,50 @@ static NSMutableDictionary *sharedTags = nil;
 
 - (id)init
 {
-    return [super initWithIdentifier:MZRatingTagIdent];
+    self =  [super initWithIdentifier:MZRatingTagIdent];
+    if(self)
+    {
+        ratingNames = [[NSArray alloc] initWithObjects:
+            @"No Rating",
+            // US
+            @"G", @"PG", @"PG-13", @"R", @"NC-17", @"Unrated",
+            // US TV
+            @"TV-V7", @"TV-Y", @"TV-G", @"TV-PG", @"TV-14", @"TV-MA",
+            // UK
+            @"U", @"Uc", @"PG (UK)", @"12 (UK)", @"12A", @"15 (UK)", @"18 (UK)", @"E (UK)", @"UNRATED (UK)",
+            // DE
+            @"FSK-0", @"FSK-6", @"FSK-12", @"FSK-16", @"FSK-18",
+            // IE
+            @"G (IE)", @"PG (IE)", @"12 (IE)", @"15 (IE)", @"16", @"18 (IE)", @"UNRATED (IE)",
+            // IE TV
+            @"GA", @"Ch", @"YA", @"PS", @"MA (IE-TV)", @"UNRATED (IE-TV)",
+            // CA
+            @"G (CA)", @"PG (CA)", @"14", @"18 (CA)", @"R (CA)", @"E (CA)", @"UNRATED (CA)",
+            // CA-TV
+            @"C (CA-TV)", @"C8", @"G (CA-TV)", @"PG (CA-TV)", @"14+", @"18+", @"UNRATED (CA-TV)",
+            // AU
+            @"E (AU)", @"G (AU)", @"PG (AU)", @"M (AU)", @"MA 15+", @"R 18+", @"UNRATED (AU)",
+            // AU TV
+            @"P", @"C (AU-TV)", @"G (AU-TV)", @"PG (AU-TV)", @"M (AU-TV)", @"MA 15+ (AU-TV)", @"AV 15+", @"UNRATED (AU-TV)",
+            // NZ
+            @"E (NZ)", @"G (NZ)", @"PG (NZ)", @"M (NZ)", @"R13", @"R15", @"R16",
+            @"R18", @"R (NZ)", @"UNRATED (NZ)",
+            // NZ TV
+            @"G (NZ-TV)", @"PGR", @"AD", @"UNRATED (NZ-TV)",
+            nil];
+        NSAssert([ratingNames count] == MZ_Unrated_NZTV_Rating+1, @"Bad number of ratings");
+    }
+    return self;
 }
 
 - (NSCell *)editorCell
 {
-    NSPopUpButtonCell* cell = [[[NSPopUpButtonCell alloc] initTextCell:@"" pullsDown:NO] autorelease]; 
-    /*
-    [cell addItemWithTitle:NSLocalizedString(@"Movie", @"Video type") tag:MZMovieVideoType];
-    [cell addItemWithTitle:NSLocalizedString(@"Normal", @"Video type") tag:MZNormalVideoType];
-    [cell addItemWithTitle:NSLocalizedString(@"Audiobook", @"Video type") tag:MZAudiobookVideoType];
-    [cell addItemWithTitle:NSLocalizedString(@"Whacked Bookmark", @"Video type") tag:MZWhackedBookmarkVideoType];
-    [cell addItemWithTitle:NSLocalizedString(@"Music Video", @"Video type") tag:MZMusicVideoType];
-    [cell addItemWithTitle:NSLocalizedString(@"Short Film", @"Video type") tag:MZShortFilmVideoType];
-    [cell addItemWithTitle:NSLocalizedString(@"TV Show", @"Video type") tag:MZTVShowVideoType];
-    [cell addItemWithTitle:NSLocalizedString(@"Booklet", @"Video type") tag:MZBookletVideoType];
-    */
+    NSPopUpButtonCell* cell = [[[NSPopUpButtonCell alloc] initTextCell:@"" pullsDown:NO] autorelease];
+    NSInteger count = [ratingNames count];
+    for(NSInteger i=0; i<count; i++)
+    {
+        [cell addItemWithTitle:[ratingNames objectAtIndex:i] tag:i];
+    }
     return cell;
 }
 
@@ -569,6 +608,20 @@ static NSMutableDictionary *sharedTags = nil;
 {
     return MZNoRating;
 }
+
+- (id)objectFromString:(NSString *)str
+{
+    if(!str)
+        return [NSNumber numberWithInt:MZNoRating];
+    NSInteger i = [ratingNames indexOfObject:str];
+    if(i == NSNotFound)
+    {
+        NSLog(@"Found no rating for '%@'", str);
+        return [NSNumber numberWithInt:MZNoRating];
+    }
+    return [NSNumber numberWithInt:i];
+}
+
 
 @end
 
