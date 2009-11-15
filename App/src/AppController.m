@@ -166,6 +166,7 @@ NSDictionary* findBinding(NSWindow* window) {
     [imageView release];
     [imageEditController release];
     [prefController release];
+    [presetsController release];
     [searchIndicator release];
     [searchController release];
     [searchField release];
@@ -484,7 +485,24 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (IBAction)showPresets:(id)sender
 {
-    
+    if(!presetsController)
+    {
+        presetsController = [[PresetsWindowController alloc] initWithController:filesController];
+        [[NSNotificationCenter defaultCenter] 
+                addObserver:self 
+                 selector:@selector(presetsDidClose:)
+                     name:NSWindowWillCloseNotification
+                   object:[presetsController window]];
+        [[presetsController window] setFrameUsingName:@"presetsPanel"];
+        [presetsController showWindow:self];
+    }
+    else
+    {
+        [presetsController retain];
+        [presetsController close];
+        [presetsController release];
+    }
+
 }
 
 #pragma mark - user interface validation
@@ -559,6 +577,17 @@ NSDictionary* findBinding(NSWindow* window) {
                    object:[note object]];
     [prefController release];
     prefController = nil;
+}
+
+- (void)presetsDidClose:(NSNotification *)note
+{
+    [[note object] saveFrameUsingName:@"presetsPanel"];
+    [[NSNotificationCenter defaultCenter] 
+           removeObserver:self 
+                     name:NSWindowWillCloseNotification
+                   object:[note object]];
+    [presetsController release];
+    presetsController = nil;
 }
 
 - (void)openPanelDidEnd:(NSOpenPanel *)oPanel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo {

@@ -171,9 +171,7 @@
     //NSLog(@"Got response:\n%@", [theWrapper responseAsText]);
     NSXMLDocument* doc = [theWrapper responseAsXml];
     
-    NSString* errorMessage = [[[doc nodesForXPath:@"/items/message/error" error:NULL]
-        arrayByPerformingSelector:@selector(stringValue)]
-            componentsJoinedByString:@", "];
+    NSString* errorMessage = [doc stringForXPath:@"/items/message/error" error:NULL];
     if(![errorMessage isEqual:@""])
         NSLog(@"TagChimp error: %@", errorMessage);
     NSArray* items = [doc nodesForXPath:@"/items/movie" error:NULL];
@@ -186,9 +184,7 @@
         {
             NSString* tagId = [mapping objectForKey:xpath];
             MZTag* tag = [MZTag tagForIdentifier:tagId];
-            NSArray* nodes = [item nodesForXPath:xpath error:NULL];
-            NSString* value = [[nodes arrayByPerformingSelector:@selector(stringValue)]
-                componentsJoinedByString:@", "];
+            NSString* value = [item stringForXPath:xpath error:NULL];
             id obj = [tag objectFromString:value];
             if(obj)
                 [dict setObject:obj forKey:tagId];
@@ -196,9 +192,7 @@
         
         NSString* tagChimpId = [dict objectForKey:TagChimpIdTagIdent];
         
-        NSString* videoKind = [[[item nodesForXPath:@"movieTags/info/kind" error:NULL]
-            arrayByPerformingSelector:@selector(stringValue)]
-                componentsJoinedByString:@", "];
+        NSString* videoKind = [item stringForXPath:@"movieTags/info/kind" error:NULL];
         if([videoKind length] > 0)
         {
             MZTag* tag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
@@ -218,9 +212,7 @@
         }
         
         MZTag* ratingTag = [MZTag tagForIdentifier:MZRatingTagIdent];
-        NSString* rating = [[[item nodesForXPath:@"movieTags/info/rating" error:NULL]
-            arrayByPerformingSelector:@selector(stringValue)]
-                componentsJoinedByString:@", "];
+        NSString* rating = [item stringForXPath:@"movieTags/info/rating" error:NULL];
         NSNumber* ratingNr = [ratingTag objectFromString:rating];
         if([ratingNr intValue] != MZNoRating)
             [dict setObject:ratingNr forKey:MZRatingTagIdent];
@@ -232,27 +224,30 @@
         }
         */
         
-        NSString* episodeId = [[[item nodesForXPath:@"movieTags/television/productionCode" error:NULL]
-            arrayByPerformingSelector:@selector(stringValue)]
-                componentsJoinedByString:@", "];
-        if([episodeId length] == 0)
+        NSString* releaseYear = [item stringForXPath:@"movieTags/info/releaseDateY" error:NULL];
+        if([releaseYear length] > 0)
         {
-            episodeId = [[[item nodesForXPath:@"movieTags/television/episodeID" error:NULL]
-                arrayByPerformingSelector:@selector(stringValue)]
-                    componentsJoinedByString:@", "];
+            NSString* releaseMonth = [item stringForXPath:@"movieTags/info/releaseDateM" error:NULL];
+            NSString* releaseDay = [item stringForXPath:@"movieTags/info/releaseDateD" error:NULL];
         }
+        else
+        {
+            NSString* release = [item stringForXPath:@"movieTags/info/releaseDate" error:NULL];
+        }
+        
+        NSString* episodeId = [item stringForXPath:@"movieTags/television/productionCode" error:NULL];
+        if([episodeId length] == 0)
+            episodeId = [item stringForXPath:@"movieTags/television/episodeID" error:NULL];
         if([episodeId length] > 0)
         {
             MZTag* tag = [MZTag tagForIdentifier:MZTVEpisodeIDTagIdent];
             [dict setObject:[tag objectFromString:episodeId] forKey:MZTVEpisodeIDTagIdent];
         }
         
-        NSString* coverArtLarge = [[[item nodesForXPath:@"movieTags/coverArtLarge" error:NULL]
-            arrayByPerformingSelector:@selector(stringValue)]
-                componentsJoinedByString:@", "];
-        NSString* coverArtSmall = [[[item nodesForXPath:@"movieTags/coverArtSmall" error:NULL]
-            arrayByPerformingSelector:@selector(stringValue)]
-                componentsJoinedByString:@", "];
+        NSString* coverArtLarge = [item stringForXPath:@"movieTags/coverArtLarge" error:NULL];
+        /*
+        NSString* coverArtSmall = [item stringForXPath:@"movieTags/coverArtSmall" error:NULL];
+        */
         if([coverArtLarge length] > 0)
         {
             /*
@@ -270,9 +265,7 @@
                 [data loadData];
         }
         
-        NSInteger totalChapters = [[[[item nodesForXPath:@"movieChapters/totalChapters" error:NULL]
-                arrayByPerformingSelector:@selector(stringValue)]
-                    componentsJoinedByString:@", "] integerValue];
+        NSInteger totalChapters = [[item stringForXPath:@"movieChapters/totalChapters" error:NULL] integerValue];
         if(totalChapters>0)
         {
             NSArray* numbers = [[item nodesForXPath:@"movieChapters/chapter/chapterNumber" error:NULL]

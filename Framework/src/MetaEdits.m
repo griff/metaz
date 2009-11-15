@@ -197,6 +197,7 @@
         NSString* actionKey = [tag localizedName];
         if(!actionKey)
             actionKey = aKey;
+            
         [[self undoManager] setActionName:
             [NSString stringWithFormat:
                 NSLocalizedString(@"Set %@", @"Undo set action"),

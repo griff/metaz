@@ -211,14 +211,14 @@ static MZMetaLoader* sharedLoader = nil;
                         initWithFrame:NSMakeRect(0, 0, 145, 25)
                             pullsDown:NO];
                         
-                    [sel addItemWithTitle:NSLocalizedString(@"Movie", @"Video type")];
-                    [sel addItemWithTitle:NSLocalizedString(@"Normal", @"Video type")];
-                    [sel addItemWithTitle:NSLocalizedString(@"Audiobook", @"Video type")];
-                    [sel addItemWithTitle:NSLocalizedString(@"Whacked Bookmark", @"Video type")];
-                    [sel addItemWithTitle:NSLocalizedString(@"Music Video", @"Video type")];
-                    [sel addItemWithTitle:NSLocalizedString(@"Short Film", @"Video type")];
-                    [sel addItemWithTitle:NSLocalizedString(@"TV Show", @"Video type")];
-                    [sel addItemWithTitle:NSLocalizedString(@"Booklet", @"Video type")];
+                    [sel addItemWithTitle:NSLocalizedStringFromTable(@"Movie", @"VideoType", @"Video type")];
+                    [sel addItemWithTitle:NSLocalizedStringFromTable(@"Normal", @"VideoType", @"Video type")];
+                    [sel addItemWithTitle:NSLocalizedStringFromTable(@"Audiobook", @"VideoType", @"Video type")];
+                    [sel addItemWithTitle:NSLocalizedStringFromTable(@"Whacked Bookmark", @"VideoType", @"Video type")];
+                    [sel addItemWithTitle:NSLocalizedStringFromTable(@"Music Video", @"VideoType", @"Video type")];
+                    [sel addItemWithTitle:NSLocalizedStringFromTable(@"Short Film", @"VideoType", @"Video type")];
+                    [sel addItemWithTitle:NSLocalizedStringFromTable(@"TV Show", @"VideoType", @"Video type")];
+                    [sel addItemWithTitle:NSLocalizedStringFromTable(@"Booklet", @"VideoType", @"Video type")];
                 
                     if(lastSelection>=0)
                         [sel selectItemAtIndex:lastSelection];

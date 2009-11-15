@@ -55,14 +55,14 @@ typedef enum
 - (void)scrollToItem: (MGCollectionViewOrigItem *)item;
 - (void)maintainNonEmptySelection: (NSUInteger)index;
 - (void)removeItemsAtIndexes:(NSIndexSet *)indexes;
-- (int)indexFromDragTarget: (NSView *)targetView
+- (NSInteger)indexFromDragTarget: (NSView *)targetView
               draggingInfo: (id<NSDraggingInfo>)draggingInfo;
 - (void)setDragTarget: (NSView *)targetView
          draggingInfo: (id<NSDraggingInfo>)draggingInfo;
-- (void)setIndex: (int)index
+- (void)setIndex: (NSInteger)index
     isDragTarget: (BOOL)isDragTarget;
 - (id<MGCollectionViewOrigTarget>)target;
-- (int)dragTargetIndex;
+- (NSInteger)dragTargetIndex;
 - (void)maximizeViewWidth: (id)sender;
 - (void)onKeyWindowChanged:(NSNotification *)notification;
 - (void)onKeyWindowUpdated:(NSNotification *)notification;
@@ -717,7 +717,7 @@ PointDistance(NSPoint start,
 
 - (BOOL)performDragOperation: (id<NSDraggingInfo>)sender
 {
-    int destIndex = [self dragTargetIndex];
+    NSInteger destIndex = [self dragTargetIndex];
     ASSERT(destIndex != NSNotFound);
     [self setDragTarget:nil draggingInfo:sender];
 
@@ -781,10 +781,10 @@ PointDistance(NSPoint start,
 }
 
 
-- (int)indexFromDragTarget: (NSView *)targetView
+- (NSInteger)indexFromDragTarget: (NSView *)targetView
               draggingInfo: (id<NSDraggingInfo>)draggingInfo
 {
-    int index = NSNotFound;
+    NSInteger index = NSNotFound;
     if (targetView &&
             [targetView isKindOfClass:[MGCollectionViewOrigItem class]]) {
         index = [items indexOfObject:targetView];
@@ -818,13 +818,13 @@ PointDistance(NSPoint start,
 }
 
 
-- (void)setIndex: (int)index
+- (void)setIndex: (NSInteger)index
     isDragTarget: (BOOL)isDragTarget
 {
     if (index != NSNotFound) {
         DragTargetType dragTargetType = isDragTarget ? DragTargetType_Top :
                                                        DragTargetType_None;
-        int actualIndex = index;
+        NSInteger actualIndex = index;
         if (actualIndex == [items count]) {
             actualIndex = [items count] - 1;
             if (isDragTarget) {
@@ -842,10 +842,10 @@ PointDistance(NSPoint start,
 }
 
 
-- (int)dragTargetIndex
+- (NSInteger)dragTargetIndex
 {
-    int count = [items count];
-    int i;
+    NSInteger count = [items count];
+    NSInteger i;
     for (i = 0; i < count; i++) {
         MGCollectionViewOrigItem *item = [items objectAtIndex:i];
         if ([item dragTargetType] == DragTargetType_Top) {

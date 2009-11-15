@@ -56,6 +56,8 @@
 		1B92BFBB1089F9060057EFD7 /* SearchMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BFBA1089F9060057EFD7 /* SearchMeta.m */; };
 		1B92C0A3108A23BA0057EFD7 /* NSUserDefaults-KeyPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92C0A2108A23BA0057EFD7 /* NSUserDefaults-KeyPath.m */; };
 		1B92C0EB108A31680057EFD7 /* SearchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92C0EA108A31680057EFD7 /* SearchTableView.m */; };
+		1B99355010AC818300E78D2D /* NSXMLNode-MZExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B99354E10AC818300E78D2D /* NSXMLNode-MZExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B99355110AC818300E78D2D /* NSXMLNode-MZExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B99354F10AC818300E78D2D /* NSXMLNode-MZExtensions.m */; };
 		1B9B393F106C0FA200928C83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B9B393D106C0FA200928C83 /* Localizable.strings */; };
 		1BA325CD10545BBB00276F57 /* MetaZKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1BA325E110545CD900276F57 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -70,6 +72,9 @@
 		1BB6C11F1052B1C1001D3D1D /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB6C10A1052B154001D3D1D /* Sparkle.framework */; };
 		1BBB39A91087083600C9E17F /* MZPriorObserverFix.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBB39A71087083600C9E17F /* MZPriorObserverFix.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BBB39AA1087083600C9E17F /* MZPriorObserverFix.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB39A81087083600C9E17F /* MZPriorObserverFix.m */; };
+		1BC0661910AE223A005C2A9F /* PresetsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC0661710AE223A005C2A9F /* PresetsPanel.xib */; };
+		1BC0665A10AE2E65005C2A9F /* VideoType.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BC0665810AE2E65005C2A9F /* VideoType.strings */; };
+		1BC0671410AE44CA005C2A9F /* presets.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BC0671310AE44CA005C2A9F /* presets.png */; };
 		1BCC97021076B73C007EFF57 /* NSInvocation-Wrapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BCC97001076B73C007EFF57 /* NSInvocation-Wrapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BCC97031076B73C007EFF57 /* NSInvocation-Wrapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC97011076B73C007EFF57 /* NSInvocation-Wrapping.m */; };
 		1BCC98261076D1A3007EFF57 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB6C10A1052B154001D3D1D /* Sparkle.framework */; };
@@ -285,6 +290,8 @@
 		1B92C0A2108A23BA0057EFD7 /* NSUserDefaults-KeyPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults-KeyPath.m"; sourceTree = "<group>"; };
 		1B92C0E9108A31680057EFD7 /* SearchTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableView.h; sourceTree = "<group>"; };
 		1B92C0EA108A31680057EFD7 /* SearchTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableView.m; sourceTree = "<group>"; };
+		1B99354E10AC818300E78D2D /* NSXMLNode-MZExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSXMLNode-MZExtensions.h"; sourceTree = "<group>"; };
+		1B99354F10AC818300E78D2D /* NSXMLNode-MZExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSXMLNode-MZExtensions.m"; sourceTree = "<group>"; };
 		1B9B393E106C0FA200928C83 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = App/English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1B9B3AB4106CC14B00928C83 /* MetaZKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaZKit.h; sourceTree = "<group>"; };
 		1BA325C410545ACA00276F57 /* MetaZKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MetaZKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -308,6 +315,9 @@
 		1BB6C10A1052B154001D3D1D /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = SOURCE_ROOT; };
 		1BBB39A71087083600C9E17F /* MZPriorObserverFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZPriorObserverFix.h; sourceTree = "<group>"; };
 		1BBB39A81087083600C9E17F /* MZPriorObserverFix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZPriorObserverFix.m; sourceTree = "<group>"; };
+		1BC0661810AE223A005C2A9F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/PresetsPanel.xib; sourceTree = "<group>"; };
+		1BC0665910AE2E65005C2A9F /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = App/English.lproj/VideoType.strings; sourceTree = "<group>"; };
+		1BC0671310AE44CA005C2A9F /* presets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = presets.png; path = App/resources/presets.png; sourceTree = "<group>"; };
 		1BCC97001076B73C007EFF57 /* NSInvocation-Wrapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation-Wrapping.h"; sourceTree = "<group>"; };
 		1BCC97011076B73C007EFF57 /* NSInvocation-Wrapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation-Wrapping.m"; sourceTree = "<group>"; };
 		1BCC990610771262007EFF57 /* FactorySettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = FactorySettings.plist; path = App/resources/FactorySettings.plist; sourceTree = "<group>"; };
@@ -462,6 +472,8 @@
 				1BEA718E10712A17004B1A7F /* NSArray-Mapping.m */,
 				1B92BC55108890090057EFD7 /* NSObject-ProtectedKeyValue.h */,
 				1B92BC56108890090057EFD7 /* NSObject-ProtectedKeyValue.m */,
+				1B99354E10AC818300E78D2D /* NSXMLNode-MZExtensions.h */,
+				1B99354F10AC818300E78D2D /* NSXMLNode-MZExtensions.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -728,6 +740,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1BC0671310AE44CA005C2A9F /* presets.png */,
+				1BC0665810AE2E65005C2A9F /* VideoType.strings */,
 				1BD3D3FB108E694100BE6943 /* faded_cow_error.png */,
 				1BD3D3FC108E694100BE6943 /* faded_cow_fatal.png */,
 				1BD3D3FD108E694100BE6943 /* faded_cow_multiple.png */,
@@ -753,6 +767,7 @@
 				1BA3269E10546F4600276F57 /* MainMenu.xib */,
 				1BB6BF331050E5E2001D3D1D /* sparkle_public.pem */,
 				1BCC990610771262007EFF57 /* FactorySettings.plist */,
+				1BC0661710AE223A005C2A9F /* PresetsPanel.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -797,6 +812,7 @@
 				1B92BB1C10876FBA0057EFD7 /* PureMetaEdits.h in Headers */,
 				1B92BC57108890090057EFD7 /* NSObject-ProtectedKeyValue.h in Headers */,
 				1BD3D2BB108CC5D700BE6943 /* MZRemoteData.h in Headers */,
+				1B99355010AC818300E78D2D /* NSXMLNode-MZExtensions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -958,6 +974,9 @@
 				1BD3D3FE108E694100BE6943 /* faded_cow_error.png in Resources */,
 				1BD3D3FF108E694100BE6943 /* faded_cow_fatal.png in Resources */,
 				1BD3D400108E694100BE6943 /* faded_cow_multiple.png in Resources */,
+				1BC0661910AE223A005C2A9F /* PresetsPanel.xib in Resources */,
+				1BC0665A10AE2E65005C2A9F /* VideoType.strings in Resources */,
+				1BC0671410AE44CA005C2A9F /* presets.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -976,7 +995,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -o errexit\n\nexport GITV=`/opt/local/bin/git log -n1 --pretty=oneline --format=%h`\ndefaults write \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleVersion \"${GITV}\"\n\nif [ \"${CONFIGURATION}\" != \"Release\" ]; then exit; fi\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleShortVersionString)\nDOWNLOAD_BASE_URL=\"http://cloud.github.com/downloads/griff/metaz\"\nRELEASENOTES_URL=\"http://griff.github.com/metaz/release-notes.html#version-$VERSION\"\n\nARCHIVE_FILENAME=\"$PROJECT_NAME-$VERSION.zip\"\nDOWNLOAD_URL=\"$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME\"\nKEYCHAIN_PRIVKEY_NAME=\"MetaZ Sparkle Private\"\n\nWD=$PWD\ncd \"$BUILT_PRODUCTS_DIR\"\nrm -f \"$PROJECT_NAME\"*.zip\nditto -ck --keepParent \"$PROJECT_NAME.app\" \"$ARCHIVE_FILENAME\"\n\nditto -ck --keepParent \"$PROJECT_NAME.app.dSYM\" \"$PROJECT_NAME-$VERSION-$GITV+dYSM.zip\"\n\nSIZE=$(stat -f %z \"$ARCHIVE_FILENAME\")\nPUBDATE=$(date +\"%a, %d %b %G %T %z\")\nSIGNATURE=$(\n\topenssl dgst -sha1 -binary < \"$ARCHIVE_FILENAME\" \\\n\t| openssl dgst -dss1 -sign <(security find-generic-password -g -s \"$KEYCHAIN_PRIVKEY_NAME\" 2>&1 1>/dev/null | perl -pe '($_) = /\"(.+)\"/; s/\\\\012/\\n/g') \\\n\t| openssl enc -base64\n)\n\n[ $SIGNATURE ] || { echo Unable to load signing private key with name \"'$KEYCHAIN_PRIVKEY_NAME'\" from keychain; false; }\n\ncat > \"$PROJECT_NAME-$VERSION.xml\" <<EOF\n\t\t<item>\n\t\t\t<title>Version $VERSION</title>\n\t\t\t<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>\n\t\t\t<pubDate>$PUBDATE</pubDate>\n\t\t\t<enclosure\n\t\t\t\turl=\"$DOWNLOAD_URL\"\n\t\t\t\tsparkle:version=\"$GITV\"\n\t\t\t\tsparkle:shortVersionString=\"$VERSION\"\n\t\t\t\ttype=\"application/octet-stream\"\n\t\t\t\tlength=\"$SIZE\"\n\t\t\t\tsparkle:dsaSignature=\"$SIGNATURE\"\n\t\t\t/>\n\t\t</item>\nEOF\n\necho scp \"'$HOME/svn/my-cool-app/build/Release/$ARCHIVE_FILENAME'\" www.example.com:download/\necho scp \"'$WD/appcast.xml'\" www.example.com:web/software/my-cool-app/appcast.xml\n";
+			shellScript = "set -o errexit\n\nexport GITV=`/opt/local/bin/git log -n1 --pretty=oneline --format=%h`\nexport DATEV=`date +%y.%m.%d.%H`\ndefaults write \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleVersion \"${DATEV}\"\ndefaults write \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" GitVersion \"${GITV}\"\n\nif [ \"${CONFIGURATION}\" != \"Release\" ]; then exit; fi\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleShortVersionString)\nDOWNLOAD_BASE_URL=\"http://cloud.github.com/downloads/griff/metaz\"\nRELEASENOTES_URL=\"http://griff.github.com/metaz/release-notes.html#version-$VERSION\"\n\nARCHIVE_FILENAME=\"$PROJECT_NAME-$VERSION.zip\"\nDOWNLOAD_URL=\"$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME\"\nKEYCHAIN_PRIVKEY_NAME=\"MetaZ Sparkle Private\"\n\nWD=$PWD\ncd \"$BUILT_PRODUCTS_DIR\"\nrm -f \"$PROJECT_NAME\"*.zip\nditto -ck --keepParent \"$PROJECT_NAME.app\" \"$ARCHIVE_FILENAME\"\n\nditto -ck --keepParent \"$PROJECT_NAME.app.dSYM\" \"$PROJECT_NAME-$VERSION-$DATEV+dYSM.zip\"\n\nSIZE=$(stat -f %z \"$ARCHIVE_FILENAME\")\nPUBDATE=$(date +\"%a, %d %b %G %T %z\")\nSIGNATURE=$(\n\topenssl dgst -sha1 -binary < \"$ARCHIVE_FILENAME\" \\\n\t| openssl dgst -dss1 -sign <(security find-generic-password -g -s \"$KEYCHAIN_PRIVKEY_NAME\" 2>&1 1>/dev/null | perl -pe '($_) = /\"(.+)\"/; s/\\\\012/\\n/g') \\\n\t| openssl enc -base64\n)\n\n[ $SIGNATURE ] || { echo Unable to load signing private key with name \"'$KEYCHAIN_PRIVKEY_NAME'\" from keychain; false; }\n\ncat > \"$PROJECT_NAME-$VERSION.xml\" <<EOF\n\t\t<item>\n\t\t\t<title>Version $VERSION</title>\n\t\t\t<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>\n\t\t\t<pubDate>$PUBDATE</pubDate>\n\t\t\t<enclosure\n\t\t\t\turl=\"$DOWNLOAD_URL\"\n\t\t\t\tsparkle:version=\"$DATEV\"\n\t\t\t\tsparkle:shortVersionString=\"$VERSION\"\n\t\t\t\ttype=\"application/octet-stream\"\n\t\t\t\tlength=\"$SIZE\"\n\t\t\t\tsparkle:dsaSignature=\"$SIGNATURE\"\n\t\t\t/>\n\t\t</item>\nEOF\n\necho scp \"'$HOME/svn/my-cool-app/build/Release/$ARCHIVE_FILENAME'\" www.example.com:download/\necho scp \"'$WD/appcast.xml'\" www.example.com:web/software/my-cool-app/appcast.xml\n";
 			showEnvVarsInLog = 0;
 		};
 		1BEA6D70106EA6D1004B1A7F /* Build Documentation */ = {
@@ -1033,6 +1052,7 @@
 				1B92BB1D10876FBA0057EFD7 /* PureMetaEdits.m in Sources */,
 				1B92BC58108890090057EFD7 /* NSObject-ProtectedKeyValue.m in Sources */,
 				1BD3D2BC108CC5D700BE6943 /* MZRemoteData.m in Sources */,
+				1B99355110AC818300E78D2D /* NSXMLNode-MZExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1156,6 +1176,22 @@
 				1BA326A210546F9700276F57 /* English */,
 			);
 			name = MZTags.strings;
+			sourceTree = "<group>";
+		};
+		1BC0661710AE223A005C2A9F /* PresetsPanel.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1BC0661810AE223A005C2A9F /* English */,
+			);
+			name = PresetsPanel.xib;
+			sourceTree = "<group>";
+		};
+		1BC0665810AE2E65005C2A9F /* VideoType.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1BC0665910AE2E65005C2A9F /* English */,
+			);
+			name = VideoType.strings;
 			sourceTree = "<group>";
 		};
 		1BD6E7A6105DC4D000E40151 /* Queue.xib */ = {

@@ -77,7 +77,7 @@
     return [NSArray arrayWithArray:ret];
 }
 
-- (NSArray *)arrayByPerformingKeyProtectedPath:(NSString *)keyPath
+- (NSArray *)arrayByPerformingProtectedKeyPath:(NSString *)keyPath
 {
     NSMutableArray* ret = [NSMutableArray arrayWithCapacity:[self count]];
     for(id obj in self)

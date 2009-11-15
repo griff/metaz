@@ -129,6 +129,8 @@ typedef enum
     MZ_PGR_Rating,
     MZ_AO_Rating,
     MZ_Unrated_NZTV_Rating,
+    
+    MZRatingNotFound = NSNotFound
 } MZRating;
 
 // Info

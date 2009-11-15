@@ -41,17 +41,6 @@
     [controller updateButtons];
 }
 
-- (NSToolbarItem *)pauseBtn
-{
-    return [controller pauseBtn2];
-}
-
-- (void)setPauseBtn:(NSToolbarItem *)newBtn
-{
-    [controller setPauseBtn2:newBtn];
-    [controller updateButtons];
-}
-
 - (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem
 {
     return [controller validateUserInterfaceItem:anItem];
@@ -60,11 +49,6 @@
 - (IBAction)startStopEncoding:(id)sender
 {
     [controller startStopEncoding:sender];
-}
-
-- (IBAction)pauseResumeEncoding:(id)sender
-{
-    [controller pauseResumeEncoding:sender];
 }
 
 - (void)tabView:(NSTabView *)aTabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem

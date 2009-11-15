@@ -12,6 +12,7 @@
 #import "ResizeController.h"
 #import "ImageWindowController.h"
 #import "PreferencesWindowController.h"
+#import "PresetsWindowController.h"
 #import "SearchProfile.h"
 
 @interface AppController : NSObject <NSUserInterfaceValidations,MZPluginControllerDelegate> {
@@ -31,6 +32,7 @@
     NSImageView* imageView;
     ImageWindowController* imageEditController;
     PreferencesWindowController* prefController;
+    PresetsWindowController* presetsController;
     NSProgressIndicator* searchIndicator;
     NSArrayController* searchController;
     NSSearchField* searchField;

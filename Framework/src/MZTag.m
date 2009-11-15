@@ -524,14 +524,14 @@ static NSMutableDictionary *sharedTags = nil;
 - (NSCell *)editorCell
 {
     NSPopUpButtonCell* cell = [[[NSPopUpButtonCell alloc] initTextCell:@"" pullsDown:NO] autorelease]; 
-    [cell addItemWithTitle:NSLocalizedString(@"Movie", @"Video type") tag:MZMovieVideoType];
-    [cell addItemWithTitle:NSLocalizedString(@"Normal", @"Video type") tag:MZNormalVideoType];
-    [cell addItemWithTitle:NSLocalizedString(@"Audiobook", @"Video type") tag:MZAudiobookVideoType];
-    [cell addItemWithTitle:NSLocalizedString(@"Whacked Bookmark", @"Video type") tag:MZWhackedBookmarkVideoType];
-    [cell addItemWithTitle:NSLocalizedString(@"Music Video", @"Video type") tag:MZMusicVideoType];
-    [cell addItemWithTitle:NSLocalizedString(@"Short Film", @"Video type") tag:MZShortFilmVideoType];
-    [cell addItemWithTitle:NSLocalizedString(@"TV Show", @"Video type") tag:MZTVShowVideoType];
-    [cell addItemWithTitle:NSLocalizedString(@"Booklet", @"Video type") tag:MZBookletVideoType];
+    [cell addItemWithTitle:NSLocalizedStringFromTable(@"Movie", @"VideoType", @"Video type") tag:MZMovieVideoType];
+    [cell addItemWithTitle:NSLocalizedStringFromTable(@"Normal", @"VideoType", @"Video type") tag:MZNormalVideoType];
+    [cell addItemWithTitle:NSLocalizedStringFromTable(@"Audiobook", @"VideoType", @"Video type") tag:MZAudiobookVideoType];
+    [cell addItemWithTitle:NSLocalizedStringFromTable(@"Whacked Bookmark", @"VideoType", @"Video type") tag:MZWhackedBookmarkVideoType];
+    [cell addItemWithTitle:NSLocalizedStringFromTable(@"Music Video", @"VideoType", @"Video type") tag:MZMusicVideoType];
+    [cell addItemWithTitle:NSLocalizedStringFromTable(@"Short Film", @"VideoType", @"Video type") tag:MZShortFilmVideoType];
+    [cell addItemWithTitle:NSLocalizedStringFromTable(@"TV Show", @"VideoType", @"Video type") tag:MZTVShowVideoType];
+    [cell addItemWithTitle:NSLocalizedStringFromTable(@"Booklet", @"VideoType", @"Video type") tag:MZBookletVideoType];
     return cell;
 }
 

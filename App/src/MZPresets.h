@@ -14,9 +14,10 @@
     NSDictionary* values;
 }
 
++ (id)presetWithName:(NSString *)name values:(NSDictionary *)values;
 - (id)initWithName:(NSString *)name values:(NSDictionary *)values;
 
-@property (readonly, retain) NSString* name;
+@property (retain) NSString* name;
 @property (readonly, retain) NSDictionary* values;
 
 - (void)applyToObject:(id)object withPrefix:(NSString *)prefix;
@@ -33,6 +34,10 @@
 
 @property (readonly,retain) NSArray* presets;
 
+- (void)removeObjectFromPresetsAtIndex:(NSUInteger)index;
+- (void)insertObject:(MZPreset *)aPreset inPresetsAtIndex:(NSUInteger)index;
+
+- (void)addObject:(MZPreset *)preset;
 - (NSArray *)loadFromMetaXWithError:(NSError **)error;
 - (BOOL)loadWithError:(NSError **)error;
 - (BOOL)saveWithError:(NSError **)error;

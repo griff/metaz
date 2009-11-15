@@ -11,6 +11,11 @@
 
 @implementation MZPreset
 
++ (id)presetWithName:(NSString *)name values:(NSDictionary *)values
+{
+    return [[[self alloc] initWithName:name values:values] autorelease];
+}
+
 - (id)initWithName:(NSString *)theName values:(NSDictionary *)theValues
 {
     self = [super init];
@@ -32,6 +37,13 @@
 @synthesize name;
 @synthesize values;
 
+- (void)setName:(NSString *)newName
+{
+    [name release];
+    name = [newName retain];
+    [[MZPresets sharedPresets] saveWithError:NULL];
+}
+
 - (void)applyToObject:(id)object withPrefix:(NSString *)prefix
 {
     for(NSString* key in [values allKeys])
@@ -39,6 +51,8 @@
         MZTag* tag = [MZTag tagForIdentifier:key];
         id value = [values objectForKey:key];
         value = [tag convertObjectForRetrival:value];
+        NSString* keyPath = [prefix stringByAppendingString:key];
+        [object setValue:value forKeyPath:keyPath];
     }
 }
 
@@ -139,6 +153,30 @@ static MZPresets* sharedPresets = nil;
 }
 
 @synthesize presets;
+
+- (void)removeObjectFromPresetsAtIndex:(NSUInteger)index
+{
+    [self willChangeValueForKey:@"presets"];
+    [presets removeObjectAtIndex:index];
+    [self saveWithError:NULL];
+    [self didChangeValueForKey:@"presets"];
+}
+
+- (void)insertObject:(MZPreset *)aPreset inPresetsAtIndex:(NSUInteger)index
+{
+    [self willChangeValueForKey:@"presets"];
+    [presets insertObject:aPreset atIndex:index];
+    [self saveWithError:NULL];
+    [self didChangeValueForKey:@"presets"];
+}
+
+- (void)addObject:(MZPreset *)preset
+{
+    [self willChangeValueForKey:@"presets"];
+    [presets addObject:preset];
+    [self saveWithError:NULL];
+    [self didChangeValueForKey:@"presets"];
+}
 
 - (BOOL)loadWithError:(NSError **)error
 {

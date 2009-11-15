@@ -17,10 +17,8 @@
 @property (readonly) QueueController* controller;
 @property (nonatomic, retain) IBOutlet MGCollectionView* collectionView;
 @property (nonatomic, retain) IBOutlet NSToolbarItem* playBtn;
-@property (nonatomic, retain) IBOutlet NSToolbarItem* pauseBtn;
 
 - (IBAction)startStopEncoding:(id)sender;
-- (IBAction)pauseResumeEncoding:(id)sender;
 - (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem;
 
 @end

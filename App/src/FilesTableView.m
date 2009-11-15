@@ -242,7 +242,7 @@
 
 - (NSDragOperation)tableView:(NSTableView*)tv
                 validateDrop:(id <NSDraggingInfo>)info
-                 proposedRow:(int)row
+                 proposedRow:(NSInteger)row
        proposedDropOperation:(NSTableViewDropOperation)op
 {
     if(op==NSTableViewDropOn)
@@ -285,7 +285,7 @@
 }
 
 - (BOOL)tableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info
-            row:(int)row dropOperation:(NSTableViewDropOperation)operation
+            row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation
 {
     NSPasteboard* pboard = [info draggingPasteboard];
     NSArray *types = [NSArray arrayWithObjects:MZFilesTableRows,

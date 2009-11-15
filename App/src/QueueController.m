@@ -20,9 +20,7 @@
 @synthesize filesController;
 @synthesize mainWindow;
 @synthesize playBtn;
-@synthesize pauseBtn;
 @synthesize playBtn2;
-@synthesize pauseBtn2;
 
 -(id)init
 {
@@ -41,10 +39,8 @@
     [self unregisterAsObserver];
     [writeQueue release];
     [playBtn2 release];
-    [pauseBtn2 release];
     [controller release];
     [playBtn release];
-    [pauseBtn release];
     [filesController release];
     [super dealloc];
 }
@@ -66,43 +62,28 @@
 {
     RunStatus status = [writeQueue status];
     NSString* playLabel;
-    NSString* pauseLabel;
     NSString* playImage;
-    NSString* pauseImage;
     switch (status)
     {
         case QueueStopped:
             playLabel = NSLocalizedString(@"Start", @"Label for start button");
-            pauseLabel = NSLocalizedString(@"Pause", @"Label for pause button");
             playImage = @"Play";
-            pauseImage = @"Pause";
             break;
         case QueueRunning:
             playLabel = NSLocalizedString(@"Stop", @"Label for stop button");
-            pauseLabel = NSLocalizedString(@"Pause", @"Label for pause button");
             playImage = @"Stop";
-            pauseImage = @"Pause";
             break;
         case QueuePaused:
             playLabel = NSLocalizedString(@"Stop", @"Label for stop button");
-            pauseLabel = NSLocalizedString(@"Start", @"Label for start button");
             playImage = @"Stop";
-            pauseImage = @"Play";
             break;
     }
     [playBtn setImage:[NSImage imageNamed:playImage]];
     [playBtn setLabel:playLabel];
-    [pauseBtn setImage:[NSImage imageNamed:pauseImage]];
-    [pauseBtn setLabel:pauseLabel];
     if(playBtn2)
     {
         [playBtn2 setImage:[NSImage imageNamed:playImage]];
         [playBtn2 setLabel:playLabel];
-    }
-    if(pauseBtn2)
-    {
-        [pauseBtn2 setImage:[NSImage imageNamed:pauseImage]];
-        [pauseBtn setLabel:pauseLabel];
     }
 }
 
@@ -171,8 +152,6 @@
                    object:[note object]];
     [playBtn2 release];
     playBtn2 = nil;
-    [pauseBtn2 release];
-    pauseBtn2 = nil;
     [controller release];
     controller = nil;
 }
@@ -241,14 +220,6 @@
             [self addToQueue:sender];
         [writeQueue start];
     }
-}
-
-- (IBAction)pauseResumeEncoding:(id)sender
-{
-    if([writeQueue paused])
-        [writeQueue resume];
-    else
-        [writeQueue pause];
 }
 
 @end

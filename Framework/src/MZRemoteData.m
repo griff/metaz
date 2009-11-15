@@ -184,8 +184,10 @@ static NSOperationQueue *MZSharedRemoteDataOperationQueue() {
             NSImage* image = [[NSImage alloc] initWithContentsOfURL:owner.url];
             if(!image)
             {
+                /*
                 NSString* str = [[[NSString alloc] initWithData:data 
                                  encoding:NSUTF8StringEncoding] autorelease];
+                */
                 NSLog(@"Bad image url: %@", [owner.url absoluteString]);//, str);
             }
             [owner loadedData:data];
