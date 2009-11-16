@@ -32,6 +32,6 @@
 - (IBAction)showQueue:(id)sender;
 - (IBAction)startStopEncoding:(id)sender;
 
-- (void)updateButtons;
+- (void)updateUI;
 
 @end

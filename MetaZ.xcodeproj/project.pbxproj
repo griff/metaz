@@ -164,14 +164,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			remoteGlobalIDString = 1BA325C310545ACA00276F57;
 			remoteInfo = MetaZKit;
 		};
 		1B032F9210B0C41200B28E3A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1B032F6610B0C12100B28E3A /* Amazon */;
+			remoteGlobalIDString = 1B032F6610B0C12100B28E3A;
 			remoteInfo = Amazon;
 		};
 		1B040EC71081B3D50027FA0D /* PBXContainerItemProxy */ = {

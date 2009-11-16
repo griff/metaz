@@ -17,7 +17,6 @@
 
 - (void)registerAsObserver;
 - (void)unregisterAsObserver;
-- (void)updateUI;
 @end
 
 @implementation QueueController
