@@ -12,5 +12,6 @@
 @property(readonly) BOOL hasNextItem;
 
 - (void)startNextItem;
+- (void)itemStopped;
 
 @end

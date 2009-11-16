@@ -29,7 +29,7 @@
 - (id)initWithEdits:(MetaEdits *)edits;
 
 - (void)startWriting;
-- (void)stopWriting;
+- (BOOL)stopWriting;
 - (void)stopWritingAndRemove;
 
 - (void)finished;

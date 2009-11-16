@@ -48,7 +48,7 @@
 - (void)setPlayBtn:(NSToolbarItem *)newBtn
 {
     [controller setPlayBtn2:newBtn];
-    [controller updateButtons];
+    [controller updateUI];
 }
 
 - (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem

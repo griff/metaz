@@ -9,8 +9,11 @@
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaZKit.h>
 
+#define MZQueueCompletedPercent @"MZQueueCompletedPercent"
+
 typedef enum {
     QueueStopped,
+    QueueStopping,
     QueueRunning,
     QueuePaused
 } RunStatus;
@@ -26,6 +29,7 @@ typedef enum {
     NSMutableArray* queueItems;
     RunStatus status;
     TrashHandling removeWhenTrashFailes;
+    int stopWaitCount;
 }
 @property(readonly) BOOL started;
 @property(readonly) BOOL paused;
@@ -39,8 +43,8 @@ typedef enum {
 + (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key;
 
 - (void)start;
-- (void)pause;
-- (void)resume;
+//- (void)pause;
+//- (void)resume;
 - (void)stop;
 - (BOOL)loadQueueWithError:(NSError **)error;
 - (BOOL)saveQueueWithError:(NSError **)error;

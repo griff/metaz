@@ -11,9 +11,13 @@
 #import "QueueWindowController.h"
 
 
-@interface QueueController (Private)
+@interface QueueController ()
+@property(readwrite) NSInteger targetProgress;
+@property(readwrite) NSInteger progress;
+
 - (void)registerAsObserver;
 - (void)unregisterAsObserver;
+- (void)updateUI;
 @end
 
 @implementation QueueController
@@ -21,6 +25,8 @@
 @synthesize mainWindow;
 @synthesize playBtn;
 @synthesize playBtn2;
+@synthesize targetProgress;
+@synthesize progress;
 
 -(id)init
 {
@@ -45,21 +51,62 @@
     [super dealloc];
 }
 
+- (void)awakeFromNib
+{
+    NSRect contentRect = [[mainWindow contentView] bounds];
+    NSView* mainView = [[[mainWindow contentView] subviews] objectAtIndex:0];
+    NSRect mainRect = [mainView frame];
+    NSView* pendingLabel = [[[mainWindow contentView] subviews] objectAtIndex:1];
+    NSRect pendingRect = [pendingLabel frame];
+    NSView* progressBar = [[[mainWindow contentView] subviews] objectAtIndex:2];
+    if((contentRect.size.height - mainRect.size.height) > 32)
+    {
+        mainRect.origin.y = 32;
+        mainRect.size.height += contentRect.size.height - mainRect.size.height-32;
+        pendingRect.origin.y = 10;
+        [[mainWindow contentView] setAutoresizesSubviews:NO];
+        [mainView setFrame:mainRect];
+        [pendingLabel setFrameOrigin:pendingRect.origin];
+        [progressBar setHidden:YES];
+        [[mainWindow contentView] setAutoresizesSubviews:YES];
+    }
+}
+
 - (void)registerAsObserver
 {
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidFinishLaunching:) name:NSApplicationDidFinishLaunchingNotification object:NSApp];
 	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDriverDidFinish:) name:SUUpdateDriverFinishedNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(queueCompletedPercent:) name:MZQueueCompletedPercent object:nil];
     [writeQueue addObserver:self forKeyPath:@"status" options:0 context:nil];
+    [writeQueue addObserver:self forKeyPath:@"queueItems.@count" options:0 context:nil];
+    [writeQueue addObserver:self forKeyPath:@"completedItems.@count" options:0 context:nil];
 }
 
 - (void)unregisterAsObserver
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
     [writeQueue removeObserver:self forKeyPath:@"status"];
+    [writeQueue removeObserver:self forKeyPath:@"queueItems.@count"];
+    [writeQueue removeObserver:self forKeyPath:@"completedItems.@count"];
 }
 
-- (void)updateButtons
+/*
+- (void)setTargetProgress:(NSInteger)val
 {
+    targetProgress = val;
+}
+*/
+
+- (void)updateUI
+{
+    NSRect windowFrame = [mainWindow frame];
+    NSRect contentRect = [[mainWindow contentView] bounds];
+    NSView* mainView = [[[mainWindow contentView] subviews] objectAtIndex:0];
+    NSRect mainRect = [mainView frame];
+    NSView* pendingLabel = [[[mainWindow contentView] subviews] objectAtIndex:1];
+    NSRect pendingRect = [pendingLabel frame];
+    NSProgressIndicator* progressBar = [[[mainWindow contentView] subviews] objectAtIndex:2];
+
     RunStatus status = [writeQueue status];
     NSString* playLabel;
     NSString* playImage;
@@ -68,10 +115,46 @@
         case QueueStopped:
             playLabel = NSLocalizedString(@"Start", @"Label for start button");
             playImage = @"Play";
+
+            if((contentRect.size.height - mainRect.size.height) > 32)
+            {
+                mainRect.origin.y = 32;
+                pendingRect.origin.y = 10;
+                windowFrame.origin.y += contentRect.size.height - mainRect.size.height-32;
+                windowFrame.size.height -= contentRect.size.height - mainRect.size.height-32;
+                [[mainWindow contentView] setAutoresizesSubviews:NO];
+                [mainView setFrameOrigin:mainRect.origin];
+                [pendingLabel setFrameOrigin:pendingRect.origin];
+                [progressBar setHidden:YES];
+                [progressBar stopAnimation:self];
+                [mainWindow setFrame:windowFrame display:YES animate:NO];
+                [[mainWindow contentView] setAutoresizesSubviews:YES];
+            }
+            NSLog(@"Diff %@  %@ %f", NSStringFromRect(windowFrame), NSStringFromRect(mainRect),
+                contentRect.size.height - mainRect.size.height);
             break;
+        case QueueStopping:
         case QueueRunning:
             playLabel = NSLocalizedString(@"Stop", @"Label for stop button");
             playImage = @"Stop";
+
+            //mainRect.origin.y = 64;
+            if((contentRect.size.height - mainRect.size.height) < 64)
+            {
+                mainRect.origin.y = 64;
+                pendingRect.origin.y = 42;
+                windowFrame.origin.y -= 64-(contentRect.size.height - mainRect.size.height);
+                windowFrame.size.height += 64-(contentRect.size.height - mainRect.size.height);
+                [[mainWindow contentView] setAutoresizesSubviews:NO];
+                [mainView setFrameOrigin:mainRect.origin];
+                [pendingLabel setFrameOrigin:pendingRect.origin];
+                [progressBar setHidden:NO];
+                [progressBar startAnimation:self];
+                [mainWindow setFrame:windowFrame display:YES animate:NO];
+                [[mainWindow contentView] setAutoresizesSubviews:YES];
+            }
+            NSLog(@"Diff %@  %@ %f", NSStringFromRect(windowFrame), NSStringFromRect(mainRect),
+                contentRect.size.height - mainRect.size.height);
             break;
         case QueuePaused:
             playLabel = NSLocalizedString(@"Stop", @"Label for stop button");
@@ -88,6 +171,11 @@
 }
 
 #pragma mark - observation callbacks
+- (void)queueCompletedPercent:(NSNotification *)note
+{
+    NSNumber* changes = [[note userInfo] objectForKey:@"changes"];
+    self.progress += [changes intValue];
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)note
 {
@@ -140,7 +228,24 @@
 {
     if([keyPath isEqual:@"status"] && object == writeQueue)
     {
-        [self updateButtons];
+        [self updateUI];
+    }
+    if(([keyPath isEqual:@"queueItems.@count"] || [keyPath isEqual:@"completedItems.@count"]) && object == writeQueue)
+    {
+        NSInteger nextItemsCount = [[writeQueue queueItems] count];
+        NSInteger nextCompletedItemsCount = [[writeQueue completedItems] count];
+        if(nextCompletedItemsCount < lastCompletedItemsCount) // Removed completed
+        {
+            lastCompletedItemsCount = nextCompletedItemsCount;
+            lastQueueItemsCount = nextItemsCount;
+            return;
+        }
+        if(nextItemsCount != lastQueueItemsCount) // Added/Removed items
+        {
+            self.targetProgress += (nextItemsCount-lastQueueItemsCount)*100;
+        }
+        lastCompletedItemsCount = nextCompletedItemsCount;
+        lastQueueItemsCount = nextItemsCount;
     }
 }
 
@@ -218,6 +323,10 @@
     {
         if([[writeQueue pendingItems] count] == 0)
             [self addToQueue:sender];
+        lastQueueItemsCount = [[writeQueue queueItems] count];
+        lastCompletedItemsCount = [[writeQueue completedItems] count];
+        self.targetProgress = [[writeQueue pendingItems] count]*100;
+        self.progress = 0;
         [writeQueue start];
     }
 }

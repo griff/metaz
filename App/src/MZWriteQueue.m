@@ -88,6 +88,7 @@ static MZWriteQueue* sharedQueue = nil;
     }
 }
 
+/*
 -(void)pause
 {
     if(status == QueueRunning)
@@ -107,15 +108,20 @@ static MZWriteQueue* sharedQueue = nil;
         [self didChangeValueForKey:@"status"];
     }
 }
+*/
 
 -(void)stop
 {
-    if(status != QueueStopped)
+    if(status != QueueStopped && status != QueueStopping )
     {
         [self willChangeValueForKey:@"status"];
-        status = QueueStopped;
+        status = QueueStopping;
+        stopWaitCount = 0;
         for(MZWriteQueueStatus* sts in queueItems)
-            [sts stopWriting];
+        {
+            if([sts stopWriting])
+                stopWaitCount++;
+        }
         removeWhenTrashFailes = UseDefaultTrashHandling;
         [self didChangeValueForKey:@"status"];
     }
@@ -148,6 +154,21 @@ static MZWriteQueue* sharedQueue = nil;
     [self stop];
     [self saveQueueWithError:NULL];
 }
+
+- (void)itemStopped
+{
+    if(status == QueueStopping)
+    {
+        stopWaitCount--;
+        if(stopWaitCount == 0)
+        {
+            [self willChangeValueForKey:@"status"];
+            status = QueueStopped;
+            [self didChangeValueForKey:@"status"];
+        }
+    }
+}
+
 
 -(BOOL)loadQueueWithError:(NSError **)error
 {

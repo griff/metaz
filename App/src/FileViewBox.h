@@ -8,7 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface FileViewBox : NSBox {
+@interface FileViewBox : NSBox
+{
     NSTabView* tabView;
     NSTextField* label;
     NSButton* disclosure;

@@ -18,6 +18,8 @@
 @property(readwrite) int writing;
 @property(readwrite) BOOL completed;
 
+- (void)triggerChangeNotification:(int)changes;
+
 @end
 
 @implementation MZWriteQueueStatus
@@ -67,13 +69,19 @@
     self.writing = 1;
     //[self didChangeValueForKey:@"writing"];
     if(!controller)
+    {
         [self finished];
+    }
 }
 
-- (void)stopWriting
+- (BOOL)stopWriting
 {
     if(controller && ![controller isFinished])
+    {
         [controller cancel];
+        return YES;
+    }
+    return NO;
 }
 
 - (void)stopWritingAndRemove
@@ -95,6 +103,7 @@
     MZWriteQueue* q = [MZWriteQueue sharedQueue];
     //[self willChangeValueForKey:@"writing"];
     self.writing = 0;
+    [self triggerChangeNotification:100-self.percent];
     //[self didChangeValueForKey:@"writing"];
     [q willChangeValueForKey:@"completedItems"];
     //[self willChangeValueForKey:@"completed"];
@@ -125,6 +134,7 @@ writeStartedForEdits:(MetaEdits *)edits
     self.writing = 0;
     //[self didChangeValueForKey:@"writing"];
     self.status = NSLocalizedString(@"Stopped", @"Write queue status text");
+    [self triggerChangeNotification:-self.percent]; // Revert progress
     if(removeOnCancel)
     {
         [[MZMetaLoader sharedLoader] reloadEdits:edits];
@@ -140,6 +150,7 @@ writeStartedForEdits:(MetaEdits *)edits
         [q didChangeValueForKey:@"pendingItems"];
         [q didChangeValueForKey:@"completedItems"];
     }
+    [[MZWriteQueue sharedQueue] itemStopped];
 }
 
 - (void)dataProvider:(id<MZDataProvider>)provider
@@ -147,10 +158,12 @@ writeStartedForEdits:(MetaEdits *)edits
         writeFinishedForEdits:(MetaEdits *)theEdits percent:(int)newPercent
 {
     //[self willChangeValueForKey:@"percent"];
+    int diff = newPercent-percent;
     self.percent = newPercent;
     self.status = [NSString stringWithFormat:
         NSLocalizedString(@"Completed writing %d%%", @"Write queue status text"),
         newPercent];
+    [self triggerChangeNotification:diff];
     //[self didChangeValueForKey:@"percent"];
 }
 
@@ -242,6 +255,18 @@ writeStartedForEdits:(MetaEdits *)edits
         }
     }
     [self finished];
+}
+
+- (void)triggerChangeNotification:(int)changes
+{
+    if(changes==0) return;
+    NSArray* keys = [NSArray arrayWithObjects:@"changes", nil];
+    NSArray* values = [NSArray arrayWithObjects:[NSNumber numberWithInt:changes], nil];
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObjects:values forKeys:keys];
+    [[NSNotificationCenter defaultCenter]
+            postNotificationName:MZQueueCompletedPercent
+                          object:self
+                        userInfo:userInfo];
 }
 
 @end

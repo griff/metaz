@@ -16,11 +16,17 @@
     MZWriteQueue* writeQueue;
     NSToolbarItem* playBtn;
     NSToolbarItem* playBtn2;
+    NSInteger lastCompletedItemsCount;
+    NSInteger lastQueueItemsCount;
+    NSInteger targetProgress;
+    NSInteger progress;
 }
 @property (nonatomic, retain) IBOutlet NSArrayController* filesController;
 @property (nonatomic, retain) IBOutlet NSWindow* mainWindow;
 @property (nonatomic, retain) IBOutlet NSToolbarItem* playBtn;
 @property (nonatomic, retain) NSToolbarItem* playBtn2;
+@property (readonly) NSInteger targetProgress;
+@property (readonly) NSInteger progress;
 
 - (IBAction)addToQueue:(id)sender;
 - (IBAction)showQueue:(id)sender;
