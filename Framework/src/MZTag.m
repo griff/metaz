@@ -9,6 +9,7 @@
 #import <MetaZKit/MZTag.h>
 #import <MetaZKit/MZConstants.h>
 #import <MetaZKit/MZTimeCode.h>
+#import <MetaZKit/NSDate+UTC.h>
 
 @interface MZVideoTypeTagClass : MZEnumTag {
 }
@@ -19,6 +20,8 @@
 @interface MZRatingTag : MZEnumTag
 {
     NSArray* ratingNames;
+    NSArray* ratingNamesNonStrict;
+    NSMutableArray* ratingValuesNonStrict;
 }
 - (id)init;
 
@@ -343,8 +346,7 @@ static NSMutableDictionary *sharedTags = nil;
     if(!str || [str length]==0)
         return nil;
     
-    //NSDateFormatter* format = [[NSDateFormatter alloc] init]
-    return [NSDate dateWithString:str];
+    return [NSDate dateWithUTCString:str];
 }
 
 - (NSString *)stringForObject:(id)str
@@ -352,8 +354,7 @@ static NSMutableDictionary *sharedTags = nil;
     if(!str || str == [NSNull null])
         return nil;
     NSDate* date = str;
-    NSDateFormatter* format = [[NSDateFormatter alloc] initWithDateFormat:@"%Y-%m-%d" allowNaturalLanguage:NO];
-    return [format stringFromDate:date];
+    return [date utcTimestamp];
 }
 
 @end
@@ -584,8 +585,26 @@ static NSMutableDictionary *sharedTags = nil;
             @"G (NZ-TV)", @"PGR", @"AD", @"UNRATED (NZ-TV)",
             nil];
         NSAssert([ratingNames count] == MZ_Unrated_NZTV_Rating+1, @"Bad number of ratings");
+        ratingNamesNonStrict = [[NSArray alloc] initWithObjects:
+            @"FSK 0", @"FSK 6", @"FSK 12", @"FSK 16", @"FSK 18",
+            nil];
+        int ratingNonStrictValues[] = {
+            MZ_FSK0_Rating, MZ_FSK6_Rating, MZ_FSK12_Rating, MZ_FSK16_Rating, MZ_FSK18_Rating
+            };
+        ratingValuesNonStrict = [[NSMutableArray alloc] init];
+        NSInteger count = [ratingNamesNonStrict count];
+        for(int i=0; i<count; i++)
+           [ratingValuesNonStrict addObject:[NSNumber numberWithInt:ratingNonStrictValues[i]]];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [ratingNames release];
+    [ratingNamesNonStrict release];
+    [ratingValuesNonStrict release];
+    [super dealloc];
 }
 
 - (NSCell *)editorCell
@@ -614,6 +633,12 @@ static NSMutableDictionary *sharedTags = nil;
     if(!str)
         return [NSNumber numberWithInt:MZNoRating];
     NSInteger i = [ratingNames indexOfObject:str];
+    if(i == NSNotFound)
+    {
+        i = [ratingNamesNonStrict indexOfObject:str];
+        if(i != NSNotFound)
+            i = [[ratingValuesNonStrict objectAtIndex:i] integerValue];
+    }
     if(i == NSNotFound)
     {
         NSLog(@"Found no rating for '%@'", str);

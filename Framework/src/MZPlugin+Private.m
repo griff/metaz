@@ -6,7 +6,7 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import "MZPlugin-Private.h"
+#import "MZPlugin+Private.h"
 
 
 @implementation MZPlugin (Private)

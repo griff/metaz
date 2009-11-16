@@ -12,6 +12,8 @@
 @implementation QueueWindowController
 @synthesize controller;
 @synthesize collectionView;
+@synthesize itemsLabel;
+@synthesize clearBtn;
 
 - (id)initWithWindowNibName:(NSString *)windowNibName owner:(QueueController *)owner
 {
@@ -27,7 +29,15 @@
 {
     //[controller release];
     [collectionView release];
+    [itemsLabel release];
+    [clearBtn release];
     [super dealloc];
+}
+
+- (void)awakeFromNib
+{
+    [[itemsLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
+    [[clearBtn cell] setBackgroundStyle:NSBackgroundStyleRaised];
 }
 
 - (NSToolbarItem *)playBtn

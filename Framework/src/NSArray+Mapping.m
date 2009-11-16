@@ -6,8 +6,8 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import "NSArray-Mapping.h"
-#import "NSObject-ProtectedKeyValue.h"
+#import "NSArray+Mapping.h"
+#import "NSObject+ProtectedKeyValue.h"
 
 @implementation NSArray (Mapping)
 

@@ -8,13 +8,22 @@
 
 #import "MZWriteQueueStatus.h"
 #import "MZWriteQueue.h"
-#import "MZWriteQueue-Private.h"
+#import "MZWriteQueue+Private.h"
 #import "MZMetaLoader.h"
 
+@interface MZWriteQueueStatus()
+
+@property(readwrite) int percent;
+@property(readwrite,copy) NSString* status;
+@property(readwrite) int writing;
+@property(readwrite) BOOL completed;
+
+@end
 
 @implementation MZWriteQueueStatus
 @synthesize edits;
 @synthesize percent;
+@synthesize status;
 @synthesize writing;
 @synthesize controller;
 @synthesize completed;
@@ -31,6 +40,7 @@
     {
         edits = [theEdits retain];
         [edits prepareForQueue];
+        status = NSLocalizedString(@"Waiting to start", @"Write queue status text");
     }
     return self;
 }
@@ -39,21 +49,23 @@
 {
     [edits release];
     [controller release];
+    [status release];
     [super dealloc];
 }
 
 - (void)startWriting
 {
+    self.status = NSLocalizedString(@"Preparing for write", @"Write queue status text");
     if(percent!=0)
     {
-        [self willChangeValueForKey:@"percent"];
-        percent = 0;
-        [self didChangeValueForKey:@"percent"];
+        //[self willChangeValueForKey:@"percent"];
+        self.percent = 0;
+        //[self didChangeValueForKey:@"percent"];
     }
-    [self willChangeValueForKey:@"writing"];
+    //[self willChangeValueForKey:@"writing"];
     controller = [[[MZPluginController sharedInstance] saveChanges:edits delegate:self] retain];
-    writing = 1;
-    [self didChangeValueForKey:@"writing"];
+    self.writing = 1;
+    //[self didChangeValueForKey:@"writing"];
     if(!controller)
         [self finished];
 }
@@ -81,24 +93,38 @@
 - (void)finished
 {
     MZWriteQueue* q = [MZWriteQueue sharedQueue];
-    [self willChangeValueForKey:@"writing"];
-    writing = 0;
-    [self didChangeValueForKey:@"writing"];
+    //[self willChangeValueForKey:@"writing"];
+    self.writing = 0;
+    //[self didChangeValueForKey:@"writing"];
     [q willChangeValueForKey:@"completedItems"];
-    [self willChangeValueForKey:@"completed"];
-    completed = YES;
-    [self didChangeValueForKey:@"completed"];
+    //[self willChangeValueForKey:@"completed"];
+    self.completed = YES;
+    //[self didChangeValueForKey:@"completed"];
+    self.status = NSLocalizedString(@"Completed", @"Write queue status text");
     [q didChangeValueForKey:@"completedItems"];
     [[MZWriteQueue sharedQueue] startNextItem];
 }
+
+#pragma mark - MZDataWriteDelegate implementation
+
+- (void)dataProvider:(id<MZDataProvider>)provider 
+          controller:(id<MZDataWriteController>)controller
+writeStartedForEdits:(MetaEdits *)edits
+{
+    self.status = [NSString stringWithFormat:
+        NSLocalizedString(@"Completed writing %d%%", @"Write queue status text"),
+        0];
+}
+
 
 - (void)dataProvider:(id<MZDataProvider>)provider 
           controller:(id<MZDataWriteController>)controller
         writeCanceledForEdits:(MetaEdits *)theEdits
 {
-    [self willChangeValueForKey:@"writing"];
-    writing = 0;
-    [self didChangeValueForKey:@"writing"];
+    //[self willChangeValueForKey:@"writing"];
+    self.writing = 0;
+    //[self didChangeValueForKey:@"writing"];
+    self.status = NSLocalizedString(@"Stopped", @"Write queue status text");
     if(removeOnCancel)
     {
         [[MZMetaLoader sharedLoader] reloadEdits:edits];
@@ -120,9 +146,12 @@
           controller:(id<MZDataWriteController>)controller
         writeFinishedForEdits:(MetaEdits *)theEdits percent:(int)newPercent
 {
-    [self willChangeValueForKey:@"percent"];
-    percent = newPercent;
-    [self didChangeValueForKey:@"percent"];
+    //[self willChangeValueForKey:@"percent"];
+    self.percent = newPercent;
+    self.status = [NSString stringWithFormat:
+        NSLocalizedString(@"Completed writing %d%%", @"Write queue status text"),
+        newPercent];
+    //[self didChangeValueForKey:@"percent"];
 }
 
 - (void)dataProvider:(id<MZDataProvider>)provider
@@ -152,14 +181,23 @@
                 TrashHandling handling = q.removeWhenTrashFailes;
                 if(handling == UseDefaultTrashHandling)
                 {
+                    BOOL overwrite = [[edits loadedFileName] isEqual:[edits savedFileName]];
                     NSAlert* alert = [[NSAlert alloc] init];
                     NSString* title = [NSString stringWithFormat:
                             NSLocalizedString(@"Unable to put original \"%@\" in trash", @"Trash title"),
                             [[edits loadedFileName] lastPathComponent]];
                     [alert setMessageText:title];
-                    [alert setInformativeText:NSLocalizedString(@"Do you wish to remove it anyway ?", @"Trash removal question")];
+                    if(overwrite)
+                    {
+                        [alert setInformativeText:NSLocalizedString(@"Do you wish to overwrite it anyway ?", @"Trash removal question")];
+                        [alert addButtonWithTitle:NSLocalizedString(@"Overwrite", @"Button text for overwrite action")];
+                    }
+                    else
+                    {
+                        [alert setInformativeText:NSLocalizedString(@"Do you wish to remove it anyway ?", @"Trash removal question")];
+                        [alert addButtonWithTitle:NSLocalizedString(@"Remove", @"Button text for remove action")];
+                    }
                     [alert setAlertStyle:NSCriticalAlertStyle];
-                    [alert addButtonWithTitle:NSLocalizedString(@"Remove", @"Button text for remove action")];
                     [alert addButtonWithTitle:NSLocalizedString(@"Keep", @"Button text for keep action")];
 
                     BOOL applyToAll = NO;

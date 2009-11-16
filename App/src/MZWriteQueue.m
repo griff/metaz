@@ -7,7 +7,7 @@
 //
 
 #import "MZWriteQueue.h"
-#import "MZWriteQueue-Private.h"
+#import "MZWriteQueue+Private.h"
 #import "MZWriteQueueStatus.h"
 
 

@@ -6,7 +6,7 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import "NSUserDefaults-KeyPath.h"
+#import "NSUserDefaults+KeyPath.h"
 
 @interface NSUserDefaults (MZKeyPathsPrivate)
 

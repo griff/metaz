@@ -13,12 +13,14 @@
     MetaEdits* edits;
     int percent;
     int writing;
+    NSString* status;
     BOOL completed;
     BOOL removeOnCancel;
     id<MZDataWriteController> controller;
 }
 @property(readonly) MetaEdits* edits;
 @property(readonly) int percent;
+@property(readonly,copy) NSString* status;
 @property(readonly) int writing;
 @property(readonly) BOOL completed;
 @property(readonly) id<MZDataWriteController> controller;

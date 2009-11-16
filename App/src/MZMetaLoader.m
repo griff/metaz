@@ -9,7 +9,7 @@
 #import "MZMetaLoader.h"
 #import "MZWriteQueue.h"
 #import "MZWriteQueueStatus.h"
-#import "NSUserDefaults-KeyPath.h"
+#import "NSUserDefaults+KeyPath.h"
 
 @implementation MZMetaLoader
 @synthesize files;

@@ -19,6 +19,6 @@
 	<key>CFBundleVersion</key>
 	<string>${DATEV}</string>
 	<key>NSPrincipalClass</key>
-	<string>AtomicParsleyPlugin</string>
+	<string>AmazonPlugin</string>
 </dict>
 </plist>

@@ -65,8 +65,9 @@
     NSURL *finalURL = url;
     if (parameters != nil)
     {
+        NSArray* paramNames = [[parameters allKeys] sortedArrayUsingSelector:@selector(compare:)];
         params = [[NSMutableString alloc] init];
-        for (id key in parameters)
+        for (id key in paramNames)
         {
             NSString *encodedKey = [key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             CFStringRef value = (CFStringRef)[[parameters objectForKey:key] copy];
@@ -75,7 +76,7 @@
             CFStringRef encodedValue = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, 
                                                                                value,
                                                                                NULL, 
-                                                                               (CFStringRef)@";/?:@&=+$,", 
+                                                                               (CFStringRef)@"!*'();:@&=+$,/?%#[]", 
                                                                                kCFStringEncodingUTF8);
             [params appendFormat:@"%@=%@&", encodedKey, encodedValue];
             CFRelease(value);
@@ -286,7 +287,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    NSLog(@"Got HTTP response data %d", [data length]);    
+    //NSLog(@"Got HTTP response data %d", [data length]);    
     [receivedData appendData:data];
 }
 

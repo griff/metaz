@@ -6,8 +6,8 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import "NSXMLNode-MZExtensions.h"
-#import "NSArray-Mapping.h"
+#import "NSXMLNode+MZExtensions.h"
+#import "NSArray+Mapping.h"
 
 @implementation NSXMLNode (MZExtensions)
 

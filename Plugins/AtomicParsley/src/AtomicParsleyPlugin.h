@@ -9,7 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaZKit.h>
 
-@interface AtomicParsleyPlugin : MZPlugin {
+@interface AtomicParsleyPlugin : MZPlugin
+{
     NSArray* dataProviders;
 }
 

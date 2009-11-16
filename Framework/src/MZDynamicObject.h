@@ -5,7 +5,7 @@
 //  Created by Brian Olsen on 04/09/09.
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
-#import <MetaZKit/NSInvocation-Wrapping.h>
+#import <MetaZKit/NSInvocation+Wrapping.h>
 
 @interface MZDynamicObject : NSObject {
     NSMutableDictionary* methods;

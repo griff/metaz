@@ -8,7 +8,7 @@
 
 #import "FilesTableView.h"
 #import "MZMetaLoader.h"
-#import "NSArray-Mapping.h"
+#import "NSArray+Mapping.h"
 
 #define MZFilesTableRows @"MZFilesTableRows"
 

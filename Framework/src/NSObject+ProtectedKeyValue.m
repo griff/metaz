@@ -6,7 +6,7 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import "NSObject-ProtectedKeyValue.h"
+#import "NSObject+ProtectedKeyValue.h"
 
 
 @implementation NSObject (ProtectedKeyValue)

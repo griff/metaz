@@ -24,7 +24,8 @@
 #import <MetaZKit/MZPriorObserverFix.h>
 #import <MetaZKit/MZMethodData.h>
 #import <MetaZKit/MZDynamicObject.h>
-#import <MetaZKit/NSInvocation-Wrapping.h>
-#import <MetaZKit/NSArray-Mapping.h>
-#import <MetaZKit/NSObject-ProtectedKeyValue.h>
-#import <MetaZKit/NSXMLNode-MZExtensions.h>
+#import <MetaZKit/NSArray+Mapping.h>
+#import <MetaZKit/NSDate+UTC.h>
+#import <MetaZKit/NSInvocation+Wrapping.h>
+#import <MetaZKit/NSObject+ProtectedKeyValue.h>
+#import <MetaZKit/NSXMLNode+MZExtensions.h>

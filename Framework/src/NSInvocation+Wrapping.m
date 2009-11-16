@@ -6,7 +6,7 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import "NSInvocation-Wrapping.h"
+#import "NSInvocation+Wrapping.h"
 
 
 @implementation NSInvocation (Wrapping)

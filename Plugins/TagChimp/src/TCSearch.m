@@ -224,15 +224,67 @@
         }
         */
         
-        NSString* releaseYear = [item stringForXPath:@"movieTags/info/releaseDateY" error:NULL];
-        if([releaseYear length] > 0)
+        /*
+        NSString* releaseYearStr = [item stringForXPath:@"movieTags/info/releaseDateY" error:NULL]; 
+        NSLog(@"Release Year '%@'", releaseYearStr);
+        */
+        NSInteger releaseYear = [[item stringForXPath:@"movieTags/info/releaseDateY" error:NULL] integerValue];
+        if(releaseYear > 0)
         {
-            NSString* releaseMonth = [item stringForXPath:@"movieTags/info/releaseDateM" error:NULL];
-            NSString* releaseDay = [item stringForXPath:@"movieTags/info/releaseDateD" error:NULL];
+            NSDateComponents *comps = [[NSDateComponents alloc] init];
+            [comps setYear:releaseYear];
+
+            NSInteger releaseMonth = [[item stringForXPath:@"movieTags/info/releaseDateM" error:NULL] integerValue];
+            if(releaseMonth > 0)
+                [comps setMonth:releaseMonth];
+
+            NSInteger releaseDay = [[item stringForXPath:@"movieTags/info/releaseDateD" error:NULL] integerValue];
+            if(releaseDay > 0)
+                [comps setDay:releaseDay];
+
+            NSCalendar *gregorian = [[NSCalendar alloc]
+                         initWithCalendarIdentifier:NSGregorianCalendar];
+            NSDate *date = [gregorian dateFromComponents:comps];
+            [dict setObject:date forKey:MZDateTagIdent];
+            [comps release];
+            [gregorian release];
         }
         else
         {
             NSString* release = [item stringForXPath:@"movieTags/info/releaseDate" error:NULL];
+            if( release && [release length] > 0 )
+            {
+                NSDate* date = [NSDate dateWithUTCString:release];
+                if(!date)
+                {
+                    NSDateFormatter* format = [[[NSDateFormatter alloc] init] autorelease];
+                    format.dateFormat = @"yyyy-MM-dd";
+                    date = [format dateFromString:release];
+                }
+                if(!date)
+                {
+                    NSDateFormatter* format = [[[NSDateFormatter alloc] init] autorelease];
+                    format.dateFormat = @"yyyy-MM";
+                    date = [format dateFromString:release];
+                }
+                if(!date)
+                {
+                    NSDateFormatter* format = [[[NSDateFormatter alloc] init] autorelease];
+                    format.dateFormat = @"yyyy";
+                    date = [format dateFromString:release];
+                }
+                if(!date)
+                {
+                    NSDateFormatter* format = [[[NSDateFormatter alloc] init] autorelease];
+                    format.dateFormat = @"MMM dd, yyyy";
+                    date = [format dateFromString:release];
+                }
+            
+                if(date) 
+                    [dict setObject:date forKey:MZDateTagIdent];
+                else
+                    NSLog(@"Release date '%@'", release);
+            }
         }
         
         NSString* episodeId = [item stringForXPath:@"movieTags/television/productionCode" error:NULL];
@@ -310,6 +362,8 @@
                 i++;
             }
             NSString* key = hasTime ? MZChaptersTagIdent : MZChapterNamesTagIdent;
+            if(hasTime)
+                NSLog(@"Chapters with time %d", [chapters count]);
             [dict setObject:[NSArray arrayWithArray:chapters] forKey:key];
         }
         

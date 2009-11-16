@@ -66,8 +66,7 @@
         tags = [[MZTag allKnownTags] retain];
         NSArray* readmapkeys = [NSArray arrayWithObjects:
             @"©nam", @"©ART", @"©day",
-            //@"com.apple.iTunes;iTunEXTC",
-            @"©gen",
+            //@"com.apple.iTunes;iTunEXTC", @"©gen",
             @"©alb", @"aART", @"purd", @"desc",
             @"ldes",
             //@"stik",
@@ -80,8 +79,7 @@
             @"sosn", nil];
         NSArray* readmapvalues = [NSArray arrayWithObjects:
             MZTitleTagIdent, MZArtistTagIdent, MZDateTagIdent,
-            //MZRatingTagIdent,
-            MZGenreTagIdent,
+            //MZRatingTagIdent, MZGenreTagIdent,
             MZAlbumTagIdent, MZAlbumArtistTagIdent, MZPurchaseDateTagIdent, MZShortDescriptionTagIdent,
             MZLongDescriptionTagIdent,
             //MZVideoTypeTagIdent,
@@ -421,14 +419,26 @@
         NSString* tagId = [read_mapping objectForKey:map];
         MZTag* tag = [MZTag tagForIdentifier:tagId];
         NSString* value = [dict objectForKey:map];
+        NSLog(@"%@ %@", tagId, value);
         if(value)
             [retdict setObject:[tag convertObjectForStorage:[tag objectFromString:value]] forKey:tagId];
+    }
+    
+    // Special genre handling
+    NSString* genre = [dict objectForKey:@"gnre"];
+    if(!genre)
+        genre = [dict objectForKey:@"©gen"]; 
+    if(genre)
+    {
+        NSLog(@"Genre %@", genre);
+        [retdict setObject:genre forKey:MZGenreTagIdent];
     }
     
     // Special rating handling
     NSString* rating = [dict objectForKey:@"com.apple.iTunes;iTunEXTC"];
     if(rating)
     {
+        NSLog(@"Rating %@", rating);
         id rate = [rating_read objectForKey:rating];
         if(rate)
             [retdict setObject:rate forKey:MZRatingTagIdent];

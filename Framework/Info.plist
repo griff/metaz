@@ -16,8 +16,10 @@
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.5a</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>${DATEV}</string>
 	<key>CFBundleGetInfoString</key>
 	<string>Copyright 2009 Brian Olsen</string>
 	<key>NSHumanReadableCopyright</key>

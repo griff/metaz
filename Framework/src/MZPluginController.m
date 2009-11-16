@@ -7,7 +7,7 @@
 //
 
 #import <MetaZKit/MZPluginController.h>
-#import "MZPlugin-Private.h"
+#import "MZPlugin+Private.h"
 
 @interface MZWriteNotification : NSObject <MZDataWriteDelegate>
 {
