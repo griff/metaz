@@ -258,7 +258,7 @@
 		1B032FDA10B0C5FE00B28E3A /* hmac_sha2.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c.preprocessed; fileEncoding = 4; path = hmac_sha2.c; sourceTree = "<group>"; };
 		1B032FDC10B0C62800B28E3A /* sha2.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = sha2.h; sourceTree = "<group>"; };
 		1B032FDD10B0C62800B28E3A /* sha2.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c.preprocessed; fileEncoding = 4; path = sha2.c; sourceTree = "<group>"; };
-		1B03304310B0CD3C00B28E3A /* MetaZKitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = MetaZKitTest.octest; path = build/Debug/MetaZKitTest.octest; sourceTree = "<group>"; };
+		1B03304310B0CD3C00B28E3A /* MetaZKitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MetaZKitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B03304410B0CD3C00B28E3A /* MetaZKitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MetaZKitTest-Info.plist"; sourceTree = "<group>"; };
 		1B03307C10B0FA4800B28E3A /* AmazonPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonPlugin.h; sourceTree = "<group>"; };
 		1B03307D10B0FA4800B28E3A /* AmazonPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonPlugin.m; sourceTree = "<group>"; };
@@ -1575,7 +1575,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "MetaZKitTest-Info.plist";
+				INFOPLIST_FILE = "Framework/Test-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1601,7 +1601,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "MetaZKitTest-Info.plist";
+				INFOPLIST_FILE = "Framework/Test-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				OTHER_LDFLAGS = (
 					"-framework",

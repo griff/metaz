@@ -33,8 +33,8 @@ typedef enum
     MZ_Unrated_Rating,
     
     //US-TV
-    MZ_TVY7_Rating,
     MZ_TVY_Rating,
+    MZ_TVY7_Rating,
     MZ_TVG_Rating,
     MZ_TVPG_Rating,
     MZ_TV14_Rating,

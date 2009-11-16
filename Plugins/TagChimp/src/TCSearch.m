@@ -276,7 +276,8 @@
                 if(!date)
                 {
                     NSDateFormatter* format = [[[NSDateFormatter alloc] init] autorelease];
-                    format.dateFormat = @"MMM dd, yyyy";
+                    format.dateFormat = @"MMMM dd, yyyy";
+                    format.locale = [[[NSLocale alloc] initWithLocaleIdentifier:@"en"] autorelease];
                     date = [format dateFromString:release];
                 }
             

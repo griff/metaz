@@ -561,7 +561,7 @@ static NSMutableDictionary *sharedTags = nil;
             // US
             @"G", @"PG", @"PG-13", @"R", @"NC-17", @"Unrated",
             // US TV
-            @"TV-V7", @"TV-Y", @"TV-G", @"TV-PG", @"TV-14", @"TV-MA",
+            @"TV-Y", @"TV-Y7", @"TV-G", @"TV-PG", @"TV-14", @"TV-MA",
             // UK
             @"U", @"Uc", @"PG (UK)", @"12 (UK)", @"12A", @"15 (UK)", @"18 (UK)", @"E (UK)", @"UNRATED (UK)",
             // DE
@@ -586,9 +586,11 @@ static NSMutableDictionary *sharedTags = nil;
             nil];
         NSAssert([ratingNames count] == MZ_Unrated_NZTV_Rating+1, @"Bad number of ratings");
         ratingNamesNonStrict = [[NSArray alloc] initWithObjects:
+            @"UNRATED",
             @"FSK 0", @"FSK 6", @"FSK 12", @"FSK 16", @"FSK 18",
             nil];
         int ratingNonStrictValues[] = {
+            MZ_Unrated_Rating,
             MZ_FSK0_Rating, MZ_FSK6_Rating, MZ_FSK12_Rating, MZ_FSK16_Rating, MZ_FSK18_Rating
             };
         ratingValuesNonStrict = [[NSMutableArray alloc] init];
