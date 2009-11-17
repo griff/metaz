@@ -17,7 +17,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.6a</string>
+	<string>0.7a</string>
 	<key>CFBundleVersion</key>
 	<string>${DATEV}</string>
 	<key>CFBundleGetInfoString</key>
