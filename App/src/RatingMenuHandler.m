@@ -76,6 +76,7 @@ NSString* findItem(NSMenu* menu, MZRating rating)
     MZRating rating;
     [tag convertObject:value toValue:&rating];
     NSString* ret;
+    NSLog(@"Getting rating %d", rating);
     if(ret = findItem([ratingButton menu], rating)) return ret;
     if(ret = findItem(menuUK, rating)) return ret;
     if(ret = findItem(menuDE, rating)) return ret;

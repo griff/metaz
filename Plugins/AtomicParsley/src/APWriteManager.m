@@ -201,6 +201,7 @@
             }
         }
         
+        self.isFinished = YES;
         if([delegate respondsToSelector:@selector(dataProvider:controller:writeFinishedForEdits:)])
             [delegate dataProvider:provider controller:self writeFinishedForEdits:edits];
     }

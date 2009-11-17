@@ -122,6 +122,8 @@ static MZWriteQueue* sharedQueue = nil;
             if([sts stopWriting])
                 stopWaitCount++;
         }
+        if(stopWaitCount==0)
+            status = QueueStopped;
         removeWhenTrashFailes = UseDefaultTrashHandling;
         [self didChangeValueForKey:@"status"];
     }
