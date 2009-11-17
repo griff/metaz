@@ -63,6 +63,7 @@ NSString* findItem(NSMenu* menu, MZRating rating)
     NSMenuItem* item = [menu itemWithTag:rating];
     if(!item)
         return nil;
+    NSLog(@"Found rating entry %d '%@' '%@'", rating, [menu title], [item title]);
     return [item title];
 }
 
