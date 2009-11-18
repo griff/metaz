@@ -8,6 +8,9 @@
 
 #import "MZPresets.h"
 
+@interface MZPreset ()
+- (void)replaceValue:(id)value forTag:(NSString *)tag;
+@end
 
 @implementation MZPreset
 
@@ -54,6 +57,15 @@
         NSString* keyPath = [prefix stringByAppendingString:key];
         [object setValue:value forKeyPath:keyPath];
     }
+}
+
+- (void)replaceValue:(id)value forTag:(NSString *)tag
+{
+    NSMutableDictionary* mutDict = [values mutableCopyWithZone:[self zone]];
+    [mutDict setObject:value forKey:tag];
+    [values release];
+    values = [mutDict copyWithZone:self.zone];
+    [mutDict release];
 }
 
 #pragma mark - NSCoding implementation
@@ -395,23 +407,6 @@ static MZPresets* sharedPresets = nil;
                 }
                 MZPreset* retPreset = [[[MZPreset alloc] initWithName:presetName values:presetValues] autorelease];
                 [ret addObject:retPreset];
-                /*
-                NSLog(@"Found preset:");
-                
-                for(NSString* key in [[preset allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)])
-                {
-                    id value = [preset objectForKey:key];
-                    if([key isEqual:@"Image"])
-                    {
-                        if(value)
-                            NSLog(@"    %@ -> [%@] %d", key, NSStringFromClass([value class]), [value length]);
-                        else
-                            NSLog(@"    %@ -> [%@]", key, NSStringFromClass([value class]));
-                    }
-                    else
-                        NSLog(@"    %@ -> [%@] '%@'", key, NSStringFromClass([value class]), value);
-                }
-                */
             }
         }
     }
@@ -473,6 +468,95 @@ static MZPresets* sharedPresets = nil;
                 }
             }
         }
+    }
+    else
+    {
+        // Check for bad MetaX import
+        NSArray* mxPresets = nil;
+        BOOL changed = NO;
+        MZVideoType lastSelection = MZUnsetVideoType;
+        for(MZPreset* preset in presets)
+        {
+            id kind = [[preset values] objectForKey:MZVideoTypeTagIdent];
+            if([kind isKindOfClass:[NSNumber class]])
+            {
+                NSNumber* num = kind;
+                if([num intValue] == MZUnsetVideoType)
+                    kind = [NSNull null];
+            }
+            if(kind == [NSNull null])
+            {
+                if(!mxPresets)
+                {
+                    mxPresets = [self loadFromMetaXWithError:&error];
+                    if(!mxPresets)
+                        mxPresets = [NSArray array];
+                }
+                BOOL found = NO;
+                for(MZPreset* mxPreset in mxPresets)
+                {
+                    if([mxPreset.name isEqual:preset.name])
+                    {
+                        [preset replaceValue:[[mxPreset values] objectForKey:MZVideoTypeTagIdent]
+                            forTag:MZVideoTypeTagIdent];
+                        found = YES;
+                        changed = YES;
+                        break;
+                    }
+                }
+                if(!found)
+                {
+                    NSLog(@"Detected null video kind but found no matching MetaX preset");
+                    NSAlert* alert = [[NSAlert alloc] init];
+                    [alert setMessageText:NSLocalizedString(
+                            @"Found Bad MetaX Preset Import",
+                            @"Found bad MetaX preset message box text")];
+                    [alert setInformativeText:[NSString stringWithFormat:
+                        NSLocalizedString(@"Preset '%@' has an empty video type.\n"
+                            "This is most likely due to a bad MetaX import done "
+                            "by a previous version of MetaZ.\nWe were unable to "
+                            "find the preset with the same name in your current "
+                            "MetaX presets so you need to specify the video type bellow.",
+                            @"Found bad MetaX preset message"),
+                        preset.name]];
+                    
+                    NSPopUpButton* sel = [[NSPopUpButton alloc] 
+                        initWithFrame:NSMakeRect(0, 0, 145, 25)
+                            pullsDown:NO];
+                    MZTag* tag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
+                    [sel setCell:[tag editorCell]];
+                    [sel setKeyEquivalent:@"t"];
+                    [sel setKeyEquivalentModifierMask:NSCommandKeyMask];
+                    
+                    if(lastSelection != MZUnsetVideoType)
+                        [sel selectItemWithTag:lastSelection];
+                    [alert setAccessoryView:sel];
+                    [alert addButtonWithTitle:NSLocalizedString(@"OK", @"Button")];
+
+                    NSInteger returnCode = [alert runModal];
+                    lastSelection = [[sel selectedItem] tag];
+
+                    [sel release];
+                    [alert release];
+
+                    if(returnCode == NSAlertFirstButtonReturn)
+                    {
+                        id value = [tag convertValueToObject:&lastSelection];
+                        value = [tag convertObjectForStorage:value];
+                        [preset replaceValue:value forTag:MZVideoTypeTagIdent];
+                        changed = YES;
+                    }
+                }
+            }
+        }
+        if(changed)
+        {
+            if(![self saveWithError:&error])
+            {
+                NSLog(@"Save Error %@", [error localizedDescription]);
+            }
+        }
+        
     }
 }
 

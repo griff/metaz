@@ -193,7 +193,7 @@ static MZMetaLoader* sharedLoader = nil;
     if(missingType>0)
     {
         def = MZUnsetVideoType;
-        NSInteger lastSelection = -1;
+        MZVideoType lastSelection = MZUnsetVideoType;
         BOOL applyAll = NO;
         for(MetaEdits* edits in arr)
         {
@@ -210,7 +210,11 @@ static MZMetaLoader* sharedLoader = nil;
                     NSPopUpButton* sel = [[NSPopUpButton alloc] 
                         initWithFrame:NSMakeRect(0, 0, 145, 25)
                             pullsDown:NO];
-                        
+                    MZTag* tag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
+                    [sel setCell:[tag editorCell]];
+                    [sel setKeyEquivalent:@"t"];
+                    [sel setKeyEquivalentModifierMask:NSCommandKeyMask];
+                    /*    
                     [sel addItemWithTitle:NSLocalizedStringFromTable(@"Movie", @"VideoType", @"Video type")];
                     [sel addItemWithTitle:NSLocalizedStringFromTable(@"Normal", @"VideoType", @"Video type")];
                     [sel addItemWithTitle:NSLocalizedStringFromTable(@"Audiobook", @"VideoType", @"Video type")];
@@ -219,9 +223,9 @@ static MZMetaLoader* sharedLoader = nil;
                     [sel addItemWithTitle:NSLocalizedStringFromTable(@"Short Film", @"VideoType", @"Video type")];
                     [sel addItemWithTitle:NSLocalizedStringFromTable(@"TV Show", @"VideoType", @"Video type")];
                     [sel addItemWithTitle:NSLocalizedStringFromTable(@"Booklet", @"VideoType", @"Video type")];
-                
-                    if(lastSelection>=0)
-                        [sel selectItemAtIndex:lastSelection];
+                    */
+                    if(lastSelection!=MZUnsetVideoType)
+                        [sel selectItemWithTag:lastSelection];
 
                     [alert setAccessoryView:sel];
                     [alert addButtonWithTitle:NSLocalizedString(@"OK", @"Button")];
@@ -235,7 +239,7 @@ static MZMetaLoader* sharedLoader = nil;
                     }
                     
                     NSInteger returnCode = [alert runModal];
-                    lastSelection = [sel indexOfSelectedItem];
+                    lastSelection = [[sel selectedItem] tag];
                     if(missingType>0)
                         applyAll = [[alert suppressionButton] state] == NSOnState;
 
@@ -244,6 +248,8 @@ static MZMetaLoader* sharedLoader = nil;
 
                     if(returnCode == NSAlertFirstButtonReturn)
                     {
+                        def = lastSelection;
+                        /*
                         switch (lastSelection) {
                             case 0:
                                 def = MZMovieVideoType;
@@ -270,6 +276,7 @@ static MZMetaLoader* sharedLoader = nil;
                                 def = MZBookletVideoType;
                                 break;
                         }
+                        */
                     } else
                         return NO;
                 }

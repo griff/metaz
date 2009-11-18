@@ -298,9 +298,7 @@
         }
         
         NSString* coverArtLarge = [item stringForXPath:@"movieTags/coverArtLarge" error:NULL];
-        /*
-        NSString* coverArtSmall = [item stringForXPath:@"movieTags/coverArtSmall" error:NULL];
-        */
+        //NSString* coverArtSmall = [item stringForXPath:@"movieTags/coverArtSmall" error:NULL];
         if([coverArtLarge length] > 0)
         {
             /*

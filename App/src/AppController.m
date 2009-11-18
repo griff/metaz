@@ -407,7 +407,7 @@ NSDictionary* findBinding(NSWindow* window) {
                     [NSCharacterSet whitespaceCharacterSet]];
                 NSNumber* season = [filesController valueForKeyPath:@"selection.pure.tvSeason"];
                 if([season isKindOfClass:[NSNumber class]])
-                    query = [NSString stringWithFormat:@"\"%@\" season %d", show, [season intValue]];
+                    query = [NSString stringWithFormat:@"\"%@\" season %d", show, [season integerValue]];
                 else
                     query = [NSString stringWithFormat:@"\"%@\"", show];
                 break;

@@ -11,7 +11,10 @@
 #import <MetaZKit/MZTimeCode.h>
 #import <MetaZKit/NSDate+UTC.h>
 
-@interface MZVideoTypeTagClass : MZEnumTag {
+@interface MZVideoTypeTagClass : MZEnumTag
+{
+    NSArray* typeNames;
+    NSMutableArray* typeValues;
 }
 - (id)init;
 
@@ -519,7 +522,26 @@ static NSMutableDictionary *sharedTags = nil;
 
 - (id)init
 {
-    return [super initWithIdentifier:MZVideoTypeTagIdent];
+    self = [super initWithIdentifier:MZVideoTypeTagIdent];
+    if(self)
+    {
+        typeNames = [[NSArray alloc] initWithObjects:
+            @"", @"Movie", @"Normal", 
+            @"Audiobook", @"Whacked Bookmark", @"Music Video",
+            @"Short Film", @"TV Show", @"Booklet",
+            nil];
+        NSAssert([typeNames count] == 9, @"Bad number of types");
+        int typeValuesTemp[] = {
+            MZUnsetVideoType, MZMovieVideoType, MZNormalVideoType, 
+            MZAudiobookVideoType, MZWhackedBookmarkVideoType, MZMusicVideoType,
+            MZShortFilmVideoType, MZTVShowVideoType, MZBookletVideoType
+            };
+        typeValues = [[NSMutableArray alloc] init];
+        NSInteger count = [typeNames count];
+        for(int i=0; i<count; i++)
+           [typeValues addObject:[NSNumber numberWithInt:typeValuesTemp[i]]];
+    }
+    return self;
 }
 
 - (NSCell *)editorCell
@@ -545,6 +567,35 @@ static NSMutableDictionary *sharedTags = nil;
 {
     return MZUnsetVideoType;
 }
+
+- (id)objectFromString:(NSString *)str
+{
+    if(!str)
+        return [NSNumber numberWithInt:MZUnsetVideoType];
+    NSInteger i = [typeNames indexOfObject:str];
+    if(i == NSNotFound)
+    {
+        NSLog(@"Found no video type for '%@'", str);
+        return [NSNumber numberWithInt:MZUnsetVideoType];
+    }
+    return [typeValues objectAtIndex:i];
+}
+
+- (NSString *)stringForObject:(id)str
+{
+    if(!str)
+        return @"";
+    MZVideoType type = [str intValue];
+    int count = [typeValues count];
+    for(int i=0; i<count; i++)
+    {
+        NSNumber* num = [typeValues objectAtIndex:i];
+        if(type == [num intValue])
+            return [typeNames objectAtIndex:i];
+    }
+    return @"";
+}
+
 
 @end
 

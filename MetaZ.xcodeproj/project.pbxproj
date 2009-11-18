@@ -59,6 +59,7 @@
 		1B11A02510457B76004C93D3 /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B11A02410457B76004C93D3 /* rb_main.rb */; };
 		1B11A02710457FB2004C93D3 /* AtomicParsleyWrapper.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B11A02610457FB2004C93D3 /* AtomicParsleyWrapper.rb */; };
 		1B11A28B104DF1EC004C93D3 /* FilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A28A104DF1EC004C93D3 /* FilesTableView.m */; };
+		1B20209B10B36EC200EE548A /* VideoType.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B20209910B36EC200EE548A /* VideoType.strings */; };
 		1B5AC76F10532E5200F9CE36 /* MetaEditPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */; };
 		1B6E43C810845F8200DFE165 /* TCSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E43C710845F8200DFE165 /* TCSearch.m */; };
 		1B6E43CB108468B100DFE165 /* MZSearchResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6E43C9108468B100DFE165 /* MZSearchResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -92,7 +93,6 @@
 		1BBB39A91087083600C9E17F /* MZPriorObserverFix.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBB39A71087083600C9E17F /* MZPriorObserverFix.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BBB39AA1087083600C9E17F /* MZPriorObserverFix.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB39A81087083600C9E17F /* MZPriorObserverFix.m */; };
 		1BC0661910AE223A005C2A9F /* PresetsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC0661710AE223A005C2A9F /* PresetsPanel.xib */; };
-		1BC0665A10AE2E65005C2A9F /* VideoType.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BC0665810AE2E65005C2A9F /* VideoType.strings */; };
 		1BC0671410AE44CA005C2A9F /* presets.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BC0671310AE44CA005C2A9F /* presets.png */; };
 		1BCC97021076B73C007EFF57 /* NSInvocation+Wrapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BCC97001076B73C007EFF57 /* NSInvocation+Wrapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BCC97031076B73C007EFF57 /* NSInvocation+Wrapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC97011076B73C007EFF57 /* NSInvocation+Wrapping.m */; };
@@ -259,7 +259,6 @@
 		1B032FDC10B0C62800B28E3A /* sha2.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = sha2.h; sourceTree = "<group>"; };
 		1B032FDD10B0C62800B28E3A /* sha2.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c.preprocessed; fileEncoding = 4; path = sha2.c; sourceTree = "<group>"; };
 		1B03304310B0CD3C00B28E3A /* MetaZKitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MetaZKitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B03304410B0CD3C00B28E3A /* MetaZKitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MetaZKitTest-Info.plist"; sourceTree = "<group>"; };
 		1B03307C10B0FA4800B28E3A /* AmazonPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonPlugin.h; sourceTree = "<group>"; };
 		1B03307D10B0FA4800B28E3A /* AmazonPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonPlugin.m; sourceTree = "<group>"; };
 		1B0330AB10B1010700B28E3A /* NSDate+UTC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+UTC.h"; sourceTree = "<group>"; };
@@ -330,6 +329,7 @@
 		1B11A28A104DF1EC004C93D3 /* FilesTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesTableView.m; sourceTree = "<group>"; };
 		1B11A47C104E627F004C93D3 /* MZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZConstants.h; sourceTree = "<group>"; };
 		1B11A47D104E627F004C93D3 /* MZConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZConstants.m; sourceTree = "<group>"; };
+		1B20209A10B36EC200EE548A /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/VideoType.strings; sourceTree = "<group>"; };
 		1B5AC76D10532E5200F9CE36 /* MetaEditPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaEditPanel.h; sourceTree = "<group>"; };
 		1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditPanel.m; sourceTree = "<group>"; };
 		1B6E43C610845F8200DFE165 /* TCSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSearch.h; sourceTree = "<group>"; };
@@ -382,7 +382,6 @@
 		1BBB39A71087083600C9E17F /* MZPriorObserverFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZPriorObserverFix.h; sourceTree = "<group>"; };
 		1BBB39A81087083600C9E17F /* MZPriorObserverFix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZPriorObserverFix.m; sourceTree = "<group>"; };
 		1BC0661810AE223A005C2A9F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/PresetsPanel.xib; sourceTree = "<group>"; };
-		1BC0665910AE2E65005C2A9F /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = App/English.lproj/VideoType.strings; sourceTree = "<group>"; };
 		1BC0671310AE44CA005C2A9F /* presets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = presets.png; path = App/resources/presets.png; sourceTree = "<group>"; };
 		1BCC97001076B73C007EFF57 /* NSInvocation+Wrapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+Wrapping.h"; sourceTree = "<group>"; };
 		1BCC97011076B73C007EFF57 /* NSInvocation+Wrapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+Wrapping.m"; sourceTree = "<group>"; };
@@ -797,6 +796,7 @@
 		1BA325D210545CA600276F57 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1B20209910B36EC200EE548A /* VideoType.strings */,
 				1BA326A110546F9700276F57 /* MZTags.strings */,
 				1BA325C510545ACA00276F57 /* Info.plist */,
 			);
@@ -862,7 +862,6 @@
 				1BA32591105458EE00276F57 /* Framework */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				1B03304410B0CD3C00B28E3A /* MetaZKitTest-Info.plist */,
 			);
 			name = MetaZ;
 			sourceTree = "<group>";
@@ -887,7 +886,6 @@
 				1B03323610B14B6B00B28E3A /* Reveal.png */,
 				1B03323710B14B6B00B28E3A /* RevealOn.png */,
 				1BC0671310AE44CA005C2A9F /* presets.png */,
-				1BC0665810AE2E65005C2A9F /* VideoType.strings */,
 				1BEA6B80106D66AD004B1A7F /* faded_cow.png */,
 				1BD3D3FB108E694100BE6943 /* faded_cow_error.png */,
 				1BD3D3FC108E694100BE6943 /* faded_cow_fatal.png */,
@@ -1135,6 +1133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BA326A310546F9700276F57 /* MZTags.strings in Resources */,
+				1B20209B10B36EC200EE548A /* VideoType.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1178,7 +1177,6 @@
 				1BD3D3FF108E694100BE6943 /* faded_cow_fatal.png in Resources */,
 				1BD3D400108E694100BE6943 /* faded_cow_multiple.png in Resources */,
 				1BC0661910AE223A005C2A9F /* PresetsPanel.xib in Resources */,
-				1BC0665A10AE2E65005C2A9F /* VideoType.strings in Resources */,
 				1BC0671410AE44CA005C2A9F /* presets.png in Resources */,
 				1B03323810B14B6B00B28E3A /* RevealHover.png in Resources */,
 				1B03323910B14B6B00B28E3A /* Reveal.png in Resources */,
@@ -1447,6 +1445,14 @@
 			name = ImageEdit.xib;
 			sourceTree = "<group>";
 		};
+		1B20209910B36EC200EE548A /* VideoType.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B20209A10B36EC200EE548A /* English */,
+			);
+			name = VideoType.strings;
+			sourceTree = "<group>";
+		};
 		1B9B393D106C0FA200928C83 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1485,14 +1491,6 @@
 				1BC0661810AE223A005C2A9F /* English */,
 			);
 			name = PresetsPanel.xib;
-			sourceTree = "<group>";
-		};
-		1BC0665810AE2E65005C2A9F /* VideoType.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1BC0665910AE2E65005C2A9F /* English */,
-			);
-			name = VideoType.strings;
 			sourceTree = "<group>";
 		};
 		1BD6E7A6105DC4D000E40151 /* Queue.xib */ = {

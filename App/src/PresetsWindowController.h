@@ -15,6 +15,7 @@
     NSArrayController* presetsController;
     NSTableView* presetsView;
     NSSegmentedControl* segmentedControl;
+    NSUndoManager* undoManager;
 }
 - (id)initWithController:(NSArrayController*)controller;
 
@@ -25,9 +26,13 @@
 
 - (void)checkSegmentEnabled;
 
+#pragma mark - actions
 - (IBAction)segmentClicked:(id)sender;
 - (IBAction)applyPreset:(id)sender;
 - (IBAction)addPreset:(id)sender;
 - (IBAction)removePreset:(id)sender;
+
+#pragma mark - as window delegate
+- (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window;
 
 @end

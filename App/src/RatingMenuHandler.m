@@ -90,11 +90,11 @@ NSString* findItem(NSMenu* menu, MZRating rating)
 
 MZRating findRating(MZRating found, NSMenu* menu, NSString* title)
 {
-    if(found!=NSNotFound)
+    if(found!=INT_MAX)
         return found;
     NSMenuItem* item = [menu itemWithTitle:title];
     if(!item || [item tag] < 0)
-        return NSNotFound;
+        return INT_MAX;
     return [item tag];
 }
 
@@ -111,7 +111,7 @@ MZRating findRating(MZRating found, NSMenu* menu, NSString* title)
     rating = findRating(rating, menuCA, newRating);
     rating = findRating(rating, menuAU, newRating);
     rating = findRating(rating, menuNZ, newRating);
-    if(rating == NSNotFound)
+    if(rating == INT_MAX)
         rating = MZNoRating;
         
     MZTag* tag = [MZTag tagForIdentifier:MZRatingTagIdent];

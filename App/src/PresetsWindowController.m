@@ -15,7 +15,10 @@
 {
     self = [super initWithWindowNibName:@"PresetsPanel"];
     if(self)
+    {
         filesController = [controller retain];
+        undoManager = [[NSUndoManager alloc] init];
+    }
     return self;
 }
 
@@ -27,6 +30,7 @@
     [presetsController release];
     [filesController release];
     [presetsView release];
+    [undoManager release];
     [super dealloc];
 }
 
@@ -108,7 +112,15 @@
 {
     MZPreset* preset = [presetsController valueForKeyPath:@"selection.self"];
     if(preset)
+    {
+        /*
+        [undoManager setActionName:NSLocalizedString(@"Apply Preset", @"Apply preset undo name")];
+        NSArray* selected = [filesController selectedObjects];
+        for(MetaEdits* edit in selected)
+            [undoManager 
+        */
         [preset applyToObject:filesController withPrefix:@"selection."];
+    }
 }
 
 - (IBAction)addPreset:(id)sender
@@ -149,6 +161,12 @@
 - (IBAction)removePreset:(id)sender
 {
     [presetsController remove:sender];
+}
+
+#pragma mark - as window delegate
+- (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window
+{
+    return undoManager;
 }
 
 @end

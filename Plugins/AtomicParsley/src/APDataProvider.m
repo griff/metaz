@@ -68,8 +68,7 @@
             @"©nam", @"©ART", @"©day",
             //@"com.apple.iTunes;iTunEXTC", @"©gen",
             @"©alb", @"aART", @"purd", @"desc",
-            @"ldes",
-            //@"stik",
+            @"ldes", @"stik",
             @"tvsh", @"tven",
             @"tvsn", @"tves", @"tvnn", @"purl",
             @"egid", @"catg", @"keyw", @"rtng",
@@ -81,8 +80,7 @@
             MZTitleTagIdent, MZArtistTagIdent, MZDateTagIdent,
             //MZRatingTagIdent, MZGenreTagIdent,
             MZAlbumTagIdent, MZAlbumArtistTagIdent, MZPurchaseDateTagIdent, MZShortDescriptionTagIdent,
-            MZLongDescriptionTagIdent,
-            //MZVideoTypeTagIdent,
+            MZLongDescriptionTagIdent, MZVideoTypeTagIdent,
             MZTVShowTagIdent, MZTVEpisodeIDTagIdent,
             MZTVSeasonTagIdent, MZTVEpisodeTagIdent, MZTVNetworkTagIdent, MZFeedURLTagIdent,
             MZEpisodeURLTagIdent, MZCategoryTagIdent, MZKeywordTagIdent, MZAdvisoryTagIdent,
@@ -100,8 +98,7 @@
             //MZRatingTagIdent,
             MZGenreTagIdent,
             MZAlbumTagIdent, MZAlbumArtistTagIdent, MZPurchaseDateTagIdent, MZShortDescriptionTagIdent,
-            MZLongDescriptionTagIdent,
-            //MZVideoTypeTagIdent,
+            MZLongDescriptionTagIdent, MZVideoTypeTagIdent,
             MZTVShowTagIdent, MZTVEpisodeIDTagIdent,
             MZTVSeasonTagIdent, MZTVEpisodeTagIdent, MZTVNetworkTagIdent, MZFeedURLTagIdent,
             MZEpisodeURLTagIdent, MZCategoryTagIdent, MZKeywordTagIdent, MZAdvisoryTagIdent,
@@ -115,8 +112,7 @@
             //@"contentRating",
             @"genre",
             @"album", @"albumArtist", @"purchaseDate", @"description",
-            @"longDescription",
-            //@"stik",
+            @"longDescription", @"stik",
             @"TVShowName", @"TVEpisode",
             @"TVSeasonNum", @"TVEpisodeNum", @"TVNetwork", @"podcastURL",
             @"podcastGUID",@"category", @"keyword", @"advisory",
@@ -419,7 +415,7 @@
         NSString* tagId = [read_mapping objectForKey:map];
         MZTag* tag = [MZTag tagForIdentifier:tagId];
         NSString* value = [dict objectForKey:map];
-        NSLog(@"%@ %@", tagId, value);
+        //NSLog(@"%@ %@", tagId, value);
         if(value)
             [retdict setObject:[tag convertObjectForStorage:[tag objectFromString:value]] forKey:tagId];
     }
@@ -445,6 +441,7 @@
     }
     
     // Special video type handling (stik)
+    /*
     NSString* stik = [dict objectForKey:@"stik"];
     if(stik)
     {
@@ -472,6 +469,7 @@
                         forKey:MZVideoTypeTagIdent];
         }
     }
+    */
     
     // Special image handling
     NSString* covr = [dict objectForKey:@"covr"];
@@ -661,6 +659,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     id rating = [changes objectForKey:MZRatingTagIdent];
     if(rating)
     {
+        NSLog(@"Rating %@", rating);
         NSString* rate = [rating_write objectForKey:rating];
         if(rate)
         {
@@ -672,6 +671,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     }
     
     // Special video type handling
+    /*
     id stikNo = [changes objectForKey:MZVideoTypeTagIdent];
     if(stikNo)
     {
@@ -714,6 +714,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
             [args addObject:stikStr];
         }
     }
+    */
     
     // Sort tags
     sortTags(args, changes, MZSortTitleTagIdent, @"name");
