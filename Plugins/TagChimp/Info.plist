@@ -12,13 +12,15 @@
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>RELEASE</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleShortVersionString</key>
-	<string>0.7a</string>
 	<key>CFBundleVersion</key>
-	<string>${DATEV}</string>
+	<string>BUILDDATE</string>
 	<key>NSPrincipalClass</key>
 	<string>TagChimpPlugin</string>
+	<key>BuildId</key>
+	<string>BUILDID</string>
 </dict>
 </plist>

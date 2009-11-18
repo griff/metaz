@@ -10,17 +10,12 @@
 
 NSInteger stringByteSort(NSString *a, NSString *b, void *context);
 
+/*
 @interface SignedAwsSearchRequest (Private)
 
-// These are for internal use only
-+ (NSString *)decodeKey:(char *)keyBytes length:(int)length;
-- (NSString *)utcTimestamp;
-- (NSString *)hmacStringForString:(NSString *)signatureInput;
-- (NSString *)queryStringForParameterDictionary:(NSDictionary *)params;
-- (NSString *)signatureInputForQueryString:(NSString *)queryString;
-- (NSMutableDictionary *)preparedParameterDictionaryForInput:(NSDictionary *)inParams;
 
 @end
+*/
 
 @implementation SignedAwsSearchRequest
 
@@ -51,7 +46,7 @@ NSInteger stringByteSort(NSString *a, NSString *b, void *context);
 
 - (NSString *)searchUrlForParameterDictionary:(NSDictionary *)inParams {
 	NSMutableDictionary *params = [self preparedParameterDictionaryForInput:inParams];
-	NSString *queryString = [self queryStringForParameterDictionary:params];
+	NSString *queryString = [[self queryStringForParameterDictionary:params] stringByReplacingOccurrencesOfString:@"\n" withString:@"&"];
 	NSString *signatureInput = [self signatureInputForQueryString:queryString];
 	NSString *signature = [self hmacStringForString:signatureInput];
 	NSString *escapedSignature = [signature gtm_stringByEscapingForURLArgument];
@@ -67,10 +62,9 @@ NSInteger stringByteSort(NSString *a, NSString *b, void *context);
 	[si appendString:@"\n"];
 	[si appendString:self.awsPath];
 	[si appendString:@"\n"];
-	[si appendString:queryString];
+	[si appendString:[queryString stringByReplacingOccurrencesOfString:@"\n" withString:@"&"]];
 	return si;
 }
-
 
 - (NSString *)queryStringForParameterDictionary:(NSDictionary *)params {
 	NSArray *paramNames = [[params allKeys] sortedArrayUsingFunction:stringByteSort context:nil];
@@ -79,7 +73,7 @@ NSInteger stringByteSort(NSString *a, NSString *b, void *context);
 	for (i = 0; i < n; i++) {
 		NSString *paramName = [paramNames objectAtIndex:i];
 		[queryString appendFormat:@"%@=%@", paramName, [[params objectForKey:paramName] gtm_stringByEscapingForURLArgument]];
-		if (i < n - 1) [queryString appendString:@"&"];
+		if (i < n - 1) [queryString appendString:@"\n"];
 	}
 	return queryString;
 }
@@ -116,7 +110,8 @@ NSInteger stringByteSort(NSString *a, NSString *b, void *context);
     {
         [params setValue:aTag       forKey:@"AssociateTag"];
     }
-	[params setValue:[self utcTimestamp]     forKey:@"Timestamp"];
+    if(![params objectForKey:@"Timestamp"])
+        [params setValue:[self utcTimestamp]     forKey:@"Timestamp"];
 	return params;
 }
 

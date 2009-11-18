@@ -11,20 +11,24 @@
 #import <MetaZKit/MetaZKit.h>
 
 @implementation TCSearch
+/*
 @synthesize isFinished;
 @synthesize isExecuting;
+*/
 
 - (id)initWithProvider:(id)theProvider delegate:(id<MZSearchProviderDelegate>)theDelegate url:(NSURL *)url parameters:(NSDictionary *)params;
 {
-    self = [super init];
+    self = [super initWithProvider:theProvider delegate:theDelegate url:url usingVerb:@"GET" parameters:params];
     if(self)
     {
+        /*
         searchURL = [url retain];
         parameters = [params retain];
         provider = [theProvider retain];
         delegate = [theDelegate retain];
         wrapper = [[MZRESTWrapper alloc] init];
         wrapper.delegate = self;
+        */
         NSArray* tags = [NSArray arrayWithObjects:
             MZTitleTagIdent, MZGenreTagIdent,
             MZDirectorTagIdent, MZProducerTagIdent,
@@ -115,6 +119,7 @@
 
 - (void)dealloc
 {
+    /*
     self.isExecuting = NO;
     self.isFinished = YES;
     [parameters release];
@@ -122,11 +127,13 @@
     [wrapper cancelConnection];
     [wrapper release];
     [delegate release];
+    */
     [mapping release];
     //[ratingNames release];
     [super dealloc];
 }
 
+/*
 - (void)start
 {
     self.isExecuting = YES;
@@ -145,7 +152,6 @@
     return YES;
 }
 
-/*
 - (BOOL)isExecuting
 {
     return wrapper.connection != nil;
@@ -155,7 +161,6 @@
 {
     return self.finished;
 }
-*/
 
 - (void)cancel
 {
@@ -163,6 +168,7 @@
     if(self.isExecuting)
         [wrapper cancelConnection];
 }
+*/
 
 #pragma mark - MZRESTWrapperDelegate
 
@@ -375,6 +381,7 @@
     self.isExecuting = NO;
     self.isFinished = YES;
 }
+/*
 
 - (void)wrapper:(MZRESTWrapper *)theWrapper didFailWithError:(NSError *)error
 {
@@ -399,5 +406,6 @@
     self.isExecuting = NO;
     self.isFinished = YES;
 }
+*/
 
 @end

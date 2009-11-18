@@ -35,4 +35,12 @@
 - (id)initWithAccessKeyId:(NSString *)accessKeyId secretAccessKey:(NSString *)secretAccessKey;
 - (NSString *)searchUrlForParameterDictionary:(NSDictionary *)inParams;
 
+// These are for internal use only
++ (NSString *)decodeKey:(char *)keyBytes length:(int)length;
+- (NSString *)utcTimestamp;
+- (NSString *)hmacStringForString:(NSString *)signatureInput;
+- (NSString *)queryStringForParameterDictionary:(NSDictionary *)params;
+- (NSString *)signatureInputForQueryString:(NSString *)queryString;
+- (NSMutableDictionary *)preparedParameterDictionaryForInput:(NSDictionary *)inParams;
+
 @end

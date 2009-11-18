@@ -60,11 +60,14 @@
 - (void)sendRequestTo:(NSURL *)url usingVerb:(NSString *)verb withParameters:(NSDictionary *)parameters
 {
     NSData *body = nil;
-    NSMutableString *params = nil;
+    NSString *params = nil;
     NSString *contentType = @"text/html; charset=utf-8";
     NSURL *finalURL = url;
     if (parameters != nil)
     {
+        parameters = [self preparedParameterDictionaryForInput:parameters];
+        params = [[self queryStringForParameterDictionary:parameters withUrl:url] retain];
+        /*
         NSArray* paramNames = [[parameters allKeys] sortedArrayUsingSelector:@selector(compare:)];
         params = [[NSMutableString alloc] init];
         for (id key in paramNames)
@@ -83,6 +86,7 @@
             CFRelease(encodedValue);
         }
         [params deleteCharactersInRange:NSMakeRange([params length] - 1, 1)];
+        */
     }
     
     if ([verb isEqualToString:@"POST"] || [verb isEqualToString:@"PUT"])
@@ -185,6 +189,47 @@
     return [[[NSXMLDocument alloc] initWithData:receivedData options:0 error:NULL] autorelease];
 }
 
+#pragma mark Protected methods
+- (NSDictionary *)preparedParameterDictionaryForInput:(NSDictionary *)inParams
+{
+    return inParams;
+}
+
+- (NSString *)queryStringForParameterDictionary:(NSDictionary *)parameters withUrl:(NSURL *)url
+{
+    NSMutableDictionary* temp = [NSMutableDictionary dictionary];
+    for(NSString* key in parameters)
+    {
+        //CFStringRef keyStr = (CFStringRef)[key copy];
+        CFStringRef encodedKey = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, 
+                                                                        (CFStringRef)key,
+                                                                        NULL, 
+                                                                        (CFStringRef)@"!*'();:@&=+$,/?%#[]", 
+                                                                        kCFStringEncodingUTF8);
+        CFStringRef value = (CFStringRef)[[parameters objectForKey:key] copy];
+        // Escape even the "reserved" characters for URLs 
+        // as defined in http://www.ietf.org/rfc/rfc2396.txt
+        CFStringRef encodedValue = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, 
+                                                                           value,
+                                                                           NULL, 
+                                                                           (CFStringRef)@"!*'();:@&=+$,/?%#[]", 
+                                                                           kCFStringEncodingUTF8);
+        [temp setObject:(NSString*)encodedValue forKey:(NSString*)encodedKey];
+        CFRelease(value);
+        CFRelease(encodedValue);
+        CFRelease(encodedKey);
+    }
+    NSArray* paramNames = [[temp allKeys] sortedArrayUsingSelector:@selector(compare:)];
+	NSMutableString *queryString = [NSMutableString string];
+	int i, n = [paramNames count];
+	for (i = 0; i < n; i++) {
+		NSString *paramName = [paramNames objectAtIndex:i];
+		[queryString appendFormat:@"%@=%@", paramName, [temp objectForKey:paramName]];
+		if (i < n - 1) [queryString appendString:@"&"];
+	}
+	return queryString;
+}
+
 #pragma mark -
 #pragma mark Private methods
 
@@ -194,8 +239,7 @@
     {
         [self terminateConnection];
         NSURLConnection* conn = [[NSURLConnection alloc] initWithRequest:request
-                                               delegate:self
-                                       startImmediately:YES];
+                                               delegate:self];
         
         if (!conn)
         {
@@ -207,7 +251,14 @@
                 [delegate wrapper:self didFailWithError:error];
             }
         }
-        else {
+        else
+        {
+            if([NSRunLoop currentRunLoop] != [NSRunLoop mainRunLoop])
+            {
+                [conn unscheduleFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+                [conn scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+            }
+            [conn start];
             self.connection = conn;
         }
 

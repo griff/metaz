@@ -25,6 +25,7 @@
 {
     if(!icon)
     {
+        //icon = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://tagchimp.com/favicon.ico"]];
         NSBundle* myBundle = [NSBundle bundleForClass:[self class]];
         NSString* iconImp = [myBundle pathForResource:@"tagChimp" ofType:@"png"];
         icon = [[NSImage alloc] initWithContentsOfFile:iconImp];

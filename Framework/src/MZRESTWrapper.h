@@ -50,5 +50,8 @@
 - (NSDictionary *)responseAsPropertyList;
 - (NSString *)responseAsText;
 - (NSXMLDocument *)responseAsXml;
+
+- (NSDictionary *)preparedParameterDictionaryForInput:(NSDictionary *)inParams;
+- (NSString *)queryStringForParameterDictionary:(NSDictionary *)parameters withUrl:(NSURL *)url;
  
 @end

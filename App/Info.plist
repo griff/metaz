@@ -7,22 +7,22 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeIconFile</key>
-			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>mzplugin</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>MetaZ Plugin</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
-			<key>LSTypeIsPackage</key>
-			<true/>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
 			</array>
+			<key>LSTypeIsPackage</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -138,11 +138,13 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.7a</string>
+	<string>RELEASE</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>${DATEV}</string>
+	<string>BUILDDATE</string>
+	<key>BuildId</key>
+	<string>BUILDID</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2009, Brian Olsen</string>
 	<key>NSMainNibFile</key>
@@ -162,14 +164,14 @@
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
-			<key>UTTypeIconFile</key>
-			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
-			<key>UTTypeDescription</key>
-			<string>MetaZ Plugin</string>
 			<key>UTTypeConformsTo</key>
 			<array>
 				<string>com.apple.plugin</string>
 			</array>
+			<key>UTTypeDescription</key>
+			<string>MetaZ Plugin</string>
+			<key>UTTypeIconFile</key>
+			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
 			<key>UTTypeIdentifier</key>
 			<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
 			<key>UTTypeTagSpecification</key>
@@ -184,12 +186,12 @@
 	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict>
-			<key>UTTypeDescription</key>
-			<string>protected MPEG-4 movie</string>
 			<key>UTTypeConformsTo</key>
 			<array>
 				<string>public.movie</string>
 			</array>
+			<key>UTTypeDescription</key>
+			<string>protected MPEG-4 movie</string>
 			<key>UTTypeIdentifier</key>
 			<string>com.apple.protected-mpeg-4-video</string>
 			<key>UTTypeTagSpecification</key>

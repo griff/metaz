@@ -6,22 +6,24 @@
 	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleGetInfoString</key>
+	<string>Copyright 2009 Brian Olsen</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.maven-group.${PRODUCT_NAME:identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>FMWK</string>
 	<key>CFBundleName</key>
 	<string>${PRODUCT_NAME}</string>
+	<key>CFBundlePackageType</key>
+	<string>FMWK</string>
+	<key>CFBundleShortVersionString</key>
+	<string>RELEASE</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleShortVersionString</key>
-	<string>0.7a</string>
 	<key>CFBundleVersion</key>
-	<string>${DATEV}</string>
-	<key>CFBundleGetInfoString</key>
-	<string>Copyright 2009 Brian Olsen</string>
+	<string>BUILDDATE</string>
+	<key>BuildId</key>
+	<string>BUILDID</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2009, Brian Olsen</string>
 </dict>
