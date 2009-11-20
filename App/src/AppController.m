@@ -207,6 +207,7 @@ NSDictionary* findBinding(NSWindow* window) {
     NSMenu* menu = [[NSMenu alloc] initWithTitle:
         NSLocalizedString(@"Search terms", @"Search menu title")];
     [menu addItemWithTitle:[menu title] action:nil keyEquivalent:@""];
+    /*
     if([profile mainTag])
     {
         MZTag* tag = [MZTag tagForIdentifier:[profile mainTag]];
@@ -214,6 +215,7 @@ NSDictionary* findBinding(NSWindow* window) {
         [mainItem setState:NSOnState];
         [mainItem setIndentationLevel:1];
     }
+    */
     NSInteger i = 0;
     for(NSString* tagId in [profile tags])
     {
@@ -334,8 +336,8 @@ NSDictionary* findBinding(NSWindow* window) {
     NSString* term = [[searchField stringValue] 
         stringByTrimmingCharactersInSet:
             [NSCharacterSet whitespaceCharacterSet]];
-    NSMutableDictionary* dict = [activeProfile searchTerms];
-    [dict setObject:term forKey:[activeProfile mainTag]];
+    NSMutableDictionary* dict = [activeProfile searchTerms:term];
+    //[dict setObject:term forKey:[activeProfile mainTag]];
     [searchIndicator startAnimation:searchField];
     [searchController setSortDescriptors:nil];
     searches++;

@@ -21,6 +21,8 @@
     BOOL isFinished;
     BOOL isExecuting;
 }
++ (Class)restWrapper;
+
 @property(assign) BOOL isFinished;
 @property(assign) BOOL isExecuting;
 

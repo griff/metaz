@@ -73,6 +73,7 @@
 		1B11A02510457B76004C93D3 /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B11A02410457B76004C93D3 /* rb_main.rb */; };
 		1B11A02710457FB2004C93D3 /* AtomicParsleyWrapper.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B11A02610457FB2004C93D3 /* AtomicParsleyWrapper.rb */; };
 		1B11A28B104DF1EC004C93D3 /* FilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A28A104DF1EC004C93D3 /* FilesTableView.m */; };
+		1B15A60E10B608D100EC0FBF /* AmazonSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B15A60D10B608D100EC0FBF /* AmazonSearch.m */; };
 		1B20209B10B36EC200EE548A /* VideoType.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B20209910B36EC200EE548A /* VideoType.strings */; };
 		1B5AC76F10532E5200F9CE36 /* MetaEditPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */; };
 		1B6E43C810845F8200DFE165 /* TCSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E43C710845F8200DFE165 /* TCSearch.m */; };
@@ -384,6 +385,9 @@
 		1B11A28A104DF1EC004C93D3 /* FilesTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesTableView.m; sourceTree = "<group>"; };
 		1B11A47C104E627F004C93D3 /* MZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZConstants.h; sourceTree = "<group>"; };
 		1B11A47D104E627F004C93D3 /* MZConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZConstants.m; sourceTree = "<group>"; };
+		1B15A60C10B608D100EC0FBF /* AmazonSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonSearch.h; sourceTree = "<group>"; };
+		1B15A60D10B608D100EC0FBF /* AmazonSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonSearch.m; sourceTree = "<group>"; };
+		1B15A62610B6316000EC0FBF /* Access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access.h; path = Plugins/Amazon/Access.h; sourceTree = SOURCE_ROOT; };
 		1B20209A10B36EC200EE548A /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/VideoType.strings; sourceTree = "<group>"; };
 		1B5AC76D10532E5200F9CE36 /* MetaEditPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaEditPanel.h; sourceTree = "<group>"; };
 		1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditPanel.m; sourceTree = "<group>"; };
@@ -674,6 +678,7 @@
 		1B032F5510B0BDC000B28E3A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1B15A62610B6316000EC0FBF /* Access.h */,
 				1B03307C10B0FA4800B28E3A /* AmazonPlugin.h */,
 				1B03307D10B0FA4800B28E3A /* AmazonPlugin.m */,
 				1B032F5610B0BDEE00B28E3A /* SignedAwsSearchRequest.h */,
@@ -694,6 +699,8 @@
 				1B82684F10B3EE0300DF101B /* AmazonRequest.m */,
 				1B8268A310B3F82400DF101B /* AmazonSearchProvider.h */,
 				1B8268A410B3F82400DF101B /* AmazonSearchProvider.m */,
+				1B15A60C10B608D100EC0FBF /* AmazonSearch.h */,
+				1B15A60D10B608D100EC0FBF /* AmazonSearch.m */,
 			);
 			name = Classes;
 			path = Plugins/Amazon/src;
@@ -1303,7 +1310,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Release/next_release",
-				"$(SRCROOT)/Plugins/Amazon/Access",
+				"$(SRCROOT)/Plugins/Amazon/Access.h",
 			);
 			outputPaths = (
 				"$(TARGET_BUILD_DIR)/include/PlistMacros.h",
@@ -1311,7 +1318,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -o errexit\n\nPATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin\nbuildid=`/opt/local/bin/git log -n1 --pretty=oneline --format=%h`\nrelease=`cat $SCRIPT_INPUT_FILE_0`\n\necho \"#define BUILDID $buildid\" > $SCRIPT_OUTPUT_FILE_0\necho \"#define BUILDDATE `date +%y.%m.%d.%H`\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define WHOAMI `whoami`\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define RELEASE $release\" >> $SCRIPT_OUTPUT_FILE_0 \ncat $SCRIPT_OUTPUT_FILE_1 >> $SCRIPT_OUTPUT_FILE_0 \n\n# Delete the intermediate Info.plist so that Xcode re-preprocesses the Info.plist with our updated macros.\n# Use -f because after a clean build, this file doesn't exist yet, so a plain rm would fail and stop the build.\nrm -f \"${CONFIGURATION_TEMP_DIR}/MetaZ.build/Preprocessed-Info.plist\"\n";
+			shellScript = "set -o errexit\n\nPATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin\nbuildid=`/opt/local/bin/git log -n1 --pretty=oneline --format=%h`\nrelease=`cat $SCRIPT_INPUT_FILE_0`\n\necho \"#define BUILDID $buildid\" > $SCRIPT_OUTPUT_FILE_0\necho \"#define BUILDDATE `date +%y.%m.%d.%H`\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define WHOAMI `whoami`\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define RELEASE $release\" >> $SCRIPT_OUTPUT_FILE_0 \ncat $SCRIPT_INPUT_FILE_1 >> $SCRIPT_OUTPUT_FILE_0 \n\n# Delete the intermediate Info.plist so that Xcode re-preprocesses the Info.plist with our updated macros.\n# Use -f because after a clean build, this file doesn't exist yet, so a plain rm would fail and stop the build.\nrm -f \"${CONFIGURATION_TEMP_DIR}/MetaZ.build/Preprocessed-Info.plist\"\n";
 		};
 		1B8262A710B39DE400DF101B /* Make Disk Image */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1380,6 +1387,7 @@
 				1B032FDE10B0C62800B28E3A /* sha2.c in Sources */,
 				1B82685010B3EE0300DF101B /* AmazonRequest.m in Sources */,
 				1B8268A510B3F82400DF101B /* AmazonSearchProvider.m in Sources */,
+				1B15A60E10B608D100EC0FBF /* AmazonSearch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,7 @@
 //
 
 #import "AmazonPlugin.h"
-
+#import "AmazonSearchProvider.h"
 
 @implementation AmazonPlugin
 
@@ -26,11 +26,8 @@
     self = [super init];
     if(self)
     {
-        /*
-        TCSearchProvider* a = [[[TCSearchProvider alloc] init] autorelease];
+        AmazonSearchProvider* a = [[[AmazonSearchProvider alloc] init] autorelease];
         searchProviders  = [[NSArray arrayWithObject:a] retain];
-        */
-        searchProviders = [[NSArray array] retain];
     }
     return self;
 }

@@ -8,9 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaZKit.h>
+#import "AmazonSearch.h"
 
 @interface AmazonSearchProvider : NSObject <MZSearchProvider>
 {
+    AmazonSearch* search;
     NSImage* icon;
     NSArray* supportedSearchTags;
     NSMenu* menu;

@@ -28,14 +28,14 @@
 {
     return [self profileWithIdentifier:@"unknown" mainTag:MZTitleTagIdent 
         tag:[NSArray arrayWithObjects:
-            MZChaptersTagIdent, nil]];
+            MZTitleTagIdent, MZChaptersTagIdent, nil]];
 }
 
 + (SearchProfile*)tvShowProfile
 {
     return [self profileWithIdentifier:@"tvShow" mainTag:MZTitleTagIdent
         tag:[NSArray arrayWithObjects:
-            MZVideoTypeTagIdent, MZTVShowTagIdent, 
+            MZTitleTagIdent, MZVideoTypeTagIdent, MZTVShowTagIdent, 
             MZTVSeasonTagIdent, MZTVEpisodeTagIdent, MZChaptersTagIdent, nil]];
 }
 
@@ -43,7 +43,7 @@
 {
     return [self profileWithIdentifier:@"movie" mainTag:MZTitleTagIdent
         tag:[NSArray arrayWithObjects:
-            MZVideoTypeTagIdent, MZChaptersTagIdent, nil]];
+            MZTitleTagIdent, MZVideoTypeTagIdent, MZChaptersTagIdent, nil]];
 }
 
 + (id)profileWithIdentifier:(NSString *)ident mainTag:(NSString *)main tag:(NSArray *)tags;
@@ -130,14 +130,18 @@
     [sender setState:(state.state ? NSOnState : NSOffState)];
 }
 
-- (NSMutableDictionary *)searchTerms
+- (NSMutableDictionary *)searchTerms:(NSString *)mainTerm
 {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
     for(ProfileState* state in tags)
     {
         if(state.state)
         {
-            id value = [self valueForUndefinedKey:state.tag];
+            id value;
+            if([state.tag isEqual:mainTag])
+                value = mainTerm;
+            else
+                value = [self valueForUndefinedKey:state.tag];
             if(value != nil && value != [NSNull null] && value != NSNoSelectionMarker &&
                 value != NSMultipleValuesMarker && value != NSNotApplicableMarker)
             {

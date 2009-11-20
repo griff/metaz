@@ -29,6 +29,6 @@
 
 - (void)setCheckObject:(id)obj withPrefix:(NSString *)prefix;
 - (void)switchItem:(NSMenuItem *)sender;
-- (NSMutableDictionary *)searchTerms;
+- (NSMutableDictionary *)searchTerms:(NSString *)mainTerm;
 
 @end

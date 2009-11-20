@@ -10,6 +10,12 @@
 #import "MZSearchProvider.h"
 
 @implementation MZRESTSearch
+
++ (Class)restWrapper
+{
+    return [MZRESTWrapper class];
+}
+
 @synthesize isFinished;
 @synthesize isExecuting;
 
@@ -23,7 +29,7 @@
         parameters = [params retain];
         provider = [theProvider retain];
         delegate = [theDelegate retain];
-        wrapper = [[MZRESTWrapper alloc] init];
+        wrapper = [[[[self class] restWrapper] alloc] init];
         wrapper.delegate = self;
     }
     return self;
