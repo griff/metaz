@@ -289,6 +289,8 @@ static MZPluginController *gInstance = NULL;
     if(!provider)
         return nil;
     MetaLoaded* loaded = [provider loadFromFile:path];
+    if(!loaded)
+        return nil;
     id next = nil;
     if([[self delegate] respondsToSelector:@selector(pluginController:extraMetaDataForProvider:loaded:)])
     {
@@ -311,10 +313,12 @@ static MZPluginController *gInstance = NULL;
 - (id<MZDataWriteController>)saveChanges:(MetaEdits *)data
                                 delegate:(id<MZDataWriteDelegate>)theDelegate
 {
+    /*
     NSFileManager* mgr = [NSFileManager defaultManager];
     BOOL isDir;
     if(![mgr fileExistsAtPath:[data loadedFileName] isDirectory:&isDir] || isDir )
         return nil;
+    */
     id<MZDataProvider> provider = [data owner];
     id<MZDataWriteDelegate> otherDelegate = [MZWriteNotification notifierWithDelegate:theDelegate];
     return [provider saveChanges:data delegate:otherDelegate];
@@ -382,16 +386,17 @@ static MZPluginController *gInstance = NULL;
 - (void)dataProvider:(id<MZDataProvider>)provider
           controller:(id<MZDataWriteController>)controller
         writeCanceledForEdits:(MetaEdits *)edits
+            status:(int)status
 {
-    NSArray* keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, MZDataWriteControllerNotificationKey, nil];
-    NSArray* values = [NSArray arrayWithObjects:edits, controller, nil];
+    NSArray* keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, MZDataWriteControllerNotificationKey, MZDataWriteControllerStatusKey, nil];
+    NSArray* values = [NSArray arrayWithObjects:edits, controller, [NSNumber numberWithInt:status], nil];
     NSDictionary* userInfo = [NSDictionary dictionaryWithObjects:values forKeys:keys];
     [[NSNotificationCenter defaultCenter]
             postNotificationName:MZDataProviderWritingCanceledNotification
                           object:provider
                         userInfo:userInfo];
-    if([delegate respondsToSelector:@selector(dataProvider:controller:writeCanceledForEdits:)])
-        [delegate dataProvider:provider controller:controller writeCanceledForEdits:edits];
+    if([delegate respondsToSelector:@selector(dataProvider:controller:writeCanceledForEdits:status:)])
+        [delegate dataProvider:provider controller:controller writeCanceledForEdits:edits status:status];
 }
 
 - (void)dataProvider:(id<MZDataProvider>)provider

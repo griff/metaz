@@ -9,6 +9,7 @@
 #import "MZWriteQueue.h"
 #import "MZWriteQueue+Private.h"
 #import "MZWriteQueueStatus.h"
+#import "MZWriteQueueStatus+Private.h"
 
 
 @implementation MZWriteQueue
@@ -123,7 +124,15 @@ static MZWriteQueue* sharedQueue = nil;
                 stopWaitCount++;
         }
         if(stopWaitCount==0)
+        {
             status = QueueStopped;
+            for(MZWriteQueueStatus* sts in queueItems)
+            {
+                if(sts.hasRun && !sts.completed)
+                    sts.hasRun = NO;
+            }
+            [self saveQueueWithError:NULL];
+        }
         removeWhenTrashFailes = UseDefaultTrashHandling;
         [self didChangeValueForKey:@"status"];
     }
@@ -132,7 +141,7 @@ static MZWriteQueue* sharedQueue = nil;
 - (BOOL)hasNextItem
 {
     for(id obj in queueItems)
-        if([obj writing] == 0 && ![obj completed])
+        if([obj writing] == 0 && ![obj hasRun])
             return YES;
     return NO;
 }
@@ -144,7 +153,7 @@ static MZWriteQueue* sharedQueue = nil;
     for(int i=0; i<len; i++)
     {
         sts = [queueItems objectAtIndex:i];
-        if(![sts completed])
+        if(![sts hasRun])
         {
             [self willChangeValueForKey:@"pendingItems"];
             [sts startWriting];
@@ -167,6 +176,13 @@ static MZWriteQueue* sharedQueue = nil;
             [self willChangeValueForKey:@"status"];
             status = QueueStopped;
             [self didChangeValueForKey:@"status"];
+
+            for(MZWriteQueueStatus* sts in queueItems)
+            {
+                if(sts.hasRun && !sts.completed)
+                    sts.hasRun = NO;
+            }
+            [self saveQueueWithError:NULL];
         }
     }
 }

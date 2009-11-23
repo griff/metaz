@@ -188,7 +188,13 @@ static MZMetaLoader* sharedLoader = nil;
             [arr addObject:edits];
         }
         else
+        {
+            NSString* baseFile = [fileName lastPathComponent];
+            NSRunCriticalAlertPanel([NSString stringWithFormat:
+                NSLocalizedString(@"The file '%@' is in an unsupported format.", @"Bad file title"), baseFile],
+                @"", NSLocalizedString(@"OK", @"Button text"), nil, nil);
             NSLog(@"Could no load file '%@'", fileName);
+        }
     }
     if(missingType>0)
     {

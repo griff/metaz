@@ -15,6 +15,7 @@
     int writing;
     NSString* status;
     BOOL completed;
+    BOOL hasRun;
     BOOL removeOnCancel;
     id<MZDataWriteController> controller;
 }
@@ -23,6 +24,7 @@
 @property(readonly,copy) NSString* status;
 @property(readonly) int writing;
 @property(readonly) BOOL completed;
+@property(readonly) BOOL hasRun;
 @property(readonly) id<MZDataWriteController> controller;
 
 + (id)statusWithEdits:(MetaEdits *)edits;

@@ -7,20 +7,10 @@
 //
 
 #import "MZWriteQueueStatus.h"
+#import "MZWriteQueueStatus+Private.h"
 #import "MZWriteQueue.h"
 #import "MZWriteQueue+Private.h"
 #import "MZMetaLoader.h"
-
-@interface MZWriteQueueStatus()
-
-@property(readwrite) int percent;
-@property(readwrite,copy) NSString* status;
-@property(readwrite) int writing;
-@property(readwrite) BOOL completed;
-
-- (void)triggerChangeNotification:(int)changes;
-
-@end
 
 @implementation MZWriteQueueStatus
 @synthesize edits;
@@ -29,6 +19,7 @@
 @synthesize writing;
 @synthesize controller;
 @synthesize completed;
+@synthesize hasRun;
 
 + (id)statusWithEdits:(MetaEdits *)edits
 {
@@ -70,6 +61,9 @@
     //[self didChangeValueForKey:@"writing"];
     if(!controller)
     {
+        self.status = [NSString stringWithFormat:
+            NSLocalizedString(@"Input file '%@' not found", @"Write input file missing"),
+            [[edits loadedFileName] lastPathComponent] ];
         [self finished];
     }
 }
@@ -101,15 +95,12 @@
 - (void)finished
 {
     MZWriteQueue* q = [MZWriteQueue sharedQueue];
-    //[self willChangeValueForKey:@"writing"];
     self.writing = 0;
     [self triggerChangeNotification:100-self.percent];
-    //[self didChangeValueForKey:@"writing"];
     [q willChangeValueForKey:@"completedItems"];
-    //[self willChangeValueForKey:@"completed"];
-    self.completed = YES;
-    //[self didChangeValueForKey:@"completed"];
-    self.status = NSLocalizedString(@"Completed", @"Write queue status text");
+    self.hasRun = YES;
+    if(self.completed)
+        self.status = NSLocalizedString(@"Completed", @"Write queue status text");
     [q didChangeValueForKey:@"completedItems"];
     [[MZWriteQueue sharedQueue] startNextItem];
 }
@@ -129,16 +120,29 @@ writeStartedForEdits:(MetaEdits *)edits
 - (void)dataProvider:(id<MZDataProvider>)provider 
           controller:(id<MZDataWriteController>)controller
         writeCanceledForEdits:(MetaEdits *)theEdits
+              status:(int)theStatus
 {
     //[self willChangeValueForKey:@"writing"];
     self.writing = 0;
     //[self didChangeValueForKey:@"writing"];
-    self.status = NSLocalizedString(@"Stopped", @"Write queue status text");
-    [self triggerChangeNotification:-self.percent]; // Revert progress
-    if(removeOnCancel)
+    if(theStatus == 0)
+        self.status = NSLocalizedString(@"Stopped", @"Write queue status text");
+    else
     {
-        [[MZMetaLoader sharedLoader] reloadEdits:edits];
-        [[MZWriteQueue sharedQueue] removeObjectFromQueueItems:self];
+        self.status = [NSString stringWithFormat:
+            NSLocalizedString(@"Failed with exit code %d", @"Write failed error"),
+            theStatus];
+        self.hasRun = YES;
+    }
+
+    [self triggerChangeNotification:-self.percent]; // Revert progress
+    if(removeOnCancel || theStatus != 0)
+    {
+        if(removeOnCancel)
+        {
+            [[MZMetaLoader sharedLoader] reloadEdits:edits];
+            [[MZWriteQueue sharedQueue] removeObjectFromQueueItems:self];
+        }
         [[MZWriteQueue sharedQueue] startNextItem];
     }
     else
@@ -242,18 +246,27 @@ writeStartedForEdits:(MetaEdits *)edits
         
         if(![mgr moveItemAtPath:[edits savedTempFileName] toPath:[edits savedFileName] error:&error])
         {
-            NSLog(@"Failed to move file to final location %@", [error localizedDescription]);
-            error = nil;
+            NSString* msg = [NSString stringWithFormat:
+                NSLocalizedString(@"Failed to move file to final location: %@", @"Move to final location error"),
+                [error localizedDescription]];
+            NSLog(@"Failed to move file to final location: %@", [error localizedDescription]);
+            self.status = msg;
+            //error = nil;
         }
     }
     else if(![[edits loadedFileName] isEqualToString:[edits savedFileName]])
     {
         if(![mgr moveItemAtPath:[edits loadedFileName] toPath:[edits savedFileName] error:&error])
         {
-            NSLog(@"Failed to move file to final location %@", [error localizedDescription]);
-            error = nil;
+            NSString* msg = [NSString stringWithFormat:
+                NSLocalizedString(@"Failed to move file to final location: %@", @"Move to final location error"),
+                [error localizedDescription]];
+            NSLog(@"Failed to move file to final location: %@", [error localizedDescription]);
+            self.status = msg;
+            //error = nil;
         }
     }
+    self.completed = error == nil;
     [self finished];
 }
 

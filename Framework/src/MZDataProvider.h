@@ -21,7 +21,7 @@
 @protocol MZDataWriteDelegate <NSObject>
 @optional
 - (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataWriteController>)controller writeStartedForEdits:(MetaEdits *)edits;
-- (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataWriteController>)controller writeCanceledForEdits:(MetaEdits *)edits;
+- (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataWriteController>)controller writeCanceledForEdits:(MetaEdits *)edits status:(int)status;
 - (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataWriteController>)controller writeFinishedForEdits:(MetaEdits *)edits percent:(int)percent;
 - (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataWriteController>)controller writeFinishedForEdits:(MetaEdits *)edits;
 @end

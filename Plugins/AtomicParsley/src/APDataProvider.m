@@ -388,7 +388,13 @@
     
     NSData* data = [[out fileHandleForReading] readDataToEndOfFile];
     [task waitUntilExit];
+    int status = [task terminationStatus];
     [task release];
+    if (status != 0)
+    {
+        NSLog(@"Task failed. %d", status);
+        return nil;
+    }
     NSString* str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     NSArray* atoms = [str componentsSeparatedByString:@"Atom \""];
     

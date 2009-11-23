@@ -55,8 +55,9 @@
             @"movieTags/info/genre", 
             nil];
         mapping = [[NSDictionary alloc] initWithObjects:tags forKeys:keys];
-        [wrapper setAccessKeyId:AMAZON_ACCESS_ID];
-        [wrapper setSecretAccessKey:AMAZON_ACCESS_KEY];
+        AmazonRequest* req = (AmazonRequest*)wrapper;
+        [req setAccessKeyId:AMAZON_ACCESS_ID];
+        [req setSecretAccessKey:AMAZON_ACCESS_KEY];
     }
     return self;
 }
@@ -78,8 +79,8 @@
     if(![errorMessage isEqual:@""])
         NSLog(@"Amazon error: %@", errorMessage);
         
-    NSString* totalResults = [doc stringForXPath:@"/ItemSearchResponse/Items/TotalResults" error:NULL];
-    NSString* totalPages = [doc stringForXPath:@"/ItemSearchResponse/Items/TotalPages" error:NULL];
+    //NSString* totalResults = [doc stringForXPath:@"/ItemSearchResponse/Items/TotalResults" error:NULL];
+    //NSString* totalPages = [doc stringForXPath:@"/ItemSearchResponse/Items/TotalPages" error:NULL];
 
     NSArray* items = [doc nodesForXPath:@"/ItemSearchResponse/Items/Item" error:NULL];
     NSMutableArray* results = [NSMutableArray array];
@@ -100,7 +101,7 @@
             }
         }
 
-        NSString* asin = [dict objectForKey:ASINTagIdent];
+        //NSString* asin = [dict objectForKey:ASINTagIdent];
 
         NSArray* reviews = [item nodesForXPath:@"EditorialReviews/EditorialReview/Content" error:NULL];
         if([reviews count] > 0)

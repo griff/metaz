@@ -113,6 +113,10 @@
 - (void)taskTerminated:(NSNotification *)note
 {
     int status = [[note object] terminationStatus];
+    if(status != 0)
+    {
+        NSLog(@"Terminated bad %d", status);
+    }
 
     NSFileManager* mgr = [NSFileManager defaultManager];
     NSError* error = nil;
@@ -139,8 +143,8 @@
             NSLog(@"Failed to remove temp write file %@", [error localizedDescription]);
             error = nil;
         }
-        if([delegate respondsToSelector:@selector(dataProvider:controller:writeCanceledForEdits:)])
-            [delegate dataProvider:provider controller:self writeCanceledForEdits:edits];
+        if([delegate respondsToSelector:@selector(dataProvider:controller:writeCanceledForEdits:status:)])
+            [delegate dataProvider:provider controller:self writeCanceledForEdits:edits status:status];
     }
     else
     {
