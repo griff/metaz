@@ -19,6 +19,7 @@
 #import <MetaZKit/MZPluginController.h>
 #import <MetaZKit/MZTimeCode.h>
 #import <MetaZKit/MZTimedTextItem.h>
+#import <MetaZKit/MetaEditsUndoManager.h>
 #import <MetaZKit/MZRESTWrapper.h>
 #import <MetaZKit/MZRESTSearch.h>
 #import <MetaZKit/MZRemoteData.h>

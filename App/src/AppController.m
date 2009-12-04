@@ -495,16 +495,14 @@ NSDictionary* findBinding(NSWindow* window) {
                  selector:@selector(presetsDidClose:)
                      name:NSWindowWillCloseNotification
                    object:[presetsController window]];
+    }
+    if(![[presetsController window] isVisible])
+    {
         [[presetsController window] setFrameUsingName:@"presetsPanel"];
         [presetsController showWindow:self];
     }
     else
-    {
-        [presetsController retain];
         [presetsController close];
-        [presetsController release];
-    }
-
 }
 
 #pragma mark - user interface validation
@@ -584,12 +582,14 @@ NSDictionary* findBinding(NSWindow* window) {
 - (void)presetsDidClose:(NSNotification *)note
 {
     [[note object] saveFrameUsingName:@"presetsPanel"];
+    /*
     [[NSNotificationCenter defaultCenter] 
            removeObserver:self 
                      name:NSWindowWillCloseNotification
                    object:[note object]];
     [presetsController release];
     presetsController = nil;
+    */
 }
 
 - (void)openPanelDidEnd:(NSOpenPanel *)oPanel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo {

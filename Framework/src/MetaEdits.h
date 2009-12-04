@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaData.h>
 #import <MetaZKit/MZDynamicObject.h>
+#import <MetaZKit/MetaEditsUndoManager.h>
 
 #define MZMetaEditsDataType @"MZMetaEditsDataType"
 
@@ -16,18 +17,15 @@
     NSMutableDictionary* changes;
     NSObject<MetaData>* provider;
     NSObject<TagData>* pure;
-    NSUndoManager* undoManager;
-    NSUndoManager* multiUndoManager;
+    MetaEditsUndoManager* undoManager;
 }
-@property(readonly) NSUndoManager* undoManager;
-@property(retain)   NSUndoManager* multiUndoManager;
+@property(readonly) MetaEditsUndoManager* undoManager;
 @property(readonly) NSDictionary* changes;
 @property(readonly) NSObject<MetaData>* provider;
 @property(readonly) id<TagData> pure;
 
 - (id)initWithProvider:(id<MetaData>)aProvider;
 
-- (NSUndoManager *)undoManager;
 - (NSString *)loadedFileName;
 - (NSString *)savedFileName;
 - (NSString *)savedTempFileName;

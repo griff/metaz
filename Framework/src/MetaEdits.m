@@ -16,7 +16,6 @@
 
 @implementation MetaEdits
 @synthesize undoManager;
-@synthesize multiUndoManager;
 @synthesize changes;
 @synthesize provider;
 @synthesize pure;
@@ -27,8 +26,7 @@
     self = [super init];
     if(self)
     {
-        undoManager = [[NSUndoManager alloc] init];
-        multiUndoManager = nil;
+        undoManager = [[MetaEditsUndoManager alloc] init];
         provider = [aProvider retain];
         changes = [[NSMutableDictionary alloc] init];
         pure = [[PureMetaEdits alloc] initWithEdits:self];
@@ -60,7 +58,6 @@
     [changes release];
     [provider release];
     [undoManager release];
-    [multiUndoManager release];
     [super dealloc];
 }
 
@@ -157,6 +154,7 @@
                     NSLocalizedString(@"Reverted %@", @"Undo reverted action"),
                     actionKey]];
         }
+        /*
         if(multiUndoManager)
         {
             if([multiUndoManager isUndoing])
@@ -176,6 +174,7 @@
                         actionKey]];
             }
         }
+        */
         
         if([changes count] == 1)
             [self willChangeValueForKey:@"changed"];
@@ -202,6 +201,7 @@
             [NSString stringWithFormat:
                 NSLocalizedString(@"Set %@", @"Undo set action"),
                 actionKey]];
+        /*
         if(multiUndoManager)
         {
             if([multiUndoManager isUndoing])
@@ -213,6 +213,7 @@
                     NSLocalizedString(@"Set %@", @"Undo set action"),
                     actionKey]];
         }
+        */
         
         if([changes count] == 0)
             [self willChangeValueForKey:@"changed"];
@@ -264,6 +265,7 @@
             [NSString stringWithFormat:
                 NSLocalizedString(@"Set %@", @"Undo set action"),
                 actionKey]];
+        /*
         if(multiUndoManager)
         {
             if([multiUndoManager isUndoing])
@@ -275,6 +277,7 @@
                     NSLocalizedString(@"Set %@", @"Undo set action"),
                     actionKey]];
         }
+        */
     } else
     {
         [[[self undoManager] prepareWithInvocationTarget:self] setterValue:oldValue forKey:aKey];
@@ -286,6 +289,7 @@
             [NSString stringWithFormat:
                 NSLocalizedString(@"Changed %@", @"Undo changed action"),
                 actionKey]];
+        /*
         if(multiUndoManager)
         {
             if([multiUndoManager isUndoing])
@@ -297,6 +301,7 @@
                     NSLocalizedString(@"Changed %@", @"Undo changed action"),
                     actionKey]];
         }
+        */
     }
     
     NSString* changedKey = [aKey stringByAppendingString:@"Changed"];

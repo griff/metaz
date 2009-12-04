@@ -13,6 +13,7 @@
     NSArrayController* filesController;
     NSUndoManager* multipleUndoManager;
     MetaEdits* selection;
+    NSArray* selected;
 }
 @property (nonatomic, retain) IBOutlet NSArrayController* filesController;
 

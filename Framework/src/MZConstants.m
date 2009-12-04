@@ -72,8 +72,11 @@ NSString* const MZDataProviderWritingStartedNotification = @"MZDataProviderWriti
 NSString* const MZDataProviderWritingCanceledNotification = @"MZDataProviderWritingCanceledNotification";
 NSString* const MZDataProviderWritingFinishedNotification = @"MZDataProviderWritingFinishedNotification";
 NSString* const MZSearchFinishedNotification = @"MZSearchFinishedNotification";
+NSString* const MZUndoActionNameNotification = @"MZUndoActionNameNotification";
+
 
 NSString* const MZMetaEditsNotificationKey = @"MZMetaEditsNotificationKey";
+NSString* const MZUndoActionNameKey = @"MZUndoActionNameKey";
 NSString* const MZDataWriteControllerNotificationKey = @"MZDataWriteControllerNotificationKey";
 NSString* const MZDataWriteControllerStatusKey = @"MZDataWriteControllerStatusKey";
 

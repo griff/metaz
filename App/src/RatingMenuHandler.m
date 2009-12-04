@@ -104,7 +104,7 @@ MZRating findRating(MZRating found, NSMenu* menu, NSString* title)
     if(value == NSNoSelectionMarker || value == NSNotApplicableMarker)
         return;
 
-    MZRating rating = findRating(NSNotFound, [ratingButton menu], newRating);
+    MZRating rating = findRating(INT_MAX, [ratingButton menu], newRating);
     rating = findRating(rating, menuUK, newRating);
     rating = findRating(rating, menuDE, newRating);
     rating = findRating(rating, menuIE, newRating);

@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "UndoTableView.h"
 
-
-@interface SearchTableView : NSTableView
+@interface SearchTableView : UndoTableView
 {
     NSArrayController* searchController;
 

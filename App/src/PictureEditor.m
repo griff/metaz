@@ -47,7 +47,26 @@
 {
     observerFix = [[MZPriorObserverFix alloc] initWithOther:filesController];
     [retryButton setHidden:YES];
-    [self bind:@"picture" toObject:filesController withKeyPath:@"selection.picture" options:nil];
+    /*
+    NSArray* keys = [NSArray arrayWithObjects:
+        NSMultipleValuesPlaceholderBindingOption,
+        NSNoSelectionPlaceholderBindingOption,
+        NSNotApplicablePlaceholderBindingOption,
+        NSAllowsEditingMultipleValuesSelectionBindingOption,
+        NSAllowsNullArgumentBindingOption,
+        NSRaisesForNotApplicableKeysBindingOption,
+        nil];
+    NSArray* values = [NSArray arrayWithObjects:
+        NSMultipleValuesMarker,
+        NSNoSelectionMarker,
+        NSNotApplicableMarker,
+        [NSNumber numberWithBool:YES],
+        [NSNumber numberWithBool:YES],
+        [NSNumber numberWithBool:NO],
+        nil];
+    NSDictionary* dict = [NSDictionary dictionaryWithObjects:values forKeys:keys];
+    [self bind:@"picture" toObject:filesController withKeyPath:@"selection.picture" options:dict];
+    */
     [filesController addObserver:self forKeyPath:@"selection.picture" options:0 context:NULL];
     [observerFix addObserver:self forKeyPath:@"selection.pictureChanged" options:NSKeyValueObservingOptionPrior context:NULL];
 }
@@ -111,6 +130,7 @@
     } else if(object == filesController && [keyPath isEqual:@"selection.picture"])
     {
         id status = [filesController protectedValueForKeyPath:@"selection.picture"];
+        self.picture = status;
         if([status isKindOfClass:[MZRemoteData class]])
             return;
         if(status == NSMultipleValuesMarker)
@@ -200,6 +220,15 @@
         [self updateRemoteData];
     } else
     {
+        if(newPicture == NSMultipleValuesMarker)
+            [posterView setStatus:MZMultiplePosterImage];
+        else if(newPicture == NSNotApplicableMarker)
+            [posterView setStatus:MZNotApplicablePosterImage];
+        else if(newPicture == NSNoSelectionMarker)
+            [posterView setStatus:MZEmptyPosterImage];
+        else
+            [posterView setStatus:MZOKPosterImage];
+        /*
         if(!newPicture)
         {
             id status = [filesController protectedValueForKeyPath:@"selection.picture"];
@@ -212,6 +241,7 @@
         }
         else
             [posterView setStatus:MZOKPosterImage];
+        */
     }
 
     [self didChangeValueForKey:@"data"];

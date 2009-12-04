@@ -8,6 +8,14 @@
 
 #import "MZPresets.h"
 
+NSString* const MZPresetAddedNotification = @"MZPresetAddedNotification";
+NSString* const MZPresetRemovedNotification = @"MZPresetRemovedNotification";
+NSString* const MZPresetRenamedNotification = @"MZPresetRenamedNotification";
+
+NSString* const MZPresetKey = @"MZPresetKey";
+NSString* const MZPresetOldNameKey = @"MZPresetOldNameKey";
+NSString* const MZPresetNewNameKey = @"MZPresetNewNameKey";
+
 @interface MZPreset ()
 - (void)replaceValue:(id)value forTag:(NSString *)tag;
 @end
@@ -42,9 +50,18 @@
 
 - (void)setName:(NSString *)newName
 {
+    NSString* oldName = [name retain];
     [name release];
     name = [newName retain];
     [[MZPresets sharedPresets] saveWithError:NULL];
+
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+        oldName, MZPresetOldNameKey,
+        newName, MZPresetNewNameKey,
+        nil];
+    [[NSNotificationCenter defaultCenter] 
+        postNotificationName:MZPresetRenamedNotification object:self userInfo:userInfo];
+    [oldName release];
 }
 
 - (void)applyToObject:(id)object withPrefix:(NSString *)prefix
@@ -168,18 +185,28 @@ static MZPresets* sharedPresets = nil;
 
 - (void)removeObjectFromPresetsAtIndex:(NSUInteger)index
 {
+    MZPreset* preset = [[presets objectAtIndex:index] retain];
     [self willChangeValueForKey:@"presets"];
     [presets removeObjectAtIndex:index];
     [self saveWithError:NULL];
     [self didChangeValueForKey:@"presets"];
+    
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:preset forKey:MZPresetKey];
+    [[NSNotificationCenter defaultCenter] 
+        postNotificationName:MZPresetRemovedNotification object:self userInfo:userInfo];
+    [preset release];
 }
 
-- (void)insertObject:(MZPreset *)aPreset inPresetsAtIndex:(NSUInteger)index
+- (void)insertObject:(MZPreset *)preset inPresetsAtIndex:(NSUInteger)index
 {
     [self willChangeValueForKey:@"presets"];
-    [presets insertObject:aPreset atIndex:index];
+    [presets insertObject:preset atIndex:index];
     [self saveWithError:NULL];
     [self didChangeValueForKey:@"presets"];
+
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:preset forKey:MZPresetKey];
+    [[NSNotificationCenter defaultCenter] 
+        postNotificationName:MZPresetAddedNotification object:self userInfo:userInfo];
 }
 
 - (void)addObject:(MZPreset *)preset
@@ -188,6 +215,10 @@ static MZPresets* sharedPresets = nil;
     [presets addObject:preset];
     [self saveWithError:NULL];
     [self didChangeValueForKey:@"presets"];
+
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:preset forKey:MZPresetKey];
+    [[NSNotificationCenter defaultCenter] 
+        postNotificationName:MZPresetAddedNotification object:self userInfo:userInfo];
 }
 
 - (BOOL)loadWithError:(NSError **)error

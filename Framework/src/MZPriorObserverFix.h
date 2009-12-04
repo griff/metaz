@@ -14,9 +14,12 @@
     NSMutableDictionary* oldData;
     NSMutableDictionary* keyPathCount;
     id other;
+    NSString* prefix;
 }
 
 + (id)fixWithOther:(id)other;
++ (id)fixWithOther:(id)other prefix:(NSString *)prefix;
 - (id)initWithOther:(id)other;
+- (id)initWithOther:(id)other prefix:(NSString *)prefix;
 
 @end

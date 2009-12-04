@@ -11,10 +11,8 @@
 
 @interface MetaEditsUndoManager : NSUndoManager
 {
-    NSMutableSet* others;
 }
 
-- (void)addOther:(NSUndoManager *)other;
-- (void)removeOther:(NSUndoManager *)other;
+- (void)setActionName:(NSString *)actionName;
 
 @end

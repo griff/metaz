@@ -16,26 +16,21 @@
     self = [super init];
     if(self)
     {
-        others = [[NSMutableSet alloc] init];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [others release];
     [super dealloc];
 }
 
-- (void)addOther:(NSUndoManager *)other
+- (void)setActionName:(NSString *)actionName
 {
-    [others addObject:other];
+    [super setActionName:actionName];
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:actionName forKey:MZUndoActionNameKey];
+    [[NSNotificationCenter defaultCenter]
+        postNotificationName:MZUndoActionNameNotification object:self userInfo:userInfo];
 }
-
-- (void)removeOther:(NSUndoManager *)other
-{
-    [others removeObject:other];
-}
-
 
 @end

@@ -9,6 +9,14 @@
 #import "PresetsWindowController.h"
 #import "MZPresets.h"
 
+@interface PresetsWindowController ()
+
+- (void)addPresetObject:(MZPreset*)preset;
+- (void)removePresetObject:(MZPreset*)preset;
+
+@end
+
+
 @implementation PresetsWindowController
 
 - (id)initWithController:(NSArrayController*)controller
@@ -25,6 +33,7 @@
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [filesController removeObserver:self forKeyPath:@"selection.providedTags"];
     [presetsController removeObserver:self forKeyPath:@"selection.name"];
     [presetsController release];
@@ -51,6 +60,12 @@
                          options:0
                          context:nil];
     [self checkSegmentEnabled];
+    
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(renamedPreset:)
+               name:MZPresetRenamedNotification
+             object:nil];
 }
 
 @synthesize presetsController;
@@ -83,6 +98,16 @@
         [segmentedControl setEnabled:YES forSegment:1];
 }
 
+- (void)renamedPreset:(NSNotification *)note
+{
+    MZPreset* preset = [note object];
+    NSString* oldName = [[note userInfo] objectForKey:MZPresetOldNameKey];
+    [undoManager registerUndoWithTarget:preset selector:@selector(setName:) object:oldName];
+    [undoManager setActionName:NSLocalizedString(@"Rename", @"Preset rename undo action")];
+    [presetsController rearrangeObjects];
+    [[self window] performSelectorOnMainThread:@selector(makeFirstResponder:) withObject:presetsView waitUntilDone:NO];
+}
+
 #pragma mark - as observer
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -113,13 +138,29 @@
     MZPreset* preset = [presetsController valueForKeyPath:@"selection.self"];
     if(preset)
     {
-        /*
-        [undoManager setActionName:NSLocalizedString(@"Apply Preset", @"Apply preset undo name")];
         NSArray* selected = [filesController selectedObjects];
         for(MetaEdits* edit in selected)
-            [undoManager 
-        */
+            [[edit undoManager] registerUndoWithTarget:self 
+                                              selector:@selector(registerUndoName:)
+                                                object:[edit undoManager]];
+
         [preset applyToObject:filesController withPrefix:@"selection."];
+
+        NSString* name = NSLocalizedString(@"Apply Preset", @"Apply preset undo name");
+        [undoManager setActionName:name];
+        for(MetaEdits* edit in selected)
+        {
+            [undoManager registerUndoWithTarget:[edit undoManager]
+                                       selector:@selector(undo)
+                                         object:nil];
+            [undoManager registerUndoWithTarget:self
+                                       selector:@selector(doUndo:)
+                                         object:[edit undoManager]];
+            [[edit undoManager] setActionName:name];
+            [[edit undoManager] registerUndoWithTarget:self 
+                                              selector:@selector(registerUndoName:)
+                                                object:[edit undoManager]];
+        }
     }
 }
 
@@ -148,20 +189,77 @@
     MZPreset* preset = [MZPreset
         presetWithName:NSLocalizedString(@"New preset", @"Default preset name") 
         values:values];
-    //[presetsController setSortDescriptors:nil];
-    [presetsController addObject:preset];
-    //[presetsController rearrangeObjects];
-    //[[MZPresets sharedPresets] addObject:preset];
+    [self addPresetObject:preset];
     NSInteger idx = [[presetsController arrangedObjects] indexOfObject:preset];
-    //NSInteger rows = [presetsView numberOfRows];
     [presetsView selectRowIndexes:[NSIndexSet indexSetWithIndex:idx] byExtendingSelection:NO];
     [presetsView editColumn:0 row:idx withEvent:nil select:YES];
 }
 
 - (IBAction)removePreset:(id)sender
 {
-    [presetsController remove:sender];
+    MZPreset* preset = [presetsController valueForKeyPath:@"selection.self"];
+    if(preset)
+        [self removePresetObject:preset];
 }
+
+
+#pragma mark - Undo helpers
+
+- (void)addPresetObject:(MZPreset*)preset
+{
+    [presetsController addObject:preset];
+    [presetsController rearrangeObjects];
+    if([undoManager isUndoing] || [undoManager isRedoing])
+        [[self window] performSelectorOnMainThread:@selector(makeFirstResponder:) withObject:presetsView waitUntilDone:NO];
+    if([undoManager isUndoing])
+        [undoManager setActionName:NSLocalizedString(@"Remove Preset", @"Remove preset name")];
+    else
+        [undoManager setActionName:NSLocalizedString(@"Add Preset", @"Add preset name")];
+    [undoManager registerUndoWithTarget:self selector:@selector(removePresetObject:) object:preset];
+}
+
+- (void)removePresetObject:(MZPreset*)preset
+{
+    [presetsController removeObject:preset];    
+    if([undoManager isUndoing])
+        [undoManager setActionName:NSLocalizedString(@"Add Preset", @"Add preset name")];
+    else
+        [undoManager setActionName:NSLocalizedString(@"Remove Preset", @"Remove preset name")];
+    [undoManager registerUndoWithTarget:self selector:@selector(addPresetObject:) object:preset];
+}
+
+- (void)doUndo:(NSUndoManager *)manager
+{
+    [undoManager setActionName:NSLocalizedString(@"Apply Preset", @"Apply preset undo name")];
+    [undoManager registerUndoWithTarget:manager
+                               selector:@selector(redo)
+                                 object:nil];
+    [undoManager registerUndoWithTarget:self
+                               selector:@selector(doRedo:)
+                                 object:manager];
+}
+
+- (void)doRedo:(NSUndoManager *)manager
+{
+    [undoManager setActionName:NSLocalizedString(@"Apply Preset", @"Apply preset undo name")];
+    [undoManager registerUndoWithTarget:manager
+                               selector:@selector(undo)
+                                 object:nil];
+    [undoManager registerUndoWithTarget:self
+                               selector:@selector(doUndo:)
+                                 object:manager];
+}
+
+
+- (void)registerUndoName:(NSUndoManager *)manager
+{
+    [manager setActionName:NSLocalizedString(@"Apply Preset", @"Apply preset undo name")];
+    [manager registerUndoWithTarget:self 
+                           selector:@selector(registerUndoName:)
+                             object:manager];
+}
+
+
 
 #pragma mark - as window delegate
 - (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window

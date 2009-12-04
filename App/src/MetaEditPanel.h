@@ -9,7 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #import "FilesUndoController.h"
 
-@interface MetaEditPanel : NSTabView {
+@interface MetaEditPanel : NSSplitView
+{
     FilesUndoController* undoController;
 }
 @property (nonatomic, retain) IBOutlet FilesUndoController* undoController;

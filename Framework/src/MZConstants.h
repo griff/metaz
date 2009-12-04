@@ -195,8 +195,10 @@ MZKIT_EXTERN NSString* const MZDataProviderWritingStartedNotification;
 MZKIT_EXTERN NSString* const MZDataProviderWritingCanceledNotification;
 MZKIT_EXTERN NSString* const MZDataProviderWritingFinishedNotification;
 MZKIT_EXTERN NSString* const MZSearchFinishedNotification;
+MZKIT_EXTERN NSString* const MZUndoActionNameNotification;
 
 MZKIT_EXTERN NSString* const MZMetaEditsNotificationKey;
+MZKIT_EXTERN NSString* const MZUndoActionNameKey;
 MZKIT_EXTERN NSString* const MZDataWriteControllerNotificationKey;
 MZKIT_EXTERN NSString* const MZDataWriteControllerStatusKey;
 

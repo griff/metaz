@@ -7,6 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <MetaZKit/MetaZKit.h>
+
+MZKIT_EXTERN NSString* const MZPresetAddedNotification;
+MZKIT_EXTERN NSString* const MZPresetRemovedNotification;
+MZKIT_EXTERN NSString* const MZPresetRenamedNotification;
+
+MZKIT_EXTERN NSString* const MZPresetKey;
+MZKIT_EXTERN NSString* const MZPresetOldNameKey;
+MZKIT_EXTERN NSString* const MZPresetNewNameKey;
 
 @interface MZPreset : NSObject <NSCoding>
 {

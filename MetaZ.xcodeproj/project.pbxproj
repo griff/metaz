@@ -80,7 +80,7 @@
 		1B6E43CB108468B100DFE165 /* MZSearchResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6E43C9108468B100DFE165 /* MZSearchResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B6E43CC108468B100DFE165 /* MZSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E43CA108468B100DFE165 /* MZSearchResult.m */; };
 		1B6E43DD10846DBC00DFE165 /* TagData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6E43D610846BDA00DFE165 /* TagData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1B82647410B3C25000DF101B /* MetaEditsUndoManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B82647210B3C25000DF101B /* MetaEditsUndoManager.h */; };
+		1B82647410B3C25000DF101B /* MetaEditsUndoManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B82647210B3C25000DF101B /* MetaEditsUndoManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B82647510B3C25000DF101B /* MetaEditsUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */; };
 		1B82685010B3EE0300DF101B /* AmazonRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82684F10B3EE0300DF101B /* AmazonRequest.m */; };
 		1B8268A510B3F82400DF101B /* AmazonSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8268A410B3F82400DF101B /* AmazonSearchProvider.m */; };
@@ -604,6 +604,8 @@
 				1B040C3D107FC7480027FA0D /* MZTimeCode.m */,
 				1B040C40107FD1110027FA0D /* MZTimedTextItem.h */,
 				1B040C41107FD1110027FA0D /* MZTimedTextItem.m */,
+				1B82647210B3C25000DF101B /* MetaEditsUndoManager.h */,
+				1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */,
 				1B040EA21081A8F60027FA0D /* MZRESTWrapper.h */,
 				1B040EA31081A8F60027FA0D /* MZRESTWrapper.m */,
 				1B82690210B3FF1200DF101B /* MZRESTSearch.h */,
@@ -626,8 +628,6 @@
 				1B99354F10AC818300E78D2D /* NSXMLNode+MZExtensions.m */,
 				1B0330AB10B1010700B28E3A /* NSDate+UTC.h */,
 				1B0330AC10B1010700B28E3A /* NSDate+UTC.m */,
-				1B82647210B3C25000DF101B /* MetaEditsUndoManager.h */,
-				1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -1033,13 +1033,13 @@
 				1B040C3E107FC7480027FA0D /* MZTimeCode.h in Headers */,
 				1B040C42107FD1110027FA0D /* MZTimedTextItem.h in Headers */,
 				1B040EA41081A8F60027FA0D /* MZRESTWrapper.h in Headers */,
+				1B82690410B3FF1200DF101B /* MZRESTSearch.h in Headers */,
 				1B92BB1C10876FBA0057EFD7 /* PureMetaEdits.h in Headers */,
 				1B92BC57108890090057EFD7 /* NSObject+ProtectedKeyValue.h in Headers */,
 				1BD3D2BB108CC5D700BE6943 /* MZRemoteData.h in Headers */,
 				1B99355010AC818300E78D2D /* NSXMLNode+MZExtensions.h in Headers */,
 				1B0330AD10B1010700B28E3A /* NSDate+UTC.h in Headers */,
 				1B82647410B3C25000DF101B /* MetaEditsUndoManager.h in Headers */,
-				1B82690410B3FF1200DF101B /* MZRESTSearch.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1315,8 +1315,8 @@
 				"$(SRCROOT)/Plugins/Amazon/Access.h",
 			);
 			outputPaths = (
-				"$(TARGET_BUILD_DIR)/include/PlistMacros.h",
-				"$(TARGET_BUILD_DIR)/include/DummyFileToForceScriptToRunEveryTimeWithoutBeingCreated",
+				"$(TARGET_TEMP_DIR)/PlistMacros.h",
+				"$(TARGET_TEMP_DIR)/DummyFileToForceScriptToRunEveryTimeWithoutBeingCreated",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1339,7 +1339,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin\nset -o errexit\n#set -x\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleShortVersionString)\nSOURCE_FILES=($CODESIGNING_FOLDER_PATH Thanks.txt License.txt)\nTEMPLATE_DMG=$SRCROOT/Release/template.dmg\nMASTER_DMG=$BUILT_PRODUCTS_DIR/$PROJECT_NAME-${VERSION}.dmg\nWC_DMG=$CONFIGURATION_TEMP_DIR/wc.dmg\nWC_DIR=$CONFIGURATION_TEMP_DIR/wc\n\nif [ ! -f ${TEMPLATE_DMG}.zip ]; then\n  echo\n  echo --------------------- Generating empty template --------------------\n  mkdir $CONFIGURATION_TEMP_DIR/template\n  hdiutil create -fs HFSX -layout SPUD -size 40m \"$TEMPLATE_DMG\" -srcfolder $CONFIGURATION_TEMP_DIR/template -format UDRW -volname   \"$PROJECT_NAME\" -quiet\n  rmdir $CONFIGURATION_TEMP_DIR/template\n  ditto -ck \"$TEMPLATE_DMG\" \"${TEMPLATE_DMG}.zip\"\n  echo\nfi\n\nif [ -f ${TEMPLATE_DMG}.zip ]; then\n  ditto -xk ${TEMPLATE_DMG}.zip $SRCROOT/Release\nfi\ncp ${TEMPLATE_DMG} $WC_DMG\nrm -r ${TEMPLATE_DMG}\nmkdir -p $WC_DIR\n\nhdiutil attach \"$WC_DMG\" -noautoopen -quiet -mountpoint \"$WC_DIR\"\nfor i in $SOURCE_FILES; do\n\tbase=`basename $i`\n\trm -rf \"$WC_DIR/$base\"\n\tditto -rsrc \"$i\" \"$WC_DIR/$base\"\ndone\n#rm -f \"$@\"\n#hdiutil create -srcfolder \"$(WC_DIR)\" -format UDZO -imagekey zlib-level=9 \"$@\" -volname \"$(NAME) $(VERSION)\" -scrub -quiet\nWC_DEV=`hdiutil info | grep \"$WC_DIR\" | grep \"Apple_HFS\" | awk '{print $1}'` && \\\n\thdiutil detach $WC_DEV -quiet -force\nrm -f \"$MASTER_DMG\"\nhdiutil convert \"$WC_DMG\" -quiet -format UDZO -imagekey zlib-level=9 -o \"$MASTER_DMG\"\nrm -rf $WC_DIR\n\nif [ ! -z \"${EULA_RSRC}\" -a \"${EULA_RSRC}\" != \"-null-\" ]; then\n  echo \"adding EULA resources\"\n  hdiutil unflatten \"$MASTER_DMG\"\n  /Developer/Tools/ResMerger -a \"${EULA_RSRC}\" -o \"$MASTER_DMG\"\n  hdiutil flatten \"$MASTER_DMG\"\nfi\n\napp=`which seticon || echo 'non'`\nif [ -x $app ] ; then \n\tseticon $WC_DMG $MASTER_DMG\nelse\n\techo warning Missing stuff\nfi\n\n";
+			shellScript = "PATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin\nset -o errexit\n#set -x\n\nif [ \"${CONFIGURATION}\" != \"Release\" ]; then exit; fi\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleShortVersionString)\nSOURCE_FILES=($CODESIGNING_FOLDER_PATH Thanks.txt License.txt)\nTEMPLATE_DMG=$SRCROOT/Release/template.dmg\nMASTER_DMG=$BUILT_PRODUCTS_DIR/$PROJECT_NAME-${VERSION}.dmg\nWC_DMG=$CONFIGURATION_TEMP_DIR/wc.dmg\nWC_DIR=$CONFIGURATION_TEMP_DIR/wc\n\nif [ ! -f \"${TEMPLATE_DMG}.zip\" ]; then\n  echo\n  echo --------------------- Generating empty template --------------------\n  mkdir \"$CONFIGURATION_TEMP_DIR/template\"\n  hdiutil create -fs HFSX -layout SPUD -size 40m \"$TEMPLATE_DMG\" -srcfolder \"$CONFIGURATION_TEMP_DIR/template\" -format UDRW -volname   \"$PROJECT_NAME\" -quiet\n  rmdir \"$CONFIGURATION_TEMP_DIR/template\"\n  ditto -ck \"$TEMPLATE_DMG\" \"${TEMPLATE_DMG}.zip\"\n  echo\nfi\n\nif [ -f \"${TEMPLATE_DMG}.zip\" ]; then\n  ditto -xk \"${TEMPLATE_DMG}.zip\" \"$SRCROOT/Release\"\nfi\ncp \"${TEMPLATE_DMG}\" \"$WC_DMG\"\nrm -r \"${TEMPLATE_DMG}\"\nmkdir -p \"$WC_DIR\"\n\nhdiutil attach \"$WC_DMG\" -noautoopen -quiet -mountpoint \"$WC_DIR\"\nfor i in $SOURCE_FILES; do\n\tbase=`basename $i`\n\trm -rf \"$WC_DIR/$base\"\n\tditto -rsrc \"$i\" \"$WC_DIR/$base\"\ndone\n#rm -f \"$@\"\n#hdiutil create -srcfolder \"$(WC_DIR)\" -format UDZO -imagekey zlib-level=9 \"$@\" -volname \"$(NAME) $(VERSION)\" -scrub -quiet\nWC_DEV=`hdiutil info | grep \"$WC_DIR\" | grep \"Apple_HFS\" | awk '{print $1}'` && \\\n\thdiutil detach $WC_DEV -quiet -force\nrm -f \"$MASTER_DMG\"\nhdiutil convert \"$WC_DMG\" -quiet -format UDZO -imagekey zlib-level=9 -o \"$MASTER_DMG\"\nrm -rf \"$WC_DIR\"\n\nif [ ! -z \"${EULA_RSRC}\" -a \"${EULA_RSRC}\" != \"-null-\" ]; then\n  echo \"adding EULA resources\"\n  hdiutil unflatten \"$MASTER_DMG\"\n  /Developer/Tools/ResMerger -a \"${EULA_RSRC}\" -o \"$MASTER_DMG\"\n  hdiutil flatten \"$MASTER_DMG\"\nfi\n\napp=`which seticon || echo 'non'`\nif [ -x $app ] ; then \n\tseticon \"$WC_DMG\" \"$MASTER_DMG\"\nelse\n\techo warning Missing stuff\nfi\n\n";
 		};
 		1BB6BF3B1050ED38001D3D1D /* Sparkle Sign  */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1815,6 +1815,204 @@
 			};
 			name = Release;
 		};
+		1B44937E10C95B0A00B9C751 /* Remote Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = "Remote Debug";
+		};
+		1B44937F10C95B0A00B9C751 /* Remote Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = App/MetaZ_Prefix.pch;
+				IBC_OTHER_FLAGS = "--plugin /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/ImageKit.framework/Resources/ImageKitIBPlugin.ibplugin";
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = MetaZ;
+				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
+			};
+			name = "Remote Debug";
+		};
+		1B44938010C95B0A00B9C751 /* Remote Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Framework/MetaZKit_Prefix.pch;
+				INFOPLIST_FILE = Framework/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = MetaZKit;
+				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
+			};
+			name = "Remote Debug";
+		};
+		1B44938110C95B0A00B9C751 /* Remote Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/AtomicParsley/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+					"-framework",
+					MetaZKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = AtomicParsleyPlugin;
+				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
+				WRAPPER_EXTENSION = mzplugin;
+			};
+			name = "Remote Debug";
+		};
+		1B44938210C95B0A00B9C751 /* Remote Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/TagChimp/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TagChimp;
+				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
+				WRAPPER_EXTENSION = mzplugin;
+			};
+			name = "Remote Debug";
+		};
+		1B44938310C95B0A00B9C751 /* Remote Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/include";
+				INFOPLIST_FILE = Plugins/Amazon/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+					"-lz",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = AmazonPlugin;
+				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
+				WRAPPER_EXTENSION = mzplugin;
+			};
+			name = "Remote Debug";
+		};
+		1B44938410C95B0A00B9C751 /* Remote Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Framework/Test-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = MetaZKitTest;
+				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Remote Debug";
+		};
+		1B44938510C95B0A00B9C751 /* Remote Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "Plist Macos";
+				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
+			};
+			name = "Remote Debug";
+		};
 		1BA325C610545ACB00276F57 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2019,6 +2217,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1B032F6910B0C12200B28E3A /* Debug */,
+				1B44938310C95B0A00B9C751 /* Remote Debug */,
 				1B032F6A10B0C12200B28E3A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2028,6 +2227,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1B03304510B0CD3D00B28E3A /* Debug */,
+				1B44938410C95B0A00B9C751 /* Remote Debug */,
 				1B03304610B0CD3D00B28E3A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2037,6 +2237,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1B040EC01081B3C10027FA0D /* Debug */,
+				1B44938210C95B0A00B9C751 /* Remote Debug */,
 				1B040EC11081B3C10027FA0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2046,6 +2247,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1B2022F910B393CB00EE548A /* Debug */,
+				1B44938510C95B0A00B9C751 /* Remote Debug */,
 				1B2022FA10B393CB00EE548A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2055,6 +2257,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1BA325C610545ACB00276F57 /* Debug */,
+				1B44938010C95B0A00B9C751 /* Remote Debug */,
 				1BA325C710545ACB00276F57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2064,6 +2267,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1BEA6E74106EF2A1004B1A7F /* Debug */,
+				1B44938110C95B0A00B9C751 /* Remote Debug */,
 				1BEA6E75106EF2A1004B1A7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2073,6 +2277,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,
+				1B44937F10C95B0A00B9C751 /* Remote Debug */,
 				C01FCF4C08A954540054247B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -2082,6 +2287,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
+				1B44937E10C95B0A00B9C751 /* Remote Debug */,
 				C01FCF5008A954540054247B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
