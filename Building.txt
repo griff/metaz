@@ -1,0 +1,15 @@
+BUILDING
+
+There are some files missing in the git repository.
+
+Plugins/Amazon/Access.h
+This file contains Amazon AWS access credentials.
+Copy Plugins/Amazon/Access_template.h and insert your own credentials.
+
+
+App/resources/CowHead.png
+App/resources/faded_cow*.png
+App/resources/presets.png
+These files are mostly just taken from MetaX but since I don't have the rights
+to use them they are not included in the repository.
+They are though included in the releases of MetaZ  so you can grab them from there.
