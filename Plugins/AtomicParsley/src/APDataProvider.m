@@ -44,7 +44,7 @@
 + (NSString *)launchPath
 {
     NSBundle* myBundle = [NSBundle bundleForClass:[self class]];
-    return [myBundle pathForResource:@"AtomicParsley32" ofType:nil];
+    return [myBundle pathForResource:@"AtomicParsley" ofType:nil];
 }
 
 + (NSString *)launchChapsPath
