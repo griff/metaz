@@ -19,6 +19,7 @@
 @interface AppController (Private)
 
 - (void)updateSearchMenu;
+- (void)registerUndoName:(NSUndoManager *)manager;
 
 @end
 
@@ -121,6 +122,12 @@ NSDictionary* findBinding(NSWindow* window) {
         addObserver:self
            selector:@selector(finishedSearch:)
                name:MZSearchFinishedNotification
+             object:nil];
+
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(removedEdit:)
+               name:MZMetaEditsDeallocating
              object:nil];
 
     [[MZPluginController sharedInstance] setDelegate:self];
@@ -270,6 +277,14 @@ NSDictionary* findBinding(NSWindow* window) {
     //[[MZMetaSearcher sharedSearcher] clearResults];
 }
 
+- (void)registerUndoName:(NSUndoManager *)manager
+{
+    [manager setActionName:NSLocalizedString(@"Apply Search", @"Apply search undo name")];
+    [manager registerUndoWithTarget:self 
+                           selector:@selector(registerUndoName:)
+                             object:manager];
+}
+
 #pragma mark - as observer
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -296,7 +311,7 @@ NSDictionary* findBinding(NSWindow* window) {
     }
     if([keyPath isEqual:@"selection.pure.videoType"] && object == filesController)
     {
-        [self updateSearchMenu];
+        [self performSelector:@selector(updateSearchMenu) withObject:nil afterDelay:0];
     }
     if([keyPath isEqual:@"selection.shortDescription"] && object == filesController)
     {
@@ -398,8 +413,10 @@ NSDictionary* findBinding(NSWindow* window) {
         return;
     }
     id observed = [dict objectForKey:NSObservedObjectKey];
-    NSString* keyPath = [dict objectForKey:NSObservedKeyPathKey];
-    [observed setValue:[NSNumber numberWithBool:NO] forKeyPath:[keyPath stringByAppendingString:@"Changed"]];
+    NSString* keyPath = [[dict objectForKey:NSObservedKeyPathKey] stringByAppendingString:@"Changed"];
+    NSNumber* num = [observed valueForKeyPath:keyPath];
+    num = [NSNumber numberWithBool:![num boolValue]];
+    [observed setValue:num forKeyPath:keyPath];
 }
 
 - (IBAction)searchForImages:(id)sender
@@ -519,10 +536,72 @@ NSDictionary* findBinding(NSWindow* window) {
         [presetsController close];
 }
 
+- (IBAction)applySearchEntry:(id)sender
+{
+    if([sender isKindOfClass:[NSTableView class]] && [sender clickedRow] == -1)
+        return;
+    
+    id selection = [searchController valueForKeyPath:@"selection.self"];
+    if(![selection isKindOfClass:[MZSearchResult class]])
+        return;
+    
+    NSDictionary* result = [selection values];
+    for(NSString* key in [result allKeys])
+    {
+        id value = [result objectForKey:key];
+        if([value isKindOfClass:[MZRemoteData class]])
+        {
+            if(![value isLoaded])
+                return;
+        }
+    }
+    
+    NSArray* edits = [filesController selectedObjects];
+    for(MetaEdits* edit in edits)
+    {
+        [self registerUndoName:edit.undoManager];
+    }
+
+    for(MetaEdits* edit in edits)
+    {
+        NSArray* providedTags = [edit providedTags];
+        for(MZTag* tag in providedTags)
+        {
+            if(![edit getterChangedForKey:[tag identifier]])
+            {
+                id value = [result objectForKey:[tag identifier]];
+                if([value isKindOfClass:[MZRemoteData class]])
+                    value = [value data];
+                if(value)
+                    [edit setterValue:value forKey:[tag identifier]];
+            }
+        }
+        [self registerUndoName:edit.undoManager];
+    }
+}
+
 #pragma mark - user interface validation
 
 - (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem {
     SEL action = [anItem action];
+    if(action == @selector(applySearchEntry:))
+    {
+        id selection = [searchController protectedValueForKeyPath:@"selection.self"];
+        if(![selection isKindOfClass:[MZSearchResult class]])
+            return NO;
+        
+        NSDictionary* values = [selection values];
+        for(NSString* key in [values allKeys])
+        {
+            id value = [values objectForKey:key];
+            if([value isKindOfClass:[MZRemoteData class]])
+            {
+                if(![value isLoaded])
+                    return NO;
+            }
+        }
+        return YES;
+    }
     if(action == @selector(selectNextFile:))
         return [filesController canSelectNext];
     if(action == @selector(selectPreviousFile:))
@@ -535,7 +614,12 @@ NSDictionary* findBinding(NSWindow* window) {
             id observed = [dict objectForKey:NSObservedObjectKey];
             NSString* keyPath = [dict objectForKey:NSObservedKeyPathKey];
             BOOL changed = [[observed valueForKeyPath:[keyPath stringByAppendingString:@"Changed"]] boolValue];
-            return changed;
+            NSMenuItem* item = (NSMenuItem*)anItem;
+            if(changed)
+                [item setTitle:NSLocalizedString(@"Revert Changes", @"Revert changes menu item")];
+            else
+                [item setTitle:NSLocalizedString(@"Apply Changes", @"Apply changes menu item")];
+            return YES;
         }
         else 
             return NO;
@@ -604,6 +688,12 @@ NSDictionary* findBinding(NSWindow* window) {
     [presetsController release];
     presetsController = nil;
     */
+}
+
+- (void)removedEdit:(NSNotification *)note
+{
+    MetaEdits* other = [note object];
+    [other.undoManager removeAllActionsWithTarget:self];
 }
 
 - (void)openPanelDidEnd:(NSOpenPanel *)oPanel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo {

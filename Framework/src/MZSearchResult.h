@@ -16,6 +16,7 @@
 }
 @property(readonly) id owner;
 @property(readonly) NSImage* icon;
+@property(readonly) NSDictionary* values;
 
 + (id)resultWithOwner:(id)theOwner dictionary:(NSDictionary *)dict;
 - (id)initWithOwner:(id)theOwner dictionary:(NSDictionary *)dict;

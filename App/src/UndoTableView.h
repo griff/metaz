@@ -9,7 +9,8 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface UndoTableView : NSTableView {
+@interface UndoTableView : NSTableView
+{
 
 }
 

@@ -21,6 +21,7 @@
 + (id)resultWithController:(NSArrayController *)controller;
 - (id)initWithController:(NSArrayController *)controller;
 
+- (NSMenu*)menu;
 - (void)updateTitle;
 - (void)updateChapters;
 

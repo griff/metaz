@@ -77,6 +77,8 @@
 - (IBAction)searchForImages:(id)sender;
 - (IBAction)openDocument:(id)sender;
 - (IBAction)showPresets:(id)sender;
+- (IBAction)applySearchEntry:(id)sender;
+
 //- (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo;
 
 #pragma mark - as window delegate

@@ -23,7 +23,7 @@
 @property(nonatomic,retain) IBOutlet PosterView* posterView;
 @property(retain) id picture;
 @property(retain) NSData* data;
-@property(assign) NSNumber* changed;
+@property(assign) NSNumber* dataChanged;
 
 - (IBAction)retryLoad:(id)sender;
 

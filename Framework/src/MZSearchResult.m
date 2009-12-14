@@ -44,6 +44,7 @@
 
 #pragma mark - methods
 @synthesize owner;
+@synthesize values;
 
 - (NSImage* )icon
 {

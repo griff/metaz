@@ -263,6 +263,11 @@
     id oldValue = [changes objectForKey:aKey];
     aValue = [tag convertObjectForStorage:aValue];
 
+    id pureValue = [pure valueForKey:aKey];
+    pureValue = [tag convertObjectForStorage:pureValue];
+    BOOL pureModified = (pureValue != aValue) &&
+        !(pureValue && aValue && [pureValue isEqual:aValue]);
+
     /*
     id currentValue = [provider valueForKey:aKey];
     currentValue = [tag convertObjectForStorage:currentValue];
@@ -287,23 +292,9 @@
             [NSString stringWithFormat:
                 NSLocalizedString(@"Set %@", @"Undo set action"),
                 actionKey]];
-        /*
-        if(multiUndoManager)
-        {
-            if([multiUndoManager isUndoing])
-                [[multiUndoManager prepareWithInvocationTarget:[self undoManager]] redo];
-            else
-                [[multiUndoManager prepareWithInvocationTarget:[self undoManager]] undo];
-            [multiUndoManager setActionName:
-                [NSString stringWithFormat:
-                    NSLocalizedString(@"Set %@", @"Undo set action"),
-                    actionKey]];
-        }
-        */
     } else
     {
         [[[self undoManager] prepareWithInvocationTarget:self] setterValue:oldValue forKey:aKey];
-        //[[self undoManager] registerUndoWithTarget:self selector:[MZMethodData setterSelectorForKey:aKey] object:oldValue];
         NSString* actionKey = [tag localizedName];
         if(!actionKey)
             actionKey = aKey;
@@ -311,33 +302,24 @@
             [NSString stringWithFormat:
                 NSLocalizedString(@"Changed %@", @"Undo changed action"),
                 actionKey]];
-        /*
-        if(multiUndoManager)
-        {
-            if([multiUndoManager isUndoing])
-                [[multiUndoManager prepareWithInvocationTarget:[self undoManager]] redo];
-            else
-                [[multiUndoManager prepareWithInvocationTarget:[self undoManager]] undo];
-            [multiUndoManager setActionName:
-                [NSString stringWithFormat:
-                    NSLocalizedString(@"Changed %@", @"Undo changed action"),
-                    actionKey]];
-        }
-        */
     }
     
     NSString* changedKey = [aKey stringByAppendingString:@"Changed"];
-    if(oldValue == nil) {
+    if(oldValue == nil)
+    {
         [self willChangeValueForKey:changedKey];
         if([changes count] == 0)
             [self willChangeValueForKey:@"changed"];
     }
     [self willChangeValueForKey:aKey];
-    [pure willChangeValueForKey:aKey];
+    if(pureModified)
+        [pure willChangeValueForKey:aKey];
     [changes setObject:aValue forKey:aKey];
     [self didChangeValueForKey:aKey];
-    [pure didChangeValueForKey:aKey];
-    if(oldValue == nil) {
+    if(pureModified)
+        [pure didChangeValueForKey:aKey];
+    if(oldValue == nil)
+    {
         [self didChangeValueForKey:changedKey];
         if([changes count] == 1)
             [self didChangeValueForKey:@"changed"];

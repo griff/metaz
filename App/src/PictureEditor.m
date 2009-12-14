@@ -23,7 +23,7 @@
 
 + (NSSet *)keyPathsForValuesAffectingChangedEditable
 {
-    return [NSSet setWithObjects:@"picture", @"changed", @"data", nil];
+    return [NSSet setWithObjects:@"picture", @"dataChanged", @"data", nil];
 }
 
 - (void)dealloc
@@ -145,13 +145,13 @@
     {
         NSNumber* prior = [change objectForKey:NSKeyValueChangeNotificationIsPriorKey];
         if([prior boolValue])
-            [self willChangeValueForKey:@"changed"];
+            [self willChangeValueForKey:@"dataChanged"];
         else 
-            [self didChangeValueForKey:@"changed"];
+            [self didChangeValueForKey:@"dataChanged"];
     }
 }
 
-- (BOOL)changedEditable
+- (BOOL)dataChangedEditable
 {
     if([picture isKindOfClass:[MZRemoteData class]])
     {
@@ -164,7 +164,7 @@
         changed != NSNoSelectionMarker;
 }
 
-- (void)setChanged:(NSNumber*)newValue
+- (void)setDataChanged:(NSNumber*)newValue
 {
     if([picture isKindOfClass:[MZRemoteData class]])
     {
@@ -177,7 +177,7 @@
     [filesController setValue:newValue forKeyPath:@"selection.pictureChanged"];
 }
 
-- (NSNumber*)changed
+- (NSNumber*)dataChanged
 {
     id changed = [observerFix valueForKeyPath:@"selection.pictureChanged"];
     /*

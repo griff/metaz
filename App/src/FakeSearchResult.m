@@ -47,6 +47,11 @@
     return [NSImage imageNamed:MZSmallIcon];
 }
 
+- (NSMenu*)menu
+{
+    return nil;
+}
+
 - (void)updateTitle
 {
     id newValue = [filesController protectedValueForKeyPath:@"selection.pure.title"];
