@@ -24,6 +24,8 @@
 - (MZVideoType)videoType;
 - (MZRating)rating;
 
+- (NSData *)picture;
+
 - (NSString *)actors;
 - (NSString *)director;
 - (NSString *)producer;

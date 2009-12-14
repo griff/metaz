@@ -145,9 +145,11 @@ writeStartedForEdits:(MetaEdits *)edits
         }
         else
         {
+            NSDictionary* userInfo = [NSDictionary dictionaryWithObject:edits forKey:MZMetaEditsNotificationKey];
             [[NSNotificationCenter defaultCenter]
                     postNotificationName:MZQueueItemFailed
-                                  object:self];
+                                  object:self
+                                userInfo:userInfo];
         }
         [[MZWriteQueue sharedQueue] startNextItem];
     }
@@ -273,16 +275,20 @@ writeStartedForEdits:(MetaEdits *)edits
         }
     }
     self.completed = error == nil;
+    
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:edits forKey:MZMetaEditsNotificationKey];
     if(error)
     {
         [[NSNotificationCenter defaultCenter]
                 postNotificationName:MZQueueItemFailed
-                              object:self];
+                              object:self
+                            userInfo:userInfo];
     } else
     {
         [[NSNotificationCenter defaultCenter]
                 postNotificationName:MZQueueItemCompleted
-                              object:self];
+                              object:self
+                            userInfo:userInfo];
     }
 
     [self finished];

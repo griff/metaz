@@ -75,6 +75,9 @@
 		1B15A60E10B608D100EC0FBF /* AmazonSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B15A60D10B608D100EC0FBF /* AmazonSearch.m */; };
 		1B20209B10B36EC200EE548A /* VideoType.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B20209910B36EC200EE548A /* VideoType.strings */; };
 		1B44949910D57D6900B9C751 /* AtomicParsley in Resources */ = {isa = PBXBuildFile; fileRef = 1B44949810D57D6900B9C751 /* AtomicParsley */; };
+		1B44956D10D6118F00B9C751 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B44956C10D6118F00B9C751 /* Growl.framework */; };
+		1B44957A10D611AA00B9C751 /* Growl.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1B44956C10D6118F00B9C751 /* Growl.framework */; };
+		1B44958510D6128700B9C751 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 1B44958410D6128700B9C751 /* Growl Registration Ticket.growlRegDict */; };
 		1B5AC76F10532E5200F9CE36 /* MetaEditPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */; };
 		1B6E43C810845F8200DFE165 /* TCSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E43C710845F8200DFE165 /* TCSearch.m */; };
 		1B6E43CB108468B100DFE165 /* MZSearchResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6E43C9108468B100DFE165 /* MZSearchResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -273,6 +276,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				1B44957A10D611AA00B9C751 /* Growl.framework in Copy Frameworks */,
 				1BA325CD10545BBB00276F57 /* MetaZKit.framework in Copy Frameworks */,
 				1BB6C11F1052B1C1001D3D1D /* Sparkle.framework in Copy Frameworks */,
 			);
@@ -388,6 +392,8 @@
 		1B20209A10B36EC200EE548A /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/VideoType.strings; sourceTree = "<group>"; };
 		1B44949810D57D6900B9C751 /* AtomicParsley */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = AtomicParsley; path = Plugins/AtomicParsley/resources/AtomicParsley; sourceTree = "<group>"; };
 		1B4494BC10D584E000B9C751 /* next_release.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = next_release.txt; path = Release/next_release.txt; sourceTree = "<group>"; };
+		1B44956C10D6118F00B9C751 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = Externals/Growl.framework; sourceTree = "<group>"; };
+		1B44958410D6128700B9C751 /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Growl Registration Ticket.growlRegDict"; path = "App/resources/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
 		1B5AC76D10532E5200F9CE36 /* MetaEditPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaEditPanel.h; sourceTree = "<group>"; };
 		1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditPanel.m; sourceTree = "<group>"; };
 		1B6E43C610845F8200DFE165 /* TCSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSearch.h; sourceTree = "<group>"; };
@@ -444,7 +450,7 @@
 		1BB6BE801050BC88001D3D1D /* MZMetaSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMetaSearcher.m; sourceTree = "<group>"; };
 		1BB6BE821050BD3A001D3D1D /* MZSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSearchProvider.h; sourceTree = "<group>"; };
 		1BB6BF331050E5E2001D3D1D /* sparkle_public.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparkle_public.pem; sourceTree = "<group>"; };
-		1BB6C10A1052B154001D3D1D /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = SOURCE_ROOT; };
+		1BB6C10A1052B154001D3D1D /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Externals/Sparkle.framework; sourceTree = "<group>"; };
 		1BBB39A71087083600C9E17F /* MZPriorObserverFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZPriorObserverFix.h; sourceTree = "<group>"; };
 		1BBB39A81087083600C9E17F /* MZPriorObserverFix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZPriorObserverFix.m; sourceTree = "<group>"; };
 		1BC0661810AE223A005C2A9F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/PresetsPanel.xib; sourceTree = "<group>"; };
@@ -566,6 +572,7 @@
 				1B11A00710457B0D004C93D3 /* RubyCocoa.framework in Frameworks */,
 				1B0DEDE010610412009D293F /* Quartz.framework in Frameworks */,
 				1BCC98261076D1A3007EFF57 /* Sparkle.framework in Frameworks */,
+				1B44956D10D6118F00B9C751 /* Growl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,6 +646,7 @@
 				1BB6C10A1052B154001D3D1D /* Sparkle.framework */,
 				1B11A00610457B0D004C93D3 /* RubyCocoa.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				1B44956C10D6118F00B9C751 /* Growl.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -958,6 +966,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1B44958410D6128700B9C751 /* Growl Registration Ticket.growlRegDict */,
 				1B03325510B15FF100B28E3A /* StopProgressOn.png */,
 				1B03325310B15CB200B28E3A /* StopProgressHover.png */,
 				1B03325110B1592D00B28E3A /* StopProgress.png */,
@@ -1269,6 +1278,7 @@
 				1B03325210B1592D00B28E3A /* StopProgress.png in Resources */,
 				1B03325410B15CB200B28E3A /* StopProgressHover.png in Resources */,
 				1B03325610B15FF100B28E3A /* StopProgressOn.png in Resources */,
+				1B44958510D6128700B9C751 /* Growl Registration Ticket.growlRegDict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1835,6 +1845,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Externals\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -2143,6 +2154,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Externals\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -2168,6 +2180,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Externals\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

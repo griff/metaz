@@ -52,6 +52,30 @@
 
 - (void)awakeFromNib
 {
+    [GrowlApplicationBridge setGrowlDelegate:self];
+    if([GrowlApplicationBridge isGrowlInstalled])
+    {
+        [[NSNotificationCenter defaultCenter]
+            addObserver:self
+               selector:@selector(queueItemCompleted:)
+                   name:MZQueueItemCompleted
+                 object:nil];
+
+        [[NSNotificationCenter defaultCenter]
+            addObserver:self
+               selector:@selector(queueItemFailed:)
+                   name:MZQueueItemFailed
+                 object:nil];
+    }
+
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(queueCompleted:)
+               name:MZQueueCompleted
+             object:nil];
+
+
+    // Hide progress bar
     NSRect contentRect = [[mainWindow contentView] bounds];
     NSView* mainView = [[[mainWindow contentView] subviews] objectAtIndex:0];
     NSRect mainRect = [mainView frame];
@@ -248,6 +272,8 @@
     }
 }
 
+#pragma mark - notifications
+
 - (void)windowDidClose:(NSNotification *)note
 {
     [[NSNotificationCenter defaultCenter] 
@@ -258,6 +284,68 @@
     playBtn2 = nil;
     [controller release];
     controller = nil;
+}
+
+- (void)queueCompleted:(NSNotification *)note
+{
+    NSInteger action = [[NSUserDefaults standardUserDefaults] integerForKey:@"whenDoneAction"];
+    if(action == 2)
+    {
+        [GrowlApplicationBridge 
+            notifyWithTitle:@"Completed queue"
+                description:@"Bla Bla\nMore <b>Bla</b>"
+           notificationName:@"Queue processing completed"
+                   iconData:nil
+                   priority:0
+                   isSticky:NO
+               clickContext:nil];
+    }
+    if(action == 1 || action == 3)
+        NSRunCriticalAlertPanel(@"Queue run done", @"Your MetaZ queue is completed", @"OK", nil, nil);
+}
+
+- (void)queueItemCompleted:(NSNotification *)note
+{
+    NSInteger action = [[NSUserDefaults standardUserDefaults] integerForKey:@"whenDoneAction"];
+    if(action == 2 || action == 3)
+    {
+        MetaEdits* edits = [[note userInfo] objectForKey:MZMetaEditsNotificationKey];
+        [GrowlApplicationBridge 
+            notifyWithTitle:@"File writing completed"
+                description:[NSString stringWithFormat:@"Completed writing %@", [[edits savedFileName] lastPathComponent]]
+           notificationName:@"File writing completed"
+                   iconData:[edits picture]
+                   priority:0
+                   isSticky:NO
+               clickContext:[edits savedFileName]];
+    }
+}
+
+- (void)queueItemFailed:(NSNotification *)note
+{
+    NSInteger action = [[NSUserDefaults standardUserDefaults] integerForKey:@"whenDoneAction"];
+    if(action == 2 || action == 3)
+    {
+        MetaEdits* edits = [[note userInfo] objectForKey:MZMetaEditsNotificationKey];
+        [GrowlApplicationBridge 
+            notifyWithTitle:@"File writing failed"
+                description:[NSString stringWithFormat:@"Failed writing %@", [[edits savedFileName] lastPathComponent]]
+           notificationName:@"File writing failed"
+                   iconData:[edits picture]
+                   priority:0
+                   isSticky:NO
+               clickContext:[edits loadedFileName]];
+    }
+}
+
+#pragma mark - as Growl delegate
+
+- (void) growlNotificationWasClicked:(id)clickContext
+{
+    NSString* path = clickContext;
+    [[NSWorkspace sharedWorkspace]
+                      selectFile:path
+        inFileViewerRootedAtPath:@""];
 }
 
 #pragma mark - as NSUserInterfaceValidations

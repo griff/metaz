@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>TicketVersion</key>
+	<integer>1</integer>
+	<key>DefaultNotifications</key>
+	<array>
+		<string>File writing completed</string>
+		<string>File writing failed</string>
+		<string>Queue processing completed</string>
+	</array>
+	<key>AllNotifications</key>
+	<array>
+		<string>File writing completed</string>
+		<string>File writing failed</string>
+		<string>Queue processing completed</string>
+	</array>
+</dict>
+</plist>

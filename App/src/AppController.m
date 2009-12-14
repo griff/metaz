@@ -6,6 +6,7 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
+#import <Growl/Growl.h>
 #import "AppController.h"
 #import "UndoTableView.h"
 #import "PosterView.h"
@@ -92,8 +93,12 @@ NSDictionary* findBinding(NSWindow* window) {
     
     NSBundle* bundle = [NSBundle mainBundle];
     NSString* dictPath;
-    if (dictPath = [bundle pathForResource:@"FactorySettings" ofType:@"plist"])  {
-        NSDictionary* dict = [[NSDictionary alloc] initWithContentsOfFile:dictPath];
+    if (dictPath = [bundle pathForResource:@"FactorySettings" ofType:@"plist"])
+    {
+        NSMutableDictionary* dict = [[NSMutableDictionary alloc] initWithContentsOfFile:dictPath];
+        
+        if([GrowlApplicationBridge isGrowlInstalled])
+            [dict setObject:[NSNumber numberWithInteger:3] forKey:@"whenDoneAction"];
         [[NSUserDefaults standardUserDefaults] registerDefaults:dict];
         [dict release];
     }
@@ -111,7 +116,7 @@ NSDictionary* findBinding(NSWindow* window) {
 }
 
 -(void)awakeFromNib
-{
+{   
     [[NSNotificationCenter defaultCenter]
         addObserver:self
            selector:@selector(finishedSearch:)
