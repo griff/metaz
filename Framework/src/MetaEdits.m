@@ -49,24 +49,6 @@
     return self;
 }
 
-/*
-- (id)retain
-{
-    NSLog(@"Retaining %d", [self retainCount]);
-    if([self retainCount]<=8)
-        NSLog(@"NOB");
-    return [super retain];
-}
-
-- (oneway void)release
-{
-    NSLog(@"Releasin %d", [self retainCount]);
-    if([self retainCount]<=8)
-        NSLog(@"NOB");
-    [super release];
-}
-*/
-
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter]
@@ -155,9 +137,7 @@
     id oldValue = [changes objectForKey:aKey];
     if(!aValue && oldValue!=nil)
     {
-        // Shitty fucking crap code
         [[[self undoManager] prepareWithInvocationTarget:self] setterValue:oldValue forKey:aKey];
-        //[[self undoManager] registerUndoWithTarget:self selector:[MZMethodData setterSelectorForKey:aKey] object:oldValue];
         MZTag* tag = [MZTag tagForIdentifier:aKey];
         NSString* actionKey = [tag localizedName];
         if(!actionKey)
@@ -176,27 +156,6 @@
                     NSLocalizedString(@"Reverted %@", @"Undo reverted action"),
                     actionKey]];
         }
-        /*
-        if(multiUndoManager)
-        {
-            if([multiUndoManager isUndoing])
-            {
-                [[multiUndoManager prepareWithInvocationTarget:[self undoManager]] redo];
-                [multiUndoManager setActionName:
-                    [NSString stringWithFormat:
-                        NSLocalizedString(@"Set %@", @"Undo set action"),
-                        actionKey]];
-            }
-            else
-            {
-                [[multiUndoManager prepareWithInvocationTarget:[self undoManager]] undo];
-                [multiUndoManager setActionName:
-                    [NSString stringWithFormat:
-                        NSLocalizedString(@"Reverted %@", @"Undo reverted action"),
-                        actionKey]];
-            }
-        }
-        */
         
         if([changes count] == 1)
             [self willChangeValueForKey:@"changed"];
@@ -223,19 +182,6 @@
             [NSString stringWithFormat:
                 NSLocalizedString(@"Set %@", @"Undo set action"),
                 actionKey]];
-        /*
-        if(multiUndoManager)
-        {
-            if([multiUndoManager isUndoing])
-                [[multiUndoManager prepareWithInvocationTarget:[self undoManager]] redo];
-            else
-                [[multiUndoManager prepareWithInvocationTarget:[self undoManager]] undo];
-            [multiUndoManager setActionName:
-                [NSString stringWithFormat:
-                    NSLocalizedString(@"Set %@", @"Undo set action"),
-                    actionKey]];
-        }
-        */
         
         if([changes count] == 0)
             [self willChangeValueForKey:@"changed"];
@@ -356,39 +302,6 @@
         return;
     }
 }
-/*
-- (id)valueForUndefinedKey:(NSString *)key
-{
-    if([self respondsToSelector:NSSelectorFromString(key)])
-    {
-        if([key hasSuffix:@"Changed"])
-        {
-            NSString* valueKey = [key substringToIndex:[key length]-7];
-            BOOL ret = [self getterChangedForKey:valueKey];
-            return [NSNumber numberWithBool:ret];
-        }
-        return [self getterValueForKey:key];
-    }
-    return [super valueForUndefinedKey:key];
-}
-
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key
-{
-    if([self respondsToSelector:NSSelectorFromString(key)])
-    {
-        if([key hasSuffix:@"Changed"])
-        {
-            NSString* valueKey = [key substringToIndex:[key length]-7];
-            BOOL newChanged = [value boolValue];
-            [self setterChanged:newChanged forKey:valueKey];
-            return;
-        }
-        [self setterValue:value forKey:key];
-        return;
-    }
-    [super setValue:value forUndefinedKey:key];
-}
-*/
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -404,7 +317,6 @@
                 [self didChangeValueForKey:keyPath];
         }
     }
-    //[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 
 - (BOOL)isEqual:(id)other
