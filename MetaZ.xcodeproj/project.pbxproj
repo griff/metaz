@@ -71,7 +71,6 @@
 		1B119FD710444DC4004C93D3 /* MZMetaLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119FD610444DC4004C93D3 /* MZMetaLoader.m */; };
 		1B11A00710457B0D004C93D3 /* RubyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B11A00610457B0D004C93D3 /* RubyCocoa.framework */; };
 		1B11A02510457B76004C93D3 /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B11A02410457B76004C93D3 /* rb_main.rb */; };
-		1B11A02710457FB2004C93D3 /* AtomicParsleyWrapper.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B11A02610457FB2004C93D3 /* AtomicParsleyWrapper.rb */; };
 		1B11A28B104DF1EC004C93D3 /* FilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A28A104DF1EC004C93D3 /* FilesTableView.m */; };
 		1B15A60E10B608D100EC0FBF /* AmazonSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B15A60D10B608D100EC0FBF /* AmazonSearch.m */; };
 		1B20209B10B36EC200EE548A /* VideoType.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B20209910B36EC200EE548A /* VideoType.strings */; };
@@ -378,7 +377,6 @@
 		1B119FD610444DC4004C93D3 /* MZMetaLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMetaLoader.m; sourceTree = "<group>"; };
 		1B11A00610457B0D004C93D3 /* RubyCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RubyCocoa.framework; path = System/Library/Frameworks/RubyCocoa.framework; sourceTree = SDKROOT; };
 		1B11A02410457B76004C93D3 /* rb_main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = rb_main.rb; path = App/src/rb_main.rb; sourceTree = "<group>"; };
-		1B11A02610457FB2004C93D3 /* AtomicParsleyWrapper.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AtomicParsleyWrapper.rb; sourceTree = "<group>"; };
 		1B11A02810458471004C93D3 /* MZDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDataProvider.h; sourceTree = "<group>"; };
 		1B11A289104DF1EC004C93D3 /* FilesTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesTableView.h; sourceTree = "<group>"; };
 		1B11A28A104DF1EC004C93D3 /* FilesTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesTableView.m; sourceTree = "<group>"; };
@@ -389,6 +387,7 @@
 		1B15A62610B6316000EC0FBF /* Access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access.h; path = Plugins/Amazon/Access.h; sourceTree = SOURCE_ROOT; };
 		1B20209A10B36EC200EE548A /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/VideoType.strings; sourceTree = "<group>"; };
 		1B44949810D57D6900B9C751 /* AtomicParsley */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = AtomicParsley; path = Plugins/AtomicParsley/resources/AtomicParsley; sourceTree = "<group>"; };
+		1B4494BC10D584E000B9C751 /* next_release.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = next_release.txt; path = Release/next_release.txt; sourceTree = "<group>"; };
 		1B5AC76D10532E5200F9CE36 /* MetaEditPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaEditPanel.h; sourceTree = "<group>"; };
 		1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditPanel.m; sourceTree = "<group>"; };
 		1B6E43C610845F8200DFE165 /* TCSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSearch.h; sourceTree = "<group>"; };
@@ -837,7 +836,6 @@
 			children = (
 				1B92BB721087889A0057EFD7 /* Controller */,
 				1B92BB711087884C0057EFD7 /* Views */,
-				1B11A02610457FB2004C93D3 /* AtomicParsleyWrapper.rb */,
 				1B119FD510444DC4004C93D3 /* MZMetaLoader.h */,
 				1B119FD610444DC4004C93D3 /* MZMetaLoader.m */,
 				1BB6BE7F1050BC88001D3D1D /* MZMetaSearcher.h */,
@@ -937,6 +935,7 @@
 		29B97314FDCFA39411CA2CEA /* MetaZ */ = {
 			isa = PBXGroup;
 			children = (
+				1B4494BC10D584E000B9C751 /* next_release.txt */,
 				1BEA6E68106EF248004B1A7F /* Plugins */,
 				1BA325BC10545A1B00276F57 /* App */,
 				1BA32591105458EE00276F57 /* Framework */,
@@ -1238,7 +1237,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B11A02510457B76004C93D3 /* rb_main.rb in Resources */,
-				1B11A02710457FB2004C93D3 /* AtomicParsleyWrapper.rb in Resources */,
 				1BB6BF341050E5E2001D3D1D /* sparkle_public.pem in Resources */,
 				1BA3269D10546EC800276F57 /* InfoPlist.strings in Resources */,
 				1BA326A010546F4600276F57 /* MainMenu.xib in Resources */,
@@ -1311,7 +1309,7 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Release/next_release",
+				"$(SRCROOT)/Release/next_release.txt",
 				"$(SRCROOT)/Plugins/Amazon/Access.h",
 			);
 			outputPaths = (

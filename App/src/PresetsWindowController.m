@@ -9,10 +9,36 @@
 #import "PresetsWindowController.h"
 #import "MZPresets.h"
 
+@interface PresetsUndoHelper : NSObject
+{
+    PresetsWindowController* controller;
+    MetaEdits* edit;
+    BOOL observing;
+}
+@property (readonly) PresetsWindowController* controller;
+@property (readonly) MetaEdits* edit;
+
++ (id)helperWithController:(PresetsWindowController *)theController edit:(MetaEdits *)theEdit;
+- (id)initWithController:(PresetsWindowController *)theController edit:(MetaEdits *)theEdit;
+
+- (void)addObservers;
+- (void)removeObservers;
+
+- (void)registerUndo;
+
+- (void)doUndo;
+- (void)doRedo;
+
+@end
+
+
 @interface PresetsWindowController ()
 
 - (void)addPresetObject:(MZPreset*)preset;
 - (void)removePresetObject:(MZPreset*)preset;
+
+- (void)registerUndoName:(NSUndoManager *)manager;
+- (void)removeHelper:(id)object;
 
 @end
 
@@ -26,6 +52,7 @@
     {
         filesController = [controller retain];
         undoManager = [[NSUndoManager alloc] init];
+        undoHelpers = [[NSMutableSet alloc] init];
     }
     return self;
 }
@@ -40,6 +67,7 @@
     [filesController release];
     [presetsView release];
     [undoManager release];
+    [undoHelpers release];
     [super dealloc];
 }
 
@@ -66,12 +94,19 @@
            selector:@selector(renamedPreset:)
                name:MZPresetRenamedNotification
              object:nil];
+
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(removedEdit:)
+               name:MZMetaEditsDeallocating
+             object:nil];
 }
 
 @synthesize presetsController;
 @synthesize filesController;
 @synthesize presetsView;
 @synthesize segmentedControl;
+@synthesize undoManager;
 
 - (void)checkSegmentEnabled
 {
@@ -139,28 +174,28 @@
     if(preset)
     {
         NSArray* selected = [filesController selectedObjects];
+        NSMutableSet* helpers = [NSMutableSet set];
         for(MetaEdits* edit in selected)
-            [[edit undoManager] registerUndoWithTarget:self 
-                                              selector:@selector(registerUndoName:)
-                                                object:[edit undoManager]];
+        {
+            PresetsUndoHelper* helper = [PresetsUndoHelper helperWithController:self edit:edit];
+            if([undoHelpers containsObject:helper])
+            {
+                helper = [undoHelpers member:helper];
+                [helper removeObservers];
+            }
+            [helpers addObject:helper];
+            [self registerUndoName:edit.undoManager];
+        }
 
         [preset applyToObject:filesController withPrefix:@"selection."];
 
-        NSString* name = NSLocalizedString(@"Apply Preset", @"Apply preset undo name");
-        [undoManager setActionName:name];
-        for(MetaEdits* edit in selected)
+        for(PresetsUndoHelper* helper in helpers)
         {
-            [undoManager registerUndoWithTarget:[edit undoManager]
-                                       selector:@selector(undo)
-                                         object:nil];
-            [undoManager registerUndoWithTarget:self
-                                       selector:@selector(doUndo:)
-                                         object:[edit undoManager]];
-            [[edit undoManager] setActionName:name];
-            [[edit undoManager] registerUndoWithTarget:self 
-                                              selector:@selector(registerUndoName:)
-                                                object:[edit undoManager]];
+            [helper registerUndo];
+            [self registerUndoName:helper.edit.undoManager];
+            [helper addObservers];
         }
+        [undoHelpers unionSet:helpers];
     }
 }
 
@@ -228,29 +263,6 @@
     [undoManager registerUndoWithTarget:self selector:@selector(addPresetObject:) object:preset];
 }
 
-- (void)doUndo:(NSUndoManager *)manager
-{
-    [undoManager setActionName:NSLocalizedString(@"Apply Preset", @"Apply preset undo name")];
-    [undoManager registerUndoWithTarget:manager
-                               selector:@selector(redo)
-                                 object:nil];
-    [undoManager registerUndoWithTarget:self
-                               selector:@selector(doRedo:)
-                                 object:manager];
-}
-
-- (void)doRedo:(NSUndoManager *)manager
-{
-    [undoManager setActionName:NSLocalizedString(@"Apply Preset", @"Apply preset undo name")];
-    [undoManager registerUndoWithTarget:manager
-                               selector:@selector(undo)
-                                 object:nil];
-    [undoManager registerUndoWithTarget:self
-                               selector:@selector(doUndo:)
-                                 object:manager];
-}
-
-
 - (void)registerUndoName:(NSUndoManager *)manager
 {
     [manager setActionName:NSLocalizedString(@"Apply Preset", @"Apply preset undo name")];
@@ -259,12 +271,153 @@
                              object:manager];
 }
 
+#pragma mark - undo synch notifications
+
+- (void)removedEdit:(NSNotification *)note
+{
+    MetaEdits* other = [note object];
+    [other.undoManager removeAllActionsWithTarget:self];
+}
+
+- (void)removeHelper:(id)object
+{
+    [undoHelpers removeObject:object];
+}
 
 
 #pragma mark - as window delegate
 - (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window
 {
     return undoManager;
+}
+
+@end
+
+
+@implementation PresetsUndoHelper
+
++ (id)helperWithController:(PresetsWindowController *)theController edit:(MetaEdits *)theEdit;
+{
+    return [[[self alloc] initWithController:theController edit:theEdit] autorelease];
+}
+
+- (id)initWithController:(PresetsWindowController *)theController edit:(MetaEdits *)theEdit;
+{
+    self = [super init];
+    if(self)
+    {
+        controller = theController;
+        edit = theEdit;
+        observing = NO;
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [controller.undoManager removeAllActionsWithTarget:self];
+    [self removeObservers];
+    [super dealloc];
+}
+
+- (NSUInteger)hash
+{
+    return [edit hash];
+}
+
+- (BOOL)isEqual:(id)anObject
+{
+    if(![anObject isKindOfClass:[self class]])
+        return NO;
+    PresetsUndoHelper* other = anObject;
+    return self->edit == other->edit;
+}
+
+@synthesize controller;
+@synthesize edit;
+
+- (void)addObservers
+{
+    [[NSNotificationCenter defaultCenter]
+            addObserver:self
+               selector:@selector(madeAction:)
+                   name:MZMetaEditsDeallocating
+                 object:edit];
+    [[NSNotificationCenter defaultCenter]
+            addObserver:self
+               selector:@selector(madeAction:)
+                   name:NSUndoManagerDidOpenUndoGroupNotification
+                 object:edit.undoManager];
+    [[NSNotificationCenter defaultCenter]
+            addObserver:self
+               selector:@selector(madeAction:)
+                   name:NSUndoManagerDidRedoChangeNotification
+                 object:edit.undoManager];
+    [[NSNotificationCenter defaultCenter]
+            addObserver:self
+               selector:@selector(madeAction:)
+                   name:NSUndoManagerDidUndoChangeNotification
+                 object:edit.undoManager];
+    observing = YES;
+}
+
+- (void)removeObservers
+{
+    if(observing)
+    {
+        [[NSNotificationCenter defaultCenter]
+                removeObserver:self
+                          name:MZMetaEditsDeallocating
+                        object:edit];
+        [[NSNotificationCenter defaultCenter]
+                removeObserver:self
+                          name:NSUndoManagerDidOpenUndoGroupNotification
+                        object:edit.undoManager];
+        [[NSNotificationCenter defaultCenter]
+                removeObserver:self
+                          name:NSUndoManagerDidRedoChangeNotification
+                        object:edit.undoManager];
+        [[NSNotificationCenter defaultCenter]
+                removeObserver:self
+                          name:NSUndoManagerDidUndoChangeNotification
+                        object:edit.undoManager];
+        observing = NO;
+    }
+}
+
+- (void)madeAction:(NSNotification *)note
+{
+    [controller removeHelper:self];
+}
+
+- (void)registerUndo
+{
+    [controller.undoManager setActionName:NSLocalizedString(@"Apply Preset", @"Apply preset undo name")];
+    [controller.undoManager registerUndoWithTarget:self
+                                          selector:@selector(doUndo)
+                                            object:nil];
+}
+
+- (void)doUndo
+{
+    [self removeObservers];
+    [edit.undoManager undo];
+    [controller.undoManager setActionName:NSLocalizedString(@"Apply Preset", @"Apply preset undo name")];
+    [controller.undoManager registerUndoWithTarget:self
+                                          selector:@selector(doRedo)
+                                            object:nil];
+    [self addObservers];
+}
+
+- (void)doRedo
+{
+    [self removeObservers];
+    [edit.undoManager redo];
+    [controller.undoManager setActionName:NSLocalizedString(@"Apply Preset", @"Apply preset undo name")];
+    [controller.undoManager registerUndoWithTarget:self
+                                          selector:@selector(doUndo)
+                                            object:nil];
+    [self addObservers];
 }
 
 @end

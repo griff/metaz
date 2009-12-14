@@ -143,6 +143,12 @@ writeStartedForEdits:(MetaEdits *)edits
             [[MZMetaLoader sharedLoader] reloadEdits:edits];
             [[MZWriteQueue sharedQueue] removeObjectFromQueueItems:self];
         }
+        else
+        {
+            [[NSNotificationCenter defaultCenter]
+                    postNotificationName:MZQueueItemFailed
+                                  object:self];
+        }
         [[MZWriteQueue sharedQueue] startNextItem];
     }
     else
@@ -267,6 +273,18 @@ writeStartedForEdits:(MetaEdits *)edits
         }
     }
     self.completed = error == nil;
+    if(error)
+    {
+        [[NSNotificationCenter defaultCenter]
+                postNotificationName:MZQueueItemFailed
+                              object:self];
+    } else
+    {
+        [[NSNotificationCenter defaultCenter]
+                postNotificationName:MZQueueItemCompleted
+                              object:self];
+    }
+
     [self finished];
 }
 

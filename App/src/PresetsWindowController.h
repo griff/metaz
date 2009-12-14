@@ -16,6 +16,7 @@
     NSTableView* presetsView;
     NSSegmentedControl* segmentedControl;
     NSUndoManager* undoManager;
+    NSMutableSet* undoHelpers;
 }
 - (id)initWithController:(NSArrayController*)controller;
 
@@ -23,6 +24,7 @@
 @property (nonatomic, retain) IBOutlet NSArrayController* presetsController;
 @property (nonatomic, retain) IBOutlet NSTableView* presetsView;
 @property (nonatomic, retain) IBOutlet NSSegmentedControl* segmentedControl;
+@property (readonly) NSUndoManager* undoManager;
 
 - (void)checkSegmentEnabled;
 

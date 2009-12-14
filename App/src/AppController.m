@@ -185,13 +185,22 @@ NSDictionary* findBinding(NSWindow* window) {
     [tag convertObject:videoType toValue:&vt];
     switch (vt) {
         case MZMovieVideoType:
-            profile = [SearchProfile movieProfile];
+            if([[activeProfile identifier] isEqual:@"movie"])
+                profile = [[activeProfile retain] autorelease];
+            else
+                profile = [SearchProfile movieProfile];
             break;
         case MZTVShowVideoType:
-            profile = [SearchProfile tvShowProfile];
+            if([[activeProfile identifier] isEqual:@"tvShow"])
+                profile = [[activeProfile retain] autorelease];
+            else
+                profile = [SearchProfile tvShowProfile];
             break;
         default:
-            profile = [SearchProfile unknownTypeProfile];
+            if([[activeProfile identifier] isEqual:@"unknown"])
+                profile = [[activeProfile retain] autorelease];
+            else
+                profile = [SearchProfile unknownTypeProfile];
             break;
     }
     /*

@@ -16,7 +16,7 @@
     self = [super init];
     if(self)
     {
-        edits = [theEdits retain];
+        edits = theEdits;
         NSArray* tags = [edits providedTags];
         for(MZTag* tag in tags)
         {
@@ -39,7 +39,6 @@
     NSArray* tags = [edits providedTags];
     for(MZTag *tag in tags)
         [pure removeObserver:self forKeyPath: [tag identifier]];
-    [edits dealloc];
     [super dealloc];
 }
 

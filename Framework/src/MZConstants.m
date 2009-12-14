@@ -73,7 +73,7 @@ NSString* const MZDataProviderWritingCanceledNotification = @"MZDataProviderWrit
 NSString* const MZDataProviderWritingFinishedNotification = @"MZDataProviderWritingFinishedNotification";
 NSString* const MZSearchFinishedNotification = @"MZSearchFinishedNotification";
 NSString* const MZUndoActionNameNotification = @"MZUndoActionNameNotification";
-
+NSString* const MZMetaEditsDeallocating = @"MZMetaEditsDeallocating";
 
 NSString* const MZMetaEditsNotificationKey = @"MZMetaEditsNotificationKey";
 NSString* const MZUndoActionNameKey = @"MZUndoActionNameKey";

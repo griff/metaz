@@ -8,18 +8,21 @@
 	<true/>
 	<key>selectedPreferenceItem</key>
 	<integer>0</integer>
-	<key>profiles.tvShow</key>
+	<key>profiles</key>
 	<dict>
-		<key>chapters</key>
-		<false/>
-		<key>tvEpisode</key>
-		<true/>
-		<key>tvSeason</key>
-		<true/>
 		<key>tvShow</key>
-		<true/>
-		<key>videoType</key>
-		<true/>
+		<dict>
+			<key>chapters</key>
+			<false/>
+			<key>tvEpisode</key>
+			<true/>
+			<key>tvSeason</key>
+			<true/>
+			<key>tvShow</key>
+			<true/>
+			<key>videoType</key>
+			<true/>
+		</dict>
 	</dict>
 </dict>
 </plist>

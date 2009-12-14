@@ -73,10 +73,7 @@
             initWithNibNamed:nibName 
                       bundle:[NSBundle bundleForClass:[self class]]];
         if(!nib)
-        {
-            [nib release];
-            nib = nil;
-        }
+            return nil;
         
         NSArray* theTopLevelObjects = nil;
         if([nib instantiateNibWithOwner:self topLevelObjects:&theTopLevelObjects])

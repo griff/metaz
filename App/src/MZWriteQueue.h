@@ -10,6 +10,9 @@
 #import <MetaZKit/MetaZKit.h>
 
 #define MZQueueCompletedPercent @"MZQueueCompletedPercent"
+#define MZQueueItemCompleted @"MZQueueItemCompleted"
+#define MZQueueItemFailed @"MZQueueItemFailed"
+#define MZQueueCompleted @"MZQueueCompleted"
 
 typedef enum {
     QueueStopped,

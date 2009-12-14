@@ -7,6 +7,7 @@
 //
 
 #import "SearchProfile.h"
+#import "NSUserDefaults+KeyPath.h"
 
 @interface ProfileState : NSObject
 {
@@ -58,16 +59,31 @@
     {
         identifier = [ident retain];
         mainTag = [main retain];
+
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        
+        // Load old style preferences
+        NSString* oldDefaultKey = [@"profiles." stringByAppendingString:ident];
+        NSDictionary* states = [defaults dictionaryForKey:oldDefaultKey];
+        if(states)
+        {
+            for(NSString* tag in [states allKeys])
+            {
+                NSString* key = [NSString stringWithFormat:@"profiles.%@.%@", ident, tag];
+                NSNumber* val = [states objectForKey:tag];
+                [defaults setBool:[val boolValue] forKeyPath:key];
+            }
+            [defaults removeObjectForKey:oldDefaultKey];
+        }
+
         NSMutableArray* arr = [NSMutableArray array];
-        NSDictionary* states = [[NSUserDefaults standardUserDefaults] dictionaryForKey:[@"profiles." stringByAppendingString:ident]];        
         for(NSString* tag in theTags)
         {
+            NSString* key = [NSString stringWithFormat:@"profiles.%@.%@", ident, tag];
             ProfileState* state = [ProfileState stateWithTag:tag];
             if(states)
             {
-                NSNumber* num = [states objectForKey:tag];
-                if(num)
-                    state.state = [num boolValue];
+                state.state = [defaults boolForKeyPath:key];
             }
             [arr addObject:state];
         }
@@ -113,13 +129,11 @@
     [sender setState:(state.state ? NSOnState : NSOffState)];
     
     [self willChangeValueForKey:@"searchTerms"];
-    NSString* defaultKey = [@"profiles." stringByAppendingString:identifier];
-    NSMutableDictionary* states = [NSMutableDictionary dictionaryWithDictionary:
-        [[NSUserDefaults standardUserDefaults] dictionaryForKey:
-            defaultKey]];
     for(ProfileState* myState in tags)
-        [states setObject:[NSNumber numberWithBool:myState.state] forKey:myState.tag];
-    [[NSUserDefaults standardUserDefaults] setObject:states forKey:defaultKey];
+    {
+        NSString* key = [NSString stringWithFormat:@"profiles.%@.%@", identifier, myState.tag];
+        [[NSUserDefaults standardUserDefaults] setBool:myState.state forKeyPath:key];
+    }
     [self didChangeValueForKey:@"searchTerms"];
 }
 

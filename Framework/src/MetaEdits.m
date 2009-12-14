@@ -49,8 +49,30 @@
     return self;
 }
 
+/*
+- (id)retain
+{
+    NSLog(@"Retaining %d", [self retainCount]);
+    if([self retainCount]<=8)
+        NSLog(@"NOB");
+    return [super retain];
+}
+
+- (oneway void)release
+{
+    NSLog(@"Releasin %d", [self retainCount]);
+    if([self retainCount]<=8)
+        NSLog(@"NOB");
+    [super release];
+}
+*/
+
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter]
+        postNotificationName:MZMetaEditsDeallocating
+                      object:self];
+    
     NSArray* tags = [provider providedTags];
     for(MZTag *tag in tags)
         [provider removeObserver:self forKeyPath: [tag identifier]];

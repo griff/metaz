@@ -145,6 +145,8 @@
 	<string>BUILDDATE</string>
 	<key>BuildId</key>
 	<string>BUILDID</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.5</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2009, Brian Olsen</string>
 	<key>NSMainNibFile</key>
@@ -161,6 +163,10 @@
 	<string>Maven-Group</string>
 	<key>SmartCrashReports_EmailTicket</key>
 	<string>SCR-6246806ACD</string>
+	<key>com.apple.PreferenceSync.ExcludeSyncKeys</key>
+	<array>
+		<string>SULastCheckTime</string>
+	</array>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
