@@ -19,8 +19,8 @@
     NSMutableArray* writes;
 }
 
-+ (void)removeChaptersFromFile:(NSString *)filePath;
-+ (void)importChaptersFromFile:(NSString *)chaptersFile toFile:(NSString *)filePath;
++ (int)removeChaptersFromFile:(NSString *)filePath;
++ (int)importChaptersFromFile:(NSString *)chaptersFile toFile:(NSString *)filePath;
 
 - (id)init;
 - (void)removeWriteManager:(id)writeManager;

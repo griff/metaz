@@ -7,14 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "PresetSegmentedControl.h"
 
 @interface PresetsWindowController : NSWindowController
 {
     NSArrayController* filesController;
     NSArrayController* presetsController;
     NSTableView* presetsView;
-    NSSegmentedControl* segmentedControl;
+    PresetSegmentedControl* segmentedControl;
     NSUndoManager* undoManager;
     NSMutableSet* undoHelpers;
 }

@@ -73,6 +73,16 @@
 
 - (void)awakeFromNib
 {
+    [segmentedControl setKeyEquivalent:@"+" forSegment:0];
+
+    const unichar back = NSDeleteCharacter;
+    NSString* back2 = [NSString stringWithCharacters:&back length:1];
+    [segmentedControl setKeyEquivalent:back2  forSegment:1];
+    [segmentedControl setKeyEquivalentModifierMask:NSCommandKeyMask forSegment:1];
+
+    [segmentedControl setKeyEquivalent:@"A" forSegment:2];
+    [segmentedControl setKeyEquivalentModifierMask:NSShiftKeyMask|NSCommandKeyMask forSegment:2];
+
     NSArray* sorters = [presetsController sortDescriptors];
     if(sorters == nil || [sorters count] == 0)
     {
@@ -232,6 +242,17 @@
 
 - (IBAction)removePreset:(id)sender
 {
+    // Puff effect
+    if([presetsView selectedRow] >= 0)
+    {
+        NSRect rowRect = [presetsView rectOfRow:[presetsView selectedRow]];
+        NSPoint point = NSMakePoint(
+            rowRect.origin.x + rowRect.size.width/2,
+            rowRect.origin.y + rowRect.size.height/2);
+        point = [[self window] convertBaseToScreen:[presetsView convertPointToBase:point]];
+        NSShowAnimationEffect(NSAnimationEffectDisappearingItemDefault,point,NSZeroSize,nil,Nil,NULL);
+    }
+
     MZPreset* preset = [presetsController valueForKeyPath:@"selection.self"];
     if(preset)
         [self removePresetObject:preset];

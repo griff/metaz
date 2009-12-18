@@ -17,15 +17,18 @@
     MZWriteQueue* writeQueue;
     NSToolbarItem* playBtn;
     NSToolbarItem* playBtn2;
+    NSMenuItem* menuItem;
     NSInteger lastCompletedItemsCount;
     NSInteger lastQueueItemsCount;
     NSInteger targetProgress;
     NSInteger progress;
+    NSDate* startTime;
 }
 @property (nonatomic, retain) IBOutlet NSArrayController* filesController;
 @property (nonatomic, retain) IBOutlet NSWindow* mainWindow;
 @property (nonatomic, retain) IBOutlet NSToolbarItem* playBtn;
 @property (nonatomic, retain) NSToolbarItem* playBtn2;
+@property (nonatomic, retain) IBOutlet NSMenuItem* menuItem;
 @property (readonly) NSInteger targetProgress;
 @property (readonly) NSInteger progress;
 

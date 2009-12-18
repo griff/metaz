@@ -20,17 +20,19 @@
 
 @implementation APDataProvider
 
-+ (void)removeChaptersFromFile:(NSString *)filePath
++ (int)removeChaptersFromFile:(NSString *)filePath
 {
     NSTask* task = [[NSTask alloc] init];
     [task setLaunchPath:[self launchChapsPath]];
     [task setArguments:[NSArray arrayWithObjects:@"-r", filePath, nil]];
     [task launch];
     [task waitUntilExit];
+    int ret = [task terminationStatus];
     [task release];
+    return ret;
 }
 
-+ (void)importChaptersFromFile:(NSString *)chaptersFile toFile:(NSString *)filePath
++ (int)importChaptersFromFile:(NSString *)chaptersFile toFile:(NSString *)filePath
 {
     
     NSTask* task = [[NSTask alloc] init];
@@ -38,7 +40,9 @@
     [task setArguments:[NSArray arrayWithObjects:@"--import", chaptersFile, filePath, nil]];
     [task launch];
     [task waitUntilExit];
+    int ret = [task terminationStatus];
     [task release];
+    return ret;
 }
 
 + (NSString *)launchPath
@@ -392,7 +396,7 @@
     [task release];
     if (status != 0)
     {
-        NSLog(@"Task failed. %d", status);
+        NSLog(@"AtomicParsley failed. %d", status);
         return nil;
     }
     NSString* str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
@@ -581,7 +585,14 @@
 
         NSData* data = [[out fileHandleForReading] readDataToEndOfFile];
         [task waitUntilExit];
+        int chapStatus = [task terminationStatus];
         [task release];
+        
+        if(chapStatus != 0)
+        {
+            NSLog(@"mp4chaps failed. %d", chapStatus);
+            return nil;
+        }
 
         NSString* str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
 

@@ -112,77 +112,50 @@
 
 - (void)taskTerminated:(NSNotification *)note
 {
+    NSError* error = nil;
+    NSError* tempError = nil;
+    
     int status = [[note object] terminationStatus];
     if(status != 0)
     {
         NSLog(@"Terminated bad %d", status);
+        NSDictionary* dict = [NSDictionary dictionaryWithObject:
+            [NSString stringWithFormat:
+                NSLocalizedString(@"AtomicParsley failed with exit code %d", @"Write failed error"),
+                status]
+            forKey:NSLocalizedDescriptionKey];
+        error = [NSError errorWithDomain:@"AtomicParsleyPlugin" code:status userInfo:dict];
     }
 
     NSFileManager* mgr = [NSFileManager defaultManager];
-    NSError* error = nil;
     if(pictureFile)
     {
-        if(![mgr removeItemAtPath:pictureFile error:&error])
+        if(![mgr removeItemAtPath:pictureFile error:&tempError])
         {
-            NSLog(@"Failed to remove temp picture file %@", [error localizedDescription]);
-            error = nil;
+            NSLog(@"Failed to remove temp picture file %@", [tempError localizedDescription]);
+            tempError = nil;
         }
     }
-    if([self isCancelled] || status != 0)
+    if([self isCancelled] || error)
     {
         if(chaptersFile)
         {
-            if(![mgr removeItemAtPath:chaptersFile error:&error])
+            if(![mgr removeItemAtPath:chaptersFile error:&tempError])
             {
-                NSLog(@"Failed to remove temp chapters file %@", [error localizedDescription]);
-                error = nil;
+                NSLog(@"Failed to remove temp chapters file %@", [tempError localizedDescription]);
+                tempError = nil;
             }
         }
-        if(![mgr removeItemAtPath:[edits savedTempFileName] error:&error])
+        if(![mgr removeItemAtPath:[edits savedTempFileName] error:&tempError])
         {
-            NSLog(@"Failed to remove temp write file %@", [error localizedDescription]);
-            error = nil;
+            NSLog(@"Failed to remove temp write file %@", [tempError localizedDescription]);
+            tempError = nil;
         }
-        if([delegate respondsToSelector:@selector(dataProvider:controller:writeCanceledForEdits:status:)])
-            [delegate dataProvider:provider controller:self writeCanceledForEdits:edits status:status];
+        if([delegate respondsToSelector:@selector(dataProvider:controller:writeCanceledForEdits:error:)])
+            [delegate dataProvider:provider controller:self writeCanceledForEdits:edits error:error];
     }
     else
     {
-        /*
-        BOOL isDir = NO;
-        if([mgr fileExistsAtPath:[edits savedTempFileName] isDirectory:&isDir] && !isDir)
-        {
-            if(![mgr removeItemAtPath:[edits loadedFileName] error:&error])
-            {
-                NSLog(@"Failed to remove loaded file %@", [error localizedDescription]);
-                error = nil;
-            }
-        
-            if(![mgr moveItemAtPath:[edits savedTempFileName] toPath:[edits savedFileName] error:&error])
-            {
-                NSLog(@"Failed to move file to final location %@", [error localizedDescription]);
-                error = nil;
-            }
-        } else if(![[edits loadedFileName] isEqualToString:[edits savedFileName]])
-        {
-            if(![mgr moveItemAtPath:[edits loadedFileName] toPath:[edits savedFileName] error:&error])
-            {
-                NSLog(@"Failed to move file to final location %@", [error localizedDescription]);
-                error = nil;
-            }
-        }
-        NSString* temp = [[edits loadedFileName] stringByDeletingLastPathComponent];
-        NSInteger tag = 0;
-        if(![[NSWorkspace sharedWorkspace]
-                performFileOperation:NSWorkspaceRecycleOperation
-                              source:temp
-                         destination:@""
-                               files:[NSArray arrayWithObject:[[edits loadedFileName] lastPathComponent]]
-                                 tag:&tag])
-        {
-        
-        }
-        */
         NSString* fileName;
         BOOL isDir = NO;
         if([mgr fileExistsAtPath:[edits savedTempFileName] isDirectory:&isDir] && !isDir)
@@ -193,25 +166,40 @@
         if(chaptersFile)
         {
             if([chaptersFile isEqualToString:@""])
-                [APDataProvider removeChaptersFromFile:fileName];
+                status = [APDataProvider removeChaptersFromFile:fileName];
             else
             {
-                [APDataProvider importChaptersFromFile:chaptersFile toFile:fileName];
-                if(![mgr removeItemAtPath:chaptersFile error:&error])
+                status = [APDataProvider importChaptersFromFile:chaptersFile toFile:fileName];
+                if(![mgr removeItemAtPath:chaptersFile error:&tempError])
                 {
-                    NSLog(@"Failed to remove temp chapters file %@", [error localizedDescription]);
-                    error = nil;
+                    NSLog(@"Failed to remove temp chapters file %@", [tempError localizedDescription]);
+                    tempError = nil;
                 }
+            }
+            if(status != 0)
+            {
+                NSDictionary* dict = [NSDictionary dictionaryWithObject:
+                    [NSString stringWithFormat:
+                        NSLocalizedString(@"mp4chaps failed with exit code %d", @"Write failed error"),
+                        status]
+                    forKey:NSLocalizedDescriptionKey];
+                error = [NSError errorWithDomain:@"AtomicParsleyPlugin" code:status userInfo:dict];
             }
         }
         
-        self.isFinished = YES;
-        if([delegate respondsToSelector:@selector(dataProvider:controller:writeFinishedForEdits:)])
-            [delegate dataProvider:provider controller:self writeFinishedForEdits:edits];
+        if(error)
+        {
+            if([delegate respondsToSelector:@selector(dataProvider:controller:writeCanceledForEdits:error:)])
+                [delegate dataProvider:provider controller:self writeCanceledForEdits:edits error:error];
+        }
+        else
+        {
+            self.isFinished = YES;
+            if([delegate respondsToSelector:@selector(dataProvider:controller:writeFinishedForEdits:)])
+                [delegate dataProvider:provider controller:self writeFinishedForEdits:edits];
+        }
     }
-    //[self willChangeValueForKey:@"isFinished"];
     self.isFinished = YES;
-    //[self didChangeValueForKey:@"finished"];
     [provider removeWriteManager:self];
 }
 

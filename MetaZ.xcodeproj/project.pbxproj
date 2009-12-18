@@ -78,6 +78,7 @@
 		1B44956D10D6118F00B9C751 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B44956C10D6118F00B9C751 /* Growl.framework */; };
 		1B44957A10D611AA00B9C751 /* Growl.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1B44956C10D6118F00B9C751 /* Growl.framework */; };
 		1B44958510D6128700B9C751 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 1B44958410D6128700B9C751 /* Growl Registration Ticket.growlRegDict */; };
+		1B4499D210D9A5CE00B9C751 /* PresetSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4499D110D9A5CE00B9C751 /* PresetSegmentedControl.m */; };
 		1B5AC76F10532E5200F9CE36 /* MetaEditPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */; };
 		1B6E43C810845F8200DFE165 /* TCSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E43C710845F8200DFE165 /* TCSearch.m */; };
 		1B6E43CB108468B100DFE165 /* MZSearchResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6E43C9108468B100DFE165 /* MZSearchResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -394,6 +395,8 @@
 		1B4494BC10D584E000B9C751 /* next_release.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = next_release.txt; path = Release/next_release.txt; sourceTree = "<group>"; };
 		1B44956C10D6118F00B9C751 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = Externals/Growl.framework; sourceTree = "<group>"; };
 		1B44958410D6128700B9C751 /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Growl Registration Ticket.growlRegDict"; path = "App/resources/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
+		1B4499D010D9A5CE00B9C751 /* PresetSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetSegmentedControl.h; sourceTree = "<group>"; };
+		1B4499D110D9A5CE00B9C751 /* PresetSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresetSegmentedControl.m; sourceTree = "<group>"; };
 		1B5AC76D10532E5200F9CE36 /* MetaEditPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaEditPanel.h; sourceTree = "<group>"; };
 		1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditPanel.m; sourceTree = "<group>"; };
 		1B6E43C610845F8200DFE165 /* TCSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSearch.h; sourceTree = "<group>"; };
@@ -787,6 +790,8 @@
 				1B0331A510B13DC800B28E3A /* ToolTipLabel.m */,
 				1B0331A710B13F8000B28E3A /* ToolTipButton.h */,
 				1B0331A810B13F8000B28E3A /* ToolTipButton.m */,
+				1B4499D010D9A5CE00B9C751 /* PresetSegmentedControl.h */,
+				1B4499D110D9A5CE00B9C751 /* PresetSegmentedControl.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1361,7 +1366,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -o errexit\n#set -x\n\nexport GITV=`/opt/local/bin/git log -n1 --pretty=oneline --format=%h`\nexport DATEV=`date +%y.%m.%d.%H`\n#defaults write \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleVersion \"${DATEV}\"\n#defaults write \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" GitVersion \"${GITV}\"\n\nif [ \"${CONFIGURATION}\" != \"Release\" ]; then exit; fi\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleShortVersionString)\nDOWNLOAD_BASE_URL=\"http://cloud.github.com/downloads/griff/metaz\"\nRELEASENOTES_URL=\"http://griff.github.com/metaz/release-notes.html#version-$VERSION\"\n\nARCHIVE_FILENAME=\"$PROJECT_NAME-$VERSION.zip\"\nDOWNLOAD_URL=\"$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME\"\nKEYCHAIN_PRIVKEY_NAME=\"MetaZ Sparkle Private\"\n\nWD=$PWD\ncd \"$BUILT_PRODUCTS_DIR\"\nrm -f \"$PROJECT_NAME\"*.zip\nditto -ck --keepParent \"$PROJECT_NAME.app\" \"$ARCHIVE_FILENAME\"\n\nditto -ck --keepParent \"$PROJECT_NAME.app.dSYM\" \"$PROJECT_NAME-$VERSION-$GITV+dYSM.zip\"\n\nSIZE=$(stat -f %z \"$ARCHIVE_FILENAME\")\nPUBDATE=$(date +\"%a, %d %b %G %T %z\")\nSIGNATURE=$(\n\topenssl dgst -sha1 -binary < \"$ARCHIVE_FILENAME\" \\\n\t| openssl dgst -dss1 -sign <(security find-generic-password -g -s \"$KEYCHAIN_PRIVKEY_NAME\" 2>&1 1>/dev/null | perl -pe '($_) = /\"(.+)\"/; s/\\\\012/\\n/g') \\\n\t| openssl enc -base64\n)\n\n[ $SIGNATURE ] || { echo Unable to load signing private key with name \"'$KEYCHAIN_PRIVKEY_NAME'\" from keychain; false; }\n\ncat > \"$PROJECT_NAME-$VERSION.xml\" <<EOF\n\t\t<item>\n\t\t\t<title>Version $VERSION</title>\n\t\t\t<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>\n\t\t\t<pubDate>$PUBDATE</pubDate>\n\t\t\t<enclosure\n\t\t\t\turl=\"$DOWNLOAD_URL\"\n\t\t\t\tsparkle:version=\"$DATEV\"\n\t\t\t\tsparkle:shortVersionString=\"$VERSION\"\n\t\t\t\ttype=\"application/octet-stream\"\n\t\t\t\tlength=\"$SIZE\"\n\t\t\t\tsparkle:dsaSignature=\"$SIGNATURE\"\n\t\t\t/>\n\t\t</item>\nEOF\n\necho scp \"'$HOME/svn/my-cool-app/build/Release/$ARCHIVE_FILENAME'\" www.example.com:download/\necho scp \"'$WD/appcast.xml'\" www.example.com:web/software/my-cool-app/appcast.xml\n";
+			shellScript = "set -o errexit\n#set -x\n\nexport GITV=`/opt/local/bin/git log -n1 --pretty=oneline --format=%h`\nexport DATEV=`date +%y.%m.%d.%H`\n#defaults write \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleVersion \"${DATEV}\"\n#defaults write \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" GitVersion \"${GITV}\"\n\nif [ \"${CONFIGURATION}\" != \"Release\" ]; then exit; fi\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleShortVersionString)\nDOWNLOAD_BASE_URL=\"http://cloud.github.com/downloads/griff/metaz\"\nRELEASENOTES_URL=\"http://griff.github.com/metaz/release-notes.html#version-$VERSION\"\n\nARCHIVE_FILENAME=\"$PROJECT_NAME-$VERSION.zip\"\nDOWNLOAD_URL=\"$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME\"\nKEYCHAIN_PRIVKEY_NAME=\"MetaZ Sparkle Private\"\n\nWD=$PWD\ncd \"$BUILT_PRODUCTS_DIR\"\nrm -f \"$PROJECT_NAME\"*.zip\nditto -ck --keepParent \"$PROJECT_NAME.app\" \"$ARCHIVE_FILENAME\"\n\nmkdir DSYMS\ncp -R *.dSYM DSYMS/\n\n#ditto -ck --keepParent \"$PROJECT_NAME.app.dSYM\" \"$PROJECT_NAME-$VERSION-$GITV+dYSM.zip\"\nditto -ck DSYMS \"$PROJECT_NAME-$VERSION-$GITV+dYSM.zip\"\nrm -rf DSYMS\n\nSIZE=$(stat -f %z \"$ARCHIVE_FILENAME\")\nPUBDATE=$(date +\"%a, %d %b %G %T %z\")\nSIGNATURE=$(\n\topenssl dgst -sha1 -binary < \"$ARCHIVE_FILENAME\" \\\n\t| openssl dgst -dss1 -sign <(security find-generic-password -g -s \"$KEYCHAIN_PRIVKEY_NAME\" 2>&1 1>/dev/null | perl -pe '($_) = /\"(.+)\"/; s/\\\\012/\\n/g') \\\n\t| openssl enc -base64\n)\n\n[ $SIGNATURE ] || { echo Unable to load signing private key with name \"'$KEYCHAIN_PRIVKEY_NAME'\" from keychain; false; }\n\ncat > \"$PROJECT_NAME-$VERSION.xml\" <<EOF\n\t\t<item>\n\t\t\t<title>Version $VERSION</title>\n\t\t\t<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>\n\t\t\t<pubDate>$PUBDATE</pubDate>\n\t\t\t<enclosure\n\t\t\t\turl=\"$DOWNLOAD_URL\"\n\t\t\t\tsparkle:version=\"$DATEV\"\n\t\t\t\tsparkle:shortVersionString=\"$VERSION\"\n\t\t\t\ttype=\"application/octet-stream\"\n\t\t\t\tlength=\"$SIZE\"\n\t\t\t\tsparkle:dsaSignature=\"$SIGNATURE\"\n\t\t\t/>\n\t\t</item>\nEOF\n\necho scp \"'$HOME/svn/my-cool-app/build/Release/$ARCHIVE_FILENAME'\" www.example.com:download/\necho scp \"'$WD/appcast.xml'\" www.example.com:web/software/my-cool-app/appcast.xml\n";
 			showEnvVarsInLog = 0;
 		};
 		1BEA6D70106EA6D1004B1A7F /* Build Documentation */ = {
@@ -1499,6 +1504,7 @@
 				1BDD87A11095FB5100E3C81D /* PresetsWindowController.m in Sources */,
 				1B0331A610B13DC800B28E3A /* ToolTipLabel.m in Sources */,
 				1B0331CF10B143F500B28E3A /* ToolTipButton.m in Sources */,
+				1B4499D210D9A5CE00B9C751 /* PresetSegmentedControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

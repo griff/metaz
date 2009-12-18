@@ -386,17 +386,31 @@ static MZPluginController *gInstance = NULL;
 - (void)dataProvider:(id<MZDataProvider>)provider
           controller:(id<MZDataWriteController>)controller
         writeCanceledForEdits:(MetaEdits *)edits
-            status:(int)status
+            error:(NSError *)error
 {
-    NSArray* keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, MZDataWriteControllerNotificationKey, MZDataWriteControllerStatusKey, nil];
-    NSArray* values = [NSArray arrayWithObjects:edits, controller, [NSNumber numberWithInt:status], nil];
+    NSArray* keys;
+    NSArray* values;
+    if(error)
+    {
+        keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, 
+                MZDataWriteControllerNotificationKey, 
+                MZDataWriteControllerErrorKey, nil];
+        values = [NSArray arrayWithObjects:edits, controller, error, nil];
+    }
+    else
+    {
+        keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, 
+                MZDataWriteControllerNotificationKey, nil];
+        values = [NSArray arrayWithObjects:edits, controller, nil];
+    }
+
     NSDictionary* userInfo = [NSDictionary dictionaryWithObjects:values forKeys:keys];
     [[NSNotificationCenter defaultCenter]
             postNotificationName:MZDataProviderWritingCanceledNotification
                           object:provider
                         userInfo:userInfo];
-    if([delegate respondsToSelector:@selector(dataProvider:controller:writeCanceledForEdits:status:)])
-        [delegate dataProvider:provider controller:controller writeCanceledForEdits:edits status:status];
+    if([delegate respondsToSelector:@selector(dataProvider:controller:writeCanceledForEdits:error:)])
+        [delegate dataProvider:provider controller:controller writeCanceledForEdits:edits error:error];
 }
 
 - (void)dataProvider:(id<MZDataProvider>)provider

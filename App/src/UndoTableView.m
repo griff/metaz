@@ -26,7 +26,8 @@
     }
 }
 
-- (void)keyDown:(NSEvent *)theEvent {
+- (void)keyDown:(NSEvent *)theEvent
+{
     NSString* ns = [theEvent charactersIgnoringModifiers];
     if([ns length] == 1)
     {
@@ -52,6 +53,11 @@
 - (BOOL)resignFirstResponder
 {
     return [super resignFirstResponder];
+}
+
+- (void)setAction:(SEL)aSelector
+{
+    [self setDoubleAction:aSelector];
 }
 
 @end

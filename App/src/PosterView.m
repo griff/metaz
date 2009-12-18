@@ -12,8 +12,13 @@
 
 @implementation PosterView
 
+@synthesize retryButton;
+@synthesize indicator;
+
 - (void)dealloc
 {
+    [retryButton release];
+    [indicator release];
     [error release];
     [super dealloc];
 }
@@ -140,10 +145,23 @@
     if([ns length] == 1)
     {
         unichar ch = [ns characterAtIndex:0];
-        if((ch==NSBackspaceCharacter || ch==NSDeleteCharacter) && 
-            [self image] == [NSImage imageNamed:MZFadedIcon])
-        {
-            NSBeep();
+        switch(ch) {
+            case NSNewlineCharacter:
+            case NSCarriageReturnCharacter:
+            case NSEnterCharacter:
+                if([retryButton isHidden] && [indicator isHidden])
+                    [NSApp sendAction:actionHack to:[self target] from:self];
+                else if(![retryButton isHidden])
+                    [retryButton performClick:self];
+                break;
+            case NSBackspaceCharacter:
+            case NSDeleteCharacter:
+                if([self image] == [NSImage imageNamed:MZFadedIcon] ||
+                   [self image] == [NSImage imageNamed:MZFadedIconError] ||
+                   [self image] == [NSImage imageNamed:MZFadedIconFatalError])
+                {
+                    NSBeep();
+                }
         }
     }
     [super keyDown:theEvent];

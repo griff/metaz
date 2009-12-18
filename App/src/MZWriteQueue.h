@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaZKit.h>
 
+#define MZQueueStarted @"MZQueueStarted"
 #define MZQueueCompletedPercent @"MZQueueCompletedPercent"
 #define MZQueueItemCompleted @"MZQueueItemCompleted"
 #define MZQueueItemFailed @"MZQueueItemFailed"

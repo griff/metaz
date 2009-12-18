@@ -78,7 +78,7 @@ NSString* const MZMetaEditsDeallocating = @"MZMetaEditsDeallocating";
 NSString* const MZMetaEditsNotificationKey = @"MZMetaEditsNotificationKey";
 NSString* const MZUndoActionNameKey = @"MZUndoActionNameKey";
 NSString* const MZDataWriteControllerNotificationKey = @"MZDataWriteControllerNotificationKey";
-NSString* const MZDataWriteControllerStatusKey = @"MZDataWriteControllerStatusKey";
+NSString* const MZDataWriteControllerErrorKey = @"MZDataWriteControllerErrorKey";
 
 // Standard alert ids
 NSString* const MZDataProviderFileAlreadyLoadedWarningKey = @"alerts.warnings.fileAlreadyLoaded";

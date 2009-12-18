@@ -34,9 +34,32 @@
     return [self menu];
 }
 
-- (void)setAction:(SEL)aSelector
+- (void)keyDown:(NSEvent *)theEvent
 {
-    [self setDoubleAction:aSelector];
+    /*
+    NSString* ns = [theEvent charactersIgnoringModifiers];
+    NSUInteger flags = [theEvent modifierFlags] & NSDeviceIndependentModifierFlagsMask;
+    if([ns isEqual:@"A"] && flags == (NSShiftKeyMask | NSCommandKeyMask) )
+    {
+        [self sendAction:[self doubleAction] to:[self target]];
+        return;
+    }
+    */
+    /*
+    if([ns length] == 1)
+    {
+        unichar ch = [ns characterAtIndex:0];
+        
+        switch(ch) {
+            case NSNewlineCharacter:
+            case NSCarriageReturnCharacter:
+            case NSEnterCharacter:
+                [self sendAction:[self doubleAction] to:[self target]];
+                break;
+        }
+    }
+    */
+    [super keyDown:theEvent];
 }
 
 @end

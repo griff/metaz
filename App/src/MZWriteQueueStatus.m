@@ -120,23 +120,21 @@ writeStartedForEdits:(MetaEdits *)edits
 - (void)dataProvider:(id<MZDataProvider>)provider 
           controller:(id<MZDataWriteController>)controller
         writeCanceledForEdits:(MetaEdits *)theEdits
-              status:(int)theStatus
+              error:(NSError *)theError
 {
     //[self willChangeValueForKey:@"writing"];
     self.writing = 0;
     //[self didChangeValueForKey:@"writing"];
-    if(theStatus == 0)
+    if(!theError)
         self.status = NSLocalizedString(@"Stopped", @"Write queue status text");
     else
     {
-        self.status = [NSString stringWithFormat:
-            NSLocalizedString(@"Failed with exit code %d", @"Write failed error"),
-            theStatus];
+        self.status = [theError localizedDescription];
         self.hasRun = YES;
     }
 
     [self triggerChangeNotification:-self.percent]; // Revert progress
-    if(removeOnCancel || theStatus != 0)
+    if(removeOnCancel || theError)
     {
         if(removeOnCancel)
         {
@@ -151,7 +149,10 @@ writeStartedForEdits:(MetaEdits *)edits
                                   object:self
                                 userInfo:userInfo];
         }
-        [[MZWriteQueue sharedQueue] startNextItem];
+        if(!removeOnCancel || [[MZWriteQueue sharedQueue] hasNextItem])
+            [[MZWriteQueue sharedQueue] startNextItem];
+        else
+            [[MZWriteQueue sharedQueue] stop];
     }
     else
     {

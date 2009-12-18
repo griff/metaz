@@ -311,7 +311,7 @@ NSDictionary* findBinding(NSWindow* window) {
     }
     if([keyPath isEqual:@"selection.pure.videoType"] && object == filesController)
     {
-        [self performSelector:@selector(updateSearchMenu) withObject:nil afterDelay:0];
+        [self performSelector:@selector(updateSearchMenu) withObject:nil afterDelay:2.0];
     }
     if([keyPath isEqual:@"selection.shortDescription"] && object == filesController)
     {
@@ -394,6 +394,7 @@ NSDictionary* findBinding(NSWindow* window) {
     [filesController selectNext:sender];
 }
 
+
 - (IBAction)selectPreviousFile:(id)sender {
     NSResponder* oldResponder = findResponder(window);
     if([filesController commitEditing])
@@ -404,6 +405,29 @@ NSDictionary* findBinding(NSWindow* window) {
     }
     [filesController selectPrevious:sender];
 }
+
+- (IBAction)selectNextResult:(id)sender {
+    NSResponder* oldResponder = findResponder(window);
+    if([filesController commitEditing])
+    {
+        NSResponder* currentResponder =  findResponder(window);
+        if(oldResponder != currentResponder)
+            [window makeFirstResponder:oldResponder];
+    }
+    [searchController selectNext:sender];
+}
+
+- (IBAction)selectPreviousResult:(id)sender {
+    NSResponder* oldResponder = findResponder(window);
+    if([filesController commitEditing])
+    {
+        NSResponder* currentResponder =  findResponder(window);
+        if(oldResponder != currentResponder)
+            [window makeFirstResponder:oldResponder];
+    }
+    [searchController selectPrevious:sender];
+}
+
 
 - (IBAction)revertChanges:(id)sender {
     NSDictionary* dict = findBinding(window);
@@ -538,9 +562,6 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (IBAction)applySearchEntry:(id)sender
 {
-    if([sender isKindOfClass:[NSTableView class]] && [sender clickedRow] == -1)
-        return;
-    
     id selection = [searchController valueForKeyPath:@"selection.self"];
     if(![selection isKindOfClass:[MZSearchResult class]])
         return;
@@ -600,6 +621,8 @@ NSDictionary* findBinding(NSWindow* window) {
                     return NO;
             }
         }
+        if(presetsController && [[presetsController window] isKeyWindow])
+            return NO;
         return YES;
     }
     if(action == @selector(selectNextFile:))

@@ -21,7 +21,11 @@ typedef enum {
     SEL actionHack;
     NSError* error;
     PosterImageStatus status;
+    NSButton* retryButton;
+    NSProgressIndicator* indicator;
 }
+@property (nonatomic, retain) IBOutlet NSButton* retryButton;
+@property (nonatomic, retain) IBOutlet NSProgressIndicator* indicator;
 @property (readonly) NSString* imageSize;
 
 - (void)awakeFromNib;

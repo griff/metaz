@@ -323,7 +323,9 @@
             [window orderFront:self];
             [window makeMainWindow];
             */
-            return [[MZMetaLoader sharedLoader] loadFromFiles:filenames toIndex:row];
+            NSArray* params = [NSArray arrayWithObjects:filenames, [NSNumber numberWithInteger:row], nil];
+            [self performSelector:@selector(loadFiles:) withObject:params afterDelay:1];
+            return YES;
         }
         if([bestType isEqualToString:NSStringPboardType])
         {
@@ -335,11 +337,23 @@
                 [[MZPluginController sharedInstance] dataProviderForPath:filename])
             {
                 //[[self window] makeKeyAndOrderFront:self];
-                return [[MZMetaLoader sharedLoader] loadFromFile:filename toIndex:row];
+                NSArray* params = [NSArray arrayWithObjects:filename, [NSNumber numberWithInteger:row], nil];
+                [self performSelector:@selector(loadFiles:) withObject:params afterDelay:1];
+                return YES;
             }
         }
     }
     return NO;
+}
+
+- (void)loadFiles:(NSArray *)params
+{
+    id first = [params objectAtIndex:0];
+    NSInteger row = [[params objectAtIndex:1] integerValue];
+    if([first isKindOfClass:[NSArray class]])
+        [[MZMetaLoader sharedLoader] loadFromFiles:first toIndex:row];
+    else
+        [[MZMetaLoader sharedLoader] loadFromFile:first toIndex:row];
 }
 
 #pragma mark - general
@@ -357,19 +371,6 @@
         unichar ch = [ns characterAtIndex:0];
         //NSLog(@"keyDown %x %x", ch, NSNewlineCharacter);
         switch(ch) {
-            /*
-            case NSNewlineCharacter:
-                //NSLog(@"Caught NL");
-            case NSCarriageReturnCharacter:
-                //NSLog(@"Caught CR");
-            case NSEnterCharacter:
-                //NSLog(@"Caught Enter");
-                if([self numberOfSelectedRows] == 1) {
-                    [self beginEnterEdit:self];
-                    return;
-                }
-                break;
-            */
             case NSBackspaceCharacter:
             case NSDeleteCharacter:
                 if([self numberOfSelectedRows] > 0 && (modifierFlags & NSCommandKeyMask) == NSCommandKeyMask )

@@ -24,6 +24,7 @@
 @synthesize mainWindow;
 @synthesize playBtn;
 @synthesize playBtn2;
+@synthesize menuItem;
 @synthesize targetProgress;
 @synthesize progress;
 
@@ -47,6 +48,8 @@
     [controller release];
     [playBtn release];
     [filesController release];
+    [startTime release];
+    [menuItem release];
     [super dealloc];
 }
 
@@ -68,6 +71,11 @@
                  object:nil];
     }
 
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(queueStarted:)
+               name:MZQueueStarted
+             object:nil];
     [[NSNotificationCenter defaultCenter]
         addObserver:self
            selector:@selector(queueCompleted:)
@@ -133,11 +141,13 @@
     RunStatus status = [writeQueue status];
     NSString* playLabel;
     NSString* playImage;
+    NSString* menuLabel;
     switch (status)
     {
         case QueueStopped:
             playLabel = NSLocalizedString(@"Start", @"Label for start button");
             playImage = @"Play";
+            menuLabel = NSLocalizedString(@"Start Queue", @"Label for start queue menu");
 
             if((contentRect.size.height - mainRect.size.height) > 32)
             {
@@ -160,6 +170,7 @@
         case QueueRunning:
             playLabel = NSLocalizedString(@"Stop", @"Label for stop button");
             playImage = @"Stop";
+            menuLabel = NSLocalizedString(@"Stop Queue", @"Label for stop queue menu");
 
             //mainRect.origin.y = 64;
             if((contentRect.size.height - mainRect.size.height) < 64)
@@ -182,6 +193,7 @@
         case QueuePaused:
             playLabel = NSLocalizedString(@"Stop", @"Label for stop button");
             playImage = @"Stop";
+            menuLabel = NSLocalizedString(@"Stop Queue", @"Label for stop queue menu");
             break;
     }
     [playBtn setImage:[NSImage imageNamed:playImage]];
@@ -191,6 +203,7 @@
         [playBtn2 setImage:[NSImage imageNamed:playImage]];
         [playBtn2 setLabel:playLabel];
     }
+    [menuItem setTitle:menuLabel];
 }
 
 #pragma mark - observation callbacks
@@ -286,28 +299,68 @@
     controller = nil;
 }
 
+- (void)queueStarted:(NSNotification *)note
+{
+    [startTime release];
+    startTime = [[NSDate alloc] init];
+}
+
 - (void)queueCompleted:(NSNotification *)note
 {
     NSInteger action = [[NSUserDefaults standardUserDefaults] integerForKey:@"whenDoneAction"];
-    if(action == 2)
+    if(action == 2 || action == 5 || action == 1 || action == 3)
     {
-        [GrowlApplicationBridge 
-            notifyWithTitle:@"Completed queue"
-                description:@"Bla Bla\nMore <b>Bla</b>"
-           notificationName:@"Queue processing completed"
-                   iconData:nil
-                   priority:0
-                   isSticky:NO
-               clickContext:nil];
+        NSString* intervalStr;
+        NSTimeInterval interval = [startTime timeIntervalSinceNow]*-1.0;
+        if(interval > 86400) // Days
+        {
+            interval = interval/86400;
+            intervalStr = [NSString stringWithFormat:@"%1.1f days", interval];
+        }
+        else if (interval > 3600) // Hours
+        {
+            interval = interval/3600;
+            intervalStr = [NSString stringWithFormat:@"%1.1f hours", interval];
+        }
+        else if (interval > 60) // Minutes
+        {
+            interval = interval/60;
+            intervalStr = [NSString stringWithFormat:@"%1.1f min", interval];
+        }
+        else
+        {
+            intervalStr = [NSString stringWithFormat:@"%1.0f sec", interval];
+        }
+
+        NSString * title = NSLocalizedString(@"Queue run completed", @"Queue completed title");
+        NSString * msg = [NSString stringWithFormat:
+                    NSLocalizedString(@"Your MetaZ queue completed in %@",
+                        "Queue completed alert message"),
+                    intervalStr];
+
+        if(action == 2 || action == 5)
+        {
+            [GrowlApplicationBridge 
+                notifyWithTitle:title
+                    description:msg
+               notificationName:@"Queue processing completed"
+                       iconData:nil
+                       priority:0
+                       isSticky:NO
+                   clickContext:nil];
+        }
+
+        if(action == 1 || action == 3)
+            NSRunAlertPanel( title, msg, NSLocalizedString(@"OK", @"OK button text"), nil, nil);
     }
-    if(action == 1 || action == 3)
-        NSRunCriticalAlertPanel(@"Queue run done", @"Your MetaZ queue is completed", @"OK", nil, nil);
+    if(action == 4 || action == 5)
+        [NSApp terminate:self];
 }
 
 - (void)queueItemCompleted:(NSNotification *)note
 {
     NSInteger action = [[NSUserDefaults standardUserDefaults] integerForKey:@"whenDoneAction"];
-    if(action == 2 || action == 3)
+    if(action == 2 || action == 3 || action == 5)
     {
         MetaEdits* edits = [[note userInfo] objectForKey:MZMetaEditsNotificationKey];
         [GrowlApplicationBridge 
