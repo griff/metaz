@@ -71,6 +71,8 @@
 		1B11A28B104DF1EC004C93D3 /* FilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A28A104DF1EC004C93D3 /* FilesTableView.m */; };
 		1B15A60E10B608D100EC0FBF /* AmazonSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B15A60D10B608D100EC0FBF /* AmazonSearch.m */; };
 		1B20209B10B36EC200EE548A /* VideoType.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B20209910B36EC200EE548A /* VideoType.strings */; };
+		1B42F21C10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B42F21B10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m */; };
+		1B42F21F10DD5D6D00AFEBF6 /* MiniProgressGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B42F21D10DD5D6D00AFEBF6 /* MiniProgressGradient.png */; };
 		1B44949910D57D6900B9C751 /* AtomicParsley in Resources */ = {isa = PBXBuildFile; fileRef = 1B44949810D57D6900B9C751 /* AtomicParsley */; };
 		1B44956D10D6118F00B9C751 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B44956C10D6118F00B9C751 /* Growl.framework */; };
 		1B44957A10D611AA00B9C751 /* Growl.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1B44956C10D6118F00B9C751 /* Growl.framework */; };
@@ -389,6 +391,9 @@
 		1B15A60D10B608D100EC0FBF /* AmazonSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonSearch.m; sourceTree = "<group>"; };
 		1B15A62610B6316000EC0FBF /* Access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access.h; path = Plugins/Amazon/Access.h; sourceTree = SOURCE_ROOT; };
 		1B20209A10B36EC200EE548A /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/VideoType.strings; sourceTree = "<group>"; };
+		1B42F21A10DD5D5D00AFEBF6 /* UKDockProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKDockProgressIndicator.h; path = Externals/UKDockProgressIndicator/UKDockProgressIndicator.h; sourceTree = "<group>"; };
+		1B42F21B10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKDockProgressIndicator.m; path = Externals/UKDockProgressIndicator/UKDockProgressIndicator.m; sourceTree = "<group>"; };
+		1B42F21E10DD5D6D00AFEBF6 /* English */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = English; path = Externals/UKDockProgressIndicator/English.lproj/MiniProgressGradient.png; sourceTree = "<group>"; };
 		1B44949810D57D6900B9C751 /* AtomicParsley */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = AtomicParsley; path = Plugins/AtomicParsley/resources/AtomicParsley; sourceTree = "<group>"; };
 		1B4494BC10D584E000B9C751 /* next_release.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = next_release.txt; path = Release/next_release.txt; sourceTree = "<group>"; };
 		1B44956C10D6118F00B9C751 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = Externals/Growl.framework; sourceTree = "<group>"; };
@@ -1022,9 +1027,20 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		1B42F21910DD534500AFEBF6 /* UKDockProgressIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				1B42F21D10DD5D6D00AFEBF6 /* MiniProgressGradient.png */,
+				1B42F21A10DD5D5D00AFEBF6 /* UKDockProgressIndicator.h */,
+				1B42F21B10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m */,
+			);
+			name = UKDockProgressIndicator;
+			sourceTree = "<group>";
+		};
 		1B449CEE10DCCAD500B9C751 /* External Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1B42F21910DD534500AFEBF6 /* UKDockProgressIndicator */,
 				1B449D1910DCCBA800B9C751 /* GTM */,
 				1B449D1610DCCB0500B9C751 /* hmac */,
 			);
@@ -1895,6 +1911,7 @@
 				1B03325410B15CB200B28E3A /* StopProgressHover.png in Resources */,
 				1B03325610B15FF100B28E3A /* StopProgressOn.png in Resources */,
 				1B44958510D6128700B9C751 /* Growl Registration Ticket.growlRegDict in Resources */,
+				1B42F21F10DD5D6D00AFEBF6 /* MiniProgressGradient.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2118,6 +2135,7 @@
 				1B0331CF10B143F500B28E3A /* ToolTipButton.m in Sources */,
 				1B4499D210D9A5CE00B9C751 /* PresetSegmentedControl.m in Sources */,
 				1B449B8810DC7DE400B9C751 /* ChaptersTableView.m in Sources */,
+				1B42F21C10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2201,6 +2219,14 @@
 				1B20209A10B36EC200EE548A /* English */,
 			);
 			name = VideoType.strings;
+			sourceTree = "<group>";
+		};
+		1B42F21D10DD5D6D00AFEBF6 /* MiniProgressGradient.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B42F21E10DD5D6D00AFEBF6 /* English */,
+			);
+			name = MiniProgressGradient.png;
 			sourceTree = "<group>";
 		};
 		1B449D2A10DCCBF600B9C751 /* GTMHotKeyTextField.strings */ = {

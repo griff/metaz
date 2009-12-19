@@ -166,11 +166,11 @@ static MZWriteQueue* sharedQueue = nil;
             return;
         }
     }
+    [self stop];
+    [self saveQueueWithError:NULL];
     [[NSNotificationCenter defaultCenter]
             postNotificationName:MZQueueCompleted
                           object:self];
-    [self stop];
-    [self saveQueueWithError:NULL];
 }
 
 - (void)itemStopped

@@ -35,6 +35,7 @@
     {
         controller = nil;
         writeQueue = [[MZWriteQueue sharedQueue] retain];
+        dockIndicator = [[UKDockProgressIndicator alloc] init];
         [self registerAsObserver];
     }
     return self;
@@ -50,6 +51,7 @@
     [filesController release];
     [startTime release];
     [menuItem release];
+    [dockIndicator release];
     [super dealloc];
 }
 
@@ -82,6 +84,9 @@
                name:MZQueueCompleted
              object:nil];
 
+    [dockIndicator setMinValue:0];
+    [dockIndicator bind:@"maxValue" toObject:self withKeyPath:@"targetProgress" options:nil];
+    [dockIndicator bind:@"doubleValue" toObject:self withKeyPath:@"progress" options:nil];
 
     // Hide progress bar
     NSRect contentRect = [[mainWindow contentView] bounds];
@@ -100,6 +105,7 @@
         [pendingLabel setFrameOrigin:pendingRect.origin];
         [progressBar setHidden:YES];
         [[mainWindow contentView] setAutoresizesSubviews:YES];
+        [dockIndicator setHidden:YES];
     }
 }
 
@@ -162,6 +168,7 @@
                 [progressBar stopAnimation:self];
                 [mainWindow setFrame:windowFrame display:YES animate:NO];
                 [[mainWindow contentView] setAutoresizesSubviews:YES];
+                [dockIndicator setHidden:YES];
             }
             /*
             MZLoggerDebug(@"Diff %@  %@ %f", NSStringFromRect(windowFrame), NSStringFromRect(mainRect),
@@ -188,6 +195,7 @@
                 [progressBar startAnimation:self];
                 [mainWindow setFrame:windowFrame display:YES animate:NO];
                 [[mainWindow contentView] setAutoresizesSubviews:YES];
+                [dockIndicator setHidden:NO];
             }
             /*
             MZLoggerDebug(@"Diff %@  %@ %f", NSStringFromRect(windowFrame), NSStringFromRect(mainRect),

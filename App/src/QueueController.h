@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <Growl/Growl.h>
 #import "MZWriteQueue.h"
+#import "UKDockProgressIndicator.h"
 
 @interface QueueController : NSObject <NSUserInterfaceValidations,GrowlApplicationBridgeDelegate> {
     NSArrayController* filesController;
@@ -23,6 +24,7 @@
     NSInteger targetProgress;
     NSInteger progress;
     NSDate* startTime;
+    UKDockProgressIndicator* dockIndicator;
 }
 @property (nonatomic, retain) IBOutlet NSArrayController* filesController;
 @property (nonatomic, retain) IBOutlet NSWindow* mainWindow;
