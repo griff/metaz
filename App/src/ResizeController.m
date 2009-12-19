@@ -53,11 +53,11 @@
     /*
     [sender adjustSubviews];
     NSRect bounds = [sender bounds];
-    NSLog(@"SplitView {{%f, %f},{%f,%f}}", bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height);
+    MZLoggerDebug(@"SplitView {{%f, %f},{%f,%f}}", bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height);
     for ( NSView* view in [sender subviews] )
     {
         bounds = [view frame];
-        NSLog(@"  Subview {{%f, %f},{%f,%f}}", bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height);
+        MZLoggerDebug(@"  Subview {{%f, %f},{%f,%f}}", bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height);
     }
     return;
     */
@@ -113,10 +113,10 @@
     for(int i=0; i<3; i++) if(amounts[i]>0) w-=widths[i];
     
     if(count==0)
-        NSLog(@"Bad Count");
+        MZLoggerDebug(@"Bad Count");
 
     if(w>3.0)
-        NSLog(@"More width");
+        MZLoggerDebug(@"More width");
 
     int idx=0;
     while(w>0)
@@ -127,7 +127,7 @@
     }
     
     if(w>0)
-        NSLog(@"More width");
+        MZLoggerDebug(@"More width");
 
     /*
     while(amount != 0.0)
@@ -148,7 +148,7 @@
         if(amount != 0.0)
         {
             if(count==0)
-                NSLog(@"Bad Count");
+                MZLoggerDebug(@"Bad Count");
             for(int i=0; i<3; i++) widths[i] -= amounts[i]*amount/count;
         }
     }
@@ -159,7 +159,7 @@
     newWidth+=widths[1];
     if(![splitView isSubviewCollapsed:filesBox]) newWidth+=widths[2];
     if(newWidth != newSize.width)
-        NSLog(@"Bad sum");
+        MZLoggerDebug(@"Bad sum");
     
     NSRect rect = [searchBox frame];
     rect.origin.x = 0;

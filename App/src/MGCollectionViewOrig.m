@@ -118,7 +118,7 @@ PointDistance(NSPoint start,
 /*
 - (MuhMaItem *)itemPrototype
 {
-    NSLog(@"Bad call");
+    MZLoggerDebug(@"Bad call");
 }
 */
 
@@ -878,7 +878,7 @@ PointDistance(NSPoint start,
 
 - (void)onKeyWindowUpdated: (NSNotification *)notification
 {
-    NSLog(@"Updated window");
+    MZLoggerDebug(@"Updated window");
 }
 
 - (void)onKeyWindowChanged: (NSNotification *)notification

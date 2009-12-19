@@ -182,7 +182,7 @@
     id changed = [observerFix valueForKeyPath:@"selection.pictureChanged"];
     /*
     if(changed == NSMultipleValuesMarker)
-        NSLog(@"Multiple");
+        MZLoggerDebug(@"Multiple");
     */
     return changed;
 }

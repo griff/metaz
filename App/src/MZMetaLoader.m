@@ -157,10 +157,10 @@ static MZMetaLoader* sharedLoader = nil;
             [realFileNames removeObjectAtIndex:i];
             [realIndexes removeIndex:index];
             //if(index>=[files count])
-            //NSLog(@"Shifting %d", [indexes lastIndex]);
+            //MZLoggerDebug(@"Shifting %d", [indexes lastIndex]);
             if([realIndexes countOfIndexesInRange:NSMakeRange(index, [indexes lastIndex]+1)] > 0)
             {
-                //NSLog(@"Shifting %d", [indexes lastIndex]);
+                //MZLoggerDebug(@"Shifting %d", [indexes lastIndex]);
                 [realIndexes shiftIndexesStartingAtIndex:[indexes indexGreaterThanIndex:index] by:-1];
             }
         }
@@ -174,7 +174,7 @@ static MZMetaLoader* sharedLoader = nil;
     MZVideoType def = [[NSUserDefaults standardUserDefaults] integerForKey:@"incomingVideoType"];
     for ( NSString* fileName in fileNames )
     {
-        //NSLog(@"Loading file '%@'", fileName);
+        //MZLoggerDebug(@"Loading file '%@'", fileName);
         MetaEdits* edits = [[MZPluginController sharedInstance] loadDataFromFile:fileName];
         if(edits)
         {
@@ -193,7 +193,7 @@ static MZMetaLoader* sharedLoader = nil;
             NSRunCriticalAlertPanel([NSString stringWithFormat:
                 NSLocalizedString(@"The file '%@' is in an unsupported format.", @"Bad file title"), baseFile],
                 @"", NSLocalizedString(@"OK", @"Button text"), nil, nil);
-            NSLog(@"Could no load file '%@'", fileName);
+            MZLoggerError(@"Could no load file '%@'", fileName);
         }
     }
     if(missingType>0)

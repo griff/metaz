@@ -64,14 +64,14 @@
     status = MZErrorPosterImage;
     [error release];
     error = [theError retain];
-    NSLog(@"Poster error: %d %@", [error code], [error domain]);
-    NSLog(@"    Description - %@", [error localizedDescription]);
-    NSLog(@"    Reason - %@", [error localizedFailureReason]);
-    NSLog(@"    Suggestion - %@", [error localizedRecoverySuggestion]);
+    MZLoggerError(@"Poster error: %d %@", [error code], [error domain]);
+    MZLoggerError(@"    Description - %@", [error localizedDescription]);
+    MZLoggerError(@"    Reason - %@", [error localizedFailureReason]);
+    MZLoggerError(@"    Suggestion - %@", [error localizedRecoverySuggestion]);
     if([error localizedRecoveryOptions])
     {
         for(NSString* str in [error localizedRecoveryOptions])
-            NSLog(@"        %@", str);
+            MZLoggerError(@"        %@", str);
     }
     [self didChangeValueForKey:@"imageSize"];
 }
@@ -125,7 +125,7 @@
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
-    //NSLog(@"Test Down %d %d", [theEvent clickCount], [self ignoresMultiClick]);
+    //MZLoggerDebug(@"Test Down %d %d", [theEvent clickCount], [self ignoresMultiClick]);
     if([theEvent clickCount] == 2 && [self isEnabled])
         [NSApp sendAction:actionHack to:[self target] from:self];
     [super mouseDown:theEvent];
@@ -134,7 +134,7 @@
 /*
 - (void)mouseUp:(NSEvent *)theEvent
 {
-    NSLog(@"Test Up %d %d", [theEvent clickCount], [self ignoresMultiClick]);
+    MZLoggerDebug(@"Test Up %d %d", [theEvent clickCount], [self ignoresMultiClick]);
     [super mouseUp:theEvent];
 }
 */

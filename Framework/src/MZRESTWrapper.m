@@ -7,6 +7,7 @@
 //
 
 #import "MZRESTWrapper.h"
+#import <MetaZKit/GTMLogger.h>
 
 @interface MZRESTWrapper (Private)
 - (void)startConnection:(NSURLRequest *)request;
@@ -304,7 +305,7 @@
 {
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
     int statusCode = [httpResponse statusCode];
-    NSLog(@"Got HTTP response %d", statusCode);
+    MZLoggerDebug(@"Got HTTP response %d", statusCode);
     switch (statusCode)
     {
         case 200:
@@ -338,7 +339,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    //NSLog(@"Got HTTP response data %d", [data length]);    
+    //MZLoggerDebug(@"Got HTTP response data %d", [data length]);    
     [receivedData appendData:data];
 }
 

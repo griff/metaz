@@ -249,7 +249,7 @@ writeStartedForEdits:(MetaEdits *)edits
         }
         if(needsRemoval && ![mgr removeItemAtPath:[edits loadedFileName] error:&error])
         {
-            NSLog(@"Failed to remove loaded file %@", [error localizedDescription]);
+            MZLoggerError(@"Failed to remove loaded file %@", [error localizedDescription]);
             error = nil;
         }
         
@@ -258,7 +258,7 @@ writeStartedForEdits:(MetaEdits *)edits
             NSString* msg = [NSString stringWithFormat:
                 NSLocalizedString(@"Failed to move file to final location: %@", @"Move to final location error"),
                 [error localizedDescription]];
-            NSLog(@"Failed to move file to final location: %@", [error localizedDescription]);
+            MZLoggerError(@"Failed to move file to final location: %@", [error localizedDescription]);
             self.status = msg;
             //error = nil;
         }
@@ -270,7 +270,7 @@ writeStartedForEdits:(MetaEdits *)edits
             NSString* msg = [NSString stringWithFormat:
                 NSLocalizedString(@"Failed to move file to final location: %@", @"Move to final location error"),
                 [error localizedDescription]];
-            NSLog(@"Failed to move file to final location: %@", [error localizedDescription]);
+            MZLoggerError(@"Failed to move file to final location: %@", [error localizedDescription]);
             self.status = msg;
             //error = nil;
         }

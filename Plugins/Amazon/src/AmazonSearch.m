@@ -72,19 +72,19 @@
 
 - (void)wrapper:(MZRESTWrapper *)theWrapper didRetrieveData:(NSData *)data
 {
-    //NSLog(@"Got amazon response:\n%@", [theWrapper responseAsText]);
+    //MZLoggerDebug(@"Got amazon response:\n%@", [theWrapper responseAsText]);
     NSXMLDocument* doc = [theWrapper responseAsXml];
 
     NSString* errorMessage = [doc stringForXPath:@"/ItemSearchResponse/Items/Request/Errors/Error/Code" error:NULL];
     if(![errorMessage isEqual:@""])
-        NSLog(@"Amazon error: %@", errorMessage);
+        MZLoggerError(@"Amazon error: %@", errorMessage);
         
     //NSString* totalResults = [doc stringForXPath:@"/ItemSearchResponse/Items/TotalResults" error:NULL];
     //NSString* totalPages = [doc stringForXPath:@"/ItemSearchResponse/Items/TotalPages" error:NULL];
 
     NSArray* items = [doc nodesForXPath:@"/ItemSearchResponse/Items/Item" error:NULL];
     NSMutableArray* results = [NSMutableArray array];
-    NSLog(@"Got results %d", [items count]);
+    MZLoggerDebug(@"Got Amazon results %d", [items count]);
     for(NSXMLElement* item in items)
     {
         NSMutableDictionary* dict = [NSMutableDictionary dictionary];
@@ -128,8 +128,8 @@
         if([coverArtLarge length] > 0)
         {
             /*
-            NSLog(@"ASIN %@", asin);
-            NSLog(@"Image large url: %@", coverArtLarge);
+            MZLoggerDebug(@"ASIN %@", asin);
+            MZLoggerDebug(@"Image large url: %@", coverArtLarge);
             */
             NSURL* url = [NSURL URLWithString:coverArtLarge];
             MZRemoteData* data = [MZRemoteData dataWithURL:url];
@@ -144,7 +144,7 @@
         [results addObject:result];
     }
 
-    NSLog(@"Parsed results %d", [results count]);
+    MZLoggerDebug(@"Parsed Amazon results %d", [results count]);
     [delegate searchProvider:provider result:results];
     
     // TODO Make more requests for other pages

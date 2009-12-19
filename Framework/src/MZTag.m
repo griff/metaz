@@ -10,6 +10,7 @@
 #import <MetaZKit/MZConstants.h>
 #import <MetaZKit/MZTimeCode.h>
 #import <MetaZKit/NSDate+UTC.h>
+#import <MetaZKit/GTMLogger.h>
 
 @interface MZVideoTypeTagClass : MZEnumTag
 {
@@ -575,7 +576,7 @@ static NSMutableDictionary *sharedTags = nil;
     NSInteger i = [typeNames indexOfObject:str];
     if(i == NSNotFound)
     {
-        NSLog(@"Found no video type for '%@'", str);
+        MZLoggerError(@"Found no video type for '%@'", str);
         return [NSNumber numberWithInt:MZUnsetVideoType];
     }
     return [typeValues objectAtIndex:i];
@@ -683,7 +684,7 @@ static NSMutableDictionary *sharedTags = nil;
 
 - (id)objectFromString:(NSString *)str
 {
-    if(!str)
+    if(!str || [str length] == 0)
         return [NSNumber numberWithInt:MZNoRating];
     NSInteger i = [ratingNames indexOfObject:str];
     if(i == NSNotFound)
@@ -694,7 +695,7 @@ static NSMutableDictionary *sharedTags = nil;
     }
     if(i == NSNotFound)
     {
-        NSLog(@"Found no rating for '%@'", str);
+        MZLoggerError(@"Found no rating for '%@'", str);
         return [NSNumber numberWithInt:MZNoRating];
     }
     return [NSNumber numberWithInt:i];

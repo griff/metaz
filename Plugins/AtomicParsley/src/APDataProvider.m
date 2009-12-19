@@ -396,7 +396,7 @@
     [task release];
     if (status != 0)
     {
-        NSLog(@"AtomicParsley failed. %d", status);
+        MZLoggerError(@"AtomicParsley failed. %d", status);
         return nil;
     }
     NSString* str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
@@ -425,7 +425,7 @@
         NSString* tagId = [read_mapping objectForKey:map];
         MZTag* tag = [MZTag tagForIdentifier:tagId];
         NSString* value = [dict objectForKey:map];
-        //NSLog(@"%@ %@", tagId, value);
+        //MZLoggerDebug(@"%@ %@", tagId, value);
         if(value)
             [retdict setObject:[tag convertObjectForStorage:[tag objectFromString:value]] forKey:tagId];
     }
@@ -436,7 +436,7 @@
         genre = [dict objectForKey:@"©gen"]; 
     if(genre)
     {
-        NSLog(@"Genre %@", genre);
+        MZLoggerDebug(@"Genre %@", genre);
         [retdict setObject:genre forKey:MZGenreTagIdent];
     }
     
@@ -444,7 +444,7 @@
     NSString* rating = [dict objectForKey:@"com.apple.iTunes;iTunEXTC"];
     if(rating)
     {
-        NSLog(@"Rating %@", rating);
+        MZLoggerDebug(@"Rating %@", rating);
         id rate = [rating_read objectForKey:rating];
         if(rate)
             [retdict setObject:rate forKey:MZRatingTagIdent];
@@ -590,7 +590,7 @@
         
         if(chapStatus != 0)
         {
-            NSLog(@"mp4chaps failed. %d", chapStatus);
+            MZLoggerError(@"mp4chaps failed. %d", chapStatus);
             return nil;
         }
 
@@ -598,7 +598,7 @@
 
         NSRange f = [str rangeOfString:@"Duration "];
         NSString* movieDurationStr = [str substringWithRange:NSMakeRange(f.location+f.length, 12)];
-        //NSLog(@"Movie duration '%@'", movieDurationStr);
+        //MZLoggerDebug(@"Movie duration '%@'", movieDurationStr);
         MZTimeCode* movieDuration = [MZTimeCode timeCodeWithString:movieDurationStr];
         [retdict setObject:movieDuration forKey:MZDurationTagIdent];
 
@@ -615,7 +615,7 @@
                 NSString* startStr = [line substringWithRange:NSMakeRange(6, 12)];
                 NSString* durationStr = [line substringWithRange:NSMakeRange(21, 12)];
                 NSString* name = [line substringWithRange:NSMakeRange(37, [line length]-38)];
-                //NSLog(@"Found args: '%@' '%@' '%@'", start, duration, name);
+                //MZLoggerDebug(@"Found args: '%@' '%@' '%@'", start, duration, name);
 
                 MZTimeCode* start = [MZTimeCode timeCodeWithString:startStr];
                 MZTimeCode* duration = [MZTimeCode timeCodeWithString:durationStr];
@@ -676,7 +676,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     id rating = [changes objectForKey:MZRatingTagIdent];
     if(rating)
     {
-        NSLog(@"Rating %@", rating);
+        MZLoggerDebug(@"Rating %@", rating);
         NSString* rate = [rating_write objectForKey:rating];
         if(rate)
         {
@@ -774,7 +774,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
         }
         else
         {
-            NSLog(@"Failed to write image to temp '%@' %@", pictureFile, [error localizedDescription]);
+            MZLoggerError(@"Failed to write image to temp '%@' %@", pictureFile, [error localizedDescription]);
             pictureFile = nil;
         }
     }
@@ -901,7 +901,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
         NSError* error = nil;
         if(![data writeToFile:chaptersFile atomically:NO encoding:NSUTF8StringEncoding error:&error])
         {
-            NSLog(@"Failed to write chapters to temp '%@' %@", chaptersFile, [error localizedDescription]);
+            MZLoggerError(@"Failed to write chapters to temp '%@' %@", chaptersFile, [error localizedDescription]);
             chaptersFile = nil;
         }
     }

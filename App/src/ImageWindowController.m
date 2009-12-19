@@ -78,7 +78,7 @@ NSData* tiffForCGImage(CGImageRef cgImage) {
     int orientationTag = [state orientationTag];
     NSDictionary* imageProps = aImageView.imageProperties;
     for(NSString* key in [imageProps allKeys])
-        NSLog(@"Key %@ Value %@", key, [imageProps objectForKey:key]);
+        MZLoggerDebug(@"Key %@ Value %@", key, [imageProps objectForKey:key]);
     */
     [sourceImageView removeObserver:self forKeyPath:@"objectValue"];
     /*

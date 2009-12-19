@@ -7,6 +7,7 @@
 //
 
 #import "MZPriorObserverFix.h"
+#import <MetaZKit/GTMLogger.h>
 
 
 @implementation MZPriorObserverFix
@@ -135,7 +136,7 @@
         key = shortPath;
     
     if(prefix)
-        NSLog(@"We changed");
+        MZLoggerDebug(@"We changed");
 
     [self retain];
     id oldValue = [[oldData objectForKey:key] retain];

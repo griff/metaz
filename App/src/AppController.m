@@ -434,7 +434,7 @@ NSDictionary* findBinding(NSWindow* window) {
     NSDictionary* dict = findBinding(window);
     if(dict == nil)
     {
-        NSLog(@"Could not find binding for revert.");
+        MZLoggerError(@"Could not find binding for revert.");
         return;
     }
     id observed = [dict objectForKey:NSObservedObjectKey];
@@ -525,7 +525,7 @@ NSDictionary* findBinding(NSWindow* window) {
     NSArray* utis = MZUTIFilenameExtension(fileTypes);
     for(NSString* uti in utis)
     {
-        NSLog(@"Found UTI %@", uti);
+        MZLoggerDebug(@"Found UTI %@", uti);
     }
     
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
@@ -676,7 +676,7 @@ NSDictionary* findBinding(NSWindow* window) {
 - (void)finishedSearch:(NSNotification *)note
 {
     searches--;
-    NSLog(@"Finished search");
+    MZLoggerDebug(@"Finished search");
     if(searches <= 0)
         [searchIndicator stopAnimation:self];
 }

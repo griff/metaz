@@ -82,7 +82,7 @@
     NSString* tab = [[tabView selectedTabViewItem] identifier];
     if([tab isEqual:@"pending"])
     {
-        NSLog(@"resize %@", self);
+        MZLoggerDebug(@"resize %@", self);
     }
     [super resizeWithOldSuperviewSize:oldBoundsSize];
 }

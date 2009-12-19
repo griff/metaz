@@ -174,15 +174,15 @@
 
 - (void)wrapper:(MZRESTWrapper *)theWrapper didRetrieveData:(NSData *)data
 {
-    //NSLog(@"Got response:\n%@", [theWrapper responseAsText]);
+    //MZLoggerDebug(@"Got response:\n%@", [theWrapper responseAsText]);
     NSXMLDocument* doc = [theWrapper responseAsXml];
     
     NSString* errorMessage = [doc stringForXPath:@"/items/message/error" error:NULL];
     if(![errorMessage isEqual:@""])
-        NSLog(@"TagChimp error: %@", errorMessage);
+        MZLoggerError(@"TagChimp error: %@", errorMessage);
     NSArray* items = [doc nodesForXPath:@"/items/movie" error:NULL];
     NSMutableArray* results = [NSMutableArray array];
-    NSLog(@"Got results %d", [items count]);
+    MZLoggerDebug(@"Got TagChimp results %d", [items count]);
     for(NSXMLElement* item in items)
     {
         NSMutableDictionary* dict = [NSMutableDictionary dictionary];
@@ -232,7 +232,7 @@
         
         /*
         NSString* releaseYearStr = [item stringForXPath:@"movieTags/info/releaseDateY" error:NULL]; 
-        NSLog(@"Release Year '%@'", releaseYearStr);
+        MZLoggerDebug(@"Release Year '%@'", releaseYearStr);
         */
         NSInteger releaseYear = [[item stringForXPath:@"movieTags/info/releaseDateY" error:NULL] integerValue];
         if(releaseYear > 0)
@@ -290,7 +290,7 @@
                 if(date) 
                     [dict setObject:date forKey:MZDateTagIdent];
                 else
-                    NSLog(@"Release date '%@'", release);
+                    MZLoggerError(@"Unable to parse release date '%@'", release);
             }
         }
         
@@ -308,9 +308,9 @@
         if([coverArtLarge length] > 0)
         {
             /*
-            NSLog(@"TagChimp id %@", tagChimpId);
-            NSLog(@"Image small url: %@", coverArtSmall);
-            NSLog(@"Image large url: %@", coverArtLarge);
+            MZLoggerDebug(@"TagChimp id %@", tagChimpId);
+            MZLoggerDebug(@"Image small url: %@", coverArtSmall);
+            MZLoggerDebug(@"Image large url: %@", coverArtLarge);
             */
             NSURL* url = [NSURL URLWithString:
                 [coverArtLarge stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -367,15 +367,17 @@
                 i++;
             }
             NSString* key = hasTime ? MZChaptersTagIdent : MZChapterNamesTagIdent;
+            /*
             if(hasTime)
-                NSLog(@"Chapters with time %d", [chapters count]);
+                MZLoggerDebug(@"Chapters with time %d", [chapters count]);
+            */
             [dict setObject:[NSArray arrayWithArray:chapters] forKey:key];
         }
         
         MZSearchResult* result = [MZSearchResult resultWithOwner:provider dictionary:dict];
         [results addObject:result];
     }
-    NSLog(@"Parsed results %d", [results count]);
+    MZLoggerDebug(@"Parsed TagChimp results %d", [results count]);
     [delegate searchProvider:provider result:results];
     [delegate searchFinished];
     self.isExecuting = NO;
@@ -385,7 +387,7 @@
 
 - (void)wrapper:(MZRESTWrapper *)theWrapper didFailWithError:(NSError *)error
 {
-    NSLog(@"TagChimp search failed: %@", [error localizedDescription]);
+    MZLoggerError(@"TagChimp search failed: %@", [error localizedDescription]);
     [delegate searchFinished];
     self.isExecuting = NO;
     self.isFinished = YES;
@@ -393,7 +395,7 @@
 
 - (void)wrapper:(MZRESTWrapper *)theWrapper didReceiveStatusCode:(int)statusCode
 {
-    NSLog(@"TagChimp got status code: %d", statusCode);
+    MZLoggerError(@"TagChimp got status code: %d", statusCode);
     [delegate searchFinished];
     self.isExecuting = NO;
     self.isFinished = YES;

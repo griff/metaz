@@ -7,6 +7,7 @@
 //
 
 #import "NSInvocation+Wrapping.h"
+#import <MetaZKit/GTMLogger.h>
 
 
 @implementation NSInvocation (Wrapping)
@@ -38,7 +39,7 @@
     }
     else
     {
-        NSLog(@"Invalid type");
+        MZLoggerError(@"Invalid type");
         [NSException raise:@"NSInvocationTypeConversion" format:@"Bad type '%s'", methodReturnType];
     }
 }
@@ -78,7 +79,7 @@
     }
     else
     {
-        NSLog(@"Invalid type");
+        MZLoggerError(@"Invalid type");
         [NSException raise:@"NSInvocationTypeConversion" format:@"Bad type '%s'", methodReturnType];
     }
     return nil;
@@ -111,7 +112,7 @@
     }
     else
     {
-        NSLog(@"Invalid type");
+        MZLoggerError(@"Invalid type");
         [NSException raise:@"NSInvocationTypeConversion" format:@"Bad type '%s'", methodReturnType];
     }
 }
@@ -151,7 +152,7 @@
     }
     else
     {
-        NSLog(@"Invalid type");
+        MZLoggerError(@"Invalid type");
         [NSException raise:@"NSInvocationTypeConversion" format:@"Bad type '%s'", methodReturnType];
     }
     return nil;

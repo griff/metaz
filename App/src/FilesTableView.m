@@ -451,13 +451,13 @@
     if([ns length] == 1)
     {
         unichar ch = [ns characterAtIndex:0];
-        //NSLog(@"keyDown %x %x", ch, NSNewlineCharacter);
+        //MZLoggerDebug(@"keyDown %x %x", ch, NSNewlineCharacter);
         switch(ch) {
             case NSBackspaceCharacter:
             case NSDeleteCharacter:
                 if([self numberOfSelectedRows] > 0 && (modifierFlags & NSCommandKeyMask) == NSCommandKeyMask )
                 {
-                    //NSLog(@"Caught Cmd-Backspace");
+                    //MZLoggerDebug(@"Caught Cmd-Backspace");
                     [self delete:self];
                     return;
                 }

@@ -7,6 +7,7 @@
 //
 
 #import <MetaZKit/MZPluginController.h>
+#import <MetaZKit/GTMLogger.h>
 #import "MZPlugin+Private.h"
 
 @interface MZWriteNotification : NSObject <MZDataWriteDelegate>
@@ -97,7 +98,7 @@ static MZPluginController *gInstance = NULL;
                 NSArray* pluginPaths = [mgr contentsOfDirectoryAtPath:path error:&error];
                 if(!pluginPaths)
                 {
-                    NSLog(@"Failed to get contents of dir '%@' because: %@", path, [error localizedDescription]);
+                    MZLoggerError(@"Failed to get contents of dir '%@' because: %@", path, [error localizedDescription]);
                     continue;
                 }
                 for(NSString* pluginDir in pluginPaths)
@@ -107,7 +108,7 @@ static MZPluginController *gInstance = NULL;
                     if(plugin)
                         [thePlugins addObject:plugin];
                     else
-                        NSLog(@"Failed to load plugin at path '%@'", pluginPath);
+                        MZLoggerError(@"Failed to load plugin at path '%@'", pluginPath);
                 }
             }
         }
@@ -128,7 +129,7 @@ static MZPluginController *gInstance = NULL;
             NSError* error = nil;
             if(![bundle loadAndReturnError:&error])
             {
-                NSLog(@"Failed to load code for '%@' because: %@", 
+                MZLoggerError(@"Failed to load code for '%@' because: %@", 
                     [bundle bundleIdentifier],
                     [error localizedDescription]);
                 continue;
@@ -136,14 +137,14 @@ static MZPluginController *gInstance = NULL;
             Class cls = [bundle principalClass];
             if(cls == Nil)
             {
-                NSLog(@"Error loading principal class for '%@'", 
+                MZLoggerError(@"Error loading principal class for '%@'", 
                     [bundle bundleIdentifier]);
                 continue;
             }
             MZPlugin* plugin = [[cls alloc] init];
             [loadedPlugins addObject:plugin];
             [plugin release];
-            NSLog(@"Loaded plugin '%@'", [bundle bundleIdentifier]);
+            MZLoggerInfo(@"Loaded plugin '%@'", [bundle bundleIdentifier]);
             if([[self delegate] respondsToSelector:@selector(pluginController:loadedPlugin:)])
                 [[self delegate] pluginController:self loadedPlugin:plugin];
         }

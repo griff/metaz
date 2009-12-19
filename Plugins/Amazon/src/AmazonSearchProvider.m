@@ -118,9 +118,9 @@
     if(!reallyDoSearch)
         return NO;
 
-    NSLog(@"Sent request to Amazon:");
+    MZLoggerDebug(@"Sent request to Amazon:");
     for(NSString* key in [params allKeys])
-        NSLog(@"    '%@' -> '%@'", key, [params objectForKey:key]);
+        MZLoggerDebug(@"    '%@' -> '%@'", key, [params objectForKey:key]);
     search = [[AmazonSearch alloc] initWithProvider:self delegate:delegate url:searchURL parameters:params];
     [search start];
     return YES;

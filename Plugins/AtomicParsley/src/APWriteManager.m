@@ -79,7 +79,7 @@
                selector:@selector(taskTerminated:)
                    name:NSTaskDidTerminateNotification
                  object:task];
-    NSLog(@"Starting write %@", [[task arguments] componentsJoinedByString:@" "]);
+    MZLoggerDebug(@"Starting write %@", [[task arguments] componentsJoinedByString:@" "]);
     [[[task standardOutput] fileHandleForReading] readInBackgroundAndNotify];
     [task launch];
     if([delegate respondsToSelector:@selector(dataProvider:controller:writeStartedForEdits:)])
@@ -118,7 +118,7 @@
     int status = [[note object] terminationStatus];
     if(status != 0)
     {
-        NSLog(@"Terminated bad %d", status);
+        MZLoggerError(@"Terminated bad %d", status);
         NSDictionary* dict = [NSDictionary dictionaryWithObject:
             [NSString stringWithFormat:
                 NSLocalizedString(@"AtomicParsley failed with exit code %d", @"Write failed error"),
@@ -132,7 +132,7 @@
     {
         if(![mgr removeItemAtPath:pictureFile error:&tempError])
         {
-            NSLog(@"Failed to remove temp picture file %@", [tempError localizedDescription]);
+            MZLoggerError(@"Failed to remove temp picture file %@", [tempError localizedDescription]);
             tempError = nil;
         }
     }
@@ -142,13 +142,13 @@
         {
             if(![mgr removeItemAtPath:chaptersFile error:&tempError])
             {
-                NSLog(@"Failed to remove temp chapters file %@", [tempError localizedDescription]);
+                MZLoggerError(@"Failed to remove temp chapters file %@", [tempError localizedDescription]);
                 tempError = nil;
             }
         }
         if(![mgr removeItemAtPath:[edits savedTempFileName] error:&tempError])
         {
-            NSLog(@"Failed to remove temp write file %@", [tempError localizedDescription]);
+            MZLoggerError(@"Failed to remove temp write file %@", [tempError localizedDescription]);
             tempError = nil;
         }
         if([delegate respondsToSelector:@selector(dataProvider:controller:writeCanceledForEdits:error:)])
@@ -172,7 +172,7 @@
                 status = [APDataProvider importChaptersFromFile:chaptersFile toFile:fileName];
                 if(![mgr removeItemAtPath:chaptersFile error:&tempError])
                 {
-                    NSLog(@"Failed to remove temp chapters file %@", [tempError localizedDescription]);
+                    MZLoggerError(@"Failed to remove temp chapters file %@", [tempError localizedDescription]);
                     tempError = nil;
                 }
             }
@@ -212,7 +212,7 @@
     NSString* str = [[[NSString alloc]
             initWithData:data
                 encoding:NSUTF8StringEncoding] autorelease];
-    NSLog(@"Got data: '%@'", str);
+    MZLoggerDebug(@"Got data: '%@'", str);
     NSInteger percent = [str integerValue];
     if(percent > 0 && [delegate respondsToSelector:@selector(dataProvider:controller:writeFinishedForEdits:percent:)])
         [delegate dataProvider:provider controller:self writeFinishedForEdits:edits percent:percent];

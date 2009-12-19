@@ -22,14 +22,14 @@
 -(void)release
 {
     NSUInteger count = [self retainCount];
-    NSLog(@"Releasing CollectionView %d", count);
+    MZLoggerDebug(@"Releasing CollectionView %d", count);
     [super release];
 }
 
 - (id)retain
 {
     NSUInteger count = [self retainCount];
-    NSLog(@"Retaining CollectionView %d", count);
+    MZLoggerDebug(@"Retaining CollectionView %d", count);
     return [super retain];
 }
 */

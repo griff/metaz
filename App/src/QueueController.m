@@ -163,8 +163,10 @@
                 [mainWindow setFrame:windowFrame display:YES animate:NO];
                 [[mainWindow contentView] setAutoresizesSubviews:YES];
             }
-            NSLog(@"Diff %@  %@ %f", NSStringFromRect(windowFrame), NSStringFromRect(mainRect),
+            /*
+            MZLoggerDebug(@"Diff %@  %@ %f", NSStringFromRect(windowFrame), NSStringFromRect(mainRect),
                 contentRect.size.height - mainRect.size.height);
+            */
             break;
         case QueueStopping:
         case QueueRunning:
@@ -187,8 +189,10 @@
                 [mainWindow setFrame:windowFrame display:YES animate:NO];
                 [[mainWindow contentView] setAutoresizesSubviews:YES];
             }
-            NSLog(@"Diff %@  %@ %f", NSStringFromRect(windowFrame), NSStringFromRect(mainRect),
+            /*
+            MZLoggerDebug(@"Diff %@  %@ %f", NSStringFromRect(windowFrame), NSStringFromRect(mainRect),
                 contentRect.size.height - mainRect.size.height);
+            */
             break;
         case QueuePaused:
             playLabel = NSLocalizedString(@"Stop", @"Label for stop button");

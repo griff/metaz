@@ -152,9 +152,9 @@
     if([title length] == 0 && !supportsEmptyTitle)
         return NO;
 
-    NSLog(@"Sent request to tagChimp:");
+    MZLoggerDebug(@"Sent request to tagChimp:");
     for(NSString* key in [params allKeys])
-        NSLog(@"    '%@' -> '%@'", key, [params objectForKey:key]);
+        MZLoggerDebug(@"    '%@' -> '%@'", key, [params objectForKey:key]);
     search = [[TCSearch alloc] initWithProvider:self delegate:delegate url:searchURL parameters:params];
     [search start];
     return YES;

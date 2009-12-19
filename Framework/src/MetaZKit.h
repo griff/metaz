@@ -31,3 +31,5 @@
 #import <MetaZKit/NSInvocation+Wrapping.h>
 #import <MetaZKit/NSObject+ProtectedKeyValue.h>
 #import <MetaZKit/NSXMLNode+MZExtensions.h>
+
+#import <MetaZKit/GTMLogger.h>

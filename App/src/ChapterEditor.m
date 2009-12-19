@@ -37,8 +37,11 @@
 
 - (void)awakeFromNib
 {
-    [self bind:@"chapters" toObject:filesController withKeyPath:@"selection.chapters" options:nil];
-    [self bind:@"chapterNames" toObject:filesController withKeyPath:@"selection.chapterNames" options:nil];
+    NSDictionary* dict = [NSDictionary 
+        dictionaryWithObject:[NSNumber numberWithBool:YES]
+        forKey:NSContinuouslyUpdatesValueBindingOption];
+    [self bind:@"chapters" toObject:filesController withKeyPath:@"selection.chapters" options:dict];
+    [self bind:@"chapterNames" toObject:filesController withKeyPath:@"selection.chapterNames" options:dict];
     [filesController addObserver:self forKeyPath:@"selection.chaptersChanged" options:0 context:NULL];
 }
 

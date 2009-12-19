@@ -32,14 +32,14 @@
     if([ns length] == 1)
     {
         unichar ch = [ns characterAtIndex:0];
-        //NSLog(@"keyDown %x %x", ch, NSNewlineCharacter);
+        //MZLoggerDebug(@"keyDown %x %x", ch, NSNewlineCharacter);
         switch(ch) {
             case NSNewlineCharacter:
-                //NSLog(@"Caught NL");
+                //MZLoggerDebug(@"Caught NL");
             case NSCarriageReturnCharacter:
-                //NSLog(@"Caught CR");
+                //MZLoggerDebug(@"Caught CR");
             case NSEnterCharacter:
-                //NSLog(@"Caught Enter");
+                //MZLoggerDebug(@"Caught Enter");
                 if([self numberOfSelectedRows] == 1) {
                     [self beginEnterEdit:self];
                     return;

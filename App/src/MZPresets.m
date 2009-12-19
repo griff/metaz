@@ -495,7 +495,7 @@ static MZPresets* sharedPresets = nil;
                 }
                 if(![self saveWithError:&error])
                 {
-                    NSLog(@"Save Error %@", [error localizedDescription]);
+                    MZLoggerError(@"Save Error %@", [error localizedDescription]);
                 }
             }
         }
@@ -537,7 +537,7 @@ static MZPresets* sharedPresets = nil;
                 }
                 if(!found)
                 {
-                    NSLog(@"Detected null video kind but found no matching MetaX preset");
+                    MZLoggerInfo(@"Detected null video kind but found no matching MetaX preset");
                     NSAlert* alert = [[NSAlert alloc] init];
                     [alert setMessageText:NSLocalizedString(
                             @"Found Bad MetaX Preset Import",
@@ -584,7 +584,7 @@ static MZPresets* sharedPresets = nil;
         {
             if(![self saveWithError:&error])
             {
-                NSLog(@"Save Error %@", [error localizedDescription]);
+                MZLoggerError(@"Save Error %@", [error localizedDescription]);
             }
         }
         

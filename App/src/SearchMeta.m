@@ -157,14 +157,14 @@
         if([prior boolValue])
         {
             //if([key isEqual:MZRatingTagIdent])
-            //NSLog(@"Changing %@ old: '%@'", key, [object protectedValueForKeyPath:keyPath]);
+            //MZLoggerDebug(@"Changing %@ old: '%@'", key, [object protectedValueForKeyPath:keyPath]);
             [self willChangeValueForKey:key];
         }
         else
         {
             [self didChangeValueForKey:key];
             //if([key isEqual:MZRatingTagIdent])
-            //NSLog(@"Changing %@ new: '%@'", key, [object protectedValueForKeyPath:keyPath]);
+            //MZLoggerDebug(@"Changing %@ new: '%@'", key, [object protectedValueForKeyPath:keyPath]);
         }
     }
 }

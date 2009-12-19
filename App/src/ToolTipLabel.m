@@ -19,7 +19,7 @@
 
 - (void)mouseEntered:(NSEvent *)theEvent
 {
-    NSLog(@"Mouse entered label");
+    MZLoggerDebug(@"Mouse entered label");
 }
 
 

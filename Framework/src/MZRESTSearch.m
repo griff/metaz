@@ -7,6 +7,7 @@
 //
 
 #import "MZRESTSearch.h"
+#import <MetaZKit/GTMLogger.h>
 #import "MZSearchProvider.h"
 
 @implementation MZRESTSearch
@@ -91,7 +92,7 @@
 
 - (void)wrapper:(MZRESTWrapper *)theWrapper didRetrieveData:(NSData *)data
 {
-    //NSLog(@"Got response:\n%@", [theWrapper responseAsText]);
+    //MZLoggerDebug(@"Got response:\n%@", [theWrapper responseAsText]);
     [delegate searchProvider:provider result:[NSArray array]];
     [delegate searchFinished];
     self.isExecuting = NO;
@@ -100,7 +101,7 @@
 
 - (void)wrapper:(MZRESTWrapper *)theWrapper didFailWithError:(NSError *)error
 {
-    NSLog(@"%@ search failed: %@", [self class], [error localizedDescription]);
+    MZLoggerError(@"%@ search failed: %@", [self class], [error localizedDescription]);
     [delegate searchFinished];
     self.isExecuting = NO;
     self.isFinished = YES;
@@ -108,7 +109,7 @@
 
 - (void)wrapper:(MZRESTWrapper *)theWrapper didReceiveStatusCode:(int)statusCode
 {
-    NSLog(@"%@ got status code: %d", [self class], statusCode);
+    MZLoggerDebug(@"%@ got status code: %d", [self class], statusCode);
     [delegate searchFinished];
     self.isExecuting = NO;
     self.isFinished = YES;

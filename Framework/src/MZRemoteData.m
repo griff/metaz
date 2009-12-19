@@ -7,6 +7,7 @@
 //
 
 #import "MZRemoteData.h"
+#import <MetaZKit/GTMLogger.h>
 
 @interface MZRemoteDataOperation : NSOperation
 {
@@ -188,7 +189,7 @@ static NSOperationQueue *MZSharedRemoteDataOperationQueue() {
                 NSString* str = [[[NSString alloc] initWithData:data 
                                  encoding:NSUTF8StringEncoding] autorelease];
                 */
-                NSLog(@"Bad image url: %@", [owner.url absoluteString]);//, str);
+                MZLoggerError(@"Bad image url: %@", [owner.url absoluteString]);//, str);
             }
             [owner loadedData:data];
         }
