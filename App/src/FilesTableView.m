@@ -12,6 +12,16 @@
 
 #define MZFilesTableRows @"MZFilesTableRows"
 
+
+@interface FilesTableView (Private)
+
+- (BOOL)writeSelectionUncheckedToPasteboard:(NSPasteboard *)pboard
+                                      types:(NSArray *)types;
+
+- (void)registerUndoName:(NSUndoManager *)manager;
+
+@end
+
 @implementation FilesTableView
 @synthesize undoController;
 @synthesize filesController;
@@ -79,12 +89,27 @@
     [filesController remove:sender];
 }
 
+-(IBAction)copy:(id)sender
+{
+    NSPasteboard *pb = [NSPasteboard generalPasteboard];
+    if([self numberOfSelectedRows] == 0)
+        return;
+        
+    NSMutableArray* types = [NSMutableArray array];
+    if([self numberOfSelectedRows] == 1)
+    {
+        [types addObject:MZMetaEditsDataType];
+        [types addObject:NSStringPboardType];
+    }
+    [types addObject:NSFilenamesPboardType];
+    [self writeSelectionUncheckedToPasteboard:pb types:types];
+}
+
 -(IBAction)paste:(id)sender
 {
     NSPasteboard *pb = [NSPasteboard generalPasteboard];
-    NSArray *types = [NSArray arrayWithObjects:MZFilesTableRows,
-            MZMetaEditsDataType, NSFilenamesPboardType,
-            NSStringPboardType, nil];
+    NSArray *types = [NSArray arrayWithObjects:MZMetaEditsDataType,
+            NSFilenamesPboardType, NSStringPboardType, nil];
     NSString *bestType = [pb availableTypeFromArray:types];
     if (bestType != nil)
     {
@@ -95,13 +120,34 @@
             NSIndexSet* rowIndexes = [NSKeyedUnarchiver unarchiveObjectWithData:data];
             // TODO Support rowIndex paste??
         }
+        */
         if([bestType isEqualToString:MZMetaEditsDataType])
         {
             NSData* data = [pb dataForType:MZMetaEditsDataType];
-            NSArray* edits = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-            // TODO Support Meta edits paste here??
+            MetaEdits* pasted = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+
+            NSArray* edits = [filesController selectedObjects];
+            NSInteger count = [edits count];
+            
+            for(MetaEdits* edit in edits)
+                [self registerUndoName:edit.undoManager];
+            
+            for(MetaEdits* edit in edits)
+            {
+                for(MZTag* tag in [pasted providedTags])
+                {
+                    id value = [pasted pure];
+                    value = [value valueForKey:[tag identifier]];
+                    if( count == 1 || ![edit getterChangedForKey:[tag identifier]])
+                    {
+                        [edit setValue:value forKey:[tag identifier]];
+                    }
+                }
+            }
+            
+            for(MetaEdits* edit in edits)
+                [self registerUndoName:edit.undoManager];
         }
-        */
         if([bestType isEqualToString:NSFilenamesPboardType])
         {
             NSArray* filenames = [pb propertyListForType:NSFilenamesPboardType];
@@ -120,11 +166,12 @@
 }
 
 - (BOOL)pasteboardHasTypes {
-    // has the pasteboard got an expense?
     NSPasteboard *pb = [NSPasteboard generalPasteboard];
     NSArray *types = [NSArray arrayWithObjects:MZMetaEditsDataType,
             NSFilenamesPboardType, NSStringPboardType, nil];
     NSString *bestType = [pb availableTypeFromArray:types];
+    if(bestType != nil && [bestType isEqualToString:MZMetaEditsDataType])
+        return [self numberOfSelectedRows] > 0;
     if(bestType != nil && [bestType isEqualToString:NSStringPboardType])
     {
         NSString* str = [pb stringForType:NSStringPboardType];
@@ -151,6 +198,8 @@
     SEL action = [anItem action];
     if(action == @selector(delete:))
         return [self numberOfSelectedRows] > 0;
+    if(action == @selector(copy:))
+        return [self numberOfSelectedRows] == 1;
     if(action == @selector(paste:))
         return [self pasteboardHasTypes];
     return [super validateUserInterfaceItem:anItem];
@@ -162,16 +211,19 @@
 {
     if((sendType && [self selectedRow] >= 0) &&
         ([sendType isEqual:NSStringPboardType] ||
-            [sendType isEqual:NSFilenamesPboardType]))
+            [sendType isEqual:NSFilenamesPboardType]) &&
+        (!returnType || [returnType length] == 0))
     {
             return self;
     }
+    /*
     if(returnType &&
         ([returnType isEqual:NSStringPboardType] ||
             [returnType isEqual:NSFilenamesPboardType]))
     {
             return self;
     }
+    */
     return [super validRequestorForSendType:sendType
                                  returnType:returnType];
 }
@@ -180,33 +232,23 @@
                              types:(NSArray *)types
 {
     if(![types containsObject:NSStringPboardType] &&
-        ![types containsObject:NSFilenamesPboardType])
+        ![types containsObject:NSFilenamesPboardType] &&
+        ![types containsObject:MZMetaEditsDataType])
     {
         return NO;
     }
     if([self selectedRow] < 0)
         return NO;
 
-
-    NSArray* returnTypes = [NSArray arrayWithObjects:NSFilenamesPboardType,
-                                NSStringPboardType, nil];
-    [pboard declareTypes:returnTypes owner:nil];
-
-    if([types containsObject:NSStringPboardType])
-    {
-        MetaEdits* selection = [[filesController arrangedObjects] objectAtIndex:[self selectedRow]];
-        if(![pboard setString:[selection loadedFileName] forType:NSStringPboardType])
-            return NO;
-    }
-    if([types containsObject:NSFilenamesPboardType])
-    {
-        NSArray* selection = [[filesController arrangedObjects] objectsAtIndexes:[self selectedRowIndexes]];
-        selection = [selection arrayByPerformingSelector:@selector(loadedFileName)];
-        if(![pboard setPropertyList:selection forType:NSFilenamesPboardType])
-            return NO;
-    }
     
-    return YES;
+    NSMutableArray* returnTypes = [NSMutableArray array];
+    if([types containsObject:MZMetaEditsDataType])
+        [returnTypes addObject:MZMetaEditsDataType];
+    if([types containsObject:NSFilenamesPboardType])
+        [returnTypes addObject:NSFilenamesPboardType];
+    if([types containsObject:NSStringPboardType])
+        [returnTypes addObject:NSStringPboardType];
+    return [self writeSelectionUncheckedToPasteboard:pboard types:returnTypes];
 }
 
 #pragma mark - drag'n'drop support
@@ -355,6 +397,46 @@
     else
         [[MZMetaLoader sharedLoader] loadFromFile:first toIndex:row];
 }
+
+#pragma mark - private
+
+- (BOOL)writeSelectionUncheckedToPasteboard:(NSPasteboard *)pboard
+                                      types:(NSArray *)types
+{
+    [pboard declareTypes:types owner:nil];
+
+    if([types containsObject:MZMetaEditsDataType])
+    {
+        MetaEdits* selection = [[filesController arrangedObjects] objectAtIndex:[self selectedRow]];
+        NSData* data = [NSKeyedArchiver archivedDataWithRootObject:selection];
+        if(![pboard setData:data forType:MZMetaEditsDataType])
+            return NO;
+    }
+    if([types containsObject:NSFilenamesPboardType])
+    {
+        NSArray* selection = [[filesController arrangedObjects] objectsAtIndexes:[self selectedRowIndexes]];
+        selection = [selection arrayByPerformingSelector:@selector(loadedFileName)];
+        if(![pboard setPropertyList:selection forType:NSFilenamesPboardType])
+            return NO;
+    }
+    if([types containsObject:NSStringPboardType])
+    {
+        MetaEdits* selection = [[filesController arrangedObjects] objectAtIndex:[self selectedRow]];
+        if(![pboard setString:[selection loadedFileName] forType:NSStringPboardType])
+            return NO;
+    }
+    
+    return YES;
+}
+
+- (void)registerUndoName:(NSUndoManager *)manager
+{
+    [manager setActionName:NSLocalizedString(@"Paste Tags", @"Paste tags undo name")];
+    [manager registerUndoWithTarget:self 
+                           selector:@selector(registerUndoName:)
+                             object:manager];
+}
+
 
 #pragma mark - general
 

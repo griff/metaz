@@ -819,6 +819,12 @@
 				1BCC9D3E107E9C08007EFF57 /* GenreDataSource.m */,
 				1BDD879F1095FB5100E3C81D /* PresetsWindowController.h */,
 				1BDD87A01095FB5100E3C81D /* PresetsWindowController.m */,
+				1B040CD210813C1F0027FA0D /* ChapterEditor.h */,
+				1B040CD310813C1F0027FA0D /* ChapterEditor.m */,
+				1B040CD5108146140027FA0D /* ChapterItemWrapper.h */,
+				1B040CD6108146140027FA0D /* ChapterItemWrapper.m */,
+				1BD3D30F108DD03E00BE6943 /* PictureEditor.h */,
+				1BD3D310108DD03E00BE6943 /* PictureEditor.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -863,10 +869,6 @@
 				1BEA71D010717785004B1A7F /* MZWriteQueueStatus.m */,
 				1BEA6C93106E7203004B1A7F /* Utilities.h */,
 				1BEA6C94106E7203004B1A7F /* Utilities.m */,
-				1B040CD210813C1F0027FA0D /* ChapterEditor.h */,
-				1B040CD310813C1F0027FA0D /* ChapterEditor.m */,
-				1B040CD5108146140027FA0D /* ChapterItemWrapper.h */,
-				1B040CD6108146140027FA0D /* ChapterItemWrapper.m */,
 				1B92BB6E108787260057EFD7 /* SearchProfile.h */,
 				1B92BB6F108787260057EFD7 /* SearchProfile.m */,
 				1B92BBFF10887EF40057EFD7 /* FakeSearchResult.h */,
@@ -877,8 +879,6 @@
 				1B92BFBA1089F9060057EFD7 /* SearchMeta.m */,
 				1B92C0A1108A23BA0057EFD7 /* NSUserDefaults+KeyPath.h */,
 				1B92C0A2108A23BA0057EFD7 /* NSUserDefaults+KeyPath.m */,
-				1BD3D30F108DD03E00BE6943 /* PictureEditor.h */,
-				1BD3D310108DD03E00BE6943 /* PictureEditor.m */,
 			);
 			name = Classes;
 			path = App/src;

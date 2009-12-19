@@ -91,5 +91,6 @@
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename;
 - (void)application:(NSApplication *)sender openFiles:(NSArray *)filenames;
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender;
 
 @end

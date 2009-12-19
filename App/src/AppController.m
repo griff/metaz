@@ -11,6 +11,7 @@
 #import "UndoTableView.h"
 #import "PosterView.h"
 #import "MZMetaSearcher.h"
+#import "MZWriteQueue.h"
 #import "FakeSearchResult.h"
 #import "SearchMeta.h"
 
@@ -767,5 +768,46 @@ NSDictionary* findBinding(NSWindow* window) {
         [sender replyToOpenOrPrint:NSApplicationDelegateReplyCancel];
 }
 
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
+{
+    BOOL changed = NO;
+    NSArray* arr = [[MZMetaLoader sharedLoader] files];
+    int count = [arr count];
+    for(int i=0; i<count && !changed; i++)
+    {
+        MetaEdits* edit = [arr objectAtIndex:i];
+        changed = [edit changed];
+    }
+    
+    int result = NSAlertDefaultReturn;
+    if(changed)
+    {
+        result = NSRunCriticalAlertPanel(
+            NSLocalizedString(@"Are you sure you want to quit MetaZ?", nil),
+            NSLocalizedString(@"You have files loaded with unsaved changes. Do you want to quit anyway?", nil),
+            NSLocalizedString(@"Quit", nil), NSLocalizedString(@"Don't Quit", nil), nil);
+    }
+    else if([[MZWriteQueue sharedQueue] status] == QueueRunning)
+    {
+        result = NSRunCriticalAlertPanel(
+            NSLocalizedString(@"Are you sure you want to quit MetaZ?", nil),
+            NSLocalizedString(@"If you quit MetaZ your current jobs will be reloaded into your queue at next launch. Do you want to quit anyway?", nil),
+            NSLocalizedString(@"Quit", nil), NSLocalizedString(@"Don't Quit", nil), nil, @"A movie" );
+        
+    }
+    
+    // Warn if items still in the queue
+    else if([[[MZWriteQueue sharedQueue] pendingItems] count] > 0)
+    {
+        result = NSRunCriticalAlertPanel(
+            NSLocalizedString(@"Are you sure you want to quit MetaZ?", nil),
+            NSLocalizedString(@"There are pending jobs in your queue. Do you want to quit anyway?",nil),
+            NSLocalizedString(@"Quit", nil), NSLocalizedString(@"Don't Quit", nil), nil);
+    }
+    
+    if( result == NSAlertDefaultReturn )
+        return NSTerminateNow;
+    return NSTerminateCancel;
+}
 
 @end

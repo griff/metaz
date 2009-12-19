@@ -359,7 +359,7 @@
 					</object>
 					<object class="NSSegmentedControl" id="792449332">
 						<reference key="NSNextResponder" ref="117353623"/>
-						<int key="NSvFlags">268</int>
+						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 18}, {52, 25}}</string>
 						<reference key="NSSuperview" ref="117353623"/>
 						<bool key="NSEnabled">YES</bool>
@@ -997,10 +997,6 @@
 				<reference key="NSSuperview"/>
 			</object>
 			<object class="NSUserDefaultsController" id="1040842103">
-				<object class="NSMutableArray" key="NSDeclaredKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>whenDoneAction</string>
-				</object>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</object>
