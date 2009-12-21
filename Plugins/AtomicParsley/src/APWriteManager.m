@@ -62,6 +62,7 @@
     [delegate release];
     [edits release];
     [pictureFile release];
+    [err release];
     [super dealloc];
 }
 
@@ -80,6 +81,8 @@
                    name:NSTaskDidTerminateNotification
                  object:task];
     MZLoggerDebug(@"Starting write %@", [[task arguments] componentsJoinedByString:@" "]);
+    err = [[NSPipe alloc] init];
+    [task setStandardError:err];
     [[[task standardOutput] fileHandleForReading] readInBackgroundAndNotify];
     [task launch];
     if([delegate respondsToSelector:@selector(dataProvider:controller:writeStartedForEdits:)])
@@ -112,6 +115,7 @@
 
 - (void)taskTerminated:(NSNotification *)note
 {
+    [APDataProvider logFromPipe:err];
     NSError* error = nil;
     NSError* tempError = nil;
     
@@ -163,7 +167,9 @@
         else
             fileName = [edits loadedFileName];
 
-        if(chaptersFile)
+        status = [APDataProvider testReadFile:fileName];
+
+        if(chaptersFile && status == 0)
         {
             if([chaptersFile isEqualToString:@""])
                 status = [APDataProvider removeChaptersFromFile:fileName];
@@ -176,15 +182,15 @@
                     tempError = nil;
                 }
             }
-            if(status != 0)
-            {
-                NSDictionary* dict = [NSDictionary dictionaryWithObject:
-                    [NSString stringWithFormat:
-                        NSLocalizedString(@"mp4chaps failed with exit code %d", @"Write failed error"),
-                        status]
-                    forKey:NSLocalizedDescriptionKey];
-                error = [NSError errorWithDomain:@"AtomicParsleyPlugin" code:status userInfo:dict];
-            }
+        }
+        if(status != 0)
+        {
+            NSDictionary* dict = [NSDictionary dictionaryWithObject:
+                [NSString stringWithFormat:
+                    NSLocalizedString(@"mp4chaps failed with exit code %d", @"Write failed error"),
+                    status]
+                forKey:NSLocalizedDescriptionKey];
+            error = [NSError errorWithDomain:@"AtomicParsleyPlugin" code:status userInfo:dict];
         }
         
         if(error)

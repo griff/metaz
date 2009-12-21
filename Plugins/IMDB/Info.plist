@@ -19,7 +19,7 @@
 	<key>CFBundleVersion</key>
 	<string>BUILDDATE</string>
 	<key>NSPrincipalClass</key>
-	<string>AmazonPlugin</string>
+	<string>IMDBPlugin</string>
 	<key>BuildId</key>
 	<string>BUILDID</string>
 </dict>

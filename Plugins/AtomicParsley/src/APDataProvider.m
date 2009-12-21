@@ -20,13 +20,40 @@
 
 @implementation APDataProvider
 
++ (void)logFromPipe:(NSPipe *)pipe
+{
+    NSData* data = [[pipe fileHandleForReading] readDataToEndOfFile];
+    NSString* str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+    MZLoggerDebug(@"Read from program: %@", str);
+}
+
++ (int)testReadFile:(NSString *)filePath
+{
+    NSTask* task = [[NSTask alloc] init];
+    [task setLaunchPath:[self launchChapsPath]];
+    [task setArguments:[NSArray arrayWithObjects:@"-l", filePath, nil]];
+    NSPipe* err = [NSPipe pipe];
+    [task setStandardError:err];
+    [task setStandardOutput:err];
+    [task launch];
+    [task waitUntilExit];
+    [self logFromPipe:err];
+    int ret = [task terminationStatus];
+    [task release];
+    return ret;
+}
+
 + (int)removeChaptersFromFile:(NSString *)filePath
 {
     NSTask* task = [[NSTask alloc] init];
     [task setLaunchPath:[self launchChapsPath]];
     [task setArguments:[NSArray arrayWithObjects:@"-r", filePath, nil]];
+    NSPipe* err = [NSPipe pipe];
+    [task setStandardError:err];
+    [task setStandardOutput:err];
     [task launch];
     [task waitUntilExit];
+    [self logFromPipe:err];
     int ret = [task terminationStatus];
     [task release];
     return ret;
@@ -38,8 +65,12 @@
     NSTask* task = [[NSTask alloc] init];
     [task setLaunchPath:[self launchChapsPath]];
     [task setArguments:[NSArray arrayWithObjects:@"--import", chaptersFile, filePath, nil]];
+    NSPipe* err = [NSPipe pipe];
+    [task setStandardError:err];
+    [task setStandardOutput:err];
     [task launch];
     [task waitUntilExit];
+    [self logFromPipe:err];
     int ret = [task terminationStatus];
     [task release];
     return ret;
@@ -388,10 +419,14 @@
     [task setArguments:[NSArray arrayWithObjects:fileName, @"-t", nil]];
     NSPipe* out = [NSPipe pipe];
     [task setStandardOutput:out];
+    NSPipe* err = [NSPipe pipe];
+    [task setStandardError:err];
     [task launch];
     
     NSData* data = [[out fileHandleForReading] readDataToEndOfFile];
     [task waitUntilExit];
+    [APDataProvider logFromPipe:err];
+
     int status = [task terminationStatus];
     [task release];
     if (status != 0)
@@ -581,10 +616,13 @@
         [task setArguments:[NSArray arrayWithObjects:@"-l", fileName, nil]];
         NSPipe* out = [NSPipe pipe];
         [task setStandardOutput:out];
+        NSPipe* err = [NSPipe pipe];
+        [task setStandardError:err];
         [task launch];
 
         NSData* data = [[out fileHandleForReading] readDataToEndOfFile];
         [task waitUntilExit];
+        [APDataProvider logFromPipe:err];
         int chapStatus = [task terminationStatus];
         [task release];
         

@@ -18,6 +18,7 @@
     MetaEdits* edits;
     id<MZDataWriteDelegate> delegate;
     APDataProvider* provider;
+    NSPipe* err;
 }
 @property(readonly) NSTask* task;
 @property(readonly) id<MZDataWriteDelegate> delegate;

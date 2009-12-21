@@ -73,6 +73,9 @@
 		1B20209B10B36EC200EE548A /* VideoType.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B20209910B36EC200EE548A /* VideoType.strings */; };
 		1B42F21C10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B42F21B10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m */; };
 		1B42F21F10DD5D6D00AFEBF6 /* MiniProgressGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B42F21D10DD5D6D00AFEBF6 /* MiniProgressGradient.png */; };
+		1B42F26D10DEB11E00AFEBF6 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
+		1B42F27210DEB14B00AFEBF6 /* RubyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B11A00610457B0D004C93D3 /* RubyCocoa.framework */; };
+		1B42F2B710DEB4A200AFEBF6 /* IMDBPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B42F2B610DEB4A200AFEBF6 /* IMDBPlugin.m */; };
 		1B44949910D57D6900B9C751 /* AtomicParsley in Resources */ = {isa = PBXBuildFile; fileRef = 1B44949810D57D6900B9C751 /* AtomicParsley */; };
 		1B44956D10D6118F00B9C751 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B44956C10D6118F00B9C751 /* Growl.framework */; };
 		1B44957A10D611AA00B9C751 /* Growl.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1B44956C10D6118F00B9C751 /* Growl.framework */; };
@@ -255,6 +258,20 @@
 			remoteGlobalIDString = 1B2022F810B393CA00EE548A;
 			remoteInfo = "Plist Marcos";
 		};
+		1B42F25F10DEB0DC00AFEBF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			remoteInfo = MetaZKit;
+		};
+		1B42F26110DEB0E900AFEBF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B2022F810B393CA00EE548A /* Plist Marcos */;
+			remoteInfo = "Plist Marcos";
+		};
 		1BA325CB10545BAE00276F57 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -394,6 +411,10 @@
 		1B42F21A10DD5D5D00AFEBF6 /* UKDockProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKDockProgressIndicator.h; path = Externals/UKDockProgressIndicator/UKDockProgressIndicator.h; sourceTree = "<group>"; };
 		1B42F21B10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKDockProgressIndicator.m; path = Externals/UKDockProgressIndicator/UKDockProgressIndicator.m; sourceTree = "<group>"; };
 		1B42F21E10DD5D6D00AFEBF6 /* English */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = English; path = Externals/UKDockProgressIndicator/English.lproj/MiniProgressGradient.png; sourceTree = "<group>"; };
+		1B42F25810DEB0D300AFEBF6 /* IMDBPlugin.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IMDBPlugin.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B42F25910DEB0D300AFEBF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/IMDB/Info.plist; sourceTree = "<group>"; };
+		1B42F2B510DEB4A200AFEBF6 /* IMDBPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDBPlugin.h; sourceTree = "<group>"; };
+		1B42F2B610DEB4A200AFEBF6 /* IMDBPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBPlugin.m; sourceTree = "<group>"; };
 		1B44949810D57D6900B9C751 /* AtomicParsley */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = AtomicParsley; path = Plugins/AtomicParsley/resources/AtomicParsley; sourceTree = "<group>"; };
 		1B4494BC10D584E000B9C751 /* next_release.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = next_release.txt; path = Release/next_release.txt; sourceTree = "<group>"; };
 		1B44956C10D6118F00B9C751 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = Externals/Growl.framework; sourceTree = "<group>"; };
@@ -825,6 +846,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1B42F25610DEB0D300AFEBF6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B42F26D10DEB11E00AFEBF6 /* MetaZKit.framework in Frameworks */,
+				1B42F27210DEB14B00AFEBF6 /* RubyCocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BA325C210545ACA00276F57 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -948,6 +978,7 @@
 				1B040EBE1081B3C00027FA0D /* TagChimp.mzplugin */,
 				1B032F6710B0C12100B28E3A /* AmazonPlugin.mzplugin */,
 				1B03304310B0CD3C00B28E3A /* MetaZKitTest.octest */,
+				1B42F25810DEB0D300AFEBF6 /* IMDBPlugin.mzplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1035,6 +1066,33 @@
 				1B42F21B10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m */,
 			);
 			name = UKDockProgressIndicator;
+			sourceTree = "<group>";
+		};
+		1B42F23B10DEB05000AFEBF6 /* IMDB */ = {
+			isa = PBXGroup;
+			children = (
+				1B42F23C10DEB07B00AFEBF6 /* Classes */,
+				1B42F23D10DEB08300AFEBF6 /* Resources */,
+			);
+			name = IMDB;
+			sourceTree = "<group>";
+		};
+		1B42F23C10DEB07B00AFEBF6 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1B42F2B510DEB4A200AFEBF6 /* IMDBPlugin.h */,
+				1B42F2B610DEB4A200AFEBF6 /* IMDBPlugin.m */,
+			);
+			name = Classes;
+			path = Plugins/IMDB/src;
+			sourceTree = "<group>";
+		};
+		1B42F23D10DEB08300AFEBF6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1B42F25910DEB0D300AFEBF6 /* Info.plist */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		1B449CEE10DCCAD500B9C751 /* External Sources */ = {
@@ -1504,6 +1562,7 @@
 		1BEA6E68106EF248004B1A7F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				1B42F23B10DEB05000AFEBF6 /* IMDB */,
 				1B032F5410B0BDAC00B28E3A /* Amazon */,
 				1B040EA81081B3860027FA0D /* TagChimp */,
 				1BEA6E69106EF251004B1A7F /* AtomicParsley */,
@@ -1719,6 +1778,25 @@
 			productReference = 1B040EBE1081B3C00027FA0D /* TagChimp.mzplugin */;
 			productType = "com.apple.product-type.bundle";
 		};
+		1B42F25710DEB0D300AFEBF6 /* IMDB */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B42F25E10DEB0D400AFEBF6 /* Build configuration list for PBXNativeTarget "IMDB" */;
+			buildPhases = (
+				1B42F25410DEB0D300AFEBF6 /* Resources */,
+				1B42F25510DEB0D300AFEBF6 /* Sources */,
+				1B42F25610DEB0D300AFEBF6 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1B42F26010DEB0DC00AFEBF6 /* PBXTargetDependency */,
+				1B42F26210DEB0E900AFEBF6 /* PBXTargetDependency */,
+			);
+			name = IMDB;
+			productName = IMDBPlugin;
+			productReference = 1B42F25810DEB0D300AFEBF6 /* IMDBPlugin.mzplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
 		1BA325C310545ACA00276F57 /* MetaZKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1BA325C810545ACB00276F57 /* Build configuration list for PBXNativeTarget "MetaZKit" */;
@@ -1828,6 +1906,7 @@
 				1B032F6610B0C12100B28E3A /* Amazon */,
 				1B03304210B0CD3C00B28E3A /* MetaZKitTest */,
 				1B2022F810B393CA00EE548A /* Plist Marcos */,
+				1B42F25710DEB0D300AFEBF6 /* IMDB */,
 			);
 		};
 /* End PBXProject section */
@@ -1852,6 +1931,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B040EDF1081B53F0027FA0D /* tagChimp.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B42F25410DEB0D300AFEBF6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2050,6 +2136,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1B42F25510DEB0D300AFEBF6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B42F2B710DEB4A200AFEBF6 /* IMDBPlugin.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BA325C110545ACA00276F57 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2186,6 +2280,16 @@
 			isa = PBXTargetDependency;
 			target = 1B2022F810B393CA00EE548A /* Plist Marcos */;
 			targetProxy = 1B2023A610B3960A00EE548A /* PBXContainerItemProxy */;
+		};
+		1B42F26010DEB0DC00AFEBF6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			targetProxy = 1B42F25F10DEB0DC00AFEBF6 /* PBXContainerItemProxy */;
+		};
+		1B42F26210DEB0E900AFEBF6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B2022F810B393CA00EE548A /* Plist Marcos */;
+			targetProxy = 1B42F26110DEB0E900AFEBF6 /* PBXContainerItemProxy */;
 		};
 		1BA325CC10545BAE00276F57 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2505,6 +2609,78 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "Plist Macos";
+			};
+			name = Release;
+		};
+		1B42F25B10DEB0D400AFEBF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/IMDB/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = IMDBPlugin;
+				WRAPPER_EXTENSION = mzplugin;
+			};
+			name = Debug;
+		};
+		1B42F25C10DEB0D400AFEBF6 /* Remote Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/IMDB/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = IMDBPlugin;
+				WRAPPER_EXTENSION = mzplugin;
+			};
+			name = "Remote Debug";
+		};
+		1B42F25D10DEB0D400AFEBF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/IMDB/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = IMDBPlugin;
+				WRAPPER_EXTENSION = mzplugin;
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -2949,6 +3125,16 @@
 				1B2022F910B393CB00EE548A /* Debug */,
 				1B44938510C95B0A00B9C751 /* Remote Debug */,
 				1B2022FA10B393CB00EE548A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1B42F25E10DEB0D400AFEBF6 /* Build configuration list for PBXNativeTarget "IMDB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B42F25B10DEB0D400AFEBF6 /* Debug */,
+				1B42F25C10DEB0D400AFEBF6 /* Remote Debug */,
+				1B42F25D10DEB0D400AFEBF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
