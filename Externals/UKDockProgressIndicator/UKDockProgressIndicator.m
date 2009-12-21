@@ -85,13 +85,14 @@
 -(void)     setHidden: (BOOL)flag
 {
     [progress setHidden: flag];			// Call through to associated view if user wants us to.
+    hidden = flag;
     if( flag ) // Progress indicator is being hidden? Reset dock tile to regular icon again:
         [NSApp setApplicationIconImage: [NSImage imageNamed: @"NSApplicationIcon"]];
 }
 
 -(BOOL)     isHidden
 {
-    return [progress isHidden];
+    return hidden;
 }
 
 
@@ -106,6 +107,9 @@
 
 -(void) updateDockTile
 {
+    if (hidden)
+        return;
+        
     NSImage* dockIcon = [[[NSImage alloc] initWithSize: NSMakeSize(128,128)] autorelease];
 
 

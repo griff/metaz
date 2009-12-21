@@ -24,7 +24,8 @@
 {
     NSData* data = [[pipe fileHandleForReading] readDataToEndOfFile];
     NSString* str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-    MZLoggerDebug(@"Read from program: %@", str);
+    if([str length] > 0)
+        MZLoggerDebug(@"Read from program: %@", str);
 }
 
 + (int)testReadFile:(NSString *)filePath

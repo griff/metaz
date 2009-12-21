@@ -27,6 +27,7 @@
     double                          max;
     double                          min;
     double                          current;
+    BOOL                            hidden;
 }
 
 // NSProgressIndicator compatibility stuff:

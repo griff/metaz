@@ -193,6 +193,7 @@ writeStartedForEdits:(MetaEdits *)edits
     {
         BOOL putOriginalsInTrash = [[NSUserDefaults standardUserDefaults] boolForKey:@"putOriginalsInTrash"];
         BOOL needsRemoval = !putOriginalsInTrash;
+        BOOL shouldMove = YES;
         if(putOriginalsInTrash)
         {
             NSString* temp = [[edits loadedFileName] stringByDeletingLastPathComponent];
@@ -245,22 +246,30 @@ writeStartedForEdits:(MetaEdits *)edits
                         q.removeWhenTrashFailes = handling;
                 }
                 needsRemoval = handling == RemoveTrashFailedTrashHandling;
+                shouldMove = handling != KeepTempFileTrashHandling;
             }
         }
         if(needsRemoval && ![mgr removeItemAtPath:[edits loadedFileName] error:&error])
         {
-            MZLoggerError(@"Failed to remove loaded file %@", [error localizedDescription]);
+            NSString* msg = [NSString stringWithFormat:
+                NSLocalizedString(@"Failed to remove loaded file: %@", @"Remove loaded error"),
+                [error localizedDescription]];
+            self.status = msg;
+            MZLoggerError(@"Failed to remove loaded file: %@", [error localizedDescription]);
             error = nil;
         }
-        
-        if(![mgr moveItemAtPath:[edits savedTempFileName] toPath:[edits savedFileName] error:&error])
+        else
         {
-            NSString* msg = [NSString stringWithFormat:
-                NSLocalizedString(@"Failed to move file to final location: %@", @"Move to final location error"),
-                [error localizedDescription]];
-            MZLoggerError(@"Failed to move file to final location: %@", [error localizedDescription]);
-            self.status = msg;
-            //error = nil;
+            if( (shouldMove || ![[edits loadedFileName] isEqualToString:[edits savedFileName]]) &&
+                ![mgr moveItemAtPath:[edits savedTempFileName] toPath:[edits savedFileName] error:&error])
+            {
+                NSString* msg = [NSString stringWithFormat:
+                    NSLocalizedString(@"Failed to move file to final location: %@", @"Move to final location error"),
+                    [error localizedDescription]];
+                self.status = msg;
+                MZLoggerError(@"Failed to move file to final location: %@", [error localizedDescription]);
+                error = nil;
+            }
         }
     }
     else if(![[edits loadedFileName] isEqualToString:[edits savedFileName]])
@@ -272,7 +281,7 @@ writeStartedForEdits:(MetaEdits *)edits
                 [error localizedDescription]];
             MZLoggerError(@"Failed to move file to final location: %@", [error localizedDescription]);
             self.status = msg;
-            //error = nil;
+            error = nil;
         }
     }
     self.completed = error == nil;

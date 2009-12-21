@@ -90,7 +90,7 @@
 {
     NSString* tempFile = [self savedFileName];
     NSString* ext = [tempFile pathExtension];
-    tempFile = [[tempFile stringByDeletingPathExtension] stringByAppendingString:@"MetaZ"];
+    tempFile = [[tempFile stringByDeletingPathExtension] stringByAppendingString:@" MetaZ"];
     if(ext && [ext length] > 0)
         return [tempFile stringByAppendingFormat:@".%@", ext];
     return tempFile;

@@ -309,7 +309,7 @@ static MZWriteQueue* sharedQueue = nil;
 {
     NSMutableArray* ret = [NSMutableArray array];
     for(id obj in queueItems)
-        if([obj writing] == 0 && ![obj completed])
+        if([obj writing] == 0 && ![obj hasRun])
             [ret addObject:obj];
     return ret;
 }
