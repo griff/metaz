@@ -1,8 +1,0 @@
-Rodney Kerstetter - MetaX
-Andy Matuschak - Sparkle
-Adrian Kosmaczewski - REST client
-Marc Liyanage - Amazon authentication
-Olivier Gay - HMAC-SHA2 used by Amazon authentication
-Søren Lisberg - UI design assistance
-Stefan Fürst - 
-

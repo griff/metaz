@@ -126,7 +126,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleGetInfoString</key>
-	<string>Copyright 2009 Brian Olsen</string>
+	<string>Copyright 2009 Brian Olsen &amp; Nigel Graham</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
@@ -148,7 +148,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>10.5</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2009, Brian Olsen</string>
+	<string>Copyright © 2009, Brian Olsen &amp; Nigel Graham</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
