@@ -11,6 +11,32 @@
 #import "MZWriteQueueStatus.h"
 #import "NSUserDefaults+KeyPath.h"
 
+@interface LoadOperation : NSOperation
+{
+    NSString* filePath;
+    NSUInteger index;
+    MetaEdits* edits;
+}
+
++ (id)loadWithFilePath:(NSString *)filePath atIndex:(NSUInteger )index;
+- (id)initWithFilePath:(NSString *)filePath atIndex:(NSUInteger )index;
+
+@property (readonly) NSString* filePath;
+@property (readonly) NSUInteger index;
+@property (readonly) MetaEdits* edits;
+
+- (void)main;
+
+@end
+
+
+@interface MZMetaLoader (Private)
+
+- (void)loadedFile:(LoadOperation *)operation;
+
+@end
+
+
 @implementation MZMetaLoader
 @synthesize files;
 
@@ -36,6 +62,8 @@ static MZMetaLoader* sharedLoader = nil;
     } else if(self)
     {
         files = [[NSMutableArray alloc] init];
+        queue = [[NSOperationQueue alloc] init];
+        loading = [[NSMutableArray alloc] init];
         sharedLoader = [self retain];
     }
     return self;
@@ -44,6 +72,8 @@ static MZMetaLoader* sharedLoader = nil;
 -(void)dealloc
 {
     [files release];
+    [queue release];
+    [loading release];
     [super dealloc];
 }
 
@@ -112,10 +142,17 @@ static MZMetaLoader* sharedLoader = nil;
         NSString* fileName = [fileNames objectAtIndex:i];
         NSInteger idx = [loadedFileNames indexOfObject:fileName];
         BOOL inQueue = NO;
+        BOOL inLoading = NO;
         if(idx == NSNotFound)
         {
             idx = [queuedFileNames indexOfObject:fileName];
-            inQueue = YES;
+            inQueue = idx != NSNotFound;
+        }
+
+        if(idx == NSNotFound)
+        {
+            idx = [loading indexOfObject:fileName];
+            inLoading = idx != NSNotFound;
         }
             
         if(idx != NSNotFound)
@@ -129,6 +166,13 @@ static MZMetaLoader* sharedLoader = nil;
                     [alert setMessageText:
                         [NSString stringWithFormat:
                             NSLocalizedString(@"File \"%@\" is already in queue", @"Already loaded warning message"),
+                                basefile]];
+                }
+                else if(inLoading)
+                {
+                    [alert setMessageText:
+                        [NSString stringWithFormat:
+                            NSLocalizedString(@"File \"%@\" is already being loaded", @"Already loaded warning message"),
                                 basefile]];
                 }
                 else
@@ -169,33 +213,26 @@ static MZMetaLoader* sharedLoader = nil;
     fileNames = realFileNames;
     indexes = realIndexes;
 
+    if([loading count]==0)
+    {
+        defaultVideoType = [[NSUserDefaults standardUserDefaults] integerForKey:@"incomingVideoType"];
+        lastSelection = MZUnsetVideoType;
+    }
+
+    [loading addObjectsFromArray:fileNames];
+
+    /*
     NSMutableArray* arr = [NSMutableArray arrayWithCapacity:[fileNames count]];
     int missingType = 0;
     MZVideoType def = [[NSUserDefaults standardUserDefaults] integerForKey:@"incomingVideoType"];
+    */
+    index = [indexes firstIndex];
     for ( NSString* fileName in fileNames )
     {
-        //MZLoggerDebug(@"Loading file '%@'", fileName);
-        MetaEdits* edits = [[MZPluginController sharedInstance] loadDataFromFile:fileName];
-        if(edits)
-        {
-            if([edits videoType] == MZUnsetVideoType)
-            {
-                if(def<=MZUnsetVideoType)
-                    missingType++;
-                else
-                    [edits setVideoType:def];
-            }
-            [arr addObject:edits];
-        }
-        else
-        {
-            NSString* baseFile = [fileName lastPathComponent];
-            NSRunCriticalAlertPanel([NSString stringWithFormat:
-                NSLocalizedString(@"The file '%@' is in an unsupported format.", @"Bad file title"), baseFile],
-                @"", NSLocalizedString(@"OK", @"Button text"), nil, nil);
-            MZLoggerError(@"Could no load file '%@'", fileName);
-        }
+        [queue addOperation:[LoadOperation loadWithFilePath:fileName atIndex:index]];
+        index = [indexes indexGreaterThanIndex:index];
     }
+    /*
     if(missingType>0)
     {
         def = MZUnsetVideoType;
@@ -220,16 +257,7 @@ static MZMetaLoader* sharedLoader = nil;
                     [sel setCell:[tag editorCell]];
                     [sel setKeyEquivalent:@"t"];
                     [sel setKeyEquivalentModifierMask:NSCommandKeyMask];
-                    /*    
-                    [sel addItemWithTitle:NSLocalizedStringFromTable(@"Movie", @"VideoType", @"Video type")];
-                    [sel addItemWithTitle:NSLocalizedStringFromTable(@"Normal", @"VideoType", @"Video type")];
-                    [sel addItemWithTitle:NSLocalizedStringFromTable(@"Audiobook", @"VideoType", @"Video type")];
-                    [sel addItemWithTitle:NSLocalizedStringFromTable(@"Whacked Bookmark", @"VideoType", @"Video type")];
-                    [sel addItemWithTitle:NSLocalizedStringFromTable(@"Music Video", @"VideoType", @"Video type")];
-                    [sel addItemWithTitle:NSLocalizedStringFromTable(@"Short Film", @"VideoType", @"Video type")];
-                    [sel addItemWithTitle:NSLocalizedStringFromTable(@"TV Show", @"VideoType", @"Video type")];
-                    [sel addItemWithTitle:NSLocalizedStringFromTable(@"Booklet", @"VideoType", @"Video type")];
-                    */
+
                     if(lastSelection!=MZUnsetVideoType)
                         [sel selectItemWithTag:lastSelection];
 
@@ -255,34 +283,6 @@ static MZMetaLoader* sharedLoader = nil;
                     if(returnCode == NSAlertFirstButtonReturn)
                     {
                         def = lastSelection;
-                        /*
-                        switch (lastSelection) {
-                            case 0:
-                                def = MZMovieVideoType;
-                                break;
-                            case 1:
-                                def = MZNormalVideoType;
-                                break;
-                            case 2:
-                                def = MZAudiobookVideoType;
-                                break;
-                            case 3:
-                                def = MZWhackedBookmarkVideoType;
-                                break;
-                            case 4:
-                                def = MZMusicVideoType;
-                                break;
-                            case 5:
-                                def = MZShortFilmVideoType;
-                                break;
-                            case 6:
-                                def = MZTVShowVideoType;
-                                break;
-                            case 7:
-                                def = MZBookletVideoType;
-                                break;
-                        }
-                        */
                     } else
                         return NO;
                 }
@@ -296,7 +296,84 @@ static MZMetaLoader* sharedLoader = nil;
     [self willChangeValueForKey:@"files"];
     [files insertObjects:arr atIndexes:indexes];
     [self didChangeValueForKey:@"files"];
+    */
     return YES;
+}
+
+- (void)loadedFile:(LoadOperation *)operation
+{
+    MetaEdits* edits = operation.edits;
+    if(!edits)
+    {
+        [loading removeObject:operation.filePath];
+        NSString* baseFile = [operation.filePath lastPathComponent];
+        NSRunCriticalAlertPanel([NSString stringWithFormat:
+            NSLocalizedString(@"The file '%@' is in an unsupported format.", @"Bad file title"), baseFile],
+            @"", NSLocalizedString(@"OK", @"Button text"), nil, nil);
+        MZLoggerError(@"Could no load file '%@'", operation.filePath);
+        return;
+    }
+
+    if([edits videoType] == MZUnsetVideoType)
+    {
+        if(defaultVideoType<=MZUnsetVideoType)
+        {
+            NSAlert* alert = [[NSAlert alloc] init];
+            [alert setMessageText:
+                [NSString stringWithFormat:
+                    NSLocalizedString(@"Video type for file \"%@\" could not be determined", @"Video type prompt"),
+                    [edits fileName]]];
+            NSPopUpButton* sel = [[NSPopUpButton alloc] 
+                initWithFrame:NSMakeRect(0, 0, 145, 25)
+                    pullsDown:NO];
+            MZTag* tag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
+            [sel setCell:[tag editorCell]];
+            [sel setKeyEquivalent:@"t"];
+            [sel setKeyEquivalentModifierMask:NSCommandKeyMask];
+
+            if(lastSelection!=MZUnsetVideoType)
+                [sel selectItemWithTag:lastSelection];
+
+            [alert setAccessoryView:sel];
+            [alert addButtonWithTitle:NSLocalizedString(@"OK", @"Button")];
+            [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Button")];
+
+            if([loading count]>1)
+            {
+                [alert setShowsSuppressionButton:YES];
+                [[alert suppressionButton] setTitle:
+                    NSLocalizedString(@"Apply to all", @"Confirmation text")];
+            }
+            
+            NSInteger returnCode = [alert runModal];
+            lastSelection = [[sel selectedItem] tag];
+            BOOL applyAll = [loading count]>1 && [[alert suppressionButton] state] == NSOnState;
+
+            [sel release];
+            [alert release];
+
+            if(returnCode != NSAlertFirstButtonReturn)
+            {
+                [loading removeObject:operation.filePath];
+                return;
+            }
+                
+            [edits setVideoType:lastSelection];
+            if(applyAll)
+                defaultVideoType = lastSelection;
+        }
+        else
+            [edits setVideoType:defaultVideoType];
+    }
+    
+    NSUInteger index = operation.index;
+    if(index > [files count])
+        index = [files count];
+
+    [self willChangeValueForKey:@"files"];
+    [files insertObject:edits atIndex:index];
+    [self didChangeValueForKey:@"files"];
+    [loading removeObject:operation.filePath];
 }
 
 - (void)moveObjects:(NSArray *)objects toIndex:(NSUInteger)index
@@ -331,3 +408,44 @@ static MZMetaLoader* sharedLoader = nil;
 }
 
 @end
+
+@implementation LoadOperation
+
++ (id)loadWithFilePath:(NSString *)filePath atIndex:(NSUInteger )index
+{
+    return [[[self alloc] initWithFilePath:filePath atIndex:index] autorelease];
+}
+
+- (id)initWithFilePath:(NSString *)theFilePath atIndex:(NSUInteger )theIndex
+{
+    self = [super init];
+    if(self)
+    {
+        filePath = [theFilePath retain];
+        index = theIndex;
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [filePath release];
+    [super dealloc];
+}
+
+@synthesize edits;
+@synthesize index;
+@synthesize filePath;
+
+- (void)main
+{
+    if(![self isCancelled])
+        edits = [[MZPluginController sharedInstance] loadDataFromFile:filePath];
+    [[MZMetaLoader sharedLoader] performSelectorOnMainThread:@selector(loadedFile:) 
+                withObject:self
+                waitUntilDone:YES
+                modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]]; 
+}
+
+@end
+

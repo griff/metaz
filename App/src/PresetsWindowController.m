@@ -155,7 +155,7 @@
     [undoManager registerUndoWithTarget:preset selector:@selector(setName:) object:oldName];
     [undoManager setActionName:NSLocalizedString(@"Rename", @"Preset rename undo action")];
     [presetsController rearrangeObjects];
-    [[self window] performSelectorOnMainThread:@selector(makeFirstResponder:) withObject:presetsView waitUntilDone:NO];
+    [[self window] performSelector:@selector(makeFirstResponder:) withObject:presetsView afterDelay:0];
 }
 
 #pragma mark - as observer
@@ -271,7 +271,7 @@
     [presetsController addObject:preset];
     [presetsController rearrangeObjects];
     if([undoManager isUndoing] || [undoManager isRedoing])
-        [[self window] performSelectorOnMainThread:@selector(makeFirstResponder:) withObject:presetsView waitUntilDone:NO];
+        [[self window] performSelector:@selector(makeFirstResponder:) withObject:presetsView afterDelay:0];
     if([undoManager isUndoing])
         [undoManager setActionName:NSLocalizedString(@"Remove Preset", @"Remove preset name")];
     else

@@ -9,8 +9,14 @@
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaZKit.h>
 
-@interface MZMetaLoader : NSObject {
+@interface MZMetaLoader : NSObject
+{
     NSMutableArray* files;
+    NSOperationQueue* queue;
+    MZVideoType defaultVideoType;
+    MZVideoType lastSelection;
+    NSUInteger loadingCount;
+    NSMutableArray* loading;
 }
 @property(readonly) NSArray* files;
 
