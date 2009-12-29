@@ -81,10 +81,7 @@
         {
             NSString* key = [NSString stringWithFormat:@"profiles.%@.%@", ident, tag];
             ProfileState* state = [ProfileState stateWithTag:tag];
-            if(states)
-            {
-                state.state = [defaults boolForKeyPath:key];
-            }
+            state.state = [defaults boolForKeyPath:key default:YES];
             [arr addObject:state];
         }
         tags = [[NSArray alloc] initWithArray:arr];

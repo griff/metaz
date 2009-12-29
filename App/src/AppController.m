@@ -316,7 +316,7 @@ NSDictionary* findBinding(NSWindow* window) {
     }
     if([keyPath isEqual:@"selection.pure.videoType"] && object == filesController)
     {
-        [self performSelector:@selector(updateSearchMenu) withObject:nil afterDelay:2.0];
+        [self performSelector:@selector(updateSearchMenu) withObject:nil afterDelay:0.0];
     }
     if([keyPath isEqual:@"selection.shortDescription"] && object == filesController)
     {

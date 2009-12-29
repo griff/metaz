@@ -16,6 +16,8 @@
 			<false/>
 			<key>tvEpisode</key>
 			<true/>
+			<key>title</key>
+			<false/>
 			<key>tvSeason</key>
 			<true/>
 			<key>tvShow</key>
