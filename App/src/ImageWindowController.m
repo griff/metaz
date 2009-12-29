@@ -94,6 +94,7 @@ NSData* tiffForCGImage(CGImageRef cgImage) {
 
 - (void)awakeFromNib
 {
+    [[self window] setExcludedFromWindowsMenu:YES];
     [imageView setImage:[sourceImageView image]];
     [imageView addObserver:self forKeyPath:@"rotationAngle" options:NSKeyValueObservingOptionNew context:IMAGE_CTX2];
     imageView.editable = YES;

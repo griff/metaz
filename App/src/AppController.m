@@ -143,6 +143,8 @@ NSDictionary* findBinding(NSWindow* window) {
     [purchaseDateFormatter setLenient:YES];
     [dateFormatter setDefaultDate:nil];
     [purchaseDateFormatter setDefaultDate:nil];
+    
+    [window setExcludedFromWindowsMenu:YES];
 
     [filesController addObserver:self
                       forKeyPath:@"selection.title"
@@ -639,7 +641,6 @@ NSDictionary* findBinding(NSWindow* window) {
 - (IBAction)sendFeedback:(id)sender
 {
 }
-
 
 #pragma mark - user interface validation
 

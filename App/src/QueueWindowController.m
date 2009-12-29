@@ -36,6 +36,7 @@
 
 - (void)awakeFromNib
 {
+    [[self window] setExcludedFromWindowsMenu:YES];
     [[itemsLabel cell] setBackgroundStyle:NSBackgroundStyleRaised];
     [[clearBtn cell] setBackgroundStyle:NSBackgroundStyleRaised];
 }

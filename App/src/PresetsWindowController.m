@@ -73,17 +73,17 @@
 
 - (void)awakeFromNib
 {
-    // cmd + N
+    // create preset: cmd + N
     [segmentedControl setKeyEquivalent:@"N" forSegment:0];
     [segmentedControl setKeyEquivalentModifierMask:NSCommandKeyMask forSegment:0];
 
-    // cmd + backspace
+    // delete preset: cmd + backspace
     const unichar back = NSDeleteCharacter;
     NSString* back2 = [NSString stringWithCharacters:&back length:1];
     [segmentedControl setKeyEquivalent:back2  forSegment:1];
     [segmentedControl setKeyEquivalentModifierMask:NSCommandKeyMask forSegment:1];
 
-    // shift + cmd + A
+    // apply preset: shift + cmd + A
     [segmentedControl setKeyEquivalent:@"A" forSegment:2];
     [segmentedControl setKeyEquivalentModifierMask:NSShiftKeyMask|NSCommandKeyMask forSegment:2];
 
