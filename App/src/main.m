@@ -31,8 +31,9 @@ int main(int argc, const char *argv[])
 
             umask(022);
         
-            // Send stderr to our file
-            freopen([path fileSystemRepresentation], "a", stderr);
+            // Send stderr & stdout to our file
+            FILE* file = freopen([path fileSystemRepresentation], "a", stderr);
+            dup2(fileno(file), fileno(stdout));
         }
     }
 

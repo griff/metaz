@@ -20,12 +20,12 @@
 
 @implementation APDataProvider
 
-+ (void)logFromPipe:(NSPipe *)pipe
++ (void)logFromProgram:(NSString *)program pipe:(NSPipe *)pipe
 {
     NSData* data = [[pipe fileHandleForReading] readDataToEndOfFile];
     NSString* str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     if([str length] > 0)
-        MZLoggerDebug(@"Read from program: %@", str);
+        MZLoggerDebug(@"Read from %@: %@", program, str);
 }
 
 + (int)testReadFile:(NSString *)filePath
@@ -38,7 +38,7 @@
     [task setStandardOutput:err];
     [task launch];
     [task waitUntilExit];
-    [self logFromPipe:err];
+    [self logFromProgram:@"mp4chaps" pipe:err];
     int ret = [task terminationStatus];
     [task release];
     return ret;
@@ -54,7 +54,7 @@
     [task setStandardOutput:err];
     [task launch];
     [task waitUntilExit];
-    [self logFromPipe:err];
+    [self logFromProgram:@"mp4chaps" pipe:err];
     int ret = [task terminationStatus];
     [task release];
     return ret;
@@ -71,7 +71,7 @@
     [task setStandardOutput:err];
     [task launch];
     [task waitUntilExit];
-    [self logFromPipe:err];
+    [self logFromProgram:@"mp4chaps" pipe:err];
     int ret = [task terminationStatus];
     [task release];
     return ret;
@@ -426,7 +426,7 @@
     
     NSData* data = [[out fileHandleForReading] readDataToEndOfFile];
     [task waitUntilExit];
-    [APDataProvider logFromPipe:err];
+    [APDataProvider logFromProgram:@"AtomicParsley" pipe:err];
 
     int status = [task terminationStatus];
     [task release];
@@ -531,8 +531,12 @@
             [NSString stringWithFormat:@"MetaZImage_%@",
                 [[NSProcessInfo processInfo] globallyUniqueString]]];
         [task setArguments:[NSArray arrayWithObjects:fileName, @"-e", file, nil]];
+        NSPipe* err = [NSPipe pipe];
+        [task setStandardError:err];
+        [task setStandardOutput:err];
         [task launch];
         [task waitUntilExit];
+        [APDataProvider logFromProgram:@"AtomicParsley" pipe:err];
         [task release];
         
         file = [file stringByAppendingString:@"_artwork_1"];
@@ -622,7 +626,7 @@
 
         NSData* data = [[out fileHandleForReading] readDataToEndOfFile];
         [task waitUntilExit];
-        [APDataProvider logFromPipe:err];
+        [APDataProvider logFromProgram:@"mp4chaps" pipe:err];
         int chapStatus = [task terminationStatus];
         [task release];
         

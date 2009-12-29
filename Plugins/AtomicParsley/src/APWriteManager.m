@@ -115,7 +115,7 @@
 
 - (void)taskTerminated:(NSNotification *)note
 {
-    [APDataProvider logFromPipe:err];
+    [APDataProvider logFromProgram:@"AtomicParsley" pipe:err];
     NSError* error = nil;
     NSError* tempError = nil;
     

@@ -58,10 +58,13 @@
     return nil;
 }
 
-- (BOOL)hasChapters
+- (id)hasChapters
 {
-    return [values objectForKey:MZChaptersTagIdent] != nil ||
-        [values objectForKey:MZChapterNamesTagIdent] != nil;
+    if([values objectForKey:MZChaptersTagIdent] != nil)
+        return [NSNumber numberWithBool:YES];
+    if([values objectForKey:MZChapterNamesTagIdent] != nil)
+        return NSMultipleValuesMarker;
+    return [NSNumber numberWithBool:NO];;
 }
 
 - (NSString *)searchResultTitle

@@ -19,7 +19,7 @@
     NSMutableArray* writes;
 }
 
-+ (void)logFromPipe:(NSPipe *)pipe;
++ (void)logFromProgram:(NSString *)program pipe:(NSPipe *)pipe;
 + (int)testReadFile:(NSString *)filePath;
 + (int)removeChaptersFromFile:(NSString *)filePath;
 + (int)importChaptersFromFile:(NSString *)chaptersFile toFile:(NSString *)filePath;
