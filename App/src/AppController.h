@@ -14,6 +14,7 @@
 #import "PreferencesWindowController.h"
 #import "PresetsWindowController.h"
 #import "SearchProfile.h"
+#import "ChapterEditor.h"
 
 @interface AppController : NSObject <NSUserInterfaceValidations,MZPluginControllerDelegate> {
     NSWindow* window;
@@ -39,6 +40,7 @@
     NSInteger remainingInShortDescription;
     SearchProfile* activeProfile;
     NSInteger searches;
+    ChapterEditor* chapterEditor;
 }
 @property (nonatomic, retain) IBOutlet NSWindow* window;
 @property (nonatomic, retain) IBOutlet NSTabView *tabView;
@@ -56,6 +58,7 @@
 @property (nonatomic, retain) IBOutlet NSProgressIndicator* searchIndicator;
 @property (nonatomic, retain) IBOutlet NSArrayController* searchController;
 @property (nonatomic, retain) IBOutlet NSSearchField* searchField;
+@property (nonatomic, retain) IBOutlet ChapterEditor* chapterEditor;
 @property (readonly) NSInteger remainingInShortDescription;
 
 + (void)initialize;

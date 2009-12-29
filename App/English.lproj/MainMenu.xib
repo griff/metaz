@@ -13,7 +13,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="1798"/>
-			<integer value="24"/>
+			<integer value="296"/>
 			<integer value="1723"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -8653,6 +8653,14 @@
 					</object>
 					<int key="connectionID">1817</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">chapterEditor</string>
+						<reference key="source" ref="1053022543"/>
+						<reference key="destination" ref="884984877"/>
+					</object>
+					<int key="connectionID">1818</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -12979,7 +12987,7 @@
 					<string>{74, 862}</string>
 					<string>{{6, 978}, {478, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{605, 636}, {231, 153}}</string>
+					<string>{{606, 636}, {231, 153}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{475, 832}, {234, 43}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -13337,7 +13345,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1817</int>
+			<int key="maxID">1818</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -13364,7 +13372,6 @@
 							<string>showHomepage:</string>
 							<string>showImageEditor:</string>
 							<string>showInfoTab:</string>
-							<string>showMainWindow:</string>
 							<string>showPreferences:</string>
 							<string>showPresets:</string>
 							<string>showReleaseNotes:</string>
@@ -13397,13 +13404,13 @@
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
-							<string>id</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>chapterEditor</string>
 							<string>dateFormatter</string>
 							<string>episodeFormatter</string>
 							<string>filesController</string>
@@ -13423,6 +13430,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>ChapterEditor</string>
 							<string>NSDateFormatter</string>
 							<string>NSNumberFormatter</string>
 							<string>NSArrayController</string>

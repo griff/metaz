@@ -94,7 +94,7 @@
     
     // Chapter tags
     [self registerTag:[MZTag tagWithIdentifier:MZChaptersTagIdent]];
-    [self registerTag:[MZTag tagWithIdentifier:MZChapterNamesTagIdent]];
+    [self registerTag:[MZReadOnlyTag tagWithIdentifier:MZChapterNamesTagIdent]];
 
     [self registerTag:[MZTimeCodeTag tagWithIdentifier:MZDurationTagIdent]];
 }
@@ -303,6 +303,15 @@ static NSMutableDictionary *sharedTags = nil;
 @end
 
 
+@implementation MZReadOnlyTag
+- (id)convertObjectForStorage:(id)obj
+{
+    [NSException raise:@"MZTagReadOnly" format:@"Tag '%@' is read only", [self identifier]];
+    return nil;
+}
+@end
+
+
 @implementation MZStringTag
 
 - (NSCell *)editorCell
@@ -450,6 +459,12 @@ static NSMutableDictionary *sharedTags = nil;
         return nil;
     
     return [MZTimeCode timeCodeWithString:str];
+}
+
+- (id)convertObjectForStorage:(id)obj
+{
+    [NSException raise:@"MZTagReadOnly" format:@"Tag '%@' is read only", [self identifier]];
+    return nil;
 }
 
 @end

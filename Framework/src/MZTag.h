@@ -40,6 +40,11 @@
 @end
 
 
+@interface MZReadOnlyTag : MZTag {}
+
+@end
+
+
 @interface MZStringTag : MZTag {}
 
 @end

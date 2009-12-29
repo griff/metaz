@@ -77,6 +77,7 @@ NSDictionary* findBinding(NSWindow* window) {
 @synthesize searchIndicator;
 @synthesize searchController;
 @synthesize searchField;
+@synthesize chapterEditor;
 @synthesize remainingInShortDescription;
 
 #pragma mark - initialization
@@ -186,6 +187,7 @@ NSDictionary* findBinding(NSWindow* window) {
     [searchController release];
     [searchField release];
     [activeProfile release];
+    [chapterEditor release];
     [super dealloc];
 }
 #pragma mark - private
@@ -594,10 +596,19 @@ NSDictionary* findBinding(NSWindow* window) {
             if(![edit getterChangedForKey:[tag identifier]])
             {
                 id value = [result objectForKey:[tag identifier]];
-                if([value isKindOfClass:[MZRemoteData class]])
-                    value = [value data];
-                if(value)
-                    [edit setterValue:value forKey:[tag identifier]];
+                if([[tag identifier] isEqual:MZChapterNamesTagIdent])
+                {
+                    [chapterEditor setChapterNames:value];
+                    [chapterEditor setChanged:[NSNumber numberWithBool:YES]];
+                }
+                else
+                {
+                    if([value isKindOfClass:[MZRemoteData class]])
+                        value = [value data];
+                    if(value)
+                        [edit setterValue:value forKey:[tag identifier]];
+                }
+
             }
         }
         [self registerUndoName:edit.undoManager];

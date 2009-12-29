@@ -13,7 +13,7 @@
 @interface AmazonSearch : MZRESTSearch
 {
     NSDictionary* mapping;
-
+    NSDictionary* ratingsMap;
 }
 
 - (id)initWithProvider:(id)provider delegate:(id<MZSearchProviderDelegate>)delegate url:(NSURL *)url parameters:(NSDictionary *)params;
