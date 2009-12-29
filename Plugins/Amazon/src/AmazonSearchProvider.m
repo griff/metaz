@@ -12,7 +12,7 @@
 
 - (void)dealloc
 {
-    //[search release];
+    [search release];
     [icon release];
     [supportedSearchTags release];
     [menu release];

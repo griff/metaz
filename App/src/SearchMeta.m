@@ -48,7 +48,8 @@
     for(MZTag* tag in tags)
     {
         NSString* key = [tag identifier];
-        [observeFix removeObserver:self forKeyPath: [@"selection." stringByAppendingString:key]];
+        if(!ignoreController)
+            [observeFix removeObserver:self forKeyPath: [@"selection." stringByAppendingString:key]];
         [provider removeObserver:self forKeyPath:key];
     }
     [provider removeObserver:self forKeyPath:MZFileNameTagIdent];
@@ -85,29 +86,35 @@
 
 - (void)prepareForQueue
 {
-    ignoreController = YES;
-    NSMutableArray* tags = [NSMutableArray arrayWithArray:[provider providedTags]];
-    [tags removeObject:[MZTag tagForIdentifier:MZFileNameTagIdent]];
-    for(MZTag* tag in tags)
+    if(!ignoreController)
     {
-        NSString* key = [tag identifier];
-        [observeFix removeObserver:self forKeyPath: [@"selection." stringByAppendingString:key]];
+        ignoreController = YES;
+        NSMutableArray* tags = [NSMutableArray arrayWithArray:[provider providedTags]];
+        [tags removeObject:[MZTag tagForIdentifier:MZFileNameTagIdent]];
+        for(MZTag* tag in tags)
+        {
+            NSString* key = [tag identifier];
+            [observeFix removeObserver:self forKeyPath: [@"selection." stringByAppendingString:key]];
+        }
     }
     [provider prepareForQueue];
 }
 
 - (void)prepareFromQueue
 {
-    ignoreController = NO;
-    NSMutableArray* tags = [NSMutableArray arrayWithArray:[provider providedTags]];
-    [tags removeObject:[MZTag tagForIdentifier:MZFileNameTagIdent]];
-    for(MZTag* tag in tags)
+    if(ignoreController)
     {
-        NSString* key = [tag identifier];
-        [observeFix addObserver:self 
-                     forKeyPath:[@"selection." stringByAppendingString:key]
-                        options:NSKeyValueObservingOptionPrior
-                        context:NULL];
+        ignoreController = NO;
+        NSMutableArray* tags = [NSMutableArray arrayWithArray:[provider providedTags]];
+        [tags removeObject:[MZTag tagForIdentifier:MZFileNameTagIdent]];
+        for(MZTag* tag in tags)
+        {
+            NSString* key = [tag identifier];
+            [observeFix addObserver:self 
+                        forKeyPath:[@"selection." stringByAppendingString:key]
+                            options:NSKeyValueObservingOptionPrior
+                            context:NULL];
+        }
     }
     [provider prepareFromQueue];
 }
@@ -197,7 +204,8 @@
                 extraMetaDataForProvider:[theProvider owner] loaded:theProvider];
         if(newMeta)
         {
-            newMeta->ignoreController = ignoreController;
+            if(ignoreController)
+                [newMeta prepareForQueue];
             return [newMeta retain];
         }
     }

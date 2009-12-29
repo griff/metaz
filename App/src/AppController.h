@@ -80,6 +80,10 @@
 - (IBAction)openDocument:(id)sender;
 - (IBAction)showPresets:(id)sender;
 - (IBAction)applySearchEntry:(id)sender;
+- (IBAction)showReleaseNotes:(id)sender;
+- (IBAction)showHomepage:(id)sender;
+- (IBAction)viewLog:(id)sender;
+- (IBAction)sendFeedback:(id)sender;
 
 //- (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo;
 

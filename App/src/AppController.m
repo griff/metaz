@@ -602,6 +602,45 @@ NSDictionary* findBinding(NSWindow* window) {
     }
 }
 
+- (IBAction)showReleaseNotes:(id)sender
+{
+    NSURL* url = [NSURL URLWithString:@"http://griff.github.com/metaz/release-notes.html"];
+    [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
+- (IBAction)showHomepage:(id)sender
+{
+    NSURL* url = [NSURL URLWithString:@"http://griff.github.com/metaz/"];
+    [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
+- (IBAction)viewLog:(id)sender
+{
+    NSFileManager *mgr = [NSFileManager defaultManager];
+
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    for(NSString* dir in paths)
+    {
+        NSString* path = [[dir 
+            stringByAppendingPathComponent:@"Logs"] 
+            stringByAppendingPathComponent:@"MetaZ.log"];
+                
+        if([mgr fileExistsAtPath:path])
+        {
+            [[NSWorkspace sharedWorkspace]
+                       openFile:path
+                withApplication:@"Console"
+                  andDeactivate:YES];
+            return;
+        }
+    }
+}
+
+- (IBAction)sendFeedback:(id)sender
+{
+}
+
+
 #pragma mark - user interface validation
 
 - (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem {

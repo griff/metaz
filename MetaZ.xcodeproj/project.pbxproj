@@ -52,6 +52,10 @@
 		1B040EDF1081B53F0027FA0D /* tagChimp.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B040EDE1081B53F0027FA0D /* tagChimp.png */; };
 		1B040EE21081B5550027FA0D /* TCSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B040EE11081B5550027FA0D /* TCSearchProvider.m */; };
 		1B040EEE1081C0110027FA0D /* TagChimp.mzplugin in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B040EBE1081B3C00027FA0D /* TagChimp.mzplugin */; };
+		1B060DF910E267810009D847 /* imdb_plugin.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B060DF810E267810009D847 /* imdb_plugin.rb */; };
+		1B060E5A10E26BA90009D847 /* IMDBSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B060E5910E26BA90009D847 /* IMDBSearch.m */; };
+		1B060E6710E26F970009D847 /* IMDBSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B060E6610E26F970009D847 /* IMDBSearchProvider.m */; };
+		1B060F0810E286C00009D847 /* IMDBSearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B060F0710E286C00009D847 /* IMDBSearchItem.m */; };
 		1B090A691069474600D88083 /* MyQueueCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B090A681069474600D88083 /* MyQueueCollectionView.m */; };
 		1B0DEC3F10607A9A009D293F /* MGCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEC3E10607A9A009D293F /* MGCollectionView.m */; };
 		1B0DEC7F10609DC6009D293F /* MGCollectionViewOrig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEC7E10609DC6009D293F /* MGCollectionViewOrig.m */; };
@@ -136,6 +140,11 @@
 		1BCC990710771262007EFF57 /* FactorySettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BCC990610771262007EFF57 /* FactorySettings.plist */; };
 		1BCC9C6B107C3E80007EFF57 /* RatingMenuHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC9C6A107C3E80007EFF57 /* RatingMenuHandler.m */; };
 		1BCC9D3F107E9C08007EFF57 /* GenreDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC9D3E107E9C08007EFF57 /* GenreDataSource.m */; };
+		1BCECD6310E3938F00D0AD35 /* GTMLogger+ASL.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B449DCB10DCCC1C00B9C751 /* GTMLogger+ASL.m */; };
+		1BCECD6410E3939900D0AD35 /* GTMLogger+ASL.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B449DCA10DCCC1C00B9C751 /* GTMLogger+ASL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BCECD8910E39AE200D0AD35 /* MZLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BCECD8710E39AE200D0AD35 /* MZLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BCECD8A10E39AE200D0AD35 /* MZLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCECD8810E39AE200D0AD35 /* MZLogger.m */; };
+		1BCECEC510E98E4200D0AD35 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 1BCECEC410E98E4200D0AD35 /* Credits.html */; };
 		1BD3D2BB108CC5D700BE6943 /* MZRemoteData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD3D2B9108CC5D700BE6943 /* MZRemoteData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BD3D2BC108CC5D700BE6943 /* MZRemoteData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD3D2BA108CC5D700BE6943 /* MZRemoteData.m */; };
 		1BD3D311108DD03E00BE6943 /* PictureEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD3D310108DD03E00BE6943 /* PictureEditor.m */; };
@@ -223,6 +232,13 @@
 			remoteGlobalIDString = 1B040EBD1081B3C00027FA0D;
 			remoteInfo = TagChimp;
 		};
+		1B060E1010E269F60009D847 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B42F25710DEB0D300AFEBF6;
+			remoteInfo = IMDB;
+		};
 		1B20239210B395FA00EE548A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -262,14 +278,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			remoteGlobalIDString = 1BA325C310545ACA00276F57;
 			remoteInfo = MetaZKit;
 		};
 		1B42F26110DEB0E900AFEBF6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1B2022F810B393CA00EE548A /* Plist Marcos */;
+			remoteGlobalIDString = 1B2022F810B393CA00EE548A;
 			remoteInfo = "Plist Marcos";
 		};
 		1BA325CB10545BAE00276F57 /* PBXContainerItemProxy */ = {
@@ -370,6 +386,13 @@
 		1B040EDE1081B53F0027FA0D /* tagChimp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tagChimp.png; path = Plugins/TagChimp/resources/tagChimp.png; sourceTree = "<group>"; };
 		1B040EE01081B5550027FA0D /* TCSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSearchProvider.h; sourceTree = "<group>"; };
 		1B040EE11081B5550027FA0D /* TCSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSearchProvider.m; sourceTree = "<group>"; };
+		1B060DF810E267810009D847 /* imdb_plugin.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = imdb_plugin.rb; sourceTree = "<group>"; };
+		1B060E5810E26BA90009D847 /* IMDBSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDBSearch.h; sourceTree = "<group>"; };
+		1B060E5910E26BA90009D847 /* IMDBSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBSearch.m; sourceTree = "<group>"; };
+		1B060E6510E26F970009D847 /* IMDBSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDBSearchProvider.h; sourceTree = "<group>"; };
+		1B060E6610E26F970009D847 /* IMDBSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBSearchProvider.m; sourceTree = "<group>"; };
+		1B060F0610E286C00009D847 /* IMDBSearchItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDBSearchItem.h; sourceTree = "<group>"; };
+		1B060F0710E286C00009D847 /* IMDBSearchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBSearchItem.m; sourceTree = "<group>"; };
 		1B090A671069474600D88083 /* MyQueueCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyQueueCollectionView.h; sourceTree = "<group>"; };
 		1B090A681069474600D88083 /* MyQueueCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyQueueCollectionView.m; sourceTree = "<group>"; };
 		1B090C80106A899300D88083 /* MZTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTag.h; sourceTree = "<group>"; };
@@ -407,7 +430,7 @@
 		1B15A60C10B608D100EC0FBF /* AmazonSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonSearch.h; sourceTree = "<group>"; };
 		1B15A60D10B608D100EC0FBF /* AmazonSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonSearch.m; sourceTree = "<group>"; };
 		1B15A62610B6316000EC0FBF /* Access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access.h; path = Plugins/Amazon/Access.h; sourceTree = SOURCE_ROOT; };
-		1B20209A10B36EC200EE548A /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/VideoType.strings; sourceTree = "<group>"; };
+		1B20209A10B36EC200EE548A /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/VideoType.strings; sourceTree = "<group>"; };
 		1B42F21A10DD5D5D00AFEBF6 /* UKDockProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKDockProgressIndicator.h; path = Externals/UKDockProgressIndicator/UKDockProgressIndicator.h; sourceTree = "<group>"; };
 		1B42F21B10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKDockProgressIndicator.m; path = Externals/UKDockProgressIndicator/UKDockProgressIndicator.m; sourceTree = "<group>"; };
 		1B42F21E10DD5D6D00AFEBF6 /* English */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = English; path = Externals/UKDockProgressIndicator/English.lproj/MiniProgressGradient.png; sourceTree = "<group>"; };
@@ -736,7 +759,7 @@
 		1BA3268210546CB500276F57 /* MetaZKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaZKit_Prefix.pch; path = Framework/MetaZKit_Prefix.pch; sourceTree = "<group>"; };
 		1BA3269C10546EC800276F57 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = App/English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1BA3269F10546F4600276F57 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		1BA326A210546F9700276F57 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/MZTags.strings; sourceTree = "<group>"; };
+		1BA326A210546F9700276F57 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/MZTags.strings; sourceTree = "<group>"; };
 		1BA326EE1054823100276F57 /* MZWriteQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZWriteQueue.h; sourceTree = "<group>"; };
 		1BA326EF1054823100276F57 /* MZWriteQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZWriteQueue.m; sourceTree = "<group>"; };
 		1BB3609B105416D000188DD1 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
@@ -762,6 +785,9 @@
 		1BCC9C6A107C3E80007EFF57 /* RatingMenuHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingMenuHandler.m; sourceTree = "<group>"; };
 		1BCC9D3D107E9C08007EFF57 /* GenreDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenreDataSource.h; sourceTree = "<group>"; };
 		1BCC9D3E107E9C08007EFF57 /* GenreDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenreDataSource.m; sourceTree = "<group>"; };
+		1BCECD8710E39AE200D0AD35 /* MZLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZLogger.h; sourceTree = "<group>"; };
+		1BCECD8810E39AE200D0AD35 /* MZLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZLogger.m; sourceTree = "<group>"; };
+		1BCECEC410E98E4200D0AD35 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		1BD3D2B9108CC5D700BE6943 /* MZRemoteData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZRemoteData.h; sourceTree = "<group>"; };
 		1BD3D2BA108CC5D700BE6943 /* MZRemoteData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZRemoteData.m; sourceTree = "<group>"; };
 		1BD3D30F108DD03E00BE6943 /* PictureEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureEditor.h; sourceTree = "<group>"; };
@@ -942,6 +968,8 @@
 				1B99354F10AC818300E78D2D /* NSXMLNode+MZExtensions.m */,
 				1B0330AB10B1010700B28E3A /* NSDate+UTC.h */,
 				1B0330AC10B1010700B28E3A /* NSDate+UTC.m */,
+				1BCECD8710E39AE200D0AD35 /* MZLogger.h */,
+				1BCECD8810E39AE200D0AD35 /* MZLogger.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -1082,6 +1110,13 @@
 			children = (
 				1B42F2B510DEB4A200AFEBF6 /* IMDBPlugin.h */,
 				1B42F2B610DEB4A200AFEBF6 /* IMDBPlugin.m */,
+				1B060E5810E26BA90009D847 /* IMDBSearch.h */,
+				1B060E5910E26BA90009D847 /* IMDBSearch.m */,
+				1B060E6510E26F970009D847 /* IMDBSearchProvider.h */,
+				1B060E6610E26F970009D847 /* IMDBSearchProvider.m */,
+				1B060F0610E286C00009D847 /* IMDBSearchItem.h */,
+				1B060F0710E286C00009D847 /* IMDBSearchItem.m */,
+				1B060DF810E267810009D847 /* imdb_plugin.rb */,
 			);
 			name = Classes;
 			path = Plugins/IMDB/src;
@@ -1630,6 +1665,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1BCECEC410E98E4200D0AD35 /* Credits.html */,
 				1B44958410D6128700B9C751 /* Growl Registration Ticket.growlRegDict */,
 				1B03325510B15FF100B28E3A /* StopProgressOn.png */,
 				1B03325310B15CB200B28E3A /* StopProgressHover.png */,
@@ -1716,6 +1752,8 @@
 				1B449E3510DCCC8A00B9C751 /* GTMNSString+URLArguments.h in Headers */,
 				1B449E3610DCCC9E00B9C751 /* GTMGarbageCollection.h in Headers */,
 				1B449E4A10DCCDB000B9C751 /* GTMLogger.h in Headers */,
+				1BCECD6410E3939900D0AD35 /* GTMLogger+ASL.h in Headers */,
+				1BCECD8910E39AE200D0AD35 /* MZLogger.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1856,6 +1894,7 @@
 				1B040EEA1081C0030027FA0D /* PBXTargetDependency */,
 				1B032F9310B0C41200B28E3A /* PBXTargetDependency */,
 				1BEA6F2A106EF693004B1A7F /* PBXTargetDependency */,
+				1B060E1110E269F60009D847 /* PBXTargetDependency */,
 				1B20239310B395FA00EE548A /* PBXTargetDependency */,
 			);
 			name = MetaZ;
@@ -1938,6 +1977,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B060DF910E267810009D847 /* imdb_plugin.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1998,6 +2038,7 @@
 				1B03325610B15FF100B28E3A /* StopProgressOn.png in Resources */,
 				1B44958510D6128700B9C751 /* Growl Registration Ticket.growlRegDict in Resources */,
 				1B42F21F10DD5D6D00AFEBF6 /* MiniProgressGradient.png in Resources */,
+				1BCECEC510E98E4200D0AD35 /* Credits.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2141,6 +2182,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B42F2B710DEB4A200AFEBF6 /* IMDBPlugin.m in Sources */,
+				1B060E5A10E26BA90009D847 /* IMDBSearch.m in Sources */,
+				1B060E6710E26F970009D847 /* IMDBSearchProvider.m in Sources */,
+				1B060F0810E286C00009D847 /* IMDBSearchItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2174,6 +2218,8 @@
 				1B82690510B3FF1200DF101B /* MZRESTSearch.m in Sources */,
 				1B449E3410DCCC8300B9C751 /* GTMNSString+URLArguments.m in Sources */,
 				1B449E4B10DCCDB000B9C751 /* GTMLogger.m in Sources */,
+				1BCECD6310E3938F00D0AD35 /* GTMLogger+ASL.m in Sources */,
+				1BCECD8A10E39AE200D0AD35 /* MZLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2255,6 +2301,11 @@
 			isa = PBXTargetDependency;
 			target = 1B040EBD1081B3C00027FA0D /* TagChimp */;
 			targetProxy = 1B040EE91081C0030027FA0D /* PBXContainerItemProxy */;
+		};
+		1B060E1110E269F60009D847 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B42F25710DEB0D300AFEBF6 /* IMDB */;
+			targetProxy = 1B060E1010E269F60009D847 /* PBXContainerItemProxy */;
 		};
 		1B20239310B395FA00EE548A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

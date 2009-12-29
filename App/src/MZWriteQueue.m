@@ -84,12 +84,12 @@ static MZWriteQueue* sharedQueue = nil;
     {
         [self willChangeValueForKey:@"status"];
         status = QueueRunning;
+        [self didChangeValueForKey:@"status"];
         [[NSNotificationCenter defaultCenter]
                 postNotificationName:MZQueueStarted
                               object:self];
         
         [self startNextItem];
-        [self didChangeValueForKey:@"status"];
     }
 }
 

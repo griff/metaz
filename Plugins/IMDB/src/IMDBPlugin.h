@@ -11,6 +11,11 @@
 
 @interface IMDBPlugin : MZPlugin
 {
+    NSArray* searchProviders;
 }
+
+- (void)didLoad;
+
+- (NSArray *)searchProviders;
 
 @end
