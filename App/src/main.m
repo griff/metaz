@@ -8,31 +8,37 @@
 
 #import <Cocoa/Cocoa.h>
 #import <RubyCocoa/RBRuntime.h>
-#import "GTMLogger.h"
+#import <MetaZKit/MZLogger.h>
+#import <sys/stat.h>
 
 int main(int argc, const char *argv[])
 {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
-    // Create array of GTMLogWriters
-    NSArray* writers;
+    BOOL makeFileLog = YES;
+    for(int i=0; i<argc; i++)
+        if(strncmp(argv[i], "-l", 2)==0)
+            makeFileLog = NO;
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    if([paths count] > 0)
+    if(makeFileLog)
     {
-        NSString* path = [[[paths objectAtIndex:0] 
-            stringByAppendingPathComponent:@"Logs"] 
-            stringByAppendingPathComponent:@"MetaZ.log"];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+        if([paths count] > 0)
+        {
+            NSString* path = [[[paths objectAtIndex:0] 
+                stringByAppendingPathComponent:@"Logs"] 
+                stringByAppendingPathComponent:@"MetaZ.log"];
+
+            umask(022);
         
-        writers = [NSArray arrayWithObjects:
-            [NSFileHandle fileHandleForLoggingAtPath:path mode:0644],
-            [NSFileHandle fileHandleWithStandardOutput], nil];
+            // Send stderr to our file
+            freopen([path fileSystemRepresentation], "a", stderr);
+        }
     }
-    else
-        writers = [NSArray arrayWithObject:[NSFileHandle fileHandleWithStandardOutput]];
 
     GTMLogger *logger = [GTMLogger sharedLogger];
-    [logger setWriter:writers];
+    [logger setFormatter:[[[MZLogStandardFormatter alloc] init] autorelease]];
+    [logger setWriter:[MZNSLogWriter logWriter]];
     [logger setFilter:[[[GTMLogNoFilter alloc] init] autorelease]];
     
     //RBApplicationInit("rb_main.rb", argc, argv, nil);
