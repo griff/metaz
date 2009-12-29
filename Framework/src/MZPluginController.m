@@ -145,6 +145,7 @@ static MZPluginController *gInstance = NULL;
             [loadedPlugins addObject:plugin];
             [plugin release];
             MZLoggerInfo(@"Loaded plugin '%@'", [bundle bundleIdentifier]);
+            [plugin didLoad];
             if([[self delegate] respondsToSelector:@selector(pluginController:loadedPlugin:)])
                 [[self delegate] pluginController:self loadedPlugin:plugin];
         }
@@ -157,6 +158,7 @@ static MZPluginController *gInstance = NULL;
 {
     if([plugin canUnload])
     {
+        [plugin willUnload];
         [self willChangeValueForKey:@"loadedPlugins"];
         NSBundle* bundle = [NSBundle bundleForClass:[plugin class]];
         [typesCache release];
