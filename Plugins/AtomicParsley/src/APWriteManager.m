@@ -218,8 +218,13 @@
     NSString* str = [[[NSString alloc]
             initWithData:data
                 encoding:NSUTF8StringEncoding] autorelease];
-    MZLoggerDebug(@"Got data: '%@'", str);
+    NSString* origStr = str;
+    str = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if([str hasPrefix:@"Started writing to temp file."])
+        str = [str substringFromIndex:29];
+    str = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSInteger percent = [str integerValue];
+    MZLoggerDebug(@"Got data: %d '%@'", percent, origStr);
     if(percent > 0 && [delegate respondsToSelector:@selector(dataProvider:controller:writeFinishedForEdits:percent:)])
         [delegate dataProvider:provider controller:self writeFinishedForEdits:edits percent:percent];
         

@@ -605,8 +605,7 @@
     id title = [retdict objectForKey:MZTitleTagIdent];
     if(![title isKindOfClass:[NSString class]])
     {
-        NSString* basefile = [fileName lastPathComponent];
-        NSString* newTitle = [basefile substringToIndex:[basefile length] - [[basefile pathExtension] length] - 1];
+        NSString* newTitle = [MZPluginController extractTitleFromFilename:fileName];
         [retdict setObject:newTitle forKey:MZTitleTagIdent];
     }
     

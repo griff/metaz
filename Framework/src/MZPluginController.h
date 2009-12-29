@@ -35,6 +35,7 @@
     NSArray* typesCache;
 }
 
++ (NSString *)extractTitleFromFilename:(NSString *)fileName;
 + (NSArray *)pluginPaths;
 + (MZPluginController *)sharedInstance;
 

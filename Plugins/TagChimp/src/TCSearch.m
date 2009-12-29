@@ -322,6 +322,14 @@
                 [data loadData];
         }
         
+        // 0 episode fix
+        if([dict objectForKey:MZTVEpisodeTagIdent] && ![dict objectForKey:MZTVSeasonTagIdent])
+        {
+            NSNumber* episode = [dict objectForKey:MZTVEpisodeTagIdent];
+            if([episode intValue] == 0)
+                [dict removeObjectForKey:MZTVEpisodeTagIdent];
+        }
+        
         NSInteger totalChapters = [[item stringForXPath:@"movieChapters/totalChapters" error:NULL] integerValue];
         if(totalChapters>0)
         {

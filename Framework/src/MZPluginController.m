@@ -40,8 +40,6 @@
 @implementation MZPluginController
 @synthesize delegate;
 
-static MZPluginController *gInstance = NULL;
-
 + (NSArray *)pluginPaths
 {
     //NSFileManager *mgr = [NSFileManager defaultManager];
@@ -57,6 +55,49 @@ static MZPluginController *gInstance = NULL;
     [ret addObject:[[NSBundle mainBundle] builtInPlugInsPath]];
     return [NSArray arrayWithArray:ret];
 }
+
++ (NSString *)extractTitleFromFilename:(NSString *)fileName
+{
+    NSString* basefile = [fileName lastPathComponent];
+    NSString* newTitle = [basefile substringToIndex:[basefile length] - [[basefile pathExtension] length] - 1];
+    newTitle = [newTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if([newTitle hasSuffix:@"]"])
+    {
+        NSInteger len = [newTitle length];
+        NSScanner* scanner = [NSScanner scannerWithString:newTitle];
+        [scanner setCharactersToBeSkipped:nil];
+        [scanner setScanLocation:len-6];
+        NSString* temp;
+        if([scanner scanString:@"[" intoString:&temp])
+        {
+            if([scanner scanCharactersFromSet:[NSCharacterSet decimalDigitCharacterSet] intoString:&temp])
+            {
+                if([scanner scanString:@"]" intoString:&temp] && [scanner scanLocation]==len)
+                    newTitle = [newTitle substringToIndex:len-6];
+            }
+        }
+    }
+    else if([newTitle hasSuffix:@")"])
+    {
+        NSInteger len = [newTitle length];
+        NSScanner* scanner = [NSScanner scannerWithString:newTitle];
+        [scanner setCharactersToBeSkipped:nil];
+        [scanner setScanLocation:len-6];
+        NSString* temp;
+        if([scanner scanString:@"(" intoString:&temp])
+        {
+            if([scanner scanCharactersFromSet:[NSCharacterSet decimalDigitCharacterSet] intoString:&temp])
+            {
+                if([scanner scanString:@")" intoString:&temp] && [scanner scanLocation]==len)
+                    newTitle = [newTitle substringToIndex:len-6];
+            }
+        }
+    }
+    newTitle = [newTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    return newTitle;
+}
+
+static MZPluginController *gInstance = NULL;
 
 + (MZPluginController *)sharedInstance
 {
