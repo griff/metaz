@@ -277,7 +277,8 @@ NSDictionary* findBinding(NSWindow* window) {
         }
     }
     [searchField setStringValue:mainValue];
-    [self startSearch:searchField];
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"autoSearch"])
+        [self startSearch:searchField];
     //[searchField performClick:self];
     //[[MZMetaSearcher sharedSearcher] clearResults];
 }

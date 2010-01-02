@@ -28,5 +28,7 @@
 	</dict>
 	<key>whenDoneAction</key>
 	<integer>1</integer>
+	<key>autoSearch</key>
+	<true/>
 </dict>
 </plist>
