@@ -602,9 +602,12 @@
         NSNumber* num = [tag1 objectFromString:[trks objectAtIndex:0]];
         [retdict setObject:num forKey:MZTrackNumberTagIdent];
 
-        MZTag* tag2 = [MZTag tagForIdentifier:MZTrackCountTagIdent];
-        NSNumber* count = [tag2 objectFromString:[trks objectAtIndex:1]];
-        [retdict setObject:count forKey:MZTrackCountTagIdent];
+        if([trks count] == 2)
+        {
+            MZTag* tag2 = [MZTag tagForIdentifier:MZTrackCountTagIdent];
+            NSNumber* count = [tag2 objectFromString:[trks objectAtIndex:1]];
+            [retdict setObject:count forKey:MZTrackCountTagIdent];
+        }
     }
     
     // Special handling of disc num
@@ -618,9 +621,12 @@
         NSNumber* num = [tag1 objectFromString:[trks objectAtIndex:0]];
         [retdict setObject:num forKey:MZDiscNumberTagIdent];
 
-        MZTag* tag2 = [MZTag tagForIdentifier:MZDiscCountTagIdent];
-        NSNumber* count = [tag2 objectFromString:[trks objectAtIndex:1]];
-        [retdict setObject:count forKey:MZDiscCountTagIdent];
+        if([trks count] == 2)
+        {
+            MZTag* tag2 = [MZTag tagForIdentifier:MZDiscCountTagIdent];
+            NSNumber* count = [tag2 objectFromString:[trks objectAtIndex:1]];
+            [retdict setObject:count forKey:MZDiscCountTagIdent];
+        }
     }
         
     [retdict setObject:[fileName lastPathComponent] forKey:MZFileNameTagIdent];
