@@ -59,13 +59,13 @@
         int ratings[] = { 
             MZNoRating, MZ_PG13_Rating,
             MZ_NC17_Rating, MZ_G_Rating,
-            MZ_R_Rating,
+            MZ_R_Rating, MZ_PG_Rating,
             -1
         };
         NSArray* ratingNames = [[NSArray alloc] initWithObjects:
             @"NR (Not Rated)", @"PG-13 (Parental Guidance Suggested)",
             @"X (Mature Audiences Only)", @"G (General Audience)",
-            @"R (Restricted)",
+            @"R (Restricted)", @"PG (Parental Guidance Suggested)"
             nil];
         int ratingsCount;
         for(ratingsCount=0; ratingsCount<[ratingNames count]+5 && ratings[ratingsCount] > -1;ratingsCount++);
