@@ -595,14 +595,32 @@
     NSString* trkn = [dict objectForKey:@"trkn"];
     if(trkn)
     {
-        // TODO
+        NSArray* trks = [trkn componentsSeparatedByString:@"/"];
+        NSAssert([trks count] < 3, @"Only two tracks");
+
+        MZTag* tag1 = [MZTag tagForIdentifier:MZTrackNumberTagIdent];
+        NSNumber* num = [tag1 objectFromString:[trks objectAtIndex:0]];
+        [retdict setObject:num forKey:MZTrackNumberTagIdent];
+
+        MZTag* tag2 = [MZTag tagForIdentifier:MZTrackCountTagIdent];
+        NSNumber* count = [tag2 objectFromString:[trks objectAtIndex:1]];
+        [retdict setObject:count forKey:MZTrackCountTagIdent];
     }
     
     // Special handling of disc num
     NSString* disk = [dict objectForKey:@"disk"];
     if(disk)
     {
-        // TODO
+        NSArray* trks = [disk componentsSeparatedByString:@"/"];
+        NSAssert([trks count] < 3, @"Only two disks");
+
+        MZTag* tag1 = [MZTag tagForIdentifier:MZDiscNumberTagIdent];
+        NSNumber* num = [tag1 objectFromString:[trks objectAtIndex:0]];
+        [retdict setObject:num forKey:MZDiscNumberTagIdent];
+
+        MZTag* tag2 = [MZTag tagForIdentifier:MZDiscCountTagIdent];
+        NSNumber* count = [tag2 objectFromString:[trks objectAtIndex:1]];
+        [retdict setObject:count forKey:MZDiscCountTagIdent];
     }
         
     [retdict setObject:[fileName lastPathComponent] forKey:MZFileNameTagIdent];
@@ -782,6 +800,46 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     sortTags(args, changes, MZSortAlbumTagIdent, @"album");
     sortTags(args, changes, MZSortTVShowTagIdent, @"show");
     sortTags(args, changes, MZSortComposerTagIdent, @"composer");
+    
+    // Special track number/count handling
+    {
+        id number = [changes objectForKey:MZTrackNumberTagIdent];
+        id count = [changes objectForKey:MZTrackCountTagIdent];
+        if(!number)
+            number = [changes objectForKey:MZTVEpisodeTagIdent];
+
+        if(number || count)
+        {
+            NSString* value;
+            if(number && count)
+                value = [NSString stringWithFormat:@"%@/%@", [number stringValue], [count stringValue]];
+            else if(number)
+                value = [number stringValue];
+            else
+                value = [NSString stringWithFormat:@"/%@", [count stringValue]];
+            [args addObject:@"--tracknum"];
+            [args addObject:value];
+        }
+    }
+
+    // Special disc number/count handling
+    {
+        id number = [changes objectForKey:MZDiscNumberTagIdent];
+        id count = [changes objectForKey:MZDiscCountTagIdent];
+
+        if(number || count)
+        {
+            NSString* value;
+            if(number && count)
+                value = [NSString stringWithFormat:@"%@/%@", [number stringValue], [count stringValue]];
+            else if(number)
+                value = [number stringValue];
+            else
+                value = [NSString stringWithFormat:@"/%@", [count stringValue]];
+            [args addObject:@"--disk"];
+            [args addObject:value];
+        }
+    }
     
     // Special image handling
     id pictureObj = [changes objectForKey:MZPictureTagIdent];
