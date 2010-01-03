@@ -295,9 +295,11 @@ static NSMutableDictionary *sharedTags = nil;
     return nil;
 }
 
-- (NSString *)stringForObject:(id)str
+- (NSString *)stringForObject:(id)obj
 {
-    return [str stringValue];
+    if(!obj || obj == [NSNull null] || ![obj respondsToSelector:@selector(stringValue)])
+        return @"";
+    return [obj stringValue];
 }
 
 @end
@@ -326,9 +328,11 @@ static NSMutableDictionary *sharedTags = nil;
     return str;
 }
 
-- (NSString *)stringForObject:(id)str
+- (NSString *)stringForObject:(id)obj
 {
-    return str;
+    if(!obj || obj == [NSNull null])
+        return @"";
+    return obj;
 }
 
 
@@ -362,11 +366,11 @@ static NSMutableDictionary *sharedTags = nil;
     return [NSDate dateWithUTCString:str];
 }
 
-- (NSString *)stringForObject:(id)str
+- (NSString *)stringForObject:(id)obj
 {
-    if(!str || str == [NSNull null])
-        return nil;
-    NSDate* date = str;
+    if(!obj || obj == [NSNull null])
+        return @"";
+    NSDate* date = obj;
     return [date utcTimestamp];
 }
 
@@ -597,11 +601,11 @@ static NSMutableDictionary *sharedTags = nil;
     return [typeValues objectAtIndex:i];
 }
 
-- (NSString *)stringForObject:(id)str
+- (NSString *)stringForObject:(id)obj
 {
-    if(!str)
+    if(!obj || obj == [NSNull null] || ![obj respondsToSelector:@selector(intValue)])
         return @"";
-    MZVideoType type = [str intValue];
+    MZVideoType type = [obj intValue];
     int count = [typeValues count];
     for(int i=0; i<count; i++)
     {
@@ -718,4 +722,5 @@ static NSMutableDictionary *sharedTags = nil;
 
 
 @end
+
 

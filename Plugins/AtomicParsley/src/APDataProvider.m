@@ -726,15 +726,14 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     NSDictionary* changes = [data changes];
     for(NSString* key in [changes allKeys])
     {
-        MZTag* tag = [MZTag tagForIdentifier:key];
-        id value = [changes objectForKey:key];
-        if(value == [NSNull null])
-            value = @"";
         NSString* map = [write_mapping objectForKey:key];
         if(map)
         {
+            MZTag* tag = [MZTag tagForIdentifier:key];
+            id value = [changes objectForKey:key];
+            value = [tag stringForObject:value];
             [args addObject:[@"--" stringByAppendingString:map]];
-            [args addObject:[tag stringForObject:value]];
+            [args addObject:value];
         }
     }
     
@@ -809,20 +808,33 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     
     // Special track number/count handling
     {
-        id number = [changes objectForKey:MZTrackNumberTagIdent];
-        id count = [changes objectForKey:MZTrackCountTagIdent];
+        MZTag* numberTag = [MZTag tagForIdentifier:MZTrackNumberTagIdent];
+        MZTag* countTag = [MZTag tagForIdentifier:MZTrackCountTagIdent];
+        id number = [changes objectForKey:[numberTag identifier]];
         if(!number)
-            number = [changes objectForKey:MZTVEpisodeTagIdent];
-
+        {
+            numberTag = [MZTag tagForIdentifier:MZTVEpisodeTagIdent];
+            number = [changes objectForKey:[numberTag identifier]];
+        }
+        id count = [changes objectForKey:[countTag identifier]];
         if(number || count)
         {
-            NSString* value;
-            if(number && count)
-                value = [NSString stringWithFormat:@"%@/%@", [number stringValue], [count stringValue]];
-            else if(number)
-                value = [number stringValue];
-            else
-                value = [NSString stringWithFormat:@"/%@", [count stringValue]];
+            number = [numberTag stringForObject:number];
+            count = [countTag stringForObject:count];
+            NSUInteger numberLen = [number length];
+            NSUInteger countLen = [count length];
+        
+            NSString* value = @"";
+            if(numberLen > 0 || countLen > 0)
+            {
+                NSString* value;
+                if(numberLen > 0 && countLen > 0)
+                    value = [NSString stringWithFormat:@"%@/%@", number, count];
+                else if(numberLen > 0)
+                    value = number;
+                else
+                    value = [NSString stringWithFormat:@"/%@", count];
+            }
             [args addObject:@"--tracknum"];
             [args addObject:value];
         }
@@ -830,18 +842,29 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
 
     // Special disc number/count handling
     {
-        id number = [changes objectForKey:MZDiscNumberTagIdent];
-        id count = [changes objectForKey:MZDiscCountTagIdent];
+        MZTag* numberTag = [MZTag tagForIdentifier:MZDiscNumberTagIdent];
+        MZTag* countTag = [MZTag tagForIdentifier:MZDiscCountTagIdent];
+        id number = [changes objectForKey:[numberTag identifier]];
+        id count = [changes objectForKey:[countTag identifier]];
 
         if(number || count)
         {
-            NSString* value;
-            if(number && count)
-                value = [NSString stringWithFormat:@"%@/%@", [number stringValue], [count stringValue]];
-            else if(number)
-                value = [number stringValue];
-            else
-                value = [NSString stringWithFormat:@"/%@", [count stringValue]];
+            number = [numberTag stringForObject:number];
+            count = [countTag stringForObject:count];
+            NSUInteger numberLen = [number length];
+            NSUInteger countLen = [count length];
+
+            NSString* value = @"";
+            if(numberLen > 0 || countLen > 0)
+            {
+                NSString* value;
+                if(numberLen > 0 && countLen > 0)
+                    value = [NSString stringWithFormat:@"%@/%@", number, count];
+                else if(numberLen > 0)
+                    value = number;
+                else
+                    value = [NSString stringWithFormat:@"/%@", count];
+            }
             [args addObject:@"--disk"];
             [args addObject:value];
         }
