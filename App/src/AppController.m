@@ -774,7 +774,10 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (void)openPanelDidEnd:(NSOpenPanel *)oPanel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo {
     if (returnCode == NSOKButton)
-        [[MZMetaLoader sharedLoader] loadFromFiles: [oPanel filenames]];
+    {
+        if([filesController commitEditing])
+            [[MZMetaLoader sharedLoader] loadFromFiles: [oPanel filenames]];
+    }
 }
 
 #pragma mark - as window delegate

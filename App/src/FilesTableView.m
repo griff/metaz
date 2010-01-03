@@ -365,6 +365,8 @@
             [window orderFront:self];
             [window makeMainWindow];
             */
+            if(![filesController commitEditing])
+                return NO;
             NSArray* params = [NSArray arrayWithObjects:filenames, [NSNumber numberWithInteger:row], nil];
             [self performSelector:@selector(loadFiles:) withObject:params afterDelay:1];
             return YES;
@@ -379,6 +381,8 @@
                 [[MZPluginController sharedInstance] dataProviderForPath:filename])
             {
                 //[[self window] makeKeyAndOrderFront:self];
+                if(![filesController commitEditing])
+                    return NO;
                 NSArray* params = [NSArray arrayWithObjects:filename, [NSNumber numberWithInteger:row], nil];
                 [self performSelector:@selector(loadFiles:) withObject:params afterDelay:1];
                 return YES;
