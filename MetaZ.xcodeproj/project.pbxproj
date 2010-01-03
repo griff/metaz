@@ -145,6 +145,9 @@
 		1BCECD8910E39AE200D0AD35 /* MZLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BCECD8710E39AE200D0AD35 /* MZLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BCECD8A10E39AE200D0AD35 /* MZLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCECD8810E39AE200D0AD35 /* MZLogger.m */; };
 		1BCECEC510E98E4200D0AD35 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 1BCECEC410E98E4200D0AD35 /* Credits.html */; };
+		1BCED24210F0CBA200D0AD35 /* GTMNSObject+KeyValueObserving.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B449DF810DCCC1D00B9C751 /* GTMNSObject+KeyValueObserving.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BCED24310F0CBA200D0AD35 /* GTMNSObject+KeyValueObserving.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B449DF910DCCC1D00B9C751 /* GTMNSObject+KeyValueObserving.m */; };
+		1BCED25710F0CC7400D0AD35 /* GTMDebugSelectorValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BCED25010F0CC6600D0AD35 /* GTMDebugSelectorValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BD3D2BB108CC5D700BE6943 /* MZRemoteData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD3D2B9108CC5D700BE6943 /* MZRemoteData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BD3D2BC108CC5D700BE6943 /* MZRemoteData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD3D2BA108CC5D700BE6943 /* MZRemoteData.m */; };
 		1BD3D311108DD03E00BE6943 /* PictureEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD3D310108DD03E00BE6943 /* PictureEditor.m */; };
@@ -788,6 +791,13 @@
 		1BCECD8710E39AE200D0AD35 /* MZLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZLogger.h; sourceTree = "<group>"; };
 		1BCECD8810E39AE200D0AD35 /* MZLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZLogger.m; sourceTree = "<group>"; };
 		1BCECEC410E98E4200D0AD35 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
+		1BCED25010F0CC6600D0AD35 /* GTMDebugSelectorValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDebugSelectorValidation.h; sourceTree = "<group>"; };
+		1BCED25110F0CC6600D0AD35 /* GTMDebugThreadValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDebugThreadValidation.h; sourceTree = "<group>"; };
+		1BCED25210F0CC6600D0AD35 /* GTMDebugThreadValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMDebugThreadValidation.m; sourceTree = "<group>"; };
+		1BCED25310F0CC6600D0AD35 /* GTMDebugThreadValidationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMDebugThreadValidationTest.m; sourceTree = "<group>"; };
+		1BCED25410F0CC6600D0AD35 /* GTMMethodCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMMethodCheck.h; sourceTree = "<group>"; };
+		1BCED25510F0CC6600D0AD35 /* GTMMethodCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMMethodCheck.m; sourceTree = "<group>"; };
+		1BCED25610F0CC6600D0AD35 /* GTMMethodCheckTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMMethodCheckTest.m; sourceTree = "<group>"; };
 		1BD3D2B9108CC5D700BE6943 /* MZRemoteData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZRemoteData.h; sourceTree = "<group>"; };
 		1BD3D2BA108CC5D700BE6943 /* MZRemoteData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZRemoteData.m; sourceTree = "<group>"; };
 		1BD3D30F108DD03E00BE6943 /* PictureEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureEditor.h; sourceTree = "<group>"; };
@@ -1154,6 +1164,7 @@
 		1B449D1910DCCBA800B9C751 /* GTM */ = {
 			isa = PBXGroup;
 			children = (
+				1BCED24F10F0CC6600D0AD35 /* DebugUtils */,
 				1B449DA910DCCC1C00B9C751 /* Foundation */,
 				1B449D1C10DCCBF600B9C751 /* AppKit */,
 				1B449D1B10DCCBDB00B9C751 /* GTMDefines.h */,
@@ -1594,6 +1605,21 @@
 			name = "Other Sources";
 			sourceTree = "<group>";
 		};
+		1BCED24F10F0CC6600D0AD35 /* DebugUtils */ = {
+			isa = PBXGroup;
+			children = (
+				1BCED25010F0CC6600D0AD35 /* GTMDebugSelectorValidation.h */,
+				1BCED25110F0CC6600D0AD35 /* GTMDebugThreadValidation.h */,
+				1BCED25210F0CC6600D0AD35 /* GTMDebugThreadValidation.m */,
+				1BCED25310F0CC6600D0AD35 /* GTMDebugThreadValidationTest.m */,
+				1BCED25410F0CC6600D0AD35 /* GTMMethodCheck.h */,
+				1BCED25510F0CC6600D0AD35 /* GTMMethodCheck.m */,
+				1BCED25610F0CC6600D0AD35 /* GTMMethodCheckTest.m */,
+			);
+			name = DebugUtils;
+			path = "Externals/google-toolbox-for-mac/DebugUtils";
+			sourceTree = "<group>";
+		};
 		1BEA6E68106EF248004B1A7F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
@@ -1754,6 +1780,8 @@
 				1B449E4A10DCCDB000B9C751 /* GTMLogger.h in Headers */,
 				1BCECD6410E3939900D0AD35 /* GTMLogger+ASL.h in Headers */,
 				1BCECD8910E39AE200D0AD35 /* MZLogger.h in Headers */,
+				1BCED24210F0CBA200D0AD35 /* GTMNSObject+KeyValueObserving.h in Headers */,
+				1BCED25710F0CC7400D0AD35 /* GTMDebugSelectorValidation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2220,6 +2248,7 @@
 				1B449E4B10DCCDB000B9C751 /* GTMLogger.m in Sources */,
 				1BCECD6310E3938F00D0AD35 /* GTMLogger+ASL.m in Sources */,
 				1BCECD8A10E39AE200D0AD35 /* MZLogger.m in Sources */,
+				1BCED24310F0CBA200D0AD35 /* GTMNSObject+KeyValueObserving.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,3 +33,5 @@
 #import <MetaZKit/NSXMLNode+MZExtensions.h>
 
 #import <MetaZKit/GTMLogger.h>
+#import <MetaZKit/GTMNSString+URLArguments.h>
+#import <MetaZKit/GTMNSObject+KeyValueObserving.h>

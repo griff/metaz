@@ -780,6 +780,15 @@ NSDictionary* findBinding(NSWindow* window) {
     }
 }
 
+- (void)queueStatusChanged:(GTMKeyValueChangeNotification *)notification
+{
+    if([[MZWriteQueue sharedQueue] status] == QueueStopped)
+    {
+        [[notification object] gtm_removeObserver:self forKeyPath:[notification keyPath] selector:_cmd];
+        [NSApp replyToApplicationShouldTerminate:YES];
+    }
+}
+
 #pragma mark - as window delegate
 
 - (NSSize)windowWillResize:(NSWindow *)aWindow toSize:(NSSize)proposedFrameSize {
@@ -861,7 +870,15 @@ NSDictionary* findBinding(NSWindow* window) {
     }
     
     if( result == NSAlertDefaultReturn )
+    {
+        if([[MZWriteQueue sharedQueue] status] == QueueRunning)
+        {
+            [[MZWriteQueue sharedQueue] gtm_addObserver:self forKeyPath:@"status" selector:@selector(queueStatusChanged:) userInfo:nil options:0];
+            [[MZWriteQueue sharedQueue] stop];
+            return NSTerminateLater;
+        }
         return NSTerminateNow;
+    }
     return NSTerminateCancel;
 }
 
