@@ -12,4 +12,5 @@ App/resources/faded_cow*.png
 App/resources/presets.png
 These files are mostly just taken from MetaX but since I don't have the rights
 to use them they are not included in the repository.
-They are though included in the releases of MetaZ  so you can grab them from there.
+I have though made a tar with these files and uploaded it to github.
+http://cloud.github.com/downloads/griff/metaz/missing.tar.gz

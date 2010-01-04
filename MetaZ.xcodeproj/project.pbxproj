@@ -2116,7 +2116,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -o errexit\n\nPATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin\nbuildid=`/opt/local/bin/git log -n1 --pretty=oneline --format=%h`\nrelease=`cat $SCRIPT_INPUT_FILE_0`\n\necho \"#define BUILDID $buildid\" > $SCRIPT_OUTPUT_FILE_0\necho \"#define BUILDDATE `date +%y.%m.%d.%H`\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define WHOAMI `whoami`\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define RELEASE $release\" >> $SCRIPT_OUTPUT_FILE_0 \ncat $SCRIPT_INPUT_FILE_1 >> $SCRIPT_OUTPUT_FILE_0 \n\n# Delete the intermediate Info.plist so that Xcode re-preprocesses the Info.plist with our updated macros.\n# Use -f because after a clean build, this file doesn't exist yet, so a plain rm would fail and stop the build.\nrm -f \"${CONFIGURATION_TEMP_DIR}/MetaZ.build/Preprocessed-Info.plist\"\n";
+			shellScript = "set -o errexit\n\nPATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin\nbuildid=`git log -n1 --pretty=oneline --format=%h`\nrelease=`cat $SCRIPT_INPUT_FILE_0`\n\necho \"#define BUILDID $buildid\" > $SCRIPT_OUTPUT_FILE_0\necho \"#define BUILDDATE `date +%y.%m.%d.%H`\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define WHOAMI `whoami`\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define RELEASE $release\" >> $SCRIPT_OUTPUT_FILE_0 \ncat $SCRIPT_INPUT_FILE_1 >> $SCRIPT_OUTPUT_FILE_0 \n\n# Delete the intermediate Info.plist so that Xcode re-preprocesses the Info.plist with our updated macros.\n# Use -f because after a clean build, this file doesn't exist yet, so a plain rm would fail and stop the build.\nrm -f \"${CONFIGURATION_TEMP_DIR}/MetaZ.build/Preprocessed-Info.plist\"\n";
 		};
 		1B8262A710B39DE400DF101B /* Make Disk Image */ = {
 			isa = PBXShellScriptBuildPhase;
