@@ -132,6 +132,10 @@
 		1BB6C11F1052B1C1001D3D1D /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB6C10A1052B154001D3D1D /* Sparkle.framework */; };
 		1BBB39A91087083600C9E17F /* MZPriorObserverFix.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBB39A71087083600C9E17F /* MZPriorObserverFix.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BBB39AA1087083600C9E17F /* MZPriorObserverFix.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB39A81087083600C9E17F /* MZPriorObserverFix.m */; };
+		1BBC022110F640A1001DDB1C /* NSFileManager+MZAsync.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBC021F10F640A1001DDB1C /* NSFileManager+MZAsync.h */; };
+		1BBC022210F640A1001DDB1C /* NSFileManager+MZAsync.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC022010F640A1001DDB1C /* NSFileManager+MZAsync.m */; };
+		1BBC026010FC115F001DDB1C /* MZTaskOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBC025E10FC115F001DDB1C /* MZTaskOperation.h */; };
+		1BBC026110FC115F001DDB1C /* MZTaskOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC025F10FC115F001DDB1C /* MZTaskOperation.m */; };
 		1BC0661910AE223A005C2A9F /* PresetsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC0661710AE223A005C2A9F /* PresetsPanel.xib */; };
 		1BC0671410AE44CA005C2A9F /* presets.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BC0671310AE44CA005C2A9F /* presets.png */; };
 		1BCC97021076B73C007EFF57 /* NSInvocation+Wrapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BCC97001076B73C007EFF57 /* NSInvocation+Wrapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -778,6 +782,10 @@
 		1BB6C10A1052B154001D3D1D /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Externals/Sparkle.framework; sourceTree = "<group>"; };
 		1BBB39A71087083600C9E17F /* MZPriorObserverFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZPriorObserverFix.h; sourceTree = "<group>"; };
 		1BBB39A81087083600C9E17F /* MZPriorObserverFix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZPriorObserverFix.m; sourceTree = "<group>"; };
+		1BBC021F10F640A1001DDB1C /* NSFileManager+MZAsync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+MZAsync.h"; sourceTree = "<group>"; };
+		1BBC022010F640A1001DDB1C /* NSFileManager+MZAsync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+MZAsync.m"; sourceTree = "<group>"; };
+		1BBC025E10FC115F001DDB1C /* MZTaskOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTaskOperation.h; sourceTree = "<group>"; };
+		1BBC025F10FC115F001DDB1C /* MZTaskOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTaskOperation.m; sourceTree = "<group>"; };
 		1BC0661810AE223A005C2A9F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/PresetsPanel.xib; sourceTree = "<group>"; };
 		1BC0671310AE44CA005C2A9F /* presets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = presets.png; path = App/resources/presets.png; sourceTree = "<group>"; };
 		1BCC97001076B73C007EFF57 /* NSInvocation+Wrapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+Wrapping.h"; sourceTree = "<group>"; };
@@ -980,6 +988,10 @@
 				1B0330AC10B1010700B28E3A /* NSDate+UTC.m */,
 				1BCECD8710E39AE200D0AD35 /* MZLogger.h */,
 				1BCECD8810E39AE200D0AD35 /* MZLogger.m */,
+				1BBC021F10F640A1001DDB1C /* NSFileManager+MZAsync.h */,
+				1BBC022010F640A1001DDB1C /* NSFileManager+MZAsync.m */,
+				1BBC025E10FC115F001DDB1C /* MZTaskOperation.h */,
+				1BBC025F10FC115F001DDB1C /* MZTaskOperation.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -1782,6 +1794,8 @@
 				1BCECD8910E39AE200D0AD35 /* MZLogger.h in Headers */,
 				1BCED24210F0CBA200D0AD35 /* GTMNSObject+KeyValueObserving.h in Headers */,
 				1BCED25710F0CC7400D0AD35 /* GTMDebugSelectorValidation.h in Headers */,
+				1BBC022110F640A1001DDB1C /* NSFileManager+MZAsync.h in Headers */,
+				1BBC026010FC115F001DDB1C /* MZTaskOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1890,7 +1904,6 @@
 				1BEA6E6E106EF2A0004B1A7F /* Resources */,
 				1BEA6E6F106EF2A0004B1A7F /* Sources */,
 				1BEA6E70106EF2A0004B1A7F /* Frameworks */,
-				1B032F0410B0A46100B28E3A /* Set Version */,
 			);
 			buildRules = (
 			);
@@ -2073,21 +2086,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1B032F0410B0A46100B28E3A /* Set Version */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Set Version";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "set -o errexit\n\nexport GITV=`/opt/local/bin/git log -n1 --pretty=oneline --format=%h`\nexport DATEV=`date +%y.%m.%d.%H`\nDIR=`dirname \"$BUILT_PRODUCTS_DIR/$INFOPLIST_PATH\"`\nBASE=`basename \"$BUILT_PRODUCTS_DIR/$INFOPLIST_PATH\" .plist`\ndefaults write \"$DIR/$BASE\" CFBundleVersion \"${DATEV}\"\ndefaults write \"$DIR/$BASE\" GitVersion \"${GITV}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		1B03304110B0CD3C00B28E3A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2249,6 +2247,8 @@
 				1BCECD6310E3938F00D0AD35 /* GTMLogger+ASL.m in Sources */,
 				1BCECD8A10E39AE200D0AD35 /* MZLogger.m in Sources */,
 				1BCED24310F0CBA200D0AD35 /* GTMNSObject+KeyValueObserving.m in Sources */,
+				1BBC022210F640A1001DDB1C /* NSFileManager+MZAsync.m in Sources */,
+				1BBC026110FC115F001DDB1C /* MZTaskOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
