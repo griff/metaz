@@ -7,7 +7,7 @@
 //
 
 #import "MZRESTWrapper.h"
-#import <MetaZKit/GTMLogger.h>
+#import <MetaZKit/MZLogger.h>
 
 @interface MZRESTWrapper (Private)
 - (void)startConnection:(NSURLRequest *)request;

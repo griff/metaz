@@ -7,7 +7,7 @@
 //
 
 #import "MZRemoteData.h"
-#import <MetaZKit/GTMLogger.h>
+#import <MetaZKit/MZLogger.h>
 
 @interface MZRemoteDataOperation : NSOperation
 {

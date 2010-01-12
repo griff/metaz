@@ -7,7 +7,7 @@
 //
 
 #import "NSInvocation+Wrapping.h"
-#import <MetaZKit/GTMLogger.h>
+#import <MetaZKit/MZLogger.h>
 
 
 @implementation NSInvocation (Wrapping)

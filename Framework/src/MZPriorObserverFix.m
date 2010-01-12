@@ -7,7 +7,7 @@
 //
 
 #import "MZPriorObserverFix.h"
-#import <MetaZKit/GTMLogger.h>
+#import <MetaZKit/MZLogger.h>
 
 
 @implementation MZPriorObserverFix

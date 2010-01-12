@@ -10,7 +10,7 @@
 #import <MetaZKit/MZConstants.h>
 #import <MetaZKit/MZTimeCode.h>
 #import <MetaZKit/NSDate+UTC.h>
-#import <MetaZKit/GTMLogger.h>
+#import <MetaZKit/MZLogger.h>
 
 @interface MZVideoTypeTagClass : MZEnumTag
 {

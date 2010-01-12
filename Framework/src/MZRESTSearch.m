@@ -7,7 +7,7 @@
 //
 
 #import "MZRESTSearch.h"
-#import <MetaZKit/GTMLogger.h>
+#import <MetaZKit/MZLogger.h>
 #import "MZSearchProvider.h"
 
 @implementation MZRESTSearch

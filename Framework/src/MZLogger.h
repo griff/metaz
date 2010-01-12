@@ -9,6 +9,16 @@
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/GTMLogger.h>
 
+#define MZLoggerDebug(...)  \
+  [[GTMLogger sharedLogger] logFuncDebug:__func__ msg:__VA_ARGS__]
+#define MZLoggerInfo(...)   \
+  [[GTMLogger sharedLogger] logFuncInfo:__func__ msg:__VA_ARGS__]
+#define MZLoggerError(...)  \
+  [[GTMLogger sharedLogger] logFuncError:__func__ msg:__VA_ARGS__]
+#define MZLoggerAssert(...) \
+  [[GTMLogger sharedLogger] logFuncAssert:__func__ msg:__VA_ARGS__]
+
+
 @interface MZNSLogWriter : NSObject <GTMLogWriter>
 {
 }

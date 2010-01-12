@@ -7,7 +7,7 @@
 //
 
 #import "MZTimedTextItem.h"
-#import <MetaZKit/GTMLogger.h>
+#import <MetaZKit/MZLogger.h>
 
 
 NSString* fixText(NSString *newText)
