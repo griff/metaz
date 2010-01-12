@@ -35,10 +35,13 @@
 
 + (void)initialize
 {
-    static BOOL initialized = NO;
-    /* Make sure code only gets executed once. */
-    if (initialized == YES) return;
-    initialized = YES;
+    @synchronized(self)
+    {
+        static BOOL initialized = NO;
+        /* Make sure code only gets executed once. */
+        if (initialized == YES) return;
+        initialized = YES;
+    }
 
     // Info tags
     [self registerTag:[MZStringTag tagWithIdentifier:MZFileNameTagIdent]];
@@ -102,16 +105,22 @@
 static NSMutableDictionary *sharedTags = nil;
 + (void)registerTag:(MZTag *)tag
 {
-    if(!sharedTags)
-        sharedTags = [[NSMutableDictionary alloc] init];
-    [sharedTags setObject:tag forKey:[tag identifier]];
+    @synchronized(self)
+    {
+        if(!sharedTags)
+            sharedTags = [[NSMutableDictionary alloc] init];
+        [sharedTags setObject:tag forKey:[tag identifier]];
+    }
 }
 
 + (MZTag *)tagForIdentifier:(NSString *)identifier
 {
-    if(!sharedTags)
-        return nil;
-    return [sharedTags objectForKey:identifier];
+    @synchronized(self)
+    {
+        if(!sharedTags)
+            return nil;
+        return [sharedTags objectForKey:identifier];
+    }
 }
 
 + (NSArray*)infoTags
