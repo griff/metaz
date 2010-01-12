@@ -11,43 +11,51 @@
 
 @implementation MZDynamicObject
 
--(id)init {
+-(id)init
+{
     self = [super init];
     methods = [[NSMutableDictionary alloc] init];
     return self;
 }
 
--(void)dealloc {
+-(void)dealloc
+{
     [methods release];
     [super dealloc];
 }
 
--(void)addMethodSetterForKey:(NSString *)aKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
+-(void)addMethodSetterForKey:(NSString *)aKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType
+{
     MZMethodData* method = [MZMethodData methodSetterForKey:aKey ofType:aType withObjCType:aObjcType];
     [methods setObject:method forKey:NSStringFromSelector([method selector])];
 }
 
--(void)addMethodSetterForKey:(NSString *)aKey withRealKey:(NSString *)aRealKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
+-(void)addMethodSetterForKey:(NSString *)aKey withRealKey:(NSString *)aRealKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType
+{
     MZMethodData* method = [MZMethodData methodSetterForKey:aKey withRealKey:aRealKey ofType:aType withObjCType:aObjcType];
     [methods setObject:method forKey:NSStringFromSelector([method selector])];
 }
 
--(void)addMethodGetterForKey:(NSString *)aKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
+-(void)addMethodGetterForKey:(NSString *)aKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType
+{
     MZMethodData* method = [MZMethodData methodGetterForKey:aKey ofType:aType withObjCType:aObjcType];
     [methods setObject:method forKey:NSStringFromSelector([method selector])];
 }
 
--(void)addMethodGetterForKey:(NSString *)aKey withRealKey:(NSString *)aRealKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType {
+-(void)addMethodGetterForKey:(NSString *)aKey withRealKey:(NSString *)aRealKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType
+{
     MZMethodData* method = [MZMethodData methodGetterForKey:aKey withRealKey:aRealKey ofType:aType withObjCType:aObjcType];
     [methods setObject:method forKey:NSStringFromSelector([method selector])];
 }
 
--(void)addMethodWithSelector:(SEL)aSelector signature:(NSMethodSignature *)aSignature forKey:(NSString *)aKey ofType:(NSUInteger)aType {
+-(void)addMethodWithSelector:(SEL)aSelector signature:(NSMethodSignature *)aSignature forKey:(NSString *)aKey ofType:(NSUInteger)aType
+{
     MZMethodData* method = [MZMethodData methodWithSelector:aSelector signature:aSignature forKey:aKey ofType:aType];
     [methods setObject:method forKey:NSStringFromSelector(aSelector)];
 }
 
--(void)handleDataForKey:(NSString *)aKey ofType:(NSUInteger)aType forInvocation:(NSInvocation *)anInvocation {
+-(void)handleDataForKey:(NSString *)aKey ofType:(NSUInteger)aType forInvocation:(NSInvocation *)anInvocation
+{
     [self doesNotRecognizeSelector:_cmd];
 }
 
@@ -59,7 +67,8 @@
     return ret != nil;
 }
 
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
+{
     NSMethodSignature *ret = [super methodSignatureForSelector:aSelector];
     if(ret == nil)
     {
@@ -70,7 +79,8 @@
     return ret;
 }
 
-- (void)forwardInvocation:(NSInvocation *)anInvocation {
+- (void)forwardInvocation:(NSInvocation *)anInvocation
+{
     MZMethodData* method = [methods objectForKey:NSStringFromSelector([anInvocation selector])];
     if(method != nil)
         [self handleDataForKey:[method key] ofType:[method type] forInvocation:anInvocation];
@@ -78,10 +88,8 @@
         [super forwardInvocation:anInvocation];
 }
 
-/*
- These don't work for methods that return something else than id
-*/
-- (id)valueForUndefinedKey:(NSString *)aKey {
+- (id)valueForUndefinedKey:(NSString *)aKey
+{
     MZMethodData* method = [methods objectForKey:aKey];
     if(method != nil)
     {
@@ -95,7 +103,8 @@
     return [super valueForUndefinedKey:aKey];
 }
 
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
     NSString* setterKey = [MZMethodData setterForKey:key];
     MZMethodData* method = [methods objectForKey:setterKey];
     if(method != nil)
