@@ -82,28 +82,29 @@
     [params setObject:@"25" forKey:@"Count"];
 
     BOOL reallyDoSearch = NO;
-    NSString* title = [data objectForKey:MZTitleTagIdent];
-    if(title && [title length] > 0)
+
+    NSNumber* videoKindObj = [data objectForKey:MZVideoTypeTagIdent];
+    if([videoKindObj intValue] == MZTVShowVideoType)
     {
-        [params setObject:title forKey:@"Title"];
-        reallyDoSearch = YES;
-    }
-    else
-    {
-        NSNumber* videoKindObj = [data objectForKey:MZVideoTypeTagIdent];
-        if([videoKindObj intValue] == MZTVShowVideoType)
+        NSString* title = [data objectForKey:MZTVShowTagIdent];
+        if(title)
         {
-            NSString* title = [data objectForKey:MZTVShowTagIdent];
-            if(title)
+            NSNumber* season = [data objectForKey:MZTVSeasonTagIdent];
+            if(season)
             {
-                NSNumber* season = [data objectForKey:MZTVSeasonTagIdent];
-                if(season)
-                {
-                    title = [NSString stringWithFormat:@"%@ season %d", title, [season intValue]];
-                }
-                [params setObject:title forKey:@"Title"];
-                reallyDoSearch = YES;
+                title = [NSString stringWithFormat:@"%@ season %d", title, [season intValue]];
             }
+            [params setObject:title forKey:@"Title"];
+            reallyDoSearch = YES;
+        }
+    }
+    if(!reallyDoSearch)
+    {
+        NSString* title = [data objectForKey:MZTitleTagIdent];
+        if(title && [title length] > 0)
+        {   
+            [params setObject:title forKey:@"Title"];
+            reallyDoSearch = YES;
         }
     }
     
