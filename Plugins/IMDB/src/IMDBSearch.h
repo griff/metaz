@@ -12,6 +12,7 @@
 @protocol IMDBScraperProtocol <NSObject>
 
 - (void)parseData:(NSString *)data withQueue:(NSOperationQueue *)queue delegate:(id)delegate;
+- (void)parseMovie:(NSString *)data delegate:(id)delegate;
 
 @end
 

@@ -36,6 +36,8 @@ class IMDBScraper < NSObject
         
                 title = title.imdb_strip_tags
                 title.gsub!(/\s+\(\d\d\d\d\)$/, '')
+                
+                IMDBSearchItem.new.initWithIdentifier_title_scraper_delegate_(id, title, scraper, delegate)
         
                 [id, title]
             end
@@ -43,5 +45,7 @@ class IMDBScraper < NSObject
 	end
     
     objc_method "parseMovie:delegate:" do |data,delegate|
+        document = Hpricot(data.to_ruby)
+        
     end
 end
