@@ -9,6 +9,50 @@
 #import "APWriteManager.h"
 
 
+@implementation APChapterWriteTask
+
++ (id)taskWithLaunchPath:(NSString *)path filePath:(NSString*)filePath chaptersFile:(NSString *)chaptersFile
+{
+    return [[[self alloc] initWithLaunchPath:path filePath:filePath chaptersFile:chaptersFile] autorelease];
+}
+
+- (id)initWithLaunchPath:(NSString *)path filePath:(NSString*)filePath chaptersFile:(NSString *)theChaptersFile
+{
+    self = [super init];
+    if(self)
+    {
+        [self setLaunchPath:path];
+        chaptersFile = [theChaptersFile retain];
+        if([chaptersFile length] == 0)
+            [self setArguments:[NSArray arrayWithObjects:@"-r", filePath, nil]];
+        else
+            [self setArguments:[NSArray arrayWithObjects:@"--import", chaptersFile, filePath, nil]];
+
+    }
+    return self;
+}
+
+- (void)taskTerminatedWithStatus:(int)status
+{
+    NSError* tempError = nil;
+    NSFileManager* mgr = [NSFileManager defaultManager];
+    if([chaptersFile length]>0)
+    {
+        if(![mgr removeItemAtPath:chaptersFile error:&tempError])
+        {
+            MZLoggerError(@"Failed to remove temp chapters file %@", [tempError localizedDescription]);
+            tempError = nil;
+        }
+    }
+    
+    [self setErrorFromStatus:status];
+    self.isExecuting = NO;
+    self.isFinished = YES;
+}
+
+@end
+
+
 @implementation APWriteManager
 @synthesize provider;
 @synthesize task;
@@ -119,7 +163,7 @@
     NSError* error = nil;
     NSError* tempError = nil;
     
-    int status = [[note object] terminationStatus];
+    int status = [task terminationStatus];
     if(status != 0)
     {
         MZLoggerError(@"Terminated bad %d", status);
@@ -142,7 +186,7 @@
     }
     if([self isCancelled] || error)
     {
-        if(chaptersFile)
+        if(chaptersFile && [chaptersFile length]>0)
         {
             if(![mgr removeItemAtPath:chaptersFile error:&tempError])
             {

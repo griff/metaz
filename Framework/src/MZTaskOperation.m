@@ -23,10 +23,7 @@
 
 - (id)init
 {
-    self = [super init];
-    if(self)
-        task = [[NSTask alloc] init];
-    return self;
+    return [self initWithTask:[[[NSTask alloc] init] autorelease]];
 }
 
 - (id)initWithTask:(NSTask *)theTask
@@ -39,60 +36,123 @@
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter]
+            removeObserver:self
+                      name:NSTaskDidTerminateNotification
+                    object:task];
+    [self releaseStandardOutput];
+    [self releaseStandardError];
     [task release];
     [super dealloc];
 }
 
-@synthesize isExecuting;
-@synthesize isFinished;
+//@synthesize isExecuting;
+//@synthesize isFinished;
+
+- (BOOL)isExecuting
+{
+    @synchronized(self)
+    {
+        return isExecuting;
+    }
+}
+
+- (void)setIsExecuting:(BOOL)newVal
+{
+    [self willChangeValueForKey:@"isExecuting"];
+    @synchronized(self)
+    {
+        isExecuting = newVal;
+    }
+    [self didChangeValueForKey:@"isExecuting"];
+}
+
+- (BOOL)isFinished
+{
+    @synchronized(self)
+    {
+        return isFinished;
+    }
+}
+
+- (void)setIsFinished:(BOOL)newVal
+{
+    [self willChangeValueForKey:@"isFinished"];
+    @synchronized(self)
+    {
+        isFinished = newVal;
+    }
+    [self didChangeValueForKey:@"isFinished"];
+}
 
 - (void)start
 {
     self.isExecuting = YES;
-    if([self isCancelled])
-    {
-        self.isFinished = YES;
-        self.isExecuting = NO;
-        return;
-    }
     [self performSelectorOnMainThread:@selector(startOnMainThread) withObject:nil waitUntilDone:YES];
 }
 
 - (void)startOnMainThread
 {
+    if([self isCancelled])
+    {
+        [self taskTerminatedWithStatus:0];
+        return;
+    }
     [[NSNotificationCenter defaultCenter]
             addObserver:self
                selector:@selector(taskTerminated:)
                    name:NSTaskDidTerminateNotification
                  object:task];
     
-    [self setupIO];
-    if([[self standardOutput] isKindOfClass:[NSPipe class]])
-    {
-        [[NSNotificationCenter defaultCenter]
-                addObserver:self
-                   selector:@selector(standardOutputGotData:)
-                       name:NSFileHandleReadCompletionNotification
-                     object:[[self standardOutput] fileHandleForReading]];
-        [[[self standardOutput] fileHandleForReading] readInBackgroundAndNotify];
-    }
-    if([[self standardError] isKindOfClass:[NSPipe class]])
-    {
-        [[NSNotificationCenter defaultCenter]
-                addObserver:self
-                   selector:@selector(standardErrorGotData:)
-                       name:NSFileHandleReadCompletionNotification
-                     object:[[self standardError] fileHandleForReading]];
-        [[[self standardError] fileHandleForReading] readInBackgroundAndNotify];
-    }
+    [self setupStandardOutput];
+    [self setupStandardError];
     [task launch];
 }
 
-- (void)setupIO
+- (void)setupStandardOutput
+{
+    [self setStandardOutput:[NSPipe pipe]];
+    [[NSNotificationCenter defaultCenter]
+            addObserver:self
+               selector:@selector(standardOutputGotData:)
+                   name:NSFileHandleReadCompletionNotification
+                 object:[[self standardOutput] fileHandleForReading]];
+    [[[self standardOutput] fileHandleForReading] readInBackgroundAndNotify];
+}
+
+- (void)releaseStandardOutput
+{
+    if([[self standardOutput] isKindOfClass:[NSPipe class]])
+    {
+        [[NSNotificationCenter defaultCenter]
+                removeObserver:self
+                          name:NSFileHandleReadCompletionNotification
+                        object:[[self standardOutput] fileHandleForReading]];
+    }
+}
+
+- (void)setupStandardError
 {
     [self setStandardError:[NSPipe pipe]];
-    [self setStandardOutput:[NSPipe pipe]];
+    [[NSNotificationCenter defaultCenter]
+            addObserver:self
+               selector:@selector(standardErrorGotData:)
+                   name:NSFileHandleReadCompletionNotification
+                 object:[[self standardError] fileHandleForReading]];
+    [[[self standardError] fileHandleForReading] readInBackgroundAndNotify];
 }
+
+- (void)releaseStandardError
+{
+    if([[self standardError] isKindOfClass:[NSPipe class]])
+    {
+        [[NSNotificationCenter defaultCenter]
+                removeObserver:self
+                          name:NSFileHandleReadCompletionNotification
+                        object:[[self standardError] fileHandleForReading]];
+    }
+}
+
 
 - (BOOL)isConcurrent
 {
@@ -137,9 +197,9 @@
     [task setStandardOutput:output];
 }
 
-- (void)setStandardError:(id)error
+- (void)setStandardError:(id)errorIO
 {
-    [task setStandardError:error];
+    [task setStandardError:errorIO];
 }
 
 // get parameters
@@ -207,8 +267,34 @@
 
 - (void)taskTerminated:(NSNotification *)note
 {
+    [[NSNotificationCenter defaultCenter]
+            removeObserver:self
+                      name:NSTaskDidTerminateNotification
+                    object:task];
+    [self taskTerminatedWithStatus:[self terminationStatus]];
+}
+
+- (void)taskTerminatedWithStatus:(int)status;
+{
+    [self setErrorFromStatus:status];
     self.isExecuting = NO;
     self.isFinished = YES;
+}
+
+- (void)setErrorFromStatus:(int)status
+{
+    if(status != 0)
+    {
+        NSString* program = [[task launchPath] lastPathComponent];
+        MZLoggerError(@"%@ terminated bad %d", program, status);
+        NSDictionary* dict = [NSDictionary dictionaryWithObject:
+            [NSString stringWithFormat:
+                NSLocalizedString(@"%@ failed with exit code %d", @"Write failed error"),
+                program,
+                status]
+            forKey:NSLocalizedDescriptionKey];
+        self.error = [NSError errorWithDomain:program code:status userInfo:dict];
+    }
 }
 
 - (void)standardOutputGotData:(NSNotification *)note
@@ -219,7 +305,8 @@
             initWithData:data
                 encoding:NSUTF8StringEncoding] autorelease];
 
-    MZLoggerDebug(@"%@ stdout %@", [[task launchPath] lastPathComponent], str);
+    if([str length] > 0)
+        MZLoggerDebug(@"%@ stdout %@", [[task launchPath] lastPathComponent], str);
 
     if([task isRunning])
     {
@@ -236,12 +323,86 @@
             initWithData:data
                 encoding:NSUTF8StringEncoding] autorelease];
 
-    MZLoggerDebug(@"%@ stderr %@", [[task launchPath] lastPathComponent], str);
+    if([str length] > 0)
+        MZLoggerDebug(@"%@ stderr %@", [[task launchPath] lastPathComponent], str);
 
     if([task isRunning])
     {
         [[[task standardError] fileHandleForReading]
             readInBackgroundAndNotify];
+    }
+}
+
+@end
+
+
+@implementation MZParseTaskOperation
+
+- (void)dealloc
+{
+    [data release];
+    [super dealloc];
+}
+
+@synthesize data;
+@synthesize isTerminated;
+
+- (void)parseData
+{
+}
+
+- (void)taskTerminatedWithStatus:(int)status;
+{
+    if(status != 0 || [self isCancelled])
+    {
+        [self setErrorFromStatus:status];
+        self.isExecuting = NO;
+        self.isFinished = YES;
+        return;
+    }
+
+    self.isTerminated = YES;
+    if(self.data)
+    {
+        [self parseData];
+        self.isExecuting = NO;
+        self.isFinished = YES;    
+    }
+}
+
+- (void)setupStandardOutput
+{
+    [self setStandardOutput:[NSPipe pipe]];
+    [[NSNotificationCenter defaultCenter]
+            addObserver:self
+               selector:@selector(standardOutputGotData:)
+                   name:NSFileHandleReadToEndOfFileCompletionNotification
+                 object:[[self standardOutput] fileHandleForReading]];
+    [[[self standardOutput] fileHandleForReading] readToEndOfFileInBackgroundAndNotify];
+}
+
+- (void)releaseStandardOutput
+{
+    if([[self standardOutput] isKindOfClass:[NSPipe class]])
+    {
+        [[NSNotificationCenter defaultCenter]
+                removeObserver:self
+                          name:NSFileHandleReadToEndOfFileCompletionNotification
+                        object:[[self standardOutput] fileHandleForReading]];
+    }
+}
+
+- (void)standardOutputGotData:(NSNotification *)note
+{
+    if(self.isFinished || [self isCancelled])
+        return;
+    self.data = [[note userInfo]
+            objectForKey:NSFileHandleNotificationDataItem];
+    if(self.isTerminated)
+    {
+        [self parseData];
+        self.isExecuting = NO;
+        self.isFinished = YES;    
     }
 }
 

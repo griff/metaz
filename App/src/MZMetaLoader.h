@@ -12,7 +12,6 @@
 @interface MZMetaLoader : NSObject
 {
     NSMutableArray* files;
-    NSOperationQueue* queue;
     MZVideoType defaultVideoType;
     MZVideoType lastSelection;
     NSUInteger loadingCount;

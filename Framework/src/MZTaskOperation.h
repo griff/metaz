@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <MetaZKit/MZErrorOperation.h>
 
-
-@interface MZTaskOperation : NSOperation
+@interface MZTaskOperation : MZErrorOperation
 {
     NSTask* task;
     BOOL isExecuting;
@@ -27,9 +27,18 @@
 
 - (void)start;
 - (void)startOnMainThread;
-- (void)setupIO;
 - (BOOL)isConcurrent;
 - (void)cancel;
+
+
+- (void)setupStandardOutput;
+- (void)setupStandardError;
+- (void)releaseStandardOutput;
+- (void)releaseStandardError;
+- (void)taskTerminatedWithStatus:(int)status;
+- (void)setErrorFromStatus:(int)status;
+- (void)standardOutputGotData:(NSNotification *)note;
+- (void)standardErrorGotData:(NSNotification *)note;
 
 
 - (void)setLaunchPath:(NSString *)path;
@@ -63,5 +72,18 @@
 - (BOOL)isRunning;
 
 - (int)terminationStatus;
+
+@end
+
+
+@interface MZParseTaskOperation : MZTaskOperation
+{
+    NSData* data;
+    BOOL isTerminated;
+}
+@property(retain) NSData* data;
+@property(assign) BOOL isTerminated;
+
+- (void)parseData;
 
 @end

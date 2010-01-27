@@ -8,6 +8,7 @@
 
 #import "APDataProvider.h"
 #import "APWriteManager.h"
+#import "APReadDataTask.h"
 
 @interface APDataProvider (Private)
 
@@ -419,6 +420,40 @@
     return tags;
 }
 
+- (id<MZDataController>)loadFromFile:(NSString *)fileName
+                            delegate:(id<MZDataReadDelegate>)delegate
+                               queue:(NSOperationQueue *)queue
+{
+    APReadOperationsController* op = [APReadOperationsController
+        controllerWithProvider:self
+                  fromFileName:fileName
+                      delegate:delegate];
+        
+        
+    APChapterReadDataTask* chapterRead = [APChapterReadDataTask taskWithDictionary:op.tagdict];
+    [chapterRead setLaunchPath:[self launchChapsPath]];
+    [chapterRead setArguments:[NSArray arrayWithObjects:@"-l", fileName, nil]];
+    [op addOperation:chapterRead];
+    
+    APPictureReadDataTask* pictureRead = [APPictureReadDataTask taskWithDictionary:op.tagdict];
+    [pictureRead setLaunchPath:[self launchPath]];
+    [pictureRead setArguments:[NSArray arrayWithObjects:fileName, @"-e", pictureRead.file, nil]];
+    [chapterRead addDependency:pictureRead];
+    [op addOperation:pictureRead];
+    
+    
+    APReadDataTask* dataRead = [APReadDataTask taskWithProvider:self fromFileName:fileName dictionary:op.tagdict];
+    [dataRead setLaunchPath:[self launchPath]];
+    [dataRead setArguments:[NSArray arrayWithObjects:fileName, @"-t", nil]];
+    [pictureRead addDependency:dataRead];
+    [op addOperation:dataRead];
+
+    [op addOperationsToQueue:queue];
+
+    return op;
+}
+
+/*
 - (MetaLoaded *)loadFromFile:(NSString *)fileName
 {
     NSTask* task = [[NSTask alloc] init];
@@ -441,6 +476,12 @@
         MZLoggerError(@"AtomicParsley failed. %d", status);
         return nil;
     }
+    
+}
+*/
+
+- (void)parseData:(NSData *)data withFileName:(NSString *)fileName dict:(NSMutableDictionary *)tagdict
+{
     NSString* str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     NSArray* atoms = [str componentsSeparatedByString:@"Atom \""];
     
@@ -456,10 +497,10 @@
         [dict setObject:content forKey:type];
     }
     
-    NSMutableDictionary* retdict = [NSMutableDictionary dictionaryWithCapacity:[tags count]];
+    //NSMutableDictionary* tagdict = [NSMutableDictionary dictionaryWithCapacity:[tags count]];
     // Initialize a null value for all known keys
     for(MZTag* tag in tags)
-        [retdict setObject:[NSNull null] forKey:[tag identifier]];
+        [tagdict setObject:[NSNull null] forKey:[tag identifier]];
 
     // Store real parsed values using a simple key -> key mapping
     for(NSString* map in [read_mapping allKeys])
@@ -469,7 +510,7 @@
         NSString* value = [dict objectForKey:map];
         //MZLoggerDebug(@"%@ %@", tagId, value);
         if(value)
-            [retdict setObject:[tag convertObjectForStorage:[tag objectFromString:value]] forKey:tagId];
+            [tagdict setObject:[tag convertObjectForStorage:[tag objectFromString:value]] forKey:tagId];
     }
     
     // Special genre handling
@@ -479,7 +520,7 @@
     if(genre)
     {
         MZLoggerDebug(@"Genre %@", genre);
-        [retdict setObject:genre forKey:MZGenreTagIdent];
+        [tagdict setObject:genre forKey:MZGenreTagIdent];
     }
     
     // Special rating handling
@@ -489,7 +530,7 @@
         MZLoggerDebug(@"Rating %@", rating);
         id rate = [rating_read objectForKey:rating];
         if(rate)
-            [retdict setObject:rate forKey:MZRatingTagIdent];
+            [tagdict setObject:rate forKey:MZRatingTagIdent];
     }
     
     // Special video type handling (stik)
@@ -517,25 +558,103 @@
         if(stikNo!=MZUnsetVideoType)
         {
             MZTag* tag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
-            [retdict setObject:[tag nullConvertValueToObject:&stikNo]
+            [tagdict setObject:[tag nullConvertValueToObject:&stikNo]
                         forKey:MZVideoTypeTagIdent];
         }
     }
     */
     
+    // Special handling for cast, directors, producers and screenwriters
+    NSString* iTunMOVIStr = [dict objectForKey:@"com.apple.iTunes;iTunMOVI"];
+    if(iTunMOVIStr)
+    {
+        NSDictionary* iTunMOVI = [iTunMOVIStr propertyList];
+        NSArray* value = [iTunMOVI objectForKey:@"cast"];
+        if(value)
+        {
+            value = [value arrayByPerformingSelector:@selector(objectForKey:) withObject:@"name"];
+            [tagdict setObject:[value componentsJoinedByString:@", "] forKey:MZActorsTagIdent];
+        }
+
+        value = [iTunMOVI objectForKey:@"directors"];
+        if(value)
+        {
+            value = [value arrayByPerformingSelector:@selector(objectForKey:) withObject:@"name"];
+            [tagdict setObject:[value componentsJoinedByString:@", "] forKey:MZDirectorTagIdent];
+        }
+
+        value = [iTunMOVI objectForKey:@"producers"];
+        if(value)
+        {
+            value = [value arrayByPerformingSelector:@selector(objectForKey:) withObject:@"name"];
+            [tagdict setObject:[value componentsJoinedByString:@", "] forKey:MZProducerTagIdent];
+        }
+
+        value = [iTunMOVI objectForKey:@"screenwriters"];
+        if(value)
+        {
+            value = [value arrayByPerformingSelector:@selector(objectForKey:) withObject:@"name"];
+            [tagdict setObject:[value componentsJoinedByString:@", "] forKey:MZScreenwriterTagIdent];
+        }
+    }
+    
+    // Special handling of track
+    NSString* trkn = [dict objectForKey:@"trkn"];
+    if(trkn)
+    {
+        NSArray* trks = [trkn componentsSeparatedByString:@"/"];
+        NSAssert([trks count] < 3, @"Only two tracks");
+
+        MZTag* tag1 = [MZTag tagForIdentifier:MZTrackNumberTagIdent];
+        NSNumber* num = [tag1 objectFromString:[trks objectAtIndex:0]];
+        [tagdict setObject:num forKey:MZTrackNumberTagIdent];
+
+        if([trks count] == 2)
+        {
+            MZTag* tag2 = [MZTag tagForIdentifier:MZTrackCountTagIdent];
+            NSNumber* count = [tag2 objectFromString:[trks objectAtIndex:1]];
+            [tagdict setObject:count forKey:MZTrackCountTagIdent];
+        }
+    }
+    
+    // Special handling of disc num
+    NSString* disk = [dict objectForKey:@"disk"];
+    if(disk)
+    {
+        NSArray* trks = [disk componentsSeparatedByString:@"/"];
+        NSAssert([trks count] < 3, @"Only two disks");
+
+        MZTag* tag1 = [MZTag tagForIdentifier:MZDiscNumberTagIdent];
+        NSNumber* num = [tag1 objectFromString:[trks objectAtIndex:0]];
+        [tagdict setObject:num forKey:MZDiscNumberTagIdent];
+
+        if([trks count] == 2)
+        {
+            MZTag* tag2 = [MZTag tagForIdentifier:MZDiscCountTagIdent];
+            NSNumber* count = [tag2 objectFromString:[trks objectAtIndex:1]];
+            [tagdict setObject:count forKey:MZDiscCountTagIdent];
+        }
+    }
+        
+    // Filename auto set
+    [tagdict setObject:[fileName lastPathComponent] forKey:MZFileNameTagIdent];
+    id title = [tagdict objectForKey:MZTitleTagIdent];
+    if(![title isKindOfClass:[NSString class]])
+    {
+        NSString* newTitle = [MZPluginController extractTitleFromFilename:fileName];
+        [tagdict setObject:newTitle forKey:MZTitleTagIdent];
+    }
+
     // Special image handling
     NSString* covr = [dict objectForKey:@"covr"];
     if(covr)
+        [tagdict setObject:[NSNull null] forKey:MZPictureTagIdent];
+
+    /*
     {
         task = [[NSTask alloc] init];
         [task setLaunchPath:[self launchPath]];
-        NSString* file = NSTemporaryDirectory();
-        if(!file)
-            file = @"/tmp";
-        
-        file = [file stringByAppendingPathComponent:
-            [NSString stringWithFormat:@"MetaZImage_%@",
-                [[NSProcessInfo processInfo] globallyUniqueString]]];
+        NSString* file = [NSString temporaryPathWithFormat:@"MetaZImage_%@"];
         [task setArguments:[NSArray arrayWithObjects:fileName, @"-e", file, nil]];
         NSPipe* err = [NSPipe pipe];
         [task setStandardError:err];
@@ -552,96 +671,17 @@
         if([mgr fileExistsAtPath:[file stringByAppendingString:@".png"] isDirectory:&isDir] && !isDir)
         {
             NSData* data = [NSData dataWithContentsOfFile:[file stringByAppendingString:@".png"]];
-            [retdict setObject:data forKey:MZPictureTagIdent];
+            [tagdict setObject:data forKey:MZPictureTagIdent];
             [mgr removeItemAtPath:[file stringByAppendingString:@".png"] error:NULL];
         }
         else if([mgr fileExistsAtPath:[file stringByAppendingString:@".jpg"] isDirectory:&isDir] && !isDir)
         {
             NSData* data = [NSData dataWithContentsOfFile:[file stringByAppendingString:@".jpg"]];
-            [retdict setObject:data forKey:MZPictureTagIdent];
+            [tagdict setObject:data forKey:MZPictureTagIdent];
             [mgr removeItemAtPath:[file stringByAppendingString:@".jpg"] error:NULL];
         }
     }
     
-    // Special handling for cast, directors, producers and screenwriters
-    NSString* iTunMOVIStr = [dict objectForKey:@"com.apple.iTunes;iTunMOVI"];
-    if(iTunMOVIStr)
-    {
-        NSDictionary* iTunMOVI = [iTunMOVIStr propertyList];
-        NSArray* value = [iTunMOVI objectForKey:@"cast"];
-        if(value)
-        {
-            value = [value arrayByPerformingSelector:@selector(objectForKey:) withObject:@"name"];
-            [retdict setObject:[value componentsJoinedByString:@", "] forKey:MZActorsTagIdent];
-        }
-
-        value = [iTunMOVI objectForKey:@"directors"];
-        if(value)
-        {
-            value = [value arrayByPerformingSelector:@selector(objectForKey:) withObject:@"name"];
-            [retdict setObject:[value componentsJoinedByString:@", "] forKey:MZDirectorTagIdent];
-        }
-
-        value = [iTunMOVI objectForKey:@"producers"];
-        if(value)
-        {
-            value = [value arrayByPerformingSelector:@selector(objectForKey:) withObject:@"name"];
-            [retdict setObject:[value componentsJoinedByString:@", "] forKey:MZProducerTagIdent];
-        }
-
-        value = [iTunMOVI objectForKey:@"screenwriters"];
-        if(value)
-        {
-            value = [value arrayByPerformingSelector:@selector(objectForKey:) withObject:@"name"];
-            [retdict setObject:[value componentsJoinedByString:@", "] forKey:MZScreenwriterTagIdent];
-        }
-    }
-    
-    // Special handling of track
-    NSString* trkn = [dict objectForKey:@"trkn"];
-    if(trkn)
-    {
-        NSArray* trks = [trkn componentsSeparatedByString:@"/"];
-        NSAssert([trks count] < 3, @"Only two tracks");
-
-        MZTag* tag1 = [MZTag tagForIdentifier:MZTrackNumberTagIdent];
-        NSNumber* num = [tag1 objectFromString:[trks objectAtIndex:0]];
-        [retdict setObject:num forKey:MZTrackNumberTagIdent];
-
-        if([trks count] == 2)
-        {
-            MZTag* tag2 = [MZTag tagForIdentifier:MZTrackCountTagIdent];
-            NSNumber* count = [tag2 objectFromString:[trks objectAtIndex:1]];
-            [retdict setObject:count forKey:MZTrackCountTagIdent];
-        }
-    }
-    
-    // Special handling of disc num
-    NSString* disk = [dict objectForKey:@"disk"];
-    if(disk)
-    {
-        NSArray* trks = [disk componentsSeparatedByString:@"/"];
-        NSAssert([trks count] < 3, @"Only two disks");
-
-        MZTag* tag1 = [MZTag tagForIdentifier:MZDiscNumberTagIdent];
-        NSNumber* num = [tag1 objectFromString:[trks objectAtIndex:0]];
-        [retdict setObject:num forKey:MZDiscNumberTagIdent];
-
-        if([trks count] == 2)
-        {
-            MZTag* tag2 = [MZTag tagForIdentifier:MZDiscCountTagIdent];
-            NSNumber* count = [tag2 objectFromString:[trks objectAtIndex:1]];
-            [retdict setObject:count forKey:MZDiscCountTagIdent];
-        }
-    }
-        
-    [retdict setObject:[fileName lastPathComponent] forKey:MZFileNameTagIdent];
-    id title = [retdict objectForKey:MZTitleTagIdent];
-    if(![title isKindOfClass:[NSString class]])
-    {
-        NSString* newTitle = [MZPluginController extractTitleFromFilename:fileName];
-        [retdict setObject:newTitle forKey:MZTitleTagIdent];
-    }
     
     // Chapter reading
     {
@@ -672,7 +712,7 @@
         NSString* movieDurationStr = [str substringWithRange:NSMakeRange(f.location+f.length, 12)];
         //MZLoggerDebug(@"Movie duration '%@'", movieDurationStr);
         MZTimeCode* movieDuration = [MZTimeCode timeCodeWithString:movieDurationStr];
-        [retdict setObject:movieDuration forKey:MZDurationTagIdent];
+        [tagdict setObject:movieDuration forKey:MZDurationTagIdent];
 
         NSArray* lines = [str componentsSeparatedByString:@"\tChapter #"];
         if([lines count]>1)
@@ -699,11 +739,12 @@
                 [chapters addObject:item];
             }
             if([chapters count] == len-1)
-                [retdict setObject:chapters forKey:MZChaptersTagIdent];
+                [tagdict setObject:chapters forKey:MZChaptersTagIdent];
         }
     }
     
-    return [MetaLoaded metaWithOwner:self filename:fileName dictionary:retdict];
+    return [MetaLoaded metaWithOwner:self filename:fileName dictionary:tagdict];
+    */
 }
 
 void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSString* sortType)
@@ -720,8 +761,9 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
 }
 
 
--(id<MZDataWriteController>)saveChanges:(MetaEdits *)data
-          delegate:(id<MZDataWriteDelegate>)delegate;
+-(id<MZDataController>)saveChanges:(MetaEdits *)data
+          delegate:(id<MZDataWriteDelegate>)delegate
+             queue:(NSOperationQueue *)queue;
 {
     NSMutableArray* args = [NSMutableArray array];
     [args addObject:[data loadedFileName]];
@@ -887,13 +929,8 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     else if(pictureObj)
     {
         NSData* picture = pictureObj;
-        pictureFile = NSTemporaryDirectory();
-        if(!pictureFile)
-            pictureFile = @"/tmp";
-        
-        pictureFile = [pictureFile stringByAppendingPathComponent:
-            [NSString stringWithFormat:@"MetaZImage_%@.png",
-                [[NSProcessInfo processInfo] globallyUniqueString]]];
+
+        pictureFile = [NSString temporaryPathWithFormat:@"MetaZImage_%@.png"];
                 
         //NSData *imageData = [picture TIFFRepresentation];
         NSBitmapImageRep* imageRep = [NSBitmapImageRep imageRepWithData:picture];
@@ -1022,13 +1059,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     else if(chaptersObj)
     {
         NSArray* chapters = chaptersObj;
-        chaptersFile = NSTemporaryDirectory();
-        if(!chaptersFile)
-            chaptersFile = @"/tmp";
-        
-        chaptersFile = [chaptersFile stringByAppendingPathComponent:
-            [NSString stringWithFormat:@"MetaZChapters_%@.txt",
-                [[NSProcessInfo processInfo] globallyUniqueString]]];
+        chaptersFile = [NSString temporaryPathWithFormat:@"MetaZChapters_%@.txt"];
 
         NSString* data = [[chapters arrayByPerformingSelector:@selector(description)]
             componentsJoinedByString:@"\n"];

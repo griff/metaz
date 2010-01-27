@@ -17,7 +17,7 @@
     BOOL completed;
     BOOL hasRun;
     BOOL removeOnCancel;
-    id<MZDataWriteController> controller;
+    id<MZDataController> controller;
 }
 @property(readonly) MetaEdits* edits;
 @property(readonly) int percent;
@@ -25,7 +25,7 @@
 @property(readonly) int writing;
 @property(readonly) BOOL completed;
 @property(readonly) BOOL hasRun;
-@property(readonly) id<MZDataWriteController> controller;
+@property(readonly) id<MZDataController> controller;
 
 + (id)statusWithEdits:(MetaEdits *)edits;
 - (id)initWithEdits:(MetaEdits *)edits;

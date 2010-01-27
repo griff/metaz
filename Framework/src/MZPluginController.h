@@ -28,11 +28,22 @@
 @end
 
 
+@protocol MZEditsReadDelegate <NSObject>
+- (void)dataProvider:(id<MZDataProvider>)provider
+          controller:(id<MZDataController>)controller
+         loadedEdits:(MetaEdits *)edits
+            fromFile:(NSString *)fileName
+               error:(NSError *)error;
+@end
+
+
 @interface MZPluginController : NSObject {
     NSArray* plugins;
     NSMutableArray* loadedPlugins;
     id<MZPluginControllerDelegate> delegate;
     NSArray* typesCache;
+    NSOperationQueue* loadQueue;
+    NSOperationQueue* saveQueue;
 }
 
 + (NSString *)extractTitleFromFilename:(NSString *)fileName;
@@ -40,6 +51,8 @@
 + (MZPluginController *)sharedInstance;
 
 @property(assign) id<MZPluginControllerDelegate> delegate;
+@property(readonly) NSOperationQueue* loadQueue;
+@property(readonly) NSOperationQueue* saveQueue;
 
 - (NSArray *)plugins;
 - (NSArray *)loadedPlugins;
@@ -50,9 +63,10 @@
 - (id<MZDataProvider>)dataProviderForPath:(NSString *)path;
 - (id<MZDataProvider>)dataProviderForType:(NSString *)uti;
 - (id<MZSearchProvider>)searchProviderWithIdentifier:(NSString *)identifier;
-- (MetaEdits *)loadDataFromFile:(NSString *)path;
-- (id<MZDataWriteController>)saveChanges:(MetaEdits *)data
-                                delegate:(id<MZDataWriteDelegate>)delegate;
+- (id<MZDataController>)loadFromFile:(NSString *)fileName
+                            delegate:(id<MZEditsReadDelegate>)deledate;
+- (id<MZDataController>)saveChanges:(MetaEdits *)data
+                           delegate:(id<MZDataWriteDelegate>)delegate;
 - (void)searchAllWithData:(NSDictionary *)data
                  delegate:(id<MZSearchProviderDelegate>)delegate;
 - (BOOL)unloadPlugin:(MZPlugin *)plugin;

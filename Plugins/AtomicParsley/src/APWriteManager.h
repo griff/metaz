@@ -10,7 +10,18 @@
 #import <MetaZKit/MetaZKit.h>
 #import "APDataProvider.h"
 
-@interface APWriteManager : NSOperation <MZDataWriteController> {
+@interface APChapterWriteTask : MZTaskOperation
+{
+    NSString* chaptersFile;
+}
++ (id)taskWithLaunchPath:(NSString *)path filePath:(NSString*)filePath chaptersFile:(NSString *)chaptersFile;
+- (id)initWithLaunchPath:(NSString *)path filePath:(NSString*)filePath chaptersFile:(NSString *)chaptersFile;
+
+@end
+
+
+@interface APWriteManager : NSOperation <MZDataController>
+{
     NSTask* task;
     BOOL isFinished;
     NSString* pictureFile;

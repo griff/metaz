@@ -9,7 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaZKit.h>
 
-@interface APDataProvider : NSObject <MZDataProvider> {
+@interface APDataProvider : NSObject <MZDataProvider>
+{
     NSArray* types;
     NSArray* tags;
     NSDictionary* read_mapping;
@@ -26,5 +27,7 @@
 
 - (id)init;
 - (void)removeWriteManager:(id)writeManager;
+
+- (void)parseData:(NSData *)data withFileName:(NSString *)fileName dict:(NSMutableDictionary *)tagdict;
 
 @end

@@ -12,18 +12,26 @@
 
 @protocol MZDataProvider;
 
-@protocol MZDataWriteController <NSObject>
-- (BOOL)isExecuting;
+@protocol MZDataController <NSObject>
 - (BOOL)isFinished;
 - (void)cancel;
 @end
 
+@protocol MZDataReadDelegate <NSObject>
+@optional
+- (void)dataProvider:(id<MZDataProvider>)provider
+          controller:(id<MZDataController>)controller
+          loadedMeta:(MetaLoaded *)loaded
+            fromFile:(NSString *)fileName
+               error:(NSError *)error;
+@end
+
 @protocol MZDataWriteDelegate <NSObject>
 @optional
-- (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataWriteController>)controller writeStartedForEdits:(MetaEdits *)edits;
-- (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataWriteController>)controller writeCanceledForEdits:(MetaEdits *)edits error:(NSError *)error;
-- (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataWriteController>)controller writeFinishedForEdits:(MetaEdits *)edits percent:(int)percent;
-- (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataWriteController>)controller writeFinishedForEdits:(MetaEdits *)edits;
+- (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataController>)controller writeStartedForEdits:(MetaEdits *)edits;
+- (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataController>)controller writeCanceledForEdits:(MetaEdits *)edits error:(NSError *)error;
+- (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataController>)controller writeFinishedForEdits:(MetaEdits *)edits percent:(int)percent;
+- (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataController>)controller writeFinishedForEdits:(MetaEdits *)edits;
 @end
 
 
@@ -49,14 +57,17 @@
 /*!
  @abstract Loads the supplied file and return the meta data loaded.
  */
-- (MetaLoaded *)loadFromFile:(NSString *)fileName;
+- (id<MZDataController>)loadFromFile:(NSString *)fileName
+                            delegate:(id<MZDataReadDelegate>)deledate
+                               queue:(NSOperationQueue *)queue;
 
 
 /*!
  @abstract Saves any changes to the meta data.
  */
-- (id<MZDataWriteController>)saveChanges:(MetaEdits *)data
-          delegate:(id<MZDataWriteDelegate>)delegate;
+- (id<MZDataController>)saveChanges:(MetaEdits *)data
+                           delegate:(id<MZDataWriteDelegate>)delegate
+                              queue:(NSOperationQueue *)queue;
 
 @end
 

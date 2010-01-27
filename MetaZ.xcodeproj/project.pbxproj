@@ -74,6 +74,15 @@
 		1B11A28B104DF1EC004C93D3 /* FilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A28A104DF1EC004C93D3 /* FilesTableView.m */; };
 		1B15A60E10B608D100EC0FBF /* AmazonSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B15A60D10B608D100EC0FBF /* AmazonSearch.m */; };
 		1B20209B10B36EC200EE548A /* VideoType.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B20209910B36EC200EE548A /* VideoType.strings */; };
+		1B3AD7A311055DF300B33F85 /* MZQueueOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3AD7A111055DF300B33F85 /* MZQueueOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B3AD7A411055DF300B33F85 /* MZQueueOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3AD7A211055DF300B33F85 /* MZQueueOperation.m */; };
+		1B3AD7D811057E9200B33F85 /* MZErrorOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3AD7D611057E9200B33F85 /* MZErrorOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B3AD7D911057E9200B33F85 /* MZErrorOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3AD7D711057E9200B33F85 /* MZErrorOperation.m */; };
+		1B3AD7DC1105829500B33F85 /* MZOperationsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3AD7DA1105829500B33F85 /* MZOperationsController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B3AD7DD1105829500B33F85 /* MZOperationsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3AD7DB1105829500B33F85 /* MZOperationsController.m */; };
+		1B3AD7E21105884800B33F85 /* APReadDataTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3AD7E11105884800B33F85 /* APReadDataTask.m */; };
+		1B3AD7F3110595C300B33F85 /* NSString+TempFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3AD7F1110595C300B33F85 /* NSString+TempFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B3AD7F4110595C300B33F85 /* NSString+TempFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3AD7F2110595C300B33F85 /* NSString+TempFile.m */; };
 		1B42F21C10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B42F21B10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m */; };
 		1B42F21F10DD5D6D00AFEBF6 /* MiniProgressGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B42F21D10DD5D6D00AFEBF6 /* MiniProgressGradient.png */; };
 		1B42F26D10DEB11E00AFEBF6 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
@@ -131,9 +140,9 @@
 		1BB6C11F1052B1C1001D3D1D /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB6C10A1052B154001D3D1D /* Sparkle.framework */; };
 		1BBB39A91087083600C9E17F /* MZPriorObserverFix.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBB39A71087083600C9E17F /* MZPriorObserverFix.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BBB39AA1087083600C9E17F /* MZPriorObserverFix.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB39A81087083600C9E17F /* MZPriorObserverFix.m */; };
-		1BBC022110F640A1001DDB1C /* NSFileManager+MZAsync.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBC021F10F640A1001DDB1C /* NSFileManager+MZAsync.h */; };
+		1BBC022110F640A1001DDB1C /* NSFileManager+MZAsync.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBC021F10F640A1001DDB1C /* NSFileManager+MZAsync.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BBC022210F640A1001DDB1C /* NSFileManager+MZAsync.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC022010F640A1001DDB1C /* NSFileManager+MZAsync.m */; };
-		1BBC026010FC115F001DDB1C /* MZTaskOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBC025E10FC115F001DDB1C /* MZTaskOperation.h */; };
+		1BBC026010FC115F001DDB1C /* MZTaskOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BBC025E10FC115F001DDB1C /* MZTaskOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BBC026110FC115F001DDB1C /* MZTaskOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC025F10FC115F001DDB1C /* MZTaskOperation.m */; };
 		1BC0661910AE223A005C2A9F /* PresetsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC0661710AE223A005C2A9F /* PresetsPanel.xib */; };
 		1BC0671410AE44CA005C2A9F /* presets.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BC0671310AE44CA005C2A9F /* presets.png */; };
@@ -435,6 +444,16 @@
 		1B15A60D10B608D100EC0FBF /* AmazonSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonSearch.m; sourceTree = "<group>"; };
 		1B15A62610B6316000EC0FBF /* Access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access.h; path = Plugins/Amazon/Access.h; sourceTree = SOURCE_ROOT; };
 		1B20209A10B36EC200EE548A /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/VideoType.strings; sourceTree = "<group>"; };
+		1B3AD7A111055DF300B33F85 /* MZQueueOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZQueueOperation.h; sourceTree = "<group>"; };
+		1B3AD7A211055DF300B33F85 /* MZQueueOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZQueueOperation.m; sourceTree = "<group>"; };
+		1B3AD7D611057E9200B33F85 /* MZErrorOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZErrorOperation.h; sourceTree = "<group>"; };
+		1B3AD7D711057E9200B33F85 /* MZErrorOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZErrorOperation.m; sourceTree = "<group>"; };
+		1B3AD7DA1105829500B33F85 /* MZOperationsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZOperationsController.h; sourceTree = "<group>"; };
+		1B3AD7DB1105829500B33F85 /* MZOperationsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZOperationsController.m; sourceTree = "<group>"; };
+		1B3AD7E01105884800B33F85 /* APReadDataTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APReadDataTask.h; sourceTree = "<group>"; };
+		1B3AD7E11105884800B33F85 /* APReadDataTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APReadDataTask.m; sourceTree = "<group>"; };
+		1B3AD7F1110595C300B33F85 /* NSString+TempFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TempFile.h"; sourceTree = "<group>"; };
+		1B3AD7F2110595C300B33F85 /* NSString+TempFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TempFile.m"; sourceTree = "<group>"; };
 		1B42F21A10DD5D5D00AFEBF6 /* UKDockProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKDockProgressIndicator.h; path = Externals/UKDockProgressIndicator/UKDockProgressIndicator.h; sourceTree = "<group>"; };
 		1B42F21B10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKDockProgressIndicator.m; path = Externals/UKDockProgressIndicator/UKDockProgressIndicator.m; sourceTree = "<group>"; };
 		1B42F21E10DD5D6D00AFEBF6 /* English */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = English; path = Externals/UKDockProgressIndicator/English.lproj/MiniProgressGradient.png; sourceTree = "<group>"; };
@@ -987,8 +1006,16 @@
 				1BCECD8810E39AE200D0AD35 /* MZLogger.m */,
 				1BBC021F10F640A1001DDB1C /* NSFileManager+MZAsync.h */,
 				1BBC022010F640A1001DDB1C /* NSFileManager+MZAsync.m */,
+				1B3AD7D611057E9200B33F85 /* MZErrorOperation.h */,
+				1B3AD7D711057E9200B33F85 /* MZErrorOperation.m */,
 				1BBC025E10FC115F001DDB1C /* MZTaskOperation.h */,
 				1BBC025F10FC115F001DDB1C /* MZTaskOperation.m */,
+				1B3AD7A111055DF300B33F85 /* MZQueueOperation.h */,
+				1B3AD7A211055DF300B33F85 /* MZQueueOperation.m */,
+				1B3AD7DA1105829500B33F85 /* MZOperationsController.h */,
+				1B3AD7DB1105829500B33F85 /* MZOperationsController.m */,
+				1B3AD7F1110595C300B33F85 /* NSString+TempFile.h */,
+				1B3AD7F2110595C300B33F85 /* NSString+TempFile.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -1656,6 +1683,8 @@
 				1BEA6E8B106EF4CD004B1A7F /* APDataProvider.m */,
 				1BEA71BD10716B90004B1A7F /* APWriteManager.h */,
 				1BEA71BE10716B90004B1A7F /* APWriteManager.m */,
+				1B3AD7E01105884800B33F85 /* APReadDataTask.h */,
+				1B3AD7E11105884800B33F85 /* APReadDataTask.m */,
 			);
 			name = Classes;
 			path = Plugins/AtomicParsley/src;
@@ -1791,6 +1820,10 @@
 				1BCED25710F0CC7400D0AD35 /* GTMDebugSelectorValidation.h in Headers */,
 				1BBC022110F640A1001DDB1C /* NSFileManager+MZAsync.h in Headers */,
 				1BBC026010FC115F001DDB1C /* MZTaskOperation.h in Headers */,
+				1B3AD7A311055DF300B33F85 /* MZQueueOperation.h in Headers */,
+				1B3AD7D811057E9200B33F85 /* MZErrorOperation.h in Headers */,
+				1B3AD7DC1105829500B33F85 /* MZOperationsController.h in Headers */,
+				1B3AD7F3110595C300B33F85 /* NSString+TempFile.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2244,6 +2277,10 @@
 				1BCED24310F0CBA200D0AD35 /* GTMNSObject+KeyValueObserving.m in Sources */,
 				1BBC022210F640A1001DDB1C /* NSFileManager+MZAsync.m in Sources */,
 				1BBC026110FC115F001DDB1C /* MZTaskOperation.m in Sources */,
+				1B3AD7A411055DF300B33F85 /* MZQueueOperation.m in Sources */,
+				1B3AD7D911057E9200B33F85 /* MZErrorOperation.m in Sources */,
+				1B3AD7DD1105829500B33F85 /* MZOperationsController.m in Sources */,
+				1B3AD7F4110595C300B33F85 /* NSString+TempFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2254,6 +2291,7 @@
 				1BEA6E8C106EF4CD004B1A7F /* APDataProvider.m in Sources */,
 				1BEA6E91106EF534004B1A7F /* AtomicParsleyPlugin.m in Sources */,
 				1BEA71BF10716B90004B1A7F /* APWriteManager.m in Sources */,
+				1B3AD7E21105884800B33F85 /* APReadDataTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -108,7 +108,7 @@
 #pragma mark - MZDataWriteDelegate implementation
 
 - (void)dataProvider:(id<MZDataProvider>)provider 
-          controller:(id<MZDataWriteController>)controller
+          controller:(id<MZDataController>)controller
 writeStartedForEdits:(MetaEdits *)edits
 {
     self.status = [NSString stringWithFormat:
@@ -118,7 +118,7 @@ writeStartedForEdits:(MetaEdits *)edits
 
 
 - (void)dataProvider:(id<MZDataProvider>)provider 
-          controller:(id<MZDataWriteController>)controller
+          controller:(id<MZDataController>)controller
         writeCanceledForEdits:(MetaEdits *)theEdits
               error:(NSError *)theError
 {
@@ -167,7 +167,7 @@ writeStartedForEdits:(MetaEdits *)edits
 }
 
 - (void)dataProvider:(id<MZDataProvider>)provider
-          controller:(id<MZDataWriteController>)controller
+          controller:(id<MZDataController>)controller
         writeFinishedForEdits:(MetaEdits *)theEdits percent:(int)newPercent
 {
     //[self willChangeValueForKey:@"percent"];
@@ -181,7 +181,7 @@ writeStartedForEdits:(MetaEdits *)edits
 }
 
 - (void)dataProvider:(id<MZDataProvider>)provider
-          controller:(id<MZDataWriteController>)controller
+          controller:(id<MZDataController>)controller
         writeFinishedForEdits:(MetaEdits *)theEdits
 {
     MZWriteQueue* q = [MZWriteQueue sharedQueue];

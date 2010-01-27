@@ -20,6 +20,21 @@
 
 @end
 
+
+@interface MZReadNotification : NSObject <MZDataReadDelegate>
+{
+    MZPluginController* controller;
+    id<MZEditsReadDelegate> delegate;
+}
+
++ (id)notifierWithController:(MZPluginController *)controller
+                    delegate:(id<MZEditsReadDelegate>)delegate;
+- (id)initWithController:(MZPluginController *)controller
+                delegate:(id<MZEditsReadDelegate>)delegate;
+
+@end
+
+
 @interface MZSearchDelegate : NSObject <MZSearchProviderDelegate>
 {
     id<MZSearchProviderDelegate> delegate;
@@ -38,7 +53,6 @@
 
 
 @implementation MZPluginController
-@synthesize delegate;
 
 + (NSArray *)pluginPaths
 {
@@ -112,6 +126,11 @@ static MZPluginController *gInstance = NULL;
 - (id)init
 {
     self = [super init];
+    if(self)
+    {
+        loadQueue = [[NSOperationQueue alloc] init];
+        saveQueue = [[NSOperationQueue alloc] init];
+    }
     return self;
 }
 
@@ -120,8 +139,14 @@ static MZPluginController *gInstance = NULL;
     [plugins release];
     [loadedPlugins release];
     [typesCache release];
+    [loadQueue release];
+    [saveQueue release];
     [super dealloc];
 }
+
+@synthesize delegate;
+@synthesize loadQueue;
+@synthesize saveQueue;
 
 - (NSArray *)plugins
 {
@@ -312,21 +337,7 @@ static MZPluginController *gInstance = NULL;
     return nil;
 }
 
--(void)fixTitle:(MetaEdits* )edits {
-    NSAssert([[edits fileName] isKindOfClass:[NSString class]], @"Bad file name");
-    NSAssert([[edits title] isKindOfClass:[NSString class]], @"Bad title");
-    /*
-    NSString* title = [edits title];
-    if(title == nil)
-    {
-        [[edits undoManager] disableUndoRegistration];
-        NSString* newTitle = [loadedFileName substringToIndex:[loadedFileName length] - [[loadedFileName pathExtension] length] - 1];
-        [edits setTitle:newTitle];
-        [[edits undoManager] enableUndoRegistration];
-    }
-    */
-}
-
+/*
 - (MetaEdits *)loadDataFromFile:(NSString *)path
 {
     id<MZDataProvider> provider = [self dataProviderForPath:path];
@@ -345,7 +356,8 @@ static MZPluginController *gInstance = NULL;
     if(!next)
         next = loaded;
     MetaEdits* edits = [[MetaEdits alloc] initWithProvider:next];
-    [self fixTitle:edits];
+    NSAssert([[edits fileName] isKindOfClass:[NSString class]], @"Bad file name");
+    NSAssert([[edits title] isKindOfClass:[NSString class]], @"Bad title");
     NSDictionary* userInfo = [NSDictionary dictionaryWithObject:edits forKey:MZMetaEditsNotificationKey];
     [[NSNotificationCenter defaultCenter]
             postNotificationName:MZDataProviderLoadedNotification
@@ -353,9 +365,21 @@ static MZPluginController *gInstance = NULL;
                         userInfo:userInfo];
     return [edits autorelease];
 }
+*/
 
-- (id<MZDataWriteController>)saveChanges:(MetaEdits *)data
-                                delegate:(id<MZDataWriteDelegate>)theDelegate
+- (id<MZDataController>)loadFromFile:(NSString *)fileName
+                            delegate:(id<MZEditsReadDelegate>)theDelegate
+{
+    id<MZDataProvider> provider = [self dataProviderForPath:fileName];
+    if(!provider)
+        return nil;
+
+    id<MZDataReadDelegate> otherDelegate = [MZReadNotification notifierWithController:self delegate:theDelegate];
+    return [provider loadFromFile:fileName delegate:otherDelegate queue:loadQueue];
+}
+
+- (id<MZDataController>)saveChanges:(MetaEdits *)data
+                           delegate:(id<MZDataWriteDelegate>)theDelegate
 {
     /*
     NSFileManager* mgr = [NSFileManager defaultManager];
@@ -365,7 +389,7 @@ static MZPluginController *gInstance = NULL;
     */
     id<MZDataProvider> provider = [data owner];
     id<MZDataWriteDelegate> otherDelegate = [MZWriteNotification notifierWithDelegate:theDelegate];
-    return [provider saveChanges:data delegate:otherDelegate];
+    return [provider saveChanges:data delegate:otherDelegate queue:saveQueue];
 }
 
 - (void)searchAllWithData:(NSDictionary *)data
@@ -413,10 +437,10 @@ static MZPluginController *gInstance = NULL;
 }
 
 - (void)dataProvider:(id<MZDataProvider>)provider
-          controller:(id<MZDataWriteController>)controller
+          controller:(id<MZDataController>)controller
         writeStartedForEdits:(MetaEdits *)edits
 {
-    NSArray* keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, MZDataWriteControllerNotificationKey, nil];
+    NSArray* keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, MZDataControllerNotificationKey, nil];
     NSArray* values = [NSArray arrayWithObjects:edits, controller, nil];
     NSDictionary* userInfo = [NSDictionary dictionaryWithObjects:values forKeys:keys];
     [[NSNotificationCenter defaultCenter]
@@ -428,7 +452,7 @@ static MZPluginController *gInstance = NULL;
 }
 
 - (void)dataProvider:(id<MZDataProvider>)provider
-          controller:(id<MZDataWriteController>)controller
+          controller:(id<MZDataController>)controller
         writeCanceledForEdits:(MetaEdits *)edits
             error:(NSError *)error
 {
@@ -437,14 +461,14 @@ static MZPluginController *gInstance = NULL;
     if(error)
     {
         keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, 
-                MZDataWriteControllerNotificationKey, 
-                MZDataWriteControllerErrorKey, nil];
+                MZDataControllerNotificationKey, 
+                MZDataControllerErrorKey, nil];
         values = [NSArray arrayWithObjects:edits, controller, error, nil];
     }
     else
     {
         keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, 
-                MZDataWriteControllerNotificationKey, nil];
+                MZDataControllerNotificationKey, nil];
         values = [NSArray arrayWithObjects:edits, controller, nil];
     }
 
@@ -458,7 +482,7 @@ static MZPluginController *gInstance = NULL;
 }
 
 - (void)dataProvider:(id<MZDataProvider>)provider
-          controller:(id<MZDataWriteController>)controller
+          controller:(id<MZDataController>)controller
         writeFinishedForEdits:(MetaEdits *)edits percent:(int)percent
 {
     if([delegate respondsToSelector:@selector(dataProvider:controller:writeFinishedForEdits:percent:)])
@@ -466,10 +490,10 @@ static MZPluginController *gInstance = NULL;
 }
 
 - (void)dataProvider:(id<MZDataProvider>)provider
-          controller:(id<MZDataWriteController>)controller
+          controller:(id<MZDataController>)controller
         writeFinishedForEdits:(MetaEdits *)edits
 {
-    NSArray* keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, MZDataWriteControllerNotificationKey, nil];
+    NSArray* keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, MZDataControllerNotificationKey, nil];
     NSArray* values = [NSArray arrayWithObjects:edits, controller, nil];
     NSDictionary* userInfo = [NSDictionary dictionaryWithObjects:values forKeys:keys];
     [[NSNotificationCenter defaultCenter]
@@ -479,6 +503,66 @@ static MZPluginController *gInstance = NULL;
 
     if([delegate respondsToSelector:@selector(dataProvider:controller:writeFinishedForEdits:)])
         [delegate dataProvider:provider controller:controller writeFinishedForEdits:edits];
+}
+
+@end
+
+
+@implementation MZReadNotification
+
++ (id)notifierWithController:(MZPluginController *)controller
+                    delegate:(id<MZEditsReadDelegate>)delegate
+{
+    return [[[self alloc] initWithController:controller delegate:delegate] autorelease];
+}
+
+- (id)initWithController:(MZPluginController *)theController
+                delegate:(id<MZEditsReadDelegate>)theDelegate
+{
+    self = [super init];
+    if(self)
+    {
+        controller = [theController retain];
+        delegate = [theDelegate retain];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [controller release];
+    [delegate release];
+    [super dealloc];
+}
+
+- (void)dataProvider:(id<MZDataProvider>)provider
+          controller:(id<MZDataController>)theController
+          loadedMeta:(MetaLoaded *)loaded
+            fromFile:(NSString *)fileName
+               error:(NSError *)error
+{
+    MetaEdits* edits = nil;
+    if(loaded)
+    {
+        id next = nil;
+        if([[controller delegate] respondsToSelector:@selector(pluginController:extraMetaDataForProvider:loaded:)])
+        {
+            next = [[controller delegate] pluginController:controller
+                                  extraMetaDataForProvider:provider
+                                                    loaded:loaded];
+        }
+        if(!next)
+            next = loaded;
+        edits = [[MetaEdits alloc] initWithProvider:next];
+        NSAssert([[edits fileName] isKindOfClass:[NSString class]], @"Bad file name");
+        NSAssert([[edits title] isKindOfClass:[NSString class]], @"Bad title");
+        NSDictionary* userInfo = [NSDictionary dictionaryWithObject:edits forKey:MZMetaEditsNotificationKey];
+        [[NSNotificationCenter defaultCenter]
+                postNotificationName:MZDataProviderLoadedNotification
+                              object:provider
+                            userInfo:userInfo];
+    }
+    [delegate dataProvider:provider controller:theController loadedEdits:edits fromFile:fileName error:error];
 }
 
 @end
@@ -525,7 +609,7 @@ static MZPluginController *gInstance = NULL;
     if(finishedSearches==performedSearches)
     {
         /*
-        NSArray* keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, MZDataWriteControllerNotificationKey, nil];
+        NSArray* keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, MZDataControllerNotificationKey, nil];
         NSArray* values = [NSArray arrayWithObjects:edits, controller, nil];
         NSDictionary* userInfo = [NSDictionary dictionaryWithObjects:values forKeys:keys];
         */

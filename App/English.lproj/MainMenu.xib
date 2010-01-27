@@ -13,8 +13,8 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="1723"/>
-			<integer value="495"/>
 			<integer value="296"/>
+			<integer value="465"/>
 			<integer value="1798"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">

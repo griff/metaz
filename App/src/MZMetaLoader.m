@@ -7,15 +7,19 @@
 //
 
 #import "MZMetaLoader.h"
+#import <MetaZKit/MetaZKit.h>
 #import "MZWriteQueue.h"
 #import "MZWriteQueueStatus.h"
 #import "NSUserDefaults+KeyPath.h"
 
-@interface LoadOperation : NSOperation
+@interface LoadOperation : NSObject <MZEditsReadDelegate>
 {
     NSString* filePath;
     NSUInteger index;
     MetaEdits* edits;
+    NSError* error;
+    id<MZDataController> controller;
+    id<MZEditsReadDelegate> delegate;
 }
 
 + (id)loadWithFilePath:(NSString *)filePath atIndex:(NSUInteger )index;
@@ -24,8 +28,15 @@
 @property (readonly) NSString* filePath;
 @property (readonly) NSUInteger index;
 @property (readonly) MetaEdits* edits;
+@property (readonly) NSError* error;
 
-- (void)main;
+@end
+
+@interface LoadOperationDelegate : NSObject <MZEditsReadDelegate>
+{
+    LoadOperation* owner;
+}
+- (id)initWithOwner:(LoadOperation*)owner;
 
 @end
 
@@ -62,7 +73,6 @@ static MZMetaLoader* sharedLoader = nil;
     } else if(self)
     {
         files = [[NSMutableArray alloc] init];
-        queue = [[NSOperationQueue alloc] init];
         loading = [[NSMutableArray alloc] init];
         sharedLoader = [self retain];
     }
@@ -72,7 +82,6 @@ static MZMetaLoader* sharedLoader = nil;
 -(void)dealloc
 {
     [files release];
-    [queue release];
     [loading release];
     [super dealloc];
 }
@@ -151,8 +160,17 @@ static MZMetaLoader* sharedLoader = nil;
 
         if(idx == NSNotFound)
         {
-            idx = [loading indexOfObject:fileName];
-            inLoading = idx != NSNotFound;
+            NSInteger i = 0;
+            for(LoadOperation* op in loading)
+            {
+                if([op.filePath isEqual:fileName])
+                {
+                    idx = i;
+                    inLoading = YES;
+                    break;
+                }
+                i++;
+            }
         }
             
         if(idx != NSNotFound)
@@ -219,8 +237,6 @@ static MZMetaLoader* sharedLoader = nil;
         lastSelection = MZUnsetVideoType;
     }
 
-    [loading addObjectsFromArray:fileNames];
-
     /*
     NSMutableArray* arr = [NSMutableArray arrayWithCapacity:[fileNames count]];
     int missingType = 0;
@@ -229,7 +245,7 @@ static MZMetaLoader* sharedLoader = nil;
     index = [indexes firstIndex];
     for ( NSString* fileName in fileNames )
     {
-        [queue addOperation:[LoadOperation loadWithFilePath:fileName atIndex:index]];
+        [loading addObject:[LoadOperation loadWithFilePath:fileName atIndex:index]];
         index = [indexes indexGreaterThanIndex:index];
     }
     /*
@@ -302,15 +318,17 @@ static MZMetaLoader* sharedLoader = nil;
 
 - (void)loadedFile:(LoadOperation *)operation
 {
+    [operation retain];
     MetaEdits* edits = operation.edits;
     if(!edits)
     {
-        [loading removeObject:operation.filePath];
+        [loading removeObject:operation];
         NSString* baseFile = [operation.filePath lastPathComponent];
         NSRunCriticalAlertPanel([NSString stringWithFormat:
             NSLocalizedString(@"The file '%@' is in an unsupported format.", @"Bad file title"), baseFile],
             @"", NSLocalizedString(@"OK", @"Button text"), nil, nil);
         MZLoggerError(@"Could no load file '%@'", operation.filePath);
+        [operation release];
         return;
     }
 
@@ -373,7 +391,8 @@ static MZMetaLoader* sharedLoader = nil;
     [self willChangeValueForKey:@"files"];
     [files insertObject:edits atIndex:index];
     [self didChangeValueForKey:@"files"];
-    [loading removeObject:operation.filePath];
+    [loading removeObject:operation];
+    [operation release];
 }
 
 - (void)moveObjects:(NSArray *)objects toIndex:(NSUInteger)index
@@ -423,6 +442,8 @@ static MZMetaLoader* sharedLoader = nil;
     {
         filePath = [theFilePath retain];
         index = theIndex;
+        delegate = [[LoadOperationDelegate alloc] initWithOwner:self];
+        controller = [[[MZPluginController sharedInstance] loadFromFile:filePath delegate:delegate] retain];
     }
     return self;
 }
@@ -430,21 +451,51 @@ static MZMetaLoader* sharedLoader = nil;
 - (void)dealloc
 {
     [filePath release];
+    [edits release];
+    [error release];
+    [controller release];
+    [delegate release];
     [super dealloc];
 }
 
 @synthesize edits;
 @synthesize index;
 @synthesize filePath;
+@synthesize error;
 
-- (void)main
+- (void)dataProvider:(id<MZDataProvider>)provider
+          controller:(id<MZDataController>)controller
+         loadedEdits:(MetaEdits *)theEdits
+            fromFile:(NSString *)fileName
+               error:(NSError *)theError
 {
-    if(![self isCancelled])
-        edits = [[MZPluginController sharedInstance] loadDataFromFile:filePath];
+    edits = theEdits;
+    error = theError;
     [[MZMetaLoader sharedLoader] performSelectorOnMainThread:@selector(loadedFile:) 
                 withObject:self
                 waitUntilDone:YES
                 modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]]; 
+}
+
+@end
+
+@implementation LoadOperationDelegate
+
+- (id)initWithOwner:(LoadOperation*)theOwner
+{
+    self = [super init];
+    if(self)
+        owner = theOwner;
+    return self;
+}
+
+- (void)dataProvider:(id<MZDataProvider>)provider
+          controller:(id<MZDataController>)controller
+         loadedEdits:(MetaEdits *)theEdits
+            fromFile:(NSString *)fileName
+               error:(NSError *)theError
+{
+    [owner dataProvider:provider controller:controller loadedEdits:theEdits fromFile:fileName error:theError];
 }
 
 @end

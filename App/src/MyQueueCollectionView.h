@@ -9,7 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #import "MGCollectionView.h"
 
-@interface MyQueueCollectionView : MGCollectionView {
+@interface MyQueueCollectionView : MGCollectionView
+{
     NSArrayController* queues;
 }
 @property(nonatomic, retain) IBOutlet NSArrayController* queues;

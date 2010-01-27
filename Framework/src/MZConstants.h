@@ -199,8 +199,8 @@ MZKIT_EXTERN NSString* const MZMetaEditsDeallocating;
 
 MZKIT_EXTERN NSString* const MZMetaEditsNotificationKey;
 MZKIT_EXTERN NSString* const MZUndoActionNameKey;
-MZKIT_EXTERN NSString* const MZDataWriteControllerNotificationKey;
-MZKIT_EXTERN NSString* const MZDataWriteControllerErrorKey;
+MZKIT_EXTERN NSString* const MZDataControllerNotificationKey;
+MZKIT_EXTERN NSString* const MZDataControllerErrorKey;
 
 // Standard alert ids
 MZKIT_EXTERN NSString* const MZDataProviderFileAlreadyLoadedWarningKey;
