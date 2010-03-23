@@ -79,6 +79,7 @@ NSDictionary* findBinding(NSWindow* window) {
 @synthesize searchField;
 @synthesize chapterEditor;
 @synthesize remainingInShortDescription;
+@synthesize loadingIndicator;
 
 #pragma mark - initialization
 
@@ -130,6 +131,18 @@ NSDictionary* findBinding(NSWindow* window) {
         addObserver:self
            selector:@selector(removedEdit:)
                name:MZMetaEditsDeallocating
+             object:nil];
+
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(startedLoading:)
+               name:MZMetaLoaderStartedNotification
+             object:nil];
+
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(finishedLoading:)
+               name:MZMetaLoaderFinishedNotification
              object:nil];
 
     [[MZPluginController sharedInstance] setDelegate:self];
@@ -731,6 +744,23 @@ NSDictionary* findBinding(NSWindow* window) {
     MZLoggerDebug(@"Finished search");
     if(searches <= 0)
         [searchIndicator stopAnimation:self];
+}
+
+- (void)startedLoading:(NSNotification *)note
+{
+    if(loadings == 0)
+        [loadingIndicator setDoubleValue:0.0];
+    loadings++;
+    [loadingIndicator setMaxValue:loadings];
+    [loadingIndicator setHidden:NO];
+}
+
+- (void)finishedLoading:(NSNotification *)note
+{
+    [loadingIndicator incrementBy:1.0];
+    loadings--;
+    if(loadings == 0)
+        [loadingIndicator setHidden:YES];
 }
 
 - (void)imageEditorDidClose:(NSNotification *)note

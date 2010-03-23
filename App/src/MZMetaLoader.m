@@ -12,38 +12,22 @@
 #import "MZWriteQueueStatus.h"
 #import "NSUserDefaults+KeyPath.h"
 
-@interface LoadOperation : NSObject <MZEditsReadDelegate>
+NSString* const MZMetaLoaderStartedNotification = @"MZMetaLoaderStartedNotification";
+NSString* const MZMetaLoaderFinishedNotification = @"MZMetaLoaderFinishedNotification";
+
+@interface MZLoadOperationDelegate : NSObject <MZEditsReadDelegate>
 {
-    NSString* filePath;
-    NSUInteger index;
-    MetaEdits* edits;
-    NSError* error;
-    id<MZDataController> controller;
-    id<MZEditsReadDelegate> delegate;
+    MZLoadOperation* owner;
 }
-
-+ (id)loadWithFilePath:(NSString *)filePath atIndex:(NSUInteger )index;
-- (id)initWithFilePath:(NSString *)filePath atIndex:(NSUInteger )index;
-
-@property (readonly) NSString* filePath;
-@property (readonly) NSUInteger index;
-@property (readonly) MetaEdits* edits;
-@property (readonly) NSError* error;
-
-@end
-
-@interface LoadOperationDelegate : NSObject <MZEditsReadDelegate>
-{
-    LoadOperation* owner;
-}
-- (id)initWithOwner:(LoadOperation*)owner;
+- (id)initWithOwner:(MZLoadOperation*)owner;
 
 @end
 
 
 @interface MZMetaLoader (Private)
 
-- (void)loadedFile:(LoadOperation *)operation;
+- (void)loadedFile:(MZLoadOperation *)operation;
+- (void)notifyLoadedFile:(MZLoadOperation *)operation;
 
 @end
 
@@ -161,7 +145,7 @@ static MZMetaLoader* sharedLoader = nil;
         if(idx == NSNotFound)
         {
             NSInteger i = 0;
-            for(LoadOperation* op in loading)
+            for(MZLoadOperation* op in loading)
             {
                 if([op.filePath isEqual:fileName])
                 {
@@ -245,7 +229,12 @@ static MZMetaLoader* sharedLoader = nil;
     index = [indexes firstIndex];
     for ( NSString* fileName in fileNames )
     {
-        [loading addObject:[LoadOperation loadWithFilePath:fileName atIndex:index]];
+        MZLoadOperation* operation = [MZLoadOperation loadWithFilePath:fileName atIndex:index];
+        [loading addObject:operation];
+        [[NSNotificationCenter defaultCenter]
+            postNotificationName:MZMetaLoaderStartedNotification
+                          object:operation
+                        userInfo:nil];
         index = [indexes indexGreaterThanIndex:index];
     }
     /*
@@ -316,7 +305,7 @@ static MZMetaLoader* sharedLoader = nil;
     return YES;
 }
 
-- (void)loadedFile:(LoadOperation *)operation
+- (void)loadedFile:(MZLoadOperation *)operation
 {
     [operation retain];
     MetaEdits* edits = operation.edits;
@@ -328,6 +317,7 @@ static MZMetaLoader* sharedLoader = nil;
             NSLocalizedString(@"The file '%@' is in an unsupported format.", @"Bad file title"), baseFile],
             @"", NSLocalizedString(@"OK", @"Button text"), nil, nil);
         MZLoggerError(@"Could no load file '%@'", operation.filePath);
+        [self notifyLoadedFile:operation];
         [operation release];
         return;
     }
@@ -372,7 +362,9 @@ static MZMetaLoader* sharedLoader = nil;
 
             if(returnCode != NSAlertFirstButtonReturn)
             {
-                [loading removeObject:operation.filePath];
+                [loading removeObject:operation];
+                [self notifyLoadedFile:operation];
+                [operation release];
                 return;
             }
                 
@@ -392,8 +384,18 @@ static MZMetaLoader* sharedLoader = nil;
     [files insertObject:edits atIndex:index];
     [self didChangeValueForKey:@"files"];
     [loading removeObject:operation];
+    [self notifyLoadedFile:operation];
     [operation release];
 }
+
+- (void)notifyLoadedFile:(MZLoadOperation *)operation;
+{
+    [[NSNotificationCenter defaultCenter]
+        postNotificationName:MZMetaLoaderFinishedNotification
+                      object:operation
+                    userInfo:nil];
+}
+
 
 - (void)moveObjects:(NSArray *)objects toIndex:(NSUInteger)index
 {
@@ -428,7 +430,7 @@ static MZMetaLoader* sharedLoader = nil;
 
 @end
 
-@implementation LoadOperation
+@implementation MZLoadOperation
 
 + (id)loadWithFilePath:(NSString *)filePath atIndex:(NSUInteger )index
 {
@@ -442,7 +444,7 @@ static MZMetaLoader* sharedLoader = nil;
     {
         filePath = [theFilePath retain];
         index = theIndex;
-        delegate = [[LoadOperationDelegate alloc] initWithOwner:self];
+        delegate = [[MZLoadOperationDelegate alloc] initWithOwner:self];
         controller = [[[MZPluginController sharedInstance] loadFromFile:filePath delegate:delegate] retain];
     }
     return self;
@@ -479,9 +481,9 @@ static MZMetaLoader* sharedLoader = nil;
 
 @end
 
-@implementation LoadOperationDelegate
+@implementation MZLoadOperationDelegate
 
-- (id)initWithOwner:(LoadOperation*)theOwner
+- (id)initWithOwner:(MZLoadOperation*)theOwner
 {
     self = [super init];
     if(self)

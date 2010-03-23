@@ -41,6 +41,8 @@
     SearchProfile* activeProfile;
     NSInteger searches;
     ChapterEditor* chapterEditor;
+    NSProgressIndicator* loadingIndicator;
+    NSInteger loadings;
 }
 @property (nonatomic, retain) IBOutlet NSWindow* window;
 @property (nonatomic, retain) IBOutlet NSTabView *tabView;
@@ -59,6 +61,7 @@
 @property (nonatomic, retain) IBOutlet NSArrayController* searchController;
 @property (nonatomic, retain) IBOutlet NSSearchField* searchField;
 @property (nonatomic, retain) IBOutlet ChapterEditor* chapterEditor;
+@property (nonatomic, retain) IBOutlet NSProgressIndicator* loadingIndicator;
 @property (readonly) NSInteger remainingInShortDescription;
 
 + (void)initialize;

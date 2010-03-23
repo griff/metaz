@@ -9,6 +9,29 @@
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaZKit.h>
 
+MZKIT_EXTERN NSString* const MZMetaLoaderStartedNotification;
+MZKIT_EXTERN NSString* const MZMetaLoaderFinishedNotification;
+
+@interface MZLoadOperation : NSObject <MZEditsReadDelegate>
+{
+    NSString* filePath;
+    NSUInteger index;
+    MetaEdits* edits;
+    NSError* error;
+    id<MZDataController> controller;
+    id<MZEditsReadDelegate> delegate;
+}
+
++ (id)loadWithFilePath:(NSString *)filePath atIndex:(NSUInteger )index;
+- (id)initWithFilePath:(NSString *)filePath atIndex:(NSUInteger )index;
+
+@property (readonly) NSString* filePath;
+@property (readonly) NSUInteger index;
+@property (readonly) MetaEdits* edits;
+@property (readonly) NSError* error;
+
+@end
+
 @interface MZMetaLoader : NSObject
 {
     NSMutableArray* files;
