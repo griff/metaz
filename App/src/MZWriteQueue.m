@@ -197,7 +197,7 @@ static MZWriteQueue* sharedQueue = nil;
 
 -(BOOL)loadQueueWithError:(NSError **)error
 {
-    NSFileManager *mgr = [NSFileManager defaultManager];
+    NSFileManager *mgr = [NSFileManager manager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     for(NSString * path in paths)
     {
@@ -241,7 +241,7 @@ static MZWriteQueue* sharedQueue = nil;
 
 -(BOOL)saveQueueWithError:(NSError **)error
 {
-    NSFileManager *mgr = [NSFileManager defaultManager];
+    NSFileManager *mgr = [NSFileManager manager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     NSMutableArray* items = [NSMutableArray array];
     for(MZWriteQueueStatus* obj in queueItems)

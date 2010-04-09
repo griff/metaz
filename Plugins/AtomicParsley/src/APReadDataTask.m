@@ -95,7 +95,7 @@
 
     NSString* artfile = [file stringByAppendingString:@"_artwork_1"];
         
-    NSFileManager* mgr = [NSFileManager defaultManager];
+    NSFileManager* mgr = [NSFileManager manager];
     BOOL isDir;
     if([mgr fileExistsAtPath:[artfile stringByAppendingString:@".png"] isDirectory:&isDir] && !isDir)
     {
@@ -120,16 +120,17 @@
 
 @implementation APChapterReadDataTask
 
-+ (id)taskWithDictionary:(NSMutableDictionary *)tagdict
++ (id)taskWithFileName:(NSString*)fileName dictionary:(NSMutableDictionary *)tagdict;
 {
-    return [[[[self class] alloc] initWithDictionary:tagdict] autorelease];
+    return [[[[self class] alloc] initWithFileName:fileName dictionary:tagdict] autorelease];
 }
 
-- (id)initWithDictionary:(NSMutableDictionary *)theTagdict
+- (id)initWithFileName:(NSString*)fileName dictionary:(NSMutableDictionary *)theTagdict;
 {
     self = [super init];
     if(self)
     {
+        [self setArguments:[NSArray arrayWithObjects:@"-l", fileName, nil]];
         tagdict = [theTagdict retain];
     }
     return self;
@@ -157,6 +158,9 @@
 
 - (void)parseData
 {
+    if(!tagdict)
+        return;
+        
     NSString* str = [[[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding] autorelease];
     
     NSRange f = [str rangeOfString:@"Duration "];
@@ -197,6 +201,7 @@
 @end
 
 
+/*
 @implementation APReadOperationsController
 
 + (id)controllerWithProvider:(id<MZDataProvider>)provider
@@ -245,3 +250,4 @@
 }
 
 @end
+*/

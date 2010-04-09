@@ -41,6 +41,8 @@
     [task waitUntilExit];
     [self logFromProgram:@"mp4chaps" pipe:err];
     int ret = [task terminationStatus];
+    if(ret!=0)
+        MZLoggerDebug(@"Encountered bad chapter write issue: %d", ret);
     [task release];
     return ret;
 }
@@ -424,15 +426,14 @@
                             delegate:(id<MZDataReadDelegate>)delegate
                                queue:(NSOperationQueue *)queue
 {
-    APReadOperationsController* op = [APReadOperationsController
+    MZReadOperationsController* op = [MZReadOperationsController
         controllerWithProvider:self
                   fromFileName:fileName
                       delegate:delegate];
         
         
-    APChapterReadDataTask* chapterRead = [APChapterReadDataTask taskWithDictionary:op.tagdict];
+    APChapterReadDataTask* chapterRead = [APChapterReadDataTask taskWithFileName:fileName dictionary:op.tagdict];
     [chapterRead setLaunchPath:[self launchChapsPath]];
-    [chapterRead setArguments:[NSArray arrayWithObjects:@"-l", fileName, nil]];
     [op addOperation:chapterRead];
     
     APPictureReadDataTask* pictureRead = [APPictureReadDataTask taskWithDictionary:op.tagdict];
@@ -666,7 +667,7 @@
         
         file = [file stringByAppendingString:@"_artwork_1"];
         
-        NSFileManager* mgr = [NSFileManager defaultManager];
+        NSFileManager* mgr = [NSFileManager manager];
         BOOL isDir;
         if([mgr fileExistsAtPath:[file stringByAppendingString:@".png"] isDirectory:&isDir] && !isDir)
         {
@@ -1048,6 +1049,31 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
         [args addObject:@"name=iTunMOVI"];
         [args addObject:@"domain=com.apple.iTunes"];
     }
+    
+    NSString* fileName;
+    if([args count]-3 == 0)
+        fileName = [data loadedFileName];
+    else
+        fileName = [data savedTempFileName];
+        
+    APWriteOperationsController* ctrl = 
+        [APWriteOperationsController controllerWithProvider:self
+                                                   delegate:delegate
+                                                      edits:data];
+
+    APMainWriteTask* mainWrite = [APMainWriteTask taskWithController:ctrl pictureFile:pictureFile];
+    [mainWrite setLaunchPath:[self launchPath]];
+    [mainWrite setArguments:args];
+    [ctrl addOperation:mainWrite];
+
+    // Sometimes when writing to a network drive the file is left in a state
+    // (I think it is a cache flush issue) so that a subsequent chapter write
+    // breaks the file. I hope (have not encountered the issue in a long time)
+    // that this extra chapter read at least detects the issue.
+    APChapterReadDataTask* chapterRead = [APChapterReadDataTask taskWithFileName:fileName dictionary:nil];
+    [chapterRead setLaunchPath:[self launchChapsPath]];
+    [chapterRead addDependency:mainWrite];
+    [ctrl addOperation:chapterRead];
 
     // Special chapters handling
     id chaptersObj = [changes objectForKey:MZChaptersTagIdent];
@@ -1071,8 +1097,22 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
             chaptersFile = nil;
         }
     }
+    
+    if(chaptersFile)
+    {
+        APChapterWriteTask* chapterWrite = [APChapterWriteTask
+                taskWithFileName:fileName
+                    chaptersFile:chaptersFile];
+        [chapterWrite setLaunchPath:[self launchChapsPath]];
+        [chapterWrite addDependency:chapterRead];
+        [ctrl addOperation:chapterWrite];
+    }
 
+    [writes addObject:ctrl];
+    [ctrl addOperationsToQueue:queue];
 
+    return ctrl;
+    /*
     NSTask* task = [[[NSTask alloc] init] autorelease];
     [task setLaunchPath:[self launchPath]];
     [task setArguments:args];
@@ -1088,6 +1128,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     [writes addObject:manager];
     
     return manager;
+    */
 }
 
 - (void)removeWriteManager:(id)writeManager

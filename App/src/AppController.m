@@ -643,7 +643,7 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (IBAction)viewLog:(id)sender
 {
-    NSFileManager *mgr = [NSFileManager defaultManager];
+    NSFileManager *mgr = [NSFileManager manager];
 
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
     for(NSString* dir in paths)
