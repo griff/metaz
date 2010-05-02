@@ -6,9 +6,9 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
+#import <MetaZKit/MetaZKit.h>
 #import "FilesTableView.h"
 #import "MZMetaLoader.h"
-#import "NSArray+Mapping.h"
 
 #define MZFilesTableRows @"MZFilesTableRows"
 

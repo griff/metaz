@@ -63,7 +63,7 @@
 - (void)view:(id)sender
 {
     MZSearchResult* result = [sender representedObject];
-    NSString* asin = [result valueForKey:ASINTagIdent];
+    NSString* asin = [result valueForKey:MZASINTagIdent];
     
     NSString* str = [[NSString stringWithFormat:
         @"http://amzn.com/%@",
@@ -72,7 +72,9 @@
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
-- (BOOL)searchWithData:(NSDictionary *)data delegate:(id<MZSearchProviderDelegate>)delegate;
+- (BOOL)searchWithData:(NSDictionary *)data
+              delegate:(id<MZSearchProviderDelegate>)delegate
+                 queue:(NSOperationQueue *)queue;
 {
     NSURL* searchURL = [NSURL URLWithString:@"http://ecs.amazonaws.com/onca/xml"];
     NSMutableDictionary* params = [NSMutableDictionary dictionary];
@@ -123,7 +125,7 @@
     for(NSString* key in [params allKeys])
         MZLoggerDebug(@"    '%@' -> '%@'", key, [params objectForKey:key]);
     search = [[AmazonSearch alloc] initWithProvider:self delegate:delegate url:searchURL parameters:params];
-    [search start];
+    [queue addOperation:search];
     return YES;
 }
 

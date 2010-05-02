@@ -9,8 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaZKit.h>
 
-#define ASINTagIdent @"asin"
-
 @interface AmazonPlugin : MZPlugin
 {
     NSArray* searchProviders;

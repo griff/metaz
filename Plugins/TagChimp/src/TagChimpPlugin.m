@@ -13,10 +13,12 @@
 
 + (void)initialize
 {
-    static BOOL initialized = NO;
-    /* Make sure code only gets executed once. */
-    if (initialized == YES) return;
-    initialized = YES;
+    @synchronized(self)
+    {
+        static BOOL initialized = NO;
+        if (initialized == YES) return;
+        initialized = YES;
+    }
 
     [MZTag registerTag:[MZIntegerTag tagWithIdentifier:TagChimpIdTagIdent]];
 }

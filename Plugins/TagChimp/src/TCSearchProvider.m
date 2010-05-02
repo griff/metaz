@@ -79,7 +79,9 @@
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
-- (BOOL)searchWithData:(NSDictionary *)data delegate:(id<MZSearchProviderDelegate>)delegate;
+- (BOOL)searchWithData:(NSDictionary *)data
+              delegate:(id<MZSearchProviderDelegate>)delegate
+                 queue:(NSOperationQueue *)queue;
 {
     NSURL* searchURL = [NSURL URLWithString:@"https://www.tagchimp.com/ape/search.php"];
     NSMutableDictionary* params = [NSMutableDictionary dictionary];
@@ -156,7 +158,7 @@
     for(NSString* key in [params allKeys])
         MZLoggerDebug(@"    '%@' -> '%@'", key, [params objectForKey:key]);
     search = [[TCSearch alloc] initWithProvider:self delegate:delegate url:searchURL parameters:params];
-    [search start];
+    [queue addOperation:search];
     return YES;
 }
 

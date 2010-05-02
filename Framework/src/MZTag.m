@@ -38,7 +38,6 @@
     @synchronized(self)
     {
         static BOOL initialized = NO;
-        /* Make sure code only gets executed once. */
         if (initialized == YES) return;
         initialized = YES;
     }
@@ -100,6 +99,12 @@
     [self registerTag:[MZReadOnlyTag tagWithIdentifier:MZChapterNamesTagIdent]];
 
     [self registerTag:[MZTimeCodeTag tagWithIdentifier:MZDurationTagIdent]];
+    
+    [self registerTag:[MZStringTag tagWithIdentifier:MZIMDBTagIdent]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZASINTagIdent]];
+    [self registerTag:[MZIntegerTag tagWithIdentifier:MZDVDSeasonTagIdent]];
+    [self registerTag:[MZIntegerTag tagWithIdentifier:MZDVDEpisodeTagIdent]];
+
 }
 
 static NSMutableDictionary *sharedTags = nil;

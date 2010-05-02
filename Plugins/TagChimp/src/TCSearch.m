@@ -11,24 +11,12 @@
 #import <MetaZKit/MetaZKit.h>
 
 @implementation TCSearch
-/*
-@synthesize isFinished;
-@synthesize isExecuting;
-*/
 
 - (id)initWithProvider:(id)theProvider delegate:(id<MZSearchProviderDelegate>)theDelegate url:(NSURL *)url parameters:(NSDictionary *)params;
 {
     self = [super initWithProvider:theProvider delegate:theDelegate url:url usingVerb:@"GET" parameters:params];
     if(self)
     {
-        /*
-        searchURL = [url retain];
-        parameters = [params retain];
-        provider = [theProvider retain];
-        delegate = [theDelegate retain];
-        wrapper = [[MZRESTWrapper alloc] init];
-        wrapper.delegate = self;
-        */
         NSArray* tags = [NSArray arrayWithObjects:
             MZTitleTagIdent, MZGenreTagIdent,
             MZDirectorTagIdent, MZProducerTagIdent,
@@ -119,56 +107,12 @@
 
 - (void)dealloc
 {
-    /*
-    self.isExecuting = NO;
-    self.isFinished = YES;
-    [parameters release];
-    [searchURL release];
-    [wrapper cancelConnection];
-    [wrapper release];
-    [delegate release];
-    */
     [mapping release];
     //[ratingNames release];
     [super dealloc];
 }
 
-/*
-- (void)start
-{
-    self.isExecuting = YES;
-    if([self isCancelled])
-    {
-        [delegate searchFinished];
-        self.isExecuting = NO;
-        self.isFinished = YES;
-    }
-    else
-        [wrapper sendRequestTo:searchURL usingVerb:@"GET" withParameters:parameters];
-}
 
-- (BOOL)isConcurrent
-{
-    return YES;
-}
-
-- (BOOL)isExecuting
-{
-    return wrapper.connection != nil;
-}
-
-- (BOOL)isFinished
-{
-    return self.finished;
-}
-
-- (void)cancel
-{
-    [super cancel];
-    if(self.isExecuting)
-        [wrapper cancelConnection];
-}
-*/
 
 #pragma mark - MZRESTWrapperDelegate
 
@@ -316,10 +260,7 @@
                 [coverArtLarge stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             MZRemoteData* data = [MZRemoteData dataWithURL:url];
             [dict setObject:data forKey:MZPictureTagIdent];
-            if([NSThread mainThread] != [NSThread currentThread])
-                [data performSelectorOnMainThread:@selector(loadData) withObject:nil waitUntilDone:NO];
-            else
-                [data loadData];
+            [data loadData];
         }
         
         // 0 episode fix
@@ -387,35 +328,7 @@
     }
     MZLoggerDebug(@"Parsed TagChimp results %d", [results count]);
     [delegate searchProvider:provider result:results];
-    [delegate searchFinished];
-    self.isExecuting = NO;
-    self.isFinished = YES;
+    [super wrapper:theWrapper didRetrieveData:data];
 }
-/*
-
-- (void)wrapper:(MZRESTWrapper *)theWrapper didFailWithError:(NSError *)error
-{
-    MZLoggerError(@"TagChimp search failed: %@", [error localizedDescription]);
-    [delegate searchFinished];
-    self.isExecuting = NO;
-    self.isFinished = YES;
-}
-
-- (void)wrapper:(MZRESTWrapper *)theWrapper didReceiveStatusCode:(int)statusCode
-{
-    MZLoggerError(@"TagChimp got status code: %d", statusCode);
-    [delegate searchFinished];
-    self.isExecuting = NO;
-    self.isFinished = YES;
-}
-
-- (void)wrapperWasCanceled:(MZRESTWrapper *)theWrapper
-{
-    if(self.isExecuting)
-        [delegate searchFinished];
-    self.isExecuting = NO;
-    self.isFinished = YES;
-}
-*/
 
 @end

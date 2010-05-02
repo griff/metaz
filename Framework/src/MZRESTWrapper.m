@@ -21,6 +21,7 @@
 @synthesize mimeType;
 @synthesize username;
 @synthesize password;
+@synthesize statusCode;
 @synthesize delegate;
 @synthesize connection;
 
@@ -239,6 +240,7 @@
     if (asynchronous)
     {
         [self terminateConnection];
+        statusCode = -1;
         NSURLConnection* conn = [[NSURLConnection alloc] initWithRequest:request
                                                delegate:self];
         
@@ -254,11 +256,13 @@
         }
         else
         {
+            /* Below does not work
             if([NSRunLoop currentRunLoop] != [NSRunLoop mainRunLoop])
             {
                 [conn unscheduleFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
                 [conn scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
             }
+            */
             [conn start];
             self.connection = conn;
         }
@@ -266,6 +270,7 @@
     }
     else
     {
+        statusCode = -1;
         NSURLResponse* response = [[NSURLResponse alloc] init];
         NSError* error = [[NSError alloc] init];
         NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -304,8 +309,8 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
-    int statusCode = [httpResponse statusCode];
-    MZLoggerDebug(@"Got HTTP response %d", statusCode);
+    statusCode = [httpResponse statusCode];
+    //MZLoggerDebug(@"Got HTTP response %d", statusCode);
     switch (statusCode)
     {
         case 200:

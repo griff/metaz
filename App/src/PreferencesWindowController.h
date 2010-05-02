@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MZPluginController.h"
+#import <MetaZKit/MetaZKit.h>
 
 @interface PreferencesWindowController : NSWindowController {
     NSToolbarItem* pluginsButton;

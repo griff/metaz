@@ -34,6 +34,7 @@
     NSObject<MZRESTWrapperDelegate> *delegate;
     NSString *username;
     NSString *password;
+    NSInteger statusCode;
 }
  
 @property (nonatomic, readonly) NSData *receivedData;
@@ -41,6 +42,7 @@
 @property (nonatomic, copy) NSString *mimeType;
 @property (nonatomic, copy) NSString *username;
 @property (nonatomic, copy) NSString *password;
+@property (nonatomic, readonly) NSInteger statusCode;
 @property (nonatomic, assign) NSObject<MZRESTWrapperDelegate> *delegate; // Do not retain delegates!
 @property (retain) NSURLConnection* connection;
  

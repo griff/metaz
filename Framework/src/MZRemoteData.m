@@ -41,6 +41,8 @@
 
 @interface MZRemoteData()
 
++ (NSOperationQueue *)sharedQueue;
+
 @property(readwrite, retain) NSData* data;
 @property(readwrite) BOOL isLoaded;
 @property(readwrite, retain) NSError* error;
@@ -49,16 +51,18 @@
 @end
 
 
-static NSOperationQueue *MZSharedRemoteDataOperationQueue() {
+@implementation MZRemoteData
+
++ (NSOperationQueue *)sharedQueue
+{
     static NSOperationQueue *_MZSharedRemoteDataOperationQueue = nil;
-    if (_MZSharedRemoteDataOperationQueue == nil) {
-        _MZSharedRemoteDataOperationQueue = [[NSOperationQueue alloc] init];
+    @synchronized(self)
+    {
+        if (_MZSharedRemoteDataOperationQueue == nil)
+            _MZSharedRemoteDataOperationQueue = [[NSOperationQueue alloc] init];
     }
     return _MZSharedRemoteDataOperationQueue;
 }
-
-
-@implementation MZRemoteData
 
 + (id)dataWithURL:(NSURL *)url
 {
@@ -81,7 +85,16 @@ static NSOperationQueue *MZSharedRemoteDataOperationQueue() {
 @synthesize error;
 @synthesize operation;
 
-- (NSOperation *)loadData
+
+- (void)loadData
+{
+    if([NSThread mainThread] != [NSThread currentThread])
+        [self performSelectorOnMainThread:@selector(startLoadOperation) withObject:nil waitUntilDone:NO];
+    else
+        [self startLoadOperation];
+}
+
+- (NSOperation *)startLoadOperation
 {
     @synchronized(self)
     {
@@ -91,7 +104,7 @@ static NSOperationQueue *MZSharedRemoteDataOperationQueue() {
             self.isLoaded = NO;
             NSOperation* op = [[[MZRemoteDataOperation alloc] initWithOwner:self] autorelease];
             self.operation = op;
-            [MZSharedRemoteDataOperationQueue() addOperation:op];
+            [[MZRemoteData sharedQueue] addOperation:op];
             return op;
         }
         return self.operation;

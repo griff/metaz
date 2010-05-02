@@ -22,7 +22,9 @@
 - (NSImage *)icon;
 - (NSString *)identifier;
 - (NSArray *)supportedSearchTags;
-- (BOOL)searchWithData:(NSDictionary *)data delegate:(id<MZSearchProviderDelegate>)delegate;
+- (BOOL)searchWithData:(NSDictionary *)data
+              delegate:(id<MZSearchProviderDelegate>)delegate
+                 queue:(NSOperationQueue *)queue;
 @optional
 - (NSMenu *)menuForResult:(MZSearchResult *)result;
 @end

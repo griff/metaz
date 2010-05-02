@@ -78,8 +78,8 @@
         [super startOnMainThread];
     else
     {
-        self.isExecuting = NO;
-        self.isFinished = YES;
+        self.executing = NO;
+        self.finished = YES;
     }
 }
 
@@ -88,8 +88,8 @@
     if(status != 0 || [self isCancelled])
     {
         [self setErrorFromStatus:status];
-        self.isExecuting = NO;
-        self.isFinished = YES;
+        self.executing = NO;
+        self.finished = YES;
         return;
     }
 
@@ -111,8 +111,8 @@
     }
     
 
-    self.isExecuting = NO;
-    self.isFinished = YES;
+    self.executing = NO;
+    self.finished = YES;
 }
 
 @end

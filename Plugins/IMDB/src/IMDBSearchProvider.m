@@ -71,7 +71,9 @@
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
-- (BOOL)searchWithData:(NSDictionary *)data delegate:(id<MZSearchProviderDelegate>)delegate;
+- (BOOL)searchWithData:(NSDictionary *)data
+              delegate:(id<MZSearchProviderDelegate>)delegate
+                 queue:(NSOperationQueue *)queue;
 {
     NSString* title = [data objectForKey:MZTitleTagIdent];
 
@@ -88,7 +90,7 @@
 
     MZLoggerDebug(@"Sent request to IMDB: %@", title);
     search = [[IMDBSearch alloc] initWithTitle:title delegate:delegate];
-    [search start];
+    [queue addOperation:search];
     return YES;
 }
 

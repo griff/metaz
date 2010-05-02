@@ -23,7 +23,7 @@
 @interface APWriteManager : NSOperation <MZDataController>
 {
     NSTask* task;
-    BOOL isFinished;
+    BOOL finished;
     NSString* pictureFile;
     NSString* chaptersFile;
     MetaEdits* edits;
@@ -35,7 +35,7 @@
 @property(readonly) id<MZDataWriteDelegate> delegate;
 @property(readonly) MetaEdits* edits;
 @property(readonly) APDataProvider* provider;
-@property(assign) BOOL isFinished;
+@property(getter=isFinished,assign) BOOL finished;
 
 + (id)managerForProvider:(APDataProvider*)provider
                     task:(NSTask *)task
@@ -54,7 +54,7 @@
 
 - (BOOL)isConcurrent;
 - (BOOL)isExecuting;
-- (BOOL)isFinished;
+//- (BOOL)isFinished;
 
 - (void)cancel;
 

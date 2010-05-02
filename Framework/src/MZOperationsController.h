@@ -13,13 +13,13 @@
 {
     NSArray* operations;
     NSError* error;
-    BOOL isFinished;
-    BOOL isCancelled;
+    BOOL finished;
+    BOOL cancelled;
 }
 @property(readonly,copy) NSArray* operations;
 @property(retain) NSError* error;
-@property(assign) BOOL isFinished;
-@property(assign) BOOL isCancelled;
+@property(getter=isFinished,assign) BOOL finished;
+@property(getter=isCancelled,assign) BOOL cancelled;
 
 - (void)addOperation:(NSOperation *)operation;
 - (void)removeOperation:(NSOperation *)operation;

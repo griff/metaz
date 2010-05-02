@@ -44,6 +44,7 @@
     NSArray* typesCache;
     NSOperationQueue* loadQueue;
     NSOperationQueue* saveQueue;
+    NSOperationQueue* searchQueue;
 }
 
 + (NSString *)extractTitleFromFilename:(NSString *)fileName;
@@ -53,6 +54,7 @@
 @property(assign) id<MZPluginControllerDelegate> delegate;
 @property(readonly) NSOperationQueue* loadQueue;
 @property(readonly) NSOperationQueue* saveQueue;
+@property(readonly) NSOperationQueue* searchQueue;
 
 - (NSArray *)plugins;
 - (NSArray *)loadedPlugins;

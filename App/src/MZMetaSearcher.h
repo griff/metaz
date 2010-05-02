@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MZSearchProvider.h"
+#import <MetaZKit/MetaZKit.h>
 
 @interface MZMetaSearcher : NSObject <MZSearchProviderDelegate> {
     NSMutableArray* results;

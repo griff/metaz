@@ -8,8 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Growl/Growl.h>
+#import <UKDockProgressIndicator.h>
 #import "MZWriteQueue.h"
-#import "UKDockProgressIndicator.h"
 
 @interface QueueController : NSObject <NSUserInterfaceValidations,GrowlApplicationBridgeDelegate> {
     NSArrayController* filesController;

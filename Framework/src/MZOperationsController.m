@@ -25,7 +25,7 @@
     if(self)
     {
         operations = [[NSArray alloc] init];
-        isFinished = NO;
+        finished = NO;
     }
     return self;
 }
@@ -34,6 +34,7 @@
 {
     for(NSOperation* op in operations)
     {
+        //[op gtm_removeObserver:self forKeyPath:@"finished" selector:@selector(operationFinished:)];
         [op gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:)];
         if([op isKindOfClass:[MZErrorOperation class]])
             [op gtm_removeObserver:self forKeyPath:@"error" selector:@selector(errorChanged:)];
@@ -44,8 +45,8 @@
 
 @synthesize operations;
 @synthesize error;
-@synthesize isFinished;
-@synthesize isCancelled;
+@synthesize finished;
+@synthesize cancelled;
 
 - (void)addOperation:(NSOperation *)operation
 {
@@ -54,6 +55,7 @@
         if([operation isKindOfClass:[MZErrorOperation class]])
             [operation gtm_addObserver:self forKeyPath:@"error" selector:@selector(errorChanged:) userInfo:nil options:0];
         [operation gtm_addObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:) userInfo:nil options:0];
+        //[operation gtm_addObserver:self forKeyPath:@"finished" selector:@selector(operationFinished:) userInfo:nil options:0];
         if([self isCancelled])
             [operation cancel];
         NSArray* old = operations;
@@ -64,6 +66,7 @@
 
 - (void)removeOperation:(NSOperation *)operation
 {
+    //[operation gtm_removeObserver:self forKeyPath:@"finished" selector:@selector(operationFinished:)];
     [operation gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:)];
     if([operation isKindOfClass:[MZErrorOperation class]])
         [operation gtm_removeObserver:self forKeyPath:@"error" selector:@selector(errorChanged:)];
@@ -76,7 +79,7 @@
 
 - (void)cancel
 {
-    self.isCancelled = YES;
+    self.cancelled = YES;
     for(NSOperation* op in self.operations)
         [op cancel];
 }
@@ -91,10 +94,12 @@
 {
     @synchronized(self)
     {
+        if(self.finished)
+            return;
         for(NSOperation* op in self.operations)
             if(![op isFinished])
                 return;
-        self.isFinished = YES;
+        self.finished = YES;
         [self performSelectorOnMainThread:@selector(operationsFinished) withObject:nil waitUntilDone:NO];
     }
 }

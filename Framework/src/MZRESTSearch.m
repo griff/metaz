@@ -8,119 +8,49 @@
 
 #import "MZRESTSearch.h"
 #import <MetaZKit/MZLogger.h>
-#import "MZSearchProvider.h"
+#import <MetaZKit/MZSearchProvider.h>
 
-@implementation MZRESTSearch
-
-+ (Class)restWrapper
-{
-    return [MZRESTWrapper class];
-}
-
-@synthesize isFinished;
-@synthesize isExecuting;
+@implementation MZRESTSearchResult
 
 - (id)initWithProvider:(id)theProvider delegate:(id<MZSearchProviderDelegate>)theDelegate url:(NSURL *)url usingVerb:(NSString *)theVerb parameters:(NSDictionary *)params;
 {
-    self = [super init];
+    self = [super initWithURL:url usingVerb:theVerb parameters:params];
     if(self)
     {
-        searchURL = [url retain];
-        verb = [theVerb retain];
-        parameters = [params retain];
-        provider = [theProvider retain];
+        provider = theProvider;
         delegate = [theDelegate retain];
-        wrapper = [[[[self class] restWrapper] alloc] init];
-        wrapper.delegate = self;
     }
     return self;
 }
 
 - (void)dealloc
 {
-    self.isExecuting = NO;
-    self.isFinished = YES;
-    [parameters release];
-    [searchURL release];
-    [verb release];
-    [wrapper cancelConnection];
-    [wrapper release];
     [delegate release];
     [super dealloc];
 }
 
-- (void)start
+- (NSArray *)parseResult
 {
-    self.isExecuting = YES;
-    if([self isCancelled])
-    {
-        id del = delegate;
-        [del performSelectorOnMainThread:@selector(searchFinished) withObject:nil waitUntilDone:NO];
-        //[delegate searchFinished];
-        self.isExecuting = NO;
-        self.isFinished = YES;
-    }
-    else
-        [wrapper sendRequestTo:searchURL usingVerb:verb withParameters:parameters];
-}
-
-- (BOOL)isConcurrent
-{
-    return YES;
-}
-
-/*
-- (BOOL)isExecuting
-{
-    return wrapper.connection != nil;
-}
-
-- (BOOL)isFinished
-{
-    return self.finished;
-}
-*/
-
-- (void)cancel
-{
-    [super cancel];
-    if(self.isExecuting)
-        [wrapper cancelConnection];
+    return [NSArray array];
 }
 
 #pragma mark - MZRESTWrapperDelegate
 
 - (void)wrapper:(MZRESTWrapper *)theWrapper didRetrieveData:(NSData *)data
 {
-    //MZLoggerDebug(@"Got response:\n%@", [theWrapper responseAsText]);
-    [delegate searchProvider:provider result:[NSArray array]];
-    [delegate searchFinished];
-    self.isExecuting = NO;
-    self.isFinished = YES;
+    if(theWrapper.statusCode == 200)
+        [delegate searchProvider:provider result:[self parseResult]];
+    [super wrapper:theWrapper didRetrieveData:data];
 }
 
-- (void)wrapper:(MZRESTWrapper *)theWrapper didFailWithError:(NSError *)error
-{
-    MZLoggerError(@"%@ search failed: %@", [self class], [error localizedDescription]);
-    [delegate searchFinished];
-    self.isExecuting = NO;
-    self.isFinished = YES;
-}
+@end
 
-- (void)wrapper:(MZRESTWrapper *)theWrapper didReceiveStatusCode:(int)statusCode
-{
-    MZLoggerDebug(@"%@ got status code: %d", [self class], statusCode);
-    [delegate searchFinished];
-    self.isExecuting = NO;
-    self.isFinished = YES;
-}
 
-- (void)wrapperWasCanceled:(MZRESTWrapper *)theWrapper
+@implementation MZRESTSearch
+
+- (void)operationFinished
 {
-    if(self.isExecuting)
-        [delegate searchFinished];
-    self.isExecuting = NO;
-    self.isFinished = YES;
+    [delegate searchFinished];
 }
 
 @end

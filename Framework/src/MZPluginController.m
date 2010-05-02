@@ -130,6 +130,7 @@ static MZPluginController *gInstance = NULL;
     {
         loadQueue = [[NSOperationQueue alloc] init];
         saveQueue = [[NSOperationQueue alloc] init];
+        searchQueue = [[NSOperationQueue alloc] init];
     }
     return self;
 }
@@ -141,12 +142,14 @@ static MZPluginController *gInstance = NULL;
     [typesCache release];
     [loadQueue release];
     [saveQueue release];
+    [searchQueue release];
     [super dealloc];
 }
 
 @synthesize delegate;
 @synthesize loadQueue;
 @synthesize saveQueue;
+@synthesize searchQueue;
 
 - (NSArray *)plugins
 {
@@ -401,7 +404,7 @@ static MZPluginController *gInstance = NULL;
         NSArray* searchProviders = [plugin searchProviders];
         for(id<MZSearchProvider> provider in searchProviders)
         {
-            if([provider searchWithData:data delegate:searchDelegate])
+            if([provider searchWithData:data delegate:searchDelegate queue:searchQueue])
                 [searchDelegate performedSearch];
         }
     }

@@ -66,6 +66,11 @@ NSString* const MZChaptersTagIdent = @"chapters";
 NSString* const MZChapterNamesTagIdent = @"chapterNames";
 NSString* const MZDurationTagIdent = @"duration";
 
+NSString* const MZIMDBTagIdent = @"imdb";
+NSString* const MZASINTagIdent = @"asin";
+NSString* const MZDVDSeasonTagIdent = @"dvdSeason";
+NSString* const MZDVDEpisodeTagIdent = @"dvdEpisode";
+
 /* Notifications */
 NSString* const MZDataProviderLoadedNotification = @"MZDataProviderLoadedNotification";
 NSString* const MZDataProviderWritingStartedNotification = @"MZDataProviderWritingStartedNotification";

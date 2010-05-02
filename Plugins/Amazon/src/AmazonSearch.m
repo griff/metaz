@@ -27,7 +27,7 @@
             MZDirectorTagIdent, MZProducerTagIdent,
             MZScreenwriterTagIdent, MZActorsTagIdent,
             MZShortDescriptionTagIdent,
-            ASINTagIdent,
+            MZASINTagIdent,
             
             MZLongDescriptionTagIdent,
             MZAdvisoryTagIdent, MZCopyrightTagIdent,
@@ -153,8 +153,6 @@
             }
         }
 
-        //NSString* asin = [dict objectForKey:ASINTagIdent];
-
         NSArray* reviews = [item nodesForXPath:@"EditorialReviews/EditorialReview/Content" error:NULL];
         if([reviews count] > 0)
         {
@@ -188,10 +186,7 @@
             NSURL* url = [NSURL URLWithString:coverArtLarge];
             MZRemoteData* data = [MZRemoteData dataWithURL:url];
             [dict setObject:data forKey:MZPictureTagIdent];
-            if([NSThread mainThread] != [NSThread currentThread])
-                [data performSelectorOnMainThread:@selector(loadData) withObject:nil waitUntilDone:NO];
-            else
-                [data loadData];
+            [data loadData];
         }
 
         MZSearchResult* result = [MZSearchResult resultWithOwner:provider dictionary:dict];
@@ -202,9 +197,7 @@
     [delegate searchProvider:provider result:results];
     
     // TODO Make more requests for other pages
-    [delegate searchFinished];
-    self.isExecuting = NO;
-    self.isFinished = YES;
+    [super wrapper:theWrapper didRetrieveData:data];
 }
 
 @end

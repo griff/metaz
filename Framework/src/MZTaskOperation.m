@@ -11,6 +11,16 @@
 
 @implementation MZTaskOperation
 
++ (NSSet *)keyPathsForValuesAffectingIsFinished
+{
+    return [NSSet setWithObjects:@"finished", nil];
+}
+
++ (NSSet *)keyPathsForValuesAffectingIsExecuting
+{
+    return [NSSet setWithObjects:@"executing", nil];
+}
+
 + (id)taskOperation
 {
     return [[[self alloc] init] autorelease];
@@ -46,9 +56,10 @@
     [super dealloc];
 }
 
-//@synthesize isExecuting;
-//@synthesize isFinished;
+@synthesize executing;
+@synthesize finished;
 
+/*
 - (BOOL)isExecuting
 {
     @synchronized(self)
@@ -84,10 +95,11 @@
     }
     [self didChangeValueForKey:@"isFinished"];
 }
+*/
 
 - (void)start
 {
-    self.isExecuting = YES;
+    self.executing = YES;
     [self performSelectorOnMainThread:@selector(startOnMainThread) withObject:nil waitUntilDone:YES];
 }
 
@@ -277,8 +289,8 @@
 - (void)taskTerminatedWithStatus:(int)status;
 {
     [self setErrorFromStatus:status];
-    self.isExecuting = NO;
-    self.isFinished = YES;
+    self.executing = NO;
+    self.finished = YES;
 }
 
 - (void)setErrorFromStatus:(int)status
@@ -345,7 +357,7 @@
 }
 
 @synthesize data;
-@synthesize isTerminated;
+@synthesize terminated;
 
 - (void)parseData
 {
@@ -356,17 +368,17 @@
     if(status != 0 || [self isCancelled])
     {
         [self setErrorFromStatus:status];
-        self.isExecuting = NO;
-        self.isFinished = YES;
+        self.executing = NO;
+        self.finished = YES;
         return;
     }
 
-    self.isTerminated = YES;
+    self.terminated = YES;
     if(self.data)
     {
         [self parseData];
-        self.isExecuting = NO;
-        self.isFinished = YES;    
+        self.executing = NO;
+        self.finished = YES;    
     }
 }
 
@@ -394,15 +406,15 @@
 
 - (void)standardOutputGotData:(NSNotification *)note
 {
-    if(self.isFinished || [self isCancelled])
+    if(self.finished || [self isCancelled])
         return;
     self.data = [[note userInfo]
             objectForKey:NSFileHandleNotificationDataItem];
-    if(self.isTerminated)
+    if(self.terminated)
     {
         [self parseData];
-        self.isExecuting = NO;
-        self.isFinished = YES;    
+        self.executing = NO;
+        self.finished = YES;    
     }
 }
 

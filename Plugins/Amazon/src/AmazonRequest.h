@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MZRESTWrapper.h"
+#import <MetaZKit/MetaZKit.h>
 
 @interface AmazonRequest : MZRESTWrapper
 {

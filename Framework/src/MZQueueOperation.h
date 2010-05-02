@@ -13,12 +13,12 @@
 {
     NSOperationQueue* queue;
     NSArray* operations;
-    BOOL isExecuting;
-    BOOL isFinished;
+    BOOL executing;
+    BOOL finished;
 }
 @property(readonly,copy) NSArray* operations;
-@property(assign) BOOL isExecuting;
-@property(assign) BOOL isFinished;
+@property(getter=isExecuting,assign) BOOL executing;
+@property(getter=isFinished,assign) BOOL finished;
 
 - (void)addOperation:(NSOperation *)operation;
 - (void)removeOperation:(NSOperation *)operation;

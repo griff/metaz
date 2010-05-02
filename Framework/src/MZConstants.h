@@ -188,6 +188,11 @@ MZKIT_EXTERN NSString* const MZChaptersTagIdent;
 MZKIT_EXTERN NSString* const MZChapterNamesTagIdent;
 MZKIT_EXTERN NSString* const MZDurationTagIdent;
 
+MZKIT_EXTERN NSString* const MZIMDBTagIdent;
+MZKIT_EXTERN NSString* const MZASINTagIdent;
+MZKIT_EXTERN NSString* const MZDVDSeasonTagIdent;
+MZKIT_EXTERN NSString* const MZDVDEpisodeTagIdent;
+
 /* Notifications */
 MZKIT_EXTERN NSString* const MZDataProviderLoadedNotification;
 MZKIT_EXTERN NSString* const MZDataProviderWritingStartedNotification;

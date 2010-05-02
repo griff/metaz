@@ -102,6 +102,14 @@
 		1B449E3610DCCC9E00B9C751 /* GTMGarbageCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B449DBC10DCCC1C00B9C751 /* GTMGarbageCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B449E4A10DCCDB000B9C751 /* GTMLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B449DCD10DCCC1C00B9C751 /* GTMLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B449E4B10DCCDB000B9C751 /* GTMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B449DCE10DCCC1C00B9C751 /* GTMLogger.m */; };
+		1B4AF83B1170CFCC00E5C969 /* TheTVDBSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */; };
+		1B4AF84511715C8400E5C969 /* languages.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1B4AF84411715C8400E5C969 /* languages.xml */; };
+		1B4AF84811745A5F00E5C969 /* MZRESTOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B4AF84611745A5F00E5C969 /* MZRESTOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B4AF84911745A5F00E5C969 /* MZRESTOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4AF84711745A5F00E5C969 /* MZRESTOperation.m */; };
+		1B4F53C4116E9F44003221B1 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
+		1B4F53D8116EA0BE003221B1 /* TheTVDBPlugin.mzplugin in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzplugin */; };
+		1B4F53DF116EA1B5003221B1 /* TheTVDBPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F53DE116EA1B5003221B1 /* TheTVDBPlugin.m */; };
+		1B4F53E2116EA398003221B1 /* TheTVDBSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F53E1116EA398003221B1 /* TheTVDBSearchProvider.m */; };
 		1B5AC76F10532E5200F9CE36 /* MetaEditPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */; };
 		1B6E43C810845F8200DFE165 /* TCSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E43C710845F8200DFE165 /* TCSearch.m */; };
 		1B6E43CB108468B100DFE165 /* MZSearchResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6E43C9108468B100DFE165 /* MZSearchResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -303,6 +311,27 @@
 			remoteGlobalIDString = 1B2022F810B393CA00EE548A;
 			remoteInfo = "Plist Marcos";
 		};
+		1B4F53B5116E9F44003221B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B2022F810B393CA00EE548A;
+			remoteInfo = "Plist Marcos";
+		};
+		1B4F53B7116E9F44003221B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1BA325C310545ACA00276F57;
+			remoteInfo = MetaZKit;
+		};
+		1B4F53D1116EA0B7003221B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B4F53B3116E9F44003221B1;
+			remoteInfo = TheTVDB;
+		};
 		1BA325CB10545BAE00276F57 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -346,6 +375,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				1B4F53D8116EA0BE003221B1 /* TheTVDBPlugin.mzplugin in Copy Plugins */,
 				1B03302110B0C9A600B28E3A /* AmazonPlugin.mzplugin in Copy Plugins */,
 				1B040EEE1081C0110027FA0D /* TagChimp.mzplugin in Copy Plugins */,
 				1BEA6F33106EF6FC004B1A7F /* AtomicParsleyPlugin.mzplugin in Copy Plugins */,
@@ -739,6 +769,23 @@
 		1B449E2D10DCCC1D00B9C751 /* GTMValidatingContainers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMValidatingContainers.h; sourceTree = "<group>"; };
 		1B449E2E10DCCC1D00B9C751 /* GTMValidatingContainers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMValidatingContainers.m; sourceTree = "<group>"; };
 		1B449E2F10DCCC1D00B9C751 /* GTMValidatingContainersTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMValidatingContainersTest.m; sourceTree = "<group>"; };
+		1B4AF736116EF6C100E5C969 /* Access_template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access_template.h; path = Plugins/Amazon/Access_template.h; sourceTree = SOURCE_ROOT; };
+		1B4AF74A116EF80500E5C969 /* Access_template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access_template.h; path = Plugins/TheTVDB/Access_template.h; sourceTree = SOURCE_ROOT; };
+		1B4AF74B116EF80500E5C969 /* Access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access.h; path = Plugins/TheTVDB/Access.h; sourceTree = SOURCE_ROOT; };
+		1B4AF829116F0AFD00E5C969 /* DebugSnowLeopardOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = DebugSnowLeopardOrLater.xcconfig; path = "Externals/google-toolbox-for-mac/XcodeConfig/Project/DebugSnowLeopardOrLater.xcconfig"; sourceTree = "<group>"; };
+		1B4AF8391170CFCC00E5C969 /* TheTVDBSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBSearch.h; sourceTree = "<group>"; };
+		1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBSearch.m; sourceTree = "<group>"; };
+		1B4AF84411715C8400E5C969 /* languages.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = languages.xml; path = Plugins/TheTVDB/resources/languages.xml; sourceTree = "<group>"; };
+		1B4AF84611745A5F00E5C969 /* MZRESTOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZRESTOperation.h; sourceTree = "<group>"; };
+		1B4AF84711745A5F00E5C969 /* MZRESTOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZRESTOperation.m; sourceTree = "<group>"; };
+		1B4F5394116E9EFC003221B1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/TheTVDB/Info.plist; sourceTree = "<group>"; };
+		1B4F53AD116E9F3B003221B1 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info copy.plist"; path = "Plugins/AtomicParsley/Info copy.plist"; sourceTree = "<group>"; };
+		1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheTVDBPlugin.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B4F53CD116E9F44003221B1 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info copy.plist"; path = "Plugins/Amazon/Info copy.plist"; sourceTree = "<group>"; };
+		1B4F53DD116EA1B5003221B1 /* TheTVDBPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBPlugin.h; sourceTree = "<group>"; };
+		1B4F53DE116EA1B5003221B1 /* TheTVDBPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBPlugin.m; sourceTree = "<group>"; };
+		1B4F53E0116EA398003221B1 /* TheTVDBSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBSearchProvider.h; sourceTree = "<group>"; };
+		1B4F53E1116EA398003221B1 /* TheTVDBSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBSearchProvider.m; sourceTree = "<group>"; };
 		1B5AC76D10532E5200F9CE36 /* MetaEditPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaEditPanel.h; sourceTree = "<group>"; };
 		1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditPanel.m; sourceTree = "<group>"; };
 		1B6E43C610845F8200DFE165 /* TCSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSearch.h; sourceTree = "<group>"; };
@@ -915,6 +962,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1B4F53C3116E9F44003221B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B4F53C4116E9F44003221B1 /* MetaZKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BA325C210545ACA00276F57 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -984,6 +1039,8 @@
 				1B040EA31081A8F60027FA0D /* MZRESTWrapper.m */,
 				1B82690210B3FF1200DF101B /* MZRESTSearch.h */,
 				1B82690310B3FF1200DF101B /* MZRESTSearch.m */,
+				1B4AF84611745A5F00E5C969 /* MZRESTOperation.h */,
+				1B4AF84711745A5F00E5C969 /* MZRESTOperation.m */,
 				1BD3D2B9108CC5D700BE6943 /* MZRemoteData.h */,
 				1BD3D2BA108CC5D700BE6943 /* MZRemoteData.m */,
 				1BBB39A71087083600C9E17F /* MZPriorObserverFix.h */,
@@ -1053,6 +1110,7 @@
 				1B032F6710B0C12100B28E3A /* AmazonPlugin.mzplugin */,
 				1B03304310B0CD3C00B28E3A /* MetaZKitTest.octest */,
 				1B42F25810DEB0D300AFEBF6 /* IMDBPlugin.mzplugin */,
+				1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1063,12 +1121,14 @@
 				1B032F5510B0BDC000B28E3A /* Classes */,
 				1B032F5910B0BDFD00B28E3A /* Resources */,
 			);
+			includeInIndex = 1;
 			name = Amazon;
 			sourceTree = "<group>";
 		};
 		1B032F5510B0BDC000B28E3A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1B4AF736116EF6C100E5C969 /* Access_template.h */,
 				1B15A62610B6316000EC0FBF /* Access.h */,
 				1B03307C10B0FA4800B28E3A /* AmazonPlugin.h */,
 				1B03307D10B0FA4800B28E3A /* AmazonPlugin.m */,
@@ -1089,6 +1149,7 @@
 			isa = PBXGroup;
 			children = (
 				1B032F5A10B0BE1A00B28E3A /* Info.plist */,
+				1B4F53CD116E9F44003221B1 /* Info copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1501,6 +1562,41 @@
 			path = "Externals/google-toolbox-for-mac/Foundation";
 			sourceTree = "<group>";
 		};
+		1B4F538D116E9E1F003221B1 /* TheTVDB */ = {
+			isa = PBXGroup;
+			children = (
+				1B4F538F116E9E33003221B1 /* Classes */,
+				1B4F538E116E9E2C003221B1 /* Resources */,
+			);
+			includeInIndex = 1;
+			name = TheTVDB;
+			sourceTree = "<group>";
+		};
+		1B4F538E116E9E2C003221B1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1B4AF84411715C8400E5C969 /* languages.xml */,
+				1B4F5394116E9EFC003221B1 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		1B4F538F116E9E33003221B1 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1B4AF74A116EF80500E5C969 /* Access_template.h */,
+				1B4AF74B116EF80500E5C969 /* Access.h */,
+				1B4F53DD116EA1B5003221B1 /* TheTVDBPlugin.h */,
+				1B4F53DE116EA1B5003221B1 /* TheTVDBPlugin.m */,
+				1B4F53E0116EA398003221B1 /* TheTVDBSearchProvider.h */,
+				1B4F53E1116EA398003221B1 /* TheTVDBSearchProvider.m */,
+				1B4AF8391170CFCC00E5C969 /* TheTVDBSearch.h */,
+				1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */,
+			);
+			name = Classes;
+			path = Plugins/TheTVDB/src;
+			sourceTree = "<group>";
+		};
 		1B92BB711087884C0057EFD7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1657,6 +1753,7 @@
 		1BEA6E68106EF248004B1A7F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				1B4F538D116E9E1F003221B1 /* TheTVDB */,
 				1B42F23B10DEB05000AFEBF6 /* IMDB */,
 				1B032F5410B0BDAC00B28E3A /* Amazon */,
 				1B040EA81081B3860027FA0D /* TagChimp */,
@@ -1696,6 +1793,7 @@
 				1B44949810D57D6900B9C751 /* AtomicParsley */,
 				1B040C13107F9DA20027FA0D /* mp4chaps */,
 				1BEA6E8D106EF522004B1A7F /* Info.plist */,
+				1B4F53AD116E9F3B003221B1 /* Info copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1703,6 +1801,7 @@
 		29B97314FDCFA39411CA2CEA /* MetaZ */ = {
 			isa = PBXGroup;
 			children = (
+				1B4AF829116F0AFD00E5C969 /* DebugSnowLeopardOrLater.xcconfig */,
 				1B4494BC10D584E000B9C751 /* next_release.txt */,
 				1BEA6E68106EF248004B1A7F /* Plugins */,
 				1BA325BC10545A1B00276F57 /* App */,
@@ -1824,6 +1923,7 @@
 				1B3AD7D811057E9200B33F85 /* MZErrorOperation.h in Headers */,
 				1B3AD7DC1105829500B33F85 /* MZOperationsController.h in Headers */,
 				1B3AD7F3110595C300B33F85 /* NSString+TempFile.h in Headers */,
+				1B4AF84811745A5F00E5C969 /* MZRESTOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1905,6 +2005,25 @@
 			productReference = 1B42F25810DEB0D300AFEBF6 /* IMDBPlugin.mzplugin */;
 			productType = "com.apple.product-type.bundle";
 		};
+		1B4F53B3116E9F44003221B1 /* TheTVDB */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B4F53C5116E9F44003221B1 /* Build configuration list for PBXNativeTarget "TheTVDB" */;
+			buildPhases = (
+				1B4F53B8116E9F44003221B1 /* Resources */,
+				1B4F53B9116E9F44003221B1 /* Sources */,
+				1B4F53C3116E9F44003221B1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1B4F53B4116E9F44003221B1 /* PBXTargetDependency */,
+				1B4F53B6116E9F44003221B1 /* PBXTargetDependency */,
+			);
+			name = TheTVDB;
+			productName = Amazon;
+			productReference = 1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
 		1BA325C310545ACA00276F57 /* MetaZKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1BA325C810545ACB00276F57 /* Build configuration list for PBXNativeTarget "MetaZKit" */;
@@ -1964,6 +2083,7 @@
 				1B032F9310B0C41200B28E3A /* PBXTargetDependency */,
 				1BEA6F2A106EF693004B1A7F /* PBXTargetDependency */,
 				1B060E1110E269F60009D847 /* PBXTargetDependency */,
+				1B4F53D2116EA0B7003221B1 /* PBXTargetDependency */,
 				1B20239310B395FA00EE548A /* PBXTargetDependency */,
 			);
 			name = MetaZ;
@@ -2015,6 +2135,7 @@
 				1B03304210B0CD3C00B28E3A /* MetaZKitTest */,
 				1B2022F810B393CA00EE548A /* Plist Marcos */,
 				1B42F25710DEB0D300AFEBF6 /* IMDB */,
+				1B4F53B3116E9F44003221B1 /* TheTVDB */,
 			);
 		};
 /* End PBXProject section */
@@ -2047,6 +2168,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B060DF910E267810009D847 /* imdb_plugin.rb in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B4F53B8116E9F44003221B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B4AF84511715C8400E5C969 /* languages.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2242,6 +2371,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1B4F53B9116E9F44003221B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B4F53DF116EA1B5003221B1 /* TheTVDBPlugin.m in Sources */,
+				1B4F53E2116EA398003221B1 /* TheTVDBSearchProvider.m in Sources */,
+				1B4AF83B1170CFCC00E5C969 /* TheTVDBSearch.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BA325C110545ACA00276F57 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2281,6 +2420,7 @@
 				1B3AD7D911057E9200B33F85 /* MZErrorOperation.m in Sources */,
 				1B3AD7DD1105829500B33F85 /* MZOperationsController.m in Sources */,
 				1B3AD7F4110595C300B33F85 /* NSString+TempFile.m in Sources */,
+				1B4AF84911745A5F00E5C969 /* MZRESTOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2402,6 +2542,21 @@
 			isa = PBXTargetDependency;
 			target = 1B2022F810B393CA00EE548A /* Plist Marcos */;
 			targetProxy = 1B42F26110DEB0E900AFEBF6 /* PBXContainerItemProxy */;
+		};
+		1B4F53B4116E9F44003221B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B2022F810B393CA00EE548A /* Plist Marcos */;
+			targetProxy = 1B4F53B5116E9F44003221B1 /* PBXContainerItemProxy */;
+		};
+		1B4F53B6116E9F44003221B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			targetProxy = 1B4F53B7116E9F44003221B1 /* PBXContainerItemProxy */;
+		};
+		1B4F53D2116EA0B7003221B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B4F53B3116E9F44003221B1 /* TheTVDB */;
+			targetProxy = 1B4F53D1116EA0B7003221B1 /* PBXContainerItemProxy */;
 		};
 		1BA325CC10545BAE00276F57 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2539,7 +2694,6 @@
 		1B032F6910B0C12200B28E3A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -2547,6 +2701,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
 					Externals/hmac,
+					"Externals/google-toolbox-for-mac/**",
 					"$(TARGET_BUILD_DIR)/include",
 				);
 				INFOPLIST_FILE = Plugins/Amazon/Info.plist;
@@ -2563,6 +2718,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = AmazonPlugin;
+				USER_HEADER_SEARCH_PATHS = "Plugins/Amazon/**";
 				WRAPPER_EXTENSION = mzplugin;
 			};
 			name = Debug;
@@ -2570,7 +2726,6 @@
 		1B032F6A10B0C12200B28E3A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -2593,6 +2748,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = AmazonPlugin;
+				USER_HEADER_SEARCH_PATHS = "Plugins/Amazon/**";
 				WRAPPER_EXTENSION = mzplugin;
 				ZERO_LINK = NO;
 			};
@@ -2657,7 +2813,6 @@
 		1B040EC01081B3C10027FA0D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -2678,6 +2833,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = TagChimp;
+				USER_HEADER_SEARCH_PATHS = "Plugins/TagChimp/**";
 				WRAPPER_EXTENSION = mzplugin;
 			};
 			name = Debug;
@@ -2685,7 +2841,6 @@
 		1B040EC11081B3C10027FA0D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -2705,6 +2860,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = TagChimp;
+				USER_HEADER_SEARCH_PATHS = "Plugins/TagChimp/**";
 				WRAPPER_EXTENSION = mzplugin;
 				ZERO_LINK = NO;
 			};
@@ -2727,7 +2883,6 @@
 		1B42F25B10DEB0D400AFEBF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -2745,6 +2900,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = IMDBPlugin;
+				USER_HEADER_SEARCH_PATHS = "Plugins/IMDB/**";
 				WRAPPER_EXTENSION = mzplugin;
 			};
 			name = Debug;
@@ -2752,7 +2908,6 @@
 		1B42F25C10DEB0D400AFEBF6 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2767,6 +2922,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = IMDBPlugin;
+				USER_HEADER_SEARCH_PATHS = "Plugins/IMDB/**";
 				WRAPPER_EXTENSION = mzplugin;
 			};
 			name = "Remote Debug";
@@ -2774,7 +2930,6 @@
 		1B42F25D10DEB0D400AFEBF6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -2791,6 +2946,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = IMDBPlugin;
+				USER_HEADER_SEARCH_PATHS = "Plugins/IMDB/**";
 				WRAPPER_EXTENSION = mzplugin;
 				ZERO_LINK = NO;
 			};
@@ -2799,6 +2955,7 @@
 		1B44937E10C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2807,6 +2964,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
+				USE_HEADERMAP = NO;
 			};
 			name = "Remote Debug";
 		};
@@ -2840,7 +2998,6 @@
 		1B44938010C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2866,13 +3023,13 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = MetaZKit;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
+				USER_HEADER_SEARCH_PATHS = Framework/src;
 			};
 			name = "Remote Debug";
 		};
 		1B44938110C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2897,6 +3054,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = AtomicParsleyPlugin;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
+				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
 				WRAPPER_EXTENSION = mzplugin;
 			};
 			name = "Remote Debug";
@@ -2904,7 +3062,6 @@
 		1B44938210C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -2926,6 +3083,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = TagChimp;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
+				USER_HEADER_SEARCH_PATHS = "Plugins/TagChimp/**";
 				WRAPPER_EXTENSION = mzplugin;
 			};
 			name = "Remote Debug";
@@ -2933,7 +3091,6 @@
 		1B44938310C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -2958,6 +3115,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = AmazonPlugin;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
+				USER_HEADER_SEARCH_PATHS = "Plugins/Amazon/**";
 				WRAPPER_EXTENSION = mzplugin;
 			};
 			name = "Remote Debug";
@@ -2999,10 +3157,91 @@
 			};
 			name = "Remote Debug";
 		};
+		1B4F53C6116E9F44003221B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = Plugins/TheTVDB/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+					"-lz",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TheTVDBPlugin;
+				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
+				WRAPPER_EXTENSION = mzplugin;
+			};
+			name = Debug;
+		};
+		1B4F53C7116E9F44003221B1 /* Remote Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/include";
+				INFOPLIST_FILE = Plugins/TheTVDB/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+					"-lz",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TheTVDBPlugin;
+				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
+				WRAPPER_EXTENSION = mzplugin;
+			};
+			name = "Remote Debug";
+		};
+		1B4F53C8116E9F44003221B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				HEADER_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/include";
+				INFOPLIST_FILE = Plugins/TheTVDB/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+					"-lz",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TheTVDBPlugin;
+				WRAPPER_EXTENSION = mzplugin;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		1BA325C610545ACB00276F57 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -3014,6 +3253,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Framework/MetaZKit_Prefix.pch;
+				HEADER_SEARCH_PATHS = "Externals/google-toolbox-for-mac/**";
 				INFOPLIST_FILE = Framework/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
@@ -3027,13 +3267,13 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MetaZKit;
+				USER_HEADER_SEARCH_PATHS = Framework/src;
 			};
 			name = Debug;
 		};
 		1BA325C710545ACB00276F57 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
@@ -3057,6 +3297,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MetaZKit;
+				USER_HEADER_SEARCH_PATHS = Framework/src;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -3064,7 +3305,6 @@
 		1BEA6E74106EF2A1004B1A7F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3088,6 +3328,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = AtomicParsleyPlugin;
+				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
 				WRAPPER_EXTENSION = mzplugin;
 			};
 			name = Debug;
@@ -3095,7 +3336,6 @@
 		1BEA6E75106EF2A1004B1A7F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
@@ -3118,6 +3358,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = AtomicParsleyPlugin;
+				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
 				WRAPPER_EXTENSION = mzplugin;
 				ZERO_LINK = NO;
 			};
@@ -3139,6 +3380,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = App/MetaZ_Prefix.pch;
+				HEADER_SEARCH_PATHS = Externals/UKDockProgressIndicator;
 				IBC_OTHER_FLAGS = "--plugin /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/ImageKit.framework/Resources/ImageKitIBPlugin.ibplugin";
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
@@ -3175,6 +3417,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -3183,18 +3426,21 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
+				USE_HEADERMAP = NO;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
+				USE_HEADERMAP = NO;
 			};
 			name = Release;
 		};
@@ -3247,6 +3493,16 @@
 				1B42F25B10DEB0D400AFEBF6 /* Debug */,
 				1B42F25C10DEB0D400AFEBF6 /* Remote Debug */,
 				1B42F25D10DEB0D400AFEBF6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1B4F53C5116E9F44003221B1 /* Build configuration list for PBXNativeTarget "TheTVDB" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B4F53C6116E9F44003221B1 /* Debug */,
+				1B4F53C7116E9F44003221B1 /* Remote Debug */,
+				1B4F53C8116E9F44003221B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

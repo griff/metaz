@@ -429,24 +429,22 @@
                   fromFileName:fileName
                       delegate:delegate];
         
+    APReadDataTask* dataRead = [APReadDataTask taskWithProvider:self fromFileName:fileName dictionary:op.tagdict];
+    [dataRead setLaunchPath:[self launchPath]];
+    [dataRead setArguments:[NSArray arrayWithObjects:fileName, @"-t", nil]];
+    [op addOperation:dataRead];
+
+    APPictureReadDataTask* pictureRead = [APPictureReadDataTask taskWithDictionary:op.tagdict];
+    [pictureRead setLaunchPath:[self launchPath]];
+    [pictureRead setArguments:[NSArray arrayWithObjects:fileName, @"-e", pictureRead.file, nil]];
+    [pictureRead addDependency:dataRead];
+    [op addOperation:pictureRead];
         
     APChapterReadDataTask* chapterRead = [APChapterReadDataTask taskWithDictionary:op.tagdict];
     [chapterRead setLaunchPath:[self launchChapsPath]];
     [chapterRead setArguments:[NSArray arrayWithObjects:@"-l", fileName, nil]];
-    [op addOperation:chapterRead];
-    
-    APPictureReadDataTask* pictureRead = [APPictureReadDataTask taskWithDictionary:op.tagdict];
-    [pictureRead setLaunchPath:[self launchPath]];
-    [pictureRead setArguments:[NSArray arrayWithObjects:fileName, @"-e", pictureRead.file, nil]];
     [chapterRead addDependency:pictureRead];
-    [op addOperation:pictureRead];
-    
-    
-    APReadDataTask* dataRead = [APReadDataTask taskWithProvider:self fromFileName:fileName dictionary:op.tagdict];
-    [dataRead setLaunchPath:[self launchPath]];
-    [dataRead setArguments:[NSArray arrayWithObjects:fileName, @"-t", nil]];
-    [pictureRead addDependency:dataRead];
-    [op addOperation:dataRead];
+    [op addOperation:chapterRead];
 
     [op addOperationsToQueue:queue];
 

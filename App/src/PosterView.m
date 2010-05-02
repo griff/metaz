@@ -150,9 +150,15 @@
             case NSCarriageReturnCharacter:
             case NSEnterCharacter:
                 if([retryButton isHidden] && [indicator isHidden])
+                {
                     [NSApp sendAction:actionHack to:[self target] from:self];
+                    return;
+                }
                 else if(![retryButton isHidden])
+                {
                     [retryButton performClick:self];
+                    return;
+                }
                 break;
             case NSBackspaceCharacter:
             case NSDeleteCharacter:

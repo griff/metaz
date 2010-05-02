@@ -25,7 +25,8 @@
 @property(readonly, retain) NSError* error; 
 @property(readonly, retain) NSOperation* operation;
 
-- (NSOperation *)loadData;
+- (void)loadData;
+- (NSOperation *)startLoadOperation;
 
 - (void)loadedData:(NSData *)data;
 - (void)failedWithError:(NSError *)error;

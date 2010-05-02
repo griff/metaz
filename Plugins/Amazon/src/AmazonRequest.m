@@ -7,7 +7,6 @@
 //
 
 #import "AmazonRequest.h"
-#import "GTMNSString+URLArguments.h"
 #import "GTMBase64.h"
 #import "hmac_sha2.h"
 

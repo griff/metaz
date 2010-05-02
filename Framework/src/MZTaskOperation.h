@@ -12,8 +12,8 @@
 @interface MZTaskOperation : MZErrorOperation
 {
     NSTask* task;
-    BOOL isExecuting;
-    BOOL isFinished;
+    BOOL executing;
+    BOOL finished;
 }
 
 + (id)taskOperation;
@@ -22,8 +22,8 @@
 - (id)init;
 - (id)initWithTask:(NSTask *)task;
 
-@property(assign) BOOL isExecuting;
-@property(assign) BOOL isFinished;
+@property(getter=isExecuting,assign) BOOL executing;
+@property(getter=isFinished,assign) BOOL finished;
 
 - (void)start;
 - (void)startOnMainThread;
@@ -79,10 +79,10 @@
 @interface MZParseTaskOperation : MZTaskOperation
 {
     NSData* data;
-    BOOL isTerminated;
+    BOOL terminated;
 }
 @property(retain) NSData* data;
-@property(assign) BOOL isTerminated;
+@property(getter=isTerminated,assign) BOOL terminated;
 
 - (void)parseData;
 

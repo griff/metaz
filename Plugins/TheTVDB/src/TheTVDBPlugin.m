@@ -1,17 +1,17 @@
 //
-//  AmazonPlugin.m
+//  TheTVDBPlugin.m
 //  MetaZ
 //
-//  Created by Brian Olsen on 16/11/09.
-//  Copyright 2009 Maven-Group. All rights reserved.
+//  Created by Nigel Graham on 09/04/10.
+//  Copyright 2010 Maven-Group. All rights reserved.
 //
 
-#import "AmazonPlugin.h"
-#import "AmazonSearchProvider.h"
+#import "TheTVDBPlugin.h"
+#import "TheTVDBSearchProvider.h"
 
-@implementation AmazonPlugin
 
-/*
+@implementation TheTVDBPlugin
+
 + (void)initialize
 {
     @synchronized(self)
@@ -21,16 +21,15 @@
         initialized = YES;
     }
 
-    [MZTag registerTag:[MZStringTag tagWithIdentifier:ASINTagIdent]];
+    [MZTag registerTag:[MZStringTag tagWithIdentifier:EpisodeQueryTagIdent]];
 }
-*/
 
 - (id)init
 {
     self = [super init];
     if(self)
     {
-        AmazonSearchProvider* a = [[[AmazonSearchProvider alloc] init] autorelease];
+        TheTVDBSearchProvider* a = [[[TheTVDBSearchProvider alloc] init] autorelease];
         searchProviders  = [[NSArray arrayWithObject:a] retain];
     }
     return self;

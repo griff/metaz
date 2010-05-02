@@ -46,19 +46,19 @@
     }
     
     [self setErrorFromStatus:status];
-    self.isExecuting = NO;
-    self.isFinished = YES;
+    self.executing = NO;
+    self.finished = YES;
 }
 
 @end
 
 
 @implementation APWriteManager
-@synthesize provider;
-@synthesize task;
-@synthesize delegate;
-@synthesize edits;
-@synthesize isFinished;
+
++ (NSSet *)keyPathsForValuesAffectingIsFinished
+{
+    return [NSSet setWithObjects:@"finished", nil];
+}
 
 + (id)managerForProvider:(id<MZDataProvider>)provider
                     task:(NSTask *)task
@@ -110,6 +110,29 @@
     [super dealloc];
 }
 
+@synthesize provider;
+@synthesize task;
+@synthesize delegate;
+@synthesize edits;
+@synthesize finished;
+
+- (BOOL)isConcurrent
+{
+    return YES;
+}
+
+- (BOOL)isExecuting
+{
+    return [task isRunning];
+}
+
+/*
+- (BOOL)isFinished
+{
+    return self.isFinished;
+}
+*/
+
 - (void)start
 {
     if([self isCancelled])
@@ -132,23 +155,6 @@
     if([delegate respondsToSelector:@selector(dataProvider:controller:writeStartedForEdits:)])
         [delegate dataProvider:provider controller:self writeStartedForEdits:edits];
 }
-
-- (BOOL)isConcurrent
-{
-    return YES;
-}
-
-- (BOOL)isExecuting
-{
-    return [task isRunning];
-}
-
-/*
-- (BOOL)isFinished
-{
-    return self.isFinished;
-}
-*/
 
 - (void)cancel
 {
@@ -244,18 +250,18 @@
         }
         else
         {
-            self.isFinished = YES;
+            self.finished = YES;
             if([delegate respondsToSelector:@selector(dataProvider:controller:writeFinishedForEdits:)])
                 [delegate dataProvider:provider controller:self writeFinishedForEdits:edits];
         }
     }
-    self.isFinished = YES;
+    self.finished = YES;
     [provider removeWriteManager:self];
 }
 
 - (void)handlerGotData:(NSNotification *)note
 {
-    if(self.isFinished)
+    if(self.finished)
         return;
     NSData* data = [[note userInfo]
             objectForKey:NSFileHandleNotificationDataItem];

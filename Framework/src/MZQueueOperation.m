@@ -17,6 +17,16 @@
 
 @implementation MZQueueOperation
 
++ (NSSet *)keyPathsForValuesAffectingIsFinished
+{
+    return [NSSet setWithObjects:@"finished", nil];
+}
+
++ (NSSet *)keyPathsForValuesAffectingIsExecuting
+{
+    return [NSSet setWithObjects:@"executing", nil];
+}
+
 - (id)init
 {
     self = [super init];
@@ -38,15 +48,15 @@
 }
 
 @synthesize operations;
-@synthesize isExecuting;
-@synthesize isFinished;
+@synthesize executing;
+@synthesize finished;
 
 - (void)addOperation:(NSOperation *)operation
 {
     @synchronized(self)
     {
         [operation gtm_addObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:) userInfo:nil options:0];
-        if(isExecuting)
+        if(self.executing)
         {
             if([self isCancelled])
                 [operation cancel];
@@ -73,10 +83,10 @@
     {
         for(NSOperation* op in self.operations)
             [op cancel];
-        self.isFinished = YES;
+        self.finished = YES;
         return;
     }
-    self.isExecuting = YES;
+    self.executing = YES;
     for(NSOperation* op in self.operations)
         [queue addOperation:op];
 
@@ -98,13 +108,13 @@
 {
     @synchronized(self)
     {
-        if(!self.isExecuting)
+        if(!self.executing)
             return;
         for(NSOperation* op in self.operations)
             if(![op isFinished])
                 return;
-        self.isExecuting = NO;
-        self.isFinished = YES;
+        self.executing = NO;
+        self.finished = YES;
     }
 }
 

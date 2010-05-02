@@ -7,30 +7,26 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <MetaZKit/MZRESTWrapper.h>
 #import <MetaZKit/MZSearchProvider.h>
+#import <MetaZKit/MZRESTOperation.h>
 
-@interface MZRESTSearch : NSOperation <MZRESTWrapperDelegate>
+@interface MZRESTSearchResult : MZRESTOperation
 {
     id provider;
-    MZRESTWrapper* wrapper;
     id<MZSearchProviderDelegate> delegate;
-    NSURL* searchURL;
-    NSString* verb;
-    NSDictionary* parameters;
-    BOOL isFinished;
-    BOOL isExecuting;
 }
-+ (Class)restWrapper;
-
-@property(assign) BOOL isFinished;
-@property(assign) BOOL isExecuting;
 
 - (id)initWithProvider:(id)provider delegate:(id<MZSearchProviderDelegate>)delegate url:(NSURL *)url usingVerb:(NSString *)verb parameters:(NSDictionary *)params;
-- (void)start;
-- (BOOL)isConcurrent;
-- (BOOL)isExecuting;
-- (BOOL)isFinished;
-- (void)cancel;
+
+- (NSArray *)parseResult;
 
 @end
+
+@interface MZRESTSearch : MZRESTSearchResult
+{
+}
+
+- (void)operationFinished;
+
+@end
+
