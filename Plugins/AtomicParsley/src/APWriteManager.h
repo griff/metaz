@@ -14,12 +14,45 @@
 {
     NSString* chaptersFile;
 }
-+ (id)taskWithLaunchPath:(NSString *)path filePath:(NSString*)filePath chaptersFile:(NSString *)chaptersFile;
-- (id)initWithLaunchPath:(NSString *)path filePath:(NSString*)filePath chaptersFile:(NSString *)chaptersFile;
++ (id)taskWithFileName:(NSString *)fileName chaptersFile:(NSString *)chaptersFile;
+- (id)initWithFileName:(NSString *)fileName chaptersFile:(NSString *)chaptersFile;
 
 @end
 
+@interface APWriteOperationsController : MZOperationsController
+{
+    id<MZDataWriteDelegate> delegate;
+    APDataProvider* provider;
+    MetaEdits* edits;
+}
 
++ (id)controllerWithProvider:(id<MZDataProvider>)provider
+                    delegate:(id<MZDataWriteDelegate>)delegate
+                       edits:(MetaEdits *)edits;
+
+- (id)initWithProvider:(id<MZDataProvider>)provider
+              delegate:(id<MZDataWriteDelegate>)delegate
+                 edits:(MetaEdits *)edits;
+
+- (void)operationsFinished;
+- (void)notifyPercent:(NSInteger)percent;
+
+@end
+
+@interface APMainWriteTask : MZTaskOperation
+{
+    APWriteOperationsController* controller;
+    NSString* pictureFile;
+}
+
++ (id)taskWithController:(APWriteOperationsController*)controller
+             pictureFile:(NSString *)file;
+- (id)initWithController:(APWriteOperationsController*)controller
+             pictureFile:(NSString *)file;
+
+@end
+
+/*
 @interface APWriteManager : NSOperation <MZDataController>
 {
     NSTask* task;
@@ -62,3 +95,4 @@
 - (void)handlerGotData:(NSNotification *)note;
 
 @end
+*/

@@ -223,7 +223,7 @@ static MZPresets* sharedPresets = nil;
 
 - (BOOL)loadWithError:(NSError **)error
 {
-    NSFileManager *mgr = [NSFileManager defaultManager];
+    NSFileManager *mgr = [NSFileManager manager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     for(NSString * path in paths)
     {
@@ -275,7 +275,7 @@ static MZPresets* sharedPresets = nil;
 
 - (BOOL)saveWithError:(NSError **)error
 {
-    NSFileManager *mgr = [NSFileManager defaultManager];
+    NSFileManager *mgr = [NSFileManager manager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     /*
     NSMutableArray* items = [NSMutableArray array];
@@ -385,7 +385,7 @@ static MZPresets* sharedPresets = nil;
     NSMutableArray* ret = [[NSMutableArray alloc] init];
 
     NSString* file = [@"MetaX" stringByAppendingPathComponent:@"MetaX-Presets"];
-    NSFileManager *mgr = [NSFileManager defaultManager];
+    NSFileManager *mgr = [NSFileManager manager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     for(NSString * path in paths)
     {

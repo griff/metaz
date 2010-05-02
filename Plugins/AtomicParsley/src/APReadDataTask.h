@@ -40,12 +40,12 @@
     NSMutableDictionary* tagdict;
 }
 
-+ (id)taskWithDictionary:(NSMutableDictionary *)tagdict;
-- (id)initWithDictionary:(NSMutableDictionary *)tagdict;
++ (id)taskWithFileName:(NSString*)fileName dictionary:(NSMutableDictionary *)tagdict;
+- (id)initWithFileName:(NSString*)fileName dictionary:(NSMutableDictionary *)tagdict;
 
 @end
 
-
+/*
 @interface APReadOperationsController : MZOperationsController
 {
     id<MZDataReadDelegate> delegate;
@@ -66,3 +66,4 @@
 - (void)operationsFinished;
 
 @end
+*/

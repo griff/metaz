@@ -31,6 +31,7 @@
 #import <MetaZKit/MZErrorOperation.h>
 #import <MetaZKit/MZTaskOperation.h>
 #import <MetaZKit/MZOperationsController.h>
+#import <MetaZKit/MZReadOperationsController.h>
 
 #import <MetaZKit/NSArray+Mapping.h>
 #import <MetaZKit/NSDate+UTC.h>
@@ -38,6 +39,7 @@
 #import <MetaZKit/NSObject+ProtectedKeyValue.h>
 #import <MetaZKit/NSXMLNode+MZExtensions.h>
 #import <MetaZKit/NSString+TempFile.h>
+#import <MetaZKit/NSFileManager+MZCreate.h>
 
 #import <MetaZKit/GTMNSString+URLArguments.h>
 #import <MetaZKit/GTMNSObject+KeyValueObserving.h>

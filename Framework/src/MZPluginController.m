@@ -8,6 +8,7 @@
 
 #import <MetaZKit/MZPluginController.h>
 #import <MetaZKit/MZLogger.h>
+#import <MetaZKit/NSFileManager+MZCreate.h>
 #import "MZPlugin+Private.h"
 
 @interface MZWriteNotification : NSObject <MZDataWriteDelegate>
@@ -56,7 +57,7 @@
 
 + (NSArray *)pluginPaths
 {
-    //NSFileManager *mgr = [NSFileManager defaultManager];
+    //NSFileManager *mgr = [NSFileManager manager];
     NSMutableArray* ret = [NSMutableArray arrayWithCapacity:5];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSAllDomainsMask, YES);
     for(NSString * path in paths)
@@ -157,7 +158,7 @@ static MZPluginController *gInstance = NULL;
     {
         NSMutableArray* thePlugins = [NSMutableArray array];
         NSArray* paths = [[self class] pluginPaths];
-        NSFileManager* mgr = [NSFileManager defaultManager];
+        NSFileManager* mgr = [NSFileManager manager];
         for(NSString* path in paths)
         {
             BOOL isDir = NO;
@@ -385,7 +386,7 @@ static MZPluginController *gInstance = NULL;
                            delegate:(id<MZDataWriteDelegate>)theDelegate
 {
     /*
-    NSFileManager* mgr = [NSFileManager defaultManager];
+    NSFileManager* mgr = [NSFileManager manager];
     BOOL isDir;
     if(![mgr fileExistsAtPath:[data loadedFileName] isDirectory:&isDir] || isDir )
         return nil;

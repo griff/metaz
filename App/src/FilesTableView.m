@@ -156,7 +156,7 @@
         if([bestType isEqualToString:NSStringPboardType])
         {
             NSString* filename = [pb stringForType:NSStringPboardType];
-            NSFileManager* mgr = [NSFileManager defaultManager];
+            NSFileManager* mgr = [NSFileManager manager];
             BOOL dir = NO;
             if([mgr fileExistsAtPath:[filename stringByExpandingTildeInPath]
                         isDirectory:&dir] && !dir)
@@ -175,7 +175,7 @@
     if(bestType != nil && [bestType isEqualToString:NSStringPboardType])
     {
         NSString* str = [pb stringForType:NSStringPboardType];
-        NSFileManager* mgr = [NSFileManager defaultManager];
+        NSFileManager* mgr = [NSFileManager manager];
         BOOL dir = NO;
         str = [str stringByExpandingTildeInPath];
         return [mgr fileExistsAtPath:str isDirectory:&dir] && !dir &&
@@ -301,7 +301,7 @@
         if([bestType isEqualToString:NSStringPboardType])
         {
             NSString* str = [pboard stringForType:NSStringPboardType];
-            NSFileManager* mgr = [NSFileManager defaultManager];
+            NSFileManager* mgr = [NSFileManager manager];
             BOOL dir = NO;
             str = [str stringByExpandingTildeInPath];
             if([mgr fileExistsAtPath:str isDirectory:&dir] && !dir &&
@@ -374,7 +374,7 @@
         if([bestType isEqualToString:NSStringPboardType])
         {
             NSString* filename = [pboard stringForType:NSStringPboardType];
-            NSFileManager* mgr = [NSFileManager defaultManager];
+            NSFileManager* mgr = [NSFileManager manager];
             BOOL dir = NO;
             filename = [filename stringByExpandingTildeInPath];
             if([mgr fileExistsAtPath:filename isDirectory:&dir] && !dir &&

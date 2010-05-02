@@ -141,6 +141,10 @@
 		1BA326A010546F4600276F57 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA3269E10546F4600276F57 /* MainMenu.xib */; };
 		1BA326A310546F9700276F57 /* MZTags.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BA326A110546F9700276F57 /* MZTags.strings */; };
 		1BA326C61054723000276F57 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
+		1BAD35FE118D4C470052DE3B /* MZReadOperationsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BAD35FA118D4C470052DE3B /* MZReadOperationsController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BAD35FF118D4C470052DE3B /* MZReadOperationsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAD35FB118D4C470052DE3B /* MZReadOperationsController.m */; };
+		1BAD3600118D4C470052DE3B /* NSFileManager+MZCreate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BAD35FC118D4C470052DE3B /* NSFileManager+MZCreate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BAD3601118D4C470052DE3B /* NSFileManager+MZCreate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAD35FD118D4C470052DE3B /* NSFileManager+MZCreate.m */; };
 		1BB3609D105416D000188DD1 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB3609C105416D000188DD1 /* AppController.m */; };
 		1BB3611C105421F100188DD1 /* FilesUndoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB3611B105421F100188DD1 /* FilesUndoController.m */; };
 		1BB6BE811050BC88001D3D1D /* MZMetaSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BE801050BC88001D3D1D /* MZMetaSearcher.m */; };
@@ -832,6 +836,10 @@
 		1BA326A210546F9700276F57 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/MZTags.strings; sourceTree = "<group>"; };
 		1BA326EE1054823100276F57 /* MZWriteQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZWriteQueue.h; sourceTree = "<group>"; };
 		1BA326EF1054823100276F57 /* MZWriteQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZWriteQueue.m; sourceTree = "<group>"; };
+		1BAD35FA118D4C470052DE3B /* MZReadOperationsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZReadOperationsController.h; sourceTree = "<group>"; };
+		1BAD35FB118D4C470052DE3B /* MZReadOperationsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZReadOperationsController.m; sourceTree = "<group>"; };
+		1BAD35FC118D4C470052DE3B /* NSFileManager+MZCreate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+MZCreate.h"; sourceTree = "<group>"; };
+		1BAD35FD118D4C470052DE3B /* NSFileManager+MZCreate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+MZCreate.m"; sourceTree = "<group>"; };
 		1BB3609B105416D000188DD1 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		1BB3609C105416D000188DD1 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 		1BB3611A105421F100188DD1 /* FilesUndoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesUndoController.h; sourceTree = "<group>"; };
@@ -1049,20 +1057,8 @@
 				1B78A49A105032A50072D89E /* MZMethodData.m */,
 				1BB6BB0810507DBB001D3D1D /* MZDynamicObject.h */,
 				1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */,
-				1BCC97001076B73C007EFF57 /* NSInvocation+Wrapping.h */,
-				1BCC97011076B73C007EFF57 /* NSInvocation+Wrapping.m */,
-				1BEA718D10712A17004B1A7F /* NSArray+Mapping.h */,
-				1BEA718E10712A17004B1A7F /* NSArray+Mapping.m */,
-				1B92BC55108890090057EFD7 /* NSObject+ProtectedKeyValue.h */,
-				1B92BC56108890090057EFD7 /* NSObject+ProtectedKeyValue.m */,
-				1B99354E10AC818300E78D2D /* NSXMLNode+MZExtensions.h */,
-				1B99354F10AC818300E78D2D /* NSXMLNode+MZExtensions.m */,
-				1B0330AB10B1010700B28E3A /* NSDate+UTC.h */,
-				1B0330AC10B1010700B28E3A /* NSDate+UTC.m */,
 				1BCECD8710E39AE200D0AD35 /* MZLogger.h */,
 				1BCECD8810E39AE200D0AD35 /* MZLogger.m */,
-				1BBC021F10F640A1001DDB1C /* NSFileManager+MZAsync.h */,
-				1BBC022010F640A1001DDB1C /* NSFileManager+MZAsync.m */,
 				1B3AD7D611057E9200B33F85 /* MZErrorOperation.h */,
 				1B3AD7D711057E9200B33F85 /* MZErrorOperation.m */,
 				1BBC025E10FC115F001DDB1C /* MZTaskOperation.h */,
@@ -1071,8 +1067,24 @@
 				1B3AD7A211055DF300B33F85 /* MZQueueOperation.m */,
 				1B3AD7DA1105829500B33F85 /* MZOperationsController.h */,
 				1B3AD7DB1105829500B33F85 /* MZOperationsController.m */,
+				1BAD35FA118D4C470052DE3B /* MZReadOperationsController.h */,
+				1BAD35FB118D4C470052DE3B /* MZReadOperationsController.m */,
+				1B0330AB10B1010700B28E3A /* NSDate+UTC.h */,
+				1B0330AC10B1010700B28E3A /* NSDate+UTC.m */,
+				1BAD35FC118D4C470052DE3B /* NSFileManager+MZCreate.h */,
+				1BAD35FD118D4C470052DE3B /* NSFileManager+MZCreate.m */,
+				1BBC021F10F640A1001DDB1C /* NSFileManager+MZAsync.h */,
+				1BBC022010F640A1001DDB1C /* NSFileManager+MZAsync.m */,
 				1B3AD7F1110595C300B33F85 /* NSString+TempFile.h */,
 				1B3AD7F2110595C300B33F85 /* NSString+TempFile.m */,
+				1BCC97001076B73C007EFF57 /* NSInvocation+Wrapping.h */,
+				1BCC97011076B73C007EFF57 /* NSInvocation+Wrapping.m */,
+				1BEA718D10712A17004B1A7F /* NSArray+Mapping.h */,
+				1BEA718E10712A17004B1A7F /* NSArray+Mapping.m */,
+				1B92BC55108890090057EFD7 /* NSObject+ProtectedKeyValue.h */,
+				1B92BC56108890090057EFD7 /* NSObject+ProtectedKeyValue.m */,
+				1B99354E10AC818300E78D2D /* NSXMLNode+MZExtensions.h */,
+				1B99354F10AC818300E78D2D /* NSXMLNode+MZExtensions.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -1924,6 +1936,8 @@
 				1B3AD7DC1105829500B33F85 /* MZOperationsController.h in Headers */,
 				1B3AD7F3110595C300B33F85 /* NSString+TempFile.h in Headers */,
 				1B4AF84811745A5F00E5C969 /* MZRESTOperation.h in Headers */,
+				1BAD35FE118D4C470052DE3B /* MZReadOperationsController.h in Headers */,
+				1BAD3600118D4C470052DE3B /* NSFileManager+MZCreate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2421,6 +2435,8 @@
 				1B3AD7DD1105829500B33F85 /* MZOperationsController.m in Sources */,
 				1B3AD7F4110595C300B33F85 /* NSString+TempFile.m in Sources */,
 				1B4AF84911745A5F00E5C969 /* MZRESTOperation.m in Sources */,
+				1BAD35FF118D4C470052DE3B /* MZReadOperationsController.m in Sources */,
+				1BAD3601118D4C470052DE3B /* NSFileManager+MZCreate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

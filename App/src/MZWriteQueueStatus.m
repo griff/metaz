@@ -122,6 +122,18 @@ writeStartedForEdits:(MetaEdits *)edits
         writeCanceledForEdits:(MetaEdits *)theEdits
               error:(NSError *)theError
 {
+    NSFileManager* mgr = [NSFileManager manager];
+    BOOL isDir = NO;
+    if([mgr fileExistsAtPath:[theEdits savedTempFileName] isDirectory:&isDir] && !isDir)
+    {
+        NSError *tempError = nil;
+        if(![mgr removeItemAtPath:[theEdits savedTempFileName] error:&tempError])
+        {
+            MZLoggerError(@"Failed to remove temp write file %@", [tempError localizedDescription]);
+            tempError = nil;
+        }
+    }
+
     //[self willChangeValueForKey:@"writing"];
     self.writing = 0;
     //[self didChangeValueForKey:@"writing"];
@@ -185,7 +197,7 @@ writeStartedForEdits:(MetaEdits *)edits
         writeFinishedForEdits:(MetaEdits *)theEdits
 {
     MZWriteQueue* q = [MZWriteQueue sharedQueue];
-    NSFileManager* mgr = [NSFileManager defaultManager];
+    NSFileManager* mgr = [NSFileManager manager];
     NSError* error = nil;
 
     BOOL isDir = NO;
