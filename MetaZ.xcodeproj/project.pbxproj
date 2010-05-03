@@ -783,9 +783,7 @@
 		1B4AF84611745A5F00E5C969 /* MZRESTOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZRESTOperation.h; sourceTree = "<group>"; };
 		1B4AF84711745A5F00E5C969 /* MZRESTOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZRESTOperation.m; sourceTree = "<group>"; };
 		1B4F5394116E9EFC003221B1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/TheTVDB/Info.plist; sourceTree = "<group>"; };
-		1B4F53AD116E9F3B003221B1 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info copy.plist"; path = "Plugins/AtomicParsley/Info copy.plist"; sourceTree = "<group>"; };
 		1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheTVDBPlugin.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B4F53CD116E9F44003221B1 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info copy.plist"; path = "Plugins/Amazon/Info copy.plist"; sourceTree = "<group>"; };
 		1B4F53DD116EA1B5003221B1 /* TheTVDBPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBPlugin.h; sourceTree = "<group>"; };
 		1B4F53DE116EA1B5003221B1 /* TheTVDBPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBPlugin.m; sourceTree = "<group>"; };
 		1B4F53E0116EA398003221B1 /* TheTVDBSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBSearchProvider.h; sourceTree = "<group>"; };
@@ -1161,7 +1159,6 @@
 			isa = PBXGroup;
 			children = (
 				1B032F5A10B0BE1A00B28E3A /* Info.plist */,
-				1B4F53CD116E9F44003221B1 /* Info copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1805,7 +1802,6 @@
 				1B44949810D57D6900B9C751 /* AtomicParsley */,
 				1B040C13107F9DA20027FA0D /* mp4chaps */,
 				1BEA6E8D106EF522004B1A7F /* Info.plist */,
-				1B4F53AD116E9F3B003221B1 /* Info copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";

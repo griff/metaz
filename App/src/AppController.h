@@ -88,6 +88,8 @@
 - (IBAction)applySearchEntry:(id)sender;
 - (IBAction)showReleaseNotes:(id)sender;
 - (IBAction)showHomepage:(id)sender;
+- (IBAction)showIssues:(id)sender;
+- (IBAction)reportIssue:(id)sender;
 - (IBAction)viewLog:(id)sender;
 - (IBAction)sendFeedback:(id)sender;
 

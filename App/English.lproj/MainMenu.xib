@@ -2,20 +2,20 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">10C540</string>
+		<string key="IBDocument.SystemVersion">10D573</string>
 		<string key="IBDocument.InterfaceBuilderVersion">740</string>
-		<string key="IBDocument.AppKitVersion">1038.25</string>
-		<string key="IBDocument.HIToolboxVersion">458.00</string>
+		<string key="IBDocument.AppKitVersion">1038.29</string>
+		<string key="IBDocument.HIToolboxVersion">460.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			<string key="NS.object.0">740</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="1798"/>
 			<integer value="1723"/>
 			<integer value="476"/>
-			<integer value="296"/>
-			<integer value="1798"/>
+			<integer value="106"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -837,9 +837,17 @@
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
 								</object>
+								<object class="NSMenuItem" id="470827767">
+									<reference key="NSMenu" ref="374024848"/>
+									<string key="NSTitle">Known Issues</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
 								<object class="NSMenuItem" id="919840153">
 									<reference key="NSMenu" ref="374024848"/>
-									<string key="NSTitle">Send Feedback...</string>
+									<string key="NSTitle">Report Bug</string>
 									<string key="NSKeyEquiv"/>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="35465992"/>
@@ -8634,14 +8642,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">sendFeedback:</string>
-						<reference key="source" ref="1053022543"/>
-						<reference key="destination" ref="919840153"/>
-					</object>
-					<int key="connectionID">1813</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">viewLog:</string>
 						<reference key="source" ref="1053022543"/>
 						<reference key="destination" ref="981521598"/>
@@ -8679,6 +8679,22 @@
 						<reference key="destination" ref="1000208996"/>
 					</object>
 					<int key="connectionID">1820</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showIssues:</string>
+						<reference key="source" ref="1053022543"/>
+						<reference key="destination" ref="470827767"/>
+					</object>
+					<int key="connectionID">1822</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">reportIssue:</string>
+						<reference key="source" ref="1053022543"/>
+						<reference key="destination" ref="919840153"/>
+					</object>
+					<int key="connectionID">1823</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -8934,6 +8950,7 @@
 							<reference ref="306140961"/>
 							<reference ref="919840153"/>
 							<reference ref="981521598"/>
+							<reference ref="470827767"/>
 						</object>
 						<reference key="parent" ref="391199113"/>
 						<string key="objectName">2</string>
@@ -12170,6 +12187,11 @@
 						<reference key="object" ref="1000208996"/>
 						<reference key="parent" ref="343736847"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1821</int>
+						<reference key="object" ref="470827767"/>
+						<reference key="parent" ref="374024848"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -12356,6 +12378,7 @@
 					<string>1809.IBPluginDependency</string>
 					<string>1810.IBPluginDependency</string>
 					<string>1819.IBPluginDependency</string>
+					<string>1821.IBPluginDependency</string>
 					<string>19.IBPluginDependency</string>
 					<string>19.ImportedFromIB2</string>
 					<string>195.IBPluginDependency</string>
@@ -12763,7 +12786,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{783, 676}, {190, 113}}</string>
+					<string>{{783, 656}, {190, 133}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{596, 852}, {216, 23}}</string>
@@ -12932,6 +12955,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{62, 822}, {137, 23}}</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -13372,7 +13396,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1820</int>
+			<int key="maxID">1823</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -13386,6 +13410,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>applySearchEntry:</string>
 							<string>openDocument:</string>
+							<string>reportIssue:</string>
 							<string>revertChanges:</string>
 							<string>searchForImages:</string>
 							<string>segmentClicked:</string>
@@ -13399,6 +13424,7 @@
 							<string>showHomepage:</string>
 							<string>showImageEditor:</string>
 							<string>showInfoTab:</string>
+							<string>showIssues:</string>
 							<string>showPreferences:</string>
 							<string>showPresets:</string>
 							<string>showReleaseNotes:</string>
@@ -13409,6 +13435,8 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

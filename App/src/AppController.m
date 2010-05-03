@@ -641,6 +641,18 @@ NSDictionary* findBinding(NSWindow* window) {
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
+- (IBAction)showIssues:(id)sender
+{
+    NSURL* url = [NSURL URLWithString:@"http://metaz.lighthouseapp.com/projects/43700-metaz/tickets/bins/95786"];
+    [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
+- (IBAction)reportIssue:(id)sender
+{
+    NSURL* url = [NSURL URLWithString:@"http://metaz.lighthouseapp.com/projects/43700-metaz/tickets/new"];
+    [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
 - (IBAction)viewLog:(id)sender
 {
     NSFileManager *mgr = [NSFileManager manager];

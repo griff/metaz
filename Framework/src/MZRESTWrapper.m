@@ -208,17 +208,17 @@
                                                                         NULL, 
                                                                         (CFStringRef)@"!*'();:@&=+$,/?%#[]", 
                                                                         kCFStringEncodingUTF8);
-        CFStringRef value = (CFStringRef)[[parameters objectForKey:key] copy];
+        //CFStringRef value = (CFStringRef)[[parameters objectForKey:key] copy];
         // Escape even the "reserved" characters for URLs 
         // as defined in http://www.ietf.org/rfc/rfc2396.txt
         CFStringRef encodedValue = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, 
-                                                                           value,
+                                                                           (CFStringRef)[parameters objectForKey:key],
                                                                            NULL, 
                                                                            (CFStringRef)@"!*'();:@&=+$,/?%#[]", 
                                                                            kCFStringEncodingUTF8);
         [temp setObject:(NSString*)encodedValue forKey:(NSString*)encodedKey];
-        CFRelease(value);
         CFRelease(encodedValue);
+        //CFRelease(value);
         CFRelease(encodedKey);
     }
     NSArray* paramNames = [[temp allKeys] sortedArrayUsingSelector:@selector(compare:)];
