@@ -28,11 +28,8 @@
 
 + (void)initialize
 {
-    static BOOL initialized = NO;
-    /* Make sure code only gets executed once. */
-    if (initialized == YES) return;
-    initialized = YES;
- 
+    if(self != [FilesTableView class])
+        return;
     NSArray* sendTypes = [NSArray arrayWithObjects:NSFilenamesPboardType,
                                 NSStringPboardType, nil];
     NSArray* returnTypes = [NSArray arrayWithObjects:NSFilenamesPboardType,

@@ -8,6 +8,7 @@
 
 #import "MZRESTOperation.h"
 #import <MetaZKit/MZLogger.h>
+#import "NSObject+WaitUntilChange.h"
 
 @implementation MZRESTOperation
 
@@ -82,6 +83,12 @@
     [super cancel];
     if(self.executing)
         [wrapper cancelConnection];
+}
+
+- (void)waitUntilFinished
+{
+    if(![self isFinished])
+        [self waitForChangedKeyPath:@"finished"];
 }
 
 - (void)operationFinished

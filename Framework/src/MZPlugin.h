@@ -14,10 +14,16 @@
 @interface MZPlugin : NSObject
 {
 @private;
+    NSBundle* bundle;
     IBOutlet NSView *preferencesView;
     NSNib* nib;
     NSArray* topLevelObjects;
 }
+
+/*!
+ @abstract The bundle that contained this plugin
+ */
+@property(readonly) NSBundle* bundle;
 
 /*!
  * @name Loading and Unloading Plug-in Resources

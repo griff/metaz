@@ -85,11 +85,9 @@ NSDictionary* findBinding(NSWindow* window) {
 
 + (void)initialize
 {
-    static BOOL initialized = NO;
-    /* Make sure code only gets executed once. */
-    if (initialized == YES) return;
-    initialized = YES;
- 
+    if(self != [AppController class])
+        return;
+
     NSArray* sendTypes = [NSArray arrayWithObjects:NSTIFFPboardType, nil];
     NSArray* returnTypes = [NSArray arrayWithObjects:NSTIFFPboardType, nil];
     [NSApp registerServicesMenuSendTypes:sendTypes
@@ -389,6 +387,7 @@ NSDictionary* findBinding(NSWindow* window) {
     [searchIndicator startAnimation:searchField];
     [searchController setSortDescriptors:nil];
     searches++;
+    MZLoggerInfo(@"Starting search %d", searches);
     [[MZMetaSearcher sharedSearcher] startSearchWithData:dict];
 }
 
@@ -753,7 +752,7 @@ NSDictionary* findBinding(NSWindow* window) {
 - (void)finishedSearch:(NSNotification *)note
 {
     searches--;
-    MZLoggerDebug(@"Finished search");
+    MZLoggerDebug(@"Finished search %d", searches);
     if(searches <= 0)
         [searchIndicator stopAnimation:self];
 }

@@ -55,6 +55,11 @@
 
 @implementation MZPluginController
 
++ (NSSet *)keyPathsForValuesAffectingDataProviderTypes
+{
+    return [NSSet setWithObjects:@"activePlugins", nil];
+}
+
 + (NSArray *)pluginPaths
 {
     //NSFileManager *mgr = [NSFileManager manager];
@@ -140,7 +145,6 @@ static MZPluginController *gInstance = NULL;
 {
     [plugins release];
     [loadedPlugins release];
-    [typesCache release];
     [loadQueue release];
     [saveQueue release];
     [searchQueue release];
@@ -193,9 +197,16 @@ static MZPluginController *gInstance = NULL;
     {
         [self willChangeValueForKey:@"loadedPlugins"];
         loadedPlugins = [[NSMutableArray alloc] init];
+        NSMutableSet* loadedBundles = [NSMutableSet set];
         NSArray* thePlugins = [self plugins];
         for(NSBundle* bundle in thePlugins)
         {
+            // the plugins are in the order they should be loaded
+            // so if the same identifier is allready loaded we can skib to
+            // next
+            if([loadedBundles containsObject:[bundle bundleIdentifier]])
+                continue;
+                
             NSError* error = nil;
             if(![bundle loadAndReturnError:&error])
             {
@@ -212,6 +223,15 @@ static MZPluginController *gInstance = NULL;
                 continue;
             }
             MZPlugin* plugin = [[cls alloc] init];
+            if(!plugin)
+            {
+                MZLoggerError(@"Failed to create principal class '%@' for '%@'", 
+                    NSStringFromClass(cls),
+                    [bundle bundleIdentifier]);
+                [bundle unload];
+                continue;
+            }
+            [loadedBundles addObject:[bundle bundleIdentifier]];
             [loadedPlugins addObject:plugin];
             [plugin release];
             MZLoggerInfo(@"Loaded plugin '%@'", [bundle bundleIdentifier]);
@@ -224,17 +244,43 @@ static MZPluginController *gInstance = NULL;
     return loadedPlugins;
 }
 
+- (void)updateActivePlugins
+{
+    NSArray* disabledA = [[NSUserDefaults standardUserDefaults] arrayForKey:DISABLED_KEY];
+    NSSet* disabled;
+    if(disabledA)
+        disabled = [NSSet setWithArray:disabledA];
+    else
+        disabled = [NSSet set];
+    
+    [self willChangeValueForKey:@"activePlugins"];
+    activePlugins = [[NSMutableArray alloc] init];
+    for(MZPlugin* plugin in [self loadedPlugins])
+    {
+        if(![disabled containsObject:[[plugin bundle] bundleIdentifier]])
+            [activePlugins addObject:plugin];
+    }
+    [self didChangeValueForKey:@"activePlugins"];
+}
+
+- (NSArray *)activePlugins
+{
+    if(!activePlugins)
+        [self updateActivePlugins];
+    return activePlugins;
+}
+
+
 - (BOOL)unloadPlugin:(MZPlugin *)plugin
 {
     if([plugin canUnload])
     {
         [plugin willUnload];
         [self willChangeValueForKey:@"loadedPlugins"];
-        NSBundle* bundle = [NSBundle bundleForClass:[plugin class]];
-        [typesCache release];
-        typesCache = nil;
+        NSBundle* bundle = [plugin bundle];
         [loadedPlugins removeObject:plugin]; // This should free the plugin object
         [self didChangeValueForKey:@"loadedPlugins"];
+        [self updateActivePlugins];
         if([bundle unload])
         {
             if([[self delegate] respondsToSelector:
@@ -252,9 +298,9 @@ static MZPluginController *gInstance = NULL;
 
 - (MZPlugin *)pluginWithIdentifier:(NSString *)identifier
 {
-    for(MZPlugin* plugin in [self loadedPlugins])
+    for(MZPlugin* plugin in [self activePlugins])
     {
-        NSBundle* bundle = [NSBundle bundleForClass:[plugin class]];
+        NSBundle* bundle = [plugin bundle];
         if([[bundle bundleIdentifier] isEqualToString:identifier])
             return plugin;
     }
@@ -263,9 +309,9 @@ static MZPluginController *gInstance = NULL;
 
 - (MZPlugin *)pluginWithPath:(NSString *)path
 {
-    for(MZPlugin* plugin in [self loadedPlugins])
+    for(MZPlugin* plugin in [self activePlugins])
     {
-        NSBundle* bundle = [NSBundle bundleForClass:[plugin class]];
+        NSBundle* bundle = [plugin bundle];
         if([[bundle bundlePath] isEqualToString:path])
             return plugin;
     }
@@ -274,7 +320,7 @@ static MZPluginController *gInstance = NULL;
 
 - (id<MZDataProvider>)dataProviderWithIdentifier:(NSString *)identifier
 {
-    for(MZPlugin* plugin in [self loadedPlugins])
+    for(MZPlugin* plugin in [self activePlugins])
     {
         NSArray* dataProviders = [plugin dataProviders];
         for(id<MZDataProvider> provider in dataProviders)
@@ -286,7 +332,7 @@ static MZPluginController *gInstance = NULL;
 
 - (id<MZDataProvider>)dataProviderForType:(NSString *)uti
 {
-    for(MZPlugin* plugin in [self loadedPlugins])
+    for(MZPlugin* plugin in [self activePlugins])
     {
         NSArray* dataProviders = [plugin dataProviders];
         for(id<MZDataProvider> provider in dataProviders)
@@ -312,26 +358,22 @@ static MZPluginController *gInstance = NULL;
 
 - (NSArray *)dataProviderTypes
 {
-    if(!typesCache)
+    NSMutableArray* ret = [NSMutableArray array];
+    for(MZPlugin* plugin in [self activePlugins])
     {
-        NSMutableArray* ret = [NSMutableArray array];
-        for(MZPlugin* plugin in [self loadedPlugins])
+        NSArray* dataProviders = [plugin dataProviders];
+        for(id<MZDataProvider> provider in dataProviders)
         {
-            NSArray* dataProviders = [plugin dataProviders];
-            for(id<MZDataProvider> provider in dataProviders)
-            {
-                NSArray* types = [provider types];
-                [ret addObjectsFromArray:types];
-            }
+            NSArray* types = [provider types];
+            [ret addObjectsFromArray:types];
         }
-        typesCache = [[NSArray alloc] initWithArray:ret];
     }
-    return typesCache;
+    return [NSArray arrayWithArray:ret]; 
 }
 
 - (id<MZSearchProvider>)searchProviderWithIdentifier:(NSString *)identifier
 {
-    for(MZPlugin* plugin in [self loadedPlugins])
+    for(MZPlugin* plugin in [self activePlugins])
     {
         NSArray* searchProviders = [plugin searchProviders];
         for(id<MZSearchProvider> provider in searchProviders)
@@ -400,7 +442,7 @@ static MZPluginController *gInstance = NULL;
                  delegate:(id<MZSearchProviderDelegate>)theDelegate
 {
     MZSearchDelegate* searchDelegate = [MZSearchDelegate searchWithDelegate:theDelegate];
-    for(MZPlugin* plugin in [self loadedPlugins])
+    for(MZPlugin* plugin in [self activePlugins])
     {
         NSArray* searchProviders = [plugin searchProviders];
         for(id<MZSearchProvider> provider in searchProviders)

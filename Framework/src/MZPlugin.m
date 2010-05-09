@@ -11,13 +11,26 @@
 
 @implementation MZPlugin
 
+- (id)init
+{
+    self = [super init];
+    if(self)
+    {
+        bundle = [NSBundle bundleForClass:[self class]];
+    }
+    return self;
+}
+
 - (void)dealloc
 {
     [preferencesView release];
     [nib release];
     [topLevelObjects release];
+    [bundle release];
     [super dealloc];
 }
+
+@synthesize bundle;
 
 - (void)didLoad {}
 - (void)willUnload {}
@@ -48,7 +61,7 @@
     while(range.location != NSNotFound)
     {
         sub = [className substringWithRange:NSMakeRange(oldloc, range.location-oldloc)];
-        if(range.location-oldloc > 1)
+        if(sub.length > 1)
             [ret appendString:@" "];
         [ret appendString:sub];
         NSUInteger max = NSMaxRange(range);
@@ -58,7 +71,7 @@
                                              range:NSMakeRange(max, length-max)];
     }
     sub = [className substringWithRange:NSMakeRange(oldloc, length-oldloc)];
-    if(range.location-oldloc > 1)
+    if(sub.length > 1)
         [ret appendString:@" "];
     [ret appendString:sub];
     return [NSString stringWithString:ret];
@@ -71,7 +84,7 @@
         NSString* nibName = [self preferencesNibName];
         nib = [[NSNib alloc] 
             initWithNibNamed:nibName 
-                      bundle:[NSBundle bundleForClass:[self class]]];
+                      bundle:bundle];
         if(!nib)
             return nil;
         
@@ -84,7 +97,6 @@
 
 - (NSString *)preferencesNibName
 {
-    NSBundle* bundle = [NSBundle bundleForClass:[self class]];
     NSString* ret = [bundle objectForInfoDictionaryKey:@"NSMainNibFile"];
     if(ret)
         return ret;

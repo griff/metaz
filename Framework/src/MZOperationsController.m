@@ -9,6 +9,8 @@
 #import "MZOperationsController.h"
 #import "GTMNSObject+KeyValueObserving.h"
 #import "MZErrorOperation.h"
+#import "MZLogger.h"
+#import "NSObject+WaitUntilChange.h"
 
 @interface MZOperationsController ()
 @property(readwrite,copy) NSArray* operations;
@@ -34,6 +36,8 @@
 {
     for(NSOperation* op in operations)
     {
+        if(![op isFinished])
+            MZLoggerInfo(@"Deallocing owner of operations");
         //[op gtm_removeObserver:self forKeyPath:@"finished" selector:@selector(operationFinished:)];
         [op gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:)];
         if([op isKindOfClass:[MZErrorOperation class]])
@@ -66,15 +70,18 @@
 
 - (void)removeOperation:(NSOperation *)operation
 {
-    //[operation gtm_removeObserver:self forKeyPath:@"finished" selector:@selector(operationFinished:)];
-    [operation gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:)];
-    if([operation isKindOfClass:[MZErrorOperation class]])
-        [operation gtm_removeObserver:self forKeyPath:@"error" selector:@selector(errorChanged:)];
-    NSMutableArray* ops = [NSMutableArray arrayWithArray:self.operations];
-    [ops removeObject:operation];
-    self.operations = ops;
+    @synchronized(self)
+    {
+        //[operation gtm_removeObserver:self forKeyPath:@"finished" selector:@selector(operationFinished:)];
+        [operation gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:)];
+        if([operation isKindOfClass:[MZErrorOperation class]])
+            [operation gtm_removeObserver:self forKeyPath:@"error" selector:@selector(errorChanged:)];
+        NSMutableArray* ops = [NSMutableArray arrayWithArray:self.operations];
+        [ops removeObject:operation];
+        self.operations = ops;
     
-    [self operationFinished:nil];
+        [self operationFinished:nil];
+    }
 }
 
 - (void)cancel
@@ -82,6 +89,16 @@
     self.cancelled = YES;
     for(NSOperation* op in self.operations)
         [op cancel];
+}
+
+- (void)waitUntilFinished
+{
+    if(![self isFinished])
+    {
+        [self waitForChangedKeyPath:@"finished"];
+        if(![self isFinished])
+            MZLoggerDebug(@"Fuck that");
+    }
 }
 
 - (void)addOperationsToQueue:(NSOperationQueue*)queue
@@ -99,8 +116,10 @@
         for(NSOperation* op in self.operations)
             if(![op isFinished])
                 return;
+        [self retain];
+        [self performSelectorOnMainThread:@selector(operationsFinished) withObject:nil waitUntilDone:YES];
         self.finished = YES;
-        [self performSelectorOnMainThread:@selector(operationsFinished) withObject:nil waitUntilDone:NO];
+        [self release];
     }
 }
 

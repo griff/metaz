@@ -10,6 +10,28 @@
 
 
 @implementation MZPlugin (Private)
+
+- (BOOL)isEnabled
+{
+    NSArray* disabled = [[NSUserDefaults standardUserDefaults] arrayForKey:DISABLED_KEY];
+    return ![disabled containsObject:[[self bundle] bundleIdentifier]];
+}
+
+- (void)setEnabled:(BOOL)enabled
+{
+    NSArray* disabledA = [[NSUserDefaults standardUserDefaults] arrayForKey:DISABLED_KEY];
+    NSMutableSet* disabled;
+    if(disabledA)
+        disabled = [NSMutableSet setWithArray:disabledA];
+    else
+        disabled = [NSMutableSet set];
+    if(enabled)
+        [disabled removeObject:[[self bundle] bundleIdentifier]];
+    else
+        [disabled addObject:[[self bundle] bundleIdentifier]];
+    [[NSUserDefaults standardUserDefaults] setObject:[disabled allObjects] forKey:DISABLED_KEY];
+}
+
 - (BOOL)isBuiltIn
 {
     return NO;

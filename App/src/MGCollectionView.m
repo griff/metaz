@@ -48,7 +48,8 @@
 
 + (void)initialize
 {
-    [self exposeBinding:NSContentBinding];
+    if(self == [MGCollectionView class])
+        [self exposeBinding:NSContentBinding];
 }
 
 - (id)initWithFrame:(NSRect)frame

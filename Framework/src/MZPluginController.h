@@ -40,8 +40,8 @@
 @interface MZPluginController : NSObject {
     NSArray* plugins;
     NSMutableArray* loadedPlugins;
+    NSMutableArray* activePlugins;
     id<MZPluginControllerDelegate> delegate;
-    NSArray* typesCache;
     NSOperationQueue* loadQueue;
     NSOperationQueue* saveQueue;
     NSOperationQueue* searchQueue;

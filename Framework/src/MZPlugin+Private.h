@@ -9,7 +9,11 @@
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MZPlugin.h>
 
+#define DISABLED_KEY @"disabledPlugins"
+
 @interface MZPlugin (Private)
+@property(getter=isEnabled) BOOL enabled;
+
 - (BOOL)isBuiltIn;
 - (BOOL)canUnload;
 @end

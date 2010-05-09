@@ -114,6 +114,7 @@
     {
         // Finish last search;
         [search cancel];
+        [search waitUntilFinished];
         [search release];
         search = nil;
     }

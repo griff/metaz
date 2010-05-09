@@ -13,7 +13,8 @@
 
 + (void)initialize
 {
-    [self exposeBinding:@"picture"];
+    if(self == [PictureEditor class])
+        [self exposeBinding:@"picture"];
 }
 
 + (NSSet *)keyPathsForValuesAffectingChanged

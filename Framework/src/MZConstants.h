@@ -209,3 +209,8 @@ MZKIT_EXTERN NSString* const MZDataControllerErrorKey;
 
 // Standard alert ids
 MZKIT_EXTERN NSString* const MZDataProviderFileAlreadyLoadedWarningKey;
+
+
+void MZRelease(const void * ns);
+const void * MZRetain(const void * ns);
+CFStringRef MZCopyDescription(const void *ns);

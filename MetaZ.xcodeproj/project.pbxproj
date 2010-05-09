@@ -158,6 +158,8 @@
 		1BBC026110FC115F001DDB1C /* MZTaskOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC025F10FC115F001DDB1C /* MZTaskOperation.m */; };
 		1BC0661910AE223A005C2A9F /* PresetsPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BC0661710AE223A005C2A9F /* PresetsPanel.xib */; };
 		1BC0671410AE44CA005C2A9F /* presets.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BC0671310AE44CA005C2A9F /* presets.png */; };
+		1BC256381192C183001B9E1E /* NSObject+WaitUntilChange.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BC256361192C183001B9E1E /* NSObject+WaitUntilChange.h */; };
+		1BC256391192C183001B9E1E /* NSObject+WaitUntilChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC256371192C183001B9E1E /* NSObject+WaitUntilChange.m */; };
 		1BCC97021076B73C007EFF57 /* NSInvocation+Wrapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BCC97001076B73C007EFF57 /* NSInvocation+Wrapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BCC97031076B73C007EFF57 /* NSInvocation+Wrapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC97011076B73C007EFF57 /* NSInvocation+Wrapping.m */; };
 		1BCC98261076D1A3007EFF57 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BB6C10A1052B154001D3D1D /* Sparkle.framework */; };
@@ -857,6 +859,8 @@
 		1BBC025F10FC115F001DDB1C /* MZTaskOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTaskOperation.m; sourceTree = "<group>"; };
 		1BC0661810AE223A005C2A9F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/PresetsPanel.xib; sourceTree = "<group>"; };
 		1BC0671310AE44CA005C2A9F /* presets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = presets.png; path = App/resources/presets.png; sourceTree = "<group>"; };
+		1BC256361192C183001B9E1E /* NSObject+WaitUntilChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WaitUntilChange.h"; sourceTree = "<group>"; };
+		1BC256371192C183001B9E1E /* NSObject+WaitUntilChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WaitUntilChange.m"; sourceTree = "<group>"; };
 		1BCC97001076B73C007EFF57 /* NSInvocation+Wrapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+Wrapping.h"; sourceTree = "<group>"; };
 		1BCC97011076B73C007EFF57 /* NSInvocation+Wrapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+Wrapping.m"; sourceTree = "<group>"; };
 		1BCC990610771262007EFF57 /* FactorySettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = FactorySettings.plist; path = App/resources/FactorySettings.plist; sourceTree = "<group>"; };
@@ -1083,6 +1087,8 @@
 				1B92BC56108890090057EFD7 /* NSObject+ProtectedKeyValue.m */,
 				1B99354E10AC818300E78D2D /* NSXMLNode+MZExtensions.h */,
 				1B99354F10AC818300E78D2D /* NSXMLNode+MZExtensions.m */,
+				1BC256361192C183001B9E1E /* NSObject+WaitUntilChange.h */,
+				1BC256371192C183001B9E1E /* NSObject+WaitUntilChange.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -1934,6 +1940,7 @@
 				1B4AF84811745A5F00E5C969 /* MZRESTOperation.h in Headers */,
 				1BAD35FE118D4C470052DE3B /* MZReadOperationsController.h in Headers */,
 				1BAD3600118D4C470052DE3B /* NSFileManager+MZCreate.h in Headers */,
+				1BC256381192C183001B9E1E /* NSObject+WaitUntilChange.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2433,6 +2440,7 @@
 				1B4AF84911745A5F00E5C969 /* MZRESTOperation.m in Sources */,
 				1BAD35FF118D4C470052DE3B /* MZReadOperationsController.m in Sources */,
 				1BAD3601118D4C470052DE3B /* NSFileManager+MZCreate.m in Sources */,
+				1BC256391192C183001B9E1E /* NSObject+WaitUntilChange.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2744,6 +2752,7 @@
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
 					Externals/hmac,
+					"Externals/google-toolbox-for-mac/**",
 					"$(TARGET_BUILD_DIR)/include",
 				);
 				INFOPLIST_FILE = Plugins/Amazon/Info.plist;
@@ -2996,6 +3005,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = App/MetaZ_Prefix.pch;
+				HEADER_SEARCH_PATHS = Externals/UKDockProgressIndicator;
 				IBC_OTHER_FLAGS = "--plugin /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/ImageKit.framework/Resources/ImageKitIBPlugin.ibplugin";
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
@@ -3021,6 +3031,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Framework/MetaZKit_Prefix.pch;
+				HEADER_SEARCH_PATHS = "Externals/google-toolbox-for-mac/**";
 				INFOPLIST_FILE = Framework/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
@@ -3220,6 +3231,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = TheTVDBPlugin;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
+				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
 				WRAPPER_EXTENSION = mzplugin;
 			};
 			name = "Remote Debug";
@@ -3246,6 +3258,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = TheTVDBPlugin;
+				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
 				WRAPPER_EXTENSION = mzplugin;
 				ZERO_LINK = NO;
 			};
@@ -3296,6 +3309,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Framework/MetaZKit_Prefix.pch;
+				HEADER_SEARCH_PATHS = "Externals/google-toolbox-for-mac/**";
 				INFOPLIST_FILE = Framework/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
@@ -3416,6 +3430,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = App/MetaZ_Prefix.pch;
+				HEADER_SEARCH_PATHS = Externals/UKDockProgressIndicator;
 				IBC_OTHER_FLAGS = "--plugin /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/ImageKit.framework/Resources/ImageKitIBPlugin.ibplugin";
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";

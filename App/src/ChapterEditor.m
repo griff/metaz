@@ -25,6 +25,8 @@
 
 + (void)initialize
 {
+    if(self != [ChapterEditor class])
+        return;
     [self exposeBinding:@"chapters"];
     [self exposeBinding:@"chapterNames"];
 }

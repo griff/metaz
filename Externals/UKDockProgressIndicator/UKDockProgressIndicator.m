@@ -18,6 +18,8 @@
 
 + (void)initialize
 {
+    if(self != [UKDockProgressIndicator class])
+        return;
     [self exposeBinding:@"minValue"];
     [self exposeBinding:@"maxValue"];
     [self exposeBinding:@"doubleValue"];

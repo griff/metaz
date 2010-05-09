@@ -12,18 +12,6 @@
 
 @implementation TheTVDBPlugin
 
-+ (void)initialize
-{
-    @synchronized(self)
-    {
-        static BOOL initialized = NO;
-        if (initialized == YES) return;
-        initialized = YES;
-    }
-
-    [MZTag registerTag:[MZStringTag tagWithIdentifier:EpisodeQueryTagIdent]];
-}
-
 - (id)init
 {
     self = [super init];
@@ -39,6 +27,12 @@
 {
     [searchProviders release];
     [super dealloc];
+}
+
+- (void)didLoad
+{
+    [MZTag registerTag:[MZStringTag tagWithIdentifier:EpisodeQueryTagIdent]];
+    [super didLoad];
 }
 
 - (BOOL)isBuiltIn

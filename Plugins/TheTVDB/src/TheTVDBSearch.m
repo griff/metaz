@@ -52,12 +52,18 @@
     return self;
 }
 
+- (void)operationFinished
+{
+    if(self->search)
+        MZLoggerDebug(@"Operation finished ");
+}
+
 #pragma mark - MZRESTWrapperDelegate
 
 - (void)wrapper:(MZRESTWrapper *)theWrapper didRetrieveData:(NSData *)data
 {
     NSXMLDocument* doc = [theWrapper responseAsXml];
-    MZLoggerDebug(@"Got TheTVDB response: %@", [theWrapper responseAsText]);
+    //MZLoggerDebug(@"Got TheTVDB response: %@", [theWrapper responseAsText]);
 
     NSArray* items = [doc nodesForXPath:@"/Data/Series" error:NULL];
     MZLoggerDebug(@"Got TheTVDB series %d", [items count]);
@@ -348,6 +354,12 @@
     return self;
 }
 
+- (void)operationFinished
+{
+    if(self->search)
+        MZLoggerDebug(@"Operation finished ");
+}
+
 - (NSDictionary *)parse
 {
     NSDictionary *result = [super parse];
@@ -388,6 +400,13 @@
 {
     return [self initWithSearch:theSearch series:theSeries season:theSeason episode:20 lowerBound:0 upperBound:-1];
 }
+
+- (void)operationFinished
+{
+    if(self->search)
+        MZLoggerDebug(@"Operation finished ");
+}
+
 
 - (NSDictionary *)parse
 {
@@ -489,8 +508,11 @@
 
 - (void)queueOperation:(NSOperation *)operation
 {
-    [self addOperation:operation];
-    [queue addOperation:operation];
+    @synchronized(self)
+    {
+        [self addOperation:operation];
+        [queue addOperation:operation];
+    }
 }
 
 - (void)operationsFinished

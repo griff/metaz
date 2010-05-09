@@ -7,6 +7,7 @@
 //
 
 #import "NSFileManager+MZAsync.h"
+#import "MZConstants.h"
 
 NSError* status2Error(OSStatus status)
 {
@@ -40,25 +41,6 @@ void MZMoveFSPathFileOperationStatusProc (
     NSError* error = status2Error(status);
     [op.fileManager asyncMoveOperation:op currentItem:strCurrentItem stage:stage error:error statusDictionary:(NSDictionary*)statusDictionary];
 }
-
-void MZRelease(const void * ns)
-{
-    id obj = (id)ns;
-    [obj release];
-}
-
-const void * MZRetain(const void * ns)
-{
-    id obj = (id)ns;
-    return [obj retain];
-}
-
-CFStringRef MZCopyDescription(const void *ns)
-{
-    id obj = (id)ns;
-    return (CFStringRef)[obj description];
-}
-
 
 @implementation MZAsyncOperation
 

@@ -35,12 +35,8 @@
 
 + (void)initialize
 {
-    @synchronized(self)
-    {
-        static BOOL initialized = NO;
-        if (initialized == YES) return;
-        initialized = YES;
-    }
+    if(self != [MZTag class])
+        return;
 
     // Info tags
     [self registerTag:[MZStringTag tagWithIdentifier:MZFileNameTagIdent]];
@@ -120,12 +116,13 @@ static NSMutableDictionary *sharedTags = nil;
 
 + (MZTag *)tagForIdentifier:(NSString *)identifier
 {
+    MZTag *ret = nil;
     @synchronized(self)
     {
-        if(!sharedTags)
-            return nil;
-        return [sharedTags objectForKey:identifier];
+        if(sharedTags)
+            ret = [sharedTags objectForKey:identifier];
     }
+    return ret;
 }
 
 + (NSArray*)infoTags

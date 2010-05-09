@@ -11,18 +11,6 @@
 
 @implementation TagChimpPlugin
 
-+ (void)initialize
-{
-    @synchronized(self)
-    {
-        static BOOL initialized = NO;
-        if (initialized == YES) return;
-        initialized = YES;
-    }
-
-    [MZTag registerTag:[MZIntegerTag tagWithIdentifier:TagChimpIdTagIdent]];
-}
-
 - (id)init
 {
     self = [super init];
@@ -39,6 +27,13 @@
     [searchProviders release];
     [super dealloc];
 }
+
+- (void)didLoad
+{
+    [MZTag registerTag:[MZIntegerTag tagWithIdentifier:TagChimpIdTagIdent]];
+    [super didLoad];
+}
+
 
 - (BOOL)isBuiltIn
 {
