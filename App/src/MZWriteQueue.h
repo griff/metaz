@@ -46,6 +46,7 @@ typedef enum {
 + (MZWriteQueue *)sharedQueue;
 + (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key;
 
+- (void)resetTrashHandling;
 - (void)start;
 //- (void)pause;
 //- (void)resume;

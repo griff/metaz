@@ -56,9 +56,7 @@ static MZWriteQueue* sharedQueue = nil;
         queueItems = [[NSMutableArray alloc] init];
         //[self loadQueueWithError:NULL];
         sharedQueue = [self retain];
-        removeWhenTrashFailes = (int)[[NSUserDefaults standardUserDefaults] 
-            integerForKey:@"actionWhenTrashFailes"
-                  default:PromptForTrashHandling];
+        [self resetTrashHandling];
     }
     return self;
 }
@@ -68,6 +66,13 @@ static MZWriteQueue* sharedQueue = nil;
     [fileName release];
     [queueItems release];
     [super dealloc];
+}
+
+- (void)resetTrashHandling
+{
+    removeWhenTrashFailes = (int)[[NSUserDefaults standardUserDefaults] 
+        integerForKey:@"actionWhenTrashFailes"
+              default:PromptForTrashHandling];
 }
 
 -(BOOL)started
@@ -139,9 +144,7 @@ static MZWriteQueue* sharedQueue = nil;
             }
             [self saveQueueWithError:NULL];
         }
-        removeWhenTrashFailes = (int)[[NSUserDefaults standardUserDefaults] 
-            integerForKey:@"actionWhenTrashFailes"
-                  default:PromptForTrashHandling];
+        [self resetTrashHandling];
         [self didChangeValueForKey:@"status"];
     }
 }

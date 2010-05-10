@@ -10,6 +10,7 @@
 #import <RubyCocoa/RBRuntime.h>
 #import <MetaZKit/MZLogger.h>
 #import <sys/stat.h>
+#import <Growl/Growl.h>
 
 int main(int argc, const char *argv[])
 {
@@ -43,6 +44,19 @@ int main(int argc, const char *argv[])
     [logger setFilter:[[[GTMLogNoFilter alloc] init] autorelease]];
     
     //RBApplicationInit("rb_main.rb", argc, argv, nil);
+
+    NSBundle* bundle = [NSBundle mainBundle];
+    NSString* dictPath;
+    if (dictPath = [bundle pathForResource:@"FactorySettings" ofType:@"plist"])
+    {
+        NSMutableDictionary* dict = [[NSMutableDictionary alloc] initWithContentsOfFile:dictPath];
+        
+        if([GrowlApplicationBridge isGrowlInstalled])
+            [dict setObject:[NSNumber numberWithInteger:3] forKey:@"whenDoneAction"];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:dict];
+        [dict release];
+    }
+
     [pool release];
     return NSApplicationMain(argc,  argv);
 }
