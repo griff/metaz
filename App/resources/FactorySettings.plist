@@ -31,6 +31,6 @@
 	<key>whenDoneAction</key>
 	<integer>1</integer>
 	<key>autoSearch</key>
-	<false/>
+	<true/>
 </dict>
 </plist>
