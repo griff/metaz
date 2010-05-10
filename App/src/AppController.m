@@ -611,8 +611,11 @@ NSDictionary* findBinding(NSWindow* window) {
                 id value = [result objectForKey:[tag identifier]];
                 if([[tag identifier] isEqual:MZChapterNamesTagIdent])
                 {
-                    [chapterEditor setChapterNames:value];
-                    [chapterEditor setChanged:[NSNumber numberWithBool:YES]];
+                    if(value)
+                    {
+                        [chapterEditor setChapterNames:value];
+                        [chapterEditor setChanged:[NSNumber numberWithBool:YES]];
+                    }
                 }
                 else
                 {

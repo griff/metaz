@@ -1,5 +1,5 @@
 --- mp4v2-1.9.1/util/mp4chaps_old.cpp	2009-10-09 16:48:53.000000000 +0200
-+++ mp4v2-1.9.1/util/mp4chaps.cpp	2009-10-18 12:28:01.000000000 +0200
++++ mp4v2-1.9.1/util/mp4chaps.cpp	2010-05-10 04:26:06.000000000 +0200
 @@ -138,8 +138,8 @@
      _actionGroup.add( 'l', false, "list",    false, LC_CHP_LIST,    "list available chapters" );
      _actionGroup.add( 'c', false, "convert", false, LC_CHP_CONVERT, "convert available chapters" );
@@ -62,6 +62,15 @@
  
          // add the duration of this chapter to the sum (is the start time of the next chapter)
          duration += Timecode(chapters[i].duration, CHAPTERTIMESCALE);
+@@ -597,7 +615,7 @@
+     MP4ChapterType chtp = MP4DeleteChapters( job.fileHandle, _ChapterType );
+     if( MP4ChapterTypeNone == chtp )
+     {
+-        return FAILURE;
++        return SUCCESS;
+     }
+ 
+     fixQtScale( job.fileHandle );
 @@ -678,14 +696,13 @@
              break;
  

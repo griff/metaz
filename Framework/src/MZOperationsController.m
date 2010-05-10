@@ -116,9 +116,9 @@
         for(NSOperation* op in self.operations)
             if(![op isFinished])
                 return;
+        self.finished = YES;
         [self retain];
         [self performSelectorOnMainThread:@selector(operationsFinished) withObject:nil waitUntilDone:YES];
-        self.finished = YES;
         [self release];
     }
 }

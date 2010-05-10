@@ -1076,7 +1076,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     // Special chapters handling
     id chaptersObj = [changes objectForKey:MZChaptersTagIdent];
     NSString* chaptersFile = nil;
-    if(chaptersObj == [NSNull null])
+    if(chaptersObj == [NSNull null] || (chaptersObj && [chaptersObj count] == 0))
     {
         chaptersFile = @"";
     }
