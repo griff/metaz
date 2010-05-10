@@ -10,7 +10,7 @@
 #import "MZWriteQueue+Private.h"
 #import "MZWriteQueueStatus.h"
 #import "MZWriteQueueStatus+Private.h"
-
+#import "NSUserDefaults+KeyPath.h"
 
 @implementation MZWriteQueue
 @synthesize queueItems;
@@ -56,7 +56,9 @@ static MZWriteQueue* sharedQueue = nil;
         queueItems = [[NSMutableArray alloc] init];
         //[self loadQueueWithError:NULL];
         sharedQueue = [self retain];
-        removeWhenTrashFailes = UseDefaultTrashHandling;
+        removeWhenTrashFailes = (int)[[NSUserDefaults standardUserDefaults] 
+            integerForKey:@"actionWhenTrashFailes"
+                  default:PromptForTrashHandling];
     }
     return self;
 }
@@ -137,7 +139,9 @@ static MZWriteQueue* sharedQueue = nil;
             }
             [self saveQueueWithError:NULL];
         }
-        removeWhenTrashFailes = UseDefaultTrashHandling;
+        removeWhenTrashFailes = (int)[[NSUserDefaults standardUserDefaults] 
+            integerForKey:@"actionWhenTrashFailes"
+                  default:PromptForTrashHandling];
         [self didChangeValueForKey:@"status"];
     }
 }

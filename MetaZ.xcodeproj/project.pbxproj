@@ -226,6 +226,8 @@
 		1BEA719010712A17004B1A7F /* NSArray+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA718E10712A17004B1A7F /* NSArray+Mapping.m */; };
 		1BEA71BF10716B90004B1A7F /* APWriteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA71BE10716B90004B1A7F /* APWriteManager.m */; };
 		1BEA71D110717785004B1A7F /* MZWriteQueueStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA71D010717785004B1A7F /* MZWriteQueueStatus.m */; };
+		1BEC79061197B73E00337403 /* GTMStackTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B449E2210DCCC1D00B9C751 /* GTMStackTrace.m */; };
+		1BEC79071197B74400337403 /* GTMStackTrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B449E2110DCCC1D00B9C751 /* GTMStackTrace.h */; };
 		1BF5AD4B105DFC92005DD03E /* QueueWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5AD4A105DFC92005DD03E /* QueueWindowController.m */; };
 		1BF5ADBD105E0B8E005DD03E /* FileViewBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5ADBC105E0B8E005DD03E /* FileViewBox.m */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -1941,6 +1943,7 @@
 				1BAD35FE118D4C470052DE3B /* MZReadOperationsController.h in Headers */,
 				1BAD3600118D4C470052DE3B /* NSFileManager+MZCreate.h in Headers */,
 				1BC256381192C183001B9E1E /* NSObject+WaitUntilChange.h in Headers */,
+				1BEC79071197B74400337403 /* GTMStackTrace.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2441,6 +2444,7 @@
 				1BAD35FF118D4C470052DE3B /* MZReadOperationsController.m in Sources */,
 				1BAD3601118D4C470052DE3B /* NSFileManager+MZCreate.m in Sources */,
 				1BC256391192C183001B9E1E /* NSObject+WaitUntilChange.m in Sources */,
+				1BEC79061197B73E00337403 /* GTMStackTrace.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

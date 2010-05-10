@@ -118,6 +118,9 @@
     
     [self setupStandardOutput];
     [self setupStandardError];
+    MZLoggerDebug(@"Launch %@ %@", 
+        [[task launchPath] lastPathComponent],
+        [[task arguments] componentsJoinedByString:@" "]);
     [task launch];
 }
 

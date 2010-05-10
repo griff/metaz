@@ -9,6 +9,7 @@
 #import "AmazonSearch.h"
 #import "Access.h"
 #import "AmazonRequest.h"
+#import <GTMStackTrace.h>
 
 @implementation AmazonSearch
 
@@ -117,6 +118,7 @@
 {
     [mapping release];
     [ratingsMap release];
+    MZLoggerDebug(@"AmazonSearch release:\n%@", GTMStackTrace());
     [super dealloc];
 }
 

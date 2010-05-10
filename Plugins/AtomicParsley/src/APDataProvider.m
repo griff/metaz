@@ -874,7 +874,6 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
             NSString* value = @"";
             if(numberLen > 0 || countLen > 0)
             {
-                NSString* value;
                 if(numberLen > 0 && countLen > 0)
                     value = [NSString stringWithFormat:@"%@/%@", number, count];
                 else if(numberLen > 0)

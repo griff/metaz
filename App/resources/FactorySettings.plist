@@ -6,6 +6,8 @@
 	<integer>-1</integer>
 	<key>putOriginalsInTrash</key>
 	<true/>
+	<key>actionWhenTrashFailes</key>
+	<integer>1</integer>
 	<key>selectedPreferenceItem</key>
 	<integer>0</integer>
 	<key>profiles</key>
@@ -29,6 +31,6 @@
 	<key>whenDoneAction</key>
 	<integer>1</integer>
 	<key>autoSearch</key>
-	<true/>
+	<false/>
 </dict>
 </plist>

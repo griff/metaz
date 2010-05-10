@@ -128,6 +128,8 @@
     NSString* tvShow = [doc stringForXPath:@"/Data/Series/SeriesName" error:NULL];
     MZTag* tvShowTag = [MZTag tagForIdentifier:MZTVShowTagIdent];
     [ret setObject:[tvShowTag objectFromString:tvShow] forKey:MZTVShowTagIdent];
+    MZTag* artistTag = [MZTag tagForIdentifier:MZArtistTagIdent];
+    [ret setObject:[artistTag objectFromString:tvShow] forKey:MZArtistTagIdent];
 
     NSString* tvNetwork = [doc stringForXPath:@"/Data/Series/Network" error:NULL];
     if(tvNetwork && [tvNetwork length] > 0)

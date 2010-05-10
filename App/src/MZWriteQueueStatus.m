@@ -205,6 +205,7 @@ writeStartedForEdits:(MetaEdits *)edits
     {
         BOOL putOriginalsInTrash = [[NSUserDefaults standardUserDefaults] boolForKey:@"putOriginalsInTrash"];
         BOOL needsRemoval = !putOriginalsInTrash;
+        BOOL shouldKeepOld = YES;
         BOOL shouldMove = YES;
         if(putOriginalsInTrash)
         {
@@ -218,7 +219,7 @@ writeStartedForEdits:(MetaEdits *)edits
                                      tag:&tag])
             {
                 TrashHandling handling = q.removeWhenTrashFailes;
-                if(handling == UseDefaultTrashHandling)
+                if(handling == PromptForTrashHandling)
                 {
                     BOOL overwrite = [[edits loadedFileName] isEqual:[edits savedFileName]];
                     NSAlert* alert = [[NSAlert alloc] init];
@@ -226,6 +227,7 @@ writeStartedForEdits:(MetaEdits *)edits
                             NSLocalizedString(@"Unable to put original \"%@\" in trash", @"Trash title"),
                             [[edits loadedFileName] lastPathComponent]];
                     [alert setMessageText:title];
+                    [alert addButtonWithTitle:NSLocalizedString(@"Keep", @"Button text for keep action")];
                     if(overwrite)
                     {
                         [alert setInformativeText:NSLocalizedString(@"Do you wish to overwrite it anyway ?", @"Trash removal question")];
@@ -237,7 +239,6 @@ writeStartedForEdits:(MetaEdits *)edits
                         [alert addButtonWithTitle:NSLocalizedString(@"Remove", @"Button text for remove action")];
                     }
                     [alert setAlertStyle:NSCriticalAlertStyle];
-                    [alert addButtonWithTitle:NSLocalizedString(@"Keep", @"Button text for keep action")];
 
                     BOOL applyToAll = NO;
                     if(q.hasNextItem)
@@ -251,14 +252,14 @@ writeStartedForEdits:(MetaEdits *)edits
                         applyToAll = [[alert suppressionButton] state] == NSOnState;
                     [alert release];
                     if(returnCode == NSAlertFirstButtonReturn)
-                        handling = RemoveTrashFailedTrashHandling;
-                    else
                         handling = KeepTempFileTrashHandling;
+                    else
+                        handling = RemoveTrashFailedTrashHandling;
                     if(applyToAll)
                         q.removeWhenTrashFailes = handling;
                 }
                 needsRemoval = handling == RemoveTrashFailedTrashHandling;
-                shouldMove = handling != KeepTempFileTrashHandling;
+                shouldKeepOld = handling == KeepTempFileTrashHandling;
             }
         }
         if(needsRemoval && ![mgr removeItemAtPath:[edits loadedFileName] error:&error])
@@ -272,6 +273,29 @@ writeStartedForEdits:(MetaEdits *)edits
         }
         else
         {
+            if( shouldKeepOld && [[edits loadedFileName] isEqualToString:[edits savedFileName]])
+            {
+                NSString* tempFile = [edits loadedFileName];
+                while([mgr fileExistsAtPath:tempFile])
+                {
+                    NSString* ext = [tempFile pathExtension];
+                    tempFile = [[tempFile stringByDeletingPathExtension] stringByAppendingString:@" Backup"];
+                    if(ext && [ext length] > 0)
+                        tempFile = [tempFile stringByAppendingFormat:@".%@", ext];
+                }
+                
+                if(![mgr moveItemAtPath:[edits loadedFileName] toPath:tempFile error:&error])
+                {
+                    NSString* msg = [NSString stringWithFormat:
+                        NSLocalizedString(@"Failed to move original file to backup: %@", @"Move to backup error"),
+                        [error localizedDescription]];
+                    self.status = msg;
+                    MZLoggerError(@"Failed to move original file to backup: %@", [error localizedDescription]);
+                    error = nil;
+                    shouldMove = NO;
+                }
+            }
+            
             if( (shouldMove || ![[edits loadedFileName] isEqualToString:[edits savedFileName]]) &&
                 ![mgr moveItemAtPath:[edits savedTempFileName] toPath:[edits savedFileName] error:&error])
             {

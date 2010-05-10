@@ -23,7 +23,7 @@ typedef enum {
 } RunStatus;
 
 typedef enum {
-    UseDefaultTrashHandling,
+    PromptForTrashHandling = 0,
     KeepTempFileTrashHandling,
     RemoveTrashFailedTrashHandling
 } TrashHandling;

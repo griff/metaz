@@ -77,7 +77,7 @@
 
 - (void)operationsFinished
 {
-    if(self.error)
+    if(self.error || self.cancelled)
     {
         if([delegate respondsToSelector:@selector(dataProvider:controller:writeCanceledForEdits:error:)])
             [delegate dataProvider:provider controller:self writeCanceledForEdits:edits error:error];
