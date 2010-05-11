@@ -85,11 +85,13 @@
         [wrapper cancelConnection];
 }
 
+/*
 - (void)waitUntilFinished
 {
     if(![self isFinished])
         [self waitForChangedKeyPath:@"finished"];
 }
+*/
 
 - (void)operationFinished
 {

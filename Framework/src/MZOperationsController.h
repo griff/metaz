@@ -25,7 +25,7 @@
 - (void)removeOperation:(NSOperation *)operation;
 
 - (void)cancel;
-- (void)waitUntilFinished;
+//- (void)waitUntilFinished;
 - (void)addOperationsToQueue:(NSOperationQueue*)queue;
 
 - (void)operationsFinished;

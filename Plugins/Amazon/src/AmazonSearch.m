@@ -18,6 +18,11 @@
     return [AmazonRequest class];
 }
 
++ (id)searchWithProvider:(id)provider delegate:(id<MZSearchProviderDelegate>)delegate url:(NSURL *)url parameters:(NSDictionary *)params
+{
+    return [[[self alloc] initWithProvider:provider delegate:delegate url:url parameters:params] autorelease];
+}
+
 - (id)initWithProvider:(id)theProvider delegate:(id<MZSearchProviderDelegate>)theDelegate url:(NSURL *)url parameters:(NSDictionary *)params;
 {
     self = [super initWithProvider:theProvider delegate:theDelegate url:url usingVerb:@"GET" parameters:params];
@@ -118,7 +123,6 @@
 {
     [mapping release];
     [ratingsMap release];
-    MZLoggerDebug(@"AmazonSearch release:\n%@", GTMStackTrace());
     [super dealloc];
 }
 
@@ -200,6 +204,16 @@
     
     // TODO Make more requests for other pages
     [super wrapper:theWrapper didRetrieveData:data];
+}
+
+- (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context
+{
+    [super addObserver:observer forKeyPath:keyPath options:options context:context];
+}
+
+- (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath
+{
+    [super removeObserver:observer forKeyPath:keyPath];
 }
 
 @end

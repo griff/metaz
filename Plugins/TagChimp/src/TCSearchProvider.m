@@ -14,7 +14,6 @@
 
 - (void)dealloc
 {
-    [search release];
     [icon release];
     [supportedSearchTags release];
     [menu release];
@@ -144,21 +143,16 @@
     
     [params setObject:@"200" forKey:@"limit"];
     
-    if(search)
-    {
-        // Finish last search;
-        [search cancel];
-        [search waitUntilFinished];
-        [search release];
-        search = nil;
-    }
+    [self cancelSearch];
+
     if([title length] == 0 && !supportsEmptyTitle)
         return NO;
 
     MZLoggerDebug(@"Sent request to tagChimp:");
     for(NSString* key in [params allKeys])
         MZLoggerDebug(@"    '%@' -> '%@'", key, [params objectForKey:key]);
-    search = [[TCSearch alloc] initWithProvider:self delegate:delegate url:searchURL parameters:params];
+    TCSearch* search = [TCSearch searchWithProvider:self delegate:delegate url:searchURL parameters:params];
+    [self startSearch:search];
     [queue addOperation:search];
     return YES;
 }

@@ -10,9 +10,8 @@
 #import <MetaZKit/MetaZKit.h>
 #import "TheTVDBSearch.h"
 
-@interface TheTVDBSearchProvider : NSObject <MZSearchProvider>
+@interface TheTVDBSearchProvider : MZBaseSearchProvider <MZSearchProvider>
 {
-    TheTVDBSearch* search;
     NSImage* icon;
     NSArray* supportedSearchTags;
     NSMenu* menu;

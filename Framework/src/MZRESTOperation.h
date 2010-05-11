@@ -28,7 +28,7 @@
 - (void)start;
 - (BOOL)isConcurrent;
 - (void)cancel;
-- (void)waitUntilFinished;
+//- (void)waitUntilFinished;
 
 - (void)operationFinished;
 

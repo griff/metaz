@@ -10,9 +10,8 @@
 #import <MetaZKit/MetaZKit.h>
 #import "AmazonSearch.h"
 
-@interface AmazonSearchProvider : NSObject <MZSearchProvider>
+@interface AmazonSearchProvider : MZBaseSearchProvider <MZSearchProvider>
 {
-    AmazonSearch* search;
     NSImage* icon;
     NSArray* supportedSearchTags;
     NSMenu* menu;

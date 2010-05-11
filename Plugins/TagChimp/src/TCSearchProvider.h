@@ -10,9 +10,8 @@
 #import <MetaZKit/MetaZKit.h>
 #import "TCSearch.h"
 
-@interface TCSearchProvider : NSObject <MZSearchProvider>
+@interface TCSearchProvider : MZBaseSearchProvider <MZSearchProvider>
 {
-    TCSearch* search;
     NSImage* icon;
     NSArray* supportedSearchTags;
     NSMenu* menu;

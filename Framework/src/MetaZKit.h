@@ -32,6 +32,7 @@
 #import <MetaZKit/MZTaskOperation.h>
 #import <MetaZKit/MZOperationsController.h>
 #import <MetaZKit/MZReadOperationsController.h>
+#import <MetaZKit/MZBaseSearchProvider.h>
 
 #import <MetaZKit/NSArray+Mapping.h>
 #import <MetaZKit/NSDate+UTC.h>

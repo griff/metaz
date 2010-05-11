@@ -486,8 +486,10 @@
 
 @implementation TheTVDBSearch
 
-@synthesize provider;
-@synthesize delegate;
++ (id)searchWithProvider:(id)provider delegate:(id<MZSearchProviderDelegate>)delegate queue:(NSOperationQueue *)queue
+{
+    return [[[self alloc] initWithProvider:provider delegate:delegate queue:queue] autorelease];
+}
 
 - (id)initWithProvider:(id)theProvider delegate:(id<MZSearchProviderDelegate>)theDelegate queue:(NSOperationQueue *)theQueue
 {
@@ -507,6 +509,9 @@
     [queue release];
     [super dealloc];
 }
+
+@synthesize provider;
+@synthesize delegate;
 
 - (void)queueOperation:(NSOperation *)operation
 {

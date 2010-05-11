@@ -13,7 +13,6 @@
 
 - (void)dealloc
 {
-    //[search release];
     [icon release];
     [supportedSearchTags release];
     [menu release];
@@ -77,14 +76,7 @@
               delegate:(id<MZSearchProviderDelegate>)delegate
                  queue:(NSOperationQueue *)queue;
 {
-    if(search)
-    {
-        // Finish last search;
-        [search cancel];
-        [search waitUntilFinished];
-        [search release];
-        search = nil;
-    }
+    [self cancelSearch];
 
     NSNumber* videoKindObj = [data objectForKey:MZVideoTypeTagIdent];
     NSString* show = [data objectForKey:MZTVShowTagIdent];
@@ -100,7 +92,7 @@
     if(episodeNo)
         episode = [episodeNo integerValue];
     
-    search = [[TheTVDBSearch alloc] initWithProvider:self delegate:delegate queue:queue];
+    TheTVDBSearch* search = [TheTVDBSearch searchWithProvider:self delegate:delegate queue:queue];
     
     /*
     TheTVDBUpdateMirrors* mirrors = [[TheTVDBUpdateMirrors alloc] init];
@@ -113,6 +105,7 @@
     [search addOperation:seriesSearch];
     [seriesSearch release];
     
+    [self startSearch:search];
     MZLoggerDebug(@"Sent request to TheTVDB");
     [search addOperationsToQueue:queue];
     return YES;

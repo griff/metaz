@@ -37,7 +37,7 @@
     for(NSOperation* op in operations)
     {
         if(![op isFinished])
-            MZLoggerInfo(@"Deallocing owner of operations");
+            MZLoggerError(@"Deallocing owner of operations");
         //[op gtm_removeObserver:self forKeyPath:@"finished" selector:@selector(operationFinished:)];
         [op gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:)];
         if([op isKindOfClass:[MZErrorOperation class]])
@@ -91,6 +91,7 @@
         [op cancel];
 }
 
+/*
 - (void)waitUntilFinished
 {
     if(![self isFinished])
@@ -100,6 +101,7 @@
             MZLoggerDebug(@"Fuck that");
     }
 }
+*/
 
 - (void)addOperationsToQueue:(NSOperationQueue*)queue
 {

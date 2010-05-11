@@ -12,7 +12,6 @@
 
 - (void)dealloc
 {
-    [search release];
     [icon release];
     [supportedSearchTags release];
     [menu release];
@@ -110,22 +109,16 @@
         }
     }
     
-    if(search)
-    {
-        // Finish last search;
-        [search cancel];
-        [search waitUntilFinished];
-        [search release];
-        search = nil;
-    }
-    
+    [self cancelSearch];
+            
     if(!reallyDoSearch)
         return NO;
 
     MZLoggerDebug(@"Sent request to Amazon:");
     for(NSString* key in [params allKeys])
         MZLoggerDebug(@"    '%@' -> '%@'", key, [params objectForKey:key]);
-    search = [[AmazonSearch alloc] initWithProvider:self delegate:delegate url:searchURL parameters:params];
+    AmazonSearch* search = [AmazonSearch searchWithProvider:self delegate:delegate url:searchURL parameters:params];
+    [self startSearch:search];
     [queue addOperation:search];
     return YES;
 }

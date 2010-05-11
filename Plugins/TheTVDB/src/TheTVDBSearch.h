@@ -18,6 +18,7 @@
 @property(readonly) id provider;
 @property(readonly) id<MZSearchProviderDelegate> delegate;
 
++ (id)searchWithProvider:(id)provider delegate:(id<MZSearchProviderDelegate>)delegate queue:(NSOperationQueue *)queue;
 - (id)initWithProvider:(id)provider delegate:(id<MZSearchProviderDelegate>)delegate queue:(NSOperationQueue *)queue;
 
 - (void)queueOperation:(NSOperation *)operation;
