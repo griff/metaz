@@ -473,10 +473,13 @@ static MZMetaLoader* sharedLoader = nil;
 {
     edits = theEdits;
     error = theError;
+    
+    // loadedFile: runs a modeal alert so we use NSEventTrackingRunLoopMode
+    // to avoid showing more than one alert at a time
     [[MZMetaLoader sharedLoader] performSelectorOnMainThread:@selector(loadedFile:) 
                 withObject:self
                 waitUntilDone:YES
-                modes:[NSArray arrayWithObject:NSDefaultRunLoopMode]]; 
+                modes:[NSArray arrayWithObject:NSEventTrackingRunLoopMode]]; 
 }
 
 @end
