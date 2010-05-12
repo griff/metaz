@@ -205,7 +205,7 @@ writeStartedForEdits:(MetaEdits *)edits
     {
         BOOL putOriginalsInTrash = [[NSUserDefaults standardUserDefaults] boolForKey:@"putOriginalsInTrash"];
         BOOL needsRemoval = !putOriginalsInTrash;
-        BOOL shouldKeepOld = YES;
+        BOOL shouldKeepOld = NO;
         BOOL shouldMove = YES;
         if(putOriginalsInTrash)
         {
