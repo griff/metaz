@@ -69,7 +69,7 @@
 
 - (NSString *)searchResultTitle
 {
-    return [self title];
+    return [self valueForKey:@"title"];
 }
 
 -(id)getterValueForKey:(NSString *)aKey

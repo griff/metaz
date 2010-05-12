@@ -328,8 +328,13 @@
             [dict setObject:[NSArray arrayWithArray:chapters] forKey:key];
         }
         
-        MZSearchResult* result = [MZSearchResult resultWithOwner:provider dictionary:dict];
-        [results addObject:result];
+        if([dict objectForKey:TagChimpIdTagIdent])
+        {
+            MZSearchResult* result = [MZSearchResult resultWithOwner:provider dictionary:dict];
+            [results addObject:result];
+        }
+        else
+            MZLoggerError(@"Result contained an item with no id. Skipping.");
     }
     MZLoggerDebug(@"Parsed TagChimp results %d", [results count]);
     [delegate searchProvider:provider result:results];

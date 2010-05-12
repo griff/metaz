@@ -69,13 +69,16 @@
 - (void)edit:(id)sender
 {
     MZSearchResult* result = [sender representedObject];
-    NSString* tagChimpId = [result valueForKey:TagChimpIdTagIdent];
+    if([result protectedValueForKey:TagChimpIdTagIdent] != NSNotApplicableMarker)
+    {
+        NSString* tagChimpId = [result valueForKey:TagChimpIdTagIdent];
     
-    NSString* str = [[NSString stringWithFormat:
-        @"https://www.tagchimp.com/tc/%@/",
-        tagChimpId] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSURL* url = [NSURL URLWithString:str];
-    [[NSWorkspace sharedWorkspace] openURL:url];
+        NSString* str = [[NSString stringWithFormat:
+            @"https://www.tagchimp.com/tc/%@/",
+            tagChimpId] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSURL* url = [NSURL URLWithString:str];
+        [[NSWorkspace sharedWorkspace] openURL:url];
+    }
 }
 
 - (BOOL)searchWithData:(NSDictionary *)data
