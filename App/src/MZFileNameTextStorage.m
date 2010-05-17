@@ -102,8 +102,36 @@
 
 - (NSRange)doubleClickAtIndex:(NSUInteger)index
 {
-    NSRange range = [super doubleClickAtIndex:index];
-    return range;
+    NSRange result = [super doubleClickAtIndex:index];
+    NSRange range = NSMakeRange(0,index-1);
+    NSRange found = [[text string]
+        rangeOfCharacterFromSet:[NSCharacterSet punctuationCharacterSet]
+                        options:NSBackwardsSearch
+                          range:range];
+                              
+    if(found.location != NSNotFound)
+    {
+        if(found.location+found.length > result.location)
+        {   
+            NSUInteger nextIdx = found.location+found.length;
+            result.length = result.length-(nextIdx-result.location);
+            result.location = nextIdx;
+        }
+    }
+
+    range = NSMakeRange(index, [[text string] length]-index);
+    found = [[text string]
+        rangeOfCharacterFromSet:[NSCharacterSet punctuationCharacterSet]
+                        options:0
+                          range:range];
+    if(found.location != NSNotFound)
+    {
+        if(found.location < result.location+result.length)
+        {   
+            result.length = found.location - result.location;
+        }
+    }
+    return result;
 }
 
 - (NSUInteger)nextWordFromIndex:(NSUInteger)index forward:(BOOL)isForward
