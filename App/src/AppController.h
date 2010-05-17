@@ -15,6 +15,7 @@
 #import "PresetsWindowController.h"
 #import "SearchProfile.h"
 #import "ChapterEditor.h"
+#import "MZFileNameTextStorage.h"
 
 @interface AppController : NSObject <NSUserInterfaceValidations,MZPluginControllerDelegate> {
     NSWindow* window;
@@ -43,6 +44,9 @@
     ChapterEditor* chapterEditor;
     NSProgressIndicator* loadingIndicator;
     NSInteger loadings;
+    
+    MZFileNameTextStorage* fileNameStorage;
+    NSTextView* fileNameEditor;
 }
 @property (nonatomic, retain) IBOutlet NSWindow* window;
 @property (nonatomic, retain) IBOutlet NSTabView *tabView;

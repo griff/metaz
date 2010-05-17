@@ -11,7 +11,7 @@
 
 @interface UndoTableView : NSTableView
 {
-
+    NSString* editCancelHack;
 }
 
 @end

@@ -76,6 +76,7 @@
 		1B11A28B104DF1EC004C93D3 /* FilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A28A104DF1EC004C93D3 /* FilesTableView.m */; };
 		1B15A60E10B608D100EC0FBF /* AmazonSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B15A60D10B608D100EC0FBF /* AmazonSearch.m */; };
 		1B20209B10B36EC200EE548A /* VideoType.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B20209910B36EC200EE548A /* VideoType.strings */; };
+		1B2AEED611A0EC430074BAAD /* MZFileNameTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */; };
 		1B3AD7A311055DF300B33F85 /* MZQueueOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3AD7A111055DF300B33F85 /* MZQueueOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B3AD7A411055DF300B33F85 /* MZQueueOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3AD7A211055DF300B33F85 /* MZQueueOperation.m */; };
 		1B3AD7D811057E9200B33F85 /* MZErrorOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3AD7D611057E9200B33F85 /* MZErrorOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -486,6 +487,8 @@
 		1B15A60D10B608D100EC0FBF /* AmazonSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonSearch.m; sourceTree = "<group>"; };
 		1B15A62610B6316000EC0FBF /* Access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access.h; path = Plugins/Amazon/Access.h; sourceTree = SOURCE_ROOT; };
 		1B20209A10B36EC200EE548A /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/VideoType.strings; sourceTree = "<group>"; };
+		1B2AEED411A0EC430074BAAD /* MZFileNameTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFileNameTextStorage.h; sourceTree = "<group>"; };
+		1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFileNameTextStorage.m; sourceTree = "<group>"; };
 		1B3AD7A111055DF300B33F85 /* MZQueueOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZQueueOperation.h; sourceTree = "<group>"; };
 		1B3AD7A211055DF300B33F85 /* MZQueueOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZQueueOperation.m; sourceTree = "<group>"; };
 		1B3AD7D611057E9200B33F85 /* MZErrorOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZErrorOperation.h; sourceTree = "<group>"; };
@@ -1735,6 +1738,8 @@
 				1B92BFBA1089F9060057EFD7 /* SearchMeta.m */,
 				1B92C0A1108A23BA0057EFD7 /* NSUserDefaults+KeyPath.h */,
 				1B92C0A2108A23BA0057EFD7 /* NSUserDefaults+KeyPath.m */,
+				1B2AEED411A0EC430074BAAD /* MZFileNameTextStorage.h */,
+				1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */,
 			);
 			name = Classes;
 			path = App/src;
@@ -2331,7 +2336,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -o errexit\n#set -x\n\nif [ \"${CONFIGURATION}\" != \"Release\" ]; then exit; fi\n\nPATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin\nexport GITV=`git log -n1 --pretty=oneline --format=%h`\nexport DATEV=`date +%y.%m.%d.%H`\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleShortVersionString)\nDOWNLOAD_BASE_URL=\"http://cloud.github.com/downloads/griff/metaz\"\nRELEASENOTES_URL=\"http://griff.github.com/metaz/release-notes.html#version-$VERSION\"\n\nARCHIVE_FILENAME=\"$PROJECT_NAME-$VERSION.zip\"\nDOWNLOAD_URL=\"$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME\"\nKEYCHAIN_PRIVKEY_NAME=\"MetaZ Sparkle Private\"\n\nWD=$PWD\ncd \"$BUILT_PRODUCTS_DIR\"\nrm -f \"$PROJECT_NAME\"*.zip\nditto -ck --keepParent \"$PROJECT_NAME.app\" \"$ARCHIVE_FILENAME\"\n\nmkdir -p DSYMS\ncp -R *.dSYM DSYMS/\n\n#ditto -ck --keepParent \"$PROJECT_NAME.app.dSYM\" \"$PROJECT_NAME-$VERSION-$GITV+dYSM.zip\"\nditto -ck DSYMS \"$PROJECT_NAME-$VERSION-$GITV+dYSM.zip\"\nrm -rf DSYMS\n\nSIZE=$(stat -f %z \"$ARCHIVE_FILENAME\")\nPUBDATE=$(date +\"%a, %d %b %G %T %z\")\nSIGNATURE=$(\n\topenssl dgst -sha1 -binary < \"$ARCHIVE_FILENAME\" \\\n\t| openssl dgst -dss1 -sign <(security find-generic-password -g -s \"$KEYCHAIN_PRIVKEY_NAME\" 2>&1 1>/dev/null | perl -pe '($_) = /\"(.+)\"/; s/\\\\012/\\n/g') \\\n\t| openssl enc -base64\n)\n\n[ $SIGNATURE ] || { echo Unable to load signing private key with name \"'$KEYCHAIN_PRIVKEY_NAME'\" from keychain; false; }\n\ncat > \"$PROJECT_NAME-$VERSION.xml\" <<EOF\n\t\t<item>\n\t\t\t<title>Version $VERSION</title>\n\t\t\t<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>\n\t\t\t<pubDate>$PUBDATE</pubDate>\n\t\t\t<enclosure\n\t\t\t\turl=\"$DOWNLOAD_URL\"\n\t\t\t\tsparkle:version=\"$DATEV\"\n\t\t\t\tsparkle:shortVersionString=\"$VERSION\"\n\t\t\t\ttype=\"application/octet-stream\"\n\t\t\t\tlength=\"$SIZE\"\n\t\t\t\tsparkle:dsaSignature=\"$SIGNATURE\"\n\t\t\t/>\n\t\t</item>\nEOF\n\necho scp \"'$HOME/svn/my-cool-app/build/Release/$ARCHIVE_FILENAME'\" www.example.com:download/\necho scp \"'$WD/appcast.xml'\" www.example.com:web/software/my-cool-app/appcast.xml\n";
+			shellScript = "set -o errexit\n#set -x\n\nif [ \"${CONFIGURATION}\" != \"Release\" ]; then exit; fi\n\nPATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin\nexport GITV=`git log -n1 --pretty=oneline --format=%h`\nexport DATEV=`date +%y.%m.%d.%H`\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleShortVersionString)\nDOWNLOAD_BASE_URL=\"http://github.com/downloads/griff/metaz\"\nRELEASENOTES_URL=\"http://griff.github.com/metaz/release-notes.html#version-$VERSION\"\n\nARCHIVE_FILENAME=\"$PROJECT_NAME-$VERSION.zip\"\nDOWNLOAD_URL=\"$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME\"\nKEYCHAIN_PRIVKEY_NAME=\"MetaZ Sparkle Private\"\n\nWD=$PWD\ncd \"$BUILT_PRODUCTS_DIR\"\nrm -f \"$PROJECT_NAME\"*.zip\nditto -ck --keepParent \"$PROJECT_NAME.app\" \"$ARCHIVE_FILENAME\"\n\nmkdir -p DSYMS\ncp -R *.dSYM DSYMS/\n\n#ditto -ck --keepParent \"$PROJECT_NAME.app.dSYM\" \"$PROJECT_NAME-$VERSION-$GITV+dYSM.zip\"\nditto -ck DSYMS \"$PROJECT_NAME-$VERSION-$GITV+dYSM.zip\"\nrm -rf DSYMS\n\nSIZE=$(stat -f %z \"$ARCHIVE_FILENAME\")\nPUBDATE=$(date +\"%a, %d %b %G %T %z\")\nSIGNATURE=$(\n\topenssl dgst -sha1 -binary < \"$ARCHIVE_FILENAME\" \\\n\t| openssl dgst -dss1 -sign <(security find-generic-password -g -s \"$KEYCHAIN_PRIVKEY_NAME\" 2>&1 1>/dev/null | perl -pe '($_) = /\"(.+)\"/; s/\\\\012/\\n/g') \\\n\t| openssl enc -base64\n)\n\n[ $SIGNATURE ] || { echo Unable to load signing private key with name \"'$KEYCHAIN_PRIVKEY_NAME'\" from keychain; false; }\n\ncat > \"$PROJECT_NAME-$VERSION.xml\" <<EOF\n\t\t<item>\n\t\t\t<title>Version $VERSION</title>\n\t\t\t<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>\n\t\t\t<pubDate>$PUBDATE</pubDate>\n\t\t\t<enclosure\n\t\t\t\turl=\"$DOWNLOAD_URL\"\n\t\t\t\tsparkle:version=\"$DATEV\"\n\t\t\t\tsparkle:shortVersionString=\"$VERSION\"\n\t\t\t\ttype=\"application/octet-stream\"\n\t\t\t\tlength=\"$SIZE\"\n\t\t\t\tsparkle:dsaSignature=\"$SIGNATURE\"\n\t\t\t/>\n\t\t</item>\nEOF\n\necho scp \"'$HOME/svn/my-cool-app/build/Release/$ARCHIVE_FILENAME'\" www.example.com:download/\necho scp \"'$WD/appcast.xml'\" www.example.com:web/software/my-cool-app/appcast.xml\n";
 			showEnvVarsInLog = 0;
 		};
 		1BEA6D70106EA6D1004B1A7F /* Build Documentation */ = {
@@ -2509,6 +2514,7 @@
 				1B4499D210D9A5CE00B9C751 /* PresetSegmentedControl.m in Sources */,
 				1B449B8810DC7DE400B9C751 /* ChaptersTableView.m in Sources */,
 				1B42F21C10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m in Sources */,
+				1B2AEED611A0EC430074BAAD /* MZFileNameTextStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3017,7 +3023,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = App/MetaZ_Prefix.pch;
-				HEADER_SEARCH_PATHS = Externals/UKDockProgressIndicator;
+				HEADER_SEARCH_PATHS = (
+					Externals/UKDockProgressIndicator,
+					"Externals/google-toolbox-for-mac\n/**",
+				);
 				IBC_OTHER_FLAGS = "--plugin /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/ImageKit.framework/Resources/ImageKitIBPlugin.ibplugin";
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
@@ -3418,7 +3427,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = App/MetaZ_Prefix.pch;
-				HEADER_SEARCH_PATHS = Externals/UKDockProgressIndicator;
+				HEADER_SEARCH_PATHS = (
+					Externals/UKDockProgressIndicator,
+					"Externals/google-toolbox-for-mac/**",
+				);
 				IBC_OTHER_FLAGS = "--plugin /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/ImageKit.framework/Resources/ImageKitIBPlugin.ibplugin";
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
@@ -3444,7 +3456,10 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = App/MetaZ_Prefix.pch;
-				HEADER_SEARCH_PATHS = Externals/UKDockProgressIndicator;
+				HEADER_SEARCH_PATHS = (
+					Externals/UKDockProgressIndicator,
+					"Externals/google-toolbox-for-mac/**",
+				);
 				IBC_OTHER_FLAGS = "--plugin /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/ImageKit.framework/Resources/ImageKitIBPlugin.ibplugin";
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";

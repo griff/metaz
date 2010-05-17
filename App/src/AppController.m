@@ -14,6 +14,7 @@
 #import "MZWriteQueue.h"
 #import "FakeSearchResult.h"
 #import "SearchMeta.h"
+#import "FilesTableView.h"
 
 #define MaxShortDescription 256
 
@@ -188,6 +189,8 @@ NSDictionary* findBinding(NSWindow* window) {
     [searchField release];
     [activeProfile release];
     [chapterEditor release];
+    [fileNameEditor release];
+    [fileNameStorage release];
     [super dealloc];
 }
 #pragma mark - private
@@ -841,6 +844,35 @@ NSDictionary* findBinding(NSWindow* window) {
             return man;
     }
     return undoManager;
+}
+
+- (id)windowWillReturnFieldEditor:(NSWindow *)sender toObject:(id)client
+{
+    if([client isKindOfClass:[FilesTableView class]])
+    {
+        if(!fileNameEditor)
+        {
+            fileNameStorage = [[MZFileNameTextStorage alloc] init];
+            
+            NSLayoutManager *layoutManager;
+            layoutManager = [[NSLayoutManager alloc] init];
+            [fileNameStorage addLayoutManager:layoutManager];
+            [layoutManager release];
+
+            NSTextContainer *container;
+            container = [[NSTextContainer alloc]
+                    initWithContainerSize:NSZeroSize];
+            [layoutManager addTextContainer:container];
+            [container release];
+
+            fileNameEditor = [[NSTextView alloc]
+                    initWithFrame:NSZeroRect textContainer:container];
+            [fileNameEditor setFieldEditor:YES];
+            [fileNameEditor setRichText:NO];
+        }
+        return fileNameEditor;
+    }
+    return nil;
 }
 
 #pragma mark - as text delegate

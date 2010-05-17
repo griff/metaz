@@ -11,7 +11,14 @@
 
 @implementation UndoTableView
 
--(IBAction)beginEnterEdit:(id)sender {
+- (void)dealloc
+{
+    [editCancelHack release];
+    [super dealloc];
+}
+
+-(IBAction)beginEnterEdit:(id)sender
+{
     NSInteger row = [self selectedRow];
     NSArray* columns = [self tableColumns];
     int i = 0;
@@ -50,14 +57,34 @@
     [super keyDown:theEvent];
 }
 
-- (BOOL)resignFirstResponder
-{
-    return [super resignFirstResponder];
-}
-
 - (void)setAction:(SEL)aSelector
 {
     [self setDoubleAction:aSelector];
+}
+
+
+#pragma mark - as text view delegate
+- (BOOL)textView:(NSTextView *)aTextView doCommandBySelector:(SEL)aSelector
+{
+    if(aSelector == @selector(insertNewlineIgnoringFieldEditor:))
+    {
+        [aTextView insertNewline:self];
+        return YES;
+    }
+    if(aSelector == @selector(cancelOperation:))
+    {
+        [aTextView setString:editCancelHack];
+        [aTextView insertNewline:self];
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)textShouldBeginEditing:(NSText *)text
+{
+    [editCancelHack release];
+    editCancelHack = [[text string] copy];
+    return [super textShouldBeginEditing:text];
 }
 
 @end
