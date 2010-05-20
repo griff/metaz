@@ -372,6 +372,14 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (IBAction)startSearch:(id)sender;
 {
+    NSResponder* oldResponder = findResponder(window);
+    if([filesController commitEditing])
+    {
+        NSResponder* currentResponder =  findResponder(window);
+        if(oldResponder != currentResponder)
+            [window makeFirstResponder:oldResponder];
+    }
+
     NSString* term = [[searchField stringValue] 
         stringByTrimmingCharactersInSet:
             [NSCharacterSet whitespaceCharacterSet]];
