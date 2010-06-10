@@ -136,28 +136,31 @@
         key = shortPath;
     
     if(prefix)
-        MZLoggerDebug(@"We changed");
+        MZLoggerDebug(@"%@ path %@ changed", object, keyPath);
 
     [self retain];
     id oldValue = [[oldData objectForKey:key] retain];
-    [self willChangeValueForKey:key];
     id newValue = [other valueForKeyPath:keyPath];
-    if(newValue == NSMultipleValuesMarker)
+    if(oldValue != newValue || newValue == NSMultipleValuesMarker)
     {
-        //newValue = [other valueForKey:key];
-        NSString* newPrefix = [key stringByAppendingString:@"."];
-        if(prefix)
+        [self willChangeValueForKey:key];
+        if(newValue == NSMultipleValuesMarker)
         {
-            newPrefix = [prefix stringByAppendingString:newPrefix];
+            //newValue = [other valueForKey:key];
+            NSString* newPrefix = [key stringByAppendingString:@"."];
+            if(prefix)
+            {
+                newPrefix = [prefix stringByAppendingString:newPrefix];
+            }
+            else
+                newValue = [MZPriorObserverFix fixWithOther:other prefix:newPrefix];
         }
+        if(newValue)
+            [oldData setObject:newValue forKey:key];
         else
-            newValue = [MZPriorObserverFix fixWithOther:other prefix:newPrefix];
+            [oldData removeObjectForKey:key];
+        [self didChangeValueForKey:key];
     }
-    if(newValue)
-        [oldData setObject:newValue forKey:key];
-    else
-        [oldData removeObjectForKey:key];
-    [self didChangeValueForKey:key];
     [self autorelease];
     [oldValue autorelease];
 }

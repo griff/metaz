@@ -1106,6 +1106,8 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     }
 
     [writes addObject:ctrl];
+
+    [delegate dataProvider:self controller:ctrl writeStartedForEdits:data];
     [ctrl addOperationsToQueue:queue];
 
     return ctrl;
