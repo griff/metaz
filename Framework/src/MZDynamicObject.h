@@ -19,5 +19,7 @@
 -(void)addMethodGetterForKey:(NSString *)aKey withRealKey:(NSString *)aRealKey ofType:(NSUInteger)aType withObjCType:(const char*)aObjcType;
 -(void)addMethodWithSelector:(SEL)aSelector signature:(NSMethodSignature *)aSignature forKey:(NSString *)aKey ofType:(NSUInteger)aType;
 -(void)handleDataForKey:(NSString *)aKey ofType:(NSUInteger)aType forInvocation:(NSInvocation *)anInvocation;
+-(id)handleDataForMethod:(NSString *)aMethod withKey:(NSString *)aKey ofType:(NSUInteger)aType;
+-(void)handleSetData:(id)value forMethod:(NSString *)aMethod withKey:(NSString *)aKey ofType:(NSUInteger)aType;
 
 @end

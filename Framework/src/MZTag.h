@@ -24,9 +24,9 @@
 + (id)tagWithIdentifier:(NSString *)identifier;
 - (id)initWithIdentifier:(NSString *)identifier;
 
-- (NSString *)identifier;
-- (NSString *)localizedName; 
-- (NSCell *)editorCell;
+@property(readonly) NSString *identifier;
+@property(readonly) NSString *localizedName;
+@property(readonly) NSCell *editorCell;
 - (const char*)encoding;
 - (id)convertValueToObject:(void*)buffer;
 - (void)convertObject:(id)obj toValue:(void*)buffer;

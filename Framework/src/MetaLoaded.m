@@ -61,26 +61,25 @@
 }
 
 
--(id)getterValueForKey:(NSString *)aKey {
+-(id)getterValueForKey:(NSString *)aKey
+{
     id ret = [values objectForKey:aKey];
     MZTag* tag = [MZTag tagForIdentifier:aKey];
     return [tag convertObjectForRetrival:ret];
 }
 
--(void)handleDataForKey:(NSString *)aKey ofType:(NSUInteger)aType forInvocation:(NSInvocation *)anInvocation {
+#pragma mark - MZDynamicObject handling
+
+-(void)handleDataForKey:(NSString *)aKey ofType:(NSUInteger)aType forInvocation:(NSInvocation *)anInvocation 
+{
     id ret = [self getterValueForKey:aKey];
     [anInvocation setReturnObject:ret];
 }
 
-/*
-- (id)valueForUndefinedKey:(NSString *)key {
-    if([self respondsToSelector:NSSelectorFromString(key)])
-    {
-        return [self getterValueForKey:key];
-    }
-    return [super valueForUndefinedKey:key];
+-(id)handleDataForMethod:(NSString *)aMethod withKey:(NSString *)aKey ofType:(NSUInteger)aType
+{
+    return [self getterValueForKey:aKey];
 }
-*/
 
 #pragma mark - NSCoding implementation
 

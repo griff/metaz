@@ -59,6 +59,29 @@
     [self doesNotRecognizeSelector:_cmd];
 }
 
+-(id)handleDataForMethod:(NSString *)aMethod withKey:(NSString *)aKey ofType:(NSUInteger)aType
+{
+    MZMethodData* method = [methods objectForKey:aMethod];
+    NSInvocation* inv = [NSInvocation invocationWithMethodSignature:[method signature]];
+    SEL selector = [method selector];
+    [inv setArgumentObject:self atIndex:0];
+    [inv setArgument:&selector  atIndex:1];
+    [self handleDataForKey:[method key] ofType:[method type] forInvocation:inv];
+    return [inv returnObject];
+}
+
+-(void)handleSetData:(id)value forMethod:(NSString *)aMethod withKey:(NSString *)aKey ofType:(NSUInteger)aType
+{
+    MZMethodData* method = [methods objectForKey:aMethod];
+    NSInvocation* inv = [NSInvocation invocationWithMethodSignature:[method signature]];
+    SEL selector = [method selector];
+    [inv setArgumentObject:self atIndex:0];
+    [inv setArgument:&selector  atIndex:1];
+    [inv setArgumentObject:value atIndex:2];
+    [self handleDataForKey:[method key] ofType:[method type] forInvocation:inv];
+}
+
+
 - (BOOL)respondsToSelector:(SEL)aSelector
 {
     if ( [super respondsToSelector:aSelector] )
@@ -92,14 +115,7 @@
 {
     MZMethodData* method = [methods objectForKey:aKey];
     if(method != nil)
-    {
-        NSInvocation* inv = [NSInvocation invocationWithMethodSignature:[method signature]];
-        SEL selector = [method selector];
-        [inv setArgumentObject:self atIndex:0];
-        [inv setArgument:&selector  atIndex:1];
-        [self handleDataForKey:[method key] ofType:[method type] forInvocation:inv];
-        return [inv returnObject];
-    }
+        return [self handleDataForMethod:aKey withKey:[method key] ofType:[method type]];
     return [super valueForUndefinedKey:aKey];
 }
 
@@ -108,14 +124,7 @@
     NSString* setterKey = [MZMethodData setterForKey:key];
     MZMethodData* method = [methods objectForKey:setterKey];
     if(method != nil)
-    {
-        NSInvocation* inv = [NSInvocation invocationWithMethodSignature:[method signature]];
-        SEL selector = [method selector];
-        [inv setArgumentObject:self atIndex:0];
-        [inv setArgument:&selector  atIndex:1];
-        [inv setArgumentObject:value atIndex:2];
-        [self handleDataForKey:[method key] ofType:[method type] forInvocation:inv];
-    }
+        [self handleSetData:value forMethod:setterKey withKey:[method key] ofType:[method type]];
     else
         [super setValue:value forUndefinedKey:key];
 }

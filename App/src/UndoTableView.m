@@ -73,7 +73,8 @@
     }
     if(aSelector == @selector(cancelOperation:))
     {
-        [aTextView setString:editCancelHack];
+        if(editCancelHack)
+            [aTextView setString:editCancelHack];
         [aTextView insertNewline:self];
         return YES;
     }
@@ -85,6 +86,13 @@
     [editCancelHack release];
     editCancelHack = [[text string] copy];
     return [super textShouldBeginEditing:text];
+}
+
+- (void)textDidEndEditing:(NSNotification *)aNotification
+{
+    [editCancelHack release];
+    editCancelHack = nil;
+    [super textDidEndEditing:aNotification];
 }
 
 @end

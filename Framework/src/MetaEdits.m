@@ -272,6 +272,7 @@
     }
 }
 
+#pragma mark - MZDynamicObject handling
 
 -(void)handleDataForKey:(NSString *)aKey ofType:(NSUInteger)aType forInvocation:(NSInvocation *)anInvocation
 {
@@ -302,6 +303,34 @@
         return;
     }
 }
+
+-(id)handleDataForMethod:(NSString *)aMethod withKey:(NSString *)aKey ofType:(NSUInteger)aType
+{
+    if(aType == 1) // Get value
+        return [self getterValueForKey:aKey];
+    if( aType == 2) // Get Changed Value
+    {
+        BOOL ret = [self getterChangedForKey:aKey];
+        return [NSNumber numberWithBool:ret];
+    }
+}
+
+-(void)handleSetData:(id)value forMethod:(NSString *)aMethod withKey:(NSString *)aKey ofType:(NSUInteger)aType
+{
+    if(aType == 3) // Set Value
+    {
+        [self setterValue:value forKey:aKey];
+        return;
+    }
+    if(aType == 4) // Set Changed value
+    {
+        BOOL newChanged = [value boolValue];
+        [self setterChanged:newChanged forKey:aKey];
+        return;
+    }
+}
+
+#pragma mark - observer
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {

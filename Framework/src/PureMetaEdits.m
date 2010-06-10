@@ -59,11 +59,19 @@
     return [pure valueForKey:aKey];
 }
 
+#pragma mark - MZDynamicObject handling
+
 -(void)handleDataForKey:(NSString *)aKey ofType:(NSUInteger)aType forInvocation:(NSInvocation *)anInvocation
 {
     id ret = [self getterValueForKey:aKey];
     [anInvocation setReturnObject:ret];
 }
+
+-(id)handleDataForMethod:(NSString *)aMethod withKey:(NSString *)aKey ofType:(NSUInteger)aType
+{
+    return [self getterValueForKey:aKey];
+}
+
 
 #pragma mark - as observer
 

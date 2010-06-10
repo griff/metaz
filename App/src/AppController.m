@@ -280,10 +280,10 @@ NSDictionary* findBinding(NSWindow* window) {
         }
     }
     [searchField setStringValue:mainValue];
+
+    [[MZMetaSearcher sharedSearcher] clearResults];
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"autoSearch"])
         [self startSearch:searchField];
-    //[searchField performClick:self];
-    //[[MZMetaSearcher sharedSearcher] clearResults];
 }
 
 - (void)registerUndoName:(NSUndoManager *)manager
@@ -731,7 +731,7 @@ NSDictionary* findBinding(NSWindow* window) {
     if(action == @selector(showImageEditor:))
     {
         id value = [filesController protectedValueForKeyPath:@"selection.picture"];
-        return [value isKindOfClass:[NSData class]];
+        return [value isKindOfClass:[NSData class]] || [value isKindOfClass:[MZRemoteData class]];
     }
     if(action == @selector(searchForImages:))
     {

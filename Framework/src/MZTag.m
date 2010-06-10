@@ -240,10 +240,7 @@ static NSMutableDictionary *sharedTags = nil;
     [super dealloc];
 }
 
-- (NSString *)identifier
-{
-    return identifier;
-}
+@synthesize identifier;
 
 - (NSString *)localizedName
 {

@@ -87,14 +87,9 @@
     [anInvocation setReturnObject:ret];
 }
 
-- (id)valueForUndefinedKey:(NSString *)key
+-(id)handleDataForMethod:(NSString *)aMethod withKey:(NSString *)aKey ofType:(NSUInteger)aType
 {
-    if([self respondsToSelector:NSSelectorFromString(key)])
-    {
-        return [self getterValueForKey:key];
-    }
-    //return nil;
-    return [super valueForUndefinedKey:key];
+    return [self getterValueForKey:aKey];
 }
 
 #pragma mark - NSCoding implementation
