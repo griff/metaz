@@ -25,15 +25,14 @@
 
 @property (readonly) MZTimeCode* start;
 @property (readonly) MZTimeCode* duration;
-
-- (NSString *)text;
+@property (readonly,copy,getter=text) NSString* text;
 
 @end
 
 
-@interface MZMutableTimedTextItem : MZTimedTextItem {
+@interface MZMutableTimedTextItem : MZTimedTextItem
+{
 }
-
-- (void)setText:(NSString *)text;
+@property (copy,getter=text) NSString* text;
 
 @end

@@ -15,20 +15,23 @@
     NSNumber* no;
     NSString* text;
 }
-@property (retain) NSNumber* no;
+@property (retain)   NSNumber* no;
 @property (readonly) MZMutableTimedTextItem* item;
-@property (assign) NSInteger num;
+@property (assign)   NSInteger num;
+@property (readonly) MZTimeCode* duration;
+@property (readonly) MZTimeCode* start;
+@property (copy)     NSString* text;
+@property (readonly) NSColor* itemColor;
 
 + (id)wrapperWithEditor:(ChapterEditor *)editor;
 + (id)wrapperWithEditor:(ChapterEditor *)editor no:(NSInteger)no text:(NSString *)text item:(MZTimedTextItem *)item;
 - (id)initWithEditor:(ChapterEditor *)editor no:(NSInteger)no text:(NSString *)text item:(MZTimedTextItem *)item;
 - (id)initWithEditor:(ChapterEditor *)editor;
 
-- (NSColor*)itemColor;
+//- (NSColor*)itemColor;
 - (void)setItem:(MZTimedTextItem *)item;
 - (void)updateText:(NSString *)text;
-- (MZTimeCode *)duration;
-- (NSString *)text;
-- (void)setText:(NSString *)text;
+//- (NSString *)text;
+//- (void)setText:(NSString *)text;
 
 @end

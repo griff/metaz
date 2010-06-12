@@ -11,6 +11,7 @@
 @implementation ChapterItemWrapper
 @synthesize no;
 @synthesize item;
+@synthesize text;
 
 + (id)wrapperWithEditor:(ChapterEditor *)editor
 {
@@ -70,12 +71,21 @@
 
 - (void)setItem:(MZTimedTextItem *)theItem
 {
+    MZTimeCode* oldStart = [item start];
+    if(![oldStart isEqual:[theItem start]])
+        [self willChangeValueForKey:@"start"];
+
     MZTimeCode* oldDuration = [item duration];
     if(![oldDuration isEqual:[theItem duration]])
         [self willChangeValueForKey:@"duration"];
+        
     item = [theItem mutableCopy];
+
     if(![oldDuration isEqual:[theItem duration]])
         [self didChangeValueForKey:@"duration"];
+
+    if(![oldStart isEqual:[theItem start]])
+        [self didChangeValueForKey:@"start"];
 }
 
 - (MZTimeCode *)duration
@@ -83,9 +93,9 @@
     return [item duration];
 }
 
-- (NSString *)text
+- (MZTimeCode *)start
 {
-    return text;
+    return [item start];
 }
 
 - (void)setText:(NSString *)newText

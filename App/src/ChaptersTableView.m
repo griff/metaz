@@ -11,14 +11,46 @@
 
 @implementation ChaptersTableView
 
-@synthesize editor;
-@synthesize filesController;
-
 - (void)dealloc
 {
     [editor release];
     [filesController release];
     [super dealloc];
+}
+
+@synthesize editor;
+@synthesize filesController;
+
+- (void)toggleColumnWithIdentifier:(NSString *)identifier
+{
+    NSTableColumn* column = [self tableColumnWithIdentifier:identifier];
+    [column setHidden:![column isHidden]];
+}
+
+- (void)updateMenuItem:(id)item withColumn:(NSString *)identifier
+{
+    NSTableColumn* column = [self tableColumnWithIdentifier:identifier];
+    [item setState:[column isHidden] ? NSOffState : NSOnState];
+}
+
+-(IBAction)toggleNoColumn:(id)sender
+{
+    [self toggleColumnWithIdentifier:@"no"];
+}
+
+-(IBAction)toggleStartColumn:(id)sender
+{
+    [self toggleColumnWithIdentifier:@"start"];
+}
+
+-(IBAction)toggleNameColumn:(id)sender
+{
+    [self toggleColumnWithIdentifier:@"name"];
+}
+
+-(IBAction)toggleDurationColumn:(id)sender
+{
+    [self toggleColumnWithIdentifier:@"duration"];
 }
 
 -(IBAction)copy:(id)sender
@@ -97,6 +129,26 @@
         return [editor.editorChapters count] > 0;
     if(action == @selector(paste:))
         return [self pasteboardHasTypes];
+    if(action == @selector(toggleNoColumn:))
+    {
+        [self updateMenuItem:anItem withColumn:@"no"];
+        return YES;
+    }
+    if(action == @selector(toggleStartColumn:))
+    {
+        [self updateMenuItem:anItem withColumn:@"start"];
+        return YES;
+    }
+    if(action == @selector(toggleNameColumn:))
+    {
+        [self updateMenuItem:anItem withColumn:@"name"];
+        return YES;
+    }
+    if(action == @selector(toggleDurationColumn:))
+    {
+        [self updateMenuItem:anItem withColumn:@"duration"];
+        return YES;
+    }
     return [super validateUserInterfaceItem:anItem];
 }
 

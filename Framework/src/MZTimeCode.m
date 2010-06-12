@@ -134,6 +134,15 @@
     return millis == other->millis;
 }
 
+- (NSComparisonResult)compare:(MZTimeCode *)aTimeCode
+{
+    if(self->millis < aTimeCode->millis)
+        return NSOrderedAscending;
+    if(self->millis > aTimeCode->millis)
+        return NSOrderedDescending;
+    return NSOrderedSame;
+}
+
 #pragma mark - NSCoding implementation
 - (id)initWithCoder:(NSCoder *)decoder
 {

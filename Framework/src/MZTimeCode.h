@@ -29,4 +29,6 @@
 - (MZTimeCode *)addMillis:(NSUInteger)millis; 
 - (MZTimeCode *)addTimeCode:(MZTimeCode *)timeCode; 
 
+- (NSComparisonResult)compare:(MZTimeCode *)aTimeCode;
+
 @end

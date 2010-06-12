@@ -175,14 +175,8 @@ NSString* fixText(NSString *newText)
         
         [sc scanString:@"[" intoString:nil];
 
-        int minutes;
-        if(![sc scanInt:&minutes])
-        {
-            chapterNames = YES;
-            [ret addObject:text];
-            continue;
-        }
-        
+        int minutes = 0;
+        [sc scanInt:&minutes];
         if(![sc scanString:@":" intoString:nil])
         {
             chapterNames = YES;
@@ -259,11 +253,7 @@ NSString* fixText(NSString *newText)
 
 @synthesize start;
 @synthesize duration;
-
-- (NSString *)text
-{
-    return text;
-}
+@synthesize text;
 
 - (NSString *)description
 {

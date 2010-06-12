@@ -18,6 +18,11 @@
 @property (nonatomic, retain) IBOutlet ChapterEditor* editor;
 @property (nonatomic, retain) IBOutlet NSArrayController* filesController;
 
+-(IBAction)toggleNoColumn:(id)sender;
+-(IBAction)toggleStartColumn:(id)sender;
+-(IBAction)toggleNameColumn:(id)sender;
+-(IBAction)toggleDurationColumn:(id)sender;
+
 -(IBAction)copy:(id)sender;
 -(IBAction)paste:(id)sender;
 
