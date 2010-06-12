@@ -7,11 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "FilesUndoController.h"
 
 
 @interface ChapterEditor : NSObject {
     NSSlider* slider;
     NSArrayController* filesController;
+    FilesUndoController* undoController;
     NSArray* editorChapters;
     NSArray* chapters;
     NSArray* chapterNames;
@@ -23,6 +25,7 @@
 }
 @property (nonatomic,retain) IBOutlet NSSlider* slider;
 @property (nonatomic,retain) IBOutlet NSArrayController* filesController;
+@property (nonatomic, retain) IBOutlet FilesUndoController* undoController;
 @property (readonly) NSArray* editorChapters;
 @property (nonatomic,retain) NSArray* chapters;
 @property (nonatomic,retain) NSArray* chapterNames;

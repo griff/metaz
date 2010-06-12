@@ -101,7 +101,6 @@
 - (void)setText:(NSString *)newText
 {
     text = [newText copy];
-    [item setText:text];
     [editor itemChanged:self];
 }
 

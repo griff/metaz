@@ -9,7 +9,7 @@
 #import "ChapterEditor.h"
 #import "ChapterItemWrapper.h"
 
-@interface ChapterEditor (Private)
+@interface ChapterEditor ()
 
 - (void)makeEditorChapters;
 
@@ -19,6 +19,7 @@
 @implementation ChapterEditor
 @synthesize slider;
 @synthesize filesController;
+@synthesize undoController;
 @synthesize editorChapters;
 @synthesize slideMin;
 @synthesize slideMax;
@@ -109,10 +110,22 @@
         [self makeEditorChapters];
 }
 
-- (void)itemChanged:(ChapterItemWrapper*)item
+- (void)itemChanged:(ChapterItemWrapper *)item;
 {
     if(self.chaptersChanged)
+    {
+        if(item)
+        {
+            NSUndoManager* undo = [undoController undoManager];
+            [undo setActionName:NSLocalizedString(@"Update Chapter", @"Update chapter undo action")];
+            [undo registerUndoWithTarget:item selector:@selector(setText:) object:item.item.text];
+            item.item.text = item.text;
+        }
         return;
+    }
+    if(item)
+        item.item.text = item.text;
+    
     NSMutableArray* nextEdits = [NSMutableArray array];
     for(ChapterItemWrapper* wrap in editorChapters)
     {
