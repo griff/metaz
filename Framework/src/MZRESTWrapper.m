@@ -9,7 +9,7 @@
 #import "MZRESTWrapper.h"
 #import <MetaZKit/MZLogger.h>
 
-@interface MZRESTWrapper (Private)
+@interface MZRESTWrapper ()
 - (void)startConnection:(NSURLRequest *)request;
 - (void)terminateConnection;
 @end

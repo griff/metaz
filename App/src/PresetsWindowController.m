@@ -153,7 +153,7 @@
     MZPreset* preset = [note object];
     NSString* oldName = [[note userInfo] objectForKey:MZPresetOldNameKey];
     [undoManager registerUndoWithTarget:preset selector:@selector(setName:) object:oldName];
-    [undoManager setActionName:NSLocalizedString(@"Rename", @"Preset rename undo action")];
+    [undoManager setActionName:NSLocalizedString(@"Rename Preset", @"Preset rename undo action")];
     [presetsController rearrangeObjects];
     [[self window] performSelector:@selector(makeFirstResponder:) withObject:presetsView afterDelay:0];
 }

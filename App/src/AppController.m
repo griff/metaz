@@ -18,7 +18,7 @@
 
 #define MaxShortDescription 256
 
-@interface AppController (Private)
+@interface AppController ()
 
 - (void)updateSearchMenu;
 - (void)registerUndoName:(NSUndoManager *)manager;

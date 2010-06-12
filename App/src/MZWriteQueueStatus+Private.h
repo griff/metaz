@@ -8,7 +8,7 @@
  */
 #import "MZWriteQueueStatus.h"
 
-@interface MZWriteQueueStatus()
+@interface MZWriteQueueStatus ()
 
 @property(readwrite) int percent;
 @property(readwrite,copy) NSString* status;

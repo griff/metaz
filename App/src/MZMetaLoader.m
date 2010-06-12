@@ -24,7 +24,7 @@ NSString* const MZMetaLoaderFinishedNotification = @"MZMetaLoaderFinishedNotific
 @end
 
 
-@interface MZMetaLoader (Private)
+@interface MZMetaLoader ()
 
 - (void)loadedFile:(MZLoadOperation *)operation;
 - (void)notifyLoadedFile:(MZLoadOperation *)operation;

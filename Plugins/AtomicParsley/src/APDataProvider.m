@@ -10,7 +10,7 @@
 #import "APWriteManager.h"
 #import "APReadDataTask.h"
 
-@interface APDataProvider (Private)
+@interface APDataProvider ()
 
 + (NSString *)launchPath;
 + (NSString *)launchChapsPath;

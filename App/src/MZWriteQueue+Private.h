@@ -8,7 +8,7 @@
  */
 
 
-@interface MZWriteQueue (Private)
+@interface MZWriteQueue ()
 @property(readonly) BOOL hasNextItem;
 
 - (void)startNextItem;

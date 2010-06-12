@@ -11,7 +11,7 @@
 NSInteger stringByteSort(NSString *a, NSString *b, void *context);
 
 /*
-@interface SignedAwsSearchRequest (Private)
+@interface SignedAwsSearchRequest ()
 
 
 @end

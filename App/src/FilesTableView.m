@@ -13,7 +13,7 @@
 #define MZFilesTableRows @"MZFilesTableRows"
 
 
-@interface FilesTableView (Private)
+@interface FilesTableView ()
 
 - (BOOL)writeSelectionUncheckedToPasteboard:(NSPasteboard *)pboard
                                       types:(NSArray *)types;

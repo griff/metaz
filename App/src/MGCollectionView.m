@@ -16,7 +16,7 @@
 #endif	/* !defined(__LP64__) || !__LP64__ */
 
 
-@interface MGCollectionView (Private)
+@interface MGCollectionView ()
 - (void)_removeTargetItem:(MGCollectionViewItem*)item;
 - (void)_applyTargetConfiguration:(BOOL)animate;
 - (void)_contentChanged:(BOOL)changed regenerate:(BOOL)regenerate;
@@ -27,7 +27,7 @@
 - (void)layoutWithAnimation:(BOOL)animation;
 @end
 
-@interface MGCollectionViewItem (Private) 
+@interface MGCollectionViewItem () 
 - (void)_finishHideAnimation;
 - (NSRect)_targetViewFrameRect;
 - (void)_setTargetViewFrameRect:(NSRect)frame;
