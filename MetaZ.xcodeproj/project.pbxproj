@@ -785,7 +785,6 @@
 		1B449E2E10DCCC1D00B9C751 /* GTMValidatingContainers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMValidatingContainers.m; sourceTree = "<group>"; };
 		1B449E2F10DCCC1D00B9C751 /* GTMValidatingContainersTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMValidatingContainersTest.m; sourceTree = "<group>"; };
 		1B4AF736116EF6C100E5C969 /* Access_template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access_template.h; path = Plugins/Amazon/Access_template.h; sourceTree = SOURCE_ROOT; };
-		1B4AF74A116EF80500E5C969 /* Access_template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access_template.h; path = Plugins/TheTVDB/Access_template.h; sourceTree = SOURCE_ROOT; };
 		1B4AF74B116EF80500E5C969 /* Access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access.h; path = Plugins/TheTVDB/Access.h; sourceTree = SOURCE_ROOT; };
 		1B4AF829116F0AFD00E5C969 /* DebugSnowLeopardOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = DebugSnowLeopardOrLater.xcconfig; path = "Externals/google-toolbox-for-mac/XcodeConfig/Project/DebugSnowLeopardOrLater.xcconfig"; sourceTree = "<group>"; };
 		1B4AF8391170CFCC00E5C969 /* TheTVDBSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBSearch.h; sourceTree = "<group>"; };
@@ -1610,7 +1609,6 @@
 		1B4F538F116E9E33003221B1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1B4AF74A116EF80500E5C969 /* Access_template.h */,
 				1B4AF74B116EF80500E5C969 /* Access.h */,
 				1B4F53DD116EA1B5003221B1 /* TheTVDBPlugin.h */,
 				1B4F53DE116EA1B5003221B1 /* TheTVDBPlugin.m */,
