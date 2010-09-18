@@ -1,5 +1,5 @@
 Introduction
-============================================================
+------------
 
 MetaZ is an mp4 meta-data editor for OS X.  
 It started its life when another great meta-data editor MetaX stopped getting
@@ -10,7 +10,7 @@ reimplementation of MetaX with a few ideas of our own sprinkled in there.
 
 
 Building
-============================================================
+--------
 
 There are some files missing in the git repository that you will need if you
 are going to build your own version of MetaZ.
