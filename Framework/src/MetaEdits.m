@@ -313,6 +313,8 @@
         BOOL ret = [self getterChangedForKey:aKey];
         return [NSNumber numberWithBool:ret];
     }
+    //if(aType == 1) // Get value
+    return [self getterValueForKey:aKey];
 }
 
 -(void)handleSetData:(id)value forMethod:(NSString *)aMethod withKey:(NSString *)aKey ofType:(NSUInteger)aType
