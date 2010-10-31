@@ -76,10 +76,11 @@
     if(oldValue == NSMultipleValuesMarker)
     {
         NSString* newPrefix = [key stringByAppendingString:@"."];
-        if(prefix)
+        if(!prefix)
+        /*
         {
             newPrefix = [prefix stringByAppendingString:newPrefix];
-        } else
+        } else*/
             oldValue = [MZPriorObserverFix fixWithOther:other prefix:newPrefix];
     }
     if(oldValue)
@@ -148,11 +149,12 @@
         {
             //newValue = [other valueForKey:key];
             NSString* newPrefix = [key stringByAppendingString:@"."];
-            if(prefix)
+            if(!prefix)
+            /*
             {
                 newPrefix = [prefix stringByAppendingString:newPrefix];
             }
-            else
+            else*/
                 newValue = [MZPriorObserverFix fixWithOther:other prefix:newPrefix];
         }
         if(newValue)

@@ -34,6 +34,7 @@ NSArray* MZUTIFilenameExtension(NSArray* utis)
         NSDictionary* dict = (NSDictionary*)UTTypeCopyDeclaration((CFStringRef)uti);
         //[dict writeToFile:[NSString stringWithFormat:@"/Users/bro/Documents/Maven-Group/MetaZ/%@.plist", uti] atomically:NO];
         NSDictionary* tags = [dict objectForKey:(NSString*)kUTTypeTagSpecificationKey];
+        [dict release];
         NSArray* extensions = [tags objectForKey:(NSString*)kUTTagClassFilenameExtension];
         [ret addObjectsFromArray:extensions];
     }

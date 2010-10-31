@@ -147,37 +147,37 @@ MZRating findRating(MZRating found, NSMenu* menu, NSString* title)
     {
         [menu addItem:[NSMenuItem separatorItem]];
         for(NSMenuItem* item in [menuUK itemArray])
-            [menu addItem:[item copy]];
+            [menu addItem:[[item copy] autorelease]];
     }
     if([d boolForKey:@"ratingDE"])
     {
         [menu addItem:[NSMenuItem separatorItem]];
         for(NSMenuItem* item in [menuDE itemArray])
-            [menu addItem:[item copy]];
+            [menu addItem:[[item copy] autorelease]];
     }
     if([d boolForKey:@"ratingIE"])
     {
         [menu addItem:[NSMenuItem separatorItem]];
         for(NSMenuItem* item in [menuIE itemArray])
-            [menu addItem:[item copy]];
+            [menu addItem:[[item copy] autorelease]];
     }
     if([d boolForKey:@"ratingCA"])
     {
         [menu addItem:[NSMenuItem separatorItem]];
         for(NSMenuItem* item in [menuCA itemArray])
-            [menu addItem:[item copy]];
+            [menu addItem:[[item copy] autorelease]];
     }
     if([d boolForKey:@"ratingAU"])
     {
         [menu addItem:[NSMenuItem separatorItem]];
         for(NSMenuItem* item in [menuAU itemArray])
-            [menu addItem:[item copy]];
+            [menu addItem:[[item copy] autorelease]];
     }
     if([d boolForKey:@"ratingNZ"])
     {
         [menu addItem:[NSMenuItem separatorItem]];
         for(NSMenuItem* item in [menuNZ itemArray])
-            [menu addItem:[item copy]];
+            [menu addItem:[[item copy] autorelease]];
     }
 }
 

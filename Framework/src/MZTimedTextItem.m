@@ -236,8 +236,8 @@ NSString* fixText(NSString *newText)
     self = [super init];
     if(self)
     {
-        start = [aStart retain];
-        duration = [aDuration retain];
+        start = [aStart copy];
+        duration = [aDuration copy];
         text = [fixText(aText) retain];
     }
     return self;
@@ -287,9 +287,9 @@ NSString* fixText(NSString *newText)
 - (id)copyWithZone:(NSZone *)zone
 {
     return [[MZTimedTextItem allocWithZone:zone]
-        initWithStart:[start copyWithZone:zone]
-             duration:[duration copyWithZone:zone]
-                 text:[text copyWithZone:zone]];
+        initWithStart:start
+             duration:duration
+                 text:text];
 }
 
 #pragma mark - NSMutableCopying implementation
@@ -308,7 +308,9 @@ NSString* fixText(NSString *newText)
 
 - (void)setText:(NSString *)aText
 {
-    text = [fixText(aText) retain];
+    NSString* newText = fixText(aText);
+    [text release];
+    text = [newText retain];
 }
 
 @end

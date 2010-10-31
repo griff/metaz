@@ -903,7 +903,6 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
             NSString* value = @"";
             if(numberLen > 0 || countLen > 0)
             {
-                NSString* value;
                 if(numberLen > 0 && countLen > 0)
                     value = [NSString stringWithFormat:@"%@/%@", number, count];
                 else if(numberLen > 0)
@@ -1037,7 +1036,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
             NSData* xmlData = [NSPropertyListSerialization dataFromPropertyList:dict
                                        format:NSPropertyListXMLFormat_v1_0
                                        errorDescription:NULL];
-            NSString* movi = [[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding];
+            NSString* movi = [[[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding] autorelease];
             [args addObject:movi];
         }
         else {

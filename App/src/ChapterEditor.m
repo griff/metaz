@@ -173,7 +173,7 @@
     NSUInteger editsLen = [editorChapters count];
     NSMutableArray* nextEdits = [NSMutableArray array];
     NSInteger newSlide = -slide;
-    NSInteger newSlideMin = slideMin;
+    NSInteger newSlideMin; // = slideMin;
     if(self.chaptersChanged)
     {
         newSlideMin = 0;
