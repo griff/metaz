@@ -10,8 +10,7 @@
 
 /*! @protocol MetaData
  @abstract Informal protocol for all objects that store meta data
- @discussion An IOCommandGate instance is an extremely light weight mechanism that
- executes an action on the driver's work-loop...
+ @discussion ...
  @see MetaEdits MetaEdits
  @see MetaLoaded MetaLoaded
  @availability 1.0

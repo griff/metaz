@@ -13,6 +13,7 @@
     NSDictionary* values;
     NSString* loadedFileName;
     id owner;
+    MZGuessData* guesses;
 }
 @property(readonly) NSString* loadedFileName;
 @property(readonly) id owner;

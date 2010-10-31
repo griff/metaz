@@ -105,6 +105,8 @@
 		1B449E3610DCCC9E00B9C751 /* GTMGarbageCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B449DBC10DCCC1C00B9C751 /* GTMGarbageCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B449E4A10DCCDB000B9C751 /* GTMLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B449DCD10DCCC1C00B9C751 /* GTMLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B449E4B10DCCDB000B9C751 /* GTMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B449DCE10DCCC1C00B9C751 /* GTMLogger.m */; };
+		1B4648E7127D791300913C19 /* MZGuessData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B4648E5127D791300913C19 /* MZGuessData.h */; };
+		1B4648E8127D791300913C19 /* MZGuessData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4648E6127D791300913C19 /* MZGuessData.m */; };
 		1B4AF83B1170CFCC00E5C969 /* TheTVDBSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */; };
 		1B4AF84511715C8400E5C969 /* languages.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1B4AF84411715C8400E5C969 /* languages.xml */; };
 		1B4AF84811745A5F00E5C969 /* MZRESTOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B4AF84611745A5F00E5C969 /* MZRESTOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -784,6 +786,8 @@
 		1B449E2D10DCCC1D00B9C751 /* GTMValidatingContainers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMValidatingContainers.h; sourceTree = "<group>"; };
 		1B449E2E10DCCC1D00B9C751 /* GTMValidatingContainers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMValidatingContainers.m; sourceTree = "<group>"; };
 		1B449E2F10DCCC1D00B9C751 /* GTMValidatingContainersTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMValidatingContainersTest.m; sourceTree = "<group>"; };
+		1B4648E5127D791300913C19 /* MZGuessData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZGuessData.h; sourceTree = "<group>"; };
+		1B4648E6127D791300913C19 /* MZGuessData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZGuessData.m; sourceTree = "<group>"; };
 		1B4AF736116EF6C100E5C969 /* Access_template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access_template.h; path = Plugins/Amazon/Access_template.h; sourceTree = SOURCE_ROOT; };
 		1B4AF74B116EF80500E5C969 /* Access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access.h; path = Plugins/TheTVDB/Access.h; sourceTree = SOURCE_ROOT; };
 		1B4AF829116F0AFD00E5C969 /* DebugSnowLeopardOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = DebugSnowLeopardOrLater.xcconfig; path = "Externals/google-toolbox-for-mac/XcodeConfig/Project/DebugSnowLeopardOrLater.xcconfig"; sourceTree = "<group>"; };
@@ -1032,6 +1036,8 @@
 				1B92BB1B10876FBA0057EFD7 /* PureMetaEdits.m */,
 				1B119FCD10443655004C93D3 /* MetaLoaded.h */,
 				1B119FCE10443655004C93D3 /* MetaLoaded.m */,
+				1B4648E5127D791300913C19 /* MZGuessData.h */,
+				1B4648E6127D791300913C19 /* MZGuessData.m */,
 				1B090C80106A899300D88083 /* MZTag.h */,
 				1B090C81106A899300D88083 /* MZTag.m */,
 				1B11A47C104E627F004C93D3 /* MZConstants.h */,
@@ -1954,6 +1960,7 @@
 				1BC256381192C183001B9E1E /* NSObject+WaitUntilChange.h in Headers */,
 				1BEC79071197B74400337403 /* GTMStackTrace.h in Headers */,
 				1B0604AD1199E24700589ACE /* MZBaseSearchProvider.h in Headers */,
+				1B4648E7127D791300913C19 /* MZGuessData.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2456,6 +2463,7 @@
 				1BC256391192C183001B9E1E /* NSObject+WaitUntilChange.m in Sources */,
 				1BEC79061197B73E00337403 /* GTMStackTrace.m in Sources */,
 				1B0604AE1199E24700589ACE /* MZBaseSearchProvider.m in Sources */,
+				1B4648E8127D791300913C19 /* MZGuessData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
