@@ -7,14 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <MetaZKit/MZDynamicObject.h>
 
-
-@interface MZGuessData : MZDynamicObject <TagData, NSCopying> {
+@interface MZGuessData : MZDynamicObject {
     NSDictionary* values;
 }
 
-+ (id)guessWithOwner:(id)theOwner dictionary:(NSDictionary *)dict;
-- (id)initWithOwner:(id)theOwner dictionary:(NSDictionary *)dict;
++ (id)guessWithDictionary:(NSDictionary *)dict;
+- (id)initWithDictionary:(NSDictionary *)dict;
 
 - (id)getterValueForKey:(NSString *)aKey;
 

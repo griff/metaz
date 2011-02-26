@@ -7,13 +7,14 @@
 //
 
 #import <MetaZKit/MetaData.h>
+#import <MetaZKit/MZGuessData.h>
 #import <MetaZKit/MZDynamicObject.h>
 
 @interface MetaLoaded : MZDynamicObject <MetaData, NSCopying> {
     NSDictionary* values;
     NSString* loadedFileName;
-    id owner;
     MZGuessData* guesses;
+    id owner;
 }
 @property(readonly) NSString* loadedFileName;
 @property(readonly) id owner;

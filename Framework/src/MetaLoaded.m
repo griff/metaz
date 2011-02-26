@@ -27,6 +27,7 @@
         owner = [theOwner retain];
         loadedFileName = [aFileName retain];
         values = [[NSDictionary alloc]initWithDictionary:dict];
+        guesses = [[MZGuessData alloc] initWithDictionary:dict];
         for(MZTag* tag in [owner providedTags])
         {
             NSString* key = [tag identifier];
@@ -40,6 +41,7 @@
     [values release];
     [loadedFileName release];
     [owner release];
+    [guesses release];
     [super dealloc];
 }
 
@@ -64,8 +66,12 @@
 -(id)getterValueForKey:(NSString *)aKey
 {
     id ret = [values objectForKey:aKey];
-    MZTag* tag = [MZTag tagForIdentifier:aKey];
-    return [tag convertObjectForRetrival:ret];
+    if(ret)
+    {
+        MZTag* tag = [MZTag tagForIdentifier:aKey];
+        return [tag convertObjectForRetrival:ret];
+    }
+    return [guesses getterValueForKey:aKey];
 }
 
 #pragma mark - MZDynamicObject handling
