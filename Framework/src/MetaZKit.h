@@ -36,11 +36,12 @@
 
 #import <MetaZKit/NSArray+Mapping.h>
 #import <MetaZKit/NSDate+UTC.h>
-#import <MetaZKit/NSFileManager+MZAsyc.h>
+#import <MetaZKit/NSFileManager+MZAsync.h>
 #import <MetaZKit/NSFileManager+MZCreate.h>
 #import <MetaZKit/NSInvocation+Wrapping.h>
 #import <MetaZKit/NSObject+ProtectedKeyValue.h>
 #import <MetaZKit/NSString+MZNumberValue.h>
+#import <MetaZKit/NSString+MZNumberConversion.h>
 #import <MetaZKit/NSString+MZRemoveString.h>
 #import <MetaZKit/NSString+TempFile.h>
 #import <MetaZKit/NSXMLNode+MZExtensions.h>
