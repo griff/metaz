@@ -637,12 +637,14 @@
         
     // Filename auto set
     [tagdict setObject:[fileName lastPathComponent] forKey:MZFileNameTagIdent];
+    /*
     id title = [tagdict objectForKey:MZTitleTagIdent];
     if(![title isKindOfClass:[NSString class]])
     {
         NSString* newTitle = [MZPluginController extractTitleFromFilename:fileName];
         [tagdict setObject:newTitle forKey:MZTitleTagIdent];
     }
+    */
 
     // Special image handling
     NSString* covr = [dict objectForKey:@"covr"];
