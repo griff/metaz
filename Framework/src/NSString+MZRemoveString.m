@@ -13,8 +13,8 @@
 
 - (NSString *)mz_stringByRemovingSubstringInRange:(NSRange)range;
 {
-    /*
     NSUInteger len = [self length];
+    /*
     if(range.location >= len || range.location+range.length > len )
     {
         NSRangeException
@@ -26,7 +26,7 @@
         return [self substringToIndex:range.location];
     
     return [[self substringToIndex:range.location] 
-        stringByAppendingString:[self substringFromIndex:range.length];
+        stringByAppendingString:[self substringFromIndex:range.length]];
 }
 
 @end
