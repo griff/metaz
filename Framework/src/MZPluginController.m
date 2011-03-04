@@ -601,6 +601,7 @@ static MZPluginController *gInstance = NULL;
             next = loaded;
         edits = [[MetaEdits alloc] initWithProvider:next];
         NSAssert([[edits fileName] isKindOfClass:[NSString class]], @"Bad file name");
+        MZLoggerDebug(@"Actual title %@", [edits title]);
         NSAssert([[edits title] isKindOfClass:[NSString class]], @"Bad title");
         NSDictionary* userInfo = [NSDictionary dictionaryWithObject:edits forKey:MZMetaEditsNotificationKey];
         [[NSNotificationCenter defaultCenter]

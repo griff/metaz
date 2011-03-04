@@ -55,12 +55,12 @@
     
             // Movie IMDB Support
     [ret addObject:[OnigRegexp compileIgnorecase:
-            @"(?<movie>.*?)?(?:[\\/\\s._-]*(?<openb>\\[)?(?<year>(?:19|20)\\d{2})(?(<openb>)\\]))?(?:[\\/\\s._-]*(?<openc>\\[)?(?:(?:imdb|tt)[\\s._-]*)*(?<imdb>\\d{7})(?(<openc>)\\]))(?:[\\s._-]*(?<title>[^\\/]+?))?$"]
+            @"(?<movie>.*?)?(?:[\\/\\s._-]*\\[?(?<year>(?:19|20)\\d{2})\\]?)?(?:[\\/\\s._-]*\\[?(?:(?:imdb|tt)[\\s._-]*)*(?<imdb>\\d{7})\\]?)(?:[\\s._-]*(?<title>[^\\/]+?))?$"]
     ];
     
             // Movie + Year Support
     [ret addObject:[OnigRegexp compileIgnorecase:
-            @"^(?:(?<movie>.*?)[\\/\\s._-]*)?(?<openb>\\[)?(?<year>(?:19|20)\\d{2})(?(<openb>)\\])(?:[\\s._-]*(?<title>[^\\/]+?))?$"]
+            @"^(?:(?<movie>.*?)[\\/\\s._-]*)?\\[?(?<year>(?:19|20)\\d{2})\\]?(?:[\\s._-]*(?<title>[^\\/]+?))?$"]
     ];
     
             // TV Show Support - see
@@ -70,7 +70,7 @@
     
             // TV Show Support - sxee
     [ret addObject:[OnigRegexp compileIgnorecase:
-            @"^(?:(?<name>.*?)[\\/\\s._-]*)?(?<openb>\\[)?(?<season>\\d{1,2})[x\\/](?<episode>\\d{1,2})(?:-(?:\\k<season>x)?(?<endep>\\d{1,2}))?(?(<openb>)\\])(?:[\\s._-]*(?<epname>[^\\/]+?))?$"]
+            @"^(?:(?<name>.*?)[\\/\\s._-]*)?\\[?(?<season>\\d{1,2})[x\\/](?<episode>\\d{1,2})(?:-(?:\\k<season>x)?(?<endep>\\d{1,2}))?\\]?(?:[\\s._-]*(?<epname>[^\\/]+?))?$"]
     ];
     
             // TV Show Support - season only
@@ -106,18 +106,30 @@
         OnigResult* res = [reg match:str];
         if(res)
         {
-            [dict setObject:[res stringForName:@"name"] forKey:@"name"];
-            [dict setObject:[[res stringForName:@"dvd"] mz_numberIntValue] forKey:@"dvd"];
-            [dict setObject:[[res stringForName:@"season"] mz_numberIntValue] forKey:@"season"];
-            [dict setObject:[[res stringForName:@"episode"] mz_numberIntValue] forKey:@"episode"];
-            [dict setObject:[[res stringForName:@"endep"] mz_numberIntValue] forKey:@"endep"];
-            [dict setObject:[[res stringForName:@"part"] mz_numberIntValue] forKey:@"part"];
-            [dict setObject:[res stringForName:@"subep"] forKey:@"subep"];
-            [dict setObject:[res stringForName:@"epname"] forKey:@"epname"];
-            [dict setObject:[res stringForName:@"movie"] forKey:@"movie"];
-            [dict setObject:[[res stringForName:@"year"] mz_numberIntValue] forKey:@"year"];
-            [dict setObject:[res stringForName:@"imdb"] forKey:@"imdb"];
-            [dict setObject:[res stringForName:@"title"] forKey:@"title"];
+            if([res stringForName:@"name"])
+                [dict setObject:[res stringForName:@"name"] forKey:@"name"];
+            if([res stringForName:@"dvd"])
+                [dict setObject:[[res stringForName:@"dvd"] mz_numberIntValue] forKey:@"dvd"];
+            if([res stringForName:@"season"])
+                [dict setObject:[[res stringForName:@"season"] mz_numberIntValue] forKey:@"season"];
+            if([res stringForName:@"episode"])
+                [dict setObject:[[res stringForName:@"episode"] mz_numberIntValue] forKey:@"episode"];
+            if([res stringForName:@"endep"])
+                [dict setObject:[[res stringForName:@"endep"] mz_numberIntValue] forKey:@"endep"];
+            if([res stringForName:@"part"])
+                [dict setObject:[[res stringForName:@"part"] mz_numberIntValue] forKey:@"part"];
+            if([res stringForName:@"subep"])
+                [dict setObject:[res stringForName:@"subep"] forKey:@"subep"];
+            if([res stringForName:@"epname"])
+                [dict setObject:[res stringForName:@"epname"] forKey:@"epname"];
+            if([res stringForName:@"movie"])
+                [dict setObject:[res stringForName:@"movie"] forKey:@"movie"];
+            if([res stringForName:@"year"])
+                [dict setObject:[[res stringForName:@"year"] mz_numberIntValue] forKey:@"year"];
+            if([res stringForName:@"imdb"])
+                [dict setObject:[res stringForName:@"imdb"] forKey:@"imdb"];
+            if([res stringForName:@"title"])
+                [dict setObject:[res stringForName:@"title"] forKey:@"title"];
             break;
         }
     }
@@ -194,6 +206,12 @@
 		$self->{seasonepisode} = sprintf("D%02dE%02.1f", $self->{dvd}, $self->{episode});
 	}
     */
+    
+    MZLoggerDebug(@"Guess result:");
+    for(NSString* key in [dict allKeys])
+    {
+        MZLoggerDebug(@"   %@ -> %@", key, [dict objectForKey:key]);
+    }
     
     return dict;
 }
