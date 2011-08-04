@@ -128,7 +128,7 @@
 	<key>CFBundleGetInfoString</key>
 	<string>Copyright 2009 Brian Olsen &amp; Nigel Graham</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>MetaZ.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.maven-group.${PRODUCT_NAME:identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
