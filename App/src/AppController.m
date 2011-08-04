@@ -352,22 +352,27 @@ NSDictionary* findBinding(NSWindow* window) {
 #pragma mark - actions
 
 - (IBAction)showAdvancedTab:(id)sender {
+    [window makeKeyAndOrderFront:sender];
     [tabView selectTabViewItemWithIdentifier:@"advanced"];    
 }
 
 - (IBAction)showChapterTab:(id)sender {
+    [window makeKeyAndOrderFront:sender];
     [tabView selectTabViewItemWithIdentifier:@"chapters"];    
 }
 
 - (IBAction)showInfoTab:(id)sender {
+    [window makeKeyAndOrderFront:sender];
     [tabView selectTabViewItemWithIdentifier:@"info"];
 }
 
 - (IBAction)showSortTab:(id)sender {
+    [window makeKeyAndOrderFront:sender];
     [tabView selectTabViewItemWithIdentifier:@"sorting"];
 }
 
 - (IBAction)showVideoTab:(id)sender {
+    [window makeKeyAndOrderFront:sender];
     [tabView selectTabViewItemWithIdentifier:@"video"];    
 }
 
@@ -894,13 +899,15 @@ NSDictionary* findBinding(NSWindow* window) {
 
 #pragma mark - as application delegate
 
-- (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
+- (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
 {
+    [window makeKeyAndOrderFront:sender];
     return [[MZMetaLoader sharedLoader] loadFromFile:filename];
 }
 
 - (void)application:(NSApplication *)sender openFiles:(NSArray *)filenames
 {
+    [window makeKeyAndOrderFront:sender];
     if([[MZMetaLoader sharedLoader] loadFromFiles: filenames])
         [sender replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
     else
