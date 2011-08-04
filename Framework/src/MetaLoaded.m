@@ -70,12 +70,8 @@
     {
         ret = [guesses getterValueForKey:aKey];
     }
-    if(ret)
-    {
-        MZTag* tag = [MZTag tagForIdentifier:aKey];
-        return [tag convertObjectForRetrival:ret];
-    }
-    return ;
+    MZTag* tag = [MZTag tagForIdentifier:aKey];
+    return [tag convertObjectForRetrival:ret];
 }
 
 #pragma mark - MZDynamicObject handling
