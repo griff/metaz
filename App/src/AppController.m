@@ -282,9 +282,11 @@ NSDictionary* findBinding(NSWindow* window) {
     }
     [searchField setStringValue:mainValue];
 
-    [[MZMetaSearcher sharedSearcher] clearResults];
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"autoSearch"])
+    {
+        //[[MZMetaSearcher sharedSearcher] clearResults];
         [self startSearch:searchField];
+    }
 }
 
 - (void)registerUndoName:(NSUndoManager *)manager
