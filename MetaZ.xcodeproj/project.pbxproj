@@ -129,7 +129,6 @@
 		1B92BB70108787260057EFD7 /* SearchProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BB6F108787260057EFD7 /* SearchProfile.m */; };
 		1B92BC0110887EF40057EFD7 /* FakeSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BC0010887EF40057EFD7 /* FakeSearchResult.m */; };
 		1B92BC04108880D60057EFD7 /* Resources.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BC03108880D60057EFD7 /* Resources.m */; };
-		1B92BC06108882710057EFD7 /* CowHead.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B92BC05108882710057EFD7 /* CowHead.png */; };
 		1B92BC57108890090057EFD7 /* NSObject+ProtectedKeyValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B92BC55108890090057EFD7 /* NSObject+ProtectedKeyValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B92BC58108890090057EFD7 /* NSObject+ProtectedKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BC56108890090057EFD7 /* NSObject+ProtectedKeyValue.m */; };
 		1B92BFBB1089F9060057EFD7 /* SearchMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BFBA1089F9060057EFD7 /* SearchMeta.m */; };
@@ -145,6 +144,7 @@
 		1BA326A310546F9700276F57 /* MZTags.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BA326A110546F9700276F57 /* MZTags.strings */; };
 		1BA326C61054723000276F57 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1BAC8EDA13EB32110022D625 /* MetaZ.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1BAC8ED913EB32110022D625 /* MetaZ.icns */; };
+		1BAC8FEB13ECAFF20022D625 /* metaz.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BAC8FEA13ECAFF20022D625 /* metaz.png */; };
 		1BAD35FE118D4C470052DE3B /* MZReadOperationsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BAD35FA118D4C470052DE3B /* MZReadOperationsController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BAD35FF118D4C470052DE3B /* MZReadOperationsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAD35FB118D4C470052DE3B /* MZReadOperationsController.m */; };
 		1BAD3600118D4C470052DE3B /* NSFileManager+MZCreate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BAD35FC118D4C470052DE3B /* NSFileManager+MZCreate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -824,7 +824,6 @@
 		1B92BC0010887EF40057EFD7 /* FakeSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeSearchResult.m; sourceTree = "<group>"; };
 		1B92BC02108880D60057EFD7 /* Resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resources.h; sourceTree = "<group>"; };
 		1B92BC03108880D60057EFD7 /* Resources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resources.m; sourceTree = "<group>"; };
-		1B92BC05108882710057EFD7 /* CowHead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CowHead.png; path = App/resources/CowHead.png; sourceTree = "<group>"; };
 		1B92BC55108890090057EFD7 /* NSObject+ProtectedKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ProtectedKeyValue.h"; sourceTree = "<group>"; };
 		1B92BC56108890090057EFD7 /* NSObject+ProtectedKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ProtectedKeyValue.m"; sourceTree = "<group>"; };
 		1B92BFB91089F9060057EFD7 /* SearchMeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMeta.h; sourceTree = "<group>"; };
@@ -846,6 +845,7 @@
 		1BA326EE1054823100276F57 /* MZWriteQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZWriteQueue.h; sourceTree = "<group>"; };
 		1BA326EF1054823100276F57 /* MZWriteQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZWriteQueue.m; sourceTree = "<group>"; };
 		1BAC8ED913EB32110022D625 /* MetaZ.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MetaZ.icns; path = App/resources/MetaZ.icns; sourceTree = "<group>"; };
+		1BAC8FEA13ECAFF20022D625 /* metaz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = metaz.png; path = App/resources/metaz.png; sourceTree = "<group>"; };
 		1BAD35FA118D4C470052DE3B /* MZReadOperationsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZReadOperationsController.h; sourceTree = "<group>"; };
 		1BAD35FB118D4C470052DE3B /* MZReadOperationsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZReadOperationsController.m; sourceTree = "<group>"; };
 		1BAD35FC118D4C470052DE3B /* NSFileManager+MZCreate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+MZCreate.h"; sourceTree = "<group>"; };
@@ -1853,6 +1853,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1BAC8FEA13ECAFF20022D625 /* metaz.png */,
 				1BAC8ED913EB32110022D625 /* MetaZ.icns */,
 				1BCECEC410E98E4200D0AD35 /* Credits.html */,
 				1B44958410D6128700B9C751 /* Growl Registration Ticket.growlRegDict */,
@@ -1867,7 +1868,6 @@
 				1BD3D3FB108E694100BE6943 /* faded_cow_error.png */,
 				1BD3D3FC108E694100BE6943 /* faded_cow_fatal.png */,
 				1BD3D3FD108E694100BE6943 /* faded_cow_multiple.png */,
-				1B92BC05108882710057EFD7 /* CowHead.png */,
 				1BEA6DD8106ED837004B1A7F /* PreferencesWindow.xib */,
 				1B9B393D106C0FA200928C83 /* Localizable.strings */,
 				1B0DEEB8106139E8009D293F /* RotateLeft.tif */,
@@ -2256,7 +2256,6 @@
 				1BEA6B81106D66AD004B1A7F /* faded_cow.png in Resources */,
 				1BEA6DDA106ED837004B1A7F /* PreferencesWindow.xib in Resources */,
 				1BCC990710771262007EFF57 /* FactorySettings.plist in Resources */,
-				1B92BC06108882710057EFD7 /* CowHead.png in Resources */,
 				1BD3D3FE108E694100BE6943 /* faded_cow_error.png in Resources */,
 				1BD3D3FF108E694100BE6943 /* faded_cow_fatal.png in Resources */,
 				1BD3D400108E694100BE6943 /* faded_cow_multiple.png in Resources */,
@@ -2272,6 +2271,7 @@
 				1B42F21F10DD5D6D00AFEBF6 /* MiniProgressGradient.png in Resources */,
 				1BCECEC510E98E4200D0AD35 /* Credits.html in Resources */,
 				1BAC8EDA13EB32110022D625 /* MetaZ.icns in Resources */,
+				1BAC8FEB13ECAFF20022D625 /* metaz.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
