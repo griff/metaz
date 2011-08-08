@@ -40,6 +40,7 @@
 #import <MetaZKit/NSObject+ProtectedKeyValue.h>
 #import <MetaZKit/NSXMLNode+MZExtensions.h>
 #import <MetaZKit/NSString+TempFile.h>
+#import <MetaZKit/NSString+MZAllInCharacterSet.h>
 #import <MetaZKit/NSFileManager+MZCreate.h>
 
 #import <MetaZKit/GTMNSString+URLArguments.h>
