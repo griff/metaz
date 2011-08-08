@@ -129,7 +129,6 @@
 		1B92BB70108787260057EFD7 /* SearchProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BB6F108787260057EFD7 /* SearchProfile.m */; };
 		1B92BC0110887EF40057EFD7 /* FakeSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BC0010887EF40057EFD7 /* FakeSearchResult.m */; };
 		1B92BC04108880D60057EFD7 /* Resources.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BC03108880D60057EFD7 /* Resources.m */; };
-		1B92BC06108882710057EFD7 /* CowHead.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B92BC05108882710057EFD7 /* CowHead.png */; };
 		1B92BC57108890090057EFD7 /* NSObject+ProtectedKeyValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B92BC55108890090057EFD7 /* NSObject+ProtectedKeyValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B92BC58108890090057EFD7 /* NSObject+ProtectedKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BC56108890090057EFD7 /* NSObject+ProtectedKeyValue.m */; };
 		1B92BFBB1089F9060057EFD7 /* SearchMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BFBA1089F9060057EFD7 /* SearchMeta.m */; };
@@ -144,6 +143,12 @@
 		1BA326A010546F4600276F57 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA3269E10546F4600276F57 /* MainMenu.xib */; };
 		1BA326A310546F9700276F57 /* MZTags.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BA326A110546F9700276F57 /* MZTags.strings */; };
 		1BA326C61054723000276F57 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
+		1BAC8EDA13EB32110022D625 /* MetaZ.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1BAC8ED913EB32110022D625 /* MetaZ.icns */; };
+		1BAC8FEB13ECAFF20022D625 /* metaz.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BAC8FEA13ECAFF20022D625 /* metaz.png */; };
+		1BAC912A13F053980022D625 /* MZDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC912913F053980022D625 /* MZDateFormatter.m */; };
+		1BAC916513F056240022D625 /* MZYearDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC916413F056240022D625 /* MZYearDateFormatter.m */; };
+		1BAC91BD13F060300022D625 /* NSString+MZAllInCharacterSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BAC91BB13F060300022D625 /* NSString+MZAllInCharacterSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BAC91BE13F060300022D625 /* NSString+MZAllInCharacterSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAC91BC13F060300022D625 /* NSString+MZAllInCharacterSet.m */; };
 		1BAD35FE118D4C470052DE3B /* MZReadOperationsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BAD35FA118D4C470052DE3B /* MZReadOperationsController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BAD35FF118D4C470052DE3B /* MZReadOperationsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BAD35FB118D4C470052DE3B /* MZReadOperationsController.m */; };
 		1BAD3600118D4C470052DE3B /* NSFileManager+MZCreate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BAD35FC118D4C470052DE3B /* NSFileManager+MZCreate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -823,7 +828,6 @@
 		1B92BC0010887EF40057EFD7 /* FakeSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeSearchResult.m; sourceTree = "<group>"; };
 		1B92BC02108880D60057EFD7 /* Resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resources.h; sourceTree = "<group>"; };
 		1B92BC03108880D60057EFD7 /* Resources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resources.m; sourceTree = "<group>"; };
-		1B92BC05108882710057EFD7 /* CowHead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CowHead.png; path = App/resources/CowHead.png; sourceTree = "<group>"; };
 		1B92BC55108890090057EFD7 /* NSObject+ProtectedKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ProtectedKeyValue.h"; sourceTree = "<group>"; };
 		1B92BC56108890090057EFD7 /* NSObject+ProtectedKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ProtectedKeyValue.m"; sourceTree = "<group>"; };
 		1B92BFB91089F9060057EFD7 /* SearchMeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMeta.h; sourceTree = "<group>"; };
@@ -844,6 +848,14 @@
 		1BA326A210546F9700276F57 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/MZTags.strings; sourceTree = "<group>"; };
 		1BA326EE1054823100276F57 /* MZWriteQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZWriteQueue.h; sourceTree = "<group>"; };
 		1BA326EF1054823100276F57 /* MZWriteQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZWriteQueue.m; sourceTree = "<group>"; };
+		1BAC8ED913EB32110022D625 /* MetaZ.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MetaZ.icns; path = App/resources/MetaZ.icns; sourceTree = "<group>"; };
+		1BAC8FEA13ECAFF20022D625 /* metaz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = metaz.png; path = App/resources/metaz.png; sourceTree = "<group>"; };
+		1BAC912813F053980022D625 /* MZDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDateFormatter.h; sourceTree = "<group>"; };
+		1BAC912913F053980022D625 /* MZDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZDateFormatter.m; sourceTree = "<group>"; };
+		1BAC916313F056240022D625 /* MZYearDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZYearDateFormatter.h; sourceTree = "<group>"; };
+		1BAC916413F056240022D625 /* MZYearDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZYearDateFormatter.m; sourceTree = "<group>"; };
+		1BAC91BB13F060300022D625 /* NSString+MZAllInCharacterSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MZAllInCharacterSet.h"; sourceTree = "<group>"; };
+		1BAC91BC13F060300022D625 /* NSString+MZAllInCharacterSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MZAllInCharacterSet.m"; sourceTree = "<group>"; };
 		1BAD35FA118D4C470052DE3B /* MZReadOperationsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZReadOperationsController.h; sourceTree = "<group>"; };
 		1BAD35FB118D4C470052DE3B /* MZReadOperationsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZReadOperationsController.m; sourceTree = "<group>"; };
 		1BAD35FC118D4C470052DE3B /* NSFileManager+MZCreate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+MZCreate.h"; sourceTree = "<group>"; };
@@ -1099,6 +1111,8 @@
 				1B99354F10AC818300E78D2D /* NSXMLNode+MZExtensions.m */,
 				1BC256361192C183001B9E1E /* NSObject+WaitUntilChange.h */,
 				1BC256371192C183001B9E1E /* NSObject+WaitUntilChange.m */,
+				1BAC91BB13F060300022D625 /* NSString+MZAllInCharacterSet.h */,
+				1BAC91BC13F060300022D625 /* NSString+MZAllInCharacterSet.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -1738,6 +1752,10 @@
 				1B92C0A2108A23BA0057EFD7 /* NSUserDefaults+KeyPath.m */,
 				1B2AEED411A0EC430074BAAD /* MZFileNameTextStorage.h */,
 				1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */,
+				1BAC912813F053980022D625 /* MZDateFormatter.h */,
+				1BAC912913F053980022D625 /* MZDateFormatter.m */,
+				1BAC916313F056240022D625 /* MZYearDateFormatter.h */,
+				1BAC916413F056240022D625 /* MZYearDateFormatter.m */,
 			);
 			name = Classes;
 			path = App/src;
@@ -1851,6 +1869,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1BAC8FEA13ECAFF20022D625 /* metaz.png */,
+				1BAC8ED913EB32110022D625 /* MetaZ.icns */,
 				1BCECEC410E98E4200D0AD35 /* Credits.html */,
 				1B44958410D6128700B9C751 /* Growl Registration Ticket.growlRegDict */,
 				1B03325510B15FF100B28E3A /* StopProgressOn.png */,
@@ -1864,7 +1884,6 @@
 				1BD3D3FB108E694100BE6943 /* faded_cow_error.png */,
 				1BD3D3FC108E694100BE6943 /* faded_cow_fatal.png */,
 				1BD3D3FD108E694100BE6943 /* faded_cow_multiple.png */,
-				1B92BC05108882710057EFD7 /* CowHead.png */,
 				1BEA6DD8106ED837004B1A7F /* PreferencesWindow.xib */,
 				1B9B393D106C0FA200928C83 /* Localizable.strings */,
 				1B0DEEB8106139E8009D293F /* RotateLeft.tif */,
@@ -1954,6 +1973,7 @@
 				1BC256381192C183001B9E1E /* NSObject+WaitUntilChange.h in Headers */,
 				1BEC79071197B74400337403 /* GTMStackTrace.h in Headers */,
 				1B0604AD1199E24700589ACE /* MZBaseSearchProvider.h in Headers */,
+				1BAC91BD13F060300022D625 /* NSString+MZAllInCharacterSet.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2129,6 +2149,7 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MetaZ" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -2252,7 +2273,6 @@
 				1BEA6B81106D66AD004B1A7F /* faded_cow.png in Resources */,
 				1BEA6DDA106ED837004B1A7F /* PreferencesWindow.xib in Resources */,
 				1BCC990710771262007EFF57 /* FactorySettings.plist in Resources */,
-				1B92BC06108882710057EFD7 /* CowHead.png in Resources */,
 				1BD3D3FE108E694100BE6943 /* faded_cow_error.png in Resources */,
 				1BD3D3FF108E694100BE6943 /* faded_cow_fatal.png in Resources */,
 				1BD3D400108E694100BE6943 /* faded_cow_multiple.png in Resources */,
@@ -2267,6 +2287,8 @@
 				1B44958510D6128700B9C751 /* Growl Registration Ticket.growlRegDict in Resources */,
 				1B42F21F10DD5D6D00AFEBF6 /* MiniProgressGradient.png in Resources */,
 				1BCECEC510E98E4200D0AD35 /* Credits.html in Resources */,
+				1BAC8EDA13EB32110022D625 /* MetaZ.icns in Resources */,
+				1BAC8FEB13ECAFF20022D625 /* metaz.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2456,6 +2478,7 @@
 				1BC256391192C183001B9E1E /* NSObject+WaitUntilChange.m in Sources */,
 				1BEC79061197B73E00337403 /* GTMStackTrace.m in Sources */,
 				1B0604AE1199E24700589ACE /* MZBaseSearchProvider.m in Sources */,
+				1BAC91BE13F060300022D625 /* NSString+MZAllInCharacterSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2513,6 +2536,8 @@
 				1B449B8810DC7DE400B9C751 /* ChaptersTableView.m in Sources */,
 				1B42F21C10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m in Sources */,
 				1B2AEED611A0EC430074BAAD /* MZFileNameTextStorage.m in Sources */,
+				1BAC912A13F053980022D625 /* MZDateFormatter.m in Sources */,
+				1BAC916513F056240022D625 /* MZYearDateFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2993,7 +3018,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = (
+					ppc,
+					"$(ARCHS_STANDARD_32_64_BIT)",
+				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3472,7 +3500,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = (
+					ppc,
+					"$(ARCHS_STANDARD_32_64_BIT)",
+				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3488,7 +3519,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = (
+					ppc,
+					"$(ARCHS_STANDARD_32_64_BIT)",
+				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;

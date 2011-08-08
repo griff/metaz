@@ -116,12 +116,18 @@
                    name:NSTaskDidTerminateNotification
                  object:task];
     
+    [self setupStandardInput];
     [self setupStandardOutput];
     [self setupStandardError];
     MZLoggerDebug(@"Launch %@ %@", 
         [[task launchPath] lastPathComponent],
         [[task arguments] componentsJoinedByString:@" "]);
     [task launch];
+}
+
+- (void)setupStandardInput
+{
+    [self setStandardInput:[NSPipe pipe]];
 }
 
 - (void)setupStandardOutput

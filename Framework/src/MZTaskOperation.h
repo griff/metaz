@@ -31,6 +31,7 @@
 - (void)cancel;
 
 
+- (void)setupStandardInput;
 - (void)setupStandardOutput;
 - (void)setupStandardError;
 - (void)releaseStandardOutput;

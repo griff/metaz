@@ -231,11 +231,11 @@
     
     NSMutableDictionary* ret = [NSMutableDictionary dictionaryWithDictionary:series.data];
     
+    [ret setObject:[NSNumber numberWithUnsignedInt:[series series]] forKey:TVDBSeriesIdTagIdent];
     NSString* seasonId = [doc stringForXPath:@"/Data/Episode/seasonid" error:NULL];
+    [ret setObject:seasonId forKey:TVDBSeasonIdTagIdent];
     NSString* episodeId = [doc stringForXPath:@"/Data/Episode/id" error:NULL];
-    NSString* query = [NSString stringWithFormat:@"seriesid=%d&seasonid=%@&id=%@",
-        series, seasonId, episodeId];
-    [ret setObject:query forKey:EpisodeQueryTagIdent];
+    [ret setObject:episodeId forKey:TVDBEpisodeIdTagIdent];
 
     NSString* title = [doc stringForXPath:@"/Data/Episode/EpisodeName" error:NULL];
     if(title && [title length] > 0)

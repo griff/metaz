@@ -31,7 +31,9 @@
 
 - (void)didLoad
 {
-    [MZTag registerTag:[MZStringTag tagWithIdentifier:EpisodeQueryTagIdent]];
+    [MZTag registerTag:[MZStringTag tagWithIdentifier:TVDBEpisodeIdTagIdent]];
+    [MZTag registerTag:[MZStringTag tagWithIdentifier:TVDBSeasonIdTagIdent]];
+    [MZTag registerTag:[MZStringTag tagWithIdentifier:TVDBSeriesIdTagIdent]];
     [super didLoad];
 }
 

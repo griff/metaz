@@ -350,10 +350,14 @@ static MZPluginController *gInstance = NULL;
 
 - (id<MZDataProvider>)dataProviderForPath:(NSString *)path
 {
-    NSString* uti = [[NSWorkspace sharedWorkspace] typeOfFile:path error:NULL];
-    if(!uti)
-        return nil;
-    return [self dataProviderForType:uti];
+    NSArray* types = (NSArray*)UTTypeCreateAllIdentifiersForTag(kUTTagClassFilenameExtension, (CFStringRef)[path pathExtension], kUTTypeMovie);
+    for(NSString* uti in types)
+    {
+        id<MZDataProvider> ret = [self dataProviderForType:uti];
+        if(ret)
+            return ret;
+    }
+    return nil;
 }
 
 - (NSArray *)dataProviderTypes

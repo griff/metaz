@@ -145,9 +145,9 @@
     NSProgressIndicator* progressBar = [[[mainWindow contentView] subviews] objectAtIndex:2];
 
     RunStatus status = [writeQueue status];
-    NSString* playLabel;
-    NSString* playImage;
-    NSString* menuLabel;
+    NSString* playLabel = nil;
+    NSString* playImage = nil;
+    NSString* menuLabel = nil;
     switch (status)
     {
         case QueueStopped:

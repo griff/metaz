@@ -85,7 +85,7 @@
     MGCollectionViewItem* ret = [itemPrototype copy];
     [ret _setItemOwnerView:self];
     ret.representedObject = object;
-    return [ret autorelease];
+    return ret;
 }
 
 - (void)animationDidEnd:(NSAnimation *)animation
@@ -228,7 +228,7 @@
             item = [_targetItems objectAtIndex:[[dict objectForKey:[NSNumber numberWithUnsignedInt:i]] unsignedIntValue]];
         } else  // Not Found = New Item
         {
-            item = [self newItemForRepresentedObject:object];
+            item = [[self newItemForRepresentedObject:object] autorelease];
         }
 
         NSRect oldFrame = item.view.frame;

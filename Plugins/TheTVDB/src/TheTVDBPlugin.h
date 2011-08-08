@@ -9,7 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaZKit.h>
 
-#define EpisodeQueryTagIdent @"episodeQuery"
+#define TVDBEpisodeIdTagIdent @"tvdbEpisodeId"
+#define TVDBSeasonIdTagIdent @"tvdbSeasonId"
+#define TVDBSeriesIdTagIdent @"tvdbSeriesId"
 
 @interface TheTVDBPlugin : MZPlugin
 {

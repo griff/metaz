@@ -12,4 +12,4 @@ NSString* const MZFadedIcon = @"faded_cow";
 NSString* const MZFadedIconError = @"faded_cow_error";
 NSString* const MZFadedIconFatalError = @"faded_cow_fatal";
 NSString* const MZFadedIconMultiple = @"faded_cow_multiple";
-NSString* const MZSmallIcon = @"CowHead";
+NSString* const MZSmallIcon = @"metaz";

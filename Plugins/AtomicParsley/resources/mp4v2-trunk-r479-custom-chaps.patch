@@ -1,0 +1,102 @@
+--- util/mp4chaps_old.cpp	2011-08-04 23:54:34.000000000 +0200
++++ util/mp4chaps.cpp	2011-08-05 00:03:45.000000000 +0200
+@@ -140,8 +140,8 @@
+     _actionGroup.add( 'l', false, "list",    false, LC_CHP_LIST,    "list available chapters" );
+     _actionGroup.add( 'c', false, "convert", false, LC_CHP_CONVERT, "convert available chapters" );
+     _actionGroup.add( 'e', true,  "every",   true,  LC_CHP_EVERY,   "create chapters every NUM seconds", "NUM" );
+-    _actionGroup.add( 'x', false, "export",  false, LC_CHP_EXPORT,  "export chapters to mp4file.chapters.txt", "TXT" );
+-    _actionGroup.add( 'i', false, "import",  false, LC_CHP_IMPORT,  "import chapters from mp4file.chapters.txt", "TXT" );
++    _actionGroup.add( 'x', false, "export",  true,  LC_CHP_EXPORT,  "export chapters to mp4file.chapters.txt", "TXT" );
++    _actionGroup.add( 'i', false, "import",  true,  LC_CHP_IMPORT,  "import chapters from mp4file.chapters.txt", "TXT" );
+     _actionGroup.add( 'r', false, "remove",  false, LC_CHP_REMOVE,  "remove all chapters" );
+     _groups.push_back( &_actionGroup );
+ 
+@@ -170,6 +170,18 @@
+         return herrf( "unable to open for read: %s\n", job.file.c_str() );
+     }
+ 
++    uint64_t movie_duration = MP4ConvertFromMovieDuration(job.fileHandle, MP4GetDuration(job.fileHandle), MP4_MSECS_TIME_SCALE);
++    Timecode file_duration(movie_duration, MP4_MSECS_TIME_SCALE);
++    file_duration.setFormat(Timecode::DECIMAL);
++
++    MP4Duration the_file_duration = MP4GetDuration(job.fileHandle);
++    uint32_t time_scale = MP4GetTimeScale(job.fileHandle);
++    uint64_t movie_duration3 = the_file_duration/(time_scale/1000);
++    uint64_t movie_duration2 = MP4ConvertFromMovieDuration(job.fileHandle, the_file_duration, time_scale);
++
++    ostringstream report;
++    report << "Duration " << file_duration.svalue << endl;
++
+     MP4Chapter_t * chapters = 0;
+     uint32_t chapterCount = 0;
+ 
+@@ -177,22 +189,28 @@
+     MP4ChapterType chtp = MP4GetChapters(job.fileHandle, &chapters, &chapterCount, _ChapterType);
+     if (0 == chapterCount)
+     {
++        report << "File \"" << job.file.c_str() << " does not contain chapters of type "
++            << getChapterTypeName( _ChapterType ).c_str() << endl;
++        verbose1f( "%s", report.str().c_str() );
++        /*
+         verbose1f( "File \"%s\" does not contain chapters of type %s\n", job.file.c_str(),
+                    getChapterTypeName( _ChapterType ).c_str() );
++        */
+         return SUCCESS;
+     }
+ 
+     // start output (more or less like mp4box does)
+-    ostringstream report;
+     report << getChapterTypeName( chtp ) << ' ' << "Chapters of " << '"' << job.file << '"' << endl;
+ 
+     Timecode duration(0, CHAPTERTIMESCALE);
+     duration.setFormat( Timecode::DECIMAL );
+     for (uint32_t i = 0; i < chapterCount; ++i)
+     {
++        Timecode dur(chapters[i].duration, CHAPTERTIMESCALE);
++        dur.setFormat( Timecode::DECIMAL );
+         // print the infos
+         report << '\t' << "Chapter #" << setw( 3 ) << setfill( '0' ) << i+1
+-               << " - " << duration.svalue << " - " << '"' << chapters[i].title << '"' << endl;
++               << " - " << duration.svalue << " - " << dur.svalue << " - " << '"' << chapters[i].title << '"' << endl;
+ 
+         // add the duration of this chapter to the sum (is the start time of the next chapter)
+         duration += Timecode(chapters[i].duration, CHAPTERTIMESCALE);
+@@ -595,7 +613,7 @@
+     MP4ChapterType chtp = MP4DeleteChapters( job.fileHandle, _ChapterType );
+     if( MP4ChapterTypeNone == chtp )
+     {
+-        return FAILURE;
++        return SUCCESS;
+     }
+ 
+     fixQtScale( job.fileHandle );
+@@ -677,13 +695,12 @@
+ 
+         case LC_CHP_EXPORT:
+             _action = &ChapterUtility::actionExport;
+-            /* currently not supported since the chapters of n input files would be written to one chapter file
++            /* currently not supported since the chapters of n input files would be written to one chapter file */
+             _ChapterFile = prog::optarg;
+             if( _ChapterFile.empty() )
+             {
+                 return herrf( "invalid TXT file: empty-string\n" );
+             }
+-            */
+             break;
+ 
+         case 'i':
+@@ -692,13 +709,12 @@
+ 
+         case LC_CHP_IMPORT:
+             _action = &ChapterUtility::actionImport;
+-            /* currently not supported since the chapters of n input files would be read from one chapter file
++            /* currently not supported since the chapters of n input files would be read from one chapter file */
+             _ChapterFile = prog::optarg;
+             if( _ChapterFile.empty() )
+             {
+                 return herrf( "invalid TXT file: empty-string\n" );
+             }
+-            */
+             break;
+ 
+         case 'c':

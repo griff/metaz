@@ -128,7 +128,7 @@
 	<key>CFBundleGetInfoString</key>
 	<string>Copyright 2009 Brian Olsen &amp; Nigel Graham</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>MetaZ.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.maven-group.${PRODUCT_NAME:identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -172,6 +172,27 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
+				<string>public.movie</string>
+			</array>
+			<key>UTTypeIdentifier</key>
+			<string>org.maven-group.mpeg4-video</string>
+			<key>UTTypeDescription</key>
+			<string>The Other MPEG-4 Video</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>com.apple.ostype</key>
+				<array>
+					<string>M4V</string>
+				</array>
+				<key>public.filename-extension</key>
+				<array>
+					<string>m4v</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
 				<string>com.apple.plugin</string>
 			</array>
 			<key>UTTypeDescription</key>
@@ -185,30 +206,6 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>mzplugin</string>
-				</array>
-			</dict>
-		</dict>
-	</array>
-	<key>UTImportedTypeDeclarations</key>
-	<array>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>public.movie</string>
-			</array>
-			<key>UTTypeDescription</key>
-			<string>protected MPEG-4 movie</string>
-			<key>UTTypeIdentifier</key>
-			<string>com.apple.protected-mpeg-4-video</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>com.apple.ostype</key>
-				<array>
-					<string>M4V</string>
-				</array>
-				<key>public.filename-extension</key>
-				<array>
-					<string>m4v</string>
 				</array>
 			</dict>
 		</dict>

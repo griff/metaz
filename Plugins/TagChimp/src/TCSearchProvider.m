@@ -85,7 +85,7 @@
               delegate:(id<MZSearchProviderDelegate>)delegate
                  queue:(NSOperationQueue *)queue;
 {
-    NSURL* searchURL = [NSURL URLWithString:@"https://www.tagchimp.com/ape/search.php"];
+    NSURL* searchURL = [NSURL URLWithString:@"https://tagchimp.com/ape/search.php"];
     NSMutableDictionary* params = [NSMutableDictionary dictionary];
     [params setObject:@"8363185134824C8CD908AA" forKey:@"token"];
     [params setObject:@"search" forKey:@"type"];

@@ -52,7 +52,11 @@
     if(!menu)
     {
         menu = [[NSMenu alloc] initWithTitle:@"TheTVDB"];
-        NSMenuItem* item = [menu addItemWithTitle:@"View in Browser" action:@selector(view:) keyEquivalent:@""];
+        NSMenuItem* item = [menu addItemWithTitle:@"View episode in Browser" action:@selector(view:) keyEquivalent:@""];
+        [item setTarget:self];
+        item = [menu addItemWithTitle:@"View season in Browser" action:@selector(viewSeason:) keyEquivalent:@""];
+        [item setTarget:self];
+        item = [menu addItemWithTitle:@"View series in Browser" action:@selector(viewSeries:) keyEquivalent:@""];
         [item setTarget:self];
     }
     for(NSMenuItem* item in [menu itemArray])
@@ -60,17 +64,57 @@
     return menu;
 }
 
+/*
+- (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem
+{
+    SEL action = [anItem action];
+    if(action == @selector(imdb:))
+    {
+        return 
+    }
+    return action == @selector(view:);
+}
+*/
+
 - (void)view:(id)sender
 {
     MZSearchResult* result = [sender representedObject];
-    NSString* query = [result valueForKey:EpisodeQueryTagIdent];
+    NSNumber* series = [result valueForKey:TVDBSeriesIdTagIdent];
+    NSString* season = [result valueForKey:TVDBSeasonIdTagIdent];
+    NSString* episode = [result valueForKey:TVDBEpisodeIdTagIdent];
     
     NSString* str = [[NSString stringWithFormat:
-        @"http://thetvdb.com/?tab=episode&%@",
-        query] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        @"http://thetvdb.com/?tab=episode&seriesid=%d&seasonid=%@&id=%@",
+        [series unsignedIntValue], season, episode] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL* url = [NSURL URLWithString:str];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
+
+- (void)viewSeason:(id)sender
+{
+    MZSearchResult* result = [sender representedObject];
+    NSNumber* series = [result valueForKey:TVDBSeriesIdTagIdent];
+    NSString* season = [result valueForKey:TVDBSeasonIdTagIdent];
+    
+    NSString* str = [[NSString stringWithFormat:
+        @"http://thetvdb.com/?tab=season&seriesid=%d&seasonid=%@",
+        [series unsignedIntValue], season] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL* url = [NSURL URLWithString:str];
+    [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
+- (void)viewSeries:(id)sender
+{
+    MZSearchResult* result = [sender representedObject];
+    NSNumber* series = [result valueForKey:TVDBSeriesIdTagIdent];
+    
+    NSString* str = [[NSString stringWithFormat:
+        @"http://thetvdb.com/?tab=series&id=%d",
+        [series unsignedIntValue]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL* url = [NSURL URLWithString:str];
+    [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
 
 - (BOOL)searchWithData:(NSDictionary *)data
               delegate:(id<MZSearchProviderDelegate>)delegate

@@ -36,6 +36,7 @@ NSArray* MZUTIFilenameExtension(NSArray* utis)
         NSDictionary* tags = [dict objectForKey:(NSString*)kUTTypeTagSpecificationKey];
         NSArray* extensions = [tags objectForKey:(NSString*)kUTTagClassFilenameExtension];
         [ret addObjectsFromArray:extensions];
+        [dict release];
     }
     return ret;
 }
@@ -281,9 +282,11 @@ NSDictionary* findBinding(NSWindow* window) {
     }
     [searchField setStringValue:mainValue];
 
-    [[MZMetaSearcher sharedSearcher] clearResults];
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"autoSearch"])
+    {
+        //[[MZMetaSearcher sharedSearcher] clearResults];
         [self startSearch:searchField];
+    }
 }
 
 - (void)registerUndoName:(NSUndoManager *)manager
@@ -351,22 +354,27 @@ NSDictionary* findBinding(NSWindow* window) {
 #pragma mark - actions
 
 - (IBAction)showAdvancedTab:(id)sender {
+    [window makeKeyAndOrderFront:sender];
     [tabView selectTabViewItemWithIdentifier:@"advanced"];    
 }
 
 - (IBAction)showChapterTab:(id)sender {
+    [window makeKeyAndOrderFront:sender];
     [tabView selectTabViewItemWithIdentifier:@"chapters"];    
 }
 
 - (IBAction)showInfoTab:(id)sender {
+    [window makeKeyAndOrderFront:sender];
     [tabView selectTabViewItemWithIdentifier:@"info"];
 }
 
 - (IBAction)showSortTab:(id)sender {
+    [window makeKeyAndOrderFront:sender];
     [tabView selectTabViewItemWithIdentifier:@"sorting"];
 }
 
 - (IBAction)showVideoTab:(id)sender {
+    [window makeKeyAndOrderFront:sender];
     [tabView selectTabViewItemWithIdentifier:@"video"];    
 }
 
@@ -540,10 +548,10 @@ NSDictionary* findBinding(NSWindow* window) {
 - (IBAction)openDocument:(id)sender {
     NSArray *fileTypes = [[MZMetaLoader sharedLoader] types];
 
-    NSArray* utis = MZUTIFilenameExtension(fileTypes);
-    for(NSString* uti in utis)
+    NSArray* extensions = MZUTIFilenameExtension(fileTypes);
+    for(NSString* ext in extensions)
     {
-        MZLoggerDebug(@"Found UTI %@", uti);
+        MZLoggerDebug(@"Found extention %@", ext);
     }
     
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
@@ -552,7 +560,7 @@ NSDictionary* findBinding(NSWindow* window) {
     [oPanel setCanChooseDirectories:NO];
     [oPanel beginSheetForDirectory: nil
                               file: nil
-                             types: fileTypes
+                             types: extensions
                     modalForWindow: window
                      modalDelegate: self
                     didEndSelector: @selector(openPanelDidEnd:returnCode:contextInfo:) 
@@ -893,13 +901,15 @@ NSDictionary* findBinding(NSWindow* window) {
 
 #pragma mark - as application delegate
 
-- (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
+- (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
 {
+    [window makeKeyAndOrderFront:sender];
     return [[MZMetaLoader sharedLoader] loadFromFile:filename];
 }
 
 - (void)application:(NSApplication *)sender openFiles:(NSArray *)filenames
 {
+    [window makeKeyAndOrderFront:sender];
     if([[MZMetaLoader sharedLoader] loadFromFiles: filenames])
         [sender replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
     else

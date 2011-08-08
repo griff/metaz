@@ -55,6 +55,11 @@
 @end
 
 
+@interface MZYearDateTag : MZTag {}
+
+@end
+
+
 @interface MZIntegerTag : MZTag {}
 
 @end
