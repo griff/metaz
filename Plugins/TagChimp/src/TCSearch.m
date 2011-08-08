@@ -186,30 +186,33 @@
         NSInteger releaseYear = [[item stringForXPath:@"movieTags/info/releaseDateY" error:NULL] integerValue];
         if(releaseYear > 0)
         {
-            NSDateComponents *comps = [[NSDateComponents alloc] init];
-            [comps setYear:releaseYear];
-
             NSInteger releaseMonth = [[item stringForXPath:@"movieTags/info/releaseDateM" error:NULL] integerValue];
             if(releaseMonth > 0)
+            {
+                NSDateComponents *comps = [[NSDateComponents alloc] init];
+                [comps setYear:releaseYear];
                 [comps setMonth:releaseMonth];
 
-            NSInteger releaseDay = [[item stringForXPath:@"movieTags/info/releaseDateD" error:NULL] integerValue];
-            if(releaseDay > 0)
-                [comps setDay:releaseDay];
+                NSInteger releaseDay = [[item stringForXPath:@"movieTags/info/releaseDateD" error:NULL] integerValue];
+                if(releaseDay > 0)
+                    [comps setDay:releaseDay];
 
-            NSCalendar *gregorian = [[NSCalendar alloc]
+                NSCalendar *gregorian = [[NSCalendar alloc]
                          initWithCalendarIdentifier:NSGregorianCalendar];
-            NSDate *date = [gregorian dateFromComponents:comps];
-            [dict setObject:date forKey:MZDateTagIdent];
-            [comps release];
-            [gregorian release];
+                NSDate *date = [gregorian dateFromComponents:comps];
+                [dict setObject:date forKey:MZDateTagIdent];
+                [comps release];
+                [gregorian release];
+            } else {
+                [dict setObject:[NSNumber numberWithInteger:releaseYear] forKey:MZDateTagIdent];
+            }
         }
         else
         {
             NSString* release = [item stringForXPath:@"movieTags/info/releaseDate" error:NULL];
             if( release && [release length] > 0 )
             {
-                NSDate* date = [NSDate dateWithUTCString:release];
+                id date = [NSDate dateWithUTCString:release];
                 if(!date)
                 {
                     NSDateFormatter* format = [[[NSDateFormatter alloc] init] autorelease];
@@ -222,11 +225,9 @@
                     format.dateFormat = @"yyyy-MM";
                     date = [format dateFromString:release];
                 }
-                if(!date)
+                if(!date && [release mz_allInCharacterSet:[NSCharacterSet decimalDigitCharacterSet]])
                 {
-                    NSDateFormatter* format = [[[NSDateFormatter alloc] init] autorelease];
-                    format.dateFormat = @"yyyy";
-                    date = [format dateFromString:release];
+                    date = [NSNumber numberWithInt:[release intValue]];
                 }
                 if(!date)
                 {

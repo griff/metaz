@@ -16,13 +16,14 @@
 #import "SearchProfile.h"
 #import "ChapterEditor.h"
 #import "MZFileNameTextStorage.h"
+#import "MZYearDateFormatter.h"
 
 @interface AppController : NSObject <NSUserInterfaceValidations,MZPluginControllerDelegate> {
     NSWindow* window;
     NSTabView *tabView;
     NSNumberFormatter* episodeFormatter;
     NSNumberFormatter* seasonFormatter;
-    NSDateFormatter* dateFormatter;
+    MZYearDateFormatter* dateFormatter;
     NSDateFormatter* purchaseDateFormatter;
     NSSegmentedControl* filesSegmentControl;
     NSArrayController* filesController;
@@ -52,7 +53,7 @@
 @property (nonatomic, retain) IBOutlet NSTabView *tabView;
 @property (nonatomic, retain) IBOutlet NSNumberFormatter* episodeFormatter;
 @property (nonatomic, retain) IBOutlet NSNumberFormatter* seasonFormatter;
-@property (nonatomic, retain) IBOutlet NSDateFormatter* dateFormatter;
+@property (nonatomic, retain) IBOutlet MZYearDateFormatter* dateFormatter;
 @property (nonatomic, retain) IBOutlet NSDateFormatter* purchaseDateFormatter;
 @property (nonatomic, retain) IBOutlet NSSegmentedControl* filesSegmentControl;
 @property (nonatomic, retain) IBOutlet NSArrayController* filesController;

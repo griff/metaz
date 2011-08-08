@@ -12,11 +12,11 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="106"/>
-			<integer value="1723"/>
 			<integer value="1798"/>
-			<integer value="1833"/>
+			<integer value="1723"/>
+			<integer value="106"/>
 			<integer value="475"/>
+			<integer value="1833"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3337,7 +3337,7 @@
 																				<nil key="NS.nil"/>
 																				<object class="NSAttributedString" key="NS.nan">
 																					<string key="NSString">NaN</string>
-																					<object class="NSDictionary" key="NSAttributes" id="577798586">
+																					<object class="NSDictionary" key="NSAttributes" id="220022405">
 																						<bool key="EncodedWithXMLCoder">YES</bool>
 																						<object class="NSArray" key="dict.sortedKeys" id="0">
 																							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3454,7 +3454,7 @@
 																				</object>
 																				<object class="NSAttributedString" key="NS.nan">
 																					<string key="NSString">NaN</string>
-																					<reference key="NSAttributes" ref="577798586"/>
+																					<reference key="NSAttributes" ref="220022405"/>
 																				</object>
 																				<reference key="NS.min" ref="23221730"/>
 																				<reference key="NS.max" ref="23221730"/>
@@ -12804,6 +12804,7 @@
 					<string>567.IBPluginDependency</string>
 					<string>568.IBPluginDependency</string>
 					<string>569.IBPluginDependency</string>
+					<string>569.IBViewBoundsToFrameTransform</string>
 					<string>57.IBEditorWindowLastContentRect</string>
 					<string>57.IBPluginDependency</string>
 					<string>57.ImportedFromIB2</string>
@@ -13406,12 +13407,15 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDXgAAw9IAAA</bytes>
+					</object>
 					<string>{{450, 385}, {229, 203}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{23, 794}, {245, 183}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>MZDateFormatter</string>
+					<string>MZYearDateFormatter</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -13856,7 +13860,7 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>ChapterEditor</string>
-							<string>NSDateFormatter</string>
+							<string>MZYearDateFormatter</string>
 							<string>NSNumberFormatter</string>
 							<string>NSArrayController</string>
 							<string>NSSegmentedControl</string>
@@ -13906,7 +13910,7 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">dateFormatter</string>
-								<string key="candidateClassName">NSDateFormatter</string>
+								<string key="candidateClassName">MZYearDateFormatter</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">episodeFormatter</string>
@@ -14307,6 +14311,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">App/src/MZWriteQueue.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MZYearDateFormatter</string>
+					<string key="superclassName">NSFormatter</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">App/src/MZYearDateFormatter.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

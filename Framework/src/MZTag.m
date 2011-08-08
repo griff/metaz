@@ -11,6 +11,7 @@
 #import <MetaZKit/MZTimeCode.h>
 #import <MetaZKit/NSDate+UTC.h>
 #import <MetaZKit/MZLogger.h>
+#import <MetaZKit/NSString+MZAllInCharacterSet.h>
 
 @interface MZVideoTypeTagClass : MZEnumTag
 {
@@ -43,7 +44,7 @@
     [self registerTag:[MZStringTag tagWithIdentifier:MZPictureTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZTitleTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZArtistTagIdent]];
-    [self registerTag:[MZDateTag tagWithIdentifier:MZDateTagIdent]];
+    [self registerTag:[MZYearDateTag tagWithIdentifier:MZDateTagIdent]];
     [self registerTag:[MZRatingTag tag]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZGenreTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZAlbumTagIdent]];
@@ -378,6 +379,48 @@ static NSMutableDictionary *sharedTags = nil;
 {
     if(!obj || obj == [NSNull null])
         return @"";
+    NSDate* date = obj;
+    return [date utcTimestamp];
+}
+
+@end
+
+
+@implementation MZYearDateTag
+
+- (NSCell *)editorCell
+{
+    return [[[NSTextFieldCell alloc] initTextCell:@""] autorelease]; 
+}
+
+- (id)convertValueToObject:(void*)buffer
+{
+    id* str = (id*)buffer;
+    return *str;
+}
+
+- (void)convertObject:(id)obj toValue:(void*)buffer
+{
+    id* str = (id*)buffer;
+    *str = obj;
+}
+
+- (id)objectFromString:(NSString *)str
+{
+    if(!str || [str length]==0)
+        return nil;
+
+    if([str mz_allInCharacterSet:[NSCharacterSet decimalDigitCharacterSet]])
+        return [NSNumber numberWithInt:[str intValue]];
+    return [NSDate dateWithUTCString:str];
+}
+
+- (NSString *)stringForObject:(id)obj
+{
+    if(!obj || obj == [NSNull null])
+        return @"";
+    if([obj isKindOfClass:[NSNumber class]])
+        return [obj stringValue];
     NSDate* date = obj;
     return [date utcTimestamp];
 }
