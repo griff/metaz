@@ -34,7 +34,7 @@
 				<string>video/x-m4v</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>protected MPEG-4 movie</string>
+			<string>The Other MPEG-4 Video</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>M4V</string>
@@ -43,7 +43,7 @@
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.apple.protected-mpeg-4-video</string>
+				<string>org.maven-group.mpeg4-video</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
@@ -180,6 +180,10 @@
 			<string>The Other MPEG-4 Video</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
+				<key>public.mime-type</key>
+				<array>
+					<string>video/x-m4v</string>
+				</array>
 				<key>com.apple.ostype</key>
 				<array>
 					<string>M4V</string>
