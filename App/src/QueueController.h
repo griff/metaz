@@ -25,12 +25,19 @@
     NSInteger progress;
     NSDate* startTime;
     UKDockProgressIndicator* dockIndicator;
+    NSProgressIndicator* progressBar;
+    NSView* mainView;
+    NSView* pendingLabel;
+    CGFloat progressResizeHeight;
 }
 @property (nonatomic, retain) IBOutlet NSArrayController* filesController;
 @property (nonatomic, retain) IBOutlet NSWindow* mainWindow;
 @property (nonatomic, retain) IBOutlet NSToolbarItem* playBtn;
 @property (nonatomic, retain) NSToolbarItem* playBtn2;
 @property (nonatomic, retain) IBOutlet NSMenuItem* menuItem;
+@property (nonatomic, retain) IBOutlet NSProgressIndicator* progressBar;
+@property (nonatomic, retain) IBOutlet NSView* mainView;
+@property (nonatomic, retain) IBOutlet NSView* pendingLabel;
 @property (readonly) NSInteger targetProgress;
 @property (readonly) NSInteger progress;
 
