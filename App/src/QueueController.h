@@ -10,6 +10,7 @@
 #import <Growl/Growl.h>
 #import <UKDockProgressIndicator.h>
 #import "MZWriteQueue.h"
+#import "MZViewAnimation.h"
 
 @interface QueueController : NSObject <NSUserInterfaceValidations,GrowlApplicationBridgeDelegate> {
     NSArrayController* filesController;
@@ -29,6 +30,11 @@
     NSView* mainView;
     NSView* pendingLabel;
     CGFloat progressResizeHeight;
+    MZViewAnimation* animation;
+    NSRect mainRect;
+    NSRect pendingRect;
+    NSRect progressRect;
+    BOOL progressShowing;
 }
 @property (nonatomic, retain) IBOutlet NSArrayController* filesController;
 @property (nonatomic, retain) IBOutlet NSWindow* mainWindow;

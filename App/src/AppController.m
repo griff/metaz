@@ -15,6 +15,7 @@
 #import "FakeSearchResult.h"
 #import "SearchMeta.h"
 #import "FilesTableView.h"
+#import "Resources.h"
 
 #define MaxShortDescription 256
 
@@ -845,6 +846,7 @@ NSDictionary* findBinding(NSWindow* window) {
 #pragma mark - as window delegate
 
 - (NSSize)windowWillResize:(NSWindow *)aWindow toSize:(NSSize)proposedFrameSize {
+    [[NSNotificationCenter defaultCenter] postNotificationName:MZNSWindowWillResizeNotification object:aWindow];
     return [resizeController windowWillResize:aWindow toSize:proposedFrameSize];
 }
 

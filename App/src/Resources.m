@@ -13,3 +13,5 @@ NSString* const MZFadedIconError = @"faded_cow_error";
 NSString* const MZFadedIconFatalError = @"faded_cow_fatal";
 NSString* const MZFadedIconMultiple = @"faded_cow_multiple";
 NSString* const MZSmallIcon = @"metaz";
+
+NSString* const MZNSWindowWillResizeNotification = @"MZNSWindowWillResizeNotification";

@@ -238,6 +238,8 @@
 		1BEC79071197B74400337403 /* GTMStackTrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B449E2110DCCC1D00B9C751 /* GTMStackTrace.h */; };
 		1BF5AD4B105DFC92005DD03E /* QueueWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5AD4A105DFC92005DD03E /* QueueWindowController.m */; };
 		1BF5ADBD105E0B8E005DD03E /* FileViewBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5ADBC105E0B8E005DD03E /* FileViewBox.m */; };
+		1BFC2E251402352F001B6DE3 /* MGViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC2E241402352F001B6DE3 /* MGViewAnimation.m */; };
+		1BFC2EE914025BA6001B6DE3 /* MZViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC2EE814025BA6001B6DE3 /* MZViewAnimation.m */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -951,6 +953,10 @@
 		1BF5AD4A105DFC92005DD03E /* QueueWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueWindowController.m; sourceTree = "<group>"; };
 		1BF5ADBB105E0B8E005DD03E /* FileViewBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewBox.h; sourceTree = "<group>"; };
 		1BF5ADBC105E0B8E005DD03E /* FileViewBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewBox.m; sourceTree = "<group>"; };
+		1BFC2E231402352F001B6DE3 /* MGViewAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGViewAnimation.h; path = Externals/MGViewAnimation/MGViewAnimation.h; sourceTree = "<group>"; };
+		1BFC2E241402352F001B6DE3 /* MGViewAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGViewAnimation.m; path = Externals/MGViewAnimation/MGViewAnimation.m; sourceTree = "<group>"; };
+		1BFC2EE714025BA6001B6DE3 /* MZViewAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZViewAnimation.h; sourceTree = "<group>"; };
+		1BFC2EE814025BA6001B6DE3 /* MZViewAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZViewAnimation.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = App/src/main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1279,6 +1285,7 @@
 		1B449CEE10DCCAD500B9C751 /* External Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1BFC2E2214023507001B6DE3 /* MGViewAnimation */,
 				1B42F21910DD534500AFEBF6 /* UKDockProgressIndicator */,
 				1B449D1910DCCBA800B9C751 /* GTM */,
 				1B449D1610DCCB0500B9C751 /* hmac */,
@@ -1756,6 +1763,8 @@
 				1BAC912913F053980022D625 /* MZDateFormatter.m */,
 				1BAC916313F056240022D625 /* MZYearDateFormatter.h */,
 				1BAC916413F056240022D625 /* MZYearDateFormatter.m */,
+				1BFC2EE714025BA6001B6DE3 /* MZViewAnimation.h */,
+				1BFC2EE814025BA6001B6DE3 /* MZViewAnimation.m */,
 			);
 			name = Classes;
 			path = App/src;
@@ -1839,6 +1848,15 @@
 				1BEA6E8D106EF522004B1A7F /* Info.plist */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		1BFC2E2214023507001B6DE3 /* MGViewAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				1BFC2E231402352F001B6DE3 /* MGViewAnimation.h */,
+				1BFC2E241402352F001B6DE3 /* MGViewAnimation.m */,
+			);
+			name = MGViewAnimation;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* MetaZ */ = {
@@ -2538,6 +2556,8 @@
 				1B2AEED611A0EC430074BAAD /* MZFileNameTextStorage.m in Sources */,
 				1BAC912A13F053980022D625 /* MZDateFormatter.m in Sources */,
 				1BAC916513F056240022D625 /* MZYearDateFormatter.m in Sources */,
+				1BFC2E251402352F001B6DE3 /* MGViewAnimation.m in Sources */,
+				1BFC2EE914025BA6001B6DE3 /* MZViewAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3051,7 +3071,8 @@
 				GCC_PREFIX_HEADER = App/MetaZ_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
 					Externals/UKDockProgressIndicator,
-					"Externals/google-toolbox-for-mac\n/**",
+					"Externals/google-toolbox-for-mac/**",
+					Externals/MGViewAnimation,
 				);
 				IBC_OTHER_FLAGS = "--plugin /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/ImageKit.framework/Resources/ImageKitIBPlugin.ibplugin";
 				INFOPLIST_FILE = App/Info.plist;
@@ -3456,6 +3477,7 @@
 				HEADER_SEARCH_PATHS = (
 					Externals/UKDockProgressIndicator,
 					"Externals/google-toolbox-for-mac/**",
+					Externals/MGViewAnimation,
 				);
 				IBC_OTHER_FLAGS = "--plugin /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/ImageKit.framework/Resources/ImageKitIBPlugin.ibplugin";
 				INFOPLIST_FILE = App/Info.plist;
@@ -3485,6 +3507,7 @@
 				HEADER_SEARCH_PATHS = (
 					Externals/UKDockProgressIndicator,
 					"Externals/google-toolbox-for-mac/**",
+					Externals/MGViewAnimation,
 				);
 				IBC_OTHER_FLAGS = "--plugin /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/ImageKit.framework/Resources/ImageKitIBPlugin.ibplugin";
 				INFOPLIST_FILE = App/Info.plist;
