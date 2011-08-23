@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MGViewAnimation.h"
 
 @class MGCollectionViewItem;
 @class MGCollectionView;
@@ -41,7 +42,7 @@ typedef NSInteger MGCollectionViewDropOperation;
     MGCollectionViewItem* itemPrototype;
     NSArray* content;
     NSMutableArray* _targetItems;
-    NSViewAnimation* _animation;
+    MGViewAnimation* _animation;
     NSRect _targetViewFrameRect;
     BOOL needsLayout;
     NSArray* backgroundColors;
