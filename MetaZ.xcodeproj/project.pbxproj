@@ -136,7 +136,6 @@
 		1B6E43DD10846DBC00DFE165 /* TagData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6E43D610846BDA00DFE165 /* TagData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B82647410B3C25000DF101B /* MetaEditsUndoManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B82647210B3C25000DF101B /* MetaEditsUndoManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B82647510B3C25000DF101B /* MetaEditsUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */; };
-		1B82685010B3EE0300DF101B /* AmazonRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82684F10B3EE0300DF101B /* AmazonRequest.m */; };
 		1B8268A510B3F82400DF101B /* AmazonSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8268A410B3F82400DF101B /* AmazonSearchProvider.m */; };
 		1B82690410B3FF1200DF101B /* MZRESTSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B82690210B3FF1200DF101B /* MZRESTSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B82690510B3FF1200DF101B /* MZRESTSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82690310B3FF1200DF101B /* MZRESTSearch.m */; };
@@ -886,8 +885,6 @@
 		1B78A49A105032A50072D89E /* MZMethodData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMethodData.m; sourceTree = "<group>"; };
 		1B82647210B3C25000DF101B /* MetaEditsUndoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaEditsUndoManager.h; sourceTree = "<group>"; };
 		1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditsUndoManager.m; sourceTree = "<group>"; };
-		1B82684E10B3EE0300DF101B /* AmazonRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonRequest.h; sourceTree = "<group>"; };
-		1B82684F10B3EE0300DF101B /* AmazonRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonRequest.m; sourceTree = "<group>"; };
 		1B8268A310B3F82400DF101B /* AmazonSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonSearchProvider.h; sourceTree = "<group>"; };
 		1B8268A410B3F82400DF101B /* AmazonSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonSearchProvider.m; sourceTree = "<group>"; };
 		1B82690210B3FF1200DF101B /* MZRESTSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZRESTSearch.h; sourceTree = "<group>"; };
@@ -1254,8 +1251,6 @@
 				1B03307D10B0FA4800B28E3A /* AmazonPlugin.m */,
 				1B032F5610B0BDEE00B28E3A /* SignedAwsSearchRequest.h */,
 				1B032F5710B0BDEE00B28E3A /* SignedAwsSearchRequest.m */,
-				1B82684E10B3EE0300DF101B /* AmazonRequest.h */,
-				1B82684F10B3EE0300DF101B /* AmazonRequest.m */,
 				1B8268A310B3F82400DF101B /* AmazonSearchProvider.h */,
 				1B8268A410B3F82400DF101B /* AmazonSearchProvider.m */,
 				1B15A60C10B608D100EC0FBF /* AmazonSearch.h */,
@@ -2560,7 +2555,6 @@
 				1B032F7E10B0C17200B28E3A /* SignedAwsSearchRequest.m in Sources */,
 				1B032FDB10B0C5FE00B28E3A /* hmac_sha2.c in Sources */,
 				1B032FDE10B0C62800B28E3A /* sha2.c in Sources */,
-				1B82685010B3EE0300DF101B /* AmazonRequest.m in Sources */,
 				1B8268A510B3F82400DF101B /* AmazonSearchProvider.m in Sources */,
 				1B15A60E10B608D100EC0FBF /* AmazonSearch.m in Sources */,
 				1B449E3110DCCC5600B9C751 /* GTMBase64.m in Sources */,
