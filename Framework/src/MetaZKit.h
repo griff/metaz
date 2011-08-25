@@ -10,6 +10,7 @@
 #import <MetaZKit/TagData.h>
 #import <MetaZKit/MetaEdits.h>
 #import <MetaZKit/MetaLoaded.h>
+#import <MetaZKit/MZASISearch.h>
 #import <MetaZKit/MZTag.h>
 #import <MetaZKit/MZConstants.h>
 #import <MetaZKit/MZDataProvider.h>
