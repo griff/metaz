@@ -37,14 +37,17 @@
     // Finish last search;
     if(search)
     {
-        @synchronized(search)
+        if([search respondsToSelector:@selector(isFinished)])
         {
-            if(![search isFinished])
+            @synchronized(search)
             {
-                [canceledSearches addObject:search];
-                [search gtm_addObserver:self forKeyPath:@"isFinished" selector:@selector(canceledSearchFinished:) userInfo:nil options:0];
+                if(![search isFinished])
+                {
+                    [canceledSearches addObject:search];
+                    [search gtm_addObserver:self forKeyPath:@"isFinished" selector:@selector(canceledSearchFinished:) userInfo:nil options:0];
+                }
+                //[search gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(searchFinished:)];
             }
-            //[search gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(searchFinished:)];
         }
         [search cancel];
         [search release];
