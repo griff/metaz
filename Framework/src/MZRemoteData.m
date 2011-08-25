@@ -9,35 +9,6 @@
 #import "MZRemoteData.h"
 #import <MetaZKit/MZLogger.h>
 
-@interface MZRemoteDataOperation : NSOperation
-{
-    /*
-    NSMutableURLRequest *request;
-    NSURLResponse* response;
-    NSURLConnection* connection;
-    */
-    MZRemoteData* owner;
-    /*
-    NSInteger contentLength;
-    NSInteger loaded;
-    */
-}
-
-- (id)initWithOwner:(MZRemoteData *)owner;
-
-/*
-@property(assign) NSInteger contentLength;
-@property(assign) NSInteger loaded;
-
-- (void)start;
-- (void)cancel;
-
-- (BOOL)isExecuting;
-- (BOOL)isConcurrent;
-- (BOOL)isFinished;
-*/
-
-@end
 
 @interface MZRemoteData()
 
@@ -46,12 +17,17 @@
 @property(readwrite, retain) NSData* data;
 @property(readwrite) BOOL isLoaded;
 @property(readwrite, retain) NSError* error;
-@property(readwrite, retain) NSOperation* operation;
+@property(readwrite, retain) ASIHTTPRequest* request;
 
 @end
 
 
 @implementation MZRemoteData
+@synthesize url;
+@synthesize data;
+@synthesize isLoaded;
+@synthesize error;
+@synthesize request;
 
 + (NSOperationQueue *)sharedQueue
 {
@@ -79,182 +55,54 @@
     return self;
 }
 
-@synthesize url;
-@synthesize data;
-@synthesize isLoaded;
-@synthesize error;
-@synthesize operation;
-
+- (void)dealloc
+{
+    [request clearDelegatesAndCancel];
+    [request release];
+    [data release];
+    [error release];
+    [super dealloc];
+}
 
 - (void)loadData
 {
-    if([NSThread mainThread] != [NSThread currentThread])
-        [self performSelectorOnMainThread:@selector(startLoadOperation) withObject:nil waitUntilDone:NO];
-    else
-        [self startLoadOperation];
-}
-
-- (NSOperation *)startLoadOperation
-{
     @synchronized(self)
     {
-        if(self.operation == nil && self.data == nil)
+        if(self.request == nil && self.data == nil)
         {
             self.error = nil;
             self.isLoaded = NO;
-            NSOperation* op = [[[MZRemoteDataOperation alloc] initWithOwner:self] autorelease];
-            self.operation = op;
-            [[MZRemoteData sharedQueue] addOperation:op];
-            return op;
+            ASIHTTPRequest* req = [ASIHTTPRequest requestWithURL:self.url];
+            req.delegate = self;
+            self.request = req;
+            [[MZRemoteData sharedQueue] addOperation:req];
         }
-        return self.operation;
     }
-    return nil;
 }
 
-- (void)completedDataLoad:(NSData *)loadedData
+- (void)requestFinished:(ASIHTTPRequest *)theRequest
 {
+    if(![theRequest responseData])
+    {
+        MZLoggerDebug(@"Response data for url %@ is nil", self.url);
+    }
     @synchronized(self)
     {
-        self.data = loadedData;
+        self.data = [theRequest responseData];
         self.isLoaded = YES;
-        self.operation = nil;
+        self.request = nil;
     }
 }
-
-- (void)loadedData:(NSData *)loadedData
-{
-    [self performSelectorOnMainThread:@selector(completedDataLoad:) withObject:loadedData waitUntilDone:YES];
-}
-
-- (void)failedWithError:(NSError *)actualError
+ 
+- (void)requestFailed:(ASIHTTPRequest *)theRequest
 {
     @synchronized(self)
     {
-        self.error = actualError;
+        self.error = [theRequest error];
         self.isLoaded = YES;
-        self.operation = nil;
+        self.request = nil;
     }
 }
-
-/*
-- (void)loadImage
-{
-}
-
-- (void)blaBla
-{
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:finalURL
-                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                       timeoutInterval:60.0];
-
-        NSURLConnection* conn = [[NSURLConnection alloc] initWithRequest:request
-                                               delegate:self
-                                       startImmediately:YES];
-        
-        if (!conn)
-        {
-            if ([delegate respondsToSelector:@selector(wrapper:didFailWithError:)])
-            {
-                NSMutableDictionary* info = [NSMutableDictionary dictionaryWithObject:[request URL] forKey:NSErrorFailingURLStringKey];
-                [info setObject:@"Could not open connection" forKey:NSLocalizedDescriptionKey];
-                NSError* error = [NSError errorWithDomain:@"Wrapper" code:1 userInfo:info];
-                [delegate wrapper:self didFailWithError:error];
-            }
-        }
-        else {
-            self.connection = conn;
-        }
-
-}
-*/
-@end
-
-@implementation MZRemoteDataOperation
-
-- (id)initWithOwner:(MZRemoteData *)theOwner
-{
-    self = [super init];
-    if(self)
-    {
-        owner = [theOwner retain];
-    }
-    return self;
-}
-
-/*
-@synthesize contentLength;
-@synthesize loaded;
-*/
-- (void)main
-{
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    @try {
- 
-        NSError* error = nil;
-        NSData* data = [NSData dataWithContentsOfURL:owner.url options:0 error:&error];
-        if(data)
-        {
-            NSImage* image = [[NSImage alloc] initWithContentsOfURL:owner.url];
-            if(!image)
-            {
-                /*
-                NSString* str = [[[NSString alloc] initWithData:data 
-                                 encoding:NSUTF8StringEncoding] autorelease];
-                */
-                MZLoggerError(@"Bad image url: %@", [owner.url absoluteString]);//, str);
-            }
-            [owner loadedData:data];
-        }
-        else
-            [owner performSelectorOnMainThread:@selector(failedWithError:) withObject:error waitUntilDone:YES];
- 
-    }
-    @catch(...) {
-        // Do not rethrow exceptions.
-    }
-    [pool release];
-}
-
-/*
-- (BOOL)isConcurrent
-{
-    return YES;
-}
-
-- (void)start
-{
-    @synchronized(self)
-    {
-        self.isExecuting = YES;
-        if([self isCancelled])
-        {
-            self.isExecuting = NO;
-            self.isFinished = YES;
-        }
-        NSURLConnection* conn = [[NSURLConnection alloc] initWithRequest:request
-                                                                delegate:self
-                                                        startImmediately:NO];
-        if (!conn)
-        {
-            NSMutableDictionary* info = [NSMutableDictionary dictionaryWithObject:[request URL] forKey:NSErrorFailingURLStringKey];
-            [info setObject:@"Could not open connection" forKey:NSLocalizedDescriptionKey];
-            NSError* error = [NSError errorWithDomain:@"Wrapper" code:1 userInfo:info];
-            
-            if ([delegate respondsToSelector:@selector(wrapper:didFailWithError:)])
-            {
-                [delegate wrapper:self didFailWithError:error];
-            }
-        }
-        else {
-            [conn unscheduleFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-            [conn scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-            [conn start];
-            self.connection = conn;
-        }
-    }
-}
-*/
 
 @end
 
