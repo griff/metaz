@@ -44,11 +44,10 @@
                 [canceledSearches addObject:search];
                 [search gtm_addObserver:self forKeyPath:@"isFinished" selector:@selector(canceledSearchFinished:) userInfo:nil options:0];
             }
-            //[search gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(searchFinished:)];
+            [search cancel];
+            [search release];
+            search = nil;
         }
-        [search cancel];
-        [search release];
-        search = nil;
     }
 }
 
