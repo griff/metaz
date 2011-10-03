@@ -10,6 +10,53 @@
 #import "Access.h"
 #import "TheTVDBPlugin.h"
 
+
+@implementation TheTVDBSearch
+
++ (id)searchWithProvider:(id)provider delegate:(id<MZSearchProviderDelegate>)delegate queue:(NSOperationQueue *)queue
+{
+    return [[[self alloc] initWithProvider:provider delegate:delegate queue:queue] autorelease];
+}
+
+- (id)initWithProvider:(id)theProvider delegate:(id<MZSearchProviderDelegate>)theDelegate queue:(NSOperationQueue *)theQueue
+{
+    self = [super init];
+    if(self)
+    {
+        provider = theProvider;
+        delegate = [theDelegate retain];
+        queue = [theQueue retain];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [delegate release];
+    [queue release];
+    [super dealloc];
+}
+
+@synthesize provider;
+@synthesize delegate;
+
+- (void)queueOperation:(NSOperation *)operation
+{
+    @synchronized(self)
+    {
+        [self addOperation:operation];
+        [queue addOperation:operation];
+    }
+}
+
+- (void)operationsFinished
+{
+    [delegate searchFinished];
+}
+
+@end
+
+
 @implementation TheTVDBUpdateMirrors
 
 +(NSString *)findMirror
@@ -312,51 +359,6 @@
     MZLoggerDebug(@"Parsed TheTVDB results %d", [results count]);
     [delegate searchProvider:provider result:results];
     [super wrapper:theWrapper didRetrieveData:data];
-}
-
-@end
-
-@implementation TheTVDBSearch
-
-+ (id)searchWithProvider:(id)provider delegate:(id<MZSearchProviderDelegate>)delegate queue:(NSOperationQueue *)queue
-{
-    return [[[self alloc] initWithProvider:provider delegate:delegate queue:queue] autorelease];
-}
-
-- (id)initWithProvider:(id)theProvider delegate:(id<MZSearchProviderDelegate>)theDelegate queue:(NSOperationQueue *)theQueue
-{
-    self = [super init];
-    if(self)
-    {
-        provider = theProvider;
-        delegate = [theDelegate retain];
-        queue = [theQueue retain];
-    }
-    return self;
-}
-
-- (void)dealloc
-{
-    [delegate release];
-    [queue release];
-    [super dealloc];
-}
-
-@synthesize provider;
-@synthesize delegate;
-
-- (void)queueOperation:(NSOperation *)operation
-{
-    @synchronized(self)
-    {
-        [self addOperation:operation];
-        [queue addOperation:operation];
-    }
-}
-
-- (void)operationsFinished
-{
-    [delegate searchFinished];
 }
 
 @end
