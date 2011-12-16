@@ -48,10 +48,10 @@
                 }
                 //[search gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(searchFinished:)];
             }
+            [search cancel];
+            [search release];
+            search = nil;
         }
-        [search cancel];
-        [search release];
-        search = nil;
     }
 }
 

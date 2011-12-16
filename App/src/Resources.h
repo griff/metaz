@@ -15,3 +15,4 @@ MZKIT_EXTERN NSString* const MZFadedIconFatalError;
 MZKIT_EXTERN NSString* const MZFadedIconMultiple;
 MZKIT_EXTERN NSString* const MZSmallIcon;
 
+MZKIT_EXTERN NSString* const MZNSWindowWillResizeNotification;

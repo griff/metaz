@@ -103,7 +103,7 @@
 - (NSRange)doubleClickAtIndex:(NSUInteger)index
 {
     NSRange result = [super doubleClickAtIndex:index];
-    NSRange range = NSMakeRange(0,index-1);
+    NSRange range = NSMakeRange(0,index == 0 ? 0 : index-1);
     NSRange found = [[text string]
         rangeOfCharacterFromSet:[NSCharacterSet punctuationCharacterSet]
                         options:NSBackwardsSearch

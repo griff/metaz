@@ -12,11 +12,11 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="1833"/>
 			<integer value="1798"/>
 			<integer value="1723"/>
+			<integer value="371"/>
 			<integer value="106"/>
-			<integer value="475"/>
-			<integer value="1833"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4706,7 +4706,7 @@
 						</object>
 						<object class="NSProgressIndicator" id="922064220">
 							<reference key="NSNextResponder" ref="439893737"/>
-							<int key="NSvFlags">-2147482334</int>
+							<int key="NSvFlags">1314</int>
 							<object class="NSPSMatrix" key="NSDrawMatrix"/>
 							<string key="NSFrame">{{18, 16}, {1046, 20}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
@@ -8867,6 +8867,30 @@
 						<reference key="destination" ref="488851568"/>
 					</object>
 					<int key="connectionID">1843</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">progressBar</string>
+						<reference key="source" ref="1003405073"/>
+						<reference key="destination" ref="922064220"/>
+					</object>
+					<int key="connectionID">1844</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">pendingLabel</string>
+						<reference key="source" ref="1003405073"/>
+						<reference key="destination" ref="25764030"/>
+					</object>
+					<int key="connectionID">1845</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">mainView</string>
+						<reference key="source" ref="1003405073"/>
+						<reference key="destination" ref="842184806"/>
+					</object>
+					<int key="connectionID">1846</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -13640,7 +13664,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1843</int>
+			<int key="maxID">1846</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -14588,16 +14612,22 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>filesController</string>
+							<string>mainView</string>
 							<string>mainWindow</string>
 							<string>menuItem</string>
+							<string>pendingLabel</string>
 							<string>playBtn</string>
+							<string>progressBar</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSArrayController</string>
+							<string>NSView</string>
 							<string>NSWindow</string>
 							<string>NSMenuItem</string>
+							<string>NSView</string>
 							<string>NSToolbarItem</string>
+							<string>NSProgressIndicator</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -14605,15 +14635,22 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>filesController</string>
+							<string>mainView</string>
 							<string>mainWindow</string>
 							<string>menuItem</string>
+							<string>pendingLabel</string>
 							<string>playBtn</string>
+							<string>progressBar</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
 								<string key="name">filesController</string>
 								<string key="candidateClassName">NSArrayController</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">mainView</string>
+								<string key="candidateClassName">NSView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">mainWindow</string>
@@ -14624,8 +14661,16 @@
 								<string key="candidateClassName">NSMenuItem</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">pendingLabel</string>
+								<string key="candidateClassName">NSView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">playBtn</string>
 								<string key="candidateClassName">NSToolbarItem</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">progressBar</string>
+								<string key="candidateClassName">NSProgressIndicator</string>
 							</object>
 						</object>
 					</object>

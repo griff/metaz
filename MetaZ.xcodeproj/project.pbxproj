@@ -21,7 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		1B032F7E10B0C17200B28E3A /* SignedAwsSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B032F5710B0BDEE00B28E3A /* SignedAwsSearchRequest.m */; };
 		1B032FA510B0C4AF00B28E3A /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1B032FDB10B0C5FE00B28E3A /* hmac_sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B032FDA10B0C5FE00B28E3A /* hmac_sha2.c */; };
 		1B032FDE10B0C62800B28E3A /* sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B032FDD10B0C62800B28E3A /* sha2.c */; };
@@ -421,8 +420,6 @@
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		1B032F5610B0BDEE00B28E3A /* SignedAwsSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignedAwsSearchRequest.h; sourceTree = "<group>"; };
-		1B032F5710B0BDEE00B28E3A /* SignedAwsSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignedAwsSearchRequest.m; sourceTree = "<group>"; };
 		1B032F5A10B0BE1A00B28E3A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/Amazon/Info.plist; sourceTree = "<group>"; };
 		1B032F6710B0C12100B28E3A /* AmazonPlugin.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmazonPlugin.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B032FD910B0C5FE00B28E3A /* hmac_sha2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hmac_sha2.c; path = Externals/hmac/hmac_sha2.c; sourceTree = "<group>"; };
@@ -1249,8 +1246,6 @@
 				1B15A62610B6316000EC0FBF /* Access.h */,
 				1B03307C10B0FA4800B28E3A /* AmazonPlugin.h */,
 				1B03307D10B0FA4800B28E3A /* AmazonPlugin.m */,
-				1B032F5610B0BDEE00B28E3A /* SignedAwsSearchRequest.h */,
-				1B032F5710B0BDEE00B28E3A /* SignedAwsSearchRequest.m */,
 				1B8268A310B3F82400DF101B /* AmazonSearchProvider.h */,
 				1B8268A410B3F82400DF101B /* AmazonSearchProvider.m */,
 				1B15A60C10B608D100EC0FBF /* AmazonSearch.h */,
@@ -2552,7 +2547,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B03307E10B0FA4800B28E3A /* AmazonPlugin.m in Sources */,
-				1B032F7E10B0C17200B28E3A /* SignedAwsSearchRequest.m in Sources */,
 				1B032FDB10B0C5FE00B28E3A /* hmac_sha2.c in Sources */,
 				1B032FDE10B0C62800B28E3A /* sha2.c in Sources */,
 				1B8268A510B3F82400DF101B /* AmazonSearchProvider.m in Sources */,

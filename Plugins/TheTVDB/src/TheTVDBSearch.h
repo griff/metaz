@@ -47,54 +47,16 @@
 @end
 
 
-@interface TheTVDBBaseSeriesLoader : MZRESTOperation
+@interface TheTVDBFullSeriesLoader : MZRESTSearchResult
 {
     NSUInteger series;
-    NSDictionary* data;
+    NSUInteger season;
+    NSInteger episode;
 }
-- (id)initWithSeries:(NSUInteger)theSeries;
+- (id)initWithProvider:(id)provider delegate:(id<MZSearchProviderDelegate>)delegate series:(NSUInteger)theSeries season:(NSUInteger)theSeason episode:(NSInteger)theEpisode;
 
 @property(readonly) NSUInteger series;
-@property(copy) NSDictionary* data;
-
-@end
-
-
-@interface TheTVDBEpisodeLoader : MZRESTSearchResult
-{
-    TheTVDBBaseSeriesLoader* series;
-    NSUInteger season;
-    NSUInteger episode;
-}
-
-- (id)initWithProvider:(id)provider delegate:(id<MZSearchProviderDelegate>)delegate series:(TheTVDBBaseSeriesLoader *)theSeries season:(NSUInteger)theSeason episode:(NSUInteger)theEpisode dvdOrder:(BOOL)order;
-
-- (NSDictionary *)parse;
-
-@end
-
-
-@interface TheTVDBEpisodeFinder : TheTVDBEpisodeLoader
-{
-    TheTVDBSearch* search;
-}
-
-- (id)initWithSearch:(TheTVDBSearch*)search series:(TheTVDBBaseSeriesLoader *)theSeries season:(NSUInteger)theSeason episode:(NSUInteger)theEpisode;
-
-- (NSDictionary *)parse;
-
-@end
-
-
-@interface TheTVDBSeasonFinder : TheTVDBEpisodeLoader
-{
-    NSInteger lowestFoundNo;
-    NSInteger highestTriedNo;
-    TheTVDBSearch* search;
-}
-
-- (id)initWithSearch:(TheTVDBSearch*)search series:(TheTVDBBaseSeriesLoader *)theSeries season:(NSUInteger)theSeason;
-
-- (NSDictionary *)parse;
+@property(readonly) NSUInteger season;
+@property(readonly) NSInteger episode;
 
 @end

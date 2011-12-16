@@ -9,7 +9,7 @@
 #import "QueueController.h"
 #import "MZMetaLoader.h"
 #import "QueueWindowController.h"
-
+#import "Resources.h"
 
 @interface QueueController ()
 @property(readwrite) NSInteger targetProgress;
@@ -27,6 +27,9 @@
 @synthesize menuItem;
 @synthesize targetProgress;
 @synthesize progress;
+@synthesize progressBar;
+@synthesize mainView;
+@synthesize pendingLabel;
 
 -(id)init
 {
@@ -52,6 +55,11 @@
     [startTime release];
     [menuItem release];
     [dockIndicator release];
+    [progressBar release];
+    [mainView release];
+    [pendingLabel release];
+    [animation stopAnimationChain];
+    [animation release];
     [super dealloc];
 }
 
@@ -88,25 +96,24 @@
     [dockIndicator bind:@"maxValue" toObject:self withKeyPath:@"targetProgress" options:nil];
     [dockIndicator bind:@"doubleValue" toObject:self withKeyPath:@"progress" options:nil];
 
+    // Store frame sizes for animation
+    mainRect = [mainView frame];
+    pendingRect = [pendingLabel frame];
+    progressRect = [progressBar frame];
+    progressResizeHeight = pendingRect.origin.y - progressRect.origin.y;
+
     // Hide progress bar
-    NSRect contentRect = [[mainWindow contentView] bounds];
-    NSView* mainView = [[[mainWindow contentView] subviews] objectAtIndex:0];
-    NSRect mainRect = [mainView frame];
-    NSView* pendingLabel = [[[mainWindow contentView] subviews] objectAtIndex:1];
-    NSRect pendingRect = [pendingLabel frame];
-    NSView* progressBar = [[[mainWindow contentView] subviews] objectAtIndex:2];
-    if((contentRect.size.height - mainRect.size.height) > 32)
-    {
-        mainRect.origin.y = 32;
-        mainRect.size.height += contentRect.size.height - mainRect.size.height-32;
-        pendingRect.origin.y = 10;
-        [[mainWindow contentView] setAutoresizesSubviews:NO];
-        [mainView setFrame:mainRect];
-        [pendingLabel setFrameOrigin:pendingRect.origin];
-        [progressBar setHidden:YES];
-        [[mainWindow contentView] setAutoresizesSubviews:YES];
-        [dockIndicator setHidden:YES];
-    }
+    mainRect.origin.y -= progressResizeHeight;
+    mainRect.size.height += progressResizeHeight;
+    pendingRect.origin.y -= progressResizeHeight;
+    progressRect.origin.y -= progressResizeHeight;
+    [mainView setFrame:mainRect];
+    [pendingLabel setFrame:pendingRect];
+    [progressBar setHidden:YES];
+    [progressBar setFrame:progressRect];
+    progressShowing = NO;
+
+    [dockIndicator setHidden:YES];
 }
 
 - (void)registerAsObserver
@@ -114,6 +121,8 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidFinishLaunching:) name:NSApplicationDidFinishLaunchingNotification object:NSApp];
 	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDriverDidFinish:) name:SUUpdateDriverFinishedNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(queueCompletedPercent:) name:MZQueueCompletedPercent object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowWillResize:) name:MZNSWindowWillResizeNotification object:mainWindow];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:mainWindow];
     [writeQueue addObserver:self forKeyPath:@"status" options:0 context:nil];
     [writeQueue addObserver:self forKeyPath:@"queueItems.@count" options:0 context:nil];
     [writeQueue addObserver:self forKeyPath:@"completedItems.@count" options:0 context:nil];
@@ -136,14 +145,6 @@
 
 - (void)updateUI
 {
-    NSRect windowFrame = [mainWindow frame];
-    NSRect contentRect = [[mainWindow contentView] bounds];
-    NSView* mainView = [[[mainWindow contentView] subviews] objectAtIndex:0];
-    NSRect mainRect = [mainView frame];
-    NSView* pendingLabel = [[[mainWindow contentView] subviews] objectAtIndex:1];
-    NSRect pendingRect = [pendingLabel frame];
-    NSProgressIndicator* progressBar = [[[mainWindow contentView] subviews] objectAtIndex:2];
-
     RunStatus status = [writeQueue status];
     NSString* playLabel = nil;
     NSString* playImage = nil;
@@ -155,25 +156,50 @@
             playImage = @"Play";
             menuLabel = NSLocalizedString(@"Start Queue", @"Label for start queue menu");
 
-            if((contentRect.size.height - mainRect.size.height) > 32)
+            if(progressShowing)
             {
-                mainRect.origin.y = 32;
-                pendingRect.origin.y = 10;
-                windowFrame.origin.y += contentRect.size.height - mainRect.size.height-32;
-                windowFrame.size.height -= contentRect.size.height - mainRect.size.height-32;
-                [[mainWindow contentView] setAutoresizesSubviews:NO];
-                [mainView setFrameOrigin:mainRect.origin];
-                [pendingLabel setFrameOrigin:pendingRect.origin];
-                [progressBar setHidden:YES];
+                NSRect oldRect = mainRect;
+                mainRect.origin.y -= progressResizeHeight;
+                mainRect.size.height += progressResizeHeight;
+                NSDictionary* mainAnim = [NSDictionary dictionaryWithObjectsAndKeys:
+                    mainView, NSViewAnimationTargetKey,
+                    [NSValue valueWithRect:oldRect], NSViewAnimationStartFrameKey,
+                    [NSValue valueWithRect:mainRect], NSViewAnimationEndFrameKey,
+                    nil];
+                
+                oldRect = pendingRect;
+                pendingRect.origin.y -= progressResizeHeight;
+                NSDictionary* pendingAnim = [NSDictionary dictionaryWithObjectsAndKeys:
+                    pendingLabel, NSViewAnimationTargetKey,
+                    [NSValue valueWithRect:oldRect], NSViewAnimationStartFrameKey,
+                    [NSValue valueWithRect:pendingRect], NSViewAnimationEndFrameKey,
+                    nil];
+                
+                oldRect = progressRect;
+                progressRect.origin.y -= progressResizeHeight;
+                NSDictionary* progressAnim = [NSDictionary dictionaryWithObjectsAndKeys:
+                    progressBar, NSViewAnimationTargetKey,
+                    [NSValue valueWithRect:oldRect], NSViewAnimationStartFrameKey,
+                    [NSValue valueWithRect:progressRect], NSViewAnimationEndFrameKey,
+                    NSViewAnimationFadeOutEffect, NSViewAnimationEffectKey,
+                    nil];
+                
+                MZViewAnimation* nextAnim = [[MZViewAnimation alloc] initWithViewAnimations:[NSArray arrayWithObjects:mainAnim, pendingAnim, progressAnim, nil]];
+                if(animation && ([animation isAnimating] || [animation currentProgress]==0.0))
+                {
+                    [nextAnim startWhenAnimation:animation reachesProgress:1.0];
+                    [animation release];
+                    animation = nextAnim;
+                } else {
+                    [animation release];
+                    animation = nextAnim;
+                    [animation startAnimation];
+                }
+
                 [progressBar stopAnimation:self];
-                [mainWindow setFrame:windowFrame display:YES animate:NO];
-                [[mainWindow contentView] setAutoresizesSubviews:YES];
                 [dockIndicator setHidden:YES];
+                progressShowing = NO;
             }
-            /*
-            MZLoggerDebug(@"Diff %@  %@ %f", NSStringFromRect(windowFrame), NSStringFromRect(mainRect),
-                contentRect.size.height - mainRect.size.height);
-            */
             break;
         case QueueStopping:
         case QueueRunning:
@@ -181,26 +207,50 @@
             playImage = @"Stop";
             menuLabel = NSLocalizedString(@"Stop Queue", @"Label for stop queue menu");
 
-            //mainRect.origin.y = 64;
-            if((contentRect.size.height - mainRect.size.height) < 64)
+            if(!progressShowing)
             {
-                mainRect.origin.y = 64;
-                pendingRect.origin.y = 42;
-                windowFrame.origin.y -= 64-(contentRect.size.height - mainRect.size.height);
-                windowFrame.size.height += 64-(contentRect.size.height - mainRect.size.height);
-                [[mainWindow contentView] setAutoresizesSubviews:NO];
-                [mainView setFrameOrigin:mainRect.origin];
-                [pendingLabel setFrameOrigin:pendingRect.origin];
-                [progressBar setHidden:NO];
+                NSRect oldRect = mainRect;
+                mainRect.origin.y += progressResizeHeight;
+                mainRect.size.height -= progressResizeHeight;
+                NSDictionary* mainAnim = [NSDictionary dictionaryWithObjectsAndKeys:
+                    mainView, NSViewAnimationTargetKey,
+                    [NSValue valueWithRect:oldRect], NSViewAnimationStartFrameKey,
+                    [NSValue valueWithRect:mainRect], NSViewAnimationEndFrameKey,
+                    nil];
+                
+                oldRect = pendingRect;
+                pendingRect.origin.y += progressResizeHeight;
+                NSDictionary* pendingAnim = [NSDictionary dictionaryWithObjectsAndKeys:
+                    pendingLabel, NSViewAnimationTargetKey,
+                    [NSValue valueWithRect:oldRect], NSViewAnimationStartFrameKey,
+                    [NSValue valueWithRect:pendingRect], NSViewAnimationEndFrameKey,
+                    nil];
+                
+                oldRect = progressRect;
+                progressRect.origin.y += progressResizeHeight;
+                NSDictionary* progressAnim = [NSDictionary dictionaryWithObjectsAndKeys:
+                    progressBar, NSViewAnimationTargetKey,
+                    [NSValue valueWithRect:oldRect], NSViewAnimationStartFrameKey,
+                    [NSValue valueWithRect:progressRect], NSViewAnimationEndFrameKey,
+                    NSViewAnimationFadeInEffect, NSViewAnimationEffectKey,
+                    nil];
+                
+                MZViewAnimation* nextAnim = [[MZViewAnimation alloc] initWithViewAnimations:[NSArray arrayWithObjects:mainAnim, pendingAnim, progressAnim, nil]];
+                if(animation && ([animation isAnimating] || [animation currentProgress]==0.0))
+                {
+                    [nextAnim startWhenAnimation:animation reachesProgress:1.0];
+                    [animation release];
+                    animation = nextAnim;
+                } else {
+                    [animation release];
+                    animation = nextAnim;
+                    [animation startAnimation];
+                }
+
                 [progressBar startAnimation:self];
-                [mainWindow setFrame:windowFrame display:YES animate:NO];
-                [[mainWindow contentView] setAutoresizesSubviews:YES];
                 [dockIndicator setHidden:NO];
+                progressShowing = YES;
             }
-            /*
-            MZLoggerDebug(@"Diff %@  %@ %f", NSStringFromRect(windowFrame), NSStringFromRect(mainRect),
-                contentRect.size.height - mainRect.size.height);
-            */
             break;
         case QueuePaused:
             playLabel = NSLocalizedString(@"Stop", @"Label for stop button");
@@ -298,6 +348,21 @@
 }
 
 #pragma mark - notifications
+- (void)windowWillResize:(NSNotification *)notification
+{
+    [animation stopAnimationChain];
+    if([animation currentProgress] < 1.0)
+        [animation setCurrentProgress:1.0];
+    [animation release];
+    animation = nil; 
+}
+
+- (void)windowDidResize:(NSNotification *)notification
+{
+    mainRect = [mainView frame];
+    pendingRect = [pendingLabel frame];
+    progressRect = [progressBar frame];
+}
 
 - (void)windowDidClose:(NSNotification *)note
 {
