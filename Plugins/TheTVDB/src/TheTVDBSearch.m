@@ -76,7 +76,6 @@
 
 - (void)wrapper:(MZRESTWrapper *)theWrapper didRetrieveData:(NSData *)data
 {
-    
     [super wrapper:theWrapper didRetrieveData:data];
 }
 
