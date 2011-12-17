@@ -61,6 +61,7 @@
                 THETVDB_API_KEY]];
 
     mirrorRequest = [[ASIHTTPRequest alloc] initWithURL:url];
+    mirrorRequest.cacheStoragePolicy = ASICachePermanentlyCacheStoragePolicy;
     [mirrorRequest setDelegate:self];
     mirrorRequest.didFinishSelector = @selector(updateMirrorCompleted:);
     mirrorRequest.didFailSelector = @selector(updateMirrorFailed:);
