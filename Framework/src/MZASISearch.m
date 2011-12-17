@@ -9,6 +9,7 @@
 #import "MZASISearch.h"
 #import <MetaZKit/ASIDownloadCache.h>
 #import <MetaZKit/NSString+MZQueryString.h>
+#import <MetaZKit/MZLogger.h>
 
 @implementation MZASISearchResult
 
@@ -49,6 +50,7 @@
         NSString* params = [self queryStringForParameterDictionary:prepared withUrl:[request url]];
         
         NSString *urlWithParams = [[[request url] absoluteString] stringByAppendingFormat:@"?%@", params];
+        MZLoggerDebug(@"Sending request to %@", urlWithParams);
         [request setURL:[NSURL URLWithString:urlWithParams]];
     }
 

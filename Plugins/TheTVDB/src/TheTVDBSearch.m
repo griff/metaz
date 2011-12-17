@@ -59,7 +59,7 @@
     NSURL* url = [NSURL URLWithString:[NSString
             stringWithFormat:@"http://www.thetvdb.com/api/%@/mirrors.xml",
                 THETVDB_API_KEY]];
-
+    MZLoggerDebug(@"Sending request to %@", [url absoluteString]);
     mirrorRequest = [[ASIHTTPRequest alloc] initWithURL:url];
     mirrorRequest.cacheStoragePolicy = ASICachePermanentlyCacheStoragePolicy;
     [mirrorRequest setDelegate:self];
@@ -128,6 +128,7 @@
     NSString* params = [NSString mz_queryStringForParameterDictionary:p];
     NSString *urlWithParams = [url stringByAppendingFormat:@"?%@", params];
     
+    MZLoggerDebug(@"Sending request to %@", urlWithParams);
     ASIHTTPRequest* request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlWithParams]];
     [request setDelegate:self];
     request.didFinishSelector = @selector(fetchSeriesCompleted:);
@@ -184,8 +185,8 @@
             xmlMirror,
             THETVDB_API_KEY,
             theSeries];
-    NSURL* url = [NSURL URLWithString:urlStr];
-    ASIHTTPRequest* request = [[ASIHTTPRequest alloc] initWithURL:url];
+    MZLoggerDebug(@"Sending request to %@", urlStr);
+    ASIHTTPRequest* request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlStr]];
     [request setDelegate:self];
     request.didFinishSelector = @selector(fetchFullSeriesCompleted:);
     request.didFailSelector = @selector(fetchFullSeriesFailed:);
@@ -198,6 +199,7 @@
             bannerMirror,
             THETVDB_API_KEY,
             theSeries];
+    MZLoggerDebug(@"Sending request to %@", bannerUrl);
     ASIHTTPRequest* bannerRequest = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:bannerUrl]];
     [bannerRequest setDelegate:self];
     bannerRequest.didFinishSelector = @selector(fetchSeriesBannersCompleted:);
