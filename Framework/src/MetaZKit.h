@@ -42,6 +42,7 @@
 #import <MetaZKit/NSXMLNode+MZExtensions.h>
 #import <MetaZKit/NSString+TempFile.h>
 #import <MetaZKit/NSString+MZAllInCharacterSet.h>
+#import <MetaZKit/NSString+MZQueryString.h>
 #import <MetaZKit/NSFileManager+MZCreate.h>
 
 #import <MetaZKit/GTMNSString+URLArguments.h>
