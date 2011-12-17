@@ -119,10 +119,10 @@
             if(![op isFinished])
                 return;
         self.finished = YES;
-        [self retain];
-        [self performSelectorOnMainThread:@selector(operationsFinished) withObject:nil waitUntilDone:YES];
-        [self release];
     }
+    [self retain];
+    [self performSelectorOnMainThread:@selector(operationsFinished) withObject:nil waitUntilDone:YES];
+    [self release];
 }
 
 - (void)errorChanged:(GTMKeyValueChangeNotification *)notification
