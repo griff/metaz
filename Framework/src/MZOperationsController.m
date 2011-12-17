@@ -11,6 +11,7 @@
 #import "MZErrorOperation.h"
 #import "MZLogger.h"
 #import "NSObject+WaitUntilChange.h"
+#import <MetaZKit/ASIHTTPRequest.h>
 
 @interface MZOperationsController ()
 @property(readwrite,copy) NSArray* operations;
@@ -58,7 +59,10 @@
     {
         if([operation isKindOfClass:[MZErrorOperation class]])
             [operation gtm_addObserver:self forKeyPath:@"error" selector:@selector(errorChanged:) userInfo:nil options:0];
-        [operation gtm_addObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:) userInfo:nil options:0];
+        if([operation isKindOfClass:[ASIHTTPRequest class]]) {
+            ((ASIHTTPRequest*)operation).queue = self;
+        } else
+            [operation gtm_addObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:) userInfo:nil options:0];
         //[operation gtm_addObserver:self forKeyPath:@"finished" selector:@selector(operationFinished:) userInfo:nil options:0];
         if([self isCancelled])
             [operation cancel];
@@ -107,6 +111,20 @@
 {
     for(NSOperation* op in self.operations)
         [queue addOperation:op];
+}
+
+- (void)requestFinished:(ASIHTTPRequest*)request
+{
+    @synchronized(self)
+    {
+        if(self.finished)
+            return;
+        for(NSOperation* op in self.operations)
+            if(![op isFinished])
+                return;
+        self.finished = YES;
+    }
+    [self operationsFinished];
 }
 
 - (void)operationFinished:(GTMKeyValueChangeNotification *)notification
