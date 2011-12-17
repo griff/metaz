@@ -34,19 +34,19 @@
 {
     [delegate release];
     [queue release];
+    [mirrorRequest release];
     [super dealloc];
 }
 
 @synthesize provider;
 @synthesize delegate;
+@synthesize season;
+@synthesize episode;
 
 - (void)queueOperation:(NSOperation *)operation
 {
-    @synchronized(self)
-    {
-        [self addOperation:operation];
-        [queue addOperation:operation];
-    }
+    [self addOperation:operation];
+    [queue addOperation:operation];
 }
 
 - (void)operationsFinished
@@ -54,62 +54,96 @@
     [delegate searchFinished];
 }
 
-@end
-
-
-@implementation TheTVDBUpdateMirrors
-
-+(NSString *)findMirror
-{
-    return nil;
-}
-
-- (id)init
+- (void)updateMirror;
 {
     NSURL* url = [NSURL URLWithString:[NSString
             stringWithFormat:@"http://www.thetvdb.com/api/%@/mirrors.xml",
                 THETVDB_API_KEY]];
-    return [super initWithURL:url usingVerb:@"GET" parameters:nil];
+
+    mirrorRequest = [[ASIHTTPRequest alloc] initWithURL:url];
+    [mirrorRequest setDelegate:self];
+    mirrorRequest.didFinishSelector = @selector(updateMirrorCompleted:);
+    mirrorRequest.didFailSelector = @selector(updateMirrorFailed:);
+
+    [self addOperation:mirrorRequest];
 }
 
-#pragma mark - MZRESTWrapperDelegate
-
-- (void)wrapper:(MZRESTWrapper *)theWrapper didRetrieveData:(NSData *)data
+- (void)updateMirrorCompleted:(id)request;
 {
-    [super wrapper:theWrapper didRetrieveData:data];
-}
-
-@end
-
-
-@implementation TheTVDBGetSeries
-
-- (id)initWithSearch:(TheTVDBSearch*)theSearch name:(NSString *)name season:(NSUInteger)theSeason episode:(NSInteger)theEpisode;
-{
-    NSURL* url = [NSURL URLWithString:@"http://www.thetvdb.com/api/GetSeries.php"];
-    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:name, @"seriesname", @"en", @"language", nil];
-    self = [super initWithURL:url usingVerb:@"GET" parameters:params];
-    if(self)
+    ASIHTTPRequest* theRequest = request;
+    MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
+    //MZLoggerDebug(@"Got amazon response:\n%@", [theWrapper responseAsText]);
+    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithXMLString:[theRequest responseString] options:0 error:NULL] autorelease];
+    
+    NSMutableArray* bannermirrors = [NSMutableArray array]; 
+    NSMutableArray* xmlmirrors = [NSMutableArray array]; 
+ 
+    NSArray* items = [doc nodesForXPath:@"/Mirrors/Mirror" error:NULL];
+    for(NSXMLElement* item in items)
     {
-        search = theSearch;
-        season = theSeason;
-        episode = theEpisode;
+        NSInteger typemask = [[item stringForXPath:@"typemask" error:NULL] integerValue];
+        NSString* mirrorpath = [item stringForXPath:@"mirrorpath" error:NULL];
+        if((typemask & 1) == 1)
+            [xmlmirrors addObject:mirrorpath];
+        if((typemask & 2) == 2)
+            [bannermirrors addObject:mirrorpath];
     }
-    return self;
+    
+    srandom(time(NULL));
+    if([bannermirrors count] == 0)
+        bannerMirror = @"http://www.thetvdb.com";
+    else if([bannermirrors count] == 1)
+        bannerMirror = [[bannermirrors objectAtIndex:0] retain];
+    else {
+        int idx = random() % [bannermirrors count];
+        bannerMirror = [[bannermirrors objectAtIndex:idx] retain];
+    }
+    
+    if([xmlmirrors count] == 0)
+        xmlMirror = @"http://www.thetvdb.com";
+    else if([xmlmirrors count] == 1)
+        xmlMirror = [[xmlmirrors objectAtIndex:0] retain];
+    else {
+        int idx = random() % [xmlmirrors count];
+        xmlMirror = [[xmlmirrors objectAtIndex:idx] retain];
+    }
 }
 
-- (void)operationFinished
+- (void)updateMirrorFailed:(id)request;
 {
-    if(self->search)
-        MZLoggerDebug(@"Operation finished ");
+    ASIHTTPRequest* theRequest = request;
+    MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
+
+    bannerMirror = @"http://www.thetvdb.com";
+    xmlMirror = @"http://www.thetvdb.com";
 }
 
-#pragma mark - MZRESTWrapperDelegate
 
-- (void)wrapper:(MZRESTWrapper *)theWrapper didRetrieveData:(NSData *)data
+- (void)fetchSeriesByName:(NSString *)name
 {
-    NSXMLDocument* doc = [theWrapper responseAsXml];
-    //MZLoggerDebug(@"Got TheTVDB response: %@", [theWrapper responseAsText]);
+    NSString* url = @"http://www.thetvdb.com/api/GetSeries.php";
+    NSDictionary* p = [NSDictionary dictionaryWithObjectsAndKeys:name, @"seriesname", @"en", @"language", nil];
+
+    NSString* params = [NSString mz_queryStringForParameterDictionary:p];
+    NSString *urlWithParams = [url stringByAppendingFormat:@"?%@", params];
+    
+    ASIHTTPRequest* request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlWithParams]];
+    [request setDelegate:self];
+    request.didFinishSelector = @selector(fetchSeriesCompleted:);
+    request.didFailSelector = @selector(fetchSeriesFailed:);
+    
+    if(mirrorRequest)
+        [request addDependency:mirrorRequest];
+
+    [self addOperation:request];
+    [request release];
+}
+
+- (void)fetchSeriesCompleted:(id)request;
+{
+    ASIHTTPRequest* theRequest = request;
+    MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
+    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithXMLString:[theRequest responseString] options:0 error:NULL] autorelease];
 
     NSArray* items = [doc nodesForXPath:@"/Data/Series" error:NULL];
     MZLoggerDebug(@"Got TheTVDB series %d", [items count]);
@@ -118,66 +152,75 @@
         NSString* seriesStr = [item stringForXPath:@"seriesid" error:NULL];
         NSUInteger series = [seriesStr integerValue];
 
-        TheTVDBFullSeriesLoader* seriesLoader = 
-            [[TheTVDBFullSeriesLoader alloc] initWithProvider:search.provider 
-                delegate:search.delegate
-                series:series
-                season:season
-                episode:episode];
-        
-        
-        //TheTVDBBaseSeriesLoader* seriesLoader = [[TheTVDBBaseSeriesLoader alloc] initWithSeries:series];
-        [search queueOperation:seriesLoader];
-        /*
-        if(episode != -1)
-        {
-            TheTVDBEpisodeFinder* finder = [[TheTVDBEpisodeFinder alloc] initWithSearch:search series:seriesLoader season:season episode:episode];
-            [search queueOperation:finder];
-            [finder release];
-        }
-        else
-        {
-            TheTVDBSeasonFinder* finder = [[TheTVDBSeasonFinder alloc] initWithSearch:search series:seriesLoader season:season];
-            [search queueOperation:finder];
-            [finder release];
-        }
-        */
-        [seriesLoader release];
+        [self fetchFullSeries:series];
     }
-    
-    [super wrapper:theWrapper didRetrieveData:data];
 }
 
-@end
+- (void)fetchSeriesFailed:(id)request;
+{
+    ASIHTTPRequest* theRequest = request;
+    MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
+}
 
+- (void)fetchSeriesBannersCompleted:(id)request;
+{
+    ASIHTTPRequest* theRequest = request;
+    MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
+    
+    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithXMLString:[theRequest responseString] options:0 error:NULL] autorelease];
 
-@implementation TheTVDBFullSeriesLoader
-@synthesize series;
-@synthesize season;
-@synthesize episode;
+}
 
-- (id)initWithProvider:(id)theProvider delegate:(id<MZSearchProviderDelegate>)theDelegate series:(NSUInteger)theSeries season:(NSUInteger)theSeason episode:(NSInteger)theEpisode;
+- (void)fetchSeriesBannersFailed:(id)request;
+{
+    ASIHTTPRequest* theRequest = request;
+    MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
+}
+
+- (void)fetchFullSeries:(NSUInteger)theSeries;
 {
     NSString* urlStr = [NSString stringWithFormat:@"%@/api/%@/series/%d/all/en.xml",
-            @"http://www.thetvdb.com",
+            xmlMirror,
             THETVDB_API_KEY,
             theSeries];
     NSURL* url = [NSURL URLWithString:urlStr];
-    self = [super initWithProvider:theProvider delegate:theDelegate url:url usingVerb:@"GET" parameters:nil];
-    if(self)
-    {
-        series = theSeries;
-        season = theSeason;
-        episode = theEpisode;
-    }
-    return self;
+    ASIHTTPRequest* request = [[ASIHTTPRequest alloc] initWithURL:url];
+    [request setDelegate:self];
+    request.didFinishSelector = @selector(fetchFullSeriesCompleted:);
+    request.didFailSelector = @selector(fetchFullSeriesFailed:);
+
+    NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
+    [userInfo setObject:[NSNumber numberWithUnsignedInteger:theSeries] forKey:@"series"];
+    request.userInfo = userInfo;
+    
+    NSString* bannerUrl = [NSString stringWithFormat:@"%@/api/%@/series/%d/banners.xml",
+            bannerMirror,
+            THETVDB_API_KEY,
+            theSeries];
+    ASIHTTPRequest* bannerRequest = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:bannerUrl]];
+    [bannerRequest setDelegate:self];
+    bannerRequest.didFinishSelector = @selector(fetchSeriesBannersCompleted:);
+    bannerRequest.didFailSelector = @selector(fetchSeriesBannersFailed:);
+    bannerRequest.userInfo = userInfo;
+    [request addDependency:bannerRequest];
+    [self queueOperation:bannerRequest];
+    [bannerRequest release];
+    
+    [self queueOperation:request];
+    [request release];
 }
 
-#pragma mark - MZRESTWrapperDelegate
-
-- (void)wrapper:(MZRESTWrapper *)theWrapper didRetrieveData:(NSData *)data
+- (void)fetchFullSeriesCompleted:(id)request;
 {
-    NSXMLDocument* doc = [theWrapper responseAsXml];
+    ASIHTTPRequest* theRequest = request;
+    NSDictionary* userInfo = [theRequest userInfo];
+    NSUInteger series = [[userInfo objectForKey:@"series"] unsignedIntegerValue];
+
+    MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
+ 
+
+    //MZLoggerDebug(@"Got response:\n%@", [theWrapper responseAsText]);
+    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithXMLString:[theRequest responseString] options:0 error:NULL] autorelease];
 
     NSMutableDictionary* seriesDict = [NSMutableDictionary dictionary];
 
@@ -357,9 +400,13 @@
     
     MZLoggerDebug(@"Parsed TheTVDB results %d", [results count]);
     [delegate searchProvider:provider result:results];
-    [super wrapper:theWrapper didRetrieveData:data];
+}
+
+- (void)fetchFullSeriesFailed:(id)request;
+{
+    ASIHTTPRequest* theRequest = request;
+    MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
 }
 
 @end
-
 
