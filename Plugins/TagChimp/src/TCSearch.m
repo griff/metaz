@@ -119,7 +119,7 @@
 
 
 
-#pragma mark - MZRESTWrapperDelegate
+#pragma mark - ASIHTTPRequest Delegate
 
 - (void)requestFinished:(ASIHTTPRequest *)theRequest;
 {
