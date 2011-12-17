@@ -44,8 +44,6 @@
 		1B040CD410813C1F0027FA0D /* ChapterEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B040CD310813C1F0027FA0D /* ChapterEditor.m */; };
 		1B040CF510814FCF0027FA0D /* ChapterItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B040CD6108146140027FA0D /* ChapterItemWrapper.m */; };
 		1B040DC4108176A70027FA0D /* UndoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B040DC3108176A70027FA0D /* UndoTableView.m */; };
-		1B040EA41081A8F60027FA0D /* MZRESTWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B040EA21081A8F60027FA0D /* MZRESTWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1B040EA51081A8F60027FA0D /* MZRESTWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B040EA31081A8F60027FA0D /* MZRESTWrapper.m */; };
 		1B040EC91081B3DC0027FA0D /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1B040EDD1081B4DC0027FA0D /* TagChimpPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B040EDC1081B4DC0027FA0D /* TagChimpPlugin.m */; };
 		1B040EDF1081B53F0027FA0D /* tagChimp.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B040EDE1081B53F0027FA0D /* tagChimp.png */; };
@@ -57,6 +55,10 @@
 		1B060E5A10E26BA90009D847 /* IMDBSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B060E5910E26BA90009D847 /* IMDBSearch.m */; };
 		1B060E6710E26F970009D847 /* IMDBSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B060E6610E26F970009D847 /* IMDBSearchProvider.m */; };
 		1B060F0810E286C00009D847 /* IMDBSearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B060F0710E286C00009D847 /* IMDBSearchItem.m */; };
+		1B069668149BD35B00B5FA90 /* MGViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B069667149BD35B00B5FA90 /* MGViewAnimation.m */; };
+		1B0696B0149BD4B500B5FA90 /* MZViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0696AF149BD4B500B5FA90 /* MZViewAnimation.m */; };
+		1B0696D7149BFB2D00B5FA90 /* NSString+MZQueryString.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B0696D5149BFB2D00B5FA90 /* NSString+MZQueryString.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B0696D8149BFB2D00B5FA90 /* NSString+MZQueryString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0696D6149BFB2D00B5FA90 /* NSString+MZQueryString.m */; };
 		1B090A691069474600D88083 /* MyQueueCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B090A681069474600D88083 /* MyQueueCollectionView.m */; };
 		1B0DEC3F10607A9A009D293F /* MGCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEC3E10607A9A009D293F /* MGCollectionView.m */; };
 		1B0DEDD81060F7B6009D293F /* ImageWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEDD71060F7B6009D293F /* ImageWindowController.m */; };
@@ -109,8 +111,6 @@
 		1B449E4B10DCCDB000B9C751 /* GTMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B449DCE10DCCC1C00B9C751 /* GTMLogger.m */; };
 		1B4AF83B1170CFCC00E5C969 /* TheTVDBSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */; };
 		1B4AF84511715C8400E5C969 /* languages.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1B4AF84411715C8400E5C969 /* languages.xml */; };
-		1B4AF84811745A5F00E5C969 /* MZRESTOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B4AF84611745A5F00E5C969 /* MZRESTOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1B4AF84911745A5F00E5C969 /* MZRESTOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4AF84711745A5F00E5C969 /* MZRESTOperation.m */; };
 		1B4F53C4116E9F44003221B1 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1B4F53D8116EA0BE003221B1 /* TheTVDBPlugin.mzplugin in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzplugin */; };
 		1B4F53DF116EA1B5003221B1 /* TheTVDBPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F53DE116EA1B5003221B1 /* TheTVDBPlugin.m */; };
@@ -136,8 +136,6 @@
 		1B82647410B3C25000DF101B /* MetaEditsUndoManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B82647210B3C25000DF101B /* MetaEditsUndoManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B82647510B3C25000DF101B /* MetaEditsUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */; };
 		1B8268A510B3F82400DF101B /* AmazonSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8268A410B3F82400DF101B /* AmazonSearchProvider.m */; };
-		1B82690410B3FF1200DF101B /* MZRESTSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B82690210B3FF1200DF101B /* MZRESTSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1B82690510B3FF1200DF101B /* MZRESTSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82690310B3FF1200DF101B /* MZRESTSearch.m */; };
 		1B8E95711401BE7F006227B4 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B523B9013F4B3BE00C20B7D /* libz.1.2.3.dylib */; };
 		1B8E96321401BE86006227B4 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B523B9613F4B3D900C20B7D /* CoreServices.framework */; };
 		1B92BB1C10876FBA0057EFD7 /* PureMetaEdits.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B92BB1A10876FBA0057EFD7 /* PureMetaEdits.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -452,8 +450,6 @@
 		1B040CD6108146140027FA0D /* ChapterItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChapterItemWrapper.m; sourceTree = "<group>"; };
 		1B040DC2108176A70027FA0D /* UndoTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoTableView.h; sourceTree = "<group>"; };
 		1B040DC3108176A70027FA0D /* UndoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoTableView.m; sourceTree = "<group>"; };
-		1B040EA21081A8F60027FA0D /* MZRESTWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZRESTWrapper.h; sourceTree = "<group>"; };
-		1B040EA31081A8F60027FA0D /* MZRESTWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZRESTWrapper.m; sourceTree = "<group>"; };
 		1B040EBE1081B3C00027FA0D /* TagChimp.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagChimp.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B040EDA1081B4980027FA0D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/TagChimp/Info.plist; sourceTree = "<group>"; };
 		1B040EDB1081B4DC0027FA0D /* TagChimpPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagChimpPlugin.h; sourceTree = "<group>"; };
@@ -470,6 +466,11 @@
 		1B060E6610E26F970009D847 /* IMDBSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBSearchProvider.m; sourceTree = "<group>"; };
 		1B060F0610E286C00009D847 /* IMDBSearchItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDBSearchItem.h; sourceTree = "<group>"; };
 		1B060F0710E286C00009D847 /* IMDBSearchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBSearchItem.m; sourceTree = "<group>"; };
+		1B069666149BD35B00B5FA90 /* MGViewAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGViewAnimation.h; path = Externals/MGViewAnimation/MGViewAnimation.h; sourceTree = "<group>"; };
+		1B069667149BD35B00B5FA90 /* MGViewAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGViewAnimation.m; path = Externals/MGViewAnimation/MGViewAnimation.m; sourceTree = "<group>"; };
+		1B0696AF149BD4B500B5FA90 /* MZViewAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZViewAnimation.m; sourceTree = "<group>"; };
+		1B0696D5149BFB2D00B5FA90 /* NSString+MZQueryString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MZQueryString.h"; sourceTree = "<group>"; };
+		1B0696D6149BFB2D00B5FA90 /* NSString+MZQueryString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MZQueryString.m"; sourceTree = "<group>"; };
 		1B090A671069474600D88083 /* MyQueueCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyQueueCollectionView.h; sourceTree = "<group>"; };
 		1B090A681069474600D88083 /* MyQueueCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyQueueCollectionView.m; sourceTree = "<group>"; };
 		1B090C80106A899300D88083 /* MZTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTag.h; sourceTree = "<group>"; };
@@ -811,8 +812,6 @@
 		1B4AF8391170CFCC00E5C969 /* TheTVDBSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBSearch.h; sourceTree = "<group>"; };
 		1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBSearch.m; sourceTree = "<group>"; };
 		1B4AF84411715C8400E5C969 /* languages.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = languages.xml; path = Plugins/TheTVDB/resources/languages.xml; sourceTree = "<group>"; };
-		1B4AF84611745A5F00E5C969 /* MZRESTOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZRESTOperation.h; sourceTree = "<group>"; };
-		1B4AF84711745A5F00E5C969 /* MZRESTOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZRESTOperation.m; sourceTree = "<group>"; };
 		1B4F5394116E9EFC003221B1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/TheTVDB/Info.plist; sourceTree = "<group>"; };
 		1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheTVDBPlugin.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B4F53DD116EA1B5003221B1 /* TheTVDBPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBPlugin.h; sourceTree = "<group>"; };
@@ -884,8 +883,6 @@
 		1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditsUndoManager.m; sourceTree = "<group>"; };
 		1B8268A310B3F82400DF101B /* AmazonSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonSearchProvider.h; sourceTree = "<group>"; };
 		1B8268A410B3F82400DF101B /* AmazonSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonSearchProvider.m; sourceTree = "<group>"; };
-		1B82690210B3FF1200DF101B /* MZRESTSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZRESTSearch.h; sourceTree = "<group>"; };
-		1B82690310B3FF1200DF101B /* MZRESTSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZRESTSearch.m; sourceTree = "<group>"; };
 		1B92BB1A10876FBA0057EFD7 /* PureMetaEdits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureMetaEdits.h; sourceTree = "<group>"; };
 		1B92BB1B10876FBA0057EFD7 /* PureMetaEdits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PureMetaEdits.m; sourceTree = "<group>"; };
 		1B92BB6E108787260057EFD7 /* SearchProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchProfile.h; sourceTree = "<group>"; };
@@ -1144,12 +1141,6 @@
 				1BAD35FB118D4C470052DE3B /* MZReadOperationsController.m */,
 				1BD3D2B9108CC5D700BE6943 /* MZRemoteData.h */,
 				1BD3D2BA108CC5D700BE6943 /* MZRemoteData.m */,
-				1B040EA21081A8F60027FA0D /* MZRESTWrapper.h */,
-				1B040EA31081A8F60027FA0D /* MZRESTWrapper.m */,
-				1B82690210B3FF1200DF101B /* MZRESTSearch.h */,
-				1B82690310B3FF1200DF101B /* MZRESTSearch.m */,
-				1B4AF84611745A5F00E5C969 /* MZRESTOperation.h */,
-				1B4AF84711745A5F00E5C969 /* MZRESTOperation.m */,
 				1BB6BE821050BD3A001D3D1D /* MZSearchProvider.h */,
 				1B6E43C9108468B100DFE165 /* MZSearchResult.h */,
 				1B6E43CA108468B100DFE165 /* MZSearchResult.m */,
@@ -1184,6 +1175,8 @@
 				1BC256371192C183001B9E1E /* NSObject+WaitUntilChange.m */,
 				1BAC91BB13F060300022D625 /* NSString+MZAllInCharacterSet.h */,
 				1BAC91BC13F060300022D625 /* NSString+MZAllInCharacterSet.m */,
+				1B0696D5149BFB2D00B5FA90 /* NSString+MZQueryString.h */,
+				1B0696D6149BFB2D00B5FA90 /* NSString+MZQueryString.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -1302,6 +1295,15 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		1B069665149BD32D00B5FA90 /* MGViewAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				1B069666149BD35B00B5FA90 /* MGViewAnimation.h */,
+				1B069667149BD35B00B5FA90 /* MGViewAnimation.m */,
+			);
+			name = MGViewAnimation;
+			sourceTree = "<group>";
+		};
 		1B42F21910DD534500AFEBF6 /* UKDockProgressIndicator */ = {
 			isa = PBXGroup;
 			children = (
@@ -1349,6 +1351,7 @@
 		1B449CEE10DCCAD500B9C751 /* External Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1B069665149BD32D00B5FA90 /* MGViewAnimation */,
 				1B523B4813F4B24E00C20B7D /* asi-http-request */,
 				1B42F21910DD534500AFEBF6 /* UKDockProgressIndicator */,
 				1B449D1910DCCBA800B9C751 /* GTM */,
@@ -1892,6 +1895,7 @@
 				1BEA71CF10717785004B1A7F /* MZWriteQueueStatus.h */,
 				1BF295DC10BA6AEC00FC6DC6 /* MZWriteQueueStatus+Private.h */,
 				1BEA71D010717785004B1A7F /* MZWriteQueueStatus.m */,
+				1B0696AF149BD4B500B5FA90 /* MZViewAnimation.m */,
 				1BEA6C93106E7203004B1A7F /* Utilities.h */,
 				1BEA6C94106E7203004B1A7F /* Utilities.m */,
 				1B92BB6E108787260057EFD7 /* SearchProfile.h */,
@@ -2099,8 +2103,6 @@
 				1BCC97021076B73C007EFF57 /* NSInvocation+Wrapping.h in Headers */,
 				1B040C3E107FC7480027FA0D /* MZTimeCode.h in Headers */,
 				1B040C42107FD1110027FA0D /* MZTimedTextItem.h in Headers */,
-				1B040EA41081A8F60027FA0D /* MZRESTWrapper.h in Headers */,
-				1B82690410B3FF1200DF101B /* MZRESTSearch.h in Headers */,
 				1B92BB1C10876FBA0057EFD7 /* PureMetaEdits.h in Headers */,
 				1B92BC57108890090057EFD7 /* NSObject+ProtectedKeyValue.h in Headers */,
 				1BD3D2BB108CC5D700BE6943 /* MZRemoteData.h in Headers */,
@@ -2121,7 +2123,6 @@
 				1B3AD7D811057E9200B33F85 /* MZErrorOperation.h in Headers */,
 				1B3AD7DC1105829500B33F85 /* MZOperationsController.h in Headers */,
 				1B3AD7F3110595C300B33F85 /* NSString+TempFile.h in Headers */,
-				1B4AF84811745A5F00E5C969 /* MZRESTOperation.h in Headers */,
 				1BAD35FE118D4C470052DE3B /* MZReadOperationsController.h in Headers */,
 				1BAD3600118D4C470052DE3B /* NSFileManager+MZCreate.h in Headers */,
 				1BC256381192C183001B9E1E /* NSObject+WaitUntilChange.h in Headers */,
@@ -2137,6 +2138,7 @@
 				1B523C5113FDCD1A00C20B7D /* ASIHTTPRequestDelegate.h in Headers */,
 				1B523C5213FDCD1A00C20B7D /* ASIProgressDelegate.h in Headers */,
 				1B36E78C14066727009F542A /* MZASISearch.h in Headers */,
+				1B0696D7149BFB2D00B5FA90 /* NSString+MZQueryString.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2612,7 +2614,6 @@
 				1BCC97031076B73C007EFF57 /* NSInvocation+Wrapping.m in Sources */,
 				1B040C3F107FC7480027FA0D /* MZTimeCode.m in Sources */,
 				1B040C43107FD1110027FA0D /* MZTimedTextItem.m in Sources */,
-				1B040EA51081A8F60027FA0D /* MZRESTWrapper.m in Sources */,
 				1B6E43CC108468B100DFE165 /* MZSearchResult.m in Sources */,
 				1BBB39AA1087083600C9E17F /* MZPriorObserverFix.m in Sources */,
 				1B92BB1D10876FBA0057EFD7 /* PureMetaEdits.m in Sources */,
@@ -2621,7 +2622,6 @@
 				1B99355110AC818300E78D2D /* NSXMLNode+MZExtensions.m in Sources */,
 				1B0330AE10B1010700B28E3A /* NSDate+UTC.m in Sources */,
 				1B82647510B3C25000DF101B /* MetaEditsUndoManager.m in Sources */,
-				1B82690510B3FF1200DF101B /* MZRESTSearch.m in Sources */,
 				1B449E3410DCCC8300B9C751 /* GTMNSString+URLArguments.m in Sources */,
 				1B449E4B10DCCDB000B9C751 /* GTMLogger.m in Sources */,
 				1BCECD6310E3938F00D0AD35 /* GTMLogger+ASL.m in Sources */,
@@ -2633,7 +2633,6 @@
 				1B3AD7D911057E9200B33F85 /* MZErrorOperation.m in Sources */,
 				1B3AD7DD1105829500B33F85 /* MZOperationsController.m in Sources */,
 				1B3AD7F4110595C300B33F85 /* NSString+TempFile.m in Sources */,
-				1B4AF84911745A5F00E5C969 /* MZRESTOperation.m in Sources */,
 				1BAD35FF118D4C470052DE3B /* MZReadOperationsController.m in Sources */,
 				1BAD3601118D4C470052DE3B /* NSFileManager+MZCreate.m in Sources */,
 				1BC256391192C183001B9E1E /* NSObject+WaitUntilChange.m in Sources */,
@@ -2646,6 +2645,7 @@
 				1B523C4B13FDCCDA00C20B7D /* ASIDataDecompressor.m in Sources */,
 				1B36E75E1406612F009F542A /* ASIDataCompressor.m in Sources */,
 				1B36E78D14066727009F542A /* MZASISearch.m in Sources */,
+				1B0696D8149BFB2D00B5FA90 /* NSString+MZQueryString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2683,6 +2683,7 @@
 				1BEA6C95106E7203004B1A7F /* Utilities.m in Sources */,
 				1BEA6DDD106ED8E4004B1A7F /* PreferencesWindowController.m in Sources */,
 				1BEA71D110717785004B1A7F /* MZWriteQueueStatus.m in Sources */,
+				1B0696B0149BD4B500B5FA90 /* MZViewAnimation.m in Sources */,
 				1BCC9C6B107C3E80007EFF57 /* RatingMenuHandler.m in Sources */,
 				1BCC9D3F107E9C08007EFF57 /* GenreDataSource.m in Sources */,
 				1B040CD410813C1F0027FA0D /* ChapterEditor.m in Sources */,
@@ -2705,6 +2706,7 @@
 				1B2AEED611A0EC430074BAAD /* MZFileNameTextStorage.m in Sources */,
 				1BAC912A13F053980022D625 /* MZDateFormatter.m in Sources */,
 				1BAC916513F056240022D625 /* MZYearDateFormatter.m in Sources */,
+				1B069668149BD35B00B5FA90 /* MGViewAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3217,8 +3219,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = App/MetaZ_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
+					Externals/MGViewAnimation,
 					Externals/UKDockProgressIndicator,
-					"Externals/google-toolbox-for-mac\n/**",
+					"Externals/google-toolbox-for-mac/**",
 				);
 				IBC_OTHER_FLAGS = "--plugin /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/ImageKit.framework/Resources/ImageKitIBPlugin.ibplugin";
 				INFOPLIST_FILE = App/Info.plist;
@@ -3621,6 +3624,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = App/MetaZ_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
+					Externals/MGViewAnimation,
 					Externals/UKDockProgressIndicator,
 					"Externals/google-toolbox-for-mac/**",
 				);
@@ -3650,6 +3654,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = App/MetaZ_Prefix.pch;
 				HEADER_SEARCH_PATHS = (
+					Externals/MGViewAnimation,
 					Externals/UKDockProgressIndicator,
 					"Externals/google-toolbox-for-mac/**",
 				);
