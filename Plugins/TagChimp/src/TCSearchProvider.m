@@ -9,6 +9,7 @@
 #import "TCSearchProvider.h"
 #import "TagChimpPlugin.h"
 
+static NSString* const TCToken = @"8363185134824C8CD908AA";
 
 @implementation TCSearchProvider
 
@@ -87,7 +88,7 @@
 {
     NSURL* searchURL = [NSURL URLWithString:@"https://tagchimp.com/ape/search.php"];
     NSMutableDictionary* params = [NSMutableDictionary dictionary];
-    [params setObject:@"8363185134824C8CD908AA" forKey:@"token"];
+    [params setObject:TCToken forKey:@"token"];
     [params setObject:@"search" forKey:@"type"];
     
     NSArray* chapters = [data objectForKey:MZChaptersTagIdent];
@@ -156,7 +157,7 @@
         MZLoggerDebug(@"    '%@' -> '%@'", key, [params objectForKey:key]);
     TCSearch* search = [TCSearch searchWithProvider:self delegate:delegate url:searchURL parameters:params];
     [self startSearch:search];
-    [queue addOperation:search];
+    [search addToQueue:queue];
     return YES;
 }
 

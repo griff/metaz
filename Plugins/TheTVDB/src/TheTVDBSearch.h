@@ -14,9 +14,16 @@
     NSOperationQueue* queue;
     id provider;
     id<MZSearchProviderDelegate> delegate;
+    ASIHTTPRequest* mirrorRequest;
+    NSString* bannerMirror;
+    NSString* xmlMirror;
+    NSUInteger season;
+    NSInteger episode;
 }
 @property(readonly) id provider;
 @property(readonly) id<MZSearchProviderDelegate> delegate;
+@property(assign) NSUInteger season;
+@property(assign) NSInteger episode;
 
 + (id)searchWithProvider:(id)provider delegate:(id<MZSearchProviderDelegate>)delegate queue:(NSOperationQueue *)queue;
 - (id)initWithProvider:(id)provider delegate:(id<MZSearchProviderDelegate>)delegate queue:(NSOperationQueue *)queue;
@@ -25,38 +32,20 @@
 
 - (void)operationsFinished;
 
-@end
+- (void)updateMirror;
+- (void)updateMirrorCompleted:(id)request;
+- (void)updateMirrorFailed:(id)request;
 
+- (void)fetchSeriesByName:(NSString *)name;
+- (void)fetchSeriesCompleted:(id)request;
+- (void)fetchSeriesFailed:(id)request;
 
-@interface TheTVDBUpdateMirrors : MZRESTOperation
-{
-}
-+(NSString *)findMirror;
+- (void)fetchFullSeries:(NSUInteger)theSeries;
+- (void)fetchFullSeriesCompleted:(id)request;
+- (void)fetchFullSeriesFailed:(id)request;
 
-@end
-
-
-@interface TheTVDBGetSeries : MZRESTOperation
-{
-    TheTVDBSearch* search;
-    NSUInteger season;
-    NSInteger episode;
-}
-- (id)initWithSearch:(TheTVDBSearch*)search name:(NSString *)name season:(NSUInteger)theSeason episode:(NSInteger)theEpisode;
+- (void)fetchSeriesBannersCompleted:(id)request;
+- (void)fetchSeriesBannersFailed:(id)request;
 
 @end
 
-
-@interface TheTVDBFullSeriesLoader : MZRESTSearchResult
-{
-    NSUInteger series;
-    NSUInteger season;
-    NSInteger episode;
-}
-- (id)initWithProvider:(id)provider delegate:(id<MZSearchProviderDelegate>)delegate series:(NSUInteger)theSeries season:(NSUInteger)theSeason episode:(NSInteger)theEpisode;
-
-@property(readonly) NSUInteger series;
-@property(readonly) NSUInteger season;
-@property(readonly) NSInteger episode;
-
-@end

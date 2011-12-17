@@ -19,7 +19,7 @@
 
 - (id)initWithProvider:(id)theProvider delegate:(id<MZSearchProviderDelegate>)theDelegate url:(NSURL *)url parameters:(NSDictionary *)params
 {
-    self = [super initWithProvider:theProvider delegate:theDelegate url:url usingVerb:@"GET" parameters:params];
+    self = [super initWithProvider:theProvider delegate:theDelegate url:url parameters:params];
     if(self)
     {
         NSArray* tags = [NSArray arrayWithObjects:
@@ -119,12 +119,13 @@
 
 
 
-#pragma mark - MZRESTWrapperDelegate
+#pragma mark - ASIHTTPRequest Delegate
 
-- (void)wrapper:(MZRESTWrapper *)theWrapper didRetrieveData:(NSData *)data
+- (void)requestFinished:(ASIHTTPRequest *)theRequest;
 {
+    MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
     //MZLoggerDebug(@"Got response:\n%@", [theWrapper responseAsText]);
-    NSXMLDocument* doc = [theWrapper responseAsXml];
+    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithXMLString:[theRequest responseString] options:0 error:NULL] autorelease];
     
     NSString* errorMessage = [doc stringForXPath:@"/items/message/error" error:NULL];
     if(![errorMessage isEqual:@""])
@@ -339,7 +340,7 @@
     }
     MZLoggerDebug(@"Parsed TagChimp results %d", [results count]);
     [delegate searchProvider:provider result:results];
-    [super wrapper:theWrapper didRetrieveData:data];
+    [super requestFinished:theRequest];
 }
 
 @end

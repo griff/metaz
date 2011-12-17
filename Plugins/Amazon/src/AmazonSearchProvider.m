@@ -119,7 +119,7 @@
         MZLoggerDebug(@"    '%@' -> '%@'", key, [params objectForKey:key]);
     AmazonSearch* search = [AmazonSearch searchWithProvider:self delegate:delegate url:searchURL parameters:params];
     [self startSearch:search];
-    [queue addOperation:search];
+    [search addToQueue:queue];
     return YES;
 }
 
