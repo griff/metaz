@@ -212,8 +212,9 @@
         }
         [retryButton setHidden:YES];
     }
-    [picture release];
+    id oldPicture = picture;
     picture = [newPicture retain];
+    [oldPicture release];
     if([picture isKindOfClass:[MZRemoteData class]])
     {
         MZRemoteData* remote = picture;
