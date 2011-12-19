@@ -14,6 +14,8 @@
 
 @synthesize retryButton;
 @synthesize indicator;
+@synthesize leftButton;
+@synthesize rightButton;
 
 - (void)dealloc
 {
@@ -138,6 +140,22 @@
     [super mouseUp:theEvent];
 }
 */
+
+- (void)moveLeft:(id)sender
+{
+    if([leftButton isHidden])
+        NSBeep();
+    else
+        [leftButton performClick:self];
+}
+
+- (void)moveRight:(id)sender
+{
+    if([rightButton isHidden])
+        NSBeep();
+    else
+        [rightButton performClick:self];
+}
 
 - (void)keyDown:(NSEvent *)theEvent
 {

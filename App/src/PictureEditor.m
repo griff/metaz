@@ -68,11 +68,12 @@
     NSDictionary* dict = [NSDictionary dictionaryWithObjects:values forKeys:keys];
     [self bind:@"picture" toObject:filesController withKeyPath:@"selection.picture" options:dict];
     */
-    [filesController gtm_addObserver:self forKeyPath:@"selection.picture" selector:@selector(picturesUpdated:) userInfo:nil options:0];
+    [picturesController gtm_addObserver:self forKeyPath:@"selection" selector:@selector(picturesUpdated:) userInfo:nil options:0];
     [observerFix addObserver:self forKeyPath:@"selection.pictureChanged" options:NSKeyValueObservingOptionPrior context:NULL];
 }
 
 @synthesize filesController;
+@synthesize picturesController;
 @synthesize indicator;
 @synthesize retryButton;
 @synthesize posterView;
@@ -123,7 +124,7 @@
 
 - (void)picturesUpdated:(GTMKeyValueChangeNotification *)notification
 {
-    id status = [filesController protectedValueForKeyPath:@"selection.picture"];
+    id status = [picturesController protectedValueForKeyPath:@"selection.self"];
     self.picture = status;
     if([status isKindOfClass:[MZRemoteData class]])
         return;
