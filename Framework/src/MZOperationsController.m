@@ -17,6 +17,8 @@
 @property(readwrite,copy) NSArray* operations;
 
 - (void)operationFinished:(GTMKeyValueChangeNotification *)notification;
+- (void)requestFailed:(ASIHTTPRequest*)request;
+- (void)requestFinished:(ASIHTTPRequest*)request;
 @end
 
 
@@ -111,6 +113,11 @@
 {
     for(NSOperation* op in self.operations)
         [queue addOperation:op];
+}
+
+- (void)requestFailed:(ASIHTTPRequest*)request
+{
+    [self requestFinished:request];
 }
 
 - (void)requestFinished:(ASIHTTPRequest*)request
