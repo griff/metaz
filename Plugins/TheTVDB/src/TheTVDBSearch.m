@@ -171,6 +171,37 @@
     
     NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithXMLString:[theRequest responseString] options:0 error:NULL] autorelease];
 
+    NSMutableArray* banners = [NSMutableArray array];
+    NSArray* items = [doc nodesForXPath:@"/Banners/Banner" error:NULL];
+    for(NSXMLElement* item in items)
+    {
+        NSString* language = [item stringForXPath:@"Language" error:NULL];
+        if(![language isEqualToString:@"en"])
+            continue;
+
+        NSString* type = [item stringForXPath:@"BannerType" error:NULL];
+        if(![type isEqualToString:@"season"])
+            continue;
+            
+        NSString* type2 = [item stringForXPath:@"BannerType2" error:NULL];
+        if(![type2 isEqualToString:@"season"])
+            continue;
+
+        int theSeason = [[item stringForXPath:@"Season" error:NULL] intValue];
+        if(theSeason != season)
+            continue;
+
+        NSString* path = [item stringForXPath:@"BannerPath" error:NULL];
+        NSString* bannerUrl = [NSString stringWithFormat:@"%@/banners/%@",
+            bannerMirror,
+            path];
+        
+        MZRemoteData* data = [MZRemoteData dataWithURL:[NSURL URLWithString:bannerUrl]];
+        [banners addObject:data];
+        [data loadData];
+    }
+    NSMutableDictionary* userInfo = (NSMutableDictionary*)theRequest.userInfo;
+    [userInfo setObject:[NSArray arrayWithArray:banners] forKey:@"banners"];
 }
 
 - (void)fetchSeriesBannersFailed:(id)request;
@@ -218,6 +249,7 @@
     ASIHTTPRequest* theRequest = request;
     NSDictionary* userInfo = [theRequest userInfo];
     NSUInteger series = [[userInfo objectForKey:@"series"] unsignedIntegerValue];
+    NSArray* banners = [userInfo objectForKey:@"banners"];
 
     MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
  
@@ -396,6 +428,8 @@
             [episodeDict setObject:[imdbTag objectFromString:imdbId] forKey:MZIMDBTagIdent];
         }
         
+        if(banners)
+            [episodeDict setObject:banners forKey:MZPictureTagIdent];
         
         MZSearchResult* result = [MZSearchResult resultWithOwner:provider dictionary:episodeDict];
         [results addObject:result];
