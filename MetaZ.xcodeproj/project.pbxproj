@@ -134,6 +134,7 @@
 		1B6E43CC108468B100DFE165 /* MZSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E43CA108468B100DFE165 /* MZSearchResult.m */; };
 		1B6E43DD10846DBC00DFE165 /* TagData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6E43D610846BDA00DFE165 /* TagData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B7B529D149EA26300BF37DD /* EnsureArrayTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B529C149EA26300BF37DD /* EnsureArrayTransformer.m */; };
+		1B7B53F514A029FA00BF37DD /* MZMultipleDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B53F414A029FA00BF37DD /* MZMultipleDateFormatter.m */; };
 		1B82647410B3C25000DF101B /* MetaEditsUndoManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B82647210B3C25000DF101B /* MetaEditsUndoManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B82647510B3C25000DF101B /* MetaEditsUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */; };
 		1B8268A510B3F82400DF101B /* AmazonSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8268A410B3F82400DF101B /* AmazonSearchProvider.m */; };
@@ -882,6 +883,8 @@
 		1B78A49A105032A50072D89E /* MZMethodData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMethodData.m; sourceTree = "<group>"; };
 		1B7B529B149EA26300BF37DD /* EnsureArrayTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnsureArrayTransformer.h; sourceTree = "<group>"; };
 		1B7B529C149EA26300BF37DD /* EnsureArrayTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnsureArrayTransformer.m; sourceTree = "<group>"; };
+		1B7B53F314A029FA00BF37DD /* MZMultipleDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMultipleDateFormatter.h; sourceTree = "<group>"; };
+		1B7B53F414A029FA00BF37DD /* MZMultipleDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMultipleDateFormatter.m; sourceTree = "<group>"; };
 		1B82647210B3C25000DF101B /* MetaEditsUndoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaEditsUndoManager.h; sourceTree = "<group>"; };
 		1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditsUndoManager.m; sourceTree = "<group>"; };
 		1B8268A310B3F82400DF101B /* AmazonSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonSearchProvider.h; sourceTree = "<group>"; };
@@ -1919,6 +1922,8 @@
 				1BAC912913F053980022D625 /* MZDateFormatter.m */,
 				1BAC916313F056240022D625 /* MZYearDateFormatter.h */,
 				1BAC916413F056240022D625 /* MZYearDateFormatter.m */,
+				1B7B53F314A029FA00BF37DD /* MZMultipleDateFormatter.h */,
+				1B7B53F414A029FA00BF37DD /* MZMultipleDateFormatter.m */,
 			);
 			name = Classes;
 			path = App/src;
@@ -2713,6 +2718,7 @@
 				1BAC916513F056240022D625 /* MZYearDateFormatter.m in Sources */,
 				1B069668149BD35B00B5FA90 /* MGViewAnimation.m in Sources */,
 				1B7B529D149EA26300BF37DD /* EnsureArrayTransformer.m in Sources */,
+				1B7B53F514A029FA00BF37DD /* MZMultipleDateFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
