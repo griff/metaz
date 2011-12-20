@@ -45,6 +45,7 @@
     ChapterEditor* chapterEditor;
     NSProgressIndicator* loadingIndicator;
     NSInteger loadings;
+    NSArrayController* picturesController;
     
     MZFileNameTextStorage* fileNameStorage;
     NSTextView* fileNameEditor;
@@ -67,6 +68,7 @@
 @property (nonatomic, retain) IBOutlet NSSearchField* searchField;
 @property (nonatomic, retain) IBOutlet ChapterEditor* chapterEditor;
 @property (nonatomic, retain) IBOutlet NSProgressIndicator* loadingIndicator;
+@property (nonatomic, retain) IBOutlet NSArrayController* picturesController;
 @property (readonly) NSInteger remainingInShortDescription;
 
 + (void)initialize;

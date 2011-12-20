@@ -82,6 +82,7 @@ NSDictionary* findBinding(NSWindow* window) {
 @synthesize searchField;
 @synthesize chapterEditor;
 @synthesize remainingInShortDescription;
+@synthesize picturesController;
 @synthesize loadingIndicator;
 
 #pragma mark - initialization
@@ -193,6 +194,7 @@ NSDictionary* findBinding(NSWindow* window) {
     [chapterEditor release];
     [fileNameEditor release];
     [fileNameStorage release];
+    [picturesController release];
     [super dealloc];
 }
 #pragma mark - private
@@ -605,6 +607,15 @@ NSDictionary* findBinding(NSWindow* window) {
         }
     }
     
+    id picture = [picturesController valueForKeyPath:@"selection.self"];
+    MZLoggerDebug(@"Picture is %@", picture);
+    if([picture isKindOfClass:[MZRemoteData class]])
+    {
+        if(![picture isLoaded])
+            return;
+    }
+    
+    
     NSArray* edits = [filesController selectedObjects];
     for(MetaEdits* edit in edits)
     {
@@ -626,6 +637,13 @@ NSDictionary* findBinding(NSWindow* window) {
                         [chapterEditor setChapterNames:value];
                         [chapterEditor setChanged:[NSNumber numberWithBool:YES]];
                     }
+                }
+                else if([[tag identifier] isEqual:MZPictureTagIdent])
+                {
+                    if([picture isKindOfClass:[MZRemoteData class]])
+                        picture = [picture data];
+                    if(picture)
+                        [edit setterValue:picture forKey:[tag identifier]];
                 }
                 else
                 {
