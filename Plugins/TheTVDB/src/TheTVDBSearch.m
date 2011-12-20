@@ -73,8 +73,7 @@
 {
     ASIHTTPRequest* theRequest = request;
     MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
-    //MZLoggerDebug(@"Got amazon response:\n%@", [theWrapper responseAsText]);
-    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithXMLString:[theRequest responseString] options:0 error:NULL] autorelease];
+    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithData:[theRequest responseData] options:0 error:NULL] autorelease];
     
     NSMutableArray* bannermirrors = [NSMutableArray array]; 
     NSMutableArray* xmlmirrors = [NSMutableArray array]; 
@@ -145,7 +144,7 @@
 {
     ASIHTTPRequest* theRequest = request;
     MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
-    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithXMLString:[theRequest responseString] options:0 error:NULL] autorelease];
+    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithData:[theRequest responseData] options:0 error:NULL] autorelease];
 
     NSArray* items = [doc nodesForXPath:@"/Data/Series" error:NULL];
     MZLoggerDebug(@"Got TheTVDB series %d", [items count]);
@@ -169,7 +168,7 @@
     ASIHTTPRequest* theRequest = request;
     MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
     
-    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithXMLString:[theRequest responseString] options:0 error:NULL] autorelease];
+    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithData:[theRequest responseData] options:0 error:NULL] autorelease];
 
     NSMutableArray* banners = [NSMutableArray array];
     NSArray* items = [doc nodesForXPath:@"/Banners/Banner" error:NULL];
@@ -255,7 +254,7 @@
  
 
     //MZLoggerDebug(@"Got response:\n%@", [theWrapper responseAsText]);
-    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithXMLString:[theRequest responseString] options:0 error:NULL] autorelease];
+    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithData:[theRequest responseData] options:0 error:NULL] autorelease];
 
     NSMutableDictionary* seriesDict = [NSMutableDictionary dictionary];
 

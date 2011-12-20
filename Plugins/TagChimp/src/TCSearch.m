@@ -125,7 +125,7 @@
 {
     MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
     //MZLoggerDebug(@"Got response:\n%@", [theWrapper responseAsText]);
-    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithXMLString:[theRequest responseString] options:0 error:NULL] autorelease];
+    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithData:[theRequest responseData] options:0 error:NULL] autorelease];
     
     NSString* errorMessage = [doc stringForXPath:@"/items/message/error" error:NULL];
     if(![errorMessage isEqual:@""])
