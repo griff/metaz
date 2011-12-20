@@ -72,6 +72,12 @@
 - (void)updateMirrorCompleted:(id)request;
 {
     ASIHTTPRequest* theRequest = request;
+    int status = [theRequest responseStatusCode];
+    if(status >= 400) {
+        [self updateMirrorFailed:request];
+        return;
+    }
+    
     MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
     NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithData:[theRequest responseData] options:0 error:NULL] autorelease];
     
@@ -143,6 +149,11 @@
 - (void)fetchSeriesCompleted:(id)request;
 {
     ASIHTTPRequest* theRequest = request;
+    int status = [theRequest responseStatusCode];
+    if(status >= 400) {
+        [self fetchSeriesFailed:request];
+        return;
+    }
     MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
     NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithData:[theRequest responseData] options:0 error:NULL] autorelease];
 
@@ -166,6 +177,11 @@
 - (void)fetchSeriesBannersCompleted:(id)request;
 {
     ASIHTTPRequest* theRequest = request;
+    int status = [theRequest responseStatusCode];
+    if(status >= 400) {
+        [self fetchSeriesBannersFailed:request];
+        return;
+    }
     MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
     
     NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithData:[theRequest responseData] options:0 error:NULL] autorelease];
@@ -246,6 +262,12 @@
 - (void)fetchFullSeriesCompleted:(id)request;
 {
     ASIHTTPRequest* theRequest = request;
+    int status = [theRequest responseStatusCode];
+    if(status >= 400) {
+        [self fetchFullSeriesFailed:request];
+        return;
+    }
+
     NSDictionary* userInfo = [theRequest userInfo];
     NSUInteger series = [[userInfo objectForKey:@"series"] unsignedIntegerValue];
     NSArray* banners = [userInfo objectForKey:@"banners"];
