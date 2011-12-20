@@ -206,15 +206,23 @@
         if(theSeason != season)
             continue;
 
+        float rating = [[item stringForXPath:@"Rating" error:NULL] floatValue];
+
         NSString* path = [item stringForXPath:@"BannerPath" error:NULL];
         NSString* bannerUrl = [NSString stringWithFormat:@"%@/banners/%@",
             bannerMirror,
             path];
         
         MZRemoteData* data = [MZRemoteData dataWithURL:[NSURL URLWithString:bannerUrl]];
+        data.userInfo = [NSNumber numberWithFloat:rating];
         [banners addObject:data];
         [data loadData];
     }
+    // The banners file appears to be sorted on rating in descending order but this is
+    // not documented anywhere so we sort it just to be sure.
+    NSSortDescriptor* desc = [[[NSSortDescriptor alloc] initWithKey:@"userInfo" ascending:NO] autorelease];
+    [banners sortUsingDescriptors:[NSArray arrayWithObject:desc]];
+    
     NSMutableDictionary* userInfo = (NSMutableDictionary*)theRequest.userInfo;
     [userInfo setObject:[NSArray arrayWithArray:banners] forKey:@"banners"];
 }
