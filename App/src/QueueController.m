@@ -22,9 +22,6 @@
 @implementation QueueController
 @synthesize filesController;
 @synthesize mainWindow;
-@synthesize playBtn;
-@synthesize playBtn2;
-@synthesize menuItem;
 @synthesize targetProgress;
 @synthesize progress;
 @synthesize progressBar;
@@ -48,12 +45,9 @@
 {
     [self unregisterAsObserver];
     [writeQueue release];
-    [playBtn2 release];
     [controller release];
-    [playBtn release];
     [filesController release];
     [startTime release];
-    [menuItem release];
     [dockIndicator release];
     [progressBar release];
     [mainView release];
@@ -146,16 +140,9 @@
 - (void)updateUI
 {
     RunStatus status = [writeQueue status];
-    NSString* playLabel = nil;
-    NSString* playImage = nil;
-    NSString* menuLabel = nil;
     switch (status)
     {
         case QueueStopped:
-            playLabel = NSLocalizedString(@"Start", @"Label for start button");
-            playImage = @"Play";
-            menuLabel = NSLocalizedString(@"Start Queue", @"Label for start queue menu");
-
             if(progressShowing)
             {
                 NSRect oldRect = mainRect;
@@ -203,10 +190,6 @@
             break;
         case QueueStopping:
         case QueueRunning:
-            playLabel = NSLocalizedString(@"Stop", @"Label for stop button");
-            playImage = @"Stop";
-            menuLabel = NSLocalizedString(@"Stop Queue", @"Label for stop queue menu");
-
             if(!progressShowing)
             {
                 NSRect oldRect = mainRect;
@@ -252,20 +235,8 @@
                 progressShowing = YES;
             }
             break;
-        case QueuePaused:
-            playLabel = NSLocalizedString(@"Stop", @"Label for stop button");
-            playImage = @"Stop";
-            menuLabel = NSLocalizedString(@"Stop Queue", @"Label for stop queue menu");
-            break;
     }
-    [playBtn setImage:[NSImage imageNamed:playImage]];
-    [playBtn setLabel:playLabel];
-    if(playBtn2)
-    {
-        [playBtn2 setImage:[NSImage imageNamed:playImage]];
-        [playBtn2 setLabel:playLabel];
-    }
-    [menuItem setTitle:menuLabel];
+    [NSApp setWindowsNeedUpdate:YES];
 }
 
 #pragma mark - observation callbacks
@@ -370,8 +341,6 @@
            removeObserver:self 
                      name:NSWindowWillCloseNotification
                    object:[note object]];
-    [playBtn2 release];
-    playBtn2 = nil;
     [controller release];
     controller = nil;
 }
@@ -478,6 +447,63 @@
         inFileViewerRootedAtPath:@""];
 }
 
+#pragma mark - as NSToolbarItemValidation
+- (BOOL)validateToolbarItem:(NSToolbarItem *)theItem
+{
+    if([theItem action] == @selector(startStopEncoding:))
+    {
+        RunStatus status = [writeQueue status];
+        NSString* playLabel = nil;
+        NSString* playImage = nil;
+        switch (status)
+        {
+            case QueueStopped:
+                playLabel = NSLocalizedString(@"Start", @"Label for start button");
+                playImage = @"Play";
+                break;
+            case QueueStopping:
+            case QueueRunning:
+                playLabel = NSLocalizedString(@"Stop", @"Label for stop button");
+                playImage = @"Stop";
+                break;
+            case QueuePaused:
+                playLabel = NSLocalizedString(@"Stop", @"Label for stop button");
+                playImage = @"Stop";
+                break;
+        }
+        [theItem setImage:[NSImage imageNamed:playImage]];
+        [theItem setLabel:playLabel];
+    }
+    
+    return [self validateUserInterfaceItem:theItem];
+}
+
+#pragma mark - as NSMenuValidation
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem
+{
+    if([menuItem action] == @selector(startStopEncoding:))
+    {
+        RunStatus status = [writeQueue status];
+        NSString* menuLabel = nil;
+        switch (status)
+        {
+            case QueueStopped:
+                menuLabel = NSLocalizedString(@"Start Queue", @"Label for start queue menu");
+                break;
+            case QueueStopping:
+            case QueueRunning:
+                menuLabel = NSLocalizedString(@"Stop Queue", @"Label for stop queue menu");
+                break;
+            case QueuePaused:
+                menuLabel = NSLocalizedString(@"Stop Queue", @"Label for stop queue menu");
+                break;
+        }
+        [menuItem setTitle:menuLabel];
+    }
+    
+    return [self validateUserInterfaceItem:menuItem];
+}
+
 #pragma mark - as NSUserInterfaceValidations
 
 - (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem
@@ -488,6 +514,15 @@
         return [[writeQueue queueItems] count] > 0;
     }
     */
+    if([anItem action] == @selector(startEncoding:))
+    {
+        return [writeQueue status] == QueueStopped &&
+            [[writeQueue pendingItems] count] > 0;
+    }
+    if([anItem action] == @selector(stopEncoding:))
+    {
+        return [writeQueue started];
+    }
     if([anItem action] == @selector(startStopEncoding:))
     {
         return [writeQueue status] != QueueStopped ||
@@ -498,7 +533,12 @@
     {
         return [writeQueue status] != QueueStopped;
     }
-    if([anItem action] == @selector(addToQueue:))
+    
+    if([anItem action] == @selector(addToQueue:) || [anItem action] == @selector(writeSelected:))
+    {
+        return [[filesController selectedObjects] count] > 0;
+    }
+    if([anItem action] == @selector(addAllToQueue:) || [anItem action] == @selector(writeAll:))
     {
         return [[[MZMetaLoader sharedLoader] files] count] > 0;
     }
@@ -508,7 +548,31 @@
 
 #pragma mark - actions
 
+- (IBAction)writeSelected:(id)sender
+{
+    [self addToQueue:sender];
+    [self startEncoding:sender];
+}
+
+- (IBAction)writeAll:(id)sender
+{
+    [self addAllToQueue:sender];
+    [self startEncoding:sender];
+}
+
 - (IBAction)addToQueue:(id)sender
+{
+    if(![mainWindow makeFirstResponder:mainWindow])
+    {
+        [mainWindow endEditingFor:nil];
+    }
+
+    NSArray* files = [filesController selectedObjects];
+    [writeQueue addQueueItems:files];
+    [filesController remove:sender];
+}
+
+- (IBAction)addAllToQueue:(id)sender
 {
     if(![mainWindow makeFirstResponder:mainWindow])
     {
@@ -532,6 +596,22 @@
     [controller showWindow:self];
 }
 
+- (IBAction)stopEncoding:(id)sender
+{
+    [writeQueue stop];
+}
+
+- (IBAction)startEncoding:(id)sender
+{
+    if([writeQueue started] || [[writeQueue pendingItems] count] == 0)
+        return;
+    lastQueueItemsCount = [[writeQueue queueItems] count];
+    lastCompletedItemsCount = [[writeQueue completedItems] count];
+    self.targetProgress = [[writeQueue pendingItems] count]*100;
+    self.progress = 0;
+    [writeQueue start];
+}
+
 - (IBAction)startStopEncoding:(id)sender
 {
     if([writeQueue started])
@@ -540,11 +620,7 @@
     {
         if([[writeQueue pendingItems] count] == 0)
             [self addToQueue:sender];
-        lastQueueItemsCount = [[writeQueue queueItems] count];
-        lastCompletedItemsCount = [[writeQueue completedItems] count];
-        self.targetProgress = [[writeQueue pendingItems] count]*100;
-        self.progress = 0;
-        [writeQueue start];
+        [self startEncoding:sender];    
     }
 }
 

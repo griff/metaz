@@ -46,6 +46,7 @@ MZKIT_EXTERN NSString* const MZMetaLoaderFinishedNotification;
 
 - (NSArray *)types;
 - (void)removeAllObjects;
+- (void)removeFilesAtIndexes:(NSIndexSet *)indexes;
 - (BOOL)loadFromFile:(NSString *)fileName;
 - (BOOL)loadFromFiles:(NSArray *)fileNames;
 - (BOOL)loadFromFile:(NSString *)fileName toIndex:(NSUInteger)index;

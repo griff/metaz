@@ -17,9 +17,6 @@
     NSWindow* mainWindow;
     NSWindowController* controller;
     MZWriteQueue* writeQueue;
-    NSToolbarItem* playBtn;
-    NSToolbarItem* playBtn2;
-    NSMenuItem* menuItem;
     NSInteger lastCompletedItemsCount;
     NSInteger lastQueueItemsCount;
     NSInteger targetProgress;
@@ -38,17 +35,19 @@
 }
 @property (nonatomic, retain) IBOutlet NSArrayController* filesController;
 @property (nonatomic, retain) IBOutlet NSWindow* mainWindow;
-@property (nonatomic, retain) IBOutlet NSToolbarItem* playBtn;
-@property (nonatomic, retain) NSToolbarItem* playBtn2;
-@property (nonatomic, retain) IBOutlet NSMenuItem* menuItem;
 @property (nonatomic, retain) IBOutlet NSProgressIndicator* progressBar;
 @property (nonatomic, retain) IBOutlet NSView* mainView;
 @property (nonatomic, retain) IBOutlet NSView* pendingLabel;
 @property (readonly) NSInteger targetProgress;
 @property (readonly) NSInteger progress;
 
+- (IBAction)writeSelected:(id)sender;
+- (IBAction)writeAll:(id)sender;
 - (IBAction)addToQueue:(id)sender;
+- (IBAction)addAllToQueue:(id)sender;
 - (IBAction)showQueue:(id)sender;
+- (IBAction)startEncoding:(id)sender;
+- (IBAction)stopEncoding:(id)sender;
 - (IBAction)startStopEncoding:(id)sender;
 
 - (void)updateUI;

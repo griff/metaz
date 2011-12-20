@@ -18,7 +18,6 @@
 }
 @property (readonly) QueueController* controller;
 @property (nonatomic, retain) IBOutlet MGCollectionView* collectionView;
-@property (nonatomic, retain) IBOutlet NSToolbarItem* playBtn;
 @property (nonatomic, retain) IBOutlet NSTextField* itemsLabel;
 @property (nonatomic, retain) IBOutlet NSButton* clearBtn;
 
