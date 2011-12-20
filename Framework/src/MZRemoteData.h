@@ -15,6 +15,7 @@
     NSURL* url;
     NSError* error;
     ASIHTTPRequest* request;
+    id userInfo;
 }
 + (id)dataWithURL:(NSURL *)url;
 - (id)initWithURL:(NSURL *)url;
@@ -24,6 +25,7 @@
 @property(readonly) BOOL isLoaded;
 @property(readonly, retain) NSError* error; 
 @property(readonly, retain) ASIHTTPRequest* request;
+@property(readwrite, retain) id userInfo; 
 
 - (void)loadData;
 - (void)requestFinished:(ASIHTTPRequest *)request;

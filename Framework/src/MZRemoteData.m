@@ -28,6 +28,7 @@
 @synthesize isLoaded;
 @synthesize error;
 @synthesize request;
+@synthesize userInfo;
 
 + (NSOperationQueue *)sharedQueue
 {
@@ -61,6 +62,7 @@
     [request release];
     [data release];
     [error release];
+    self.userInfo = nil;
     [super dealloc];
 }
 
