@@ -438,11 +438,31 @@
                              object:manager];
 }
 
+- (NSCell *)preparedCellAtColumn:(NSInteger)columnIndex row:(NSInteger)rowIndex
+{
+    NSCell* aCell = [super preparedCellAtColumn:columnIndex row:rowIndex];
+    NSTableColumn* column = [[self tableColumns] objectAtIndex:columnIndex];
+    if([[column identifier] isEqualToString:@"status"])
+    {
+        NSButtonCell* cell = (NSButtonCell*)aCell;
+        if([self isRowSelected:rowIndex])
+        {
+            [cell setAlternateImage:[NSImage imageNamed:@"modified_selected"]];
+        } else {
+            [cell setAlternateImage:[NSImage imageNamed:@"modified"]];
+        }
+    }
+    return aCell;
+}
 
 #pragma mark - general
 
 - (void)awakeFromNib
 {
+    NSTableColumn* status = [self tableColumnWithIdentifier:@"status"];
+    NSImage *image = [NSImage imageNamed:@"modified_header"];
+    [[status headerCell] setImage:image];
+
     [self setDataSource:self];
 }
 

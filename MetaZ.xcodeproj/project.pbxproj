@@ -138,6 +138,9 @@
 		1B82647410B3C25000DF101B /* MetaEditsUndoManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B82647210B3C25000DF101B /* MetaEditsUndoManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B82647510B3C25000DF101B /* MetaEditsUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */; };
 		1B8268A510B3F82400DF101B /* AmazonSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8268A410B3F82400DF101B /* AmazonSearchProvider.m */; };
+		1B8CB5E214AA31C500F859F7 /* modified_header.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1B8CB5DF14AA31C500F859F7 /* modified_header.tiff */; };
+		1B8CB5E314AA31C500F859F7 /* modified_selected.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1B8CB5E014AA31C500F859F7 /* modified_selected.tiff */; };
+		1B8CB5E414AA31C500F859F7 /* modified.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1B8CB5E114AA31C500F859F7 /* modified.tiff */; };
 		1B8E95711401BE7F006227B4 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B523B9013F4B3BE00C20B7D /* libz.1.2.3.dylib */; };
 		1B8E96321401BE86006227B4 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B523B9613F4B3D900C20B7D /* CoreServices.framework */; };
 		1B92BB1C10876FBA0057EFD7 /* PureMetaEdits.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B92BB1A10876FBA0057EFD7 /* PureMetaEdits.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -889,6 +892,9 @@
 		1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditsUndoManager.m; sourceTree = "<group>"; };
 		1B8268A310B3F82400DF101B /* AmazonSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonSearchProvider.h; sourceTree = "<group>"; };
 		1B8268A410B3F82400DF101B /* AmazonSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonSearchProvider.m; sourceTree = "<group>"; };
+		1B8CB5DF14AA31C500F859F7 /* modified_header.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = modified_header.tiff; path = App/resources/modified_header.tiff; sourceTree = "<group>"; };
+		1B8CB5E014AA31C500F859F7 /* modified_selected.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = modified_selected.tiff; path = App/resources/modified_selected.tiff; sourceTree = "<group>"; };
+		1B8CB5E114AA31C500F859F7 /* modified.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = modified.tiff; path = App/resources/modified.tiff; sourceTree = "<group>"; };
 		1B92BB1A10876FBA0057EFD7 /* PureMetaEdits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureMetaEdits.h; sourceTree = "<group>"; };
 		1B92BB1B10876FBA0057EFD7 /* PureMetaEdits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PureMetaEdits.m; sourceTree = "<group>"; };
 		1B92BB6E108787260057EFD7 /* SearchProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchProfile.h; sourceTree = "<group>"; };
@@ -2037,6 +2043,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1B8CB5DF14AA31C500F859F7 /* modified_header.tiff */,
+				1B8CB5E014AA31C500F859F7 /* modified_selected.tiff */,
+				1B8CB5E114AA31C500F859F7 /* modified.tiff */,
 				1BAC8FEA13ECAFF20022D625 /* metaz.png */,
 				1BAC8ED913EB32110022D625 /* MetaZ.icns */,
 				1BCECEC410E98E4200D0AD35 /* Credits.html */,
@@ -2464,6 +2473,9 @@
 				1BCECEC510E98E4200D0AD35 /* Credits.html in Resources */,
 				1BAC8EDA13EB32110022D625 /* MetaZ.icns in Resources */,
 				1BAC8FEB13ECAFF20022D625 /* metaz.png in Resources */,
+				1B8CB5E214AA31C500F859F7 /* modified_header.tiff in Resources */,
+				1B8CB5E314AA31C500F859F7 /* modified_selected.tiff in Resources */,
+				1B8CB5E414AA31C500F859F7 /* modified.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
