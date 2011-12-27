@@ -11,7 +11,7 @@
      _actionGroup.add( 'r', false, "remove",  false, LC_CHP_REMOVE,  "remove all chapters" );
      _groups.push_back( &_actionGroup );
  
-@@ -167,6 +167,18 @@
+@@ -167,6 +167,13 @@
      {
          return herrf( "unable to open for read: %s\n", job.file.c_str() );
      }
@@ -19,11 +19,6 @@
 +    uint64_t movie_duration = MP4ConvertFromMovieDuration(job.fileHandle, MP4GetDuration(job.fileHandle), MP4_MSECS_TIME_SCALE);
 +    Timecode file_duration(movie_duration, MP4_MSECS_TIME_SCALE);
 +    file_duration.setFormat(Timecode::DECIMAL);
-+
-+    MP4Duration the_file_duration = MP4GetDuration(job.fileHandle);
-+    uint32_t time_scale = MP4GetTimeScale(job.fileHandle);
-+    uint64_t movie_duration3 = the_file_duration/(time_scale/1000);
-+    uint64_t movie_duration2 = MP4ConvertFromMovieDuration(job.fileHandle, the_file_duration, time_scale);
 +
 +    ostringstream report;
 +    report << "Duration " << file_duration.svalue << endl;
