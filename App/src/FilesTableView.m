@@ -190,6 +190,12 @@
     return bestType != nil;
 }
 
+- (IBAction)revertChanges:(id)sender {
+    NSNumber* num = [filesController valueForKeyPath:@"selection.fileNameChanged"];
+    num = [NSNumber numberWithBool:![num boolValue]];
+    [filesController setValue:num forKeyPath:@"selection.fileNameChanged"];
+}
+
 #pragma mark - user interface validation
 - (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem {
     SEL action = [anItem action];
@@ -199,6 +205,21 @@
         return [self numberOfSelectedRows] == 1;
     if(action == @selector(paste:))
         return [self pasteboardHasTypes];
+    if(action == @selector(revertChanges:))
+    {
+        if([[filesController selectedObjects] count] >= 1)
+        {
+            BOOL changed = [[filesController valueForKeyPath:@"selection.fileNameChanged"] boolValue];
+            NSMenuItem* item = (NSMenuItem*)anItem;
+            if(changed)
+                [item setTitle:NSLocalizedString(@"Revert Changes", @"Revert changes menu item")];
+            else
+                [item setTitle:NSLocalizedString(@"Apply Changes", @"Apply changes menu item")];
+            return YES;
+        }
+        else 
+            return NO;
+    }
     return [super validateUserInterfaceItem:anItem];
 }
 
