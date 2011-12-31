@@ -17,7 +17,7 @@
     NSPoint event_location = [event locationInWindow];
     NSPoint local_point = [self convertPointFromBase:event_location];
     NSInteger row = [self rowAtPoint:local_point];
-    [self selectRow:row byExtendingSelection:NO];
+    [self selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
     MZSearchResult* object = [[searchController arrangedObjects] objectAtIndex:row];
     if([object menu] && [self menu])
     {
