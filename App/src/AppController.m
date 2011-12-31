@@ -112,6 +112,8 @@ NSDictionary* findBinding(NSWindow* window) {
 
 -(void)awakeFromNib
 {   
+    [NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    
     [[NSNotificationCenter defaultCenter]
         addObserver:self
            selector:@selector(finishedSearch:)
