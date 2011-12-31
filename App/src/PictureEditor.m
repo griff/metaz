@@ -138,7 +138,7 @@
         [posterView setStatus:MZOKPosterImage];
 }
 
-- (void)picturesIsLoaded:(GTMKeyValueChangeNotification *)notification
+- (void)pictureIsLoaded:(GTMKeyValueChangeNotification *)notification
 {
     [self willChangeValueForKey:@"data"];
     [self updateRemoteData];
