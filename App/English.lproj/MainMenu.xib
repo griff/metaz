@@ -13,7 +13,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="1833"/>
-			<integer value="1897"/>
+			<integer value="475"/>
 			<integer value="205"/>
 			<integer value="1723"/>
 			<integer value="1798"/>
@@ -2841,7 +2841,7 @@
 													<object class="NSButton" id="907707842">
 														<reference key="NSNextResponder" ref="453092425"/>
 														<int key="NSvFlags">268</int>
-														<string key="NSFrame">{{24, 473}, {19, 19}}</string>
+														<string key="NSFrame">{{14, 473}, {19, 19}}</string>
 														<reference key="NSSuperview" ref="453092425"/>
 														<bool key="NSEnabled">YES</bool>
 														<object class="NSButtonCell" key="NSCell" id="861888680">
@@ -2869,7 +2869,7 @@
 													<object class="NSButton" id="647637911">
 														<reference key="NSNextResponder" ref="453092425"/>
 														<int key="NSvFlags">268</int>
-														<string key="NSFrame">{{120, 473}, {19, 19}}</string>
+														<string key="NSFrame">{{129, 473}, {19, 19}}</string>
 														<reference key="NSSuperview" ref="453092425"/>
 														<bool key="NSEnabled">YES</bool>
 														<object class="NSButtonCell" key="NSCell" id="540646298">
@@ -13671,7 +13671,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABB6AAAw/KAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDCAAAw/UAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
