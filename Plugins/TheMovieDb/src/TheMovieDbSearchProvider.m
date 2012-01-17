@@ -51,7 +51,7 @@
     if(!menu)
     {
         menu = [[NSMenu alloc] initWithTitle:@"TheMovieDb"];
-        NSMenuItem* item = [menu addItemWithTitle:@"View movie in Browser" action:@selector(view:) keyEquivalent:@""];
+        NSMenuItem* item = [menu addItemWithTitle:@"View in Browser" action:@selector(view:) keyEquivalent:@""];
         [item setTarget:self];
     }
     for(NSMenuItem* item in [menu itemArray])
