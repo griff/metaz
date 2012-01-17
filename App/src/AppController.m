@@ -675,13 +675,13 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (IBAction)showIssues:(id)sender
 {
-    NSURL* url = [NSURL URLWithString:@"http://metaz.lighthouseapp.com/projects/43700-metaz/tickets/bins/95786"];
+    NSURL* url = [NSURL URLWithString:@"https://github.com/griff/metaz/issues"];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 - (IBAction)reportIssue:(id)sender
 {
-    NSURL* url = [NSURL URLWithString:@"http://metaz.lighthouseapp.com/projects/43700-metaz/tickets/new"];
+    NSURL* url = [NSURL URLWithString:@"https://github.com/griff/metaz/issues/new"];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
