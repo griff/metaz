@@ -6,7 +6,6 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import <Growl/Growl.h>
 #import "AppController.h"
 #import "UndoTableView.h"
 #import "PosterView.h"
