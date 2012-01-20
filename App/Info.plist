@@ -156,7 +156,9 @@
 	<key>SUEnableAutomaticChecks</key>
 	<string>YES</string>
 	<key>SUFeedURL</key>
-	<string>http://griff.github.com/metaz/releases.xml</string>
+	<string>http://maven-group.org/metaz/appcast.xml</string>
+	<key>SUEnableSystemProfiling</key>
+	<string>YES</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>sparkle_public.pem</string>
 	<key>SmartCrashReports_CompanyName</key>

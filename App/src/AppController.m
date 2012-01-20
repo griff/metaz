@@ -82,6 +82,7 @@ NSDictionary* findBinding(NSWindow* window) {
 @synthesize chapterEditor;
 @synthesize remainingInShortDescription;
 @synthesize picturesController;
+@synthesize updater;
 @synthesize loadingIndicator;
 
 #pragma mark - initialization
@@ -164,6 +165,7 @@ NSDictionary* findBinding(NSWindow* window) {
                       forKeyPath:@"selection.shortDescription"
                          options:0
                          context:nil];
+    [updater setSendsSystemProfile:YES];
 }
 
 -(void)dealloc {
@@ -196,6 +198,7 @@ NSDictionary* findBinding(NSWindow* window) {
     [fileNameEditor release];
     [fileNameStorage release];
     [picturesController release];
+    [updater release];
     [super dealloc];
 }
 #pragma mark - private
