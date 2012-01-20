@@ -7,10 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MZDateFormatter.h"
+#import "MZMultipleDateFormatter.h"
 
 @interface MZYearDateFormatter : NSFormatter {
-    NSDateFormatter* dateFormatter;
+    MZMultipleDateFormatter* dateFormatter;
 }
 -(id)init;
 

@@ -137,17 +137,10 @@
         episode = [episodeNo integerValue];
     
     TheTVDBSearch* search = [TheTVDBSearch searchWithProvider:self delegate:delegate queue:queue];
-    
-    /*
-    TheTVDBUpdateMirrors* mirrors = [[TheTVDBUpdateMirrors alloc] init];
-    [search addOperation:mirrors];
-    [mirrors release];
-    */
-    
-    TheTVDBGetSeries* seriesSearch = [[TheTVDBGetSeries alloc] initWithSearch:search name:show season:season episode:episode];
-    //[seriesSearch addDependency:mirrors];
-    [search addOperation:seriesSearch];
-    [seriesSearch release];
+    search.season = season;
+    search.episode = episode;
+    [search updateMirror];
+    [search fetchSeriesByName:show];
     
     [self startSearch:search];
     MZLoggerDebug(@"Sent request to TheTVDB");

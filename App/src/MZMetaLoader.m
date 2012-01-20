@@ -83,6 +83,12 @@ static MZMetaLoader* sharedLoader = nil;
     [self didChangeValueForKey:@"files"];
 }
 
+- (void)removeFilesAtIndexes:(NSIndexSet *)indexes
+{
+    [self willChangeValueForKey:@"files"];
+    [files removeObjectsAtIndexes:indexes];
+    [self didChangeValueForKey:@"files"];
+}
 
 -(BOOL)loadFromFile:(NSString *)fileName
 {

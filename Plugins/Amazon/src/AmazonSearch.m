@@ -8,15 +8,11 @@
 
 #import "AmazonSearch.h"
 #import "Access.h"
-#import "AmazonRequest.h"
 #import <GTMStackTrace.h>
+#import "GTMBase64.h"
+#import "hmac_sha2.h"
 
 @implementation AmazonSearch
-
-+ (Class)restWrapper
-{
-    return [AmazonRequest class];
-}
 
 + (id)searchWithProvider:(id)provider delegate:(id<MZSearchProviderDelegate>)delegate url:(NSURL *)url parameters:(NSDictionary *)params
 {
@@ -25,7 +21,7 @@
 
 - (id)initWithProvider:(id)theProvider delegate:(id<MZSearchProviderDelegate>)theDelegate url:(NSURL *)url parameters:(NSDictionary *)params;
 {
-    self = [super initWithProvider:theProvider delegate:theDelegate url:url usingVerb:@"GET" parameters:params];
+    self = [super initWithProvider:theProvider delegate:theDelegate url:url parameters:params];
     if(self)
     {
         NSArray* tags = [NSArray arrayWithObjects:
@@ -112,9 +108,8 @@
         };
         */
         
-        AmazonRequest* req = (AmazonRequest*)wrapper;
-        [req setAccessKeyId:AMAZON_ACCESS_ID];
-        [req setSecretAccessKey:AMAZON_ACCESS_KEY];
+        self.accessKeyId = AMAZON_ACCESS_ID;
+        self.secretAccessKey = AMAZON_ACCESS_KEY;
     }
     return self;
 }
@@ -123,15 +118,84 @@
 {
     [mapping release];
     [ratingsMap release];
+    [accessKeyId release];
+    [secretAccessKey release];
+    [associateTag release];
     [super dealloc];
 }
 
-#pragma mark - MZRESTWrapperDelegate
+@synthesize accessKeyId, secretAccessKey, associateTag;
 
-- (void)wrapper:(MZRESTWrapper *)theWrapper didRetrieveData:(NSData *)data
+- (NSDictionary *)preparedParameterDictionaryForInput:(NSDictionary *)inParams;
 {
+	NSMutableDictionary *params = [[inParams mutableCopy] autorelease];
+	[params setValue:@"AWSECommerceService"  forKey:@"Service"];
+	[params setValue:self.accessKeyId        forKey:@"AWSAccessKeyId"];
+    NSString* aTag = self.associateTag;
+    if(aTag && [aTag length] > 0)
+    {
+        [params setValue:aTag       forKey:@"AssociateTag"];
+    }
+    if(![params objectForKey:@"Timestamp"])
+        [params setValue:[self utcTimestamp]     forKey:@"Timestamp"];
+	return params;
+}
+
+- (NSString *)queryStringForParameterDictionary:(NSDictionary *)theParameters withUrl:(NSURL *)url
+{
+	NSString *queryString = [super queryStringForParameterDictionary:theParameters withUrl:url];
+	NSString *signatureInput = [self signatureInputForQueryString:queryString withUrl:url];
+	NSString *signature = [self hmacStringForString:signatureInput];
+	NSString *escapedSignature = [signature gtm_stringByEscapingForURLArgument];
+
+	return [NSString stringWithFormat:@"%@&Signature=%@", queryString, escapedSignature];
+}
+
+- (NSString *)signatureInputForQueryString:(NSString *)queryString withUrl:(NSURL *)url
+{
+	NSMutableString *si = [NSMutableString string];
+	[si appendString:@"GET\n"];
+	[si appendString:url.host];
+	[si appendString:@"\n"];
+	[si appendString:url.path];
+	[si appendString:@"\n"];
+	[si appendString:queryString];
+	return si;
+}
+
+- (NSString *)utcTimestamp
+{
+	NSDateFormatter *outputFormatter = [[[NSDateFormatter alloc] init] autorelease];
+	outputFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+	outputFormatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+	return [outputFormatter stringFromDate:[NSDate date]];
+}
+
+
+- (NSString *)hmacStringForString:(NSString *)signatureInput
+{
+	unsigned char *signatureInputBytes = (unsigned char *)[signatureInput UTF8String];
+
+	unsigned char mac[SHA256_DIGEST_SIZE];
+	bzero(mac, SHA256_DIGEST_SIZE);
+
+	unsigned char *keyBytes = (unsigned char *)[self.secretAccessKey UTF8String];
+	int keyLength = [self.secretAccessKey length];
+	hmac_sha256(keyBytes, keyLength, signatureInputBytes, [signatureInput length], mac, SHA256_DIGEST_SIZE);
+
+	return [GTMBase64 stringByEncodingBytes:mac length:SHA256_DIGEST_SIZE];
+}
+
+- (NSString *)testQueryStringForParameterDictionary:(NSDictionary *)theParameters;
+{
+    return [super queryStringForParameterDictionary:theParameters withUrl:nil];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)theRequest;
+{
+    MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
     //MZLoggerDebug(@"Got amazon response:\n%@", [theWrapper responseAsText]);
-    NSXMLDocument* doc = [theWrapper responseAsXml];
+    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithData:[theRequest responseData] options:0 error:NULL] autorelease];
 
     NSString* errorMessage = [doc stringForXPath:@"/ItemSearchResponse/Items/Request/Errors/Error/Code" error:NULL];
     if(![errorMessage isEqual:@""])
@@ -203,17 +267,7 @@
     [delegate searchProvider:provider result:results];
     
     // TODO Make more requests for other pages
-    [super wrapper:theWrapper didRetrieveData:data];
-}
-
-- (void)addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context
-{
-    [super addObserver:observer forKeyPath:keyPath options:options context:context];
-}
-
-- (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath
-{
-    [super removeObserver:observer forKeyPath:keyPath];
+    [super requestFinished:theRequest];
 }
 
 @end

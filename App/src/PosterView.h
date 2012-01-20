@@ -23,9 +23,13 @@ typedef enum {
     PosterImageStatus status;
     NSButton* retryButton;
     NSProgressIndicator* indicator;
+    NSButton* leftButton;
+    NSButton* rightButton;
 }
 @property (nonatomic, retain) IBOutlet NSButton* retryButton;
 @property (nonatomic, retain) IBOutlet NSProgressIndicator* indicator;
+@property (nonatomic, retain) IBOutlet NSButton* leftButton;
+@property (nonatomic, retain) IBOutlet NSButton* rightButton;
 @property (readonly) NSString* imageSize;
 
 - (void)awakeFromNib;

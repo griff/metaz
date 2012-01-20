@@ -190,6 +190,12 @@
     return bestType != nil;
 }
 
+- (IBAction)revertChanges:(id)sender {
+    NSNumber* num = [filesController valueForKeyPath:@"selection.fileNameChanged"];
+    num = [NSNumber numberWithBool:![num boolValue]];
+    [filesController setValue:num forKeyPath:@"selection.fileNameChanged"];
+}
+
 #pragma mark - user interface validation
 - (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem {
     SEL action = [anItem action];
@@ -199,6 +205,21 @@
         return [self numberOfSelectedRows] == 1;
     if(action == @selector(paste:))
         return [self pasteboardHasTypes];
+    if(action == @selector(revertChanges:))
+    {
+        if([[filesController selectedObjects] count] >= 1)
+        {
+            BOOL changed = [[filesController valueForKeyPath:@"selection.fileNameChanged"] boolValue];
+            NSMenuItem* item = (NSMenuItem*)anItem;
+            if(changed)
+                [item setTitle:NSLocalizedString(@"Revert Changes", @"Revert changes menu item")];
+            else
+                [item setTitle:NSLocalizedString(@"Apply Changes", @"Apply changes menu item")];
+            return YES;
+        }
+        else 
+            return NO;
+    }
     return [super validateUserInterfaceItem:anItem];
 }
 
@@ -438,11 +459,31 @@
                              object:manager];
 }
 
+- (NSCell *)preparedCellAtColumn:(NSInteger)columnIndex row:(NSInteger)rowIndex
+{
+    NSCell* aCell = [super preparedCellAtColumn:columnIndex row:rowIndex];
+    NSTableColumn* column = [[self tableColumns] objectAtIndex:columnIndex];
+    if([[column identifier] isEqualToString:@"status"])
+    {
+        NSButtonCell* cell = (NSButtonCell*)aCell;
+        if([self isRowSelected:rowIndex])
+        {
+            [cell setAlternateImage:[NSImage imageNamed:@"modified_selected"]];
+        } else {
+            [cell setAlternateImage:[NSImage imageNamed:@"modified"]];
+        }
+    }
+    return aCell;
+}
 
 #pragma mark - general
 
 - (void)awakeFromNib
 {
+    NSTableColumn* status = [self tableColumnWithIdentifier:@"status"];
+    NSImage *image = [NSImage imageNamed:@"modified_header"];
+    [[status headerCell] setImage:image];
+
     [self setDataSource:self];
 }
 

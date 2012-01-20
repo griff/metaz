@@ -11,7 +11,7 @@
      _actionGroup.add( 'r', false, "remove",  false, LC_CHP_REMOVE,  "remove all chapters" );
      _groups.push_back( &_actionGroup );
  
-@@ -170,6 +170,18 @@
+@@ -170,6 +170,13 @@
          return herrf( "unable to open for read: %s\n", job.file.c_str() );
      }
  
@@ -19,18 +19,13 @@
 +    Timecode file_duration(movie_duration, MP4_MSECS_TIME_SCALE);
 +    file_duration.setFormat(Timecode::DECIMAL);
 +
-+    MP4Duration the_file_duration = MP4GetDuration(job.fileHandle);
-+    uint32_t time_scale = MP4GetTimeScale(job.fileHandle);
-+    uint64_t movie_duration3 = the_file_duration/(time_scale/1000);
-+    uint64_t movie_duration2 = MP4ConvertFromMovieDuration(job.fileHandle, the_file_duration, time_scale);
-+
 +    ostringstream report;
 +    report << "Duration " << file_duration.svalue << endl;
 +
      MP4Chapter_t * chapters = 0;
      uint32_t chapterCount = 0;
  
-@@ -177,22 +189,28 @@
+@@ -177,22 +184,28 @@
      MP4ChapterType chtp = MP4GetChapters(job.fileHandle, &chapters, &chapterCount, _ChapterType);
      if (0 == chapterCount)
      {
@@ -61,7 +56,7 @@
  
          // add the duration of this chapter to the sum (is the start time of the next chapter)
          duration += Timecode(chapters[i].duration, CHAPTERTIMESCALE);
-@@ -595,7 +613,7 @@
+@@ -595,7 +608,7 @@
      MP4ChapterType chtp = MP4DeleteChapters( job.fileHandle, _ChapterType );
      if( MP4ChapterTypeNone == chtp )
      {
@@ -70,7 +65,7 @@
      }
  
      fixQtScale( job.fileHandle );
-@@ -677,13 +695,12 @@
+@@ -677,13 +690,12 @@
  
          case LC_CHP_EXPORT:
              _action = &ChapterUtility::actionExport;
@@ -85,7 +80,7 @@
              break;
  
          case 'i':
-@@ -692,13 +709,12 @@
+@@ -692,13 +704,12 @@
  
          case LC_CHP_IMPORT:
              _action = &ChapterUtility::actionImport;

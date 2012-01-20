@@ -136,7 +136,7 @@
         if(animations.count > 0)
         {
             [_animation release];
-            _animation = [[NSViewAnimation alloc] initWithViewAnimations:animations];
+            _animation = [[MGViewAnimation alloc] initWithViewAnimations:animations];
             [_animation setDuration:0.5];    // half a second.
             [_animation setAnimationCurve:NSAnimationEaseIn];
             

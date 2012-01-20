@@ -6,7 +6,6 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import <Growl/Growl.h>
 #import "AppController.h"
 #import "UndoTableView.h"
 #import "PosterView.h"
@@ -15,6 +14,7 @@
 #import "FakeSearchResult.h"
 #import "SearchMeta.h"
 #import "FilesTableView.h"
+#import "Resources.h"
 
 #define MaxShortDescription 256
 
@@ -81,6 +81,8 @@ NSDictionary* findBinding(NSWindow* window) {
 @synthesize searchField;
 @synthesize chapterEditor;
 @synthesize remainingInShortDescription;
+@synthesize picturesController;
+@synthesize updater;
 @synthesize loadingIndicator;
 
 #pragma mark - initialization
@@ -110,6 +112,8 @@ NSDictionary* findBinding(NSWindow* window) {
 
 -(void)awakeFromNib
 {   
+    [NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    
     [[NSNotificationCenter defaultCenter]
         addObserver:self
            selector:@selector(finishedSearch:)
@@ -161,6 +165,7 @@ NSDictionary* findBinding(NSWindow* window) {
                       forKeyPath:@"selection.shortDescription"
                          options:0
                          context:nil];
+    [updater setSendsSystemProfile:YES];
 }
 
 -(void)dealloc {
@@ -192,6 +197,8 @@ NSDictionary* findBinding(NSWindow* window) {
     [chapterEditor release];
     [fileNameEditor release];
     [fileNameStorage release];
+    [picturesController release];
+    [updater release];
     [super dealloc];
 }
 #pragma mark - private
@@ -604,6 +611,15 @@ NSDictionary* findBinding(NSWindow* window) {
         }
     }
     
+    id picture = [picturesController valueForKeyPath:@"selection.self"];
+    MZLoggerDebug(@"Picture is %@", picture);
+    if([picture isKindOfClass:[MZRemoteData class]])
+    {
+        if(![picture isLoaded])
+            return;
+    }
+    
+    
     NSArray* edits = [filesController selectedObjects];
     for(MetaEdits* edit in edits)
     {
@@ -625,6 +641,13 @@ NSDictionary* findBinding(NSWindow* window) {
                         [chapterEditor setChapterNames:value];
                         [chapterEditor setChanged:[NSNumber numberWithBool:YES]];
                     }
+                }
+                else if([[tag identifier] isEqual:MZPictureTagIdent])
+                {
+                    if([picture isKindOfClass:[MZRemoteData class]])
+                        picture = [picture data];
+                    if(picture)
+                        [edit setterValue:picture forKey:[tag identifier]];
                 }
                 else
                 {
@@ -654,13 +677,13 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (IBAction)showIssues:(id)sender
 {
-    NSURL* url = [NSURL URLWithString:@"http://metaz.lighthouseapp.com/projects/43700-metaz/tickets/bins/95786"];
+    NSURL* url = [NSURL URLWithString:@"https://github.com/griff/metaz/issues"];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 - (IBAction)reportIssue:(id)sender
 {
-    NSURL* url = [NSURL URLWithString:@"http://metaz.lighthouseapp.com/projects/43700-metaz/tickets/new"];
+    NSURL* url = [NSURL URLWithString:@"https://github.com/griff/metaz/issues/new"];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
 
@@ -845,6 +868,7 @@ NSDictionary* findBinding(NSWindow* window) {
 #pragma mark - as window delegate
 
 - (NSSize)windowWillResize:(NSWindow *)aWindow toSize:(NSSize)proposedFrameSize {
+    [[NSNotificationCenter defaultCenter] postNotificationName:MZNSWindowWillResizeNotification object:aWindow];
     return [resizeController windowWillResize:aWindow toSize:proposedFrameSize];
 }
 

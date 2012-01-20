@@ -11,6 +11,7 @@
 
 @interface PictureEditor : NSObject {
     NSArrayController* filesController;
+    NSArrayController* picturesController;
     NSProgressIndicator* indicator;
     NSButton* retryButton;
     PosterView* posterView;
@@ -18,6 +19,7 @@
     MZPriorObserverFix* observerFix;
 }
 @property(nonatomic,retain) IBOutlet NSArrayController* filesController; 
+@property(nonatomic,retain) IBOutlet NSArrayController* picturesController; 
 @property(nonatomic,retain) IBOutlet NSProgressIndicator* indicator;
 @property(nonatomic,retain) IBOutlet NSButton* retryButton;
 @property(nonatomic,retain) IBOutlet PosterView* posterView;

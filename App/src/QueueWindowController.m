@@ -41,15 +41,9 @@
     [[clearBtn cell] setBackgroundStyle:NSBackgroundStyleRaised];
 }
 
-- (NSToolbarItem *)playBtn
+- (BOOL)validateToolbarItem:(NSToolbarItem *)theItem
 {
-    return [controller playBtn2];
-}
-
-- (void)setPlayBtn:(NSToolbarItem *)newBtn
-{
-    [controller setPlayBtn2:newBtn];
-    [controller updateUI];
+    return [controller validateToolbarItem:theItem];
 }
 
 - (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem

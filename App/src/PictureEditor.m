@@ -33,7 +33,7 @@
     {
         MZRemoteData* remote = picture;
         if(!remote.isLoaded)
-            [remote removeObserver:self forKeyPath:@"isLoaded"];
+            [remote gtm_removeObserver:self forKeyPath:@"isLoaded" selector:@selector(pictureIsLoaded:)];
     }
     [observerFix removeObserver:self forKeyPath:@"selection.pictureChanged"];
     [picture release];
@@ -68,11 +68,12 @@
     NSDictionary* dict = [NSDictionary dictionaryWithObjects:values forKeys:keys];
     [self bind:@"picture" toObject:filesController withKeyPath:@"selection.picture" options:dict];
     */
-    [filesController addObserver:self forKeyPath:@"selection.picture" options:0 context:NULL];
+    [picturesController gtm_addObserver:self forKeyPath:@"selection" selector:@selector(picturesUpdated:) userInfo:nil options:0];
     [observerFix addObserver:self forKeyPath:@"selection.pictureChanged" options:NSKeyValueObservingOptionPrior context:NULL];
 }
 
 @synthesize filesController;
+@synthesize picturesController;
 @synthesize indicator;
 @synthesize retryButton;
 @synthesize posterView;
@@ -121,28 +122,32 @@
     }
 }
 
+- (void)picturesUpdated:(GTMKeyValueChangeNotification *)notification
+{
+    id status = [picturesController protectedValueForKeyPath:@"selection.self"];
+    self.picture = status;
+    if([status isKindOfClass:[MZRemoteData class]])
+        return;
+    if(status == NSMultipleValuesMarker)
+        [posterView setStatus:MZMultiplePosterImage];
+    else if(status == NSNotApplicableMarker)
+        [posterView setStatus:MZNotApplicablePosterImage];
+    else if(status == NSNoSelectionMarker || !status || status==[NSNull null])
+        [posterView setStatus:MZEmptyPosterImage];
+    else
+        [posterView setStatus:MZOKPosterImage];
+}
+
+- (void)pictureIsLoaded:(GTMKeyValueChangeNotification *)notification
+{
+    [self willChangeValueForKey:@"data"];
+    [self updateRemoteData];
+    [self didChangeValueForKey:@"data"];
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if(object == picture && [keyPath isEqual:@"isLoaded"])
-    {
-        [self willChangeValueForKey:@"data"];
-        [self updateRemoteData];
-        [self didChangeValueForKey:@"data"];
-    } else if(object == filesController && [keyPath isEqual:@"selection.picture"])
-    {
-        id status = [filesController protectedValueForKeyPath:@"selection.picture"];
-        self.picture = status;
-        if([status isKindOfClass:[MZRemoteData class]])
-            return;
-        if(status == NSMultipleValuesMarker)
-            [posterView setStatus:MZMultiplePosterImage];
-        else if(status == NSNotApplicableMarker)
-            [posterView setStatus:MZNotApplicablePosterImage];
-        else if(status == NSNoSelectionMarker || !status || status==[NSNull null])
-            [posterView setStatus:MZEmptyPosterImage];
-        else
-            [posterView setStatus:MZOKPosterImage];
-    } else if(object == observerFix && [keyPath isEqual:@"selection.pictureChanged"])
+    if(object == observerFix && [keyPath isEqual:@"selection.pictureChanged"])
     {
         NSNumber* prior = [change objectForKey:NSKeyValueChangeNotificationIsPriorKey];
         if([prior boolValue])
@@ -203,18 +208,19 @@
         {
             [indicator stopAnimation:self];
             [indicator setHidden:YES];
-            [remote removeObserver:self forKeyPath:@"isLoaded"];
+            [remote gtm_removeObserver:self forKeyPath:@"isLoaded" selector:@selector(pictureIsLoaded:)];
         }
         [retryButton setHidden:YES];
     }
-    [picture release];
+    id oldPicture = picture;
     picture = [newPicture retain];
+    [oldPicture release];
     if([picture isKindOfClass:[MZRemoteData class]])
     {
         MZRemoteData* remote = picture;
         if(!remote.isLoaded)
         {
-            [remote addObserver:self forKeyPath:@"isLoaded" options:0 context:NULL];
+            [remote gtm_addObserver:self forKeyPath:@"isLoaded" selector:@selector(pictureIsLoaded:) userInfo:nil options:0];
             [indicator setHidden:NO];
             [indicator startAnimation:self];
         }
@@ -257,7 +263,7 @@
         {
             [indicator setHidden:NO];
             [indicator startAnimation:self];
-            [remote addObserver:self forKeyPath:@"isLoaded" options:0 context:NULL];
+            [remote gtm_addObserver:self forKeyPath:@"isLoaded" selector:@selector(pictureIsLoaded:) userInfo:nil options:0];
             [remote loadData];
         }
     }

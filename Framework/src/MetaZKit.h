@@ -10,6 +10,7 @@
 #import <MetaZKit/TagData.h>
 #import <MetaZKit/MetaEdits.h>
 #import <MetaZKit/MetaLoaded.h>
+#import <MetaZKit/MZASISearch.h>
 #import <MetaZKit/MZTag.h>
 #import <MetaZKit/MZConstants.h>
 #import <MetaZKit/MZDataProvider.h>
@@ -20,9 +21,6 @@
 #import <MetaZKit/MZTimeCode.h>
 #import <MetaZKit/MZTimedTextItem.h>
 #import <MetaZKit/MetaEditsUndoManager.h>
-#import <MetaZKit/MZRESTWrapper.h>
-#import <MetaZKit/MZRESTSearch.h>
-#import <MetaZKit/MZRESTOperation.h>
 #import <MetaZKit/MZRemoteData.h>
 #import <MetaZKit/MZPriorObserverFix.h>
 #import <MetaZKit/MZMethodData.h>
@@ -41,6 +39,7 @@
 #import <MetaZKit/NSXMLNode+MZExtensions.h>
 #import <MetaZKit/NSString+TempFile.h>
 #import <MetaZKit/NSString+MZAllInCharacterSet.h>
+#import <MetaZKit/NSString+MZQueryString.h>
 #import <MetaZKit/NSFileManager+MZCreate.h>
 
 #import <MetaZKit/GTMNSString+URLArguments.h>

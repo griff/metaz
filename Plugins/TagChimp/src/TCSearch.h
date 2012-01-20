@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaZKit.h>
 
-@interface TCSearch : MZRESTSearch
+@interface TCSearch : MZASISearch
 {
     NSDictionary* mapping;
 }

@@ -15,7 +15,7 @@
 {
     self = [super init];
     if(self) {
-        dateFormatter = [[NSDateFormatter alloc] initWithCoder:aDecoder];
+        dateFormatter = [[MZMultipleDateFormatter alloc] initWithCoder:aDecoder];
     }
     return self;
 }
@@ -30,7 +30,7 @@
 {
     self = [super init];
     if(self) {
-        dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter = [[MZMultipleDateFormatter alloc] init];
     }
     return self;
 }

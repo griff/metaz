@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Sparkle/Sparkle.h>
 #import "MZMetaLoader.h"
 #import "FilesUndoController.h"
 #import "ResizeController.h"
@@ -45,6 +46,8 @@
     ChapterEditor* chapterEditor;
     NSProgressIndicator* loadingIndicator;
     NSInteger loadings;
+    NSArrayController* picturesController;
+    SUUpdater* updater;
     
     MZFileNameTextStorage* fileNameStorage;
     NSTextView* fileNameEditor;
@@ -67,6 +70,8 @@
 @property (nonatomic, retain) IBOutlet NSSearchField* searchField;
 @property (nonatomic, retain) IBOutlet ChapterEditor* chapterEditor;
 @property (nonatomic, retain) IBOutlet NSProgressIndicator* loadingIndicator;
+@property (nonatomic, retain) IBOutlet NSArrayController* picturesController;
+@property (nonatomic, retain) IBOutlet SUUpdater* updater;
 @property (readonly) NSInteger remainingInShortDescription;
 
 + (void)initialize;
