@@ -7,12 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <Growl/Growl.h>
 #import <UKDockProgressIndicator.h>
 #import "MZWriteQueue.h"
 #import "MZViewAnimation.h"
 
-@interface QueueController : NSObject <NSUserInterfaceValidations,GrowlApplicationBridgeDelegate> {
+@interface QueueController : NSObject <NSUserInterfaceValidations> {
     NSArrayController* filesController;
     NSWindow* mainWindow;
     NSWindowController* controller;

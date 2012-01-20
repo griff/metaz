@@ -24,7 +24,6 @@
 		1B032FA510B0C4AF00B28E3A /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1B032FDB10B0C5FE00B28E3A /* hmac_sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B032FDA10B0C5FE00B28E3A /* hmac_sha2.c */; };
 		1B032FDE10B0C62800B28E3A /* sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B032FDD10B0C62800B28E3A /* sha2.c */; };
-		1B03302110B0C9A600B28E3A /* AmazonPlugin.mzplugin in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B032F6710B0C12100B28E3A /* AmazonPlugin.mzplugin */; };
 		1B03307E10B0FA4800B28E3A /* AmazonPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B03307D10B0FA4800B28E3A /* AmazonPlugin.m */; };
 		1B0330AD10B1010700B28E3A /* NSDate+UTC.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B0330AB10B1010700B28E3A /* NSDate+UTC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B0330AE10B1010700B28E3A /* NSDate+UTC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0330AC10B1010700B28E3A /* NSDate+UTC.m */; };
@@ -80,6 +79,9 @@
 		1B299D7014AE3E370048B7C0 /* TheMovieDbSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B299D6F14AE3E370048B7C0 /* TheMovieDbSearchProvider.m */; };
 		1B299D7314AE43900048B7C0 /* TheMovieDbSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B299D7214AE43900048B7C0 /* TheMovieDbSearch.m */; };
 		1B299DB714AE4D3A0048B7C0 /* TheMovieDb.mzplugin in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B8CB90B14ACD62000F859F7 /* TheMovieDb.mzplugin */; };
+		1B29A06614C5C6570048B7C0 /* MZMultiGrowlWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B29A06514C5C6570048B7C0 /* MZMultiGrowlWrapper.m */; };
+		1B29A19B14C5CFE80048B7C0 /* 1.2.3 in Copy Growl frameworks */ = {isa = PBXBuildFile; fileRef = 1B29A07314C5C9430048B7C0 /* 1.2.3 */; };
+		1B29A19C14C5CFE80048B7C0 /* 1.3.1 in Copy Growl frameworks */ = {isa = PBXBuildFile; fileRef = 1B29A07114C5C9430048B7C0 /* 1.3.1 */; };
 		1B2AEED611A0EC430074BAAD /* MZFileNameTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */; };
 		1B36E75E1406612F009F542A /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B523B4D13F4B2B500C20B7D /* ASIDataCompressor.m */; };
 		1B36E78C14066727009F542A /* MZASISearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B36E78A14066727009F542A /* MZASISearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -99,8 +101,6 @@
 		1B42F27210DEB14B00AFEBF6 /* RubyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B11A00610457B0D004C93D3 /* RubyCocoa.framework */; };
 		1B42F2B710DEB4A200AFEBF6 /* IMDBPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B42F2B610DEB4A200AFEBF6 /* IMDBPlugin.m */; };
 		1B44949910D57D6900B9C751 /* AtomicParsley in Resources */ = {isa = PBXBuildFile; fileRef = 1B44949810D57D6900B9C751 /* AtomicParsley */; };
-		1B44956D10D6118F00B9C751 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B44956C10D6118F00B9C751 /* Growl.framework */; };
-		1B44957A10D611AA00B9C751 /* Growl.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1B44956C10D6118F00B9C751 /* Growl.framework */; };
 		1B44958510D6128700B9C751 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 1B44958410D6128700B9C751 /* Growl Registration Ticket.growlRegDict */; };
 		1B4499D210D9A5CE00B9C751 /* PresetSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4499D110D9A5CE00B9C751 /* PresetSegmentedControl.m */; };
 		1B449B8810DC7DE400B9C751 /* ChaptersTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B449B8710DC7DE400B9C751 /* ChaptersTableView.m */; };
@@ -341,7 +341,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1B8CB90A14ACD62000F859F7 /* TheMovieDb */;
+			remoteGlobalIDString = 1B8CB90A14ACD62000F859F7;
 			remoteInfo = TheMovieDb;
 		};
 		1B42F25F10DEB0DC00AFEBF6 /* PBXContainerItemProxy */ = {
@@ -417,13 +417,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		1B29A05A14C5C5B40048B7C0 /* Copy Growl frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Growl.framework/Versions;
+			dstSubfolderSpec = 10;
+			files = (
+				1B29A19B14C5CFE80048B7C0 /* 1.2.3 in Copy Growl frameworks */,
+				1B29A19C14C5CFE80048B7C0 /* 1.3.1 in Copy Growl frameworks */,
+			);
+			name = "Copy Growl frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BB6C11E1052B199001D3D1D /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1B44957A10D611AA00B9C751 /* Growl.framework in Copy Frameworks */,
 				1BA325CD10545BBB00276F57 /* MetaZKit.framework in Copy Frameworks */,
 				1BB6C11F1052B1C1001D3D1D /* Sparkle.framework in Copy Frameworks */,
 			);
@@ -438,7 +449,6 @@
 			files = (
 				1B299DB714AE4D3A0048B7C0 /* TheMovieDb.mzplugin in Copy Plugins */,
 				1B4F53D8116EA0BE003221B1 /* TheTVDBPlugin.mzplugin in Copy Plugins */,
-				1B03302110B0C9A600B28E3A /* AmazonPlugin.mzplugin in Copy Plugins */,
 				1B040EEE1081C0110027FA0D /* TagChimp.mzplugin in Copy Plugins */,
 				1BEA6F33106EF6FC004B1A7F /* AtomicParsleyPlugin.mzplugin in Copy Plugins */,
 			);
@@ -544,6 +554,10 @@
 		1B299D6F14AE3E370048B7C0 /* TheMovieDbSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheMovieDbSearchProvider.m; sourceTree = "<group>"; };
 		1B299D7114AE43900048B7C0 /* TheMovieDbSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheMovieDbSearch.h; sourceTree = "<group>"; };
 		1B299D7214AE43900048B7C0 /* TheMovieDbSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheMovieDbSearch.m; sourceTree = "<group>"; };
+		1B29A06414C5C6570048B7C0 /* MZMultiGrowlWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMultiGrowlWrapper.h; sourceTree = "<group>"; };
+		1B29A06514C5C6570048B7C0 /* MZMultiGrowlWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMultiGrowlWrapper.m; sourceTree = "<group>"; };
+		1B29A07114C5C9430048B7C0 /* 1.3.1 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = 1.3.1; path = Externals/Growl/1.3.1; sourceTree = "<group>"; };
+		1B29A07314C5C9430048B7C0 /* 1.2.3 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = 1.2.3; path = Externals/Growl/1.2.3; sourceTree = "<group>"; };
 		1B2AEED411A0EC430074BAAD /* MZFileNameTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFileNameTextStorage.h; sourceTree = "<group>"; };
 		1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFileNameTextStorage.m; sourceTree = "<group>"; };
 		1B36E78A14066727009F542A /* MZASISearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZASISearch.h; sourceTree = "<group>"; };
@@ -1147,7 +1161,6 @@
 				1B11A00710457B0D004C93D3 /* RubyCocoa.framework in Frameworks */,
 				1B0DEDE010610412009D293F /* Quartz.framework in Frameworks */,
 				1BCC98261076D1A3007EFF57 /* Sparkle.framework in Frameworks */,
-				1B44956D10D6118F00B9C751 /* Growl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1256,6 +1269,7 @@
 		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1B29A18814C5CF9E0048B7C0 /* Growl */,
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
@@ -1359,6 +1373,15 @@
 				1B069667149BD35B00B5FA90 /* MGViewAnimation.m */,
 			);
 			name = MGViewAnimation;
+			sourceTree = "<group>";
+		};
+		1B29A18814C5CF9E0048B7C0 /* Growl */ = {
+			isa = PBXGroup;
+			children = (
+				1B29A07314C5C9430048B7C0 /* 1.2.3 */,
+				1B29A07114C5C9430048B7C0 /* 1.3.1 */,
+			);
+			name = Growl;
 			sourceTree = "<group>";
 		};
 		1B42F21910DD534500AFEBF6 /* UKDockProgressIndicator */ = {
@@ -2007,6 +2030,8 @@
 				1BAC916413F056240022D625 /* MZYearDateFormatter.m */,
 				1B7B53F314A029FA00BF37DD /* MZMultipleDateFormatter.h */,
 				1B7B53F414A029FA00BF37DD /* MZMultipleDateFormatter.m */,
+				1B29A06414C5C6570048B7C0 /* MZMultiGrowlWrapper.h */,
+				1B29A06514C5C6570048B7C0 /* MZMultiGrowlWrapper.m */,
 			);
 			name = Classes;
 			path = App/src;
@@ -2405,6 +2430,7 @@
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				1B8262A710B39DE400DF101B /* Make Disk Image */,
 				1BB6BF3B1050ED38001D3D1D /* Sparkle Sign  */,
+				1B29A05A14C5C5B40048B7C0 /* Copy Growl frameworks */,
 			);
 			buildRules = (
 			);
@@ -2847,6 +2873,7 @@
 				1B069668149BD35B00B5FA90 /* MGViewAnimation.m in Sources */,
 				1B7B529D149EA26300BF37DD /* EnsureArrayTransformer.m in Sources */,
 				1B7B53F514A029FA00BF37DD /* MZMultipleDateFormatter.m in Sources */,
+				1B29A06614C5C6570048B7C0 /* MZMultiGrowlWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

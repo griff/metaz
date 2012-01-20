@@ -10,6 +10,7 @@
 #import "MZMetaLoader.h"
 #import "QueueWindowController.h"
 #import "Resources.h"
+#import "MZMultiGrowlWrapper.h"
 
 @interface QueueController ()
 @property(readwrite) NSInteger targetProgress;
@@ -59,21 +60,18 @@
 
 - (void)awakeFromNib
 {
-    [GrowlApplicationBridge setGrowlDelegate:self];
-    if([GrowlApplicationBridge isGrowlInstalled])
-    {
-        [[NSNotificationCenter defaultCenter]
-            addObserver:self
-               selector:@selector(queueItemCompleted:)
-                   name:MZQueueItemCompleted
-                 object:nil];
+    [MZMultiGrowlWrapper setGrowlDelegate:self];
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(queueItemCompleted:)
+               name:MZQueueItemCompleted
+             object:nil];
 
-        [[NSNotificationCenter defaultCenter]
-            addObserver:self
-               selector:@selector(queueItemFailed:)
-                   name:MZQueueItemFailed
-                 object:nil];
-    }
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(queueItemFailed:)
+               name:MZQueueItemFailed
+             object:nil];
 
     [[NSNotificationCenter defaultCenter]
         addObserver:self
@@ -386,7 +384,7 @@
 
         if(action == 2 || action == 5)
         {
-            [GrowlApplicationBridge 
+            [MZMultiGrowlWrapper
                 notifyWithTitle:title
                     description:msg
                notificationName:@"Queue processing completed"
@@ -409,7 +407,7 @@
     if(action == 2 || action == 3 || action == 5)
     {
         MetaEdits* edits = [[note userInfo] objectForKey:MZMetaEditsNotificationKey];
-        [GrowlApplicationBridge 
+        [MZMultiGrowlWrapper
             notifyWithTitle:@"File writing completed"
                 description:[NSString stringWithFormat:@"Completed writing %@", [[edits savedFileName] lastPathComponent]]
            notificationName:@"File writing completed"
@@ -426,7 +424,7 @@
     if(action == 2 || action == 3)
     {
         MetaEdits* edits = [[note userInfo] objectForKey:MZMetaEditsNotificationKey];
-        [GrowlApplicationBridge 
+        [MZMultiGrowlWrapper
             notifyWithTitle:@"File writing failed"
                 description:[NSString stringWithFormat:@"Failed writing %@", [[edits savedFileName] lastPathComponent]]
            notificationName:@"File writing failed"

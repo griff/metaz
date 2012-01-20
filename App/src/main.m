@@ -10,7 +10,7 @@
 #import <RubyCocoa/RBRuntime.h>
 #import <MetaZKit/MZLogger.h>
 #import <sys/stat.h>
-#import <Growl/Growl.h>
+#import "MZMultiGrowlWrapper.h"
 
 int main(int argc, const char *argv[])
 {
@@ -51,7 +51,7 @@ int main(int argc, const char *argv[])
     {
         NSMutableDictionary* dict = [[NSMutableDictionary alloc] initWithContentsOfFile:dictPath];
         
-        if([GrowlApplicationBridge isGrowlInstalled])
+        if([MZMultiGrowlWrapper isGrowlSupported])
             [dict setObject:[NSNumber numberWithInteger:3] forKey:@"whenDoneAction"];
         [[NSUserDefaults standardUserDefaults] registerDefaults:dict];
         [dict release];
