@@ -12,10 +12,10 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1798"/>
 			<integer value="1723"/>
-			<integer value="1833"/>
+			<integer value="1798"/>
 			<integer value="106"/>
+			<integer value="1833"/>
 			<integer value="475"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -8982,22 +8982,6 @@
 					<int key="connectionID">1846</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">data: data</string>
-						<reference key="source" ref="83431714"/>
-						<reference key="destination" ref="569338711"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="83431714"/>
-							<reference key="NSDestination" ref="569338711"/>
-							<string key="NSLabel">data: data</string>
-							<string key="NSBinding">data</string>
-							<string key="NSKeyPath">data</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1848</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">picturesController</string>
 						<reference key="source" ref="569338711"/>
@@ -9220,6 +9204,26 @@
 						<reference key="destination" ref="931879071"/>
 					</object>
 					<int key="connectionID">1906</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">data: data</string>
+						<reference key="source" ref="83431714"/>
+						<reference key="destination" ref="569338711"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="83431714"/>
+							<reference key="NSDestination" ref="569338711"/>
+							<string key="NSLabel">data: data</string>
+							<string key="NSBinding">data</string>
+							<string key="NSKeyPath">data</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSConditionallySetsEnabled</string>
+								<boolean value="NO" key="NS.object.0"/>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1913</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -14108,7 +14112,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1906</int>
+			<int key="maxID">1913</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
