@@ -6,7 +6,7 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
-#import <MetaZKit/MZConstants.h>
+#import "MZConstants.h"
 
 // Info
 NSString* const MZFileNameTagIdent = @"fileName";
@@ -87,23 +87,3 @@ NSString* const MZDataControllerErrorKey = @"MZDataControllerErrorKey";
 
 // Standard alert ids
 NSString* const MZDataProviderFileAlreadyLoadedWarningKey = @"alerts.warnings.fileAlreadyLoaded";
-
-
-void MZRelease(const void * ns)
-{
-    id obj = (id)ns;
-    [obj release];
-}
-
-const void * MZRetain(const void * ns)
-{
-    id obj = (id)ns;
-    return [obj retain];
-}
-
-CFStringRef MZCopyDescription(const void *ns)
-{
-    id obj = (id)ns;
-    return (CFStringRef)[obj description];
-}
-

@@ -7,7 +7,6 @@
 //
 
 #import "NSFileManager+MZAsync.h"
-#import "MZConstants.h"
 
 NSError* status2Error(OSStatus status)
 {
@@ -112,9 +111,10 @@ void MZMoveFSPathFileOperationStatusProc (
     clientContext.version = 0;
     clientContext.version = 0;
     clientContext.info = ret;
-    clientContext.retain = MZRetain;
-    clientContext.release = MZRelease;
-    clientContext.copyDescription = MZCopyDescription;
+    clientContext.retain = CFRetain;
+    clientContext.release = CFRelease;
+    clientContext.copyDescription = CFCopyDescription;
+    
 
     [ret schedule];
     OSStatus status = FSPathCopyObjectAsync(
@@ -153,9 +153,9 @@ void MZMoveFSPathFileOperationStatusProc (
     clientContext.version = 0;
     clientContext.version = 0;
     clientContext.info = ret;
-    clientContext.retain = MZRetain;
-    clientContext.release = MZRelease;
-    clientContext.copyDescription = MZCopyDescription;
+    clientContext.retain = CFRetain;
+    clientContext.release = CFRelease;
+    clientContext.copyDescription = CFCopyDescription;
 
     [ret schedule];
     OSStatus status = FSPathMoveObjectAsync(

@@ -259,6 +259,8 @@ static MZPluginController *gInstance = NULL;
     {
         if(![disabled containsObject:[[plugin bundle] bundleIdentifier]])
             [activePlugins addObject:plugin];
+        else
+            MZLoggerInfo(@"Disabled plugin '%@'", [[plugin bundle] bundleIdentifier]);
     }
     [self didChangeValueForKey:@"activePlugins"];
 }
