@@ -34,16 +34,17 @@
 				<string>video/x-m4v</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>The Other MPEG-4 Video</string>
+			<string>Apple MPEG-4 movie</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
-				<string>M4V</string>
+				<string>M4V </string>
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>org.maven-group.mpeg4-video</string>
+				<string>com.apple.m4v-video</string>
+				<string>com.apple.protected-mpeg-4-video</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
@@ -171,31 +172,6 @@
 	</array>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>public.movie</string>
-			</array>
-			<key>UTTypeIdentifier</key>
-			<string>org.maven-group.mpeg4-video</string>
-			<key>UTTypeDescription</key>
-			<string>The Other MPEG-4 Video</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.mime-type</key>
-				<array>
-					<string>video/x-m4v</string>
-				</array>
-				<key>com.apple.ostype</key>
-				<array>
-					<string>M4V</string>
-				</array>
-				<key>public.filename-extension</key>
-				<array>
-					<string>m4v</string>
-				</array>
-			</dict>
-		</dict>
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
