@@ -1,4 +1,6 @@
 
+#ifndef MZKIT_EXTERN
+
 #ifdef __cplusplus
 #define MZKIT_EXTERN		extern "C"
 #else
@@ -214,3 +216,5 @@ MZKIT_EXTERN NSString* const MZDataProviderFileAlreadyLoadedWarningKey;
 void MZRelease(const void * ns);
 const void * MZRetain(const void * ns);
 CFStringRef MZCopyDescription(const void *ns);
+
+#endif // MZKIT_EXTERN

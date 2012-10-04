@@ -122,7 +122,7 @@
 
 - (NSString *)stringValue
 {
-    return [NSString stringWithFormat:@"%02u:%02u:%02u.%03u",
+    return [NSString stringWithFormat:@"%02lu:%02lu:%02lu.%03lu",
         [self hour], [self min], [self sec], [self ms]];
 }
 
