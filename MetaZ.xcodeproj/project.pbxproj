@@ -114,6 +114,8 @@
 		1B449E4B10DCCDB000B9C751 /* GTMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B449DCE10DCCC1C00B9C751 /* GTMLogger.m */; };
 		1B4AF83B1170CFCC00E5C969 /* TheTVDBSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */; };
 		1B4AF84511715C8400E5C969 /* languages.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1B4AF84411715C8400E5C969 /* languages.xml */; };
+		1B4CFF91161CDF0100B12009 /* AEVTBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4CFF90161CDF0100B12009 /* AEVTBuilder.m */; };
+		1B4CFFE8161CE0ED00B12009 /* AEVTBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4CFF90161CDF0100B12009 /* AEVTBuilder.m */; };
 		1B4F53C4116E9F44003221B1 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1B4F53D8116EA0BE003221B1 /* TheTVDBPlugin.mzplugin in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzplugin */; };
 		1B4F53DF116EA1B5003221B1 /* TheTVDBPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F53DE116EA1B5003221B1 /* TheTVDBPlugin.m */; };
@@ -863,6 +865,8 @@
 		1B4AF8391170CFCC00E5C969 /* TheTVDBSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBSearch.h; sourceTree = "<group>"; };
 		1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBSearch.m; sourceTree = "<group>"; };
 		1B4AF84411715C8400E5C969 /* languages.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = languages.xml; path = Plugins/TheTVDB/resources/languages.xml; sourceTree = "<group>"; };
+		1B4CFF8F161CDF0100B12009 /* AEVTBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEVTBuilder.h; sourceTree = "<group>"; };
+		1B4CFF90161CDF0100B12009 /* AEVTBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEVTBuilder.m; sourceTree = "<group>"; };
 		1B4F5394116E9EFC003221B1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/TheTVDB/Info.plist; sourceTree = "<group>"; };
 		1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheTVDBPlugin.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B4F53DD116EA1B5003221B1 /* TheTVDBPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBPlugin.h; sourceTree = "<group>"; };
@@ -1431,6 +1435,7 @@
 		1B449CEE10DCCAD500B9C751 /* External Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1B4CFF8E161CDED800B12009 /* AEVTBuilder */,
 				1B069665149BD32D00B5FA90 /* MGViewAnimation */,
 				1B523B4813F4B24E00C20B7D /* asi-http-request */,
 				1B42F21910DD534500AFEBF6 /* UKDockProgressIndicator */,
@@ -1753,6 +1758,16 @@
 			);
 			name = Foundation;
 			path = "Externals/google-toolbox-for-mac/Foundation";
+			sourceTree = "<group>";
+		};
+		1B4CFF8E161CDED800B12009 /* AEVTBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				1B4CFF8F161CDF0100B12009 /* AEVTBuilder.h */,
+				1B4CFF90161CDF0100B12009 /* AEVTBuilder.m */,
+			);
+			name = AEVTBuilder;
+			path = Externals/AEVTBuilder;
 			sourceTree = "<group>";
 		};
 		1B4F538D116E9E1F003221B1 /* TheTVDB */ = {
@@ -2810,6 +2825,7 @@
 				1B36E75E1406612F009F542A /* ASIDataCompressor.m in Sources */,
 				1B36E78D14066727009F542A /* MZASISearch.m in Sources */,
 				1B0696D8149BFB2D00B5FA90 /* NSString+MZQueryString.m in Sources */,
+				1B4CFFE8161CE0ED00B12009 /* AEVTBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2874,6 +2890,7 @@
 				1B7B529D149EA26300BF37DD /* EnsureArrayTransformer.m in Sources */,
 				1B7B53F514A029FA00BF37DD /* MZMultipleDateFormatter.m in Sources */,
 				1B29A06614C5C6570048B7C0 /* MZMultiGrowlWrapper.m in Sources */,
+				1B4CFF91161CDF0100B12009 /* AEVTBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3403,6 +3420,7 @@
 				HEADER_SEARCH_PATHS = (
 					Externals/MGViewAnimation,
 					Externals/UKDockProgressIndicator,
+					Externals/AEVTBuilder,
 					"Externals/google-toolbox-for-mac/**",
 				);
 				IBC_OTHER_FLAGS = "--plugin /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/ImageKit.framework/Resources/ImageKitIBPlugin.ibplugin";
@@ -3430,7 +3448,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Framework/MetaZKit_Prefix.pch;
-				HEADER_SEARCH_PATHS = "Externals/google-toolbox-for-mac/**";
+				HEADER_SEARCH_PATHS = (
+					Externals/AEVTBuilder,
+					"Externals/google-toolbox-for-mac/**",
+				);
 				INFOPLIST_FILE = Framework/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
@@ -3759,7 +3780,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Framework/MetaZKit_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
-				HEADER_SEARCH_PATHS = "Externals/google-toolbox-for-mac/**";
+				HEADER_SEARCH_PATHS = (
+					Externals/AEVTBuilder,
+					"Externals/google-toolbox-for-mac/**",
+				);
 				INFOPLIST_FILE = Framework/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
@@ -3790,7 +3814,10 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Framework/MetaZKit_Prefix.pch;
-				HEADER_SEARCH_PATHS = "Externals/google-toolbox-for-mac/**";
+				HEADER_SEARCH_PATHS = (
+					Externals/AEVTBuilder,
+					"Externals/google-toolbox-for-mac/**",
+				);
 				INFOPLIST_FILE = Framework/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
@@ -3890,6 +3917,7 @@
 				HEADER_SEARCH_PATHS = (
 					Externals/MGViewAnimation,
 					Externals/UKDockProgressIndicator,
+					Externals/AEVTBuilder,
 					"Externals/google-toolbox-for-mac/**",
 				);
 				IBC_OTHER_FLAGS = "--plugin /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/ImageKit.framework/Resources/ImageKitIBPlugin.ibplugin";
@@ -3920,6 +3948,7 @@
 				HEADER_SEARCH_PATHS = (
 					Externals/MGViewAnimation,
 					Externals/UKDockProgressIndicator,
+					Externals/AEVTBuilder,
 					"Externals/google-toolbox-for-mac/**",
 				);
 				IBC_OTHER_FLAGS = "--plugin /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/ImageKit.framework/Resources/ImageKitIBPlugin.ibplugin";
