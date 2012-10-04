@@ -9,6 +9,7 @@
 @interface MZTag : NSObject
 {
     NSString* identifier;
+    NSString* scriptName;
 }
 
 + (NSArray *)infoTags;
@@ -20,11 +21,15 @@
 + (NSString *)localizedNameForKnownIdentifier:(NSString *)identifier;
 + (void)registerTag:(MZTag *)tag;
 + (MZTag *)tagForIdentifier:(NSString *)identifier;
++ (MZTag *)tagForScriptName:(NSString *)scriptName;
 
 + (id)tagWithIdentifier:(NSString *)identifier;
++ (id)tagWithIdentifier:(NSString *)identifier scriptName:(NSString *)scriptName;
 - (id)initWithIdentifier:(NSString *)identifier;
+- (id)initWithIdentifier:(NSString *)identifier scriptName:(NSString *)scriptName;
 
 @property(readonly) NSString *identifier;
+@property(readonly) NSString *scriptName;
 @property(readonly) NSString *localizedName;
 @property(readonly) NSCell *editorCell;
 - (const char*)encoding;
@@ -71,7 +76,6 @@
 
 @interface MZEnumTag : MZTag {}
 
-+ (id)tag;
 - (int)nilValue;
 
 @end
