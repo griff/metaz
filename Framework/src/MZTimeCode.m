@@ -7,7 +7,7 @@
 //
 
 #import "MZTimeCode.h"
-
+#import <AEVTBuilder.h>
 
 @implementation MZTimeCode
 @synthesize millis;
@@ -141,6 +141,20 @@
     if(self->millis > aTimeCode->millis)
         return NSOrderedDescending;
     return NSOrderedSame;
+}
+
+#pragma mark - Scripting additions
+
+- (NSAppleEventDescriptor *)scriptingRecordDescriptor
+{
+    return [RECORD : 'Mtim',
+        [KEY : 'MTmi'], [INT : self.millis],
+        [KEY : 'MTms'], [INT : self.ms],
+        [KEY : 'MTse'], [INT : self.sec],
+        [KEY : 'MTmt'], [INT : self.min],
+        [KEY : 'MThr'], [INT : self.hour],
+        [KEY : 'MTxt'], [STRING : [self stringValue]],
+    nil];
 }
 
 #pragma mark - NSCoding implementation
