@@ -1,3 +1,4 @@
+#ifndef MZKIT_EXTERN
 
 #ifdef __cplusplus
 #define MZKIT_EXTERN		extern "C"
@@ -209,3 +210,5 @@ MZKIT_EXTERN NSString* const MZDataControllerErrorKey;
 
 // Standard alert ids
 MZKIT_EXTERN NSString* const MZDataProviderFileAlreadyLoadedWarningKey;
+
+#endif // MZKIT_EXTERN

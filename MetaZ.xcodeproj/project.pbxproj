@@ -146,7 +146,7 @@
 		1B8CB5E414AA31C500F859F7 /* modified.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1B8CB5E114AA31C500F859F7 /* modified.tiff */; };
 		1B8CB94F14ACD6FF00F859F7 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1B8CB96314AE3B2000F859F7 /* TheMovieDbPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8CB96214AE3B2000F859F7 /* TheMovieDbPlugin.m */; };
-		1B8E95711401BE7F006227B4 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B523B9013F4B3BE00C20B7D /* libz.1.2.3.dylib */; };
+		1B8E95711401BE7F006227B4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B523B9013F4B3BE00C20B7D /* libz.dylib */; };
 		1B8E96321401BE86006227B4 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B523B9613F4B3D900C20B7D /* CoreServices.framework */; };
 		1B92BB1C10876FBA0057EFD7 /* PureMetaEdits.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B92BB1A10876FBA0057EFD7 /* PureMetaEdits.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		1B92BB1D10876FBA0057EFD7 /* PureMetaEdits.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BB1B10876FBA0057EFD7 /* PureMetaEdits.m */; };
@@ -919,7 +919,7 @@
 		1B523B7B13F4B2B500C20B7D /* ASIS3ServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIS3ServiceRequest.h; sourceTree = "<group>"; };
 		1B523B7C13F4B2B500C20B7D /* ASIS3ServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIS3ServiceRequest.m; sourceTree = "<group>"; };
 		1B523B8813F4B39400C20B7D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		1B523B9013F4B3BE00C20B7D /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
+		1B523B9013F4B3BE00C20B7D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		1B523B9613F4B3D900C20B7D /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		1B5AC76D10532E5200F9CE36 /* MetaEditPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaEditPanel.h; sourceTree = "<group>"; };
 		1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditPanel.m; sourceTree = "<group>"; };
@@ -1139,7 +1139,7 @@
 			files = (
 				1BA325E110545CD900276F57 /* Cocoa.framework in Frameworks */,
 				1B523C0F13F4B3F500C20B7D /* SystemConfiguration.framework in Frameworks */,
-				1B8E95711401BE7F006227B4 /* libz.1.2.3.dylib in Frameworks */,
+				1B8E95711401BE7F006227B4 /* libz.dylib in Frameworks */,
 				1B8E96321401BE86006227B4 /* CoreServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1260,7 +1260,7 @@
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				1B44956C10D6118F00B9C751 /* Growl.framework */,
 				1B523B8813F4B39400C20B7D /* SystemConfiguration.framework */,
-				1B523B9013F4B3BE00C20B7D /* libz.1.2.3.dylib */,
+				1B523B9013F4B3BE00C20B7D /* libz.dylib */,
 				1B523B9613F4B3D900C20B7D /* CoreServices.framework */,
 			);
 			name = "Linked Frameworks";
@@ -3106,9 +3106,9 @@
 		1B032F6910B0C12200B28E3A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
@@ -3128,7 +3128,6 @@
 					AppKit,
 					"-lz",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = AmazonPlugin;
 				USER_HEADER_SEARCH_PATHS = "Plugins/Amazon/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3138,9 +3137,9 @@
 		1B032F6A10B0C12200B28E3A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
 					Externals/hmac,
@@ -3159,7 +3158,6 @@
 					AppKit,
 					"-lz",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = AmazonPlugin;
 				USER_HEADER_SEARCH_PATHS = "Plugins/Amazon/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3171,10 +3169,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -3189,7 +3187,6 @@
 					"-framework",
 					SenTestingKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = MetaZKitTest;
 				WRAPPER_EXTENSION = octest;
 			};
@@ -3199,10 +3196,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3216,7 +3213,6 @@
 					"-framework",
 					SenTestingKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = MetaZKitTest;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
@@ -3226,9 +3222,9 @@
 		1B040EC01081B3C10027FA0D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3244,7 +3240,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = TagChimp;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TagChimp/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3254,9 +3249,9 @@
 		1B040EC11081B3C10027FA0D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3271,7 +3266,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = TagChimp;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TagChimp/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3282,6 +3276,7 @@
 		1B2022F910B393CB00EE548A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "Plist Macos";
 			};
 			name = Debug;
@@ -3289,6 +3284,7 @@
 		1B2022FA10B393CB00EE548A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "Plist Macos";
 			};
 			name = Release;
@@ -3296,9 +3292,9 @@
 		1B42F25B10DEB0D400AFEBF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3311,7 +3307,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = IMDBPlugin;
 				USER_HEADER_SEARCH_PATHS = "Plugins/IMDB/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3321,7 +3316,7 @@
 		1B42F25C10DEB0D400AFEBF6 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3333,7 +3328,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = IMDBPlugin;
 				USER_HEADER_SEARCH_PATHS = "Plugins/IMDB/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3343,9 +3337,9 @@
 		1B42F25D10DEB0D400AFEBF6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3357,7 +3351,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = IMDBPlugin;
 				USER_HEADER_SEARCH_PATHS = "Plugins/IMDB/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3375,10 +3368,10 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 				USE_HEADERMAP = NO;
 			};
@@ -3388,6 +3381,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3395,7 +3389,6 @@
 					"\"$(SRCROOT)/Externals\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3419,13 +3412,13 @@
 		1B44938010C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3442,7 +3435,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = MetaZKit;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = Framework/src;
@@ -3452,10 +3444,10 @@
 		1B44938110C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3473,7 +3465,6 @@
 					"-framework",
 					MetaZKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = AtomicParsleyPlugin;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
@@ -3484,9 +3475,9 @@
 		1B44938210C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3502,7 +3493,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = TagChimp;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TagChimp/**";
@@ -3513,9 +3503,9 @@
 		1B44938310C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
@@ -3534,7 +3524,6 @@
 					AppKit,
 					"-lz",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = AmazonPlugin;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = "Plugins/Amazon/**";
@@ -3546,10 +3535,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -3564,7 +3553,6 @@
 					"-framework",
 					SenTestingKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = MetaZKitTest;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				WRAPPER_EXTENSION = octest;
@@ -3574,6 +3562,7 @@
 		1B44938510C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "Plist Macos";
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 			};
@@ -3582,9 +3571,9 @@
 		1B4F53C6116E9F44003221B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = Plugins/TheTVDB/Info.plist;
@@ -3599,7 +3588,6 @@
 					AppKit,
 					"-lz",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = TheTVDBPlugin;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3609,9 +3597,9 @@
 		1B4F53C7116E9F44003221B1 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/include";
@@ -3627,7 +3615,6 @@
 					AppKit,
 					"-lz",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = TheTVDBPlugin;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
@@ -3638,9 +3625,9 @@
 		1B4F53C8116E9F44003221B1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/include";
 				INFOPLIST_FILE = Plugins/TheTVDB/Info.plist;
@@ -3655,7 +3642,6 @@
 					AppKit,
 					"-lz",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = TheTVDBPlugin;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3667,9 +3653,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3684,7 +3670,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = TheMovieDb;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3695,7 +3680,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3709,7 +3694,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = TheMovieDb;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3720,9 +3704,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3736,7 +3720,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = TheMovieDb;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3747,13 +3730,13 @@
 		1BA325C610545ACB00276F57 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3771,7 +3754,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = MetaZKit;
 				USER_HEADER_SEARCH_PATHS = Framework/src;
 			};
@@ -3780,13 +3762,13 @@
 		1BA325C710545ACB00276F57 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Framework/MetaZKit_Prefix.pch;
@@ -3802,7 +3784,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = MetaZKit;
 				USER_HEADER_SEARCH_PATHS = Framework/src;
 				ZERO_LINK = NO;
@@ -3812,10 +3793,10 @@
 		1BEA6E74106EF2A1004B1A7F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3833,7 +3814,6 @@
 					"-framework",
 					MetaZKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = AtomicParsleyPlugin;
 				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
 				WRAPPER_EXTENSION = mzplugin;
@@ -3843,10 +3823,10 @@
 		1BEA6E75106EF2A1004B1A7F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3863,7 +3843,6 @@
 					"-framework",
 					MetaZKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = AtomicParsleyPlugin;
 				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
 				WRAPPER_EXTENSION = mzplugin;
@@ -3875,6 +3854,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3882,7 +3862,6 @@
 					"\"$(SRCROOT)/Externals\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3906,6 +3885,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
@@ -3942,10 +3922,10 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 				USE_HEADERMAP = NO;
 			};
@@ -3960,9 +3940,9 @@
 					"$(ARCHS_STANDARD_32_64_BIT)",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 				USE_HEADERMAP = NO;
 			};
