@@ -83,6 +83,9 @@
 		1B29A19B14C5CFE80048B7C0 /* 1.2.3 in Copy Growl frameworks */ = {isa = PBXBuildFile; fileRef = 1B29A07314C5C9430048B7C0 /* 1.2.3 */; };
 		1B29A19C14C5CFE80048B7C0 /* 1.3.1 in Copy Growl frameworks */ = {isa = PBXBuildFile; fileRef = 1B29A07114C5C9430048B7C0 /* 1.3.1 */; };
 		1B2AEED611A0EC430074BAAD /* MZFileNameTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */; };
+		1B35446915B1D96B0033DD74 /* MetaZ.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 1B35446815B1D96B0033DD74 /* MetaZ.sdef */; };
+		1B3544E815B2160F0033DD74 /* MetaZApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3544E715B2160F0033DD74 /* MetaZApplication.m */; };
+		1B35453115B223BB0033DD74 /* MZMetaDataDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B35453015B223BB0033DD74 /* MZMetaDataDocument.m */; };
 		1B36E75E1406612F009F542A /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B523B4D13F4B2B500C20B7D /* ASIDataCompressor.m */; };
 		1B36E78C14066727009F542A /* MZASISearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B36E78A14066727009F542A /* MZASISearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B36E78D14066727009F542A /* MZASISearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B36E78B14066727009F542A /* MZASISearch.m */; };
@@ -562,6 +565,11 @@
 		1B29A07314C5C9430048B7C0 /* 1.2.3 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = 1.2.3; path = Externals/Growl/1.2.3; sourceTree = "<group>"; };
 		1B2AEED411A0EC430074BAAD /* MZFileNameTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFileNameTextStorage.h; sourceTree = "<group>"; };
 		1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFileNameTextStorage.m; sourceTree = "<group>"; };
+		1B35446815B1D96B0033DD74 /* MetaZ.sdef */ = {isa = PBXFileReference; explicitFileType = text.xml; fileEncoding = 4; name = MetaZ.sdef; path = App/resources/MetaZ.sdef; sourceTree = "<group>"; };
+		1B3544E615B2160F0033DD74 /* MetaZApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaZApplication.h; sourceTree = "<group>"; };
+		1B3544E715B2160F0033DD74 /* MetaZApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaZApplication.m; sourceTree = "<group>"; };
+		1B35452F15B223BB0033DD74 /* MZMetaDataDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMetaDataDocument.h; sourceTree = "<group>"; };
+		1B35453015B223BB0033DD74 /* MZMetaDataDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMetaDataDocument.m; sourceTree = "<group>"; };
 		1B36E78A14066727009F542A /* MZASISearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZASISearch.h; sourceTree = "<group>"; };
 		1B36E78B14066727009F542A /* MZASISearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZASISearch.m; sourceTree = "<group>"; };
 		1B3AD7A111055DF300B33F85 /* MZQueueOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZQueueOperation.h; sourceTree = "<group>"; };
@@ -2047,6 +2055,10 @@
 				1B7B53F414A029FA00BF37DD /* MZMultipleDateFormatter.m */,
 				1B29A06414C5C6570048B7C0 /* MZMultiGrowlWrapper.h */,
 				1B29A06514C5C6570048B7C0 /* MZMultiGrowlWrapper.m */,
+				1B3544E615B2160F0033DD74 /* MetaZApplication.h */,
+				1B3544E715B2160F0033DD74 /* MetaZApplication.m */,
+				1B35452F15B223BB0033DD74 /* MZMetaDataDocument.h */,
+				1B35453015B223BB0033DD74 /* MZMetaDataDocument.m */,
 			);
 			name = Classes;
 			path = App/src;
@@ -2200,6 +2212,7 @@
 				1BB6BF331050E5E2001D3D1D /* sparkle_public.pem */,
 				1BCC990610771262007EFF57 /* FactorySettings.plist */,
 				1BC0661710AE223A005C2A9F /* PresetsPanel.xib */,
+				1B35446815B1D96B0033DD74 /* MetaZ.sdef */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2623,6 +2636,7 @@
 				1B8CB5E214AA31C500F859F7 /* modified_header.tiff in Resources */,
 				1B8CB5E314AA31C500F859F7 /* modified_selected.tiff in Resources */,
 				1B8CB5E414AA31C500F859F7 /* modified.tiff in Resources */,
+				1B35446915B1D96B0033DD74 /* MetaZ.sdef in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2890,6 +2904,8 @@
 				1B7B529D149EA26300BF37DD /* EnsureArrayTransformer.m in Sources */,
 				1B7B53F514A029FA00BF37DD /* MZMultipleDateFormatter.m in Sources */,
 				1B29A06614C5C6570048B7C0 /* MZMultiGrowlWrapper.m in Sources */,
+				1B3544E815B2160F0033DD74 /* MetaZApplication.m in Sources */,
+				1B35453115B223BB0033DD74 /* MZMetaDataDocument.m in Sources */,
 				1B4CFF91161CDF0100B12009 /* AEVTBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

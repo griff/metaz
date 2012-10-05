@@ -15,6 +15,7 @@
 #import "SearchMeta.h"
 #import "FilesTableView.h"
 #import "Resources.h"
+#import "MZMetaDataDocument.h"
 
 #define MaxShortDescription 256
 
@@ -940,6 +941,12 @@ NSDictionary* findBinding(NSWindow* window) {
         [sender replyToOpenOrPrint:NSApplicationDelegateReplyCancel];
 }
 
+- (void)applicationWillFinishLaunching:(NSNotification *)notification;
+{
+    // Load scriptability early to allow sdef open handler to override default AppKit handler.
+    [NSScriptSuiteRegistry sharedScriptSuiteRegistry]; 
+}
+
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {
     BOOL changed = NO;
@@ -988,6 +995,25 @@ NSDictionary* findBinding(NSWindow* window) {
         return NSTerminateNow;
     }
     return NSTerminateCancel;
+}
+
+- (BOOL)application:(NSApplication *)sender delegateHandlesKey:(NSString *)key;
+{
+    return [key isEqualToString:@"orderedDocuments"];
+}
+
+- (NSArray *)orderedDocuments
+{
+    if(!documents)
+        documents = [[NSMutableArray alloc] init];
+    [documents removeAllObjects];
+    
+    NSArray* files = [MZMetaLoader sharedLoader].files;
+    for(MetaEdits* edit in files)
+    {
+        [documents addObject:[MZMetaDataDocument documentWithEdit:edit]];
+    }
+    return documents;
 }
 
 @end

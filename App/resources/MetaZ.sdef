@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+
+<dictionary xmlns:xi="http://www.w3.org/2003/XInclude">
+ 
+    <!--
+    <xi:include href="file:///System/Library/ScriptingDefinitions/CocoaStandard.sdef" xpointer="xpointer(/dictionary/suite)"/>
+    -->
+    	<suite name="Standard Suite" code="????" description="Common classes and commands for all applications.">
+
+		<command name="open" code="aevtodoc" description="Open a document.">
+			<direct-parameter description="The file(s) to be opened.">
+				<type type="file"/>
+				<type type="file" list="yes"/>
+			</direct-parameter>
+			<result description="The opened document(s).">
+				<type type="document"/>
+				<type type="document" list="yes"/>
+			</result>
+		</command>
+
+		<enumeration name="save options" code="savo">
+			<enumerator name="yes" code="yes " description="Save the file."/>
+			<enumerator name="no" code="no  " description="Do not save the file."/>
+			<enumerator name="ask" code="ask " description="Ask the user whether or not to save the file."/>
+		</enumeration>
+
+		<command name="close" code="coreclos" description="Close a document.">
+			<cocoa class="NSCloseCommand"/>
+			<direct-parameter type="specifier" description="the document(s) or window(s) to close."/>
+			<parameter name="saving" code="savo" type="save options" optional="yes" description="Should changes be saved before closing?">
+				<cocoa key="SaveOptions"/>
+			</parameter>
+			<parameter name="saving in" code="kfil" type="file" optional="yes" description="The file in which to save the document, if so.">
+				<cocoa key="File"/>
+			</parameter>
+		</command>
+
+		<command name="save" code="coresave" description="Save a document.">
+			<direct-parameter type="specifier" description="The document(s) or window(s) to save."/>
+			<parameter name="in" code="kfil" type="file" optional="yes" description="The file in which to save the document.">
+				<cocoa key="File"/>
+			</parameter>
+			<parameter name="as" code="fltp" type="saveable file format" optional="yes" description="The file format to use.">
+				<cocoa key="FileType"/>
+			</parameter>
+		</command>
+
+		<enumeration name="printing error handling" code="enum">
+			<enumerator name="standard" code="lwst" description="Standard PostScript error handling">
+				<cocoa boolean-value="NO"/>
+			</enumerator>
+			<enumerator name="detailed" code="lwdt" description="print a detailed report of PostScript errors">
+				<cocoa boolean-value="YES"/>
+			</enumerator>
+		</enumeration>
+
+		<record-type name="print settings" code="pset">
+			<property name="copies" code="lwcp" type="integer" description="the number of copies of a document to be printed">
+				<cocoa key="NSCopies"/>
+			</property>
+			<property name="collating" code="lwcl" type="boolean" description="Should printed copies be collated?">
+				<cocoa key="NSMustCollate"/>
+			</property>
+			<property name="starting page" code="lwfp" type="integer" description="the first page of the document to be printed">
+				<cocoa key="NSFirstPage"/>
+			</property>
+			<property name="ending page" code="lwlp" type="integer" description="the last page of the document to be printed">
+				<cocoa key="NSLastPage"/>
+			</property>
+			<property name="pages across" code="lwla" type="integer" description="number of logical pages laid across a physical page">
+				<cocoa key="NSPagesAcross"/>
+			</property>
+			<property name="pages down" code="lwld" type="integer" description="number of logical pages laid out down a physical page">
+				<cocoa key="NSPagesDown"/>
+			</property>
+			<property name="requested print time" code="lwqt" type="date" description="the time at which the desktop printer should print the document">
+				<cocoa key="NSPrintTime"/>
+			</property>
+			<property name="error handling" code="lweh" type="printing error handling" description="how errors are handled">
+				<cocoa key="NSDetailedErrorReporting"/>
+			</property>
+			<property name="fax number" code="faxn" type="text" description="for fax number">
+				<cocoa key="NSFaxNumber"/>
+			</property>
+			<property name="target printer" code="trpr" type="text" description="for target printer">
+				<cocoa key="NSPrinterName"/>
+			</property>
+		</record-type>
+
+		<command name="print" code="aevtpdoc" description="Print a document.">
+			<direct-parameter description="The file(s), document(s), or window(s) to be printed.">
+				<type type="file" list="yes"/>
+				<type type="specifier"/>
+			</direct-parameter>
+			<parameter name="with properties" code="prdt" type="print settings" optional="yes" description="The print settings to use.">
+				<cocoa key="PrintSettings"/>
+			</parameter>
+			<parameter name="print dialog" code="pdlg" type="boolean" optional="yes" description="Should the application show the print dialog?">
+				<cocoa key="ShowPrintDialog"/>
+			</parameter>
+		</command>
+
+		<command name="quit" code="aevtquit" description="Quit the application.">
+			<cocoa class="NSQuitCommand"/>
+			<parameter name="saving" code="savo" type="save options" optional="yes" description="Should changes be saved before quitting?">
+				<cocoa key="SaveOptions"/>
+			</parameter>
+		</command>
+
+		<command name="count" code="corecnte" description="Return the number of elements of a particular class within an object.">
+			<cocoa class="NSCountCommand"/>
+			<direct-parameter type="specifier" description="The objects to be counted."/>
+			<parameter name="each" code="kocl" type="type" optional="yes" description="The class of objects to be counted." hidden="yes">
+				<cocoa key="ObjectClass"/>
+			</parameter>
+			<result type="integer" description="The count."/>
+		</command>
+
+		<command name="delete" code="coredelo" description="Delete an object.">
+			<cocoa class="NSDeleteCommand"/>
+			<direct-parameter type="specifier" description="The object(s) to delete."/>
+		</command>
+
+		<command name="duplicate" code="coreclon" description="Copy an object.">
+			<cocoa class="NSCloneCommand"/>
+			<direct-parameter type="specifier" description="The object(s) to copy."/>
+			<parameter name="to" code="insh" type="location specifier" description="The location for the new copy or copies." optional="yes">
+				<cocoa key="ToLocation"/>
+			</parameter>
+			<parameter name="with properties" code="prdt" type="record" description="Properties to set in the new copy or copies right away." optional="yes">
+				<cocoa key="WithProperties"/>
+			</parameter>
+		</command>
+
+		<command name="exists" code="coredoex" description="Verify that an object exists.">
+			<cocoa class="NSExistsCommand"/>
+			<direct-parameter type="any" description="The object(s) to check."/>
+			<result type="boolean" description="Did the object(s) exist?"/>
+		</command>
+
+		<command name="make" code="corecrel" description="Create a new object.">
+			<cocoa class="NSCreateCommand"/>
+			<parameter name="new" code="kocl" type="type" description="The class of the new object.">
+				<cocoa key="ObjectClass"/>
+			</parameter>
+			<parameter name="at" code="insh" type="location specifier" optional="yes" description="The location at which to insert the object.">
+				<cocoa key="Location"/>
+			</parameter>
+			<parameter name="with data" code="data" type="any" optional="yes" description="The initial contents of the object.">
+				<cocoa key="ObjectData"/>
+			</parameter>
+			<parameter name="with properties" code="prdt" type="record" optional="yes" description="The initial values for properties of the object.">
+				<cocoa key="KeyDictionary"/>
+			</parameter>
+			<result type="specifier" description="The new object."/>
+		</command>
+
+		<command name="move" code="coremove" description="Move an object to a new location.">
+			<cocoa class="NSMoveCommand"/>
+			<direct-parameter type="specifier" description="The object(s) to move."/>
+			<parameter name="to" code="insh" type="location specifier" description="The new location for the object(s).">
+				<cocoa key="ToLocation"/>
+			</parameter>
+		</command>
+
+		<class name="application" code="capp" description="The application's top-level scripting object.">
+			<cocoa class="NSApplication"/>
+			<property name="name" code="pnam" type="text" access="r" description="The name of the application."/>
+			<property name="frontmost" code="pisf" type="boolean" access="r" description="Is this the active application?">
+				<cocoa key="isActive"/>
+			</property>
+			<property name="version" code="vers" type="text" access="r" description="The version number of the application."/>
+			<element type="document">
+				<cocoa key="orderedDocuments"/>
+			</element>
+			<element type="window" access="r">
+				<cocoa key="orderedWindows"/>
+			</element>
+			<responds-to command="open">
+				<cocoa method="handleOpenScriptCommand:"/>
+			</responds-to>
+			<responds-to command="print">
+				<cocoa method="handlePrintScriptCommand:"/>
+			</responds-to>
+			<responds-to command="quit">
+				<cocoa method="handleQuitScriptCommand:"/>
+			</responds-to>
+		</class>
+
+		<class name="document" code="docu" description="A document.">
+			<cocoa class="NSDocument"/>
+			<property name="name" code="pnam" type="text" access="r" description="Its name.">
+				<cocoa key="displayName"/>
+			</property>
+			<property name="modified" code="imod" type="boolean" access="r" description="Has it been modified since the last save?">
+				<cocoa key="isDocumentEdited"/>
+			</property>
+			<property name="file" code="file" type="file" access="r" description="Its location on disk, if it has one.">
+				<cocoa key="fileURL"/>
+			</property>
+			<responds-to command="close">
+				<cocoa method="handleCloseScriptCommand:"/>
+			</responds-to>
+			<responds-to command="print">
+				<cocoa method="handlePrintScriptCommand:"/>
+			</responds-to>
+			<responds-to command="save">
+				<cocoa method="handleSaveScriptCommand:"/>
+			</responds-to>
+		</class>
+
+		<class name="window" code="cwin" description="A window.">
+			<cocoa class="NSWindow"/>
+			<property name="name" code="pnam" type="text" access="r" description="The title of the window.">
+				<cocoa key="title"/>
+			</property>
+			<property name="id" code="ID  " type="integer" access="r" description="The unique identifier of the window.">
+				<cocoa key="uniqueID"/>
+			</property>
+			<property name="index" code="pidx" type="integer" description="The index of the window, ordered front to back.">
+				<cocoa key="orderedIndex"/>
+			</property>
+			<property name="bounds" code="pbnd" type="rectangle" description="The bounding rectangle of the window.">
+				<cocoa key="boundsAsQDRect"/>
+			</property>
+			<property name="closeable" code="hclb" type="boolean" access="r" description="Does the window have a close button?">
+				<cocoa key="hasCloseBox"/>
+			</property>
+			<property name="miniaturizable" code="ismn" type="boolean" access="r" description="Does the window have a minimize button?">
+				<cocoa key="isMiniaturizable"/>
+			</property>
+			<property name="miniaturized" code="pmnd" type="boolean" description="Is the window minimized right now?">
+				<cocoa key="isMiniaturized"/>
+			</property>
+			<property name="resizable" code="prsz" type="boolean" access="r" description="Can the window be resized?">
+				<cocoa key="isResizable"/>
+			</property>
+			<property name="visible" code="pvis" type="boolean" description="Is the window visible right now?">
+				<cocoa key="isVisible"/>
+			</property>
+			<property name="zoomable" code="iszm" type="boolean" access="r" description="Does the window have a zoom button?">
+				<cocoa key="isZoomable"/>
+			</property>
+			<property name="zoomed" code="pzum" type="boolean" description="Is the window zoomed right now?">
+				<cocoa key="isZoomed"/>
+			</property>
+			<property name="document" code="docu" type="document" access="r" description="The document whose contents are displayed in the window."/>
+			<responds-to command="close">
+				<cocoa method="handleCloseScriptCommand:"/>
+			</responds-to>
+			<responds-to command="print">
+				<cocoa method="handlePrintScriptCommand:"/>
+			</responds-to>
+			<responds-to command="save">
+				<cocoa method="handleSaveScriptCommand:"/>
+			</responds-to>
+		</class>
+
+	</suite>
+ 
+    <suite name="MetaZ Suite" code="MetZ"
+        description="MetaZ application specific scripting facilities.">
+        
+		<enumeration name="saveable file format" code="savf">
+			<enumerator name="MP4" code="mpg4" description="MPEG-4 content">
+				<cocoa string-value="public.mpeg-4"/>
+			</enumerator>
+			<enumerator name="M4V" code="M4V " description="Apple MPEG-4 movie">
+				<cocoa string-value="com.apple.m4v-video"/>
+			</enumerator>
+			<enumerator name="Old M4V" code="M4V2" description="Apple MPEG-4 movie">
+				<cocoa string-value="com.apple.protected-mpeg-4-video"/>
+			</enumerator>
+		</enumeration>
+
+		<enumeration name="video type" code="MVty">
+			<enumerator name="Movie" code="MVov">
+				<cocoa integer-value="0"/>
+			</enumerator>
+			<enumerator name="TV Show" code="MVtv">
+				<cocoa integer-value="10"/>
+			</enumerator>
+			<enumerator name="Normal" code="MVno">
+				<cocoa integer-value="1"/>
+			</enumerator>
+			<enumerator name="Audiobook" code="MVau">
+				<cocoa integer-value="2"/>
+			</enumerator>
+			<enumerator name="Whacked Bookmark" code="MVwb">
+				<cocoa integer-value="5"/>
+			</enumerator>
+			<enumerator name="Music Video" code="MVmv">
+				<cocoa integer-value="6"/>
+			</enumerator>
+			<enumerator name="Short Film" code="MVsf">
+				<cocoa integer-value="9"/>
+			</enumerator>
+			<enumerator name="Booklet" code="MVbo">
+				<cocoa integer-value="11"/>
+			</enumerator>
+        </enumeration>
+
+        <class name="time code" code="Mtim" description="A time code">
+            <cocoa class="MZTimeCode"/>
+            <type type="record"/> 
+			<property name="millis" code="MTmi" type="integer" access="r" description="Length in milliseconds"/>
+			<property name="milliseconds" code="MTms" type="integer" access="r" description="Millisecond part">
+				<cocoa key="ms"/>
+            </property>
+			<property name="seconds" code="MTse" type="integer" access="r" description="Second part">
+				<cocoa key="sec"/>
+            </property>
+			<property name="minutes" code="MTmt" type="integer" access="r" description="Minute part">
+				<cocoa key="min"/>
+            </property>
+			<property name="hours" code="MThr" type="integer" access="r" description="Hour part">
+				<cocoa key="hour"/>
+            </property>
+			<property name="text" code="MTxt" type="text" access="r" description="As string">
+				<cocoa key="stringValue"/>
+            </property>
+        </class>
+        
+        <class name="tag" code="Mtag" description="A tag in a file">
+            <cocoa class="MZTagItem"/>
+			<property name="name" code="pnam" type="text" access="r" description="Its name.">
+				<cocoa key="name"/>
+			</property>
+            <property name="content" code="Mval" description="Tag value">
+                <type type="any"/>
+                <type type="text"/>
+                <type type="integer"/>
+                <type type="date"/>
+                <type type="boolean"/>
+                <type type="video type"/>
+                <type type="time code"/>
+                <cocoa key="value"/>
+            </property>
+            <!--
+            <contents name="contents" code="Mcon" type="any"
+                description="Tag content.">
+                <cocoa key="value"/>
+            </contents>
+            -->
+        </class>
+        <!--
+        <class name="tag edit" code="MAed" inherits="tag" description="A tag edit">
+            <cocoa class="MZTagItem"/>
+        </class>
+        <class name="loaded tag" code="MAlo" inherits="tag" description="A loaded tag">
+            <cocoa class="MZTagItem"/>
+        </class>
+
+        <class name="linked tag" code="MAli" inherits="tag" description="A linked tag">
+            <cocoa class="MZLinkTagItem"/>
+            <property name="source" code="Msrc" type="tag" access="r"
+                    description="Source of the tag value"/>
+        </class>
+
+        <class name="search result tag" code="MAli" inherits="tag" description="A linked tag">
+            <cocoa class="MZTagItem"/>
+            <property name="source" code="Msrc" type="tag" access="r"
+                    description="Source of the tag value"/>
+        </class>
+        -->
+<!--
+        <class name="application" code="capp" 
+                    description="Our application class." inherits="application">
+                    
+            <cocoa class="MetaZApplication"/>
+            
+            <property name="ready" code="Srdy" type="boolean" access="r"
+                    description="we're always ready"/>
+        </class>
+-->
+        
+        <class name="document" code="docu" description="A meta data document" inherits="document">
+            <cocoa class="MZMetaDataDocument"/>
+
+			<property name="duration" code="Mdur" type="time code" access="r" description="The duration of the file"/>
+
+            <element type="tag">
+                <cocoa key="tags"/>
+            </element>
+            <!--
+            <element type="tag edit">
+                <cocoa key="edits"/>
+            </element>
+            <element type="loaded tag">
+                <cocoa key="loaded"/>
+            </element>
+            <element type="linked tag">
+                <cocoa key="linked"/>
+            </element>
+            -->
+        </class>
+<!--
+        <class name="selected document" code="MSdo" description="The selected meta data document" inherits="document">
+            <cocoa class="MZMetaDataDocument"/>
+
+            <element type="search result tag"/>
+
+        </class>
+        -->
+    </suite>
+    
+</dictionary>

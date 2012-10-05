@@ -152,8 +152,12 @@
 	<string>Copyright © 2009, Brian Olsen &amp; Nigel Graham</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
+	<key>NSAppleScriptEnabled</key>
+	<true/>
+	<key>OSAScriptingDefinition</key>
+	<string>MetaZ.sdef</string>
 	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
+	<string>MetaZApplication</string>
 	<key>SUEnableAutomaticChecks</key>
 	<string>YES</string>
 	<key>SUFeedURL</key>
