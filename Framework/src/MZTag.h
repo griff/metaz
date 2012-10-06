@@ -73,6 +73,9 @@
 
 + (id)tag;
 - (int)nilValue;
+- (NSArray *)values;
+- (NSArray *)valueNames;
+- (NSArray *)localizedValueNames;
 
 @end
 

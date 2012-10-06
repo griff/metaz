@@ -16,7 +16,8 @@
 @interface MZVideoTypeTagClass : MZEnumTag
 {
     NSArray* typeNames;
-    NSMutableArray* typeValues;
+    NSArray* localizedTypeNames;
+    NSArray* typeValues;
 }
 - (id)init;
 
@@ -545,6 +546,24 @@ static NSMutableDictionary *sharedTags = nil;
     return [[[self alloc] init] autorelease];
 }
 
+- (NSArray *)values
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
+- (NSArray *)valueNames
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
+- (NSArray *)localizedValueNames
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
 - (const char*)encoding
 {
     return @encode(int);
@@ -607,12 +626,40 @@ static NSMutableDictionary *sharedTags = nil;
             MZAudiobookVideoType, MZWhackedBookmarkVideoType, MZMusicVideoType,
             MZShortFilmVideoType, MZTVShowVideoType, MZBookletVideoType
             };
-        typeValues = [[NSMutableArray alloc] init];
+        NSMutableArray* names = [NSMutableArray array];
+        NSMutableArray* values = [NSMutableArray array];
         NSInteger count = [typeNames count];
         for(int i=0; i<count; i++)
-           [typeValues addObject:[NSNumber numberWithInt:typeValuesTemp[i]]];
+        {
+            [names addObject:NSLocalizedStringFromTable([typeNames objectAtIndex:i], @"VideoType", @"Video type")];
+            [values addObject:[NSNumber numberWithInt:typeValuesTemp[i]]];
+        }
+        localizedTypeNames = [[NSArray alloc] initWithArray:names];
+        typeValues = [[NSArray alloc] initWithArray:values];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [typeNames release];
+    [typeValues release];
+    [super dealloc];
+}
+
+- (NSArray *)values
+{
+    return typeValues;
+}
+
+- (NSArray *)valueNames
+{
+    return typeNames;
+}
+
+- (NSArray *)localizedValueNames
+{
+    return localizedTypeNames;
 }
 
 - (NSCell *)editorCell
