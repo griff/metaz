@@ -43,7 +43,8 @@
 
 - (id)value
 {
-    return [document.data.pure valueForKey:tag.identifier];
+    id pure = document.data.pure;
+    return [pure valueForKey:tag.identifier];
 }
 
 - (void)setValue:(id)value
