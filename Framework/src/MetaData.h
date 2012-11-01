@@ -7,6 +7,7 @@
 //
 #import <MetaZKit/MZConstants.h>
 #import <MetaZKit/TagData.h>
+#import <MetaZKit/MZTimeCode.h>
 
 /*! @protocol MetaData
  @abstract Informal protocol for all objects that store meta data
