@@ -39,16 +39,6 @@
     return nil;
 }
 
-- (id)selection;
-{
-    return [self selectedDocuments];
-}
-
-- (void)setSelection:(id)sel;
-{
-    [self setSelectedDocuments:sel];
-}
-
 - (void)setSelectedDocuments:(id)sel
 {
     if([sel isKindOfClass:[NSArray class]])
@@ -70,6 +60,16 @@
     for(MetaEdits* edit in sel)
         [arr addObject:[MZSelectedMetaDataDocument documentWithEdit:edit]];
     return arr;
+}
+
+- (id)selection;
+{
+    return [self selectedDocuments];
+}
+
+- (void)setSelection:(id)sel;
+{
+    [self setSelectedDocuments:sel];
 }
 
 - (NSArray *)orderedDocuments
