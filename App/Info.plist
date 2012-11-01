@@ -168,10 +168,6 @@
 	<string>YES</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>sparkle_public.pem</string>
-	<key>SmartCrashReports_CompanyName</key>
-	<string>Maven-Group</string>
-	<key>SmartCrashReports_EmailTicket</key>
-	<string>SCR-6246806ACD</string>
 	<key>com.apple.PreferenceSync.ExcludeSyncKeys</key>
 	<array>
 		<string>SULastCheckTime</string>
