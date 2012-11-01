@@ -1,10 +1,10 @@
 set -o errexit
 #set -x
 
-KEYCHAIN_PRIVKEY_NAME="MetaZ Sparkle Private"
+export KEYCHAIN_PRIVKEY_NAME="MetaZ Sparkle Private"
 
 if [ "${CONFIGURATION}" != "Release" ]; then exit; fi
-if [[ -z "$(security find-generic-password -s '$KEYCHAIN_PRIVKEY_NAME')" ]] ; then exit; fi
+if [[ -z "$(security find-generic-password -s "$KEYCHAIN_PRIVKEY_NAME")" ]] ; then exit; fi
 
 PATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin
 export GITV=`git log -n1 --pretty=oneline --format=%h`
@@ -31,11 +31,9 @@ rm -rf DSYMS
 
 SIZE=$(stat -f %z "$ARCHIVE_FILENAME")
 PUBDATE=$(date +"%a, %d %b %G %T %z")
-SIGNATURE=$(
-	openssl dgst -sha1 -binary < "$ARCHIVE_FILENAME" \
-	| openssl dgst -dss1 -sign <(security find-generic-password -g -s "$KEYCHAIN_PRIVKEY_NAME" 2>&1 1>/dev/null | perl -pe '($_) = /"(.+)"/; s/\\012/\n/g') \
-	| openssl enc -base64
-)
+HASH=$(openssl dgst -sha1 -binary < "$ARCHIVE_FILENAME")
+KEY=$(security find-generic-password -g -s "$KEYCHAIN_PRIVKEY_NAME" 2>&1 1>/dev/null | perl -pe '($_) = /"(.+)"/; s/\\012/\n/g' )
+SIGNATURE=$(echo $HASH | openssl dgst -dss1 -sign <(echo "$KEY") | openssl enc -base64)
 
 [ $SIGNATURE ] || { echo Unable to load signing private key with name "'$KEYCHAIN_PRIVKEY_NAME'" from keychain; false; }
 
