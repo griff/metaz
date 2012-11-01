@@ -24,6 +24,7 @@
 @property(readonly) NSObject<MetaData>* provider;
 @property(readonly) id<TagData> pure;
 
++ (id)editsWithProvider:(id<MetaData>)aProvider;
 - (id)initWithProvider:(id<MetaData>)aProvider;
 
 - (NSString *)loadedFileName;

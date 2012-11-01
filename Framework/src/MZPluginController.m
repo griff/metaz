@@ -357,8 +357,12 @@ static MZPluginController *gInstance = NULL;
     {
         id<MZDataProvider> ret = [self dataProviderForType:uti];
         if(ret)
+        {
+            [types release];
             return ret;
+        }
     }
+    [types release];
     return nil;
 }
 
@@ -605,7 +609,7 @@ static MZPluginController *gInstance = NULL;
         }
         if(!next)
             next = loaded;
-        edits = [[MetaEdits alloc] initWithProvider:next];
+        edits = [MetaEdits editsWithProvider:next];
         NSAssert([[edits fileName] isKindOfClass:[NSString class]], @"Bad file name");
         NSAssert([[edits title] isKindOfClass:[NSString class]], @"Bad title");
         NSDictionary* userInfo = [NSDictionary dictionaryWithObject:edits forKey:MZMetaEditsNotificationKey];

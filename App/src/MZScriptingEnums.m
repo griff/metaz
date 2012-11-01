@@ -187,6 +187,7 @@ static NSMutableDictionary *sharedScriptingEnums = nil;
         }
         [enums setObject:[NSDictionary dictionaryWithDictionary:values] forKey:enumerationName]; 
     }
+    [doc release];
     
     codeToEnumValue = [[NSDictionary alloc] initWithDictionary:codes];
     nameToEnum = [[NSDictionary alloc] initWithDictionary:enums];

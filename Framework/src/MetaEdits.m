@@ -21,6 +21,10 @@
 @synthesize pure;
 
 #pragma mark - initialization
++ (id)editsWithProvider:(id<MetaData>)aProvider;
+{
+    return [[[self alloc] initWithProvider:aProvider] autorelease];
+}
 
 - (id)initWithProvider:(id<MetaData>)aProvider {
     self = [super init];
