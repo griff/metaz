@@ -1,5 +1,4 @@
-Introduction
-============================================================
+# Introduction
 
 MetaZ is an mp4 meta-data editor for OS X.  
 It started its life when another great meta-data editor MetaX stopped getting
@@ -9,8 +8,12 @@ things like no proper window resizing. This lead to us starting MetaZ as a
 reimplementation of MetaX with a few ideas of our own sprinkled in there.
 
 
-Building
-============================================================
+# Bugs / Feature request
+
+For bugs and feature requests you can use our [issue tracker at github](https://github.com/griff/metaz/issues)
+
+
+# Building
 
 There are some files missing in the git repository that you will need if you
 are going to build your own version of MetaZ.
