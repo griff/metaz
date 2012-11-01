@@ -8,9 +8,9 @@ if [[ -z "$(security find-generic-password -s "$KEYCHAIN_PRIVKEY_NAME")" ]] ; th
 
 PATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin
 export GITV=`git log -n1 --pretty=oneline --format=%h`
-export DATEV=`date +%y.%m.%d.%H`
 
 VERSION=$(defaults read "$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info" CFBundleShortVersionString)
+FULLVERSION=$(defaults read "$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info" CFBundleVersion)
 DOWNLOAD_BASE_URL="http://github.com/downloads/griff/metaz"
 RELEASENOTES_URL="http://griff.github.com/metaz/release-notes.html#version-$VERSION"
 
@@ -44,7 +44,7 @@ cat > "$PROJECT_NAME-$VERSION.xml" <<EOF
 			<pubDate>$PUBDATE</pubDate>
 			<enclosure
 				url="$DOWNLOAD_URL"
-				sparkle:version="$DATEV"
+				sparkle:version="$FULLVERSION"
 				sparkle:shortVersionString="$VERSION"
 				type="application/octet-stream"
 				length="$SIZE"
