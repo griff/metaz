@@ -8,6 +8,9 @@
 
 #import "PictureEditor.h"
 
+@interface PictureEditor()
+@property(readonly) MZPriorObserverFix* observerFix;
+@end
 
 @implementation PictureEditor
 
@@ -17,12 +20,12 @@
         [self exposeBinding:@"picture"];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingChanged
++ (NSSet *)keyPathsForValuesAffectingDataChanged
 {
-    return [NSSet setWithObjects:@"picture", nil];
+    return [NSSet setWithObjects:@"picture", @"data", nil];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingChangedEditable
++ (NSSet *)keyPathsForValuesAffectingDataChangedEditable
 {
     return [NSSet setWithObjects:@"picture", @"dataChanged", @"data", nil];
 }
@@ -43,10 +46,18 @@
     [super dealloc];
 }
 
+- (MZPriorObserverFix* )observerFix
+{
+    if(!observerFix && filesController)
+    {
+        observerFix = [[MZPriorObserverFix alloc] initWithOther:filesController];
+        [observerFix addObserver:self forKeyPath:@"selection.pictureChanged" options:NSKeyValueObservingOptionPrior context:NULL];
+    }
+    return observerFix;
+}
 
 - (void)awakeFromNib
 {
-    observerFix = [[MZPriorObserverFix alloc] initWithOther:filesController];
     [retryButton setHidden:YES];
     /*
     NSArray* keys = [NSArray arrayWithObjects:
@@ -69,7 +80,6 @@
     [self bind:@"picture" toObject:filesController withKeyPath:@"selection.picture" options:dict];
     */
     [picturesController gtm_addObserver:self forKeyPath:@"selection" selector:@selector(picturesUpdated:) userInfo:nil options:0];
-    [observerFix addObserver:self forKeyPath:@"selection.pictureChanged" options:NSKeyValueObservingOptionPrior context:NULL];
 }
 
 @synthesize filesController;
@@ -147,7 +157,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if(object == observerFix && [keyPath isEqual:@"selection.pictureChanged"])
+    if(object == self.observerFix && [keyPath isEqual:@"selection.pictureChanged"])
     {
         NSNumber* prior = [change objectForKey:NSKeyValueChangeNotificationIsPriorKey];
         if([prior boolValue])
@@ -164,7 +174,7 @@
         MZRemoteData* remote = picture;
         return remote.isLoaded && remote.error == nil;
     }
-    id changed = [observerFix valueForKeyPath:@"selection.pictureChanged"];
+    id changed = [self.observerFix valueForKeyPath:@"selection.pictureChanged"];
     return changed != NSMultipleValuesMarker &&
         changed != NSNotApplicableMarker && 
         changed != NSNoSelectionMarker;
@@ -185,7 +195,13 @@
 
 - (NSNumber*)dataChanged
 {
-    id changed = [observerFix valueForKeyPath:@"selection.pictureChanged"];
+    if([picture isKindOfClass:[MZRemoteData class]])
+    {
+        MZRemoteData* remote = picture;
+        if(!remote.isLoaded || remote.error != nil)
+            return NSNotApplicableMarker;
+    }
+    id changed = [self.observerFix valueForKeyPath:@"selection.pictureChanged"];
     /*
     if(changed == NSMultipleValuesMarker)
         MZLoggerDebug(@"Multiple");
