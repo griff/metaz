@@ -5,9 +5,11 @@
 //  Created by Brian Olsen on 15/07/12.
 //  Copyright 2012 Maven-Group. All rights reserved.
 //
-
 #import "MZMetaDataDocument.h"
 #import "MetaZApplication.h"
+#import "MZMetaLoader.h"
+#import "MZScriptingAdditions.h"
+#import "MZScriptingEnums.h"
 
 @implementation MZTagItem
 
@@ -41,35 +43,42 @@
 
 - (id)value
 {
-    return [document.data valueForKey:tag.identifier];
+    return [document.data.pure valueForKey:tag.identifier];
 }
 
-- (void)setValue:(id)val
+- (void)setValue:(id)value
 {
-    [document.data setValue:val forKey:tag.identifier];
+    [document.data setValue:value forKey:tag.identifier];
 }
 
-- (id)coerceValue:(id)value forKey:(NSString *)key
+- (id)scriptValue
 {
-    if ([value isKindOfClass:[NSAppleEventDescriptor class]]) {
-        DescType descType = [value descriptorType];
-
-        switch(descType) {
-            case typeUnicodeText:
-                value = [value stringValue];
-                break;
-            case typeSInt32:
-                value = [NSNumber numberWithInt:[value int32Value]];
-                break;
-/*            case typeObjectSpecifier:
-                
-                break; */
-            default:
-                value = nil;
-                break;
+    id value = self.value;
+    if(value)
+    {
+        if([tag isKindOfClass:[MZEnumTag class]] )
+        {
+            id eTag = tag;
+            value = [[MZScriptingEnums scriptingEnumsForMainBundle]
+                            enumValueForEnum:[eTag enumScriptName]
+                                   withValue:value];
+        }
+        else
+        {
+            id specifier = [value objectSpecifier];
+            if(specifier)
+                value = specifier;
         }
     }
     return value;
+}
+
+- (void)setScriptValue:(id)value
+{
+    if([value isKindOfClass:[NSAppleEventDescriptor class]])
+        value = [value objectValue];
+    NSLog(@"Set Value %@ %@ %@", document.data, value, tag.identifier);
+    self.value = value;
 }
 
 - (NSScriptObjectSpecifier *)objectSpecifier;
@@ -86,6 +95,20 @@
 
 
 @implementation MZMetaDataDocument
+
++ (void) initialize {
+	[super initialize];
+	static BOOL tooLate = NO;
+	if( ! tooLate ) {
+		[[NSScriptCoercionHandler sharedCoercionHandler] registerCoercer:[self class] selector:@selector( coerceMetaDataDocument:toString: ) toConvertFromClass:[MZMetaDataDocument class] toClass:[NSString class]];
+		tooLate = YES;
+	}
+}
+
++ (id) coerceMetaDataDocument:(MZMetaDataDocument *) value toString:(Class) class
+{
+	return [value.data loadedFileName];
+}
 
 + (id)documentWithEdit:(MetaEdits *)edit;
 {
@@ -111,14 +134,19 @@
 
 @synthesize data;
 
-- (NSString *)lastComponentOfFileName;
+- (NSURL *)fileURL;
 {
-    return [[data loadedFileName] lastPathComponent];
+    return [NSURL fileURLWithPath:[data loadedFileName]];
 }
 
 - (NSString *)displayName;
 {
-    return [[self lastComponentOfFileName] stringByDeletingPathExtension];
+    return [[[data loadedFileName] lastPathComponent] stringByDeletingPathExtension];
+}
+
+- (BOOL)isDocumentEdited;
+{
+    return [data changed];
 }
 
 - (MZTimeCode *)duration;
@@ -165,5 +193,19 @@
     return nil;
 }
 */
+
+- (id)handleCloseScriptCommand:(NSScriptCommand *)cmd;
+{
+    NSUInteger idx = [[MZMetaLoader sharedLoader].files indexOfObject:data];
+    if(idx != NSNotFound)
+        [[MZMetaLoader sharedLoader] removeFilesAtIndexes:[NSIndexSet indexSetWithIndex:idx]];
+    return nil;
+}
+
+- (id)handleSaveScriptCommand:(NSScriptCommand *)cmd;
+{
+    return nil;
+}
+
 
 @end

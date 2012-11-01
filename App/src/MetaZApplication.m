@@ -7,13 +7,11 @@
 //
 
 #import "MetaZApplication.h"
+#import "MZSelectedMetaDataDocument.h"
 #import "MZMetaLoader.h"
 
 @implementation MetaZApplication
-
-- (NSNumber*) ready {
-    return [NSNumber numberWithBool:YES];
-}
+@synthesize filesController;
 
 - (id)handleOpenScriptCommand:(NSScriptCommand *)test;
 {
@@ -40,5 +38,52 @@
     }
     return nil;
 }
+
+- (id)selection;
+{
+    return [self selectedDocuments];
+}
+
+- (void)setSelection:(id)sel;
+{
+    [self setSelectedDocuments:sel];
+}
+
+- (void)setSelectedDocuments:(id)sel
+{
+    if([sel isKindOfClass:[NSArray class]])
+        sel = [sel arrayByPerformingSelector:@selector(data)];
+    else
+        sel = [NSArray arrayWithObject:[sel data]];
+    [filesController setSelectedObjects:sel];
+}
+
+- (id)selectedDocuments;
+{
+    NSArray* sel = [filesController selectedObjects];
+    if([sel count]==0)
+        return nil;
+    if([sel count]==1)
+        return [MZSelectedMetaDataDocument documentWithEdit:[sel objectAtIndex:0]];
     
+    NSMutableArray* arr = [NSMutableArray array];
+    for(MetaEdits* edit in sel)
+        [arr addObject:[MZSelectedMetaDataDocument documentWithEdit:edit]];
+    return arr;
+}
+
+- (NSArray *)orderedDocuments
+{
+    if(!documents)
+        documents = [[NSMutableArray alloc] init];
+    [documents removeAllObjects];
+    
+    NSArray* files = [MZMetaLoader sharedLoader].files;
+    for(MetaEdits* edit in files)
+    {
+        [documents addObject:[MZMetaDataDocument documentWithEdit:edit]];
+    }
+    return documents;
+}
+
 @end

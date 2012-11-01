@@ -76,6 +76,7 @@
 
 @interface MZEnumTag : MZTag {}
 
+- (NSString *)enumScriptName;
 - (int)nilValue;
 
 @end

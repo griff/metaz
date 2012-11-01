@@ -117,7 +117,6 @@
 		1B449E4B10DCCDB000B9C751 /* GTMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B449DCE10DCCC1C00B9C751 /* GTMLogger.m */; };
 		1B4AF83B1170CFCC00E5C969 /* TheTVDBSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */; };
 		1B4AF84511715C8400E5C969 /* languages.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1B4AF84411715C8400E5C969 /* languages.xml */; };
-		1B4CFF91161CDF0100B12009 /* AEVTBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4CFF90161CDF0100B12009 /* AEVTBuilder.m */; };
 		1B4CFFE8161CE0ED00B12009 /* AEVTBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4CFF90161CDF0100B12009 /* AEVTBuilder.m */; };
 		1B4F53C4116E9F44003221B1 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1B4F53D8116EA0BE003221B1 /* TheTVDBPlugin.mzplugin in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzplugin */; };
@@ -146,8 +145,10 @@
 		1B82647410B3C25000DF101B /* MetaEditsUndoManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B82647210B3C25000DF101B /* MetaEditsUndoManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B82647510B3C25000DF101B /* MetaEditsUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */; };
 		1B8268A510B3F82400DF101B /* AmazonSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8268A410B3F82400DF101B /* AmazonSearchProvider.m */; };
+		1B89050A163F6E48008C5C8B /* MZGetCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B890509163F6E48008C5C8B /* MZGetCommand.m */; };
 		1B8905B1163F87BB008C5C8B /* MZScriptingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8905B0163F87BB008C5C8B /* MZScriptingAdditions.m */; };
 		1B89073116420437008C5C8B /* MZScriptingEnums.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B89073016420437008C5C8B /* MZScriptingEnums.m */; };
+		1B8908E416424790008C5C8B /* MZSelectedMetaDataDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8908E316424790008C5C8B /* MZSelectedMetaDataDocument.m */; };
 		1B8CB5E214AA31C500F859F7 /* modified_header.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1B8CB5DF14AA31C500F859F7 /* modified_header.tiff */; };
 		1B8CB5E314AA31C500F859F7 /* modified_selected.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1B8CB5E014AA31C500F859F7 /* modified_selected.tiff */; };
 		1B8CB5E414AA31C500F859F7 /* modified.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1B8CB5E114AA31C500F859F7 /* modified.tiff */; };
@@ -229,6 +230,7 @@
 		1BD6E7A8105DC4D000E40151 /* Queue.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E7A6105DC4D000E40151 /* Queue.xib */; };
 		1BDD86A71094A8CC00E3C81D /* MZPresets.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDD86A61094A8CC00E3C81D /* MZPresets.m */; };
 		1BDD87A11095FB5100E3C81D /* PresetsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDD87A01095FB5100E3C81D /* PresetsWindowController.m */; };
+		1BDEC5ED1620DE160051D656 /* AEVTBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B4CFF8F161CDF0100B12009 /* AEVTBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA6B3B106CF01B004B1A7F /* PosterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6B3A106CF01B004B1A7F /* PosterView.m */; };
 		1BEA6B81106D66AD004B1A7F /* faded_cow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BEA6B80106D66AD004B1A7F /* faded_cow.png */; };
 		1BEA6C95106E7203004B1A7F /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6C94106E7203004B1A7F /* Utilities.m */; };
@@ -952,10 +954,14 @@
 		1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditsUndoManager.m; sourceTree = "<group>"; };
 		1B8268A310B3F82400DF101B /* AmazonSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonSearchProvider.h; sourceTree = "<group>"; };
 		1B8268A410B3F82400DF101B /* AmazonSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonSearchProvider.m; sourceTree = "<group>"; };
+		1B890508163F6E48008C5C8B /* MZGetCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZGetCommand.h; sourceTree = "<group>"; };
+		1B890509163F6E48008C5C8B /* MZGetCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZGetCommand.m; sourceTree = "<group>"; };
 		1B8905AF163F87BB008C5C8B /* MZScriptingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZScriptingAdditions.h; sourceTree = "<group>"; };
 		1B8905B0163F87BB008C5C8B /* MZScriptingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZScriptingAdditions.m; sourceTree = "<group>"; };
 		1B89072F16420437008C5C8B /* MZScriptingEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZScriptingEnums.h; sourceTree = "<group>"; };
 		1B89073016420437008C5C8B /* MZScriptingEnums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZScriptingEnums.m; sourceTree = "<group>"; };
+		1B8908E216424790008C5C8B /* MZSelectedMetaDataDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSelectedMetaDataDocument.h; sourceTree = "<group>"; };
+		1B8908E316424790008C5C8B /* MZSelectedMetaDataDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZSelectedMetaDataDocument.m; sourceTree = "<group>"; };
 		1B8CB5DF14AA31C500F859F7 /* modified_header.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = modified_header.tiff; path = App/resources/modified_header.tiff; sourceTree = "<group>"; };
 		1B8CB5E014AA31C500F859F7 /* modified_selected.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = modified_selected.tiff; path = App/resources/modified_selected.tiff; sourceTree = "<group>"; };
 		1B8CB5E114AA31C500F859F7 /* modified.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = modified.tiff; path = App/resources/modified.tiff; sourceTree = "<group>"; };
@@ -2065,10 +2071,14 @@
 				1B3544E715B2160F0033DD74 /* MetaZApplication.m */,
 				1B35452F15B223BB0033DD74 /* MZMetaDataDocument.h */,
 				1B35453015B223BB0033DD74 /* MZMetaDataDocument.m */,
+				1B890508163F6E48008C5C8B /* MZGetCommand.h */,
+				1B890509163F6E48008C5C8B /* MZGetCommand.m */,
 				1B8905AF163F87BB008C5C8B /* MZScriptingAdditions.h */,
 				1B8905B0163F87BB008C5C8B /* MZScriptingAdditions.m */,
 				1B89072F16420437008C5C8B /* MZScriptingEnums.h */,
 				1B89073016420437008C5C8B /* MZScriptingEnums.m */,
+				1B8908E216424790008C5C8B /* MZSelectedMetaDataDocument.h */,
+				1B8908E316424790008C5C8B /* MZSelectedMetaDataDocument.m */,
 			);
 			name = Classes;
 			path = App/src;
@@ -2299,6 +2309,7 @@
 				1B523C5213FDCD1A00C20B7D /* ASIProgressDelegate.h in Headers */,
 				1B36E78C14066727009F542A /* MZASISearch.h in Headers */,
 				1B0696D7149BFB2D00B5FA90 /* NSString+MZQueryString.h in Headers */,
+				1BDEC5ED1620DE160051D656 /* AEVTBuilder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2916,9 +2927,10 @@
 				1B29A06614C5C6570048B7C0 /* MZMultiGrowlWrapper.m in Sources */,
 				1B3544E815B2160F0033DD74 /* MetaZApplication.m in Sources */,
 				1B35453115B223BB0033DD74 /* MZMetaDataDocument.m in Sources */,
-				1B4CFF91161CDF0100B12009 /* AEVTBuilder.m in Sources */,
+				1B89050A163F6E48008C5C8B /* MZGetCommand.m in Sources */,
 				1B8905B1163F87BB008C5C8B /* MZScriptingAdditions.m in Sources */,
 				1B89073116420437008C5C8B /* MZScriptingEnums.m in Sources */,
+				1B8908E416424790008C5C8B /* MZSelectedMetaDataDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

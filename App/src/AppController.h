@@ -51,8 +51,6 @@
     
     MZFileNameTextStorage* fileNameStorage;
     NSTextView* fileNameEditor;
-    
-    NSMutableArray* documents;
 }
 @property (nonatomic, retain) IBOutlet NSWindow* window;
 @property (nonatomic, retain) IBOutlet NSTabView *tabView;
@@ -116,6 +114,5 @@
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename;
 - (void)application:(NSApplication *)sender openFiles:(NSArray *)filenames;
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender;
-- (BOOL)application:(NSApplication *)sender delegateHandlesKey:(NSString *)key;
 
 @end

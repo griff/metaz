@@ -3,11 +3,34 @@
 
 <dictionary xmlns:xi="http://www.w3.org/2003/XInclude">
  
-    <!--
-    <xi:include href="file:///System/Library/ScriptingDefinitions/CocoaStandard.sdef" xpointer="xpointer(/dictionary/suite)"/>
-    -->
-    	<suite name="Standard Suite" code="????" description="Common classes and commands for all applications.">
+    <suite name="MetaZ Suite" code="MetZ" id="MetaZSuite"
+        description="MetaZ application specific scripting facilities.">
 
+		<enumeration name="ask default" code="Mask">
+			<enumerator name="default" code="Mdef" description="Use the default.">
+				<cocoa integer-value="-1"/>
+            </enumerator>
+			<enumerator name="ask" code="ask " description="Ask the user.">
+				<cocoa integer-value="-2"/>
+            </enumerator>
+		</enumeration>
+
+		<command name="open" code="aevtodoc" description="Open a document.">
+			<direct-parameter description="The file(s) to be opened.">
+				<type type="file"/>
+				<type type="file" list="yes"/>
+			</direct-parameter>
+			<parameter name="as" code="MOvt" optional="yes" description="The video type to use if file doesn't have one already.">
+                <type type="video type"/>
+                <type type="ask default"/>
+				<cocoa key="VideoType"/>
+			</parameter>
+			<result description="The opened document(s).">
+				<type type="document"/>
+				<type type="document" list="yes"/>
+			</result>
+		</command>
+<!--
 		<command name="open" code="aevtodoc" description="Open a document.">
 			<direct-parameter description="The file(s) to be opened.">
 				<type type="file"/>
@@ -18,24 +41,27 @@
 				<type type="document" list="yes"/>
 			</result>
 		</command>
-
+-->
+<!--
 		<enumeration name="save options" code="savo">
 			<enumerator name="yes" code="yes " description="Save the file."/>
 			<enumerator name="no" code="no  " description="Do not save the file."/>
 			<enumerator name="ask" code="ask " description="Ask the user whether or not to save the file."/>
 		</enumeration>
-
+-->
 		<command name="close" code="coreclos" description="Close a document.">
 			<cocoa class="NSCloseCommand"/>
 			<direct-parameter type="specifier" description="the document(s) or window(s) to close."/>
+            <!--
 			<parameter name="saving" code="savo" type="save options" optional="yes" description="Should changes be saved before closing?">
 				<cocoa key="SaveOptions"/>
 			</parameter>
 			<parameter name="saving in" code="kfil" type="file" optional="yes" description="The file in which to save the document, if so.">
 				<cocoa key="File"/>
 			</parameter>
+            -->
 		</command>
-
+<!--
 		<command name="save" code="coresave" description="Save a document.">
 			<direct-parameter type="specifier" description="The document(s) or window(s) to save."/>
 			<parameter name="in" code="kfil" type="file" optional="yes" description="The file in which to save the document.">
@@ -45,62 +71,7 @@
 				<cocoa key="FileType"/>
 			</parameter>
 		</command>
-
-		<enumeration name="printing error handling" code="enum">
-			<enumerator name="standard" code="lwst" description="Standard PostScript error handling">
-				<cocoa boolean-value="NO"/>
-			</enumerator>
-			<enumerator name="detailed" code="lwdt" description="print a detailed report of PostScript errors">
-				<cocoa boolean-value="YES"/>
-			</enumerator>
-		</enumeration>
-
-		<record-type name="print settings" code="pset">
-			<property name="copies" code="lwcp" type="integer" description="the number of copies of a document to be printed">
-				<cocoa key="NSCopies"/>
-			</property>
-			<property name="collating" code="lwcl" type="boolean" description="Should printed copies be collated?">
-				<cocoa key="NSMustCollate"/>
-			</property>
-			<property name="starting page" code="lwfp" type="integer" description="the first page of the document to be printed">
-				<cocoa key="NSFirstPage"/>
-			</property>
-			<property name="ending page" code="lwlp" type="integer" description="the last page of the document to be printed">
-				<cocoa key="NSLastPage"/>
-			</property>
-			<property name="pages across" code="lwla" type="integer" description="number of logical pages laid across a physical page">
-				<cocoa key="NSPagesAcross"/>
-			</property>
-			<property name="pages down" code="lwld" type="integer" description="number of logical pages laid out down a physical page">
-				<cocoa key="NSPagesDown"/>
-			</property>
-			<property name="requested print time" code="lwqt" type="date" description="the time at which the desktop printer should print the document">
-				<cocoa key="NSPrintTime"/>
-			</property>
-			<property name="error handling" code="lweh" type="printing error handling" description="how errors are handled">
-				<cocoa key="NSDetailedErrorReporting"/>
-			</property>
-			<property name="fax number" code="faxn" type="text" description="for fax number">
-				<cocoa key="NSFaxNumber"/>
-			</property>
-			<property name="target printer" code="trpr" type="text" description="for target printer">
-				<cocoa key="NSPrinterName"/>
-			</property>
-		</record-type>
-
-		<command name="print" code="aevtpdoc" description="Print a document.">
-			<direct-parameter description="The file(s), document(s), or window(s) to be printed.">
-				<type type="file" list="yes"/>
-				<type type="specifier"/>
-			</direct-parameter>
-			<parameter name="with properties" code="prdt" type="print settings" optional="yes" description="The print settings to use.">
-				<cocoa key="PrintSettings"/>
-			</parameter>
-			<parameter name="print dialog" code="pdlg" type="boolean" optional="yes" description="Should the application show the print dialog?">
-				<cocoa key="ShowPrintDialog"/>
-			</parameter>
-		</command>
-
+-->
 		<command name="quit" code="aevtquit" description="Quit the application.">
 			<cocoa class="NSQuitCommand"/>
 			<parameter name="saving" code="savo" type="save options" optional="yes" description="Should changes be saved before quitting?">
@@ -116,12 +87,13 @@
 			</parameter>
 			<result type="integer" description="The count."/>
 		</command>
-
+<!--
 		<command name="delete" code="coredelo" description="Delete an object.">
 			<cocoa class="NSDeleteCommand"/>
 			<direct-parameter type="specifier" description="The object(s) to delete."/>
 		</command>
-
+-->
+<!--
 		<command name="duplicate" code="coreclon" description="Copy an object.">
 			<cocoa class="NSCloneCommand"/>
 			<direct-parameter type="specifier" description="The object(s) to copy."/>
@@ -132,13 +104,14 @@
 				<cocoa key="WithProperties"/>
 			</parameter>
 		</command>
+-->
 
 		<command name="exists" code="coredoex" description="Verify that an object exists.">
 			<cocoa class="NSExistsCommand"/>
 			<direct-parameter type="any" description="The object(s) to check."/>
 			<result type="boolean" description="Did the object(s) exist?"/>
 		</command>
-
+<!--
 		<command name="make" code="corecrel" description="Create a new object.">
 			<cocoa class="NSCreateCommand"/>
 			<parameter name="new" code="kocl" type="type" description="The class of the new object.">
@@ -155,7 +128,8 @@
 			</parameter>
 			<result type="specifier" description="The new object."/>
 		</command>
-
+-->
+<!--
 		<command name="move" code="coremove" description="Move an object to a new location.">
 			<cocoa class="NSMoveCommand"/>
 			<direct-parameter type="specifier" description="The object(s) to move."/>
@@ -163,33 +137,44 @@
 				<cocoa key="ToLocation"/>
 			</parameter>
 		</command>
+-->
+		<command name="get" code="coregetd" description="Get the data for an object.">
+			<cocoa class="MZGetCommand"/>
+			<direct-parameter type="specifier"/>
+			<result type="any"/>
+		</command>
 
 		<class name="application" code="capp" description="The application's top-level scripting object.">
-			<cocoa class="NSApplication"/>
+            <cocoa class="MetaZApplication"/>
 			<property name="name" code="pnam" type="text" access="r" description="The name of the application."/>
 			<property name="frontmost" code="pisf" type="boolean" access="r" description="Is this the active application?">
 				<cocoa key="isActive"/>
 			</property>
 			<property name="version" code="vers" type="text" access="r" description="The version number of the application."/>
+            <property name="selection" code="Msel" description="The currently selected document(s)">
+				<type type="document"/>
+				<type type="document" list="yes"/>
+            	<cocoa key="selection"/>
+            </property>
 			<element type="document">
 				<cocoa key="orderedDocuments"/>
 			</element>
 			<element type="window" access="r">
 				<cocoa key="orderedWindows"/>
 			</element>
+            <element type="selected document">
+                <cocoa key="selectedDocuments"/>
+            </element>
 			<responds-to command="open">
 				<cocoa method="handleOpenScriptCommand:"/>
-			</responds-to>
-			<responds-to command="print">
-				<cocoa method="handlePrintScriptCommand:"/>
 			</responds-to>
 			<responds-to command="quit">
 				<cocoa method="handleQuitScriptCommand:"/>
 			</responds-to>
 		</class>
 
-		<class name="document" code="docu" description="A document.">
-			<cocoa class="NSDocument"/>
+		<class name="document" code="docu" description="A meta data document.">
+            <cocoa class="MZMetaDataDocument"/>
 			<property name="name" code="pnam" type="text" access="r" description="Its name.">
 				<cocoa key="displayName"/>
 			</property>
@@ -199,15 +184,29 @@
 			<property name="file" code="file" type="file" access="r" description="Its location on disk, if it has one.">
 				<cocoa key="fileURL"/>
 			</property>
+			<property name="duration" code="Mdur" type="time code" access="r" description="The duration of the file"/>
+            <element type="tag">
+                <cocoa key="tags"/>
+            </element>
+            <!--
+            <element type="tag edit">
+                <cocoa key="edits"/>
+            </element>
+            <element type="loaded tag">
+                <cocoa key="loaded"/>
+            </element>
+            <element type="linked tag">
+                <cocoa key="linked"/>
+            </element>
+            -->
 			<responds-to command="close">
 				<cocoa method="handleCloseScriptCommand:"/>
 			</responds-to>
-			<responds-to command="print">
-				<cocoa method="handlePrintScriptCommand:"/>
-			</responds-to>
+            <!--
 			<responds-to command="save">
 				<cocoa method="handleSaveScriptCommand:"/>
 			</responds-to>
+            -->
 		</class>
 
 		<class name="window" code="cwin" description="A window.">
@@ -249,19 +248,11 @@
 			<responds-to command="close">
 				<cocoa method="handleCloseScriptCommand:"/>
 			</responds-to>
-			<responds-to command="print">
-				<cocoa method="handlePrintScriptCommand:"/>
-			</responds-to>
 			<responds-to command="save">
 				<cocoa method="handleSaveScriptCommand:"/>
 			</responds-to>
 		</class>
 
-	</suite>
- 
-    <suite name="MetaZ Suite" code="MetZ"
-        description="MetaZ application specific scripting facilities.">
-        
 		<enumeration name="saveable file format" code="savf">
 			<enumerator name="MP4" code="mpg4" description="MPEG-4 content">
 				<cocoa string-value="public.mpeg-4"/>
@@ -301,6 +292,12 @@
 			</enumerator>
         </enumeration>
 
+		<enumeration name="video type options" code="Mvto">
+			<enumerator name="yes" code="yes " description="Save the file."/>
+			<enumerator name="no" code="no  " description="Do not save the file."/>
+			<enumerator name="ask" code="ask " description="Ask the user whether or not to save the file."/>
+		</enumeration>
+
         <class name="time code" code="Mtim" description="A time code">
             <cocoa class="MZTimeCode"/>
             <type type="record"/> 
@@ -329,13 +326,7 @@
 			</property>
             <property name="content" code="Mval" description="Tag value">
                 <type type="any"/>
-                <type type="text"/>
-                <type type="integer"/>
-                <type type="date"/>
-                <type type="boolean"/>
-                <type type="video type"/>
-                <type type="time code"/>
-                <cocoa key="value"/>
+                <cocoa key="scriptValue"/>
             </property>
             <!--
             <contents name="contents" code="Mcon" type="any"
@@ -364,45 +355,11 @@
                     description="Source of the tag value"/>
         </class>
         -->
-<!--
-        <class name="application" code="capp" 
-                    description="Our application class." inherits="application">
-                    
-            <cocoa class="MetaZApplication"/>
-            
-            <property name="ready" code="Srdy" type="boolean" access="r"
-                    description="we're always ready"/>
+                
+        <class name="selected document" code="Mdoc" description="A selected meta data document" inherits="document">
+            <cocoa class="MZSelectedMetaDataDocument"/>
         </class>
--->
-        
-        <class name="document" code="docu" description="A meta data document" inherits="document">
-            <cocoa class="MZMetaDataDocument"/>
 
-			<property name="duration" code="Mdur" type="time code" access="r" description="The duration of the file"/>
-
-            <element type="tag">
-                <cocoa key="tags"/>
-            </element>
-            <!--
-            <element type="tag edit">
-                <cocoa key="edits"/>
-            </element>
-            <element type="loaded tag">
-                <cocoa key="loaded"/>
-            </element>
-            <element type="linked tag">
-                <cocoa key="linked"/>
-            </element>
-            -->
-        </class>
-<!--
-        <class name="selected document" code="MSdo" description="The selected meta data document" inherits="document">
-            <cocoa class="MZMetaDataDocument"/>
-
-            <element type="search result tag"/>
-
-        </class>
-        -->
     </suite>
     
 </dictionary>

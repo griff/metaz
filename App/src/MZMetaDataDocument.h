@@ -20,6 +20,7 @@
 
 @property(readonly) NSString* name;
 @property(readwrite,retain) id value;
+@property(readwrite,assign) id scriptValue;
 
 @end
 
@@ -32,9 +33,14 @@
 
 + (id)documentWithEdit:(MetaEdits *)edit;
 - (id)initWithEdit:(MetaEdits *)edit;
-- (NSArray *)tags;
-- (NSString *)lastComponentOfFileName;
+- (NSURL *)fileURL;
 - (NSString *)displayName;
 - (MZTimeCode *)duration;
+- (BOOL)isDocumentEdited;
+
+- (NSArray *)tags;
+
+- (id)handleCloseScriptCommand:(NSScriptCommand *)cmd;
+- (id)handleSaveScriptCommand:(NSScriptCommand *)cmd;
 
 @end

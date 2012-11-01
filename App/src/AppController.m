@@ -997,23 +997,4 @@ NSDictionary* findBinding(NSWindow* window) {
     return NSTerminateCancel;
 }
 
-- (BOOL)application:(NSApplication *)sender delegateHandlesKey:(NSString *)key;
-{
-    return [key isEqualToString:@"orderedDocuments"];
-}
-
-- (NSArray *)orderedDocuments
-{
-    if(!documents)
-        documents = [[NSMutableArray alloc] init];
-    [documents removeAllObjects];
-    
-    NSArray* files = [MZMetaLoader sharedLoader].files;
-    for(MetaEdits* edit in files)
-    {
-        [documents addObject:[MZMetaDataDocument documentWithEdit:edit]];
-    }
-    return documents;
-}
-
 @end

@@ -565,6 +565,12 @@ static NSMutableDictionary *sharedTagScriptNames = nil;
 
 @implementation MZEnumTag
 
+- (NSString *)enumScriptName
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
 - (const char*)encoding
 {
     return @encode(int);
@@ -633,6 +639,18 @@ static NSMutableDictionary *sharedTagScriptNames = nil;
            [typeValues addObject:[NSNumber numberWithInt:typeValuesTemp[i]]];
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [typeNames release];
+    [typeValues release];
+    [super dealloc];
+}
+
+- (NSString *)enumScriptName;
+{
+    return @"video type";
 }
 
 - (NSCell *)editorCell
@@ -749,6 +767,11 @@ static NSMutableDictionary *sharedTagScriptNames = nil;
     [ratingNamesNonStrict release];
     [ratingValuesNonStrict release];
     [super dealloc];
+}
+
+- (NSString *)enumScriptName;
+{
+    return @"rating";
 }
 
 - (NSCell *)editorCell

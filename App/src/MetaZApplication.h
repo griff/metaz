@@ -10,9 +10,13 @@
 
 
 @interface MetaZApplication : NSApplication {
+    NSMutableArray* documents;
+    NSArrayController* filesController;
 }
+@property(retain) IBOutlet NSArrayController* filesController; 
+@property(retain) id selection;
 
-- (NSNumber*) ready;
+- (id)selectedDocuments;
 - (id)handleOpenScriptCommand:(id)command;
 
 @end

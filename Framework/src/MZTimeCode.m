@@ -145,6 +145,20 @@
 
 #pragma mark - Scripting additions
 
++ (void) initialize {
+	[super initialize];
+	static BOOL tooLate = NO;
+	if( ! tooLate ) {
+		[[NSScriptCoercionHandler sharedCoercionHandler] registerCoercer:[self class] selector:@selector( coerceTimeCode:toString: ) toConvertFromClass:[MZTimeCode class] toClass:[NSString class]];
+		tooLate = YES;
+	}
+}
+
++ (id) coerceTimeCode:(MZTimeCode *) value toString:(Class) class
+{
+	return [value stringValue];
+}
+
 - (NSAppleEventDescriptor *)scriptingRecordDescriptor
 {
     return [RECORD : 'Mtim',
@@ -155,6 +169,11 @@
         [KEY : 'MThr'], [INT : self.hour],
         [KEY : 'MTxt'], [STRING : [self stringValue]],
     nil];
+}
+
+- (NSAppleEventDescriptor *)scriptingAnyDescriptor
+{
+    return [self scriptingRecordDescriptor];
 }
 
 #pragma mark - NSCoding implementation
