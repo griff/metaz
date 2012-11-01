@@ -19,7 +19,6 @@
     NSArray* localizedTypeNames;
     NSArray* typeValues;
 }
-- (id)init;
 
 @end
 
@@ -29,7 +28,6 @@
     NSArray* ratingNamesNonStrict;
     NSMutableArray* ratingValuesNonStrict;
 }
-- (id)init;
 
 @end
 
@@ -41,78 +39,81 @@
         return;
 
     // Info tags
-    [self registerTag:[MZStringTag tagWithIdentifier:MZFileNameTagIdent]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZFileNameTagIdent scriptName:@"file name"]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZPictureTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZTitleTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZArtistTagIdent]];
     [self registerTag:[MZYearDateTag tagWithIdentifier:MZDateTagIdent]];
-    [self registerTag:[MZRatingTag tag]];
+    [self registerTag:[MZRatingTag tagWithIdentifier:MZRatingTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZGenreTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZAlbumTagIdent]];
-    [self registerTag:[MZStringTag tagWithIdentifier:MZAlbumArtistTagIdent]];
-    [self registerTag:[MZDateTag tagWithIdentifier:MZPurchaseDateTagIdent]];
-    [self registerTag:[MZStringTag tagWithIdentifier:MZShortDescriptionTagIdent]];
-    [self registerTag:[MZStringTag tagWithIdentifier:MZLongDescriptionTagIdent]];
-    [self registerTag:[MZStringTag tagWithIdentifier:MZAlbumArtistTagIdent]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZAlbumArtistTagIdent scriptName:@"album artist"]];
+    [self registerTag:[MZDateTag tagWithIdentifier:MZPurchaseDateTagIdent scriptName:@"purchase date"]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZShortDescriptionTagIdent scriptName:@"description"]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZLongDescriptionTagIdent scriptName:@"long description"]];
 
     // Video tags
-    [self registerTag:[MZVideoTypeTagClass tag]];
+    [self registerTag:[MZVideoTypeTagClass tagWithIdentifier:MZVideoTypeTagIdent scriptName:@"video type"]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZActorsTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZDirectorTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZProducerTagIdent]];
-    [self registerTag:[MZStringTag tagWithIdentifier:MZScreenwriterTagIdent]];
-    [self registerTag:[MZStringTag tagWithIdentifier:MZTVShowTagIdent]];
-    [self registerTag:[MZStringTag tagWithIdentifier:MZTVEpisodeIDTagIdent]];
-    [self registerTag:[MZIntegerTag tagWithIdentifier:MZTVSeasonTagIdent]];
-    [self registerTag:[MZIntegerTag tagWithIdentifier:MZTVEpisodeTagIdent]];
-    [self registerTag:[MZStringTag tagWithIdentifier:MZTVNetworkTagIdent]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZScreenwriterTagIdent scriptName:@"writer"]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZTVShowTagIdent scriptName:@"tv show"]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZTVEpisodeIDTagIdent scriptName:@"tv episode id"]];
+    [self registerTag:[MZIntegerTag tagWithIdentifier:MZTVSeasonTagIdent scriptName:@"tv season"]];
+    [self registerTag:[MZIntegerTag tagWithIdentifier:MZTVEpisodeTagIdent scriptName:@"tv episode"]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZTVNetworkTagIdent scriptName:@"tv network"]];
 
     // Sort tags
-    [self registerTag:[MZStringTag tagWithIdentifier:MZSortTitleTagIdent]];
-    [self registerTag:[MZStringTag tagWithIdentifier:MZSortArtistTagIdent]];
-    [self registerTag:[MZStringTag tagWithIdentifier:MZSortAlbumTagIdent]];
-    [self registerTag:[MZStringTag tagWithIdentifier:MZSortAlbumArtistTagIdent]];
-    [self registerTag:[MZStringTag tagWithIdentifier:MZSortTVShowTagIdent]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZSortTitleTagIdent scriptName:@"sort title"]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZSortArtistTagIdent scriptName:@"sort artist"]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZSortAlbumTagIdent scriptName:@"sort album"]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZSortAlbumArtistTagIdent scriptName:@"sort album artist"]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZSortTVShowTagIdent scriptName:@"sort tv show"]];
     
     // Advanced tags
-    [self registerTag:[MZStringTag tagWithIdentifier:MZFeedURLTagIdent]];
-    [self registerTag:[MZStringTag tagWithIdentifier:MZEpisodeURLTagIdent]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZFeedURLTagIdent scriptName:@"feed url"]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZEpisodeURLTagIdent scriptName:@"episode url"]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZCategoryTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZKeywordTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZAdvisoryTagIdent]];
     [self registerTag:[MZBoolTag tagWithIdentifier:MZPodcastTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZCopyrightTagIdent]];
-    [self registerTag:[MZIntegerTag tagWithIdentifier:MZTrackNumberTagIdent]];
-    [self registerTag:[MZIntegerTag tagWithIdentifier:MZTrackCountTagIdent]];
-    [self registerTag:[MZIntegerTag tagWithIdentifier:MZDiscNumberTagIdent]];
-    [self registerTag:[MZIntegerTag tagWithIdentifier:MZDiscCountTagIdent]];
+    [self registerTag:[MZIntegerTag tagWithIdentifier:MZTrackNumberTagIdent scriptName:@"track number"]];
+    [self registerTag:[MZIntegerTag tagWithIdentifier:MZTrackCountTagIdent scriptName:@"track count"]];
+    [self registerTag:[MZIntegerTag tagWithIdentifier:MZDiscNumberTagIdent scriptName:@"disc number"]];
+    [self registerTag:[MZIntegerTag tagWithIdentifier:MZDiscCountTagIdent scriptName:@"disc count"]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZGroupingTagIdent]];
-    [self registerTag:[MZStringTag tagWithIdentifier:MZEncodingToolTagIdent]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZEncodingToolTagIdent scriptName:@"encoding tool"]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZCommentTagIdent]];
     [self registerTag:[MZBoolTag tagWithIdentifier:MZGaplessTagIdent]];
     [self registerTag:[MZBoolTag tagWithIdentifier:MZCompilationTagIdent]];
     
     // Chapter tags
     [self registerTag:[MZTag tagWithIdentifier:MZChaptersTagIdent]];
-    [self registerTag:[MZReadOnlyTag tagWithIdentifier:MZChapterNamesTagIdent]];
+    [self registerTag:[MZReadOnlyTag tagWithIdentifier:MZChapterNamesTagIdent scriptName:@"chapter names"]];
 
     [self registerTag:[MZTimeCodeTag tagWithIdentifier:MZDurationTagIdent]];
     
     [self registerTag:[MZStringTag tagWithIdentifier:MZIMDBTagIdent]];
     [self registerTag:[MZStringTag tagWithIdentifier:MZASINTagIdent]];
-    [self registerTag:[MZIntegerTag tagWithIdentifier:MZDVDSeasonTagIdent]];
-    [self registerTag:[MZIntegerTag tagWithIdentifier:MZDVDEpisodeTagIdent]];
+    [self registerTag:[MZIntegerTag tagWithIdentifier:MZDVDSeasonTagIdent scriptName:@"dvd season"]];
+    [self registerTag:[MZIntegerTag tagWithIdentifier:MZDVDEpisodeTagIdent scriptName:@"dvd episode"]];
 
 }
 
 static NSMutableDictionary *sharedTags = nil;
+static NSMutableDictionary *sharedTagScriptNames = nil;
 + (void)registerTag:(MZTag *)tag
 {
     @synchronized(self)
     {
         if(!sharedTags)
             sharedTags = [[NSMutableDictionary alloc] init];
-        [sharedTags setObject:tag forKey:[tag identifier]];
+        [sharedTags setObject:tag forKey:tag.identifier];
+        if(!sharedTagScriptNames)
+            sharedTagScriptNames = [[NSMutableDictionary alloc] init];
+        [sharedTagScriptNames setObject:tag forKey:tag.scriptName];
     }
 }
 
@@ -123,6 +124,17 @@ static NSMutableDictionary *sharedTags = nil;
     {
         if(sharedTags)
             ret = [sharedTags objectForKey:identifier];
+    }
+    return ret;
+}
+
++ (MZTag *)tagForScriptName:(NSString *)scriptName
+{
+    MZTag *ret = nil;
+    @synchronized(self)
+    {
+        if(sharedTagScriptNames)
+            ret = [sharedTagScriptNames objectForKey:scriptName];
     }
     return ret;
 }
@@ -226,12 +238,23 @@ static NSMutableDictionary *sharedTags = nil;
     return [[[self alloc] initWithIdentifier:identifier] autorelease];
 }
 
++ (id)tagWithIdentifier:(NSString *)identifier scriptName:(NSString *)scriptName
+{
+    return [[[self alloc] initWithIdentifier:identifier scriptName:scriptName] autorelease];
+}
+
 - (id)initWithIdentifier:(NSString *)theIdentifier
+{
+    return [self initWithIdentifier:theIdentifier scriptName:theIdentifier];
+}
+
+- (id)initWithIdentifier:(NSString *)theIdentifier scriptName:(NSString *)theScriptName
 {
     self = [super init];
     if(self)
     {
         identifier = [theIdentifier retain];
+        scriptName = [theScriptName retain];
     }
     return self;
 }
@@ -239,10 +262,12 @@ static NSMutableDictionary *sharedTags = nil;
 - (void)dealloc
 {
     [identifier release];
+    [scriptName release];
     [super dealloc];
 }
 
 @synthesize identifier;
+@synthesize scriptName;
 
 - (NSString *)localizedName
 {
@@ -541,9 +566,10 @@ static NSMutableDictionary *sharedTags = nil;
 
 @implementation MZEnumTag
 
-+ (id)tag
+- (NSString *)enumScriptName
 {
-    return [[[self alloc] init] autorelease];
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
 }
 
 - (NSArray *)values
@@ -610,9 +636,9 @@ static NSMutableDictionary *sharedTags = nil;
 
 @implementation MZVideoTypeTagClass
 
-- (id)init
+- (id)initWithIdentifier:(NSString *)theIdentifier scriptName:(NSString *)theScriptName
 {
-    self = [super initWithIdentifier:MZVideoTypeTagIdent];
+    self = [super initWithIdentifier:theIdentifier scriptName:theScriptName];
     if(self)
     {
         typeNames = [[NSArray alloc] initWithObjects:
@@ -660,6 +686,11 @@ static NSMutableDictionary *sharedTags = nil;
 - (NSArray *)localizedValueNames
 {
     return localizedTypeNames;
+}
+
+- (NSString *)enumScriptName;
+{
+    return @"video type";
 }
 
 - (NSCell *)editorCell
@@ -720,9 +751,9 @@ static NSMutableDictionary *sharedTags = nil;
 
 @implementation MZRatingTag
 
-- (id)init
+- (id)initWithIdentifier:(NSString *)theIdentifier scriptName:(NSString *)theScriptName
 {
-    self =  [super initWithIdentifier:MZRatingTagIdent];
+    self =  [super initWithIdentifier:theIdentifier scriptName:theScriptName];
     if(self)
     {
         ratingNames = [[NSArray alloc] initWithObjects:
@@ -776,6 +807,11 @@ static NSMutableDictionary *sharedTags = nil;
     [ratingNamesNonStrict release];
     [ratingValuesNonStrict release];
     [super dealloc];
+}
+
+- (NSString *)enumScriptName;
+{
+    return @"rating";
 }
 
 - (NSCell *)editorCell

@@ -31,6 +31,7 @@
 - (void)setTitle:(NSString *)aTitle;
 - (void)setVideoType:(MZVideoType)aVideoType;
 - (void)setRating:(MZRating)aRating;
+- (MZTimeCode *)duration;
 
 @end
 

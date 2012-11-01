@@ -123,9 +123,15 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)theRequest;
 {
+    NSError* error = nil;
     MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
-    //MZLoggerDebug(@"Got response:\n%@", [theWrapper responseAsText]);
-    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithData:[theRequest responseData] options:0 error:NULL] autorelease];
+    MZLoggerDebug(@"Got response encoding: %d", [theRequest responseEncoding]);
+    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithXMLString:[theRequest responseString] options:0 error:&error] autorelease];
+    if(error)
+    {
+        MZLoggerError(@"TagChimp document error: %@", [error localizedDescription]);
+        error = nil;
+    }
     
     NSString* errorMessage = [doc stringForXPath:@"/items/message/error" error:NULL];
     if(![errorMessage isEqual:@""])

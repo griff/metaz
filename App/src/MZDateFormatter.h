@@ -8,7 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-
+/**
+ * A date formatter where a nil and an empty string are valid values.
+ */
 @interface MZDateFormatter : NSDateFormatter {
 }
 

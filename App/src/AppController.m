@@ -15,6 +15,7 @@
 #import "SearchMeta.h"
 #import "FilesTableView.h"
 #import "Resources.h"
+#import "MZMetaDataDocument.h"
 
 #define MaxShortDescription 256
 
@@ -938,6 +939,12 @@ NSDictionary* findBinding(NSWindow* window) {
         [sender replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
     else
         [sender replyToOpenOrPrint:NSApplicationDelegateReplyCancel];
+}
+
+- (void)applicationWillFinishLaunching:(NSNotification *)notification;
+{
+    // Load scriptability early to allow sdef open handler to override default AppKit handler.
+    [NSScriptSuiteRegistry sharedScriptSuiteRegistry]; 
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender

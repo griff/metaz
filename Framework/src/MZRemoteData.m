@@ -36,7 +36,10 @@
     @synchronized(self)
     {
         if (_MZSharedRemoteDataOperationQueue == nil)
+        {
             _MZSharedRemoteDataOperationQueue = [[NSOperationQueue alloc] init];
+            [_MZSharedRemoteDataOperationQueue setMaxConcurrentOperationCount:12];
+        }
     }
     return _MZSharedRemoteDataOperationQueue;
 }
