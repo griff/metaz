@@ -12,6 +12,8 @@ TEMPLATE_DMG=$SRCROOT/Release/template.dmg
 MASTER_DMG=$BUILT_PRODUCTS_DIR/$PROJECT_NAME-${VERSION}.dmg
 WC_DMG=$CONFIGURATION_TEMP_DIR/wc.dmg
 WC_DIR=$CONFIGURATION_TEMP_DIR/wc
+ARCHIVE_FILENAME="$PROJECT_NAME-$VERSION.zip"
+export GITV=`git log -n1 --pretty=oneline --format=%h`
 
 if [ ! -f "${TEMPLATE_DMG}.zip" ]; then
   echo
@@ -57,4 +59,17 @@ if [ -x $app ] ; then
 else
 	echo warning Missing stuff
 fi
+
+WD=$PWD
+cd "$BUILT_PRODUCTS_DIR"
+rm -f "$PROJECT_NAME"*.zip
+ditto -ck --keepParent "$PROJECT_NAME.app" "$ARCHIVE_FILENAME"
+
+mkdir -p DSYMS
+cp -R *.dSYM DSYMS/
+
+#ditto -ck --keepParent "$PROJECT_NAME.app.dSYM" "$PROJECT_NAME-$VERSION-$GITV+dYSM.zip"
+ditto -ck DSYMS "$PROJECT_NAME-$VERSION-$GITV+dYSM.zip"
+rm -rf DSYMS
+
 

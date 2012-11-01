@@ -7,7 +7,6 @@ if [ "${CONFIGURATION}" != "Release" ]; then exit; fi
 if [[ -z "$(security find-generic-password -s "$KEYCHAIN_PRIVKEY_NAME")" ]] ; then exit; fi
 
 PATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin
-export GITV=`git log -n1 --pretty=oneline --format=%h`
 
 VERSION=$(defaults read "$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info" CFBundleShortVersionString)
 FULLVERSION=$(defaults read "$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info" CFBundleVersion)
@@ -19,21 +18,11 @@ DOWNLOAD_URL="$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME"
 
 WD=$PWD
 cd "$BUILT_PRODUCTS_DIR"
-rm -f "$PROJECT_NAME"*.zip
-ditto -ck --keepParent "$PROJECT_NAME.app" "$ARCHIVE_FILENAME"
-
-mkdir -p DSYMS
-cp -R *.dSYM DSYMS/
-
-#ditto -ck --keepParent "$PROJECT_NAME.app.dSYM" "$PROJECT_NAME-$VERSION-$GITV+dYSM.zip"
-ditto -ck DSYMS "$PROJECT_NAME-$VERSION-$GITV+dYSM.zip"
-rm -rf DSYMS
 
 SIZE=$(stat -f %z "$ARCHIVE_FILENAME")
 PUBDATE=$(date +"%a, %d %b %G %T %z")
-HASH=$(openssl dgst -sha1 -binary < "$ARCHIVE_FILENAME")
-KEY=$(security find-generic-password -g -s "$KEYCHAIN_PRIVKEY_NAME" 2>&1 1>/dev/null | perl -pe '($_) = /"(.+)"/; s/\\012/\n/g' )
-SIGNATURE=$(echo $HASH | openssl dgst -dss1 -sign <(echo "$KEY") | openssl enc -base64)
+KEY=$(security find-generic-password -g -s "$KEYCHAIN_PRIVKEY_NAME" 2>&1 1>/dev/null | perl -pe '($_) = /"(.+)"/; s/\\012/\n/g')
+SIGNATURE=$(openssl dgst -sha1 -binary < "$ARCHIVE_FILENAME" | openssl dgst -dss1 -sign <(echo "$KEY") | openssl enc -base64)
 
 [ $SIGNATURE ] || { echo Unable to load signing private key with name "'$KEYCHAIN_PRIVKEY_NAME'" from keychain; false; }
 
