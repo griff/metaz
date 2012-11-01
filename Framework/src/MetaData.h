@@ -7,6 +7,7 @@
 //
 #import <MetaZKit/MZConstants.h>
 #import <MetaZKit/TagData.h>
+#import <MetaZKit/MZTimeCode.h>
 
 /*! @protocol MetaData
  @abstract Informal protocol for all objects that store meta data
@@ -31,6 +32,7 @@
 - (void)setTitle:(NSString *)aTitle;
 - (void)setVideoType:(MZVideoType)aVideoType;
 - (void)setRating:(MZRating)aRating;
+- (MZTimeCode *)duration;
 
 @end
 

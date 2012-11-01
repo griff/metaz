@@ -100,6 +100,9 @@
   changeInLength:0];
 }
 
+#pragma mark -
+#pragma mark Word boundary methods
+
 - (NSRange)doubleClickAtIndex:(NSUInteger)index
 {
     NSRange result = [super doubleClickAtIndex:index];

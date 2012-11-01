@@ -83,6 +83,9 @@
 		1B29A19B14C5CFE80048B7C0 /* 1.2.3 in Copy Growl frameworks */ = {isa = PBXBuildFile; fileRef = 1B29A07314C5C9430048B7C0 /* 1.2.3 */; };
 		1B29A19C14C5CFE80048B7C0 /* 1.3.1 in Copy Growl frameworks */ = {isa = PBXBuildFile; fileRef = 1B29A07114C5C9430048B7C0 /* 1.3.1 */; };
 		1B2AEED611A0EC430074BAAD /* MZFileNameTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */; };
+		1B35446915B1D96B0033DD74 /* MetaZ.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 1B35446815B1D96B0033DD74 /* MetaZ.sdef */; };
+		1B3544E815B2160F0033DD74 /* MetaZApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3544E715B2160F0033DD74 /* MetaZApplication.m */; };
+		1B35453115B223BB0033DD74 /* MZMetaDataDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B35453015B223BB0033DD74 /* MZMetaDataDocument.m */; };
 		1B36E75E1406612F009F542A /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B523B4D13F4B2B500C20B7D /* ASIDataCompressor.m */; };
 		1B36E78C14066727009F542A /* MZASISearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B36E78A14066727009F542A /* MZASISearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B36E78D14066727009F542A /* MZASISearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B36E78B14066727009F542A /* MZASISearch.m */; };
@@ -114,6 +117,7 @@
 		1B449E4B10DCCDB000B9C751 /* GTMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B449DCE10DCCC1C00B9C751 /* GTMLogger.m */; };
 		1B4AF83B1170CFCC00E5C969 /* TheTVDBSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */; };
 		1B4AF84511715C8400E5C969 /* languages.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1B4AF84411715C8400E5C969 /* languages.xml */; };
+		1B4CFFE8161CE0ED00B12009 /* AEVTBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4CFF90161CDF0100B12009 /* AEVTBuilder.m */; };
 		1B4F53C4116E9F44003221B1 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1B4F53D8116EA0BE003221B1 /* TheTVDBPlugin.mzplugin in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzplugin */; };
 		1B4F53DF116EA1B5003221B1 /* TheTVDBPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F53DE116EA1B5003221B1 /* TheTVDBPlugin.m */; };
@@ -141,12 +145,16 @@
 		1B82647410B3C25000DF101B /* MetaEditsUndoManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B82647210B3C25000DF101B /* MetaEditsUndoManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B82647510B3C25000DF101B /* MetaEditsUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */; };
 		1B8268A510B3F82400DF101B /* AmazonSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8268A410B3F82400DF101B /* AmazonSearchProvider.m */; };
+		1B89050A163F6E48008C5C8B /* MZGetCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B890509163F6E48008C5C8B /* MZGetCommand.m */; };
+		1B8905B1163F87BB008C5C8B /* MZScriptingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8905B0163F87BB008C5C8B /* MZScriptingAdditions.m */; };
+		1B89073116420437008C5C8B /* MZScriptingEnums.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B89073016420437008C5C8B /* MZScriptingEnums.m */; };
+		1B8908E416424790008C5C8B /* MZSelectedMetaDataDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8908E316424790008C5C8B /* MZSelectedMetaDataDocument.m */; };
 		1B8CB5E214AA31C500F859F7 /* modified_header.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1B8CB5DF14AA31C500F859F7 /* modified_header.tiff */; };
 		1B8CB5E314AA31C500F859F7 /* modified_selected.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1B8CB5E014AA31C500F859F7 /* modified_selected.tiff */; };
 		1B8CB5E414AA31C500F859F7 /* modified.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1B8CB5E114AA31C500F859F7 /* modified.tiff */; };
 		1B8CB94F14ACD6FF00F859F7 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1B8CB96314AE3B2000F859F7 /* TheMovieDbPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8CB96214AE3B2000F859F7 /* TheMovieDbPlugin.m */; };
-		1B8E95711401BE7F006227B4 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B523B9013F4B3BE00C20B7D /* libz.1.2.3.dylib */; };
+		1B8E95711401BE7F006227B4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B523B9013F4B3BE00C20B7D /* libz.dylib */; };
 		1B8E96321401BE86006227B4 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B523B9613F4B3D900C20B7D /* CoreServices.framework */; };
 		1B92BB1C10876FBA0057EFD7 /* PureMetaEdits.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B92BB1A10876FBA0057EFD7 /* PureMetaEdits.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		1B92BB1D10876FBA0057EFD7 /* PureMetaEdits.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BB1B10876FBA0057EFD7 /* PureMetaEdits.m */; };
@@ -222,6 +230,7 @@
 		1BD6E7A8105DC4D000E40151 /* Queue.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E7A6105DC4D000E40151 /* Queue.xib */; };
 		1BDD86A71094A8CC00E3C81D /* MZPresets.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDD86A61094A8CC00E3C81D /* MZPresets.m */; };
 		1BDD87A11095FB5100E3C81D /* PresetsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDD87A01095FB5100E3C81D /* PresetsWindowController.m */; };
+		1BDEC5ED1620DE160051D656 /* AEVTBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B4CFF8F161CDF0100B12009 /* AEVTBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA6B3B106CF01B004B1A7F /* PosterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6B3A106CF01B004B1A7F /* PosterView.m */; };
 		1BEA6B81106D66AD004B1A7F /* faded_cow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BEA6B80106D66AD004B1A7F /* faded_cow.png */; };
 		1BEA6C95106E7203004B1A7F /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6C94106E7203004B1A7F /* Utilities.m */; };
@@ -560,6 +569,11 @@
 		1B29A07314C5C9430048B7C0 /* 1.2.3 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = 1.2.3; path = Externals/Growl/1.2.3; sourceTree = "<group>"; };
 		1B2AEED411A0EC430074BAAD /* MZFileNameTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFileNameTextStorage.h; sourceTree = "<group>"; };
 		1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFileNameTextStorage.m; sourceTree = "<group>"; };
+		1B35446815B1D96B0033DD74 /* MetaZ.sdef */ = {isa = PBXFileReference; explicitFileType = text.xml; fileEncoding = 4; name = MetaZ.sdef; path = App/resources/MetaZ.sdef; sourceTree = "<group>"; };
+		1B3544E615B2160F0033DD74 /* MetaZApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaZApplication.h; sourceTree = "<group>"; };
+		1B3544E715B2160F0033DD74 /* MetaZApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaZApplication.m; sourceTree = "<group>"; };
+		1B35452F15B223BB0033DD74 /* MZMetaDataDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMetaDataDocument.h; sourceTree = "<group>"; };
+		1B35453015B223BB0033DD74 /* MZMetaDataDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMetaDataDocument.m; sourceTree = "<group>"; };
 		1B36E78A14066727009F542A /* MZASISearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZASISearch.h; sourceTree = "<group>"; };
 		1B36E78B14066727009F542A /* MZASISearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZASISearch.m; sourceTree = "<group>"; };
 		1B3AD7A111055DF300B33F85 /* MZQueueOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZQueueOperation.h; sourceTree = "<group>"; };
@@ -863,6 +877,8 @@
 		1B4AF8391170CFCC00E5C969 /* TheTVDBSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBSearch.h; sourceTree = "<group>"; };
 		1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBSearch.m; sourceTree = "<group>"; };
 		1B4AF84411715C8400E5C969 /* languages.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = languages.xml; path = Plugins/TheTVDB/resources/languages.xml; sourceTree = "<group>"; };
+		1B4CFF8F161CDF0100B12009 /* AEVTBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEVTBuilder.h; sourceTree = "<group>"; };
+		1B4CFF90161CDF0100B12009 /* AEVTBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEVTBuilder.m; sourceTree = "<group>"; };
 		1B4F5394116E9EFC003221B1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/TheTVDB/Info.plist; sourceTree = "<group>"; };
 		1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheTVDBPlugin.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B4F53DD116EA1B5003221B1 /* TheTVDBPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBPlugin.h; sourceTree = "<group>"; };
@@ -919,7 +935,7 @@
 		1B523B7B13F4B2B500C20B7D /* ASIS3ServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIS3ServiceRequest.h; sourceTree = "<group>"; };
 		1B523B7C13F4B2B500C20B7D /* ASIS3ServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIS3ServiceRequest.m; sourceTree = "<group>"; };
 		1B523B8813F4B39400C20B7D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		1B523B9013F4B3BE00C20B7D /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
+		1B523B9013F4B3BE00C20B7D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		1B523B9613F4B3D900C20B7D /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		1B5AC76D10532E5200F9CE36 /* MetaEditPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaEditPanel.h; sourceTree = "<group>"; };
 		1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditPanel.m; sourceTree = "<group>"; };
@@ -938,6 +954,14 @@
 		1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditsUndoManager.m; sourceTree = "<group>"; };
 		1B8268A310B3F82400DF101B /* AmazonSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonSearchProvider.h; sourceTree = "<group>"; };
 		1B8268A410B3F82400DF101B /* AmazonSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonSearchProvider.m; sourceTree = "<group>"; };
+		1B890508163F6E48008C5C8B /* MZGetCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZGetCommand.h; sourceTree = "<group>"; };
+		1B890509163F6E48008C5C8B /* MZGetCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZGetCommand.m; sourceTree = "<group>"; };
+		1B8905AF163F87BB008C5C8B /* MZScriptingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZScriptingAdditions.h; sourceTree = "<group>"; };
+		1B8905B0163F87BB008C5C8B /* MZScriptingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZScriptingAdditions.m; sourceTree = "<group>"; };
+		1B89072F16420437008C5C8B /* MZScriptingEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZScriptingEnums.h; sourceTree = "<group>"; };
+		1B89073016420437008C5C8B /* MZScriptingEnums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZScriptingEnums.m; sourceTree = "<group>"; };
+		1B8908E216424790008C5C8B /* MZSelectedMetaDataDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSelectedMetaDataDocument.h; sourceTree = "<group>"; };
+		1B8908E316424790008C5C8B /* MZSelectedMetaDataDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZSelectedMetaDataDocument.m; sourceTree = "<group>"; };
 		1B8CB5DF14AA31C500F859F7 /* modified_header.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = modified_header.tiff; path = App/resources/modified_header.tiff; sourceTree = "<group>"; };
 		1B8CB5E014AA31C500F859F7 /* modified_selected.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = modified_selected.tiff; path = App/resources/modified_selected.tiff; sourceTree = "<group>"; };
 		1B8CB5E114AA31C500F859F7 /* modified.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = modified.tiff; path = App/resources/modified.tiff; sourceTree = "<group>"; };
@@ -1139,7 +1163,7 @@
 			files = (
 				1BA325E110545CD900276F57 /* Cocoa.framework in Frameworks */,
 				1B523C0F13F4B3F500C20B7D /* SystemConfiguration.framework in Frameworks */,
-				1B8E95711401BE7F006227B4 /* libz.1.2.3.dylib in Frameworks */,
+				1B8E95711401BE7F006227B4 /* libz.dylib in Frameworks */,
 				1B8E96321401BE86006227B4 /* CoreServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1260,7 +1284,7 @@
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				1B44956C10D6118F00B9C751 /* Growl.framework */,
 				1B523B8813F4B39400C20B7D /* SystemConfiguration.framework */,
-				1B523B9013F4B3BE00C20B7D /* libz.1.2.3.dylib */,
+				1B523B9013F4B3BE00C20B7D /* libz.dylib */,
 				1B523B9613F4B3D900C20B7D /* CoreServices.framework */,
 			);
 			name = "Linked Frameworks";
@@ -1431,6 +1455,7 @@
 		1B449CEE10DCCAD500B9C751 /* External Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1B4CFF8E161CDED800B12009 /* AEVTBuilder */,
 				1B069665149BD32D00B5FA90 /* MGViewAnimation */,
 				1B523B4813F4B24E00C20B7D /* asi-http-request */,
 				1B42F21910DD534500AFEBF6 /* UKDockProgressIndicator */,
@@ -1755,6 +1780,16 @@
 			path = "Externals/google-toolbox-for-mac/Foundation";
 			sourceTree = "<group>";
 		};
+		1B4CFF8E161CDED800B12009 /* AEVTBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				1B4CFF8F161CDF0100B12009 /* AEVTBuilder.h */,
+				1B4CFF90161CDF0100B12009 /* AEVTBuilder.m */,
+			);
+			name = AEVTBuilder;
+			path = Externals/AEVTBuilder;
+			sourceTree = "<group>";
+		};
 		1B4F538D116E9E1F003221B1 /* TheTVDB */ = {
 			isa = PBXGroup;
 			children = (
@@ -2032,6 +2067,18 @@
 				1B7B53F414A029FA00BF37DD /* MZMultipleDateFormatter.m */,
 				1B29A06414C5C6570048B7C0 /* MZMultiGrowlWrapper.h */,
 				1B29A06514C5C6570048B7C0 /* MZMultiGrowlWrapper.m */,
+				1B3544E615B2160F0033DD74 /* MetaZApplication.h */,
+				1B3544E715B2160F0033DD74 /* MetaZApplication.m */,
+				1B35452F15B223BB0033DD74 /* MZMetaDataDocument.h */,
+				1B35453015B223BB0033DD74 /* MZMetaDataDocument.m */,
+				1B890508163F6E48008C5C8B /* MZGetCommand.h */,
+				1B890509163F6E48008C5C8B /* MZGetCommand.m */,
+				1B8905AF163F87BB008C5C8B /* MZScriptingAdditions.h */,
+				1B8905B0163F87BB008C5C8B /* MZScriptingAdditions.m */,
+				1B89072F16420437008C5C8B /* MZScriptingEnums.h */,
+				1B89073016420437008C5C8B /* MZScriptingEnums.m */,
+				1B8908E216424790008C5C8B /* MZSelectedMetaDataDocument.h */,
+				1B8908E316424790008C5C8B /* MZSelectedMetaDataDocument.m */,
 			);
 			name = Classes;
 			path = App/src;
@@ -2185,6 +2232,7 @@
 				1BB6BF331050E5E2001D3D1D /* sparkle_public.pem */,
 				1BCC990610771262007EFF57 /* FactorySettings.plist */,
 				1BC0661710AE223A005C2A9F /* PresetsPanel.xib */,
+				1B35446815B1D96B0033DD74 /* MetaZ.sdef */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2261,6 +2309,7 @@
 				1B523C5213FDCD1A00C20B7D /* ASIProgressDelegate.h in Headers */,
 				1B36E78C14066727009F542A /* MZASISearch.h in Headers */,
 				1B0696D7149BFB2D00B5FA90 /* NSString+MZQueryString.h in Headers */,
+				1BDEC5ED1620DE160051D656 /* AEVTBuilder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2608,6 +2657,7 @@
 				1B8CB5E214AA31C500F859F7 /* modified_header.tiff in Resources */,
 				1B8CB5E314AA31C500F859F7 /* modified_selected.tiff in Resources */,
 				1B8CB5E414AA31C500F859F7 /* modified.tiff in Resources */,
+				1B35446915B1D96B0033DD74 /* MetaZ.sdef in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2642,7 +2692,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -o errexit\n\nPATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin\nbuildid=`git log -n1 --pretty=oneline --format=%h`\nrelease=`cat $SCRIPT_INPUT_FILE_0`\n\necho \"#define BUILDID $buildid\" > $SCRIPT_OUTPUT_FILE_0\necho \"#define BUILDDATE `date +%y.%m.%d.%H`\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define WHOAMI `whoami`\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define RELEASE $release\" >> $SCRIPT_OUTPUT_FILE_0 \ncat $SCRIPT_INPUT_FILE_1 >> $SCRIPT_OUTPUT_FILE_0 \n\n# Delete the intermediate Info.plist so that Xcode re-preprocesses the Info.plist with our updated macros.\n# Use -f because after a clean build, this file doesn't exist yet, so a plain rm would fail and stop the build.\nrm -f \"${CONFIGURATION_TEMP_DIR}/MetaZ.build/Preprocessed-Info.plist\"\n";
+			shellScript = "set -o errexit\n\nPATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin\nbuildid=`git log -n1 --pretty=oneline --format=%h`\nrelease=`cat $SCRIPT_INPUT_FILE_0`\nbuilddate=`date +%y.%m.%d.%H`\n\necho \"#define BUILDID $buildid\" > $SCRIPT_OUTPUT_FILE_0\necho \"#define BUILDDATE $builddate\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define BUILDVERSION $builddate.$buildid\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define WHOAMI `whoami`\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define RELEASE $release\" >> $SCRIPT_OUTPUT_FILE_0 \ncat $SCRIPT_INPUT_FILE_1 >> $SCRIPT_OUTPUT_FILE_0 \n\n# Delete the intermediate Info.plist so that Xcode re-preprocesses the Info.plist with our updated macros.\n# Use -f because after a clean build, this file doesn't exist yet, so a plain rm would fail and stop the build.\nrm -f \"${CONFIGURATION_TEMP_DIR}/MetaZ.build/Preprocessed-Info.plist\"\n";
 		};
 		1B8262A710B39DE400DF101B /* Make Disk Image */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2661,7 +2711,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin\nset -o errexit\n#set -x\n\nif [ \"${CONFIGURATION}\" != \"Release\" ]; then exit; fi\n\nrm -f \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME\"*.dmg\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleShortVersionString)\nSOURCE_FILES=($CODESIGNING_FOLDER_PATH Thanks.txt License.txt)\nTEMPLATE_DMG=$SRCROOT/Release/template.dmg\nMASTER_DMG=$BUILT_PRODUCTS_DIR/$PROJECT_NAME-${VERSION}.dmg\nWC_DMG=$CONFIGURATION_TEMP_DIR/wc.dmg\nWC_DIR=$CONFIGURATION_TEMP_DIR/wc\n\nif [ ! -f \"${TEMPLATE_DMG}.zip\" ]; then\n  echo\n  echo --------------------- Generating empty template --------------------\n  mkdir \"$CONFIGURATION_TEMP_DIR/template\"\n  hdiutil create -fs HFSX -layout SPUD -size 40m \"$TEMPLATE_DMG\" -srcfolder \"$CONFIGURATION_TEMP_DIR/template\" -format UDRW -volname   \"$PROJECT_NAME\" -quiet\n  rmdir \"$CONFIGURATION_TEMP_DIR/template\"\n  ditto -ck \"$TEMPLATE_DMG\" \"${TEMPLATE_DMG}.zip\"\n  echo\nfi\n\nif [ -f \"${TEMPLATE_DMG}.zip\" ]; then\n  ditto -xk \"${TEMPLATE_DMG}.zip\" \"$SRCROOT/Release\"\nfi\ncp \"${TEMPLATE_DMG}\" \"$WC_DMG\"\nrm -r \"${TEMPLATE_DMG}\"\nmkdir -p \"$WC_DIR\"\n\nhdiutil attach \"$WC_DMG\" -noautoopen -quiet -mountpoint \"$WC_DIR\"\nfor i in $SOURCE_FILES; do\n\tbase=`basename $i`\n\trm -rf \"$WC_DIR/$base\"\n\tditto -rsrc \"$i\" \"$WC_DIR/$base\"\ndone\n#rm -f \"$@\"\n#hdiutil create -srcfolder \"$(WC_DIR)\" -format UDZO -imagekey zlib-level=9 \"$@\" -volname \"$(NAME) $(VERSION)\" -scrub -quiet\nWC_DEV=`hdiutil info | grep \"$WC_DIR\" | grep \"Apple_HFS\" | awk '{print $1}'` && \\\n\thdiutil detach $WC_DEV -quiet -force\nrm -f \"$MASTER_DMG\"\nhdiutil convert \"$WC_DMG\" -quiet -format UDZO -imagekey zlib-level=9 -o \"$MASTER_DMG\"\nrm -rf \"$WC_DIR\"\n\nif [ ! -z \"${EULA_RSRC}\" -a \"${EULA_RSRC}\" != \"-null-\" ]; then\n  echo \"adding EULA resources\"\n  hdiutil unflatten \"$MASTER_DMG\"\n  /Developer/Tools/ResMerger -a \"${EULA_RSRC}\" -o \"$MASTER_DMG\"\n  hdiutil flatten \"$MASTER_DMG\"\nfi\n\napp=`which seticon || echo 'non'`\nif [ -x $app ] ; then \n\tseticon \"$WC_DMG\" \"$MASTER_DMG\"\nelse\n\techo warning Missing stuff\nfi\n\n";
+			shellScript = "set -o errexit\nbash $SRCROOT/Release/make_diskimage.bash";
 		};
 		1BB6BF3B1050ED38001D3D1D /* Sparkle Sign  */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2675,7 +2725,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -o errexit\n#set -x\n\nif [ \"${CONFIGURATION}\" != \"Release\" ]; then exit; fi\n\nPATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin\nexport GITV=`git log -n1 --pretty=oneline --format=%h`\nexport DATEV=`date +%y.%m.%d.%H`\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info\" CFBundleShortVersionString)\nDOWNLOAD_BASE_URL=\"http://github.com/downloads/griff/metaz\"\nRELEASENOTES_URL=\"http://griff.github.com/metaz/release-notes.html#version-$VERSION\"\n\nARCHIVE_FILENAME=\"$PROJECT_NAME-$VERSION.zip\"\nDOWNLOAD_URL=\"$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME\"\nKEYCHAIN_PRIVKEY_NAME=\"MetaZ Sparkle Private\"\n\nWD=$PWD\ncd \"$BUILT_PRODUCTS_DIR\"\nrm -f \"$PROJECT_NAME\"*.zip\nditto -ck --keepParent \"$PROJECT_NAME.app\" \"$ARCHIVE_FILENAME\"\n\nmkdir -p DSYMS\ncp -R *.dSYM DSYMS/\n\n#ditto -ck --keepParent \"$PROJECT_NAME.app.dSYM\" \"$PROJECT_NAME-$VERSION-$GITV+dYSM.zip\"\nditto -ck DSYMS \"$PROJECT_NAME-$VERSION-$GITV+dYSM.zip\"\nrm -rf DSYMS\n\nSIZE=$(stat -f %z \"$ARCHIVE_FILENAME\")\nPUBDATE=$(date +\"%a, %d %b %G %T %z\")\nSIGNATURE=$(\n\topenssl dgst -sha1 -binary < \"$ARCHIVE_FILENAME\" \\\n\t| openssl dgst -dss1 -sign <(security find-generic-password -g -s \"$KEYCHAIN_PRIVKEY_NAME\" 2>&1 1>/dev/null | perl -pe '($_) = /\"(.+)\"/; s/\\\\012/\\n/g') \\\n\t| openssl enc -base64\n)\n\n[ $SIGNATURE ] || { echo Unable to load signing private key with name \"'$KEYCHAIN_PRIVKEY_NAME'\" from keychain; false; }\n\ncat > \"$PROJECT_NAME-$VERSION.xml\" <<EOF\n\t\t<item>\n\t\t\t<title>Version $VERSION</title>\n\t\t\t<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>\n\t\t\t<pubDate>$PUBDATE</pubDate>\n\t\t\t<enclosure\n\t\t\t\turl=\"$DOWNLOAD_URL\"\n\t\t\t\tsparkle:version=\"$DATEV\"\n\t\t\t\tsparkle:shortVersionString=\"$VERSION\"\n\t\t\t\ttype=\"application/octet-stream\"\n\t\t\t\tlength=\"$SIZE\"\n\t\t\t\tsparkle:dsaSignature=\"$SIGNATURE\"\n\t\t\t/>\n\t\t</item>\nEOF\n\necho scp \"'$HOME/svn/my-cool-app/build/Release/$ARCHIVE_FILENAME'\" www.example.com:download/\necho scp \"'$WD/appcast.xml'\" www.example.com:web/software/my-cool-app/appcast.xml\n";
+			shellScript = "set -o errexit\nbash $SRCROOT/Release/sparkle_sign.bash\n";
 			showEnvVarsInLog = 0;
 		};
 		1BEA6D70106EA6D1004B1A7F /* Build Documentation */ = {
@@ -2810,6 +2860,7 @@
 				1B36E75E1406612F009F542A /* ASIDataCompressor.m in Sources */,
 				1B36E78D14066727009F542A /* MZASISearch.m in Sources */,
 				1B0696D8149BFB2D00B5FA90 /* NSString+MZQueryString.m in Sources */,
+				1B4CFFE8161CE0ED00B12009 /* AEVTBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2874,6 +2925,12 @@
 				1B7B529D149EA26300BF37DD /* EnsureArrayTransformer.m in Sources */,
 				1B7B53F514A029FA00BF37DD /* MZMultipleDateFormatter.m in Sources */,
 				1B29A06614C5C6570048B7C0 /* MZMultiGrowlWrapper.m in Sources */,
+				1B3544E815B2160F0033DD74 /* MetaZApplication.m in Sources */,
+				1B35453115B223BB0033DD74 /* MZMetaDataDocument.m in Sources */,
+				1B89050A163F6E48008C5C8B /* MZGetCommand.m in Sources */,
+				1B8905B1163F87BB008C5C8B /* MZScriptingAdditions.m in Sources */,
+				1B89073116420437008C5C8B /* MZScriptingEnums.m in Sources */,
+				1B8908E416424790008C5C8B /* MZSelectedMetaDataDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3106,9 +3163,9 @@
 		1B032F6910B0C12200B28E3A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
@@ -3128,7 +3185,6 @@
 					AppKit,
 					"-lz",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = AmazonPlugin;
 				USER_HEADER_SEARCH_PATHS = "Plugins/Amazon/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3138,9 +3194,9 @@
 		1B032F6A10B0C12200B28E3A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
 					Externals/hmac,
@@ -3159,7 +3215,6 @@
 					AppKit,
 					"-lz",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = AmazonPlugin;
 				USER_HEADER_SEARCH_PATHS = "Plugins/Amazon/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3171,10 +3226,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -3189,7 +3244,6 @@
 					"-framework",
 					SenTestingKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = MetaZKitTest;
 				WRAPPER_EXTENSION = octest;
 			};
@@ -3199,10 +3253,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3216,7 +3270,6 @@
 					"-framework",
 					SenTestingKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = MetaZKitTest;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
@@ -3226,9 +3279,9 @@
 		1B040EC01081B3C10027FA0D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3244,7 +3297,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = TagChimp;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TagChimp/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3254,9 +3306,9 @@
 		1B040EC11081B3C10027FA0D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3271,7 +3323,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = TagChimp;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TagChimp/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3282,6 +3333,7 @@
 		1B2022F910B393CB00EE548A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "Plist Macos";
 			};
 			name = Debug;
@@ -3289,6 +3341,7 @@
 		1B2022FA10B393CB00EE548A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "Plist Macos";
 			};
 			name = Release;
@@ -3296,9 +3349,9 @@
 		1B42F25B10DEB0D400AFEBF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3311,7 +3364,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = IMDBPlugin;
 				USER_HEADER_SEARCH_PATHS = "Plugins/IMDB/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3321,7 +3373,7 @@
 		1B42F25C10DEB0D400AFEBF6 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3333,7 +3385,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = IMDBPlugin;
 				USER_HEADER_SEARCH_PATHS = "Plugins/IMDB/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3343,9 +3394,9 @@
 		1B42F25D10DEB0D400AFEBF6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3357,7 +3408,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = IMDBPlugin;
 				USER_HEADER_SEARCH_PATHS = "Plugins/IMDB/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3375,10 +3425,10 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 				USE_HEADERMAP = NO;
 			};
@@ -3388,6 +3438,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3395,7 +3446,6 @@
 					"\"$(SRCROOT)/Externals\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3403,6 +3453,7 @@
 				HEADER_SEARCH_PATHS = (
 					Externals/MGViewAnimation,
 					Externals/UKDockProgressIndicator,
+					Externals/AEVTBuilder,
 					"Externals/google-toolbox-for-mac/**",
 				);
 				IBC_OTHER_FLAGS = "--plugin /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/ImageKit.framework/Resources/ImageKitIBPlugin.ibplugin";
@@ -3419,18 +3470,21 @@
 		1B44938010C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Framework/MetaZKit_Prefix.pch;
-				HEADER_SEARCH_PATHS = "Externals/google-toolbox-for-mac/**";
+				HEADER_SEARCH_PATHS = (
+					Externals/AEVTBuilder,
+					"Externals/google-toolbox-for-mac/**",
+				);
 				INFOPLIST_FILE = Framework/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
@@ -3442,7 +3496,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = MetaZKit;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = Framework/src;
@@ -3452,10 +3505,10 @@
 		1B44938110C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3473,7 +3526,6 @@
 					"-framework",
 					MetaZKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = AtomicParsleyPlugin;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
@@ -3484,9 +3536,9 @@
 		1B44938210C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3502,7 +3554,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = TagChimp;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TagChimp/**";
@@ -3513,9 +3564,9 @@
 		1B44938310C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
@@ -3534,7 +3585,6 @@
 					AppKit,
 					"-lz",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = AmazonPlugin;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = "Plugins/Amazon/**";
@@ -3546,10 +3596,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -3564,7 +3614,6 @@
 					"-framework",
 					SenTestingKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = MetaZKitTest;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				WRAPPER_EXTENSION = octest;
@@ -3574,6 +3623,7 @@
 		1B44938510C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "Plist Macos";
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 			};
@@ -3582,9 +3632,9 @@
 		1B4F53C6116E9F44003221B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = Plugins/TheTVDB/Info.plist;
@@ -3599,7 +3649,6 @@
 					AppKit,
 					"-lz",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = TheTVDBPlugin;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3609,9 +3658,9 @@
 		1B4F53C7116E9F44003221B1 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/include";
@@ -3627,7 +3676,6 @@
 					AppKit,
 					"-lz",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = TheTVDBPlugin;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
@@ -3638,9 +3686,9 @@
 		1B4F53C8116E9F44003221B1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/include";
 				INFOPLIST_FILE = Plugins/TheTVDB/Info.plist;
@@ -3655,7 +3703,6 @@
 					AppKit,
 					"-lz",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = TheTVDBPlugin;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3667,9 +3714,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3684,7 +3731,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = TheMovieDb;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3695,7 +3741,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3709,7 +3755,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = TheMovieDb;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3720,9 +3765,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3736,7 +3781,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = TheMovieDb;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
 				WRAPPER_EXTENSION = mzplugin;
@@ -3747,19 +3791,22 @@
 		1BA325C610545ACB00276F57 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Framework/MetaZKit_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
-				HEADER_SEARCH_PATHS = "Externals/google-toolbox-for-mac/**";
+				HEADER_SEARCH_PATHS = (
+					Externals/AEVTBuilder,
+					"Externals/google-toolbox-for-mac/**",
+				);
 				INFOPLIST_FILE = Framework/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
@@ -3771,7 +3818,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = MetaZKit;
 				USER_HEADER_SEARCH_PATHS = Framework/src;
 			};
@@ -3780,17 +3826,20 @@
 		1BA325C710545ACB00276F57 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Framework/MetaZKit_Prefix.pch;
-				HEADER_SEARCH_PATHS = "Externals/google-toolbox-for-mac/**";
+				HEADER_SEARCH_PATHS = (
+					Externals/AEVTBuilder,
+					"Externals/google-toolbox-for-mac/**",
+				);
 				INFOPLIST_FILE = Framework/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
@@ -3802,7 +3851,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = MetaZKit;
 				USER_HEADER_SEARCH_PATHS = Framework/src;
 				ZERO_LINK = NO;
@@ -3812,10 +3860,10 @@
 		1BEA6E74106EF2A1004B1A7F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3833,7 +3881,6 @@
 					"-framework",
 					MetaZKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = AtomicParsleyPlugin;
 				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
 				WRAPPER_EXTENSION = mzplugin;
@@ -3843,10 +3890,10 @@
 		1BEA6E75106EF2A1004B1A7F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3863,7 +3910,6 @@
 					"-framework",
 					MetaZKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = AtomicParsleyPlugin;
 				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
 				WRAPPER_EXTENSION = mzplugin;
@@ -3875,6 +3921,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3882,7 +3929,6 @@
 					"\"$(SRCROOT)/Externals\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3890,6 +3936,7 @@
 				HEADER_SEARCH_PATHS = (
 					Externals/MGViewAnimation,
 					Externals/UKDockProgressIndicator,
+					Externals/AEVTBuilder,
 					"Externals/google-toolbox-for-mac/**",
 				);
 				IBC_OTHER_FLAGS = "--plugin /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/ImageKit.framework/Resources/ImageKitIBPlugin.ibplugin";
@@ -3906,6 +3953,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
@@ -3920,6 +3968,7 @@
 				HEADER_SEARCH_PATHS = (
 					Externals/MGViewAnimation,
 					Externals/UKDockProgressIndicator,
+					Externals/AEVTBuilder,
 					"Externals/google-toolbox-for-mac/**",
 				);
 				IBC_OTHER_FLAGS = "--plugin /System/Library/Frameworks/Quartz.framework/Versions/A/Frameworks/ImageKit.framework/Resources/ImageKitIBPlugin.ibplugin";
@@ -3942,10 +3991,10 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 				USE_HEADERMAP = NO;
 			};
@@ -3960,9 +4009,9 @@
 					"$(ARCHS_STANDARD_32_64_BIT)",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 				USE_HEADERMAP = NO;
 			};

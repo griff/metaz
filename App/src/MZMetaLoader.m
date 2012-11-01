@@ -11,6 +11,7 @@
 #import "MZWriteQueue.h"
 #import "MZWriteQueueStatus.h"
 #import "NSUserDefaults+KeyPath.h"
+#import "MZMetaDataDocument.h"
 
 NSString* const MZMetaLoaderStartedNotification = @"MZMetaLoaderStartedNotification";
 NSString* const MZMetaLoaderFinishedNotification = @"MZMetaLoaderFinishedNotification";
@@ -236,6 +237,12 @@ static MZMetaLoader* sharedLoader = nil;
     for ( NSString* fileName in fileNames )
     {
         MZLoadOperation* operation = [MZLoadOperation loadWithFilePath:fileName atIndex:index];
+        NSScriptCommand* cmd = [NSScriptCommand currentCommand];
+        if(cmd)
+        {
+            operation.scriptCommand = cmd;
+            [cmd suspendExecution];
+        }
         [loading addObject:operation];
         [[NSNotificationCenter defaultCenter]
             postNotificationName:MZMetaLoaderStartedNotification
@@ -314,23 +321,41 @@ static MZMetaLoader* sharedLoader = nil;
 - (void)loadedFile:(MZLoadOperation *)operation
 {
     [operation retain];
+
+    MZVideoType currentVideoType = defaultVideoType;
+    if( operation.scriptCommand )
+    {
+        NSNumber* num = [[operation.scriptCommand evaluatedArguments] objectForKey:@"VideoType"];
+        if(num && [num intValue] != MZUnsetVideoType ) {
+            currentVideoType = [num intValue];
+        }
+    }
+    
     MetaEdits* edits = operation.edits;
     if(!edits)
     {
         [loading removeObject:operation];
         NSString* baseFile = [operation.filePath lastPathComponent];
-        NSRunCriticalAlertPanel([NSString stringWithFormat:
-            NSLocalizedString(@"The file '%@' is in an unsupported format.", @"Bad file title"), baseFile],
+        NSString* errMsg = [NSString stringWithFormat:
+            NSLocalizedString(@"The file '%@' is in an unsupported format.", @"Bad file title"), baseFile];
+            
+        NSRunCriticalAlertPanel(errMsg,
             @"", NSLocalizedString(@"OK", @"Button text"), nil, nil);
         MZLoggerError(@"Could no load file '%@'", operation.filePath);
         [self notifyLoadedFile:operation];
+        if( operation.scriptCommand )
+        {
+            [operation.scriptCommand setScriptErrorNumber:kENOENTErr];
+            [operation.scriptCommand setScriptErrorString:errMsg];
+            [operation.scriptCommand resumeExecutionWithResult:nil];
+        }
         [operation release];
         return;
     }
 
     if([edits videoType] == MZUnsetVideoType)
     {
-        if(defaultVideoType<=MZUnsetVideoType)
+        if(currentVideoType<=MZUnsetVideoType)
         {
             NSAlert* alert = [[NSAlert alloc] init];
             [alert setMessageText:
@@ -370,6 +395,11 @@ static MZMetaLoader* sharedLoader = nil;
             {
                 [loading removeObject:operation];
                 [self notifyLoadedFile:operation];
+                if( operation.scriptCommand )
+                {
+                    [operation.scriptCommand setScriptErrorNumber:userCanceledErr];
+                    [operation.scriptCommand resumeExecutionWithResult:nil];
+                }
                 [operation release];
                 return;
             }
@@ -379,7 +409,7 @@ static MZMetaLoader* sharedLoader = nil;
                 defaultVideoType = lastSelection;
         }
         else
-            [edits setVideoType:defaultVideoType];
+            [edits setVideoType:currentVideoType];
     }
     
     NSUInteger index = operation.index;
@@ -391,6 +421,12 @@ static MZMetaLoader* sharedLoader = nil;
     [self didChangeValueForKey:@"files"];
     [loading removeObject:operation];
     [self notifyLoadedFile:operation];
+    if( operation.scriptCommand )
+    {
+        MZMetaDataDocument* doc = [MZMetaDataDocument documentWithEdit:edits];
+        [operation.scriptCommand resumeExecutionWithResult:doc];
+    }
+
     [operation release];
 }
 
@@ -470,6 +506,7 @@ static MZMetaLoader* sharedLoader = nil;
 @synthesize index;
 @synthesize filePath;
 @synthesize error;
+@synthesize scriptCommand;
 
 - (void)dataProvider:(id<MZDataProvider>)provider
           controller:(id<MZDataController>)controller

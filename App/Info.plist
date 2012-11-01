@@ -34,16 +34,17 @@
 				<string>video/x-m4v</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>The Other MPEG-4 Video</string>
+			<string>Apple MPEG-4 movie</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
-				<string>M4V</string>
+				<string>M4V </string>
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>org.maven-group.mpeg4-video</string>
+				<string>com.apple.m4v-video</string>
+				<string>com.apple.protected-mpeg-4-video</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
@@ -142,17 +143,23 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>BUILDDATE</string>
+	<string>BUILDVERSION</string>
 	<key>BuildId</key>
 	<string>BUILDID</string>
+	<key>BuildDate</key>
+	<string>BUILDDATE</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.5</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2009, Brian Olsen &amp; Nigel Graham</string>
+	<string>Copyright © 2012, Brian Olsen &amp; Nigel Graham</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
+	<key>NSAppleScriptEnabled</key>
+	<true/>
+	<key>OSAScriptingDefinition</key>
+	<string>MetaZ.sdef</string>
 	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
+	<string>MetaZApplication</string>
 	<key>SUEnableAutomaticChecks</key>
 	<string>YES</string>
 	<key>SUFeedURL</key>
@@ -161,41 +168,12 @@
 	<string>YES</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>sparkle_public.pem</string>
-	<key>SmartCrashReports_CompanyName</key>
-	<string>Maven-Group</string>
-	<key>SmartCrashReports_EmailTicket</key>
-	<string>SCR-6246806ACD</string>
 	<key>com.apple.PreferenceSync.ExcludeSyncKeys</key>
 	<array>
 		<string>SULastCheckTime</string>
 	</array>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>public.movie</string>
-			</array>
-			<key>UTTypeIdentifier</key>
-			<string>org.maven-group.mpeg4-video</string>
-			<key>UTTypeDescription</key>
-			<string>The Other MPEG-4 Video</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.mime-type</key>
-				<array>
-					<string>video/x-m4v</string>
-				</array>
-				<key>com.apple.ostype</key>
-				<array>
-					<string>M4V</string>
-				</array>
-				<key>public.filename-extension</key>
-				<array>
-					<string>m4v</string>
-				</array>
-			</dict>
-		</dict>
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>

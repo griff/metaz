@@ -159,14 +159,14 @@ static NSString *GTMStackTraceFromAddressDescriptors(struct GTMAddressDescriptor
       [trace appendString:@"\n"];
     }
     if (descs[i].class_name) {
-      [trace appendFormat:@"#%-2u %#08lx %s[%s %s]  (%s)",
+      [trace appendFormat:@"#%-2lu %#08lx %s[%s %s]  (%s)",
        i, descs[i].address, 
        (descs[i].is_class_method ? "+" : "-"),
        descs[i].class_name,
        (descs[i].symbol ? descs[i].symbol : "??"),
        (descs[i].filename ? descs[i].filename : "??")];
     } else {
-      [trace appendFormat:@"#%-2u %#08lx %s()  (%s)",
+      [trace appendFormat:@"#%-2lu %#08lx %s()  (%s)",
        i, descs[i].address,
        (descs[i].symbol ? descs[i].symbol : "??"),
        (descs[i].filename ? descs[i].filename : "??")];

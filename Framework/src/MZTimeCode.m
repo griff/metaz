@@ -7,7 +7,7 @@
 //
 
 #import "MZTimeCode.h"
-
+#import <AEVTBuilder.h>
 
 @implementation MZTimeCode
 @synthesize millis;
@@ -122,7 +122,7 @@
 
 - (NSString *)stringValue
 {
-    return [NSString stringWithFormat:@"%02u:%02u:%02u.%03u",
+    return [NSString stringWithFormat:@"%02lu:%02lu:%02lu.%03lu",
         [self hour], [self min], [self sec], [self ms]];
 }
 
@@ -141,6 +141,39 @@
     if(self->millis > aTimeCode->millis)
         return NSOrderedDescending;
     return NSOrderedSame;
+}
+
+#pragma mark - Scripting additions
+
++ (void) initialize {
+	[super initialize];
+	static BOOL tooLate = NO;
+	if( ! tooLate ) {
+		[[NSScriptCoercionHandler sharedCoercionHandler] registerCoercer:[self class] selector:@selector( coerceTimeCode:toString: ) toConvertFromClass:[MZTimeCode class] toClass:[NSString class]];
+		tooLate = YES;
+	}
+}
+
++ (id) coerceTimeCode:(MZTimeCode *) value toString:(Class) class
+{
+	return [value stringValue];
+}
+
+- (NSAppleEventDescriptor *)scriptingRecordDescriptor
+{
+    return [RECORD : 'Mtim',
+        [KEY : 'MTmi'], [INT : self.millis],
+        [KEY : 'MTms'], [INT : self.ms],
+        [KEY : 'MTse'], [INT : self.sec],
+        [KEY : 'MTmt'], [INT : self.min],
+        [KEY : 'MThr'], [INT : self.hour],
+        [KEY : 'MTxt'], [STRING : [self stringValue]],
+    nil];
+}
+
+- (NSAppleEventDescriptor *)scriptingAnyDescriptor
+{
+    return [self scriptingRecordDescriptor];
 }
 
 #pragma mark - NSCoding implementation

@@ -12,9 +12,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1798"/>
 			<integer value="1723"/>
 			<integer value="1833"/>
+			<integer value="1798"/>
 			<integer value="106"/>
 			<integer value="475"/>
 		</object>
@@ -29,7 +29,7 @@
 		<object class="NSMutableArray" key="IBDocument.RootObjects" id="1048">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSCustomObject" id="1021">
-				<string key="NSClassName">NSApplication</string>
+				<string key="NSClassName">MetaZApplication</string>
 			</object>
 			<object class="NSCustomObject" id="1014">
 				<string key="NSClassName">FirstResponder</string>
@@ -8982,22 +8982,6 @@
 					<int key="connectionID">1846</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">data: data</string>
-						<reference key="source" ref="83431714"/>
-						<reference key="destination" ref="569338711"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="83431714"/>
-							<reference key="NSDestination" ref="569338711"/>
-							<string key="NSLabel">data: data</string>
-							<string key="NSBinding">data</string>
-							<string key="NSKeyPath">data</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1848</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">picturesController</string>
 						<reference key="source" ref="569338711"/>
@@ -9220,6 +9204,34 @@
 						<reference key="destination" ref="931879071"/>
 					</object>
 					<int key="connectionID">1906</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">data: data</string>
+						<reference key="source" ref="83431714"/>
+						<reference key="destination" ref="569338711"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="83431714"/>
+							<reference key="NSDestination" ref="569338711"/>
+							<string key="NSLabel">data: data</string>
+							<string key="NSBinding">data</string>
+							<string key="NSKeyPath">data</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSConditionallySetsEnabled</string>
+								<boolean value="NO" key="NS.object.0"/>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1913</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">filesController</string>
+						<reference key="source" ref="1021"/>
+						<reference key="destination" ref="35104934"/>
+					</object>
+					<int key="connectionID">1914</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -14108,7 +14120,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1906</int>
+			<int key="maxID">1914</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -14820,6 +14832,25 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">App/src/MetaEditPanel.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MetaZApplication</string>
+					<string key="superclassName">NSApplication</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">filesController</string>
+						<string key="NS.object.0">NSArrayController</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">filesController</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">filesController</string>
+							<string key="candidateClassName">NSArrayController</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">App/src/MetaZApplication.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

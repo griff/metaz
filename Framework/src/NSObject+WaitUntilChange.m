@@ -8,7 +8,6 @@
 
 #import "NSObject+WaitUntilChange.h"
 #import "MZLogger.h"
-#import "MZConstants.h"
 #import "GTMNSObject+KeyValueObserving.h"
 
 @interface MZWaitHandler : NSObject
@@ -44,9 +43,9 @@ void MZWaitHandlerCallBack(void *info)
         CFRunLoopSourceContext context;
         context.version = 0;
         context.info = self;
-        context.retain = MZRetain;
-        context.release = MZRelease;
-        context.copyDescription = MZCopyDescription;
+        context.retain = CFRetain;
+        context.release = CFRelease;
+        context.copyDescription = CFCopyDescription;
         context.equal = NULL;
         context.hash = NULL;
         context.schedule = NULL;

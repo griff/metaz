@@ -52,6 +52,7 @@
 {
     [label clearToolTip];
     [self setImage:orgImage];
+    [orgImage release];
     [[self cell] setHighlightsBy:NSContentsCellMask];
 }
 
