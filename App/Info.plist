@@ -151,7 +151,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>10.5</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2009, Brian Olsen &amp; Nigel Graham</string>
+	<string>Copyright © 2012, Brian Olsen &amp; Nigel Graham</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSAppleScriptEnabled</key>
