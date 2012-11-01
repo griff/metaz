@@ -20,6 +20,7 @@ MZKIT_EXTERN NSString* const MZMetaLoaderFinishedNotification;
     NSError* error;
     id<MZDataController> controller;
     id<MZEditsReadDelegate> delegate;
+    NSScriptCommand* scriptCommand;
 }
 
 + (id)loadWithFilePath:(NSString *)filePath atIndex:(NSUInteger )index;
@@ -29,6 +30,7 @@ MZKIT_EXTERN NSString* const MZMetaLoaderFinishedNotification;
 @property (readonly) NSUInteger index;
 @property (readonly) MetaEdits* edits;
 @property (readonly) NSError* error;
+@property (retain) NSScriptCommand* scriptCommand;
 
 @end
 

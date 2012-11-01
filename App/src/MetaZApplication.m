@@ -7,7 +7,7 @@
 //
 
 #import "MetaZApplication.h"
-
+#import "MZMetaLoader.h"
 
 @implementation MetaZApplication
 
@@ -18,7 +18,7 @@
 - (id)handleOpenScriptCommand:(NSScriptCommand *)test;
 {
     id direct = [test directParameter];
-    NSLog(@"Handle open: %@ %X", direct, [[test commandDescription] appleEventCodeForArgumentWithName:@""]);
+    NSLog(@"Handle open: %@ %@", direct, [test evaluatedArguments]);
     if([direct isKindOfClass:[NSArray class]])
     {
         NSMutableArray *names = [NSMutableArray arrayWithCapacity:[direct count]];
@@ -29,6 +29,14 @@
     else
     {
         [[self delegate] application:self openFile:[direct path]];
+        NSArray* files = [MZMetaLoader sharedLoader].files;
+        for(MetaEdits* edit in files)
+        {
+            if([[edit loadedFileName] isEqualToString:[direct path]])
+            {
+                return [MZMetaDataDocument documentWithEdit:edit];
+            }
+        }
     }
     return nil;
 }

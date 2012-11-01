@@ -13,6 +13,6 @@
 }
 
 - (NSNumber*) ready;
-//- (id)handleOpenScriptCommand:(id)test;
+- (id)handleOpenScriptCommand:(id)command;
 
 @end
