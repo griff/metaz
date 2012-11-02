@@ -91,6 +91,20 @@ static MZMetaLoader* sharedLoader = nil;
     [self didChangeValueForKey:@"files"];
 }
 
+- (void)removeObjectFromFilesAtIndex:(NSUInteger)idx
+{
+    [self willChangeValueForKey:@"files"];
+    [files removeObjectAtIndex:idx];
+    [self didChangeValueForKey:@"files"];
+}
+
+- (void)insertObject:(id)object inFilesAtIndex:(NSUInteger)index
+{
+    [self willChangeValueForKey:@"files"];
+    [files insertObject:object atIndex:index];
+    [self didChangeValueForKey:@"files"];
+}
+
 -(BOOL)loadFromFile:(NSString *)fileName
 {
     return [self loadFromFile:fileName toIndex:[files count]];
@@ -499,6 +513,7 @@ static MZMetaLoader* sharedLoader = nil;
     [error release];
     [controller release];
     [delegate release];
+    [scriptCommand release];
     [super dealloc];
 }
 
@@ -514,8 +529,8 @@ static MZMetaLoader* sharedLoader = nil;
             fromFile:(NSString *)fileName
                error:(NSError *)theError
 {
-    edits = theEdits;
-    error = theError;
+    edits = [theEdits retain];
+    error = [theError retain];
     
     // loadedFile: runs a modeal alert so we use NSEventTrackingRunLoopMode
     // to avoid showing more than one alert at a time
