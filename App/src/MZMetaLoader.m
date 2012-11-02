@@ -513,6 +513,7 @@ static MZMetaLoader* sharedLoader = nil;
     [error release];
     [controller release];
     [delegate release];
+    [scriptCommand release];
     [super dealloc];
 }
 
