@@ -98,6 +98,13 @@ static MZMetaLoader* sharedLoader = nil;
     [self didChangeValueForKey:@"files"];
 }
 
+- (void)insertObject:(id)object inFilesAtIndex:(NSUInteger)index
+{
+    [self willChangeValueForKey:@"files"];
+    [files insertObject:object atIndex:index];
+    [self didChangeValueForKey:@"files"];
+}
+
 -(BOOL)loadFromFile:(NSString *)fileName
 {
     return [self loadFromFile:fileName toIndex:[files count]];
