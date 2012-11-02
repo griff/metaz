@@ -529,8 +529,8 @@ static MZMetaLoader* sharedLoader = nil;
             fromFile:(NSString *)fileName
                error:(NSError *)theError
 {
-    edits = theEdits;
-    error = theError;
+    edits = [theEdits retain];
+    error = [theError retain];
     
     // loadedFile: runs a modeal alert so we use NSEventTrackingRunLoopMode
     // to avoid showing more than one alert at a time
