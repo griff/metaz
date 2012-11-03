@@ -587,7 +587,18 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
             return [NSArray scriptingListWithDescriptor:self];
         case typeAERecord:
             return [NSDictionary scriptingRecordWithDescriptor:self];
-            
+        case typeAlias:
+            {
+                const AEDesc* desc = [self aeDesc];
+                HFSUniStr255 t,v;
+                CFStringRef path;
+                AliasHandle handle = (AliasHandle)desc->dataHandle;
+                OSStatus cpyErr = FSCopyAliasInfo(handle, &t, &v, &path, NULL, NULL);
+                if(cpyErr == 0)
+                    return [NSString stringWithString:(NSString *)path];
+                NSLog(@"FSCopyAliasInfo error %d", cpyErr);
+                return [NSNull null];
+            }
         case typeObjectSpecifier:
             return [NSScriptObjectSpecifier objectSpecifierWithDescriptor:self];
             
