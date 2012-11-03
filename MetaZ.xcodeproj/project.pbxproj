@@ -136,6 +136,7 @@
 		1B523C5113FDCD1A00C20B7D /* ASIHTTPRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B523B5713F4B2B500C20B7D /* ASIHTTPRequestDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B523C5213FDCD1A00C20B7D /* ASIProgressDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B523B5C13F4B2B500C20B7D /* ASIProgressDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B5AC76F10532E5200F9CE36 /* MetaEditPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */; };
+		1B63A1D31644D8D100461FC9 /* MZArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B63A1D21644D8D100461FC9 /* MZArrayController.m */; };
 		1B6E43C810845F8200DFE165 /* TCSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E43C710845F8200DFE165 /* TCSearch.m */; };
 		1B6E43CB108468B100DFE165 /* MZSearchResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6E43C9108468B100DFE165 /* MZSearchResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B6E43CC108468B100DFE165 /* MZSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E43CA108468B100DFE165 /* MZSearchResult.m */; };
@@ -939,6 +940,8 @@
 		1B523B9613F4B3D900C20B7D /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		1B5AC76D10532E5200F9CE36 /* MetaEditPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaEditPanel.h; sourceTree = "<group>"; };
 		1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditPanel.m; sourceTree = "<group>"; };
+		1B63A1D11644D8D100461FC9 /* MZArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZArrayController.h; sourceTree = "<group>"; };
+		1B63A1D21644D8D100461FC9 /* MZArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZArrayController.m; sourceTree = "<group>"; };
 		1B6E43C610845F8200DFE165 /* TCSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSearch.h; sourceTree = "<group>"; };
 		1B6E43C710845F8200DFE165 /* TCSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSearch.m; sourceTree = "<group>"; };
 		1B6E43C9108468B100DFE165 /* MZSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSearchResult.h; sourceTree = "<group>"; };
@@ -2000,6 +2003,8 @@
 				1B040CD6108146140027FA0D /* ChapterItemWrapper.m */,
 				1BD3D30F108DD03E00BE6943 /* PictureEditor.h */,
 				1BD3D310108DD03E00BE6943 /* PictureEditor.m */,
+				1B63A1D11644D8D100461FC9 /* MZArrayController.h */,
+				1B63A1D21644D8D100461FC9 /* MZArrayController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -2931,6 +2936,7 @@
 				1B8905B1163F87BB008C5C8B /* MZScriptingAdditions.m in Sources */,
 				1B89073116420437008C5C8B /* MZScriptingEnums.m in Sources */,
 				1B8908E416424790008C5C8B /* MZSelectedMetaDataDocument.m in Sources */,
+				1B63A1D31644D8D100461FC9 /* MZArrayController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

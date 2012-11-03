@@ -13,10 +13,10 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="1723"/>
+			<integer value="106"/>
 			<integer value="1833"/>
 			<integer value="1798"/>
-			<integer value="106"/>
-			<integer value="475"/>
+			<integer value="476"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -5783,6 +5783,7 @@
 				<bool key="NSSelectsInsertedObjects">YES</bool>
 				<bool key="NSFilterRestrictsInsertion">YES</bool>
 				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
+				<bool key="NSAutomaticallyRearrangesObjects">YES</bool>
 			</object>
 			<object class="NSCustomObject" id="488851568">
 				<string key="NSClassName">FilesUndoController</string>
@@ -13459,6 +13460,7 @@
 					<string>780.IBPluginDependency</string>
 					<string>781.IBPluginDependency</string>
 					<string>800.IBPluginDependency</string>
+					<string>805.CustomClassName</string>
 					<string>805.IBPluginDependency</string>
 					<string>81.IBEditorWindowLastContentRect</string>
 					<string>81.IBPluginDependency</string>
@@ -14090,6 +14092,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>MZArrayController</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{520, 696}, {148, 93}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -14750,6 +14753,14 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">MZArrayController</string>
+					<string key="superclassName">NSArrayController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">App/src/MZArrayController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">MZMetaLoader</string>
 					<string key="superclassName">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -14851,6 +14862,13 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">App/src/MetaZApplication.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="1036711153">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">App/src/UndoTableView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -15368,10 +15386,7 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">UndoTableView</string>
 					<string key="superclassName">NSTableView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">App/src/UndoTableView.h</string>
-					</object>
+					<reference key="sourceIdentifier" ref="1036711153"/>
 				</object>
 			</object>
 			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.2+">
