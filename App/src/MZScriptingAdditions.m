@@ -419,7 +419,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
 {
     NSAppleEventDescriptor* coerced = [self coerceToDescriptorType:typeSInt16];
     SInt16 val;
-    [[coerced data] getBytes:&val];
+    [[coerced data] getBytes:&val length:sizeof(val)];
     return val;
 }
 
@@ -432,7 +432,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
 {
     NSAppleEventDescriptor* coerced = [self coerceToDescriptorType:typeSInt64];
     SInt64 val;
-    [[coerced data] getBytes:&val];
+    [[coerced data] getBytes:&val length:sizeof(val)];
     return val;
 }
 
@@ -445,7 +445,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
 {
     NSAppleEventDescriptor* coerced = [self coerceToDescriptorType:typeUInt16];
     UInt16 val;
-    [[coerced data] getBytes:&val];
+    [[coerced data] getBytes:&val length:sizeof(val)];
     return val;
 }
 
@@ -458,7 +458,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
 {
     NSAppleEventDescriptor* coerced = [self coerceToDescriptorType:typeUInt32];
     UInt32 val;
-    [[coerced data] getBytes:&val];
+    [[coerced data] getBytes:&val length:sizeof(val)];
     return val;
 }
 
@@ -471,7 +471,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
 {
     NSAppleEventDescriptor* coerced = [self coerceToDescriptorType:typeUInt64];
     UInt64 val;
-    [[coerced data] getBytes:&val];
+    [[coerced data] getBytes:&val length:sizeof(val)];
     return val;
 }
 
@@ -484,7 +484,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
 {
     NSAppleEventDescriptor* coerced = [self coerceToDescriptorType:typeIEEE32BitFloatingPoint];
     Float32 val;
-    [[coerced data] getBytes:&val];
+    [[coerced data] getBytes:&val length:sizeof(val)];
     return val;
 }
 
@@ -497,7 +497,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
 {
     NSAppleEventDescriptor* coerced = [self coerceToDescriptorType:typeIEEE64BitFloatingPoint];
     Float64 val;
-    [[coerced data] getBytes:&val];
+    [[coerced data] getBytes:&val length:sizeof(val)];
     return val;
 }
 
@@ -510,7 +510,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
 {
     NSAppleEventDescriptor* coerced = [self coerceToDescriptorType:typeDecimalStruct];
     NSDecimal val;
-    [[coerced data] getBytes:&val];
+    [[coerced data] getBytes:&val length:sizeof(val)];
     return val;
 }
 
@@ -523,7 +523,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
 {
     NSAppleEventDescriptor* coerced = [self coerceToDescriptorType:typeLongDateTime];
     LongDateTime longDateTime;
-    [[coerced data] getBytes:&longDateTime];
+    [[coerced data] getBytes:&longDateTime length:sizeof(longDateTime)];
     return longDateTime;
 }
 
