@@ -547,7 +547,7 @@ static MZPresets* sharedPresets = nil;
                             "This is most likely due to a bad MetaX import done "
                             "by a previous version of MetaZ.\nWe were unable to "
                             "find the preset with the same name in your current "
-                            "MetaX presets so you need to specify the video type bellow.",
+                            "MetaX presets so you need to specify the video type below.",
                             @"Found bad MetaX preset message"),
                         preset.name]];
                     
