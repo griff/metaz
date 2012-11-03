@@ -25,6 +25,19 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
    return ret; 
 }
 
+
++ (id)valueWithDecimal:(NSDecimal)decimal;
+{
+    return [NSValue valueWithBytes:&decimal objCType:@encode(NSDecimal)];
+}
+
+- (NSDecimal)decimalValue;
+{
+   NSDecimal ret;
+   [self getValue:&ret];
+   return ret; 
+}
+
 @end
 
 

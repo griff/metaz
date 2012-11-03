@@ -11,6 +11,9 @@
 @interface NSValue (MZScriptingAdditions)
 + (id)valueWithFourCharCode:(FourCharCode)code;
 - (FourCharCode)fourCharCode;
+
++ (id)valueWithDecimal:(NSDecimal)decimal;
+- (NSDecimal)decimalValue;
 @end
 
 @interface NSNumber (MZScriptingAdditions)
