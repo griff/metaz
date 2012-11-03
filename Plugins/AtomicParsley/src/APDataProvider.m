@@ -107,7 +107,7 @@
         writes = [[NSMutableArray alloc] init];
         types = [[NSArray alloc] initWithObjects:
             @"public.mpeg-4", @"com.apple.quicktime-movie",
-            @"org.maven-group.mpeg4-video", nil];
+            @"com.apple.m4v-video", @"com.apple.protected-mpeg-4-video", nil];
         tags = [[MZTag allKnownTags] retain];
         NSArray* readmapkeys = [NSArray arrayWithObjects:
             @"©nam", @"©ART", @"©day",
