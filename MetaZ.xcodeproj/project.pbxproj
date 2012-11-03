@@ -166,7 +166,6 @@
 		1B92BC58108890090057EFD7 /* NSObject+ProtectedKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BC56108890090057EFD7 /* NSObject+ProtectedKeyValue.m */; };
 		1B92BFBB1089F9060057EFD7 /* SearchMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92BFBA1089F9060057EFD7 /* SearchMeta.m */; };
 		1B92C0A3108A23BA0057EFD7 /* NSUserDefaults+KeyPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92C0A2108A23BA0057EFD7 /* NSUserDefaults+KeyPath.m */; };
-		1B92C0EB108A31680057EFD7 /* SearchTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B92C0EA108A31680057EFD7 /* SearchTableView.m */; };
 		1B99355010AC818300E78D2D /* NSXMLNode+MZExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B99354E10AC818300E78D2D /* NSXMLNode+MZExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B99355110AC818300E78D2D /* NSXMLNode+MZExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B99354F10AC818300E78D2D /* NSXMLNode+MZExtensions.m */; };
 		1B9B393F106C0FA200928C83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B9B393D106C0FA200928C83 /* Localizable.strings */; };
@@ -986,8 +985,6 @@
 		1B92BFBA1089F9060057EFD7 /* SearchMeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMeta.m; sourceTree = "<group>"; };
 		1B92C0A1108A23BA0057EFD7 /* NSUserDefaults+KeyPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+KeyPath.h"; sourceTree = "<group>"; };
 		1B92C0A2108A23BA0057EFD7 /* NSUserDefaults+KeyPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+KeyPath.m"; sourceTree = "<group>"; };
-		1B92C0E9108A31680057EFD7 /* SearchTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableView.h; sourceTree = "<group>"; };
-		1B92C0EA108A31680057EFD7 /* SearchTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableView.m; sourceTree = "<group>"; };
 		1B99354E10AC818300E78D2D /* NSXMLNode+MZExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSXMLNode+MZExtensions.h"; sourceTree = "<group>"; };
 		1B99354F10AC818300E78D2D /* NSXMLNode+MZExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSXMLNode+MZExtensions.m"; sourceTree = "<group>"; };
 		1B9B393E106C0FA200928C83 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = App/English.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1960,8 +1957,6 @@
 				1B040DC2108176A70027FA0D /* UndoTableView.h */,
 				1B040DC3108176A70027FA0D /* UndoTableView.m */,
 				1BEA6D4F106E8B7C004B1A7F /* IKImageView-Missing.h */,
-				1B92C0E9108A31680057EFD7 /* SearchTableView.h */,
-				1B92C0EA108A31680057EFD7 /* SearchTableView.m */,
 				1B0331A410B13DC800B28E3A /* ToolTipLabel.h */,
 				1B0331A510B13DC800B28E3A /* ToolTipLabel.m */,
 				1B0331A710B13F8000B28E3A /* ToolTipButton.h */,
@@ -2914,7 +2909,6 @@
 				1B92BC04108880D60057EFD7 /* Resources.m in Sources */,
 				1B92BFBB1089F9060057EFD7 /* SearchMeta.m in Sources */,
 				1B92C0A3108A23BA0057EFD7 /* NSUserDefaults+KeyPath.m in Sources */,
-				1B92C0EB108A31680057EFD7 /* SearchTableView.m in Sources */,
 				1BD3D311108DD03E00BE6943 /* PictureEditor.m in Sources */,
 				1BDD86A71094A8CC00E3C81D /* MZPresets.m in Sources */,
 				1BDD87A11095FB5100E3C81D /* PresetsWindowController.m in Sources */,

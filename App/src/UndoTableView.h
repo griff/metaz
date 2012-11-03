@@ -8,6 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+@interface NSObject (MenuForRow)
+- (NSMenu *)tableView:(NSTableView *)aTableView menuForRow:(NSInteger)aRow;
+@end
 
 @interface UndoTableView : NSTableView
 {
