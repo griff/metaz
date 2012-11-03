@@ -564,9 +564,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
             return [NSNumber scriptingNumberWithDescriptor:self];
         case typeDecimalStruct:
             {
-                NSDecimal val;
-                [[self data] getBytes:&val];
-                return [NSValue valueWithBytes:&val objCType:@encode(NSDecimal)];
+                return [NSValue valueWithDecimal:[self decimalValue]];
             }
         case typeEnumerated:
             {
