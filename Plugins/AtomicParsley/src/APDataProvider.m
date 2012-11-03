@@ -452,33 +452,6 @@
     return op;
 }
 
-/*
-- (MetaLoaded *)loadFromFile:(NSString *)fileName
-{
-    NSTask* task = [[NSTask alloc] init];
-    [task setLaunchPath:[self launchPath]];
-    [task setArguments:[NSArray arrayWithObjects:fileName, @"-t", nil]];
-    NSPipe* out = [NSPipe pipe];
-    [task setStandardOutput:out];
-    NSPipe* err = [NSPipe pipe];
-    [task setStandardError:err];
-    [task launch];
-    
-    NSData* data = [[out fileHandleForReading] readDataToEndOfFile];
-    [task waitUntilExit];
-    [APDataProvider logFromProgram:@"AtomicParsley" pipe:err];
-
-    int status = [task terminationStatus];
-    [task release];
-    if (status != 0)
-    {
-        MZLoggerError(@"AtomicParsley failed. %d", status);
-        return nil;
-    }
-    
-}
-*/
-
 - (void)parseData:(NSData *)data withFileName:(NSString *)fileName dict:(NSMutableDictionary *)tagdict
 {
     NSString* str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
@@ -496,7 +469,6 @@
         [dict setObject:content forKey:type];
     }
     
-    //NSMutableDictionary* tagdict = [NSMutableDictionary dictionaryWithCapacity:[tags count]];
     // Initialize a null value for all known keys
     for(MZTag* tag in tags)
         [tagdict setObject:[NSNull null] forKey:[tag identifier]];
@@ -507,7 +479,6 @@
         NSString* tagId = [read_mapping objectForKey:map];
         MZTag* tag = [MZTag tagForIdentifier:tagId];
         NSString* value = [dict objectForKey:map];
-        //MZLoggerDebug(@"%@ %@", tagId, value);
         if(value)
             [tagdict setObject:[tag convertObjectForStorage:[tag objectFromString:value]] forKey:tagId];
     }
@@ -531,37 +502,6 @@
         if(rate)
             [tagdict setObject:rate forKey:MZRatingTagIdent];
     }
-    
-    // Special video type handling (stik)
-    /*
-    NSString* stik = [dict objectForKey:@"stik"];
-    if(stik)
-    {
-        MZVideoType stikNo = MZUnsetVideoType;
-        if([stik isEqualToString:@"Movie"])
-            stikNo = MZMovieVideoType;
-        else if([stik isEqualToString:@"Normal"])
-            stikNo = MZNormalVideoType;
-        else if([stik isEqualToString:@"Audiobook"])
-            stikNo = MZAudiobookVideoType;
-        else if([stik isEqualToString:@"Whacked Bookmark"])
-            stikNo = MZWhackedBookmarkVideoType;
-        else if([stik isEqualToString:@"Music Video"])
-            stikNo = MZMusicVideoType;
-        else if([stik isEqualToString:@"Short Film"])
-            stikNo = MZShortFilmVideoType;
-        else if([stik isEqualToString:@"TV Show"])
-            stikNo = MZTVShowVideoType;
-        else if([stik isEqualToString:@"Booklet"])
-            stikNo = MZBookletVideoType;
-        if(stikNo!=MZUnsetVideoType)
-        {
-            MZTag* tag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
-            [tagdict setObject:[tag nullConvertValueToObject:&stikNo]
-                        forKey:MZVideoTypeTagIdent];
-        }
-    }
-    */
     
     // Special handling for cast, directors, producers and screenwriters
     NSString* iTunMOVIStr = [dict objectForKey:@"com.apple.iTunes;iTunMOVI"];
@@ -648,102 +588,6 @@
     NSString* covr = [dict objectForKey:@"covr"];
     if(covr)
         [tagdict setObject:[NSNull null] forKey:MZPictureTagIdent];
-
-    /*
-    {
-        task = [[NSTask alloc] init];
-        [task setLaunchPath:[self launchPath]];
-        NSString* file = [NSString temporaryPathWithFormat:@"MetaZImage_%@"];
-        [task setArguments:[NSArray arrayWithObjects:fileName, @"-e", file, nil]];
-        NSPipe* err = [NSPipe pipe];
-        [task setStandardError:err];
-        [task setStandardOutput:err];
-        [task launch];
-        [task waitUntilExit];
-        [APDataProvider logFromProgram:@"AtomicParsley" pipe:err];
-        [task release];
-        
-        file = [file stringByAppendingString:@"_artwork_1"];
-        
-        NSFileManager* mgr = [NSFileManager manager];
-        BOOL isDir;
-        if([mgr fileExistsAtPath:[file stringByAppendingString:@".png"] isDirectory:&isDir] && !isDir)
-        {
-            NSData* data = [NSData dataWithContentsOfFile:[file stringByAppendingString:@".png"]];
-            [tagdict setObject:data forKey:MZPictureTagIdent];
-            [mgr removeItemAtPath:[file stringByAppendingString:@".png"] error:NULL];
-        }
-        else if([mgr fileExistsAtPath:[file stringByAppendingString:@".jpg"] isDirectory:&isDir] && !isDir)
-        {
-            NSData* data = [NSData dataWithContentsOfFile:[file stringByAppendingString:@".jpg"]];
-            [tagdict setObject:data forKey:MZPictureTagIdent];
-            [mgr removeItemAtPath:[file stringByAppendingString:@".jpg"] error:NULL];
-        }
-    }
-    
-    
-    // Chapter reading
-    {
-        task = [[NSTask alloc] init];
-        [task setLaunchPath:[self launchChapsPath]];
-        [task setArguments:[NSArray arrayWithObjects:@"-l", fileName, nil]];
-        NSPipe* out = [NSPipe pipe];
-        [task setStandardOutput:out];
-        NSPipe* err = [NSPipe pipe];
-        [task setStandardError:err];
-        [task launch];
-
-        NSData* data = [[out fileHandleForReading] readDataToEndOfFile];
-        [task waitUntilExit];
-        [APDataProvider logFromProgram:@"mp4chaps" pipe:err];
-        int chapStatus = [task terminationStatus];
-        [task release];
-        
-        if(chapStatus != 0)
-        {
-            MZLoggerError(@"mp4chaps failed. %d", chapStatus);
-            return nil;
-        }
-
-        NSString* str = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-
-        NSRange f = [str rangeOfString:@"Duration "];
-        NSString* movieDurationStr = [str substringWithRange:NSMakeRange(f.location+f.length, 12)];
-        //MZLoggerDebug(@"Movie duration '%@'", movieDurationStr);
-        MZTimeCode* movieDuration = [MZTimeCode timeCodeWithString:movieDurationStr];
-        [tagdict setObject:movieDuration forKey:MZDurationTagIdent];
-
-        NSArray* lines = [str componentsSeparatedByString:@"\tChapter #"];
-        if([lines count]>1)
-        {
-            NSMutableArray* chapters = [NSMutableArray array];
-            int len = [lines count];
-            for(int i=1; i<len; i++)
-            {
-                NSString* line = [[lines objectAtIndex:i]
-                    stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
-                NSString* startStr = [line substringWithRange:NSMakeRange(6, 12)];
-                NSString* durationStr = [line substringWithRange:NSMakeRange(21, 12)];
-                NSString* name = [line substringWithRange:NSMakeRange(37, [line length]-38)];
-                //MZLoggerDebug(@"Found args: '%@' '%@' '%@'", start, duration, name);
-
-                MZTimeCode* start = [MZTimeCode timeCodeWithString:startStr];
-                MZTimeCode* duration = [MZTimeCode timeCodeWithString:durationStr];
-
-                if(!start || !duration)
-                    break;
-                    
-                MZTimedTextItem* item = [MZTimedTextItem textItemWithStart:start duration:duration text:name];
-                [chapters addObject:item];
-            }
-            if([chapters count] == len-1)
-                [tagdict setObject:chapters forKey:MZChaptersTagIdent];
-        }
-    }
-    
-    return [MetaLoaded metaWithOwner:self filename:fileName dictionary:tagdict];
-    */
 }
 
 void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSString* sortType)
@@ -798,53 +642,7 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
             [args addObject:@"domain=com.apple.iTunes"];
         }
     }
-    
-    // Special video type handling
-    /*
-    id stikNo = [changes objectForKey:MZVideoTypeTagIdent];
-    if(stikNo)
-    {
-        MZVideoType stik;
-        MZTag* tag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
-        [tag nullConvertObject:stikNo toValue:&stik];
-        NSString* stikStr = nil;
-        switch (stik) {
-            case MZUnsetVideoType:
-                stikStr = @"";
-                break;
-            case MZMovieVideoType:
-                stikStr = @"Movie";
-                break;
-            case MZNormalVideoType:
-                stikStr = @"Normal";
-                break;
-            case MZAudiobookVideoType:
-                stikStr = @"Audiobook";
-                break;
-            case MZWhackedBookmarkVideoType:
-                stikStr = @"Whacked Bookmark";
-                break;
-            case MZMusicVideoType:
-                stikStr = @"Music Video";
-                break;
-            case MZShortFilmVideoType:
-                stikStr = @"Short Film";
-                break;
-            case MZTVShowVideoType:
-                stikStr = @"TV Show";
-                break;
-            case MZBookletVideoType:
-                stikStr = @"Booklet";
-                break;
-        }
-        if(stikStr)
-        {
-            [args addObject:@"--stik"];
-            [args addObject:stikStr];
-        }
-    }
-    */
-    
+
     // Sort tags
     sortTags(args, changes, MZSortTitleTagIdent, @"name");
     sortTags(args, changes, MZSortArtistTagIdent, @"artist");
@@ -1110,23 +908,6 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     [ctrl addOperationsToQueue:queue];
 
     return ctrl;
-    /*
-    NSTask* task = [[[NSTask alloc] init] autorelease];
-    [task setLaunchPath:[self launchPath]];
-    [task setArguments:args];
-    
-    APWriteManager* manager = [APWriteManager
-            managerForProvider:self
-                          task:task
-                      delegate:delegate
-                         edits:data
-                   pictureFile:pictureFile
-                  chaptersFile:chaptersFile];
-    [manager start];
-    [writes addObject:manager];
-    
-    return manager;
-    */
 }
 
 - (void)removeWriteManager:(id)writeManager
