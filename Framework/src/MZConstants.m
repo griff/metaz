@@ -70,6 +70,7 @@ NSString* const MZIMDBTagIdent = @"imdb";
 NSString* const MZASINTagIdent = @"asin";
 NSString* const MZDVDSeasonTagIdent = @"dvdSeason";
 NSString* const MZDVDEpisodeTagIdent = @"dvdEpisode";
+NSString* const MZiTunesPersistentIDTagIdent = @"iTunesPersistentID";
 
 /* Notifications */
 NSString* const MZDataProviderLoadedNotification = @"MZDataProviderLoadedNotification";

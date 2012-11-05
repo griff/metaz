@@ -99,6 +99,7 @@
     [self registerTag:[MZStringTag tagWithIdentifier:MZASINTagIdent]];
     [self registerTag:[MZIntegerTag tagWithIdentifier:MZDVDSeasonTagIdent scriptName:@"dvd season"]];
     [self registerTag:[MZIntegerTag tagWithIdentifier:MZDVDEpisodeTagIdent scriptName:@"dvd episode"]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZiTunesPersistentIDTagIdent scriptName:@"itunes persistent id"]];
 
 }
 

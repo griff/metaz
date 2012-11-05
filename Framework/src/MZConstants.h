@@ -193,6 +193,7 @@ MZKIT_EXTERN NSString* const MZIMDBTagIdent;
 MZKIT_EXTERN NSString* const MZASINTagIdent;
 MZKIT_EXTERN NSString* const MZDVDSeasonTagIdent;
 MZKIT_EXTERN NSString* const MZDVDEpisodeTagIdent;
+MZKIT_EXTERN NSString* const MZiTunesPersistentIDTagIdent;
 
 /* Notifications */
 MZKIT_EXTERN NSString* const MZDataProviderLoadedNotification;
