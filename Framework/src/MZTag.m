@@ -140,6 +140,17 @@ static NSMutableDictionary *sharedTagScriptNames = nil;
     return ret;
 }
 
++ (NSArray*)allKnownTags
+{
+    NSArray* ret = [NSArray array];
+    @synchronized(self)
+    {
+        if(sharedTags)
+            ret = [NSArray arrayWithArray:[sharedTags allValues]];
+    }
+    return ret;
+}
+
 + (NSArray*)infoTags
 {
     return [NSArray arrayWithObjects:
@@ -214,15 +225,6 @@ static NSMutableDictionary *sharedTagScriptNames = nil;
         [self tagForIdentifier:MZChaptersTagIdent],
         [self tagForIdentifier:MZChapterNamesTagIdent],
         nil];
-}
-
-+ (NSArray*)allKnownTags
-{
-    return [[[[[[self infoTags] arrayByAddingObjectsFromArray:[self videoTags]]
-                    arrayByAddingObjectsFromArray:[self sortTags]]
-                    arrayByAddingObjectsFromArray:[self advancedTags]]
-                    arrayByAddingObjectsFromArray:[self chapterTags]] 
-                    arrayByAddingObject:[self tagForIdentifier:MZDurationTagIdent]];
 }
 
 + (NSString *)localizedNameForKnownIdentifier:(NSString *)identifier
