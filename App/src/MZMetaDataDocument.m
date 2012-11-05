@@ -182,6 +182,14 @@
     return tags;
 }
 
+- (id)valueInTagsWithName:(NSString *)name
+{
+    MZTag* tag = [MZTag tagForScriptName:[name lowercaseString]];
+    if(tag)
+        return [MZTagItem itemWithTag:tag document:self];
+    return nil;
+}
+
 /*
 - (id)scriptingValueForSpecifier:(id)specifier
 {
