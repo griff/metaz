@@ -9,6 +9,8 @@
 #import "MetaZApplication.h"
 #import "MZSelectedMetaDataDocument.h"
 #import "MZMetaLoader.h"
+#import "MZWriteQueue.h"
+#import "MZWriteQueueStatus.h"
 
 @implementation MetaZApplication
 @synthesize filesController;
@@ -84,6 +86,19 @@
         [documents addObject:[MZMetaDataDocument documentWithEdit:edit]];
     }
     return documents;
+}
+
+- (NSArray *)queueDocuments
+{
+    NSMutableArray* queue = [NSMutableArray array];
+    for(MZWriteQueueStatus* item in [[MZWriteQueue sharedQueue] queueItems])
+    {
+        [queue addObject:[MZMetaDataDocument
+            documentWithEdit:[item edits]
+                   container:@"queueDocuments"
+                       saved:item.completed]];
+    }
+    return queue;
 }
 
 @end

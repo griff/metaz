@@ -14,7 +14,7 @@
 				<cocoa integer-value="-2"/>
             </enumerator>
 		</enumeration>
-
+        
 		<command name="open" code="aevtodoc" description="Open a document.">
 			<direct-parameter description="The file(s) to be opened.">
 				<type type="file"/>
@@ -166,6 +166,9 @@
 			</element>
             <element type="selected document">
                 <cocoa key="selectedDocuments"/>
+            </element>
+            <element type="queue item">
+                <cocoa key="queueDocuments"/>
             </element>
 			<responds-to command="open">
 				<cocoa method="handleOpenScriptCommand:"/>
@@ -360,6 +363,10 @@
                 
         <class name="selected document" code="Mdoc" description="A selected meta data document" inherits="document">
             <cocoa class="MZSelectedMetaDataDocument"/>
+        </class>
+
+        <class name="queue item" code="Mque" description="A document in the queue" inherits="document">
+            <cocoa class="MZMetaDataDocument"/>
         </class>
 
     </suite>
