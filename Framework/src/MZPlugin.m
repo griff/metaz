@@ -32,6 +32,11 @@
 
 @synthesize bundle;
 
+- (NSString *)identifier
+{
+    return [bundle bundleIdentifier];
+}
+
 - (void)didLoad {}
 - (void)willUnload {}
 

@@ -14,7 +14,7 @@
 - (BOOL)isEnabled
 {
     NSArray* disabled = [[NSUserDefaults standardUserDefaults] arrayForKey:DISABLED_KEY];
-    return ![disabled containsObject:[[self bundle] bundleIdentifier]];
+    return ![disabled containsObject:self.identifier];
 }
 
 - (void)setEnabled:(BOOL)enabled
@@ -26,9 +26,9 @@
     else
         disabled = [NSMutableSet set];
     if(enabled)
-        [disabled removeObject:[[self bundle] bundleIdentifier]];
+        [disabled removeObject:self.identifier];
     else
-        [disabled addObject:[[self bundle] bundleIdentifier]];
+        [disabled addObject:self.identifier];
     [[NSUserDefaults standardUserDefaults] setObject:[disabled allObjects] forKey:DISABLED_KEY];
 }
 
