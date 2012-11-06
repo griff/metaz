@@ -205,12 +205,6 @@ static MZMetaLoader* sharedLoader = nil;
                             NSLocalizedString(@"File \"%@\" is already loaded", @"Already loaded warning message"),
                                 basefile]];
                 }
-                /*
-                [alert setInformativeText::
-                    [NSString stringWithFormat:
-                        NSLocalizedString(@"Do you wish to load it anyway?", @"Already loaded title prompt"),
-                            [edits fileName]]];
-                */
                 [alert setShowsSuppressionButton:YES];
                 [alert addButtonWithTitle:NSLocalizedString(@"OK", @"Button")];
 
@@ -223,11 +217,8 @@ static MZMetaLoader* sharedLoader = nil;
             }
             [realFileNames removeObjectAtIndex:i];
             [realIndexes removeIndex:index];
-            //if(index>=[files count])
-            //MZLoggerDebug(@"Shifting %d", [indexes lastIndex]);
             if([realIndexes countOfIndexesInRange:NSMakeRange(index, [indexes lastIndex]+1)] > 0)
             {
-                //MZLoggerDebug(@"Shifting %d", [indexes lastIndex]);
                 [realIndexes shiftIndexesStartingAtIndex:[indexes indexGreaterThanIndex:index] by:-1];
             }
         }
@@ -242,11 +233,6 @@ static MZMetaLoader* sharedLoader = nil;
         lastSelection = MZUnsetVideoType;
     }
 
-    /*
-    NSMutableArray* arr = [NSMutableArray arrayWithCapacity:[fileNames count]];
-    int missingType = 0;
-    MZVideoType def = [[NSUserDefaults standardUserDefaults] integerForKey:@"incomingVideoType"];
-    */
     index = [indexes firstIndex];
     for ( NSString* fileName in fileNames )
     {
@@ -264,71 +250,6 @@ static MZMetaLoader* sharedLoader = nil;
                         userInfo:nil];
         index = [indexes indexGreaterThanIndex:index];
     }
-    /*
-    if(missingType>0)
-    {
-        def = MZUnsetVideoType;
-        MZVideoType lastSelection = MZUnsetVideoType;
-        BOOL applyAll = NO;
-        for(MetaEdits* edits in arr)
-        {
-            if([edits videoType] == MZUnsetVideoType)
-            {
-                missingType--;
-                if(def == MZUnsetVideoType)
-                {
-                    NSAlert* alert = [[NSAlert alloc] init];
-                    [alert setMessageText:
-                        [NSString stringWithFormat:
-                            NSLocalizedString(@"Video type for file \"%@\" could not be determined", @"Video type prompt"),
-                            [edits fileName]]];
-                    NSPopUpButton* sel = [[NSPopUpButton alloc] 
-                        initWithFrame:NSMakeRect(0, 0, 145, 25)
-                            pullsDown:NO];
-                    MZTag* tag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
-                    [sel setCell:[tag editorCell]];
-                    [sel setKeyEquivalent:@"t"];
-                    [sel setKeyEquivalentModifierMask:NSCommandKeyMask];
-
-                    if(lastSelection!=MZUnsetVideoType)
-                        [sel selectItemWithTag:lastSelection];
-
-                    [alert setAccessoryView:sel];
-                    [alert addButtonWithTitle:NSLocalizedString(@"OK", @"Button")];
-                    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Button")];
-
-                    if(missingType>0)
-                    {
-                        [alert setShowsSuppressionButton:YES];
-                        [[alert suppressionButton] setTitle:
-                            NSLocalizedString(@"Apply to all", @"Confirmation text")];
-                    }
-                    
-                    NSInteger returnCode = [alert runModal];
-                    lastSelection = [[sel selectedItem] tag];
-                    if(missingType>0)
-                        applyAll = [[alert suppressionButton] state] == NSOnState;
-
-                    [sel release];
-                    [alert release];
-
-                    if(returnCode == NSAlertFirstButtonReturn)
-                    {
-                        def = lastSelection;
-                    } else
-                        return NO;
-                }
-                if(def!=MZUnsetVideoType)
-                    [edits setVideoType:def];
-                if(!applyAll)
-                    def = MZUnsetVideoType;
-            }
-        }
-    }
-    [self willChangeValueForKey:@"files"];
-    [files insertObjects:arr atIndexes:indexes];
-    [self didChangeValueForKey:@"files"];
-    */
     return YES;
 }
 

@@ -100,28 +100,6 @@ static MZWriteQueue* sharedQueue = nil;
     }
 }
 
-/*
--(void)pause
-{
-    if(status == QueueRunning)
-    {
-        [self willChangeValueForKey:@"status"];
-        status = QueuePaused;
-        [self didChangeValueForKey:@"status"];
-    }
-}
-
--(void)resume
-{
-    if(status == QueuePaused)
-    {
-        [self willChangeValueForKey:@"status"];
-        status = QueueRunning;
-        [self didChangeValueForKey:@"status"];
-    }
-}
-*/
-
 -(void)stop
 {
     if(status != QueueStopped && status != QueueStopping )

@@ -110,14 +110,6 @@
     NSString *bestType = [pb availableTypeFromArray:types];
     if (bestType != nil)
     {
-        /*
-        if([bestType isEqualToString:MZFilesTableRows])
-        {
-            NSData* data = [pb dataForType:MZFilesTableRows];
-            NSIndexSet* rowIndexes = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-            // TODO Support rowIndex paste??
-        }
-        */
         if([bestType isEqualToString:MZMetaEditsDataType])
         {
             NSData* data = [pb dataForType:MZMetaEditsDataType];
@@ -234,14 +226,6 @@
     {
             return self;
     }
-    /*
-    if(returnType &&
-        ([returnType isEqual:NSStringPboardType] ||
-            [returnType isEqual:NSFilenamesPboardType]))
-    {
-            return self;
-    }
-    */
     return [super validRequestorForSendType:sendType
                                  returnType:returnType];
 }
@@ -363,13 +347,6 @@
             [[MZMetaLoader sharedLoader] moveObjects:edits toIndex:row];
             return YES;
         }
-        /*
-        if([bestType isEqualToString:MZMetaEditsDataType])
-        {
-            NSData* data = [pb dataForType:MZMetaEditsDataType];
-            NSArray* edits = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-        }
-        */
         if([bestType isEqualToString:NSFilenamesPboardType])
         {
             NSArray* filenames = [pboard propertyListForType:NSFilenamesPboardType];
@@ -378,11 +355,6 @@
                 if(![[MZPluginController sharedInstance] dataProviderForPath:file])
                     return NO;
             }
-            /* Doesn't work
-            NSWindow* window = [self window];
-            [window orderFront:self];
-            [window makeMainWindow];
-            */
             if(![filesController commitEditing])
                 return NO;
             NSArray* params = [NSArray arrayWithObjects:filenames, [NSNumber numberWithInteger:row], nil];
@@ -398,7 +370,6 @@
             if([mgr fileExistsAtPath:filename isDirectory:&dir] && !dir &&
                 [[MZPluginController sharedInstance] dataProviderForPath:filename])
             {
-                //[[self window] makeKeyAndOrderFront:self];
                 if(![filesController commitEditing])
                     return NO;
                 NSArray* params = [NSArray arrayWithObjects:filename, [NSNumber numberWithInteger:row], nil];
@@ -493,13 +464,11 @@
     if([ns length] == 1)
     {
         unichar ch = [ns characterAtIndex:0];
-        //MZLoggerDebug(@"keyDown %x %x", ch, NSNewlineCharacter);
         switch(ch) {
             case NSBackspaceCharacter:
             case NSDeleteCharacter:
                 if([self numberOfSelectedRows] > 0 && (modifierFlags & NSCommandKeyMask) == NSCommandKeyMask )
                 {
-                    //MZLoggerDebug(@"Caught Cmd-Backspace");
                     [self delete:self];
                     return;
                 }

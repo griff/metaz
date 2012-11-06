@@ -190,15 +190,6 @@
     return nil;
 }
 
-/*
-- (id)scriptingValueForSpecifier:(id)specifier
-{
-    NSLog(@"Bla Bla: %@ %@ %@ %@ %@", specifier, [specifier key], [[specifier childSpecifier] key], [[specifier containerSpecifier] key]);
-    id ret = [super scriptingValueForSpecifier:specifier];
-    return ret;
-}
-*/
-
 - (NSScriptObjectSpecifier *)objectSpecifier;
 {
     NSScriptClassDescription *containerClassDesc = (NSScriptClassDescription *)
@@ -208,13 +199,6 @@
         containerSpecifier:nil key:container
         name:[self displayName]] autorelease];
 }
-/*
-- (NSArray *)indicesOfObjectsByEvaluatingObjectSpecifier:(NSScriptObjectSpecifier *)specifier
-{
-    NSLog(@"Bla Bla: %@ %@ %@", [specifier key], [[specifier childSpecifier] key], [[specifier containerSpecifier] key]);
-    return nil;
-}
-*/
 
 - (id)handleCloseScriptCommand:(NSScriptCommand *)cmd;
 {

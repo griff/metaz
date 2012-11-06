@@ -21,16 +21,3 @@ void dumpMethods(Class clz)
     }
     free(methods);
 }
-
-/*
-@interface NSObject (PrivateDebug)
-- (NSString *)stringValue;
-@end
-
-@implementation NSObject (PrivateDebug)
-- (NSString *)stringValue
-{
-    return [self description];
-}
-@end
-*/

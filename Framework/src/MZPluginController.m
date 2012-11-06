@@ -393,36 +393,6 @@ static MZPluginController *gInstance = NULL;
     return nil;
 }
 
-/*
-- (MetaEdits *)loadDataFromFile:(NSString *)path
-{
-    id<MZDataProvider> provider = [self dataProviderForPath:path];
-    if(!provider)
-        return nil;
-    MetaLoaded* loaded = [provider loadFromFile:path];
-    if(!loaded)
-        return nil;
-    id next = nil;
-    if([[self delegate] respondsToSelector:@selector(pluginController:extraMetaDataForProvider:loaded:)])
-    {
-        next = [[self delegate] pluginController:self
-                        extraMetaDataForProvider:provider
-                                          loaded:loaded];
-    }
-    if(!next)
-        next = loaded;
-    MetaEdits* edits = [[MetaEdits alloc] initWithProvider:next];
-    NSAssert([[edits fileName] isKindOfClass:[NSString class]], @"Bad file name");
-    NSAssert([[edits title] isKindOfClass:[NSString class]], @"Bad title");
-    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:edits forKey:MZMetaEditsNotificationKey];
-    [[NSNotificationCenter defaultCenter]
-            postNotificationName:MZDataProviderLoadedNotification
-                          object:provider
-                        userInfo:userInfo];
-    return [edits autorelease];
-}
-*/
-
 - (id<MZDataController>)loadFromFile:(NSString *)fileName
                             delegate:(id<MZEditsReadDelegate>)theDelegate
 {
@@ -437,12 +407,6 @@ static MZPluginController *gInstance = NULL;
 - (id<MZDataController>)saveChanges:(MetaEdits *)data
                            delegate:(id<MZDataWriteDelegate>)theDelegate
 {
-    /*
-    NSFileManager* mgr = [NSFileManager manager];
-    BOOL isDir;
-    if(![mgr fileExistsAtPath:[data loadedFileName] isDirectory:&isDir] || isDir )
-        return nil;
-    */
     id<MZDataProvider> provider = [data owner];
     id<MZDataWriteDelegate> otherDelegate = [MZWriteNotification notifierWithDelegate:theDelegate];
     return [provider saveChanges:data delegate:otherDelegate queue:saveQueue];
@@ -664,11 +628,6 @@ static MZPluginController *gInstance = NULL;
     finishedSearches++;
     if(finishedSearches==performedSearches)
     {
-        /*
-        NSArray* keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, MZDataControllerNotificationKey, nil];
-        NSArray* values = [NSArray arrayWithObjects:edits, controller, nil];
-        NSDictionary* userInfo = [NSDictionary dictionaryWithObjects:values forKeys:keys];
-        */
         if([delegate respondsToSelector:@selector(searchFinished)])
             [delegate searchFinished];
         [[NSNotificationCenter defaultCenter]

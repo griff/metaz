@@ -87,16 +87,6 @@
     [super resizeWithOldSuperviewSize:oldBoundsSize];
 }
 
-/*
--(void)setFrameSize:(NSSize)newSize
-{
-    NSString* tab = [[tabView selectedTabViewItem] identifier];
-    if([tab isEqual:@"pending"])
-        newSize.height = 43;
-    [super setFrameSize:newSize];
-}
-*/
-
 -(void)setFrame:(NSRect)newFrame
 {
     [super setFrame:newFrame];
@@ -115,13 +105,6 @@
 
 - (IBAction)switchDetails:(id)sender
 {
-    /*
-    NSTabViewItem * item = [tabView selectedTabViewItem];
-    if([[item identifier] isEqual:@"pending"])
-        [tabView selectTabViewItemWithIdentifier:@"action"];
-    else
-        [tabView selectTabViewItemWithIdentifier:@"pending"];
-    */
 }
 
 - (IBAction)removeItem:(id)sender

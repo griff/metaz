@@ -178,13 +178,6 @@
 
 #pragma mark - NSCoding implementation
 
-/*
-- (Class)classForCoder
-{
-    return [provider classForCoder];
-}
-*/
-
 - (id)initWithCoder:(NSCoder *)decoder
 {
     self = [super init];

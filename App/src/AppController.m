@@ -232,10 +232,6 @@ NSDictionary* findBinding(NSWindow* window) {
                 profile = [SearchProfile unknownTypeProfile];
             break;
     }
-    /*
-    if([activeProfile.identifier isEqual:profile.identifier])
-        return;
-    */
     [activeProfile removeObserver:self forKeyPath:@"searchTerms"];
     [activeProfile release];
     activeProfile = [profile retain];
@@ -245,15 +241,6 @@ NSDictionary* findBinding(NSWindow* window) {
     NSMenu* menu = [[NSMenu alloc] initWithTitle:
         NSLocalizedString(@"Search terms", @"Search menu title")];
     [menu addItemWithTitle:[menu title] action:nil keyEquivalent:@""];
-    /*
-    if([profile mainTag])
-    {
-        MZTag* tag = [MZTag tagForIdentifier:[profile mainTag]];
-        NSMenuItem* mainItem = [menu addItemWithTitle:[tag localizedName] action:NULL keyEquivalent:@""];
-        [mainItem setState:NSOnState];
-        [mainItem setIndentationLevel:1];
-    }
-    */
     NSInteger i = 0;
     for(NSString* tagId in [profile tags])
     {
@@ -833,14 +820,6 @@ NSDictionary* findBinding(NSWindow* window) {
 - (void)presetsDidClose:(NSNotification *)note
 {
     [[note object] saveFrameUsingName:@"presetsPanel"];
-    /*
-    [[NSNotificationCenter defaultCenter] 
-           removeObserver:self 
-                     name:NSWindowWillCloseNotification
-                   object:[note object]];
-    [presetsController release];
-    presetsController = nil;
-    */
 }
 
 - (void)removedEdit:(NSNotification *)note

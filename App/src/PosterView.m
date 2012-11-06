@@ -27,7 +27,6 @@
 
 - (void)awakeFromNib
 {
-    //dumpMethods([self superclass]);
     actionHack = [self action];
     [self setAction:NULL];
 }
@@ -127,19 +126,10 @@
 
 - (void)mouseDown:(NSEvent *)theEvent
 {
-    //MZLoggerDebug(@"Test Down %d %d", [theEvent clickCount], [self ignoresMultiClick]);
     if([theEvent clickCount] == 2 && [self isEnabled])
         [NSApp sendAction:actionHack to:[self target] from:self];
     [super mouseDown:theEvent];
 }
-
-/*
-- (void)mouseUp:(NSEvent *)theEvent
-{
-    MZLoggerDebug(@"Test Up %d %d", [theEvent clickCount], [self ignoresMultiClick]);
-    [super mouseUp:theEvent];
-}
-*/
 
 - (void)moveLeft:(id)sender
 {
