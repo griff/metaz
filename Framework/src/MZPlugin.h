@@ -32,6 +32,10 @@
  */
 @property(readonly) NSString* identifier;
 
+@property(getter=isEnabled) BOOL enabled;
+
+- (BOOL)canEnable;
+
 /*!
  * @name Loading and Unloading Plug-in Resources
  * @methodgroup Loading and Unloading Plug-in Resources

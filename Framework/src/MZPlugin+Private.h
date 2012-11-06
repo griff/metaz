@@ -12,8 +12,6 @@
 #define DISABLED_KEY @"disabledPlugins"
 
 @interface MZPlugin (Private)
-@property(getter=isEnabled) BOOL enabled;
-
 - (BOOL)isBuiltIn;
 - (BOOL)canUnload;
 @end
