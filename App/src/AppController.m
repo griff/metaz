@@ -968,7 +968,7 @@ NSDictionary* findBinding(NSWindow* window) {
     
     if( result == NSAlertDefaultReturn )
     {
-        if([[MZWriteQueue sharedQueue] status] == QueueRunning)
+        if([[MZWriteQueue sharedQueue] status] == QueueRunning || [[MZWriteQueue sharedQueue] status] == QueueStopping)
         {
             [[MZWriteQueue sharedQueue] gtm_addObserver:self forKeyPath:@"status" selector:@selector(queueStatusChanged:) userInfo:nil options:0];
             [[MZWriteQueue sharedQueue] stop];
