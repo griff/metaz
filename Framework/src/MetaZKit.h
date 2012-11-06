@@ -41,6 +41,7 @@
 #import <MetaZKit/NSString+MZAllInCharacterSet.h>
 #import <MetaZKit/NSString+MZQueryString.h>
 #import <MetaZKit/NSFileManager+MZCreate.h>
+#import <MetaZKit/NSError+MZScriptError.h>
 
 #import <MetaZKit/GTMNSString+URLArguments.h>
 #import <MetaZKit/GTMNSObject+KeyValueObserving.h>

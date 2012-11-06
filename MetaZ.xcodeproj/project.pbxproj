@@ -220,6 +220,8 @@
 		1BD3D3FE108E694100BE6943 /* faded_cow_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3D3FB108E694100BE6943 /* faded_cow_error.png */; };
 		1BD3D3FF108E694100BE6943 /* faded_cow_fatal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3D3FC108E694100BE6943 /* faded_cow_fatal.png */; };
 		1BD3D400108E694100BE6943 /* faded_cow_multiple.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3D3FD108E694100BE6943 /* faded_cow_multiple.png */; };
+		1BD55C661648466700F9C579 /* NSError+MZScriptError.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD55C641648466700F9C579 /* NSError+MZScriptError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BD55C671648466700F9C579 /* NSError+MZScriptError.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD55C651648466700F9C579 /* NSError+MZScriptError.m */; };
 		1BD6E752105DADCC00E40151 /* AddToQueue.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74D105DADCC00E40151 /* AddToQueue.tiff */; };
 		1BD6E753105DADCC00E40151 /* Pause.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74E105DADCC00E40151 /* Pause.tiff */; };
 		1BD6E754105DADCC00E40151 /* Play.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74F105DADCC00E40151 /* Play.tiff */; };
@@ -1055,6 +1057,8 @@
 		1BD3D3FB108E694100BE6943 /* faded_cow_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = faded_cow_error.png; path = App/resources/faded_cow_error.png; sourceTree = "<group>"; };
 		1BD3D3FC108E694100BE6943 /* faded_cow_fatal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = faded_cow_fatal.png; path = App/resources/faded_cow_fatal.png; sourceTree = "<group>"; };
 		1BD3D3FD108E694100BE6943 /* faded_cow_multiple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = faded_cow_multiple.png; path = App/resources/faded_cow_multiple.png; sourceTree = "<group>"; };
+		1BD55C641648466700F9C579 /* NSError+MZScriptError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MZScriptError.h"; sourceTree = "<group>"; };
+		1BD55C651648466700F9C579 /* NSError+MZScriptError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MZScriptError.m"; sourceTree = "<group>"; };
 		1BD6E601105B355800E40151 /* MetaChangeNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaChangeNotification.m; sourceTree = "<group>"; };
 		1BD6E74D105DADCC00E40151 /* AddToQueue.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = AddToQueue.tiff; path = App/resources/AddToQueue.tiff; sourceTree = "<group>"; };
 		1BD6E74E105DADCC00E40151 /* Pause.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pause.tiff; path = App/resources/Pause.tiff; sourceTree = "<group>"; };
@@ -1270,6 +1274,8 @@
 				1BAC91BC13F060300022D625 /* NSString+MZAllInCharacterSet.m */,
 				1B0696D5149BFB2D00B5FA90 /* NSString+MZQueryString.h */,
 				1B0696D6149BFB2D00B5FA90 /* NSString+MZQueryString.m */,
+				1BD55C641648466700F9C579 /* NSError+MZScriptError.h */,
+				1BD55C651648466700F9C579 /* NSError+MZScriptError.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -2314,6 +2320,7 @@
 				1B36E78C14066727009F542A /* MZASISearch.h in Headers */,
 				1B0696D7149BFB2D00B5FA90 /* NSString+MZQueryString.h in Headers */,
 				1BDEC5ED1620DE160051D656 /* AEVTBuilder.h in Headers */,
+				1BD55C661648466700F9C579 /* NSError+MZScriptError.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2865,6 +2872,7 @@
 				1B36E78D14066727009F542A /* MZASISearch.m in Sources */,
 				1B0696D8149BFB2D00B5FA90 /* NSString+MZQueryString.m in Sources */,
 				1B4CFFE8161CE0ED00B12009 /* AEVTBuilder.m in Sources */,
+				1BD55C671648466700F9C579 /* NSError+MZScriptError.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
