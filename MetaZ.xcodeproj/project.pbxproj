@@ -2939,15 +2939,18 @@
 				"$(SRCROOT)/Release/template.dmg.zip",
 				"$(SRCROOT)/Thanks.txt",
 				"$(SRCROOT)/License.txt",
+				"$(BUILT_PRODUCTS_DIR)/$(PROJECT_NAME).app",
 			);
 			name = "Make Disk Image";
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(PROJECT_NAME)-$(VERSION).dmg",
 				"$(CONFIGURATION_TEMP_DIR)/wc.dmg",
+				"$(BUILT_PRODUCTS_DIR)/$(PROJECT_NAME)-$(VERSION).zip",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -o errexit\nbash $SRCROOT/Release/make_diskimage.bash";
+			showEnvVarsInLog = 0;
 		};
 		1BB6BF3B1050ED38001D3D1D /* Sparkle Sign  */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2955,9 +2958,11 @@
 			files = (
 			);
 			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(PROJECT_NAME)-$(VERSION).zip",
 			);
 			name = "Sparkle Sign ";
 			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(PROJECT_NAME)-$(VERSION).xml",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
