@@ -48,9 +48,9 @@
     BOOL old = [enabled containsObject:self.identifier];
 
     if(enabledValue)
-        [enabled removeObject:self.identifier];
-    else
         [enabled addObject:self.identifier];
+    else
+        [enabled removeObject:self.identifier];
     [[NSUserDefaults standardUserDefaults] setObject:[enabled allObjects] forKey:ENABLED_ACTIONS_KEY];
     
     if(!old && enabledValue)
