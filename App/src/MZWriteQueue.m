@@ -100,7 +100,7 @@ static MZWriteQueue* sharedQueue = nil;
     }
 }
 
--(void)stop
+-(BOOL)doStopToStopping:(BOOL)stopping
 {
     if(status != QueueStopped && status != QueueStopping )
     {
@@ -112,19 +112,28 @@ static MZWriteQueue* sharedQueue = nil;
             if([sts stopWriting])
                 stopWaitCount++;
         }
-        if(stopWaitCount==0)
+        if(stopWaitCount == 0)
         {
-            status = QueueStopped;
+            if(!stopping)
+                status = QueueStopped;
             for(MZWriteQueueStatus* sts in queueItems)
             {
                 if(sts.hasRun && !sts.completed)
                     sts.hasRun = NO;
             }
-            [self saveQueueWithError:NULL];
         }
+        [self saveQueueWithError:NULL];
         [self resetTrashHandling];
         [self didChangeValueForKey:@"status"];
+        if(stopWaitCount == 0)
+            return YES;
     }
+    return NO;
+}
+
+-(void)stop
+{
+    [self doStopToStopping:NO];
 }
 
 - (BOOL)hasNextItem
@@ -151,11 +160,17 @@ static MZWriteQueue* sharedQueue = nil;
             return;
         }
     }
-    [self stop];
+    BOOL stopping = [self doStopToStopping:YES];
     [self saveQueueWithError:NULL];
     [[NSNotificationCenter defaultCenter]
             postNotificationName:MZQueueCompleted
                           object:self];
+    if(stopping)
+    {
+        [self willChangeValueForKey:@"status"];
+        status = QueueStopped;
+        [self didChangeValueForKey:@"status"];
+    }
 }
 
 - (void)itemStopped
