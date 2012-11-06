@@ -72,6 +72,8 @@
 			</parameter>
 		</command>
 -->
+		<command name="quit later" code="MetZquit" description="Tell the application to quit later."/>
+        
 		<command name="quit" code="aevtquit" description="Quit the application.">
 			<cocoa class="NSQuitCommand"/>
             <!--
@@ -175,6 +177,9 @@
 			</responds-to>
 			<responds-to command="quit">
 				<cocoa method="handleQuitScriptCommand:"/>
+			</responds-to>
+			<responds-to command="quit later">
+				<cocoa method="handleQuitLaterScriptCommand:"/>
 			</responds-to>
 		</class>
 

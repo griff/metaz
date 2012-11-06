@@ -41,6 +41,23 @@
     return nil;
 }
 
+- (id)handleQuitLaterScriptCommand:(NSScriptCommand *)test;
+{
+    [self performSelector:@selector(laterQuit) withObject:nil afterDelay:1];
+    return nil;
+}
+
+- (void)laterQuit
+{
+    if([[MZWriteQueue sharedQueue] status] == QueueRunning ||
+        [[MZWriteQueue sharedQueue] status] == QueueStopping)
+    {
+        [self performSelector:@selector(laterQuit) withObject:nil afterDelay:1];
+    }
+    else
+        [NSApp terminate:self];
+}
+
 - (void)setSelectedDocuments:(id)sel
 {
     if([sel isKindOfClass:[NSArray class]])
