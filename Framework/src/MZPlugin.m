@@ -16,7 +16,7 @@
     self = [super init];
     if(self)
     {
-        bundle = [NSBundle bundleForClass:[self class]];
+        bundle = [[NSBundle bundleForClass:[self class]] retain];
     }
     return self;
 }
