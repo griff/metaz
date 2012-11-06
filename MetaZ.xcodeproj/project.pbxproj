@@ -220,6 +220,10 @@
 		1BD3D3FE108E694100BE6943 /* faded_cow_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3D3FB108E694100BE6943 /* faded_cow_error.png */; };
 		1BD3D3FF108E694100BE6943 /* faded_cow_fatal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3D3FC108E694100BE6943 /* faded_cow_fatal.png */; };
 		1BD3D400108E694100BE6943 /* faded_cow_multiple.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3D3FD108E694100BE6943 /* faded_cow_multiple.png */; };
+		1BD55C5E16483F5E00F9C579 /* MZActionsPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD55C5C16483F5E00F9C579 /* MZActionsPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BD55C5F16483F5E00F9C579 /* MZActionsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD55C5D16483F5E00F9C579 /* MZActionsPlugin.m */; };
+		1BD55C621648431D00F9C579 /* MZScriptActionsPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD55C601648431D00F9C579 /* MZScriptActionsPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BD55C631648431D00F9C579 /* MZScriptActionsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD55C611648431D00F9C579 /* MZScriptActionsPlugin.m */; };
 		1BD55C661648466700F9C579 /* NSError+MZScriptError.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD55C641648466700F9C579 /* NSError+MZScriptError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BD55C671648466700F9C579 /* NSError+MZScriptError.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD55C651648466700F9C579 /* NSError+MZScriptError.m */; };
 		1BD6E752105DADCC00E40151 /* AddToQueue.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74D105DADCC00E40151 /* AddToQueue.tiff */; };
@@ -943,6 +947,7 @@
 		1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditPanel.m; sourceTree = "<group>"; };
 		1B63A1D11644D8D100461FC9 /* MZArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZArrayController.h; sourceTree = "<group>"; };
 		1B63A1D21644D8D100461FC9 /* MZArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZArrayController.m; sourceTree = "<group>"; };
+		1B63A889164823FE00461FC9 /* Example Actions.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Example Actions.applescript"; sourceTree = "<group>"; };
 		1B6E43C610845F8200DFE165 /* TCSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSearch.h; sourceTree = "<group>"; };
 		1B6E43C710845F8200DFE165 /* TCSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSearch.m; sourceTree = "<group>"; };
 		1B6E43C9108468B100DFE165 /* MZSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSearchResult.h; sourceTree = "<group>"; };
@@ -1057,6 +1062,10 @@
 		1BD3D3FB108E694100BE6943 /* faded_cow_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = faded_cow_error.png; path = App/resources/faded_cow_error.png; sourceTree = "<group>"; };
 		1BD3D3FC108E694100BE6943 /* faded_cow_fatal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = faded_cow_fatal.png; path = App/resources/faded_cow_fatal.png; sourceTree = "<group>"; };
 		1BD3D3FD108E694100BE6943 /* faded_cow_multiple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = faded_cow_multiple.png; path = App/resources/faded_cow_multiple.png; sourceTree = "<group>"; };
+		1BD55C5C16483F5E00F9C579 /* MZActionsPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZActionsPlugin.h; sourceTree = "<group>"; };
+		1BD55C5D16483F5E00F9C579 /* MZActionsPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZActionsPlugin.m; sourceTree = "<group>"; };
+		1BD55C601648431D00F9C579 /* MZScriptActionsPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZScriptActionsPlugin.h; sourceTree = "<group>"; };
+		1BD55C611648431D00F9C579 /* MZScriptActionsPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZScriptActionsPlugin.m; sourceTree = "<group>"; };
 		1BD55C641648466700F9C579 /* NSError+MZScriptError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MZScriptError.h"; sourceTree = "<group>"; };
 		1BD55C651648466700F9C579 /* NSError+MZScriptError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MZScriptError.m"; sourceTree = "<group>"; };
 		1BD6E601105B355800E40151 /* MetaChangeNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaChangeNotification.m; sourceTree = "<group>"; };
@@ -1230,6 +1239,10 @@
 				1BEA6E49106EEF34004B1A7F /* MZPlugin+Private.m */,
 				1BEA6DAC106EC632004B1A7F /* MZPluginController.h */,
 				1BEA6DAD106EC632004B1A7F /* MZPluginController.m */,
+				1BD55C5C16483F5E00F9C579 /* MZActionsPlugin.h */,
+				1BD55C5D16483F5E00F9C579 /* MZActionsPlugin.m */,
+				1BD55C601648431D00F9C579 /* MZScriptActionsPlugin.h */,
+				1BD55C611648431D00F9C579 /* MZScriptActionsPlugin.m */,
 				1BBB39A71087083600C9E17F /* MZPriorObserverFix.h */,
 				1BBB39A81087083600C9E17F /* MZPriorObserverFix.m */,
 				1B3AD7A111055DF300B33F85 /* MZQueueOperation.h */,
@@ -2129,6 +2142,7 @@
 		1BEA6E68106EF248004B1A7F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				1B63A889164823FE00461FC9 /* Example Actions.applescript */,
 				1B8CB8FA14ACD5C700F859F7 /* TheMovieDb */,
 				1B4F538D116E9E1F003221B1 /* TheTVDB */,
 				1B42F23B10DEB05000AFEBF6 /* IMDB */,
@@ -2320,6 +2334,8 @@
 				1B36E78C14066727009F542A /* MZASISearch.h in Headers */,
 				1B0696D7149BFB2D00B5FA90 /* NSString+MZQueryString.h in Headers */,
 				1BDEC5ED1620DE160051D656 /* AEVTBuilder.h in Headers */,
+				1BD55C5E16483F5E00F9C579 /* MZActionsPlugin.h in Headers */,
+				1BD55C621648431D00F9C579 /* MZScriptActionsPlugin.h in Headers */,
 				1BD55C661648466700F9C579 /* NSError+MZScriptError.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2483,14 +2499,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "MetaZ" */;
 			buildPhases = (
-				1BEA6F2F106EF6D5004B1A7F /* Copy Plugins */,
-				1BB6C11E1052B199001D3D1D /* Copy Frameworks */,
 				8D1107290486CEB800E47090 /* Resources */,
+				1BB6C11E1052B199001D3D1D /* Copy Frameworks */,
+				1BEA6F2F106EF6D5004B1A7F /* Copy Plugins */,
+				1B29A05A14C5C5B40048B7C0 /* Copy Growl frameworks */,
+				1B74B569164826980017E013 /* Compile Plugin Scripts */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				1B8262A710B39DE400DF101B /* Make Disk Image */,
 				1BB6BF3B1050ED38001D3D1D /* Sparkle Sign  */,
-				1B29A05A14C5C5B40048B7C0 /* Copy Growl frameworks */,
 			);
 			buildRules = (
 			);
@@ -2705,6 +2722,22 @@
 			shellPath = /bin/sh;
 			shellScript = "set -o errexit\n\nPATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin\nbuildid=`git log -n1 --pretty=oneline --format=%h`\nrelease=`cat $SCRIPT_INPUT_FILE_0`\nbuilddate=`date +%y.%m.%d.%H`\n\necho \"#define BUILDID $buildid\" > $SCRIPT_OUTPUT_FILE_0\necho \"#define BUILDDATE $builddate\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define BUILDVERSION $builddate.$buildid\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define WHOAMI `whoami`\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define RELEASE $release\" >> $SCRIPT_OUTPUT_FILE_0 \ncat $SCRIPT_INPUT_FILE_1 >> $SCRIPT_OUTPUT_FILE_0 \n\n# Delete the intermediate Info.plist so that Xcode re-preprocesses the Info.plist with our updated macros.\n# Use -f because after a clean build, this file doesn't exist yet, so a plain rm would fail and stop the build.\nrm -f \"${CONFIGURATION_TEMP_DIR}/MetaZ.build/Preprocessed-Info.plist\"\n";
 		};
+		1B74B569164826980017E013 /* Compile Plugin Scripts */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Plugins/*.applescript",
+			);
+			name = "Compile Plugin Scripts";
+			outputPaths = (
+				"$BUILT_PRODUCTS_DIR/$PLUGINS_FOLDER_PATH/*.scpt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$PROJECT_DIR\"\nfor k in Plugins/*.applescript ; do\n  BASE=`basename \"$k\" .applescript`\n\n  $OSAC -l AppleScript -i \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME\" -d -o \"$BUILT_PRODUCTS_DIR/$PLUGINS_FOLDER_PATH/$BASE.scpt\" \"$k\"\ndone";
+		};
 		1B8262A710B39DE400DF101B /* Make Disk Image */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2872,6 +2905,8 @@
 				1B36E78D14066727009F542A /* MZASISearch.m in Sources */,
 				1B0696D8149BFB2D00B5FA90 /* NSString+MZQueryString.m in Sources */,
 				1B4CFFE8161CE0ED00B12009 /* AEVTBuilder.m in Sources */,
+				1BD55C5F16483F5E00F9C579 /* MZActionsPlugin.m in Sources */,
+				1BD55C631648431D00F9C579 /* MZScriptActionsPlugin.m in Sources */,
 				1BD55C671648466700F9C579 /* NSError+MZScriptError.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

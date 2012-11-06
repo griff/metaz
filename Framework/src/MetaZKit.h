@@ -18,6 +18,8 @@
 #import <MetaZKit/MZSearchResult.h>
 #import <MetaZKit/MZPlugin.h>
 #import <MetaZKit/MZPluginController.h>
+#import <MetaZKit/MZActionsPlugin.h>
+#import <MetaZKit/MZScriptActionsPlugin.h>
 #import <MetaZKit/MZTimeCode.h>
 #import <MetaZKit/MZTimedTextItem.h>
 #import <MetaZKit/MetaEditsUndoManager.h>

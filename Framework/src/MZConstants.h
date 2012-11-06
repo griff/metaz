@@ -212,4 +212,10 @@ MZKIT_EXTERN NSString* const MZDataControllerErrorKey;
 // Standard alert ids
 MZKIT_EXTERN NSString* const MZDataProviderFileAlreadyLoadedWarningKey;
 
+// Plugin UTI
+MZKIT_EXTERN const CFStringRef kMZUTMetaZPlugin;
+MZKIT_EXTERN const CFStringRef kMZUTMetaZActionsPlugin;
+MZKIT_EXTERN const CFStringRef kMZUTAppleScriptText;
+MZKIT_EXTERN const CFStringRef kMZUTAppleScript;
+
 #endif // MZKIT_EXTERN

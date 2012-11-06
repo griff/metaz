@@ -9,6 +9,8 @@
 #import <MetaZKit/MZPluginController.h>
 #import <MetaZKit/MZLogger.h>
 #import <MetaZKit/NSFileManager+MZCreate.h>
+#import <MetaZKit/MZScriptActionsPlugin.h>
+#import <MetaZKit/GTMNSString+URLArguments.h>
 #import "MZPlugin+Private.h"
 
 @interface MZWriteNotification : NSObject <MZDataWriteDelegate>
@@ -165,6 +167,7 @@ static MZPluginController *gInstance = NULL;
         NSFileManager* mgr = [NSFileManager manager];
         for(NSString* path in paths)
         {
+            NSURL* pathURL = [NSURL fileURLWithPath:path];
             BOOL isDir = NO;
             NSError* error = nil;
             if([mgr fileExistsAtPath:path isDirectory:&isDir] && isDir)
@@ -178,11 +181,24 @@ static MZPluginController *gInstance = NULL;
                 for(NSString* pluginDir in pluginPaths)
                 {
                     NSString* pluginPath = [path stringByAppendingPathComponent:pluginDir];
-                    NSBundle* plugin = [NSBundle bundleWithPath:pluginPath];
-                    if(plugin)
+                    CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (CFStringRef)[pluginPath pathExtension], NULL);
+                    MZLoggerDebug(@"Loading plugin at path '%@'", pluginPath);
+                    if(UTTypeConformsTo(uti, kMZUTMetaZPlugin))
+                    {
+                        NSBundle* plugin = [NSBundle bundleWithPath:pluginPath];
+                        if(plugin)
+                            [thePlugins addObject:plugin];
+                        else
+                            MZLoggerError(@"Failed to load plugin at path '%@'", pluginPath);
+                    }
+                    else if(UTTypeEqual(uti, kMZUTAppleScriptText) || UTTypeConformsTo(uti, kMZUTAppleScriptText) ||
+                            UTTypeEqual(uti, kMZUTAppleScript) || UTTypeConformsTo(uti, kMZUTAppleScript))
+                    {
+                        NSURL* url = [NSURL URLWithString:[pluginDir gtm_stringByEscapingForURLArgument] relativeToURL:pathURL];
+                        MZScriptActionsPlugin* plugin = [MZScriptActionsPlugin pluginWithURL:url];
                         [thePlugins addObject:plugin];
-                    else
-                        MZLoggerError(@"Failed to load plugin at path '%@'", pluginPath);
+                    }
+                    CFRelease(uti);
                 }
             }
         }
@@ -199,42 +215,59 @@ static MZPluginController *gInstance = NULL;
         loadedPlugins = [[NSMutableArray alloc] init];
         NSMutableSet* loadedBundles = [NSMutableSet set];
         NSArray* thePlugins = [self plugins];
-        for(NSBundle* bundle in thePlugins)
+        for(id source in thePlugins)
         {
+            NSString* identifier;
+            if([source isKindOfClass:[NSBundle class]])
+                identifier = [source bundleIdentifier];
+            else if([source isKindOfClass:[MZScriptActionsPlugin class]])
+                identifier = [source identifier];
+            else
+                MZLoggerError(@"Unknown plugin %@ of type %@", source, NSStringFromClass([source class])); 
+            
             // the plugins are in the order they should be loaded
             // so if the same identifier is allready loaded we can skib to
             // next
-            if([loadedBundles containsObject:[bundle bundleIdentifier]])
+            if([loadedBundles containsObject:identifier])
                 continue;
                 
+            MZPlugin* plugin;
             NSError* error = nil;
-            if(![bundle loadAndReturnError:&error])
+            if(![source loadAndReturnError:&error])
             {
                 MZLoggerError(@"Failed to load code for '%@' because: %@", 
-                    [bundle bundleIdentifier],
+                    identifier,
                     [error localizedDescription]);
                 continue;
             }
-            Class cls = [bundle principalClass];
-            if(cls == Nil)
+                
+            if([source isKindOfClass:[NSBundle class]])
             {
-                MZLoggerError(@"Error loading principal class for '%@'", 
-                    [bundle bundleIdentifier]);
-                continue;
+                Class cls = [source principalClass];
+                if(cls == Nil)
+                {
+                    MZLoggerError(@"Error loading principal class for '%@'", 
+                        identifier);
+                    continue;
+                }
+                
+                plugin = [[cls alloc] init];
+                if(!plugin)
+                {
+                    MZLoggerError(@"Failed to create principal class '%@' for '%@'", 
+                        NSStringFromClass(cls),
+                        identifier);
+                    [source unload];
+                    continue;
+                }
             }
-            MZPlugin* plugin = [[cls alloc] init];
-            if(!plugin)
-            {
-                MZLoggerError(@"Failed to create principal class '%@' for '%@'", 
-                    NSStringFromClass(cls),
-                    [bundle bundleIdentifier]);
-                [bundle unload];
-                continue;
-            }
-            [loadedBundles addObject:[bundle bundleIdentifier]];
+            else
+                plugin = [source retain];
+
+            [loadedBundles addObject:identifier];
             [loadedPlugins addObject:plugin];
             [plugin release];
-            MZLoggerInfo(@"Loaded plugin '%@'", [bundle bundleIdentifier]);
+            MZLoggerInfo(@"Loaded plugin '%@'", identifier);
             [plugin didLoad];
             if([[self delegate] respondsToSelector:@selector(pluginController:loadedPlugin:)])
                 [[self delegate] pluginController:self loadedPlugin:plugin];

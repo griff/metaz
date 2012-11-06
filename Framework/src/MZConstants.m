@@ -88,3 +88,9 @@ NSString* const MZDataControllerErrorKey = @"MZDataControllerErrorKey";
 
 // Standard alert ids
 NSString* const MZDataProviderFileAlreadyLoadedWarningKey = @"alerts.warnings.fileAlreadyLoaded";
+
+// Plugin UTI
+const CFStringRef kMZUTMetaZPlugin = CFSTR("org.maven-group.MetaZ.plugin");
+const CFStringRef kMZUTMetaZActionsPlugin = CFSTR("org.maven-group.MetaZ.plugin.actions");
+const CFStringRef kMZUTAppleScriptText = CFSTR("com.apple.applescript.text");
+const CFStringRef kMZUTAppleScript = CFSTR("com.apple.applescript.script");
