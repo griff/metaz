@@ -395,13 +395,14 @@ static MZPluginController *gInstance = NULL;
 
 - (id<MZDataController>)loadFromFile:(NSString *)fileName
                             delegate:(id<MZEditsReadDelegate>)theDelegate
+                               extra:(NSDictionary *)extra
 {
     id<MZDataProvider> provider = [self dataProviderForPath:fileName];
     if(!provider)
         return nil;
 
     id<MZDataReadDelegate> otherDelegate = [MZReadNotification notifierWithController:self delegate:theDelegate];
-    return [provider loadFromFile:fileName delegate:otherDelegate queue:loadQueue];
+    return [provider loadFromFile:fileName delegate:otherDelegate queue:loadQueue extra:extra];
 }
 
 - (id<MZDataController>)saveChanges:(MetaEdits *)data

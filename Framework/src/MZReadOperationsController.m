@@ -7,20 +7,22 @@
 //
 
 #import "MZReadOperationsController.h"
-
+#import "MZTag.h"
 
 @implementation MZReadOperationsController
 
 + (id)controllerWithProvider:(id<MZDataProvider>)provider
                 fromFileName:(NSString *)fileName
                     delegate:(id<MZDataReadDelegate>)delegate
+                       extra:(NSDictionary *)extra
 {
-    return [[[[self class] alloc] initWithProvider:provider fromFileName:fileName delegate:delegate] autorelease];
+    return [[[[self class] alloc] initWithProvider:provider fromFileName:fileName delegate:delegate extra:extra] autorelease];
 }
 
 - (id)initWithProvider:(id<MZDataProvider>)theProvider
           fromFileName:(NSString *)theFileName
               delegate:(id<MZDataReadDelegate>)theDelegate
+                 extra:(NSDictionary *)extra
 {
     self = [super init];
     if(self)
@@ -29,6 +31,19 @@
         fileName = [theFileName retain];
         delegate = [theDelegate retain];
         tagdict = [[NSMutableDictionary alloc] init];
+        if(extra)
+        {
+            for(NSString* key in [extra allKeys])
+            {
+                MZTag* tag = [MZTag tagForIdentifier:key];
+                if(tag)
+                {
+                    id value = [extra objectForKey:key];
+                    value = [tag convertObjectForRetrival:value];
+                    [tagdict setObject:[tag convertObjectForStorage:value] forKey:key];
+                }
+            }
+        }
     }
     return self;
 }

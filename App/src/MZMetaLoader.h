@@ -23,8 +23,8 @@ MZKIT_EXTERN NSString* const MZMetaLoaderFinishedNotification;
     NSScriptCommand* scriptCommand;
 }
 
-+ (id)loadWithFilePath:(NSString *)filePath atIndex:(NSUInteger )index;
-- (id)initWithFilePath:(NSString *)filePath atIndex:(NSUInteger )index;
++ (id)loadWithFilePath:(NSString *)filePath atIndex:(NSUInteger )index extra:(NSDictionary *)extra;
+- (id)initWithFilePath:(NSString *)filePath atIndex:(NSUInteger )index extra:(NSDictionary *)extra;
 
 @property (readonly) NSString* filePath;
 @property (readonly) NSUInteger index;
@@ -55,6 +55,11 @@ MZKIT_EXTERN NSString* const MZMetaLoaderFinishedNotification;
 - (BOOL)loadFromFile:(NSString *)fileName toIndex:(NSUInteger)index;
 - (BOOL)loadFromFiles:(NSArray *)fileNames toIndex:(NSUInteger)index;
 - (BOOL)loadFromFiles:(NSArray *)fileNames toIndexes:(NSIndexSet*)indexes;
+- (BOOL)loadFromFile:(NSString *)fileName withMetaData:(NSDictionary *)metaData;
+- (BOOL)loadFromFiles:(NSArray *)fileNames withMetaData:(NSArray *)metaData;
+- (BOOL)loadFromFile:(NSString *)fileName toIndex:(NSUInteger)index withMetaData:(NSDictionary *)metaData;
+- (BOOL)loadFromFiles:(NSArray *)fileNames toIndex:(NSUInteger)index withMetaData:(NSArray *)metaData;
+- (BOOL)loadFromFiles:(NSArray *)fileNames toIndexes:(NSIndexSet*)indexes withMetaData:(NSArray *)metaData;
 - (void)moveObjects:(NSArray *)objects toIndex:(NSUInteger)index;
 - (void)reloadEdits:(MetaEdits *)edits;
 

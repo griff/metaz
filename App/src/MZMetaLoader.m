@@ -133,10 +133,47 @@ static MZMetaLoader* sharedLoader = nil;
 
 - (BOOL)loadFromFiles:(NSArray *)fileNames toIndexes:(NSIndexSet*)indexes
 {
+    return [self loadFromFiles:fileNames toIndexes:indexes withMetaData:nil];
+}
+
+
+- (BOOL)loadFromFile:(NSString *)fileName withMetaData:(NSDictionary *)metaData;
+{
+    return [self loadFromFile:fileName toIndex:[files count] withMetaData:metaData];
+}
+
+- (BOOL)loadFromFiles:(NSArray *)fileNames withMetaData:(NSArray *)metaData;
+{
+    return [self loadFromFiles:fileNames toIndex:[files count] withMetaData:metaData];
+}
+
+- (BOOL)loadFromFile:(NSString *)fileName toIndex:(NSUInteger)index withMetaData:(NSDictionary *)metaData;
+{
+    NSAssert(fileName, @"Provided fileName");
+    return [self loadFromFiles:[NSArray arrayWithObject:fileName]
+                       toIndex:index
+                  withMetaData:(metaData ? [NSArray arrayWithObject:metaData] : nil)];
+}
+
+- (BOOL)loadFromFiles:(NSArray *)fileNames toIndex:(NSUInteger)index withMetaData:(NSArray *)metaData;
+{
+    NSAssert(fileNames, @"Provided filenames");
+    if([fileNames count]==0)
+        return YES;
+    return [self loadFromFiles:fileNames
+                     toIndexes:[NSIndexSet indexSetWithIndexesInRange:
+                                NSMakeRange(index, [fileNames count])]
+                  withMetaData:metaData];
+}
+
+- (BOOL)loadFromFiles:(NSArray *)fileNames toIndexes:(NSIndexSet*)indexes withMetaData:(NSArray *)metaData
+{
     NSAssert(fileNames, @"Provided filenames");
     if([fileNames count]==0)
         return YES;
     NSAssert([fileNames count]==[indexes count], @"Count of indexes and filenames");
+    if(metaData)
+        NSAssert([fileNames count]==[metaData count], @"Count of metaData and filenames");
     
     BOOL suppressAlreadyLoadedWarning = [[NSUserDefaults standardUserDefaults]
         boolForKeyPath:MZDataProviderFileAlreadyLoadedWarningKey];
@@ -234,9 +271,15 @@ static MZMetaLoader* sharedLoader = nil;
     }
 
     index = [indexes firstIndex];
+    NSEnumerator* md = nil;
+    if(metaData)
+        md = [metaData objectEnumerator];
     for ( NSString* fileName in fileNames )
     {
-        MZLoadOperation* operation = [MZLoadOperation loadWithFilePath:fileName atIndex:index];
+        NSDictionary* extra = nil;
+        if(md)
+            extra = [md nextObject];
+        MZLoadOperation* operation = [MZLoadOperation loadWithFilePath:fileName atIndex:index extra:extra];
         NSScriptCommand* cmd = [NSScriptCommand currentCommand];
         if(cmd)
         {
@@ -409,12 +452,12 @@ static MZMetaLoader* sharedLoader = nil;
 
 @implementation MZLoadOperation
 
-+ (id)loadWithFilePath:(NSString *)filePath atIndex:(NSUInteger )index
++ (id)loadWithFilePath:(NSString *)filePath atIndex:(NSUInteger )index extra:(NSDictionary *)extra
 {
-    return [[[self alloc] initWithFilePath:filePath atIndex:index] autorelease];
+    return [[[self alloc] initWithFilePath:filePath atIndex:index extra:extra] autorelease];
 }
 
-- (id)initWithFilePath:(NSString *)theFilePath atIndex:(NSUInteger )theIndex
+- (id)initWithFilePath:(NSString *)theFilePath atIndex:(NSUInteger )theIndex extra:(NSDictionary *)extra
 {
     self = [super init];
     if(self)
@@ -422,7 +465,7 @@ static MZMetaLoader* sharedLoader = nil;
         filePath = [theFilePath retain];
         index = theIndex;
         delegate = [[MZLoadOperationDelegate alloc] initWithOwner:self];
-        controller = [[[MZPluginController sharedInstance] loadFromFile:filePath delegate:delegate] retain];
+        controller = [[[MZPluginController sharedInstance] loadFromFile:filePath delegate:delegate extra:extra] retain];
     }
     return self;
 }

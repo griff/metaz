@@ -59,7 +59,8 @@
  */
 - (id<MZDataController>)loadFromFile:(NSString *)fileName
                             delegate:(id<MZDataReadDelegate>)deledate
-                               queue:(NSOperationQueue *)queue;
+                               queue:(NSOperationQueue *)queue
+                               extra:(NSDictionary *)extra;
 
 
 /*!
