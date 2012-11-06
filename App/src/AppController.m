@@ -16,6 +16,7 @@
 #import "FilesTableView.h"
 #import "Resources.h"
 #import "MZMetaDataDocument.h"
+#import "MZScriptingAdditions.h"
 
 #define MaxShortDescription 256
 
@@ -922,6 +923,8 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (void)applicationWillFinishLaunching:(NSNotification *)notification;
 {
+    [NSApp setServicesProvider:self];
+    
     // Load scriptability early to allow sdef open handler to override default AppKit handler.
     [NSScriptSuiteRegistry sharedScriptSuiteRegistry]; 
 }
@@ -974,6 +977,101 @@ NSDictionary* findBinding(NSWindow* window) {
         return NSTerminateNow;
     }
     return NSTerminateCancel;
+}
+
+-(void)doiTunesMetadata:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error {
+    NSDictionary* prop = [pboard propertyListForType:iTunesMetadataPboardType];
+    if(!prop)
+        prop = [pboard propertyListForType:iTunesPboardType]; 
+
+    if(prop)
+    {
+        NSMutableArray* names = [NSMutableArray array];
+        NSMutableArray* dataDicts = [NSMutableArray array];
+        NSDictionary* tracks = [prop objectForKey:@"Tracks"];
+        for(id track in [tracks allValues])
+        {
+            NSURL* location = [NSURL URLWithString:[track objectForKey:@"Location"]];
+            [names addObject:[location path]];
+
+            NSString* persistentId = [track objectForKey:@"Persistent ID"];
+            NSDictionary* data = [NSDictionary dictionaryWithObject:persistentId forKey:MZiTunesPersistentIDTagIdent];
+            [dataDicts addObject:data];
+        }
+        [[MZMetaLoader sharedLoader] loadFromFiles:names withMetaData:dataDicts];
+    }
+}
+
+-(void)doiTunes:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error {
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"Return iTunes selected" ofType:@"scpt"];
+    NSURL* url = [NSURL fileURLWithPath:path];
+    NSDictionary* errDict = nil;
+    NSAppleScript* script = [[[NSAppleScript alloc] initWithContentsOfURL:url error:&errDict] autorelease];
+    if(errDict)
+    {
+        NSError* err = [NSError errorWithAppleScriptError:errDict];
+        if(error)
+            *error =  [err localizedDescription];
+        GTMLoggerError(@"Error loading script %d %d", path, [err localizedDescription]);
+        return;
+    }
+    if(script)
+    {
+        NSAppleEventDescriptor* ret = [script executeAndReturnError:&errDict];
+        if(!ret)
+        {
+            NSError* err = [NSError errorWithAppleScriptError:errDict];
+            if(error)
+                *error = [err localizedDescription];
+            GTMLoggerError(@"Error running script %d %d", path, [err localizedDescription]);
+        }
+        else
+        {
+            id obj = [ret objectValue];
+            if([obj isKindOfClass:[NSArray class]])
+            {
+                NSMutableArray* names = [NSMutableArray array];
+                NSMutableArray* dataDicts = nil;
+                for(id o in obj)
+                {
+                    if([o isKindOfClass:[NSString class]])
+                    {
+                        [names addObject:o];
+                    }
+                    else if([o isKindOfClass:[NSDictionary class]])
+                    {
+                        [names addObject:[o objectForKey:@"mylocation"]];
+                        if(!dataDicts)
+                            dataDicts = [NSMutableArray array];
+                        [dataDicts addObject:[NSDictionary dictionaryWithObject:[o objectForKey:@"myid"] forKey:MZiTunesPersistentIDTagIdent]];
+                    }
+                    else
+                    {
+                        NSString* err = [NSString stringWithFormat:@"Unsupported return type %@", o];
+                        if(error)
+                            *error = err;
+                        else
+                        GTMLoggerError(@"Selection array: %@", err);
+                        return;
+                    }
+                }
+                [[MZMetaLoader sharedLoader] loadFromFiles:names withMetaData:dataDicts];
+            }
+            else if([obj isKindOfClass:[NSString class]])
+                [[MZMetaLoader sharedLoader] loadFromFile:obj];
+            else if([obj isKindOfClass:[NSDictionary class]])
+                [[MZMetaLoader sharedLoader] loadFromFile:[obj objectForKey:@"mylocation"]
+                                             withMetaData:[NSDictionary dictionaryWithObject:[obj objectForKey:@"myid"]
+                                                                                      forKey:MZiTunesPersistentIDTagIdent]];
+            else {
+                NSString* err = [NSString stringWithFormat:@"Unsupported return type %@", obj];
+                if(error)
+                    *error = err;
+                else
+                GTMLoggerError(@"Selection: %@", err);
+            }
+        }
+    }
 }
 
 @end

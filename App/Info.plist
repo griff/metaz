@@ -160,10 +160,57 @@
 	<string>MetaZ.sdef</string>
 	<key>NSPrincipalClass</key>
 	<string>MetaZApplication</string>
+	<key>NSServices</key>
+	<array>
+		<dict>
+			<key>NSMessage</key>
+			<string>doiTunesMetadata</string>
+			<key>NSSendTypes</key>
+			<array>
+				<string>org.liscio.itun</string>
+				<string>com.apple.itunes.metadata</string>
+			</array>
+			<key>NSMenuItem</key>
+			<dict>
+				<key>default</key>
+				<string>Open in MetaZ</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>NSMessage</key>
+			<string>doiTunes</string>
+			<key>NSRequiredContext</key>
+			<dict>
+				<key>NSApplicationIdentifier</key>
+				<string>com.apple.iTunes</string>
+			</dict>
+			<key>NSMenuItem</key>
+			<dict>
+				<key>default</key>
+				<string>Open selected tracks in MetaZ</string>
+			</dict>
+		</dict>
+	</array>
 	<key>SUEnableAutomaticChecks</key>
 	<string>YES</string>
 	<key>SUFeedURL</key>
 	<string>http://maven-group.org/metaz/appcast.xml</string>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeIdentifier</key>
+			<string>org.liscio.itun</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>com.apple.ostype</key>
+				<string>itun</string>
+			</dict>
+		</dict>
+	</array>
 	<key>SUEnableSystemProfiling</key>
 	<string>YES</string>
 	<key>SUPublicDSAKeyFile</key>

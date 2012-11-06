@@ -32,5 +32,9 @@
 	<integer>1</integer>
 	<key>autoSearch</key>
 	<true/>
+	<key>enabledActionPlugins</key>
+	<array>
+		<string>Update iTunes</string>
+	</array>
 </dict>
 </plist>

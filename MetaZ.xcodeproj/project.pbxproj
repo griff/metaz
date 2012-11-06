@@ -220,6 +220,7 @@
 		1BD3D3FE108E694100BE6943 /* faded_cow_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3D3FB108E694100BE6943 /* faded_cow_error.png */; };
 		1BD3D3FF108E694100BE6943 /* faded_cow_fatal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3D3FC108E694100BE6943 /* faded_cow_fatal.png */; };
 		1BD3D400108E694100BE6943 /* faded_cow_multiple.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3D3FD108E694100BE6943 /* faded_cow_multiple.png */; };
+		1BD55BED16482D7600F9C579 /* Return iTunes selected.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 1B63A36616458A1C00461FC9 /* Return iTunes selected.applescript */; };
 		1BD55C5E16483F5E00F9C579 /* MZActionsPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD55C5C16483F5E00F9C579 /* MZActionsPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BD55C5F16483F5E00F9C579 /* MZActionsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD55C5D16483F5E00F9C579 /* MZActionsPlugin.m */; };
 		1BD55C621648431D00F9C579 /* MZScriptActionsPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD55C601648431D00F9C579 /* MZScriptActionsPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -947,6 +948,7 @@
 		1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditPanel.m; sourceTree = "<group>"; };
 		1B63A1D11644D8D100461FC9 /* MZArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZArrayController.h; sourceTree = "<group>"; };
 		1B63A1D21644D8D100461FC9 /* MZArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZArrayController.m; sourceTree = "<group>"; };
+		1B63A36616458A1C00461FC9 /* Return iTunes selected.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = "Return iTunes selected.applescript"; path = "App/resources/Return iTunes selected.applescript"; sourceTree = "<group>"; };
 		1B63A889164823FE00461FC9 /* Example Actions.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Example Actions.applescript"; sourceTree = "<group>"; };
 		1B6E43C610845F8200DFE165 /* TCSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSearch.h; sourceTree = "<group>"; };
 		1B6E43C710845F8200DFE165 /* TCSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSearch.m; sourceTree = "<group>"; };
@@ -1068,6 +1070,7 @@
 		1BD55C611648431D00F9C579 /* MZScriptActionsPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZScriptActionsPlugin.m; sourceTree = "<group>"; };
 		1BD55C641648466700F9C579 /* NSError+MZScriptError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MZScriptError.h"; sourceTree = "<group>"; };
 		1BD55C651648466700F9C579 /* NSError+MZScriptError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MZScriptError.m"; sourceTree = "<group>"; };
+		1BD55D4516485AE700F9C579 /* Update iTunes.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Update iTunes.applescript"; sourceTree = "<group>"; };
 		1BD6E601105B355800E40151 /* MetaChangeNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaChangeNotification.m; sourceTree = "<group>"; };
 		1BD6E74D105DADCC00E40151 /* AddToQueue.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = AddToQueue.tiff; path = App/resources/AddToQueue.tiff; sourceTree = "<group>"; };
 		1BD6E74E105DADCC00E40151 /* Pause.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pause.tiff; path = App/resources/Pause.tiff; sourceTree = "<group>"; };
@@ -2143,6 +2146,7 @@
 			isa = PBXGroup;
 			children = (
 				1B63A889164823FE00461FC9 /* Example Actions.applescript */,
+				1BD55D4516485AE700F9C579 /* Update iTunes.applescript */,
 				1B8CB8FA14ACD5C700F859F7 /* TheMovieDb */,
 				1B4F538D116E9E1F003221B1 /* TheTVDB */,
 				1B42F23B10DEB05000AFEBF6 /* IMDB */,
@@ -2217,6 +2221,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1B63A36616458A1C00461FC9 /* Return iTunes selected.applescript */,
 				1B8CB5DF14AA31C500F859F7 /* modified_header.tiff */,
 				1B8CB5E014AA31C500F859F7 /* modified_selected.tiff */,
 				1B8CB5E114AA31C500F859F7 /* modified.tiff */,
@@ -2978,6 +2983,7 @@
 				1B89073116420437008C5C8B /* MZScriptingEnums.m in Sources */,
 				1B8908E416424790008C5C8B /* MZSelectedMetaDataDocument.m in Sources */,
 				1B63A1D31644D8D100461FC9 /* MZArrayController.m in Sources */,
+				1BD55BED16482D7600F9C579 /* Return iTunes selected.applescript in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
