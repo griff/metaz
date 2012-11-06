@@ -103,7 +103,7 @@
                                              range:NSMakeRange(max, length-max)];
     }
     sub = [className substringWithRange:NSMakeRange(oldloc, length-oldloc)];
-    if(sub.length > 1)
+    if(sub.length > 1 && ret.length > 0)
         [ret appendString:@" "];
     [ret appendString:sub];
     return [NSString stringWithString:ret];
