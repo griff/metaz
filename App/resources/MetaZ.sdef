@@ -13,7 +13,26 @@
 			<enumerator name="ask" code="ask " description="Ask the user.">
 				<cocoa integer-value="-2"/>
             </enumerator>
-		</enumeration>
+        </enumeration>
+
+        <event name="queue started processing" code="MZqustar" description="The queue started processing items"/>
+        
+        <event name="queue started" code="MZqistar" description="The queue started writing document">
+            <direct-parameter description="The document written" type="document"/>
+        </event>
+
+        <event name="queue completed" code="MZqicomp" description="The queue finished writing document">
+            <direct-parameter description="The document written" type="document"/>
+        </event>
+
+        <event name="queue failed to write" code="MZqifail" description="The queue failed writing document">
+            <direct-parameter description="The document written" type="document"/>
+            <parameter name="because of" code="Merr" optional="yes" description="The error that cause the failure" type="text">
+                <cocoa key="error"/>
+            </parameter>
+        </event>
+
+        <event name="queue finished processing" code="MZqucomp" description="The queue finished processing items"/>
         
 		<command name="open" code="aevtodoc" description="Open a document.">
 			<direct-parameter description="The file(s) to be opened.">

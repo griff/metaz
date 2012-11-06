@@ -91,7 +91,7 @@ NSString* const MZQueueCompletedNotification = @"MZQueueCompletedNotification";
 NSString* const MZMetaEditsNotificationKey = @"MZMetaEditsNotificationKey";
 NSString* const MZUndoActionNameKey = @"MZUndoActionNameKey";
 NSString* const MZDataControllerNotificationKey = @"MZDataControllerNotificationKey";
-NSString* const MZDataControllerErrorKey = @"MZDataControllerErrorKey";
+NSString* const MZNSErrorKey = @"MZNSErrorKey";
 
 // Standard alert ids
 NSString* const MZDataProviderFileAlreadyLoadedWarningKey = @"alerts.warnings.fileAlreadyLoaded";

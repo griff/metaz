@@ -214,7 +214,7 @@ MZKIT_EXTERN NSString* const MZQueueCompletedNotification;
 MZKIT_EXTERN NSString* const MZMetaEditsNotificationKey;
 MZKIT_EXTERN NSString* const MZUndoActionNameKey;
 MZKIT_EXTERN NSString* const MZDataControllerNotificationKey;
-MZKIT_EXTERN NSString* const MZDataControllerErrorKey;
+MZKIT_EXTERN NSString* const MZNSErrorKey;
 
 
 // Standard alert ids

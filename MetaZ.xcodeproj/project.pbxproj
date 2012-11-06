@@ -229,7 +229,6 @@
 		1BD55FE01648BD7400F9C579 /* MZMultiGrowlWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B29A06514C5C6570048B7C0 /* MZMultiGrowlWrapper.m */; };
 		1BD5604D1648CC0200F9C579 /* GrowlPlugin.mzactions in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1BD55F8E1648BB4200F9C579 /* GrowlPlugin.mzactions */; };
 		1BD560AA1648CC3400F9C579 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
-		1BD5611F1648D51300F9C579 /* Quit MetaZ.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 1BD5611E1648D51300F9C579 /* Quit MetaZ.applescript */; };
 		1BD562111648F18900F9C579 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1BD5622F1648F2B200F9C579 /* AlertWindowPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD5622E1648F2B200F9C579 /* AlertWindowPlugin.m */; };
 		1BD562471648F43A00F9C579 /* AlertWindowPlugin.mzactions in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1BD562071648F17C00F9C579 /* AlertWindowPlugin.mzactions */; };
@@ -426,42 +425,42 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			remoteGlobalIDString = 1BA325C310545ACA00276F57;
 			remoteInfo = MetaZKit;
 		};
 		1BD55F961648BB4E00F9C579 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1B2022F810B393CA00EE548A /* Plist Marcos */;
+			remoteGlobalIDString = 1B2022F810B393CA00EE548A;
 			remoteInfo = "Plist Marcos";
 		};
 		1BD560451648CBF700F9C579 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1BD55F8D1648BB4200F9C579 /* GrowlPlugin */;
+			remoteGlobalIDString = 1BD55F8D1648BB4200F9C579;
 			remoteInfo = GrowlPlugin;
 		};
 		1BD5620D1648F18400F9C579 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			remoteGlobalIDString = 1BA325C310545ACA00276F57;
 			remoteInfo = MetaZKit;
 		};
 		1BD5620F1648F18400F9C579 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1B2022F810B393CA00EE548A /* Plist Marcos */;
+			remoteGlobalIDString = 1B2022F810B393CA00EE548A;
 			remoteInfo = "Plist Marcos";
 		};
 		1BD562551648F44300F9C579 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1BD562061648F17C00F9C579 /* AlertWindowPlugin */;
+			remoteGlobalIDString = 1BD562061648F17C00F9C579;
 			remoteInfo = AlertWindowPlugin;
 		};
 		1BEA6E77106EF2B0004B1A7F /* PBXContainerItemProxy */ = {
@@ -2928,7 +2927,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$PROJECT_DIR\"\nfor k in Plugins/*.applescript ; do\n  BASE=`basename \"$k\" .applescript`\n\n  $OSAC -l AppleScript -i \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME\" -d -o \"$BUILT_PRODUCTS_DIR/$PLUGINS_FOLDER_PATH/$BASE.scpt\" \"$k\"\ndone";
+			shellScript = "set -x\ncd \"$PROJECT_DIR\"\nfor k in Plugins/*.applescript ; do\n  BASE=`basename \"$k\" .applescript`\n\n  $OSAC -l AppleScript -i \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME\" -d -o \"$BUILT_PRODUCTS_DIR/$PLUGINS_FOLDER_PATH/$BASE.scpt\" \"$k\"\ndone";
+			showEnvVarsInLog = 0;
 		};
 		1B8262A710B39DE400DF101B /* Make Disk Image */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3114,7 +3114,6 @@
 			files = (
 				1BD55FAF1648BC4F00F9C579 /* GrowlPlugin.m in Sources */,
 				1BD55FE01648BD7400F9C579 /* MZMultiGrowlWrapper.m in Sources */,
-				1BD5611F1648D51300F9C579 /* Quit MetaZ.applescript in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

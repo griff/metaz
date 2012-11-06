@@ -164,7 +164,9 @@ writeStartedForEdits:(MetaEdits *)edits
         }
         else
         {
-            NSDictionary* userInfo = [NSDictionary dictionaryWithObject:edits forKey:MZMetaEditsNotificationKey];
+            NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                theEdits, MZMetaEditsNotificationKey,
+                theError, MZNSErrorKey, nil];
             [[NSNotificationCenter defaultCenter]
                     postNotificationName:MZQueueItemFailedNotification
                                   object:self
@@ -331,15 +333,19 @@ writeStartedForEdits:(MetaEdits *)edits
     }
     self.completed = error == nil;
     
-    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:edits forKey:MZMetaEditsNotificationKey];
     if(error)
     {
+        NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+            edits, MZMetaEditsNotificationKey,
+            error, MZNSErrorKey, nil];
         [[NSNotificationCenter defaultCenter]
                 postNotificationName:MZQueueItemFailedNotification
                               object:self
                             userInfo:userInfo];
     } else
     {
+        NSDictionary* userInfo = [NSDictionary dictionaryWithObject:edits 
+            forKey:MZMetaEditsNotificationKey];
         [[NSNotificationCenter defaultCenter]
                 postNotificationName:MZQueueItemCompletedNotification
                               object:self

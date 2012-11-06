@@ -528,7 +528,7 @@ static MZPluginController *gInstance = NULL;
     {
         keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, 
                 MZDataControllerNotificationKey, 
-                MZDataControllerErrorKey, nil];
+                MZNSErrorKey, nil];
         values = [NSArray arrayWithObjects:edits, controller, error, nil];
     }
     else
