@@ -61,7 +61,7 @@
     while(range.location != NSNotFound)
     {
         sub = [className substringWithRange:NSMakeRange(oldloc, range.location-oldloc)];
-        if(sub.length > 1)
+        if(sub.length > 1 && ret.length > 0)
             [ret appendString:@" "];
         [ret appendString:sub];
         NSUInteger max = NSMaxRange(range);
