@@ -59,44 +59,6 @@
 @synthesize executing;
 @synthesize finished;
 
-/*
-- (BOOL)isExecuting
-{
-    @synchronized(self)
-    {
-        return isExecuting;
-    }
-}
-
-- (void)setIsExecuting:(BOOL)newVal
-{
-    [self willChangeValueForKey:@"isExecuting"];
-    @synchronized(self)
-    {
-        isExecuting = newVal;
-    }
-    [self didChangeValueForKey:@"isExecuting"];
-}
-
-- (BOOL)isFinished
-{
-    @synchronized(self)
-    {
-        return isFinished;
-    }
-}
-
-- (void)setIsFinished:(BOOL)newVal
-{
-    [self willChangeValueForKey:@"isFinished"];
-    @synchronized(self)
-    {
-        isFinished = newVal;
-    }
-    [self didChangeValueForKey:@"isFinished"];
-}
-*/
-
 - (void)start
 {
     self.executing = YES;

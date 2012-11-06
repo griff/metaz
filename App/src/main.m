@@ -10,7 +10,6 @@
 #import <RubyCocoa/RBRuntime.h>
 #import <MetaZKit/MZLogger.h>
 #import <sys/stat.h>
-#import "MZMultiGrowlWrapper.h"
 
 int main(int argc, const char *argv[])
 {
@@ -50,11 +49,28 @@ int main(int argc, const char *argv[])
     if (dictPath = [bundle pathForResource:@"FactorySettings" ofType:@"plist"])
     {
         NSMutableDictionary* dict = [[NSMutableDictionary alloc] initWithContentsOfFile:dictPath];
-        
-        if([MZMultiGrowlWrapper isGrowlSupported])
-            [dict setObject:[NSNumber numberWithInteger:3] forKey:@"whenDoneAction"];
         [[NSUserDefaults standardUserDefaults] registerDefaults:dict];
         [dict release];
+    }
+    NSNumber* whenDoneNum = [[NSUserDefaults standardUserDefaults] objectForKey:@"whenDoneAction"];
+    if(whenDoneNum)
+    {
+        NSInteger whenDone = [whenDoneNum integerValue];
+        if(whenDone < 0 || whenDone > 5)
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"enabledActionPlugins"];
+        else
+        {
+            NSMutableArray* enabled = [NSMutableArray array];
+            [enabled addObject:@"Update iTunes"];
+            if(whenDone == 1 || whenDone == 3)
+                [enabled addObject:@"org.maven-group.metaz.plugin.AlertWindowPlugin"];
+            if(whenDone == 4 || whenDone == 5)
+                [enabled addObject:@"Quit MetaZ"];
+            if(whenDone == 2 || whenDone == 3 || whenDone == 5)
+                [enabled addObject:@"org.maven-group.metaz.plugin.GrowlPlugin"];
+            [[NSUserDefaults standardUserDefaults] setObject:enabled forKey:@"enabledActionPlugins"];
+        }
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"whenDoneAction"];
     }
 
     [pool release];

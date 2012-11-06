@@ -77,10 +77,6 @@
     {
         NSString* newPrefix = [key stringByAppendingString:@"."];
         if(!prefix)
-        /*
-        {
-            newPrefix = [prefix stringByAppendingString:newPrefix];
-        } else*/
             oldValue = [MZPriorObserverFix fixWithOther:other prefix:newPrefix];
     }
     if(oldValue)
@@ -136,9 +132,6 @@
     else
         key = shortPath;
     
-    if(prefix)
-        MZLoggerDebug(@"%@ path %@ changed", object, keyPath);
-
     [self retain];
     id oldValue = [[oldData objectForKey:key] retain];
     id newValue = [other valueForKeyPath:keyPath];
@@ -147,14 +140,8 @@
         [self willChangeValueForKey:key];
         if(newValue == NSMultipleValuesMarker)
         {
-            //newValue = [other valueForKey:key];
             NSString* newPrefix = [key stringByAppendingString:@"."];
             if(!prefix)
-            /*
-            {
-                newPrefix = [prefix stringByAppendingString:newPrefix];
-            }
-            else*/
                 newValue = [MZPriorObserverFix fixWithOther:other prefix:newPrefix];
         }
         if(newValue)

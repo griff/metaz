@@ -11,8 +11,6 @@
 
 @implementation MZFileNameTextStorage
 
-/*************************** NSTextStorage Overrides ***************************/
-
 #pragma mark -
 #pragma mark NSTextStorage Overrides
 

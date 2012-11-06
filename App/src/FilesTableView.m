@@ -46,7 +46,8 @@
     {
         [self registerForDraggedTypes:
                 [NSArray arrayWithObjects:MZFilesTableRows,
-                    MZMetaEditsDataType, NSFilenamesPboardType,
+                    MZMetaEditsDataType, iTunesMetadataPboardType,
+                    iTunesPboardType, NSFilenamesPboardType,
                     NSStringPboardType, nil] ];
     }
     return self;
@@ -59,7 +60,8 @@
     {
         [self registerForDraggedTypes:
                 [NSArray arrayWithObjects:MZFilesTableRows,
-                    MZMetaEditsDataType, NSFilenamesPboardType,
+                    MZMetaEditsDataType, iTunesMetadataPboardType,
+                    iTunesPboardType, NSFilenamesPboardType, 
                     NSStringPboardType, nil] ];
     }
     return self;
@@ -106,18 +108,11 @@
 {
     NSPasteboard *pb = [NSPasteboard generalPasteboard];
     NSArray *types = [NSArray arrayWithObjects:MZMetaEditsDataType,
-            NSFilenamesPboardType, NSStringPboardType, nil];
+            iTunesMetadataPboardType, iTunesPboardType, NSFilenamesPboardType,
+            NSStringPboardType, nil];
     NSString *bestType = [pb availableTypeFromArray:types];
     if (bestType != nil)
     {
-        /*
-        if([bestType isEqualToString:MZFilesTableRows])
-        {
-            NSData* data = [pb dataForType:MZFilesTableRows];
-            NSIndexSet* rowIndexes = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-            // TODO Support rowIndex paste??
-        }
-        */
         if([bestType isEqualToString:MZMetaEditsDataType])
         {
             NSData* data = [pb dataForType:MZMetaEditsDataType];
@@ -145,6 +140,29 @@
             for(MetaEdits* edit in edits)
                 [self registerUndoName:edit.undoManager];
         }
+        if([bestType isEqualToString:iTunesMetadataPboardType] || [bestType isEqualToString:iTunesMetadataPboardType])
+        {
+            NSDictionary* prop = [pb propertyListForType:iTunesMetadataPboardType];
+            if(!prop)
+                prop = [pb propertyListForType:iTunesPboardType]; 
+
+            if(prop)
+            {
+                NSMutableArray* names = [NSMutableArray array];
+                NSMutableArray* dataDicts = [NSMutableArray array];
+                NSDictionary* tracks = [prop objectForKey:@"Tracks"];
+                for(id track in [tracks allValues])
+                {
+                    NSURL* location = [NSURL URLWithString:[track objectForKey:@"Location"]];
+                    [names addObject:[location path]];
+
+                    NSString* persistentId = [track objectForKey:@"Persistent ID"];
+                    NSDictionary* data = [NSDictionary dictionaryWithObject:persistentId forKey:MZiTunesPersistentIDTagIdent];
+                    [dataDicts addObject:data];
+                }
+                [[MZMetaLoader sharedLoader] loadFromFiles:names withMetaData:dataDicts];
+            }
+        }
         if([bestType isEqualToString:NSFilenamesPboardType])
         {
             NSArray* filenames = [pb propertyListForType:NSFilenamesPboardType];
@@ -165,7 +183,8 @@
 - (BOOL)pasteboardHasTypes {
     NSPasteboard *pb = [NSPasteboard generalPasteboard];
     NSArray *types = [NSArray arrayWithObjects:MZMetaEditsDataType,
-            NSFilenamesPboardType, NSStringPboardType, nil];
+            iTunesMetadataPboardType, iTunesPboardType, NSFilenamesPboardType,
+            NSStringPboardType, nil];
     NSString *bestType = [pb availableTypeFromArray:types];
     if(bestType != nil && [bestType isEqualToString:MZMetaEditsDataType])
         return [self numberOfSelectedRows] > 0;
@@ -186,6 +205,26 @@
             if(![[MZPluginController sharedInstance] dataProviderForPath:str])
                 return NO;
         }
+    }
+    if(bestType != nil && ([bestType isEqualToString:iTunesMetadataPboardType] || 
+            [bestType isEqualToString:iTunesPboardType]))
+    {
+        NSDictionary* prop = [pb propertyListForType:iTunesMetadataPboardType];
+        if(!prop)
+            prop = [pb propertyListForType:iTunesPboardType]; 
+
+        if(prop)
+        {
+            NSDictionary* tracks = [prop objectForKey:@"Tracks"];
+            for(id track in [tracks allValues])
+            {
+                NSURL* location = [NSURL URLWithString:[track objectForKey:@"Location"]];
+                if(![[MZPluginController sharedInstance] dataProviderForPath:[location path]])
+                    return NO;
+            }
+            return YES;
+        }
+        return NO;
     }
     return bestType != nil;
 }
@@ -234,14 +273,6 @@
     {
             return self;
     }
-    /*
-    if(returnType &&
-        ([returnType isEqual:NSStringPboardType] ||
-            [returnType isEqual:NSFilenamesPboardType]))
-    {
-            return self;
-    }
-    */
     return [super validRequestorForSendType:sendType
                                  returnType:returnType];
 }
@@ -299,7 +330,6 @@
     return YES;
 }
 
-
 - (NSDragOperation)tableView:(NSTableView*)tv
                 validateDrop:(id <NSDraggingInfo>)info
                  proposedRow:(NSInteger)row
@@ -310,8 +340,8 @@
 
     NSPasteboard* pboard = [info draggingPasteboard];
     NSArray *types = [NSArray arrayWithObjects:MZFilesTableRows,
-            MZMetaEditsDataType, NSFilenamesPboardType,
-            NSStringPboardType, nil];
+            MZMetaEditsDataType, iTunesMetadataPboardType, iTunesPboardType, 
+            NSFilenamesPboardType, NSStringPboardType, nil];
     //NSDragOperation operation = [info draggingSourceOperationMask];        
     NSString *bestType = [pboard availableTypeFromArray:types];
     if(bestType != nil)
@@ -339,6 +369,11 @@
             }
             return NSDragOperationGeneric;
         }
+        if([bestType isEqualToString:iTunesMetadataPboardType] || 
+            [bestType isEqualToString:iTunesPboardType])
+        {
+            return NSDragOperationGeneric;
+        }
         return NSDragOperationMove;
     }
     return NSDragOperationNone;
@@ -349,8 +384,8 @@
 {
     NSPasteboard* pboard = [info draggingPasteboard];
     NSArray *types = [NSArray arrayWithObjects:MZFilesTableRows,
-            MZMetaEditsDataType, NSFilenamesPboardType,
-            NSStringPboardType, nil];
+            MZMetaEditsDataType, iTunesMetadataPboardType, iTunesPboardType,
+            NSFilenamesPboardType, NSStringPboardType, nil];
     NSString *bestType = [pboard availableTypeFromArray:types];
     if (bestType != nil)
     {
@@ -363,13 +398,29 @@
             [[MZMetaLoader sharedLoader] moveObjects:edits toIndex:row];
             return YES;
         }
-        /*
-        if([bestType isEqualToString:MZMetaEditsDataType])
+        if([bestType isEqualToString:iTunesMetadataPboardType] || [bestType isEqualToString:iTunesMetadataPboardType])
         {
-            NSData* data = [pb dataForType:MZMetaEditsDataType];
-            NSArray* edits = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            NSDictionary* prop = [pboard propertyListForType:iTunesMetadataPboardType];
+            if(!prop)
+                prop = [pboard propertyListForType:iTunesPboardType]; 
+
+            if(prop)
+            {
+                NSDictionary* tracks = [prop objectForKey:@"Tracks"];
+                for(id track in [tracks allValues])
+                {
+                    NSURL* location = [NSURL URLWithString:[track objectForKey:@"Location"]];
+                    if(![[MZPluginController sharedInstance] dataProviderForPath:[location path]])
+                        return NO;
+                }
+                if(![filesController commitEditing])
+                    return NO;
+                NSArray* params = [NSArray arrayWithObjects:prop, [NSNumber numberWithInteger:row], nil];
+                [self performSelector:@selector(loadFiles:) withObject:params afterDelay:1];
+                return YES;
+            }
+            return NO;
         }
-        */
         if([bestType isEqualToString:NSFilenamesPboardType])
         {
             NSArray* filenames = [pboard propertyListForType:NSFilenamesPboardType];
@@ -378,11 +429,6 @@
                 if(![[MZPluginController sharedInstance] dataProviderForPath:file])
                     return NO;
             }
-            /* Doesn't work
-            NSWindow* window = [self window];
-            [window orderFront:self];
-            [window makeMainWindow];
-            */
             if(![filesController commitEditing])
                 return NO;
             NSArray* params = [NSArray arrayWithObjects:filenames, [NSNumber numberWithInteger:row], nil];
@@ -398,7 +444,6 @@
             if([mgr fileExistsAtPath:filename isDirectory:&dir] && !dir &&
                 [[MZPluginController sharedInstance] dataProviderForPath:filename])
             {
-                //[[self window] makeKeyAndOrderFront:self];
                 if(![filesController commitEditing])
                     return NO;
                 NSArray* params = [NSArray arrayWithObjects:filename, [NSNumber numberWithInteger:row], nil];
@@ -414,7 +459,24 @@
 {
     id first = [params objectAtIndex:0];
     NSInteger row = [[params objectAtIndex:1] integerValue];
-    if([first isKindOfClass:[NSArray class]])
+    
+    if([first isKindOfClass:[NSDictionary class]])
+    {
+        NSMutableArray* names = [NSMutableArray array];
+        NSMutableArray* dataDicts = [NSMutableArray array];
+        NSDictionary* tracks = [first objectForKey:@"Tracks"];
+        for(id track in [tracks allValues])
+        {
+            NSURL* location = [NSURL URLWithString:[track objectForKey:@"Location"]];
+            [names addObject:[location path]];
+
+            NSString* persistentId = [track objectForKey:@"Persistent ID"];
+            NSDictionary* data = [NSDictionary dictionaryWithObject:persistentId forKey:MZiTunesPersistentIDTagIdent];
+            [dataDicts addObject:data];
+        }
+        [[MZMetaLoader sharedLoader] loadFromFiles:names toIndex:row withMetaData:dataDicts];
+    }
+    else if([first isKindOfClass:[NSArray class]])
         [[MZMetaLoader sharedLoader] loadFromFiles:first toIndex:row];
     else
         [[MZMetaLoader sharedLoader] loadFromFile:first toIndex:row];
@@ -493,13 +555,11 @@
     if([ns length] == 1)
     {
         unichar ch = [ns characterAtIndex:0];
-        //MZLoggerDebug(@"keyDown %x %x", ch, NSNewlineCharacter);
         switch(ch) {
             case NSBackspaceCharacter:
             case NSDeleteCharacter:
                 if([self numberOfSelectedRows] > 0 && (modifierFlags & NSCommandKeyMask) == NSCommandKeyMask )
                 {
-                    //MZLoggerDebug(@"Caught Cmd-Backspace");
                     [self delete:self];
                     return;
                 }

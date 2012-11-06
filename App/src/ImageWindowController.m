@@ -72,19 +72,7 @@ NSData* tiffForCGImage(CGImageRef cgImage) {
 
 - (void)imageDidChange:(IKImageView *)aImageView imageState:(IKImageState*)state image:(CGImageRef)image
 {
-    //dumpMethods([aImageView class]);
-    /*
-    CGFloat rotationAngle = [state rotationAngle];
-    int orientationTag = [state orientationTag];
-    NSDictionary* imageProps = aImageView.imageProperties;
-    for(NSString* key in [imageProps allKeys])
-        MZLoggerDebug(@"Key %@ Value %@", key, [imageProps objectForKey:key]);
-    */
     [sourceImageView removeObserver:self forKeyPath:@"objectValue"];
-    /*
-    [sourceImageView setObjectValue:[ImageWindowController rotateImage:[[NSBitmapImageRep alloc] initWithCGImage:[aImageView image]]
-                                                       byDegrees:aImageView.rotationAngle]];
-    */
     NSBitmapImageRep* rep = [[[NSBitmapImageRep alloc] initWithCGImage:[aImageView image]] autorelease];
     NSImage* nextImage = [[[NSImage alloc] initWithData:[rep TIFFRepresentation]] autorelease];
     [sourceImageView setObjectValue:nextImage];

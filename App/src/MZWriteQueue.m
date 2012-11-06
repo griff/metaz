@@ -93,36 +93,14 @@ static MZWriteQueue* sharedQueue = nil;
         status = QueueRunning;
         [self didChangeValueForKey:@"status"];
         [[NSNotificationCenter defaultCenter]
-                postNotificationName:MZQueueStarted
+                postNotificationName:MZQueueStartedNotification
                               object:self];
         
         [self startNextItem];
     }
 }
 
-/*
--(void)pause
-{
-    if(status == QueueRunning)
-    {
-        [self willChangeValueForKey:@"status"];
-        status = QueuePaused;
-        [self didChangeValueForKey:@"status"];
-    }
-}
-
--(void)resume
-{
-    if(status == QueuePaused)
-    {
-        [self willChangeValueForKey:@"status"];
-        status = QueueRunning;
-        [self didChangeValueForKey:@"status"];
-    }
-}
-*/
-
--(void)stop
+-(BOOL)doStopToStopping:(BOOL)stopping
 {
     if(status != QueueStopped && status != QueueStopping )
     {
@@ -134,19 +112,28 @@ static MZWriteQueue* sharedQueue = nil;
             if([sts stopWriting])
                 stopWaitCount++;
         }
-        if(stopWaitCount==0)
+        if(stopWaitCount == 0)
         {
-            status = QueueStopped;
+            if(!stopping)
+                status = QueueStopped;
             for(MZWriteQueueStatus* sts in queueItems)
             {
                 if(sts.hasRun && !sts.completed)
                     sts.hasRun = NO;
             }
-            [self saveQueueWithError:NULL];
         }
+        [self saveQueueWithError:NULL];
         [self resetTrashHandling];
         [self didChangeValueForKey:@"status"];
+        if(stopWaitCount == 0)
+            return YES;
     }
+    return NO;
+}
+
+-(void)stop
+{
+    [self doStopToStopping:NO];
 }
 
 - (BOOL)hasNextItem
@@ -173,11 +160,17 @@ static MZWriteQueue* sharedQueue = nil;
             return;
         }
     }
-    [self stop];
+    BOOL stopping = [self doStopToStopping:YES];
     [self saveQueueWithError:NULL];
     [[NSNotificationCenter defaultCenter]
-            postNotificationName:MZQueueCompleted
+            postNotificationName:MZQueueCompletedNotification
                           object:self];
+    if(stopping)
+    {
+        [self willChangeValueForKey:@"status"];
+        status = QueueStopped;
+        [self didChangeValueForKey:@"status"];
+    }
 }
 
 - (void)itemStopped

@@ -56,6 +56,7 @@
 @property(readonly) NSOperationQueue* saveQueue;
 @property(readonly) NSOperationQueue* searchQueue;
 
+- (NSArray *)actionsPlugins;
 - (NSArray *)plugins;
 - (NSArray *)loadedPlugins;
 - (NSArray *)dataProviderTypes;
@@ -66,7 +67,8 @@
 - (id<MZDataProvider>)dataProviderForType:(NSString *)uti;
 - (id<MZSearchProvider>)searchProviderWithIdentifier:(NSString *)identifier;
 - (id<MZDataController>)loadFromFile:(NSString *)fileName
-                            delegate:(id<MZEditsReadDelegate>)deledate;
+                            delegate:(id<MZEditsReadDelegate>)deledate
+                               extra:(NSDictionary *)extra;
 - (id<MZDataController>)saveChanges:(MetaEdits *)data
                            delegate:(id<MZDataWriteDelegate>)delegate;
 - (void)searchAllWithData:(NSDictionary *)data

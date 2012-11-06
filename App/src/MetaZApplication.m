@@ -9,6 +9,8 @@
 #import "MetaZApplication.h"
 #import "MZSelectedMetaDataDocument.h"
 #import "MZMetaLoader.h"
+#import "MZWriteQueue.h"
+#import "MZWriteQueueStatus.h"
 
 @implementation MetaZApplication
 @synthesize filesController;
@@ -39,6 +41,23 @@
     return nil;
 }
 
+- (id)handleQuitLaterScriptCommand:(NSScriptCommand *)test;
+{
+    [self performSelector:@selector(laterQuit) withObject:nil afterDelay:1];
+    return nil;
+}
+
+- (void)laterQuit
+{
+    if([[MZWriteQueue sharedQueue] status] == QueueRunning ||
+        [[MZWriteQueue sharedQueue] status] == QueueStopping)
+    {
+        [self performSelector:@selector(laterQuit) withObject:nil afterDelay:1];
+    }
+    else
+        [NSApp terminate:self];
+}
+
 - (void)setSelectedDocuments:(id)sel
 {
     if([sel isKindOfClass:[NSArray class]])
@@ -50,21 +69,20 @@
 
 - (id)selectedDocuments;
 {
-    NSArray* sel = [filesController selectedObjects];
-    if([sel count]==0)
-        return nil;
-    if([sel count]==1)
-        return [MZSelectedMetaDataDocument documentWithEdit:[sel objectAtIndex:0]];
-    
     NSMutableArray* arr = [NSMutableArray array];
-    for(MetaEdits* edit in sel)
+    for(MetaEdits* edit in [filesController selectedObjects])
         [arr addObject:[MZSelectedMetaDataDocument documentWithEdit:edit]];
     return arr;
 }
 
 - (id)selection;
 {
-    return [self selectedDocuments];
+    NSArray* sel = [self selectedDocuments];
+    if([sel count] == 0)
+        return nil;
+    if([sel count]==1)
+        return [sel objectAtIndex:0];
+    return sel;
 }
 
 - (void)setSelection:(id)sel;
@@ -84,6 +102,19 @@
         [documents addObject:[MZMetaDataDocument documentWithEdit:edit]];
     }
     return documents;
+}
+
+- (NSArray *)queueDocuments
+{
+    NSMutableArray* queue = [NSMutableArray array];
+    for(MZWriteQueueStatus* item in [[MZWriteQueue sharedQueue] queueItems])
+    {
+        [queue addObject:[MZMetaDataDocument
+            documentWithEdit:[item edits]
+                   container:@"queueDocuments"
+                       saved:item.completed]];
+    }
+    return queue;
 }
 
 @end

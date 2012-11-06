@@ -66,6 +66,15 @@
             [[edits loadedFileName] lastPathComponent] ];
         [self finished];
     }
+    else
+    {
+        NSDictionary* userInfo = [NSDictionary dictionaryWithObject:edits forKey:MZMetaEditsNotificationKey];
+        [[NSNotificationCenter defaultCenter]
+            postNotificationName:MZQueueItemStartedNotification
+                          object:self
+                        userInfo:userInfo];
+    }
+
 }
 
 - (BOOL)stopWriting
@@ -157,7 +166,7 @@ writeStartedForEdits:(MetaEdits *)edits
         {
             NSDictionary* userInfo = [NSDictionary dictionaryWithObject:edits forKey:MZMetaEditsNotificationKey];
             [[NSNotificationCenter defaultCenter]
-                    postNotificationName:MZQueueItemFailed
+                    postNotificationName:MZQueueItemFailedNotification
                                   object:self
                                 userInfo:userInfo];
         }
@@ -326,13 +335,13 @@ writeStartedForEdits:(MetaEdits *)edits
     if(error)
     {
         [[NSNotificationCenter defaultCenter]
-                postNotificationName:MZQueueItemFailed
+                postNotificationName:MZQueueItemFailedNotification
                               object:self
                             userInfo:userInfo];
     } else
     {
         [[NSNotificationCenter defaultCenter]
-                postNotificationName:MZQueueItemCompleted
+                postNotificationName:MZQueueItemCompletedNotification
                               object:self
                             userInfo:userInfo];
     }
@@ -347,7 +356,7 @@ writeStartedForEdits:(MetaEdits *)edits
     NSArray* values = [NSArray arrayWithObjects:[NSNumber numberWithInt:changes], nil];
     NSDictionary* userInfo = [NSDictionary dictionaryWithObjects:values forKeys:keys];
     [[NSNotificationCenter defaultCenter]
-            postNotificationName:MZQueueCompletedPercent
+            postNotificationName:MZQueueItemCompletedPercentNotification
                           object:self
                         userInfo:userInfo];
 }

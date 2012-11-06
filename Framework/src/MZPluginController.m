@@ -9,6 +9,8 @@
 #import <MetaZKit/MZPluginController.h>
 #import <MetaZKit/MZLogger.h>
 #import <MetaZKit/NSFileManager+MZCreate.h>
+#import <MetaZKit/MZScriptActionsPlugin.h>
+#import <MetaZKit/GTMNSString+URLArguments.h>
 #import "MZPlugin+Private.h"
 
 @interface MZWriteNotification : NSObject <MZDataWriteDelegate>
@@ -156,6 +158,18 @@ static MZPluginController *gInstance = NULL;
 @synthesize saveQueue;
 @synthesize searchQueue;
 
+- (NSArray *)actionsPlugins;
+{
+    NSMutableArray* ret = [NSMutableArray array];
+    NSArray* thePlugins = [self loadedPlugins];
+    for(MZPlugin* plugin in thePlugins)
+    {
+        if([plugin isKindOfClass:[MZActionsPlugin class]])
+            [ret addObject:plugin];
+    }
+    return ret;
+}
+
 - (NSArray *)plugins
 {
     if(!plugins)
@@ -165,6 +179,7 @@ static MZPluginController *gInstance = NULL;
         NSFileManager* mgr = [NSFileManager manager];
         for(NSString* path in paths)
         {
+            NSURL* pathURL = [NSURL fileURLWithPath:path];
             BOOL isDir = NO;
             NSError* error = nil;
             if([mgr fileExistsAtPath:path isDirectory:&isDir] && isDir)
@@ -178,11 +193,24 @@ static MZPluginController *gInstance = NULL;
                 for(NSString* pluginDir in pluginPaths)
                 {
                     NSString* pluginPath = [path stringByAppendingPathComponent:pluginDir];
-                    NSBundle* plugin = [NSBundle bundleWithPath:pluginPath];
-                    if(plugin)
+                    CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (CFStringRef)[pluginPath pathExtension], NULL);
+                    MZLoggerDebug(@"Loading plugin at path '%@'", pluginPath);
+                    if(UTTypeConformsTo(uti, kMZUTMetaZPlugin))
+                    {
+                        NSBundle* plugin = [NSBundle bundleWithPath:pluginPath];
+                        if(plugin)
+                            [thePlugins addObject:plugin];
+                        else
+                            MZLoggerError(@"Failed to load plugin at path '%@'", pluginPath);
+                    }
+                    else if(UTTypeEqual(uti, kMZUTAppleScriptText) || UTTypeConformsTo(uti, kMZUTAppleScriptText) ||
+                            UTTypeEqual(uti, kMZUTAppleScript) || UTTypeConformsTo(uti, kMZUTAppleScript))
+                    {
+                        NSURL* url = [NSURL URLWithString:[pluginDir gtm_stringByEscapingForURLArgument] relativeToURL:pathURL];
+                        MZScriptActionsPlugin* plugin = [MZScriptActionsPlugin pluginWithURL:url];
                         [thePlugins addObject:plugin];
-                    else
-                        MZLoggerError(@"Failed to load plugin at path '%@'", pluginPath);
+                    }
+                    CFRelease(uti);
                 }
             }
         }
@@ -199,42 +227,59 @@ static MZPluginController *gInstance = NULL;
         loadedPlugins = [[NSMutableArray alloc] init];
         NSMutableSet* loadedBundles = [NSMutableSet set];
         NSArray* thePlugins = [self plugins];
-        for(NSBundle* bundle in thePlugins)
+        for(id source in thePlugins)
         {
+            NSString* identifier;
+            if([source isKindOfClass:[NSBundle class]])
+                identifier = [source bundleIdentifier];
+            else if([source isKindOfClass:[MZScriptActionsPlugin class]])
+                identifier = [source identifier];
+            else
+                MZLoggerError(@"Unknown plugin %@ of type %@", source, NSStringFromClass([source class])); 
+            
             // the plugins are in the order they should be loaded
             // so if the same identifier is allready loaded we can skib to
             // next
-            if([loadedBundles containsObject:[bundle bundleIdentifier]])
+            if([loadedBundles containsObject:identifier])
                 continue;
                 
+            MZPlugin* plugin;
             NSError* error = nil;
-            if(![bundle loadAndReturnError:&error])
+            if(![source loadAndReturnError:&error])
             {
                 MZLoggerError(@"Failed to load code for '%@' because: %@", 
-                    [bundle bundleIdentifier],
+                    identifier,
                     [error localizedDescription]);
                 continue;
             }
-            Class cls = [bundle principalClass];
-            if(cls == Nil)
+                
+            if([source isKindOfClass:[NSBundle class]])
             {
-                MZLoggerError(@"Error loading principal class for '%@'", 
-                    [bundle bundleIdentifier]);
-                continue;
+                Class cls = [source principalClass];
+                if(cls == Nil)
+                {
+                    MZLoggerError(@"Error loading principal class for '%@'", 
+                        identifier);
+                    continue;
+                }
+                
+                plugin = [[cls alloc] init];
+                if(!plugin)
+                {
+                    MZLoggerError(@"Failed to create principal class '%@' for '%@'", 
+                        NSStringFromClass(cls),
+                        identifier);
+                    [source unload];
+                    continue;
+                }
             }
-            MZPlugin* plugin = [[cls alloc] init];
-            if(!plugin)
-            {
-                MZLoggerError(@"Failed to create principal class '%@' for '%@'", 
-                    NSStringFromClass(cls),
-                    [bundle bundleIdentifier]);
-                [bundle unload];
-                continue;
-            }
-            [loadedBundles addObject:[bundle bundleIdentifier]];
+            else
+                plugin = [source retain];
+
+            [loadedBundles addObject:identifier];
             [loadedPlugins addObject:plugin];
             [plugin release];
-            MZLoggerInfo(@"Loaded plugin '%@'", [bundle bundleIdentifier]);
+            MZLoggerInfo(@"Loaded plugin '%@'", identifier);
             [plugin didLoad];
             if([[self delegate] respondsToSelector:@selector(pluginController:loadedPlugin:)])
                 [[self delegate] pluginController:self loadedPlugin:plugin];
@@ -393,56 +438,21 @@ static MZPluginController *gInstance = NULL;
     return nil;
 }
 
-/*
-- (MetaEdits *)loadDataFromFile:(NSString *)path
-{
-    id<MZDataProvider> provider = [self dataProviderForPath:path];
-    if(!provider)
-        return nil;
-    MetaLoaded* loaded = [provider loadFromFile:path];
-    if(!loaded)
-        return nil;
-    id next = nil;
-    if([[self delegate] respondsToSelector:@selector(pluginController:extraMetaDataForProvider:loaded:)])
-    {
-        next = [[self delegate] pluginController:self
-                        extraMetaDataForProvider:provider
-                                          loaded:loaded];
-    }
-    if(!next)
-        next = loaded;
-    MetaEdits* edits = [[MetaEdits alloc] initWithProvider:next];
-    NSAssert([[edits fileName] isKindOfClass:[NSString class]], @"Bad file name");
-    NSAssert([[edits title] isKindOfClass:[NSString class]], @"Bad title");
-    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:edits forKey:MZMetaEditsNotificationKey];
-    [[NSNotificationCenter defaultCenter]
-            postNotificationName:MZDataProviderLoadedNotification
-                          object:provider
-                        userInfo:userInfo];
-    return [edits autorelease];
-}
-*/
-
 - (id<MZDataController>)loadFromFile:(NSString *)fileName
                             delegate:(id<MZEditsReadDelegate>)theDelegate
+                               extra:(NSDictionary *)extra
 {
     id<MZDataProvider> provider = [self dataProviderForPath:fileName];
     if(!provider)
         return nil;
 
     id<MZDataReadDelegate> otherDelegate = [MZReadNotification notifierWithController:self delegate:theDelegate];
-    return [provider loadFromFile:fileName delegate:otherDelegate queue:loadQueue];
+    return [provider loadFromFile:fileName delegate:otherDelegate queue:loadQueue extra:extra];
 }
 
 - (id<MZDataController>)saveChanges:(MetaEdits *)data
                            delegate:(id<MZDataWriteDelegate>)theDelegate
 {
-    /*
-    NSFileManager* mgr = [NSFileManager manager];
-    BOOL isDir;
-    if(![mgr fileExistsAtPath:[data loadedFileName] isDirectory:&isDir] || isDir )
-        return nil;
-    */
     id<MZDataProvider> provider = [data owner];
     id<MZDataWriteDelegate> otherDelegate = [MZWriteNotification notifierWithDelegate:theDelegate];
     return [provider saveChanges:data delegate:otherDelegate queue:saveQueue];
@@ -664,11 +674,6 @@ static MZPluginController *gInstance = NULL;
     finishedSearches++;
     if(finishedSearches==performedSearches)
     {
-        /*
-        NSArray* keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, MZDataControllerNotificationKey, nil];
-        NSArray* values = [NSArray arrayWithObjects:edits, controller, nil];
-        NSDictionary* userInfo = [NSDictionary dictionaryWithObjects:values forKeys:keys];
-        */
         if([delegate respondsToSelector:@selector(searchFinished)])
             [delegate searchFinished];
         [[NSNotificationCenter defaultCenter]

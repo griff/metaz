@@ -17,10 +17,12 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>BUILDDATE</string>
+	<string>BUILDVERSION</string>
 	<key>NSPrincipalClass</key>
 	<string>AmazonPlugin</string>
 	<key>BuildId</key>
 	<string>BUILDID</string>
+	<key>BuildDate</key>
+	<string>BUILDDATE</string>
 </dict>
 </plist>

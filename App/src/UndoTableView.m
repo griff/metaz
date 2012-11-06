@@ -8,13 +8,55 @@
 
 #import "UndoTableView.h"
 
-
 @implementation UndoTableView
 
 - (void)dealloc
 {
     [editCancelHack release];
     [super dealloc];
+}
+
+- (NSMenu *)menuForEvent:(NSEvent *)event
+{
+    NSPoint event_location = [event locationInWindow];
+    NSPoint local_point = [self convertPointFromBase:event_location];
+    NSInteger row = [self rowAtPoint:local_point];
+    [self selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
+    
+    NSMenu* menu = nil;
+
+    id ds = [self dataSource];
+    if(ds)
+    {
+        if([ds respondsToSelector:@selector(tableView:menuForRow:)])
+            menu = [ds tableView:self menuForRow:row];
+    }
+    if(!menu)
+    {
+        NSDictionary* dict = [self infoForBinding:@"content"];
+        if(dict)
+        {
+            id observed = [dict objectForKey:NSObservedObjectKey];
+            NSString* keyPath = [dict objectForKey:NSObservedKeyPathKey];
+            NSArray* content = [observed valueForKeyPath:keyPath];
+            id object = [content objectAtIndex:row];
+            if(object && [object respondsToSelector:@selector(menu)])
+                menu = [object menu];
+        }
+    }
+    
+    if(menu && [self menu])
+    {
+        NSMenu* cp = [[[self menu] copy] autorelease];
+        for(NSMenuItem* item in [cp itemArray])
+            [item setRepresentedObject:self];
+        for(NSMenuItem* item in [menu itemArray])
+            [cp addItem:[[item copy] autorelease]];
+        return cp;
+    }
+    if(menu)
+        return menu;
+    return [self menu];
 }
 
 -(IBAction)beginEnterEdit:(id)sender
@@ -39,14 +81,10 @@
     if([ns length] == 1)
     {
         unichar ch = [ns characterAtIndex:0];
-        //MZLoggerDebug(@"keyDown %x %x", ch, NSNewlineCharacter);
         switch(ch) {
             case NSNewlineCharacter:
-                //MZLoggerDebug(@"Caught NL");
             case NSCarriageReturnCharacter:
-                //MZLoggerDebug(@"Caught CR");
             case NSEnterCharacter:
-                //MZLoggerDebug(@"Caught Enter");
                 if([self numberOfSelectedRows] == 1) {
                     [self beginEnterEdit:self];
                     return;

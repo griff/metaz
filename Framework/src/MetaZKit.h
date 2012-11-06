@@ -18,6 +18,8 @@
 #import <MetaZKit/MZSearchResult.h>
 #import <MetaZKit/MZPlugin.h>
 #import <MetaZKit/MZPluginController.h>
+#import <MetaZKit/MZActionsPlugin.h>
+#import <MetaZKit/MZScriptActionsPlugin.h>
 #import <MetaZKit/MZTimeCode.h>
 #import <MetaZKit/MZTimedTextItem.h>
 #import <MetaZKit/MetaEditsUndoManager.h>
@@ -41,6 +43,7 @@
 #import <MetaZKit/NSString+MZAllInCharacterSet.h>
 #import <MetaZKit/NSString+MZQueryString.h>
 #import <MetaZKit/NSFileManager+MZCreate.h>
+#import <MetaZKit/NSError+MZScriptError.h>
 
 #import <MetaZKit/GTMNSString+URLArguments.h>
 #import <MetaZKit/GTMNSObject+KeyValueObserving.h>

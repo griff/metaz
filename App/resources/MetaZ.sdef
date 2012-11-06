@@ -14,7 +14,7 @@
 				<cocoa integer-value="-2"/>
             </enumerator>
 		</enumeration>
-
+        
 		<command name="open" code="aevtodoc" description="Open a document.">
 			<direct-parameter description="The file(s) to be opened.">
 				<type type="file"/>
@@ -72,6 +72,8 @@
 			</parameter>
 		</command>
 -->
+		<command name="quit later" code="MetZquit" description="Tell the application to quit later."/>
+        
 		<command name="quit" code="aevtquit" description="Quit the application.">
 			<cocoa class="NSQuitCommand"/>
             <!--
@@ -167,11 +169,17 @@
             <element type="selected document">
                 <cocoa key="selectedDocuments"/>
             </element>
+            <element type="queue item">
+                <cocoa key="queueDocuments"/>
+            </element>
 			<responds-to command="open">
 				<cocoa method="handleOpenScriptCommand:"/>
 			</responds-to>
 			<responds-to command="quit">
 				<cocoa method="handleQuitScriptCommand:"/>
+			</responds-to>
+			<responds-to command="quit later">
+				<cocoa method="handleQuitLaterScriptCommand:"/>
 			</responds-to>
 		</class>
 
@@ -360,6 +368,10 @@
                 
         <class name="selected document" code="Mdoc" description="A selected meta data document" inherits="document">
             <cocoa class="MZSelectedMetaDataDocument"/>
+        </class>
+
+        <class name="queue item" code="Mque" description="A document in the queue" inherits="document">
+            <cocoa class="MZMetaDataDocument"/>
         </class>
 
     </suite>

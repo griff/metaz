@@ -186,10 +186,6 @@
         }
         */
         
-        /*
-        NSString* releaseYearStr = [item stringForXPath:@"movieTags/info/releaseDateY" error:NULL]; 
-        MZLoggerDebug(@"Release Year '%@'", releaseYearStr);
-        */
         NSInteger releaseYear = [[item stringForXPath:@"movieTags/info/releaseDateY" error:NULL] integerValue];
         if(releaseYear > 0)
         {
@@ -261,14 +257,8 @@
         }
         
         NSString* coverArtLarge = [item stringForXPath:@"movieTags/coverArtLarge" error:NULL];
-        //NSString* coverArtSmall = [item stringForXPath:@"movieTags/coverArtSmall" error:NULL];
         if([coverArtLarge length] > 0)
         {
-            /*
-            MZLoggerDebug(@"TagChimp id %@", tagChimpId);
-            MZLoggerDebug(@"Image small url: %@", coverArtSmall);
-            MZLoggerDebug(@"Image large url: %@", coverArtLarge);
-            */
             NSURL* url = [NSURL URLWithString:
                 [coverArtLarge stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             MZRemoteData* data = [MZRemoteData dataWithURL:url];
@@ -329,10 +319,6 @@
                 i++;
             }
             NSString* key = hasTime ? MZChaptersTagIdent : MZChapterNamesTagIdent;
-            /*
-            if(hasTime)
-                MZLoggerDebug(@"Chapters with time %d", [chapters count]);
-            */
             [dict setObject:[NSArray arrayWithArray:chapters] forKey:key];
         }
         

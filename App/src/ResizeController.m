@@ -50,18 +50,6 @@
         return;
     }
 
-    /*
-    [sender adjustSubviews];
-    NSRect bounds = [sender bounds];
-    MZLoggerDebug(@"SplitView {{%f, %f},{%f,%f}}", bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height);
-    for ( NSView* view in [sender subviews] )
-    {
-        bounds = [view frame];
-        MZLoggerDebug(@"  Subview {{%f, %f},{%f,%f}}", bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height);
-    }
-    return;
-    */
-    
     CGFloat widths[3]; 
     widths[0] = [searchBox frame].size.width;
     widths[1] = [tabView frame].size.width;
@@ -128,31 +116,6 @@
     
     if(w>0)
         MZLoggerDebug(@"More width");
-
-    /*
-    while(amount != 0.0)
-    {
-        amount = 0.0;
-        for(int i=0; i<3; i++)
-        {
-            if(widths[i] < mins[i])
-            {
-                amount += mins[i]-widths[i];
-                widths[i] = mins[i];
-                count -= amounts[i];
-                amounts[i] = 0;
-            }
-        }
-        if(newSize.width==minWidth)
-            amount=0;
-        if(amount != 0.0)
-        {
-            if(count==0)
-                MZLoggerDebug(@"Bad Count");
-            for(int i=0; i<3; i++) widths[i] -= amounts[i]*amount/count;
-        }
-    }
-    */
     
     CGFloat newWidth = 2*divider;
     if(![splitView isSubviewCollapsed:searchBox]) newWidth+=widths[0];
@@ -264,17 +227,6 @@
             if(width<SEARCHBOX_WIDTH) // If proposed width of searchBox is smaller than min do nothing
             {
                 return YES;
-                /* Doesn't work
-                NSRect rect = [[splitView window] frame];
-                rect.size.width += SEARCHBOX_WIDTH-width;
-                CGFloat widthSplit = [sender frame].size.width;
-                
-                [[splitView window] setFrame:rect display:YES];
-                widthSplit = [sender frame].size.width;
-                [sender setPosition:widthSplit ofDividerAtIndex:1];
-                [sender adjustSubviews];
-                width=SEARCHBOX_WIDTH;
-                */
             }
             [sender setPosition:width ofDividerAtIndex:0];
             [sender adjustSubviews];

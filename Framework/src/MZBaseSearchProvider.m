@@ -23,7 +23,6 @@
 
 - (void)dealloc
 {
-    //[search gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(searchFinished:)];
     for(id canceledSearch in canceledSearches)
         [canceledSearch gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(canceledSearchFinished:)];
 
@@ -46,7 +45,6 @@
                     [canceledSearches addObject:search];
                     [search gtm_addObserver:self forKeyPath:@"isFinished" selector:@selector(canceledSearchFinished:) userInfo:nil options:0];
                 }
-                //[search gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(searchFinished:)];
             }
             [search cancel];
             [search release];
@@ -58,22 +56,7 @@
 - (void)startSearch:(id)theSearch
 {
     search = [theSearch retain];
-    //[search gtm_addObserver:self forKeyPath:@"isFinished" selector:@selector(searchFinished:) userInfo:nil options:0];
 }
-
-/*
-- (void)searchFinishedMain
-{
-    [search autorelease];
-    search = nil;
-}
-
-- (void)searchFinished:(GTMKeyValueChangeNotification *)notification
-{
-    [search gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(searchFinished:)];
-    [self performSelectorOnMainThread:@selector(searchFinishedMain) withObject:nil waitUntilDone:YES];
-}
-*/
 
 - (void)canceledSearchFinishedMain:(id)theSearch
 {

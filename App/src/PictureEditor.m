@@ -59,26 +59,6 @@
 - (void)awakeFromNib
 {
     [retryButton setHidden:YES];
-    /*
-    NSArray* keys = [NSArray arrayWithObjects:
-        NSMultipleValuesPlaceholderBindingOption,
-        NSNoSelectionPlaceholderBindingOption,
-        NSNotApplicablePlaceholderBindingOption,
-        NSAllowsEditingMultipleValuesSelectionBindingOption,
-        NSAllowsNullArgumentBindingOption,
-        NSRaisesForNotApplicableKeysBindingOption,
-        nil];
-    NSArray* values = [NSArray arrayWithObjects:
-        NSMultipleValuesMarker,
-        NSNoSelectionMarker,
-        NSNotApplicableMarker,
-        [NSNumber numberWithBool:YES],
-        [NSNumber numberWithBool:YES],
-        [NSNumber numberWithBool:NO],
-        nil];
-    NSDictionary* dict = [NSDictionary dictionaryWithObjects:values forKeys:keys];
-    [self bind:@"picture" toObject:filesController withKeyPath:@"selection.picture" options:dict];
-    */
     [picturesController gtm_addObserver:self forKeyPath:@"selection" selector:@selector(picturesUpdated:) userInfo:nil options:0];
 }
 
@@ -202,10 +182,6 @@
             return NSNotApplicableMarker;
     }
     id changed = [self.observerFix valueForKeyPath:@"selection.pictureChanged"];
-    /*
-    if(changed == NSMultipleValuesMarker)
-        MZLoggerDebug(@"Multiple");
-    */
     return changed;
 }
 
@@ -251,20 +227,6 @@
             [posterView setStatus:MZEmptyPosterImage];
         else
             [posterView setStatus:MZOKPosterImage];
-        /*
-        if(!newPicture)
-        {
-            id status = [filesController protectedValueForKeyPath:@"selection.picture"];
-            if(status == NSMultipleValuesMarker)
-                [posterView setStatus:MZMultiplePosterImage];
-            else if(status == NSNotApplicableMarker)
-                [posterView setStatus:MZNotApplicablePosterImage];
-            else //if(status == NSNoSelectionMarker)
-                [posterView setStatus:MZEmptyPosterImage];
-        }
-        else
-            [posterView setStatus:MZOKPosterImage];
-        */
     }
 
     [self didChangeValueForKey:@"data"];

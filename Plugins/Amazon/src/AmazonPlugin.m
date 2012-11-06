@@ -28,15 +28,6 @@
     [super dealloc];
 }
 
-/*
-- (void)didLoad
-{
-    [MZTag registerTag:[MZStringTag tagWithIdentifier:ASINTagIdent]];
-    [super didLoad];
-}
-*/
-
-
 - (BOOL)isBuiltIn
 {
     return YES;

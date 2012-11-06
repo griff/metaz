@@ -20,7 +20,6 @@
     NSInteger lastQueueItemsCount;
     NSInteger targetProgress;
     NSInteger progress;
-    NSDate* startTime;
     UKDockProgressIndicator* dockIndicator;
     NSProgressIndicator* progressBar;
     NSView* mainView;

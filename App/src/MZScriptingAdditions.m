@@ -25,6 +25,19 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
    return ret; 
 }
 
+
++ (id)valueWithDecimal:(NSDecimal)decimal;
+{
+    return [NSValue valueWithBytes:&decimal objCType:@encode(NSDecimal)];
+}
+
+- (NSDecimal)decimalValue;
+{
+   NSDecimal ret;
+   [self getValue:&ret];
+   return ret; 
+}
+
 @end
 
 
@@ -419,7 +432,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
 {
     NSAppleEventDescriptor* coerced = [self coerceToDescriptorType:typeSInt16];
     SInt16 val;
-    [[coerced data] getBytes:&val];
+    [[coerced data] getBytes:&val length:sizeof(val)];
     return val;
 }
 
@@ -432,7 +445,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
 {
     NSAppleEventDescriptor* coerced = [self coerceToDescriptorType:typeSInt64];
     SInt64 val;
-    [[coerced data] getBytes:&val];
+    [[coerced data] getBytes:&val length:sizeof(val)];
     return val;
 }
 
@@ -445,7 +458,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
 {
     NSAppleEventDescriptor* coerced = [self coerceToDescriptorType:typeUInt16];
     UInt16 val;
-    [[coerced data] getBytes:&val];
+    [[coerced data] getBytes:&val length:sizeof(val)];
     return val;
 }
 
@@ -458,7 +471,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
 {
     NSAppleEventDescriptor* coerced = [self coerceToDescriptorType:typeUInt32];
     UInt32 val;
-    [[coerced data] getBytes:&val];
+    [[coerced data] getBytes:&val length:sizeof(val)];
     return val;
 }
 
@@ -471,7 +484,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
 {
     NSAppleEventDescriptor* coerced = [self coerceToDescriptorType:typeUInt64];
     UInt64 val;
-    [[coerced data] getBytes:&val];
+    [[coerced data] getBytes:&val length:sizeof(val)];
     return val;
 }
 
@@ -484,7 +497,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
 {
     NSAppleEventDescriptor* coerced = [self coerceToDescriptorType:typeIEEE32BitFloatingPoint];
     Float32 val;
-    [[coerced data] getBytes:&val];
+    [[coerced data] getBytes:&val length:sizeof(val)];
     return val;
 }
 
@@ -497,7 +510,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
 {
     NSAppleEventDescriptor* coerced = [self coerceToDescriptorType:typeIEEE64BitFloatingPoint];
     Float64 val;
-    [[coerced data] getBytes:&val];
+    [[coerced data] getBytes:&val length:sizeof(val)];
     return val;
 }
 
@@ -510,7 +523,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
 {
     NSAppleEventDescriptor* coerced = [self coerceToDescriptorType:typeDecimalStruct];
     NSDecimal val;
-    [[coerced data] getBytes:&val];
+    [[coerced data] getBytes:&val length:sizeof(val)];
     return val;
 }
 
@@ -523,7 +536,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
 {
     NSAppleEventDescriptor* coerced = [self coerceToDescriptorType:typeLongDateTime];
     LongDateTime longDateTime;
-    [[coerced data] getBytes:&longDateTime];
+    [[coerced data] getBytes:&longDateTime length:sizeof(longDateTime)];
     return longDateTime;
 }
 
@@ -551,9 +564,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
             return [NSNumber scriptingNumberWithDescriptor:self];
         case typeDecimalStruct:
             {
-                NSDecimal val;
-                [[self data] getBytes:&val];
-                return [NSValue valueWithBytes:&val objCType:@encode(NSDecimal)];
+                return [NSValue valueWithDecimal:[self decimalValue]];
             }
         case typeEnumerated:
             {
@@ -576,7 +587,18 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
             return [NSArray scriptingListWithDescriptor:self];
         case typeAERecord:
             return [NSDictionary scriptingRecordWithDescriptor:self];
-            
+        case typeAlias:
+            {
+                const AEDesc* desc = [self aeDesc];
+                HFSUniStr255 t,v;
+                CFStringRef path;
+                AliasHandle handle = (AliasHandle)desc->dataHandle;
+                OSStatus cpyErr = FSCopyAliasInfo(handle, &t, &v, &path, NULL, NULL);
+                if(cpyErr == 0)
+                    return [NSString stringWithString:(NSString *)path];
+                NSLog(@"FSCopyAliasInfo error %d", cpyErr);
+                return [NSNull null];
+            }
         case typeObjectSpecifier:
             return [NSScriptObjectSpecifier objectSpecifierWithDescriptor:self];
             

@@ -99,6 +99,7 @@
     [self registerTag:[MZStringTag tagWithIdentifier:MZASINTagIdent]];
     [self registerTag:[MZIntegerTag tagWithIdentifier:MZDVDSeasonTagIdent scriptName:@"dvd season"]];
     [self registerTag:[MZIntegerTag tagWithIdentifier:MZDVDEpisodeTagIdent scriptName:@"dvd episode"]];
+    [self registerTag:[MZStringTag tagWithIdentifier:MZiTunesPersistentIDTagIdent scriptName:@"itunes persistent id"]];
 
 }
 
@@ -135,6 +136,17 @@ static NSMutableDictionary *sharedTagScriptNames = nil;
     {
         if(sharedTagScriptNames)
             ret = [sharedTagScriptNames objectForKey:scriptName];
+    }
+    return ret;
+}
+
++ (NSArray*)allKnownTags
+{
+    NSArray* ret = [NSArray array];
+    @synchronized(self)
+    {
+        if(sharedTags)
+            ret = [NSArray arrayWithArray:[sharedTags allValues]];
     }
     return ret;
 }
@@ -213,15 +225,6 @@ static NSMutableDictionary *sharedTagScriptNames = nil;
         [self tagForIdentifier:MZChaptersTagIdent],
         [self tagForIdentifier:MZChapterNamesTagIdent],
         nil];
-}
-
-+ (NSArray*)allKnownTags
-{
-    return [[[[[[self infoTags] arrayByAddingObjectsFromArray:[self videoTags]]
-                    arrayByAddingObjectsFromArray:[self sortTags]]
-                    arrayByAddingObjectsFromArray:[self advancedTags]]
-                    arrayByAddingObjectsFromArray:[self chapterTags]] 
-                    arrayByAddingObject:[self tagForIdentifier:MZDurationTagIdent]];
 }
 
 + (NSString *)localizedNameForKnownIdentifier:(NSString *)identifier

@@ -8,6 +8,7 @@
 
 #import <MetaZKit/MZPlugin.h>
 
+#define DISABLED_KEY @"disabledPlugins"
 
 @implementation MZPlugin
 
@@ -16,7 +17,7 @@
     self = [super init];
     if(self)
     {
-        bundle = [NSBundle bundleForClass:[self class]];
+        bundle = [[NSBundle bundleForClass:[self class]] retain];
     }
     return self;
 }
@@ -31,6 +32,37 @@
 }
 
 @synthesize bundle;
+
+- (NSString *)identifier
+{
+    return [bundle bundleIdentifier];
+}
+
+- (BOOL)isEnabled
+{
+    NSArray* disabled = [[NSUserDefaults standardUserDefaults] arrayForKey:DISABLED_KEY];
+    return ![disabled containsObject:self.identifier];
+}
+
+- (void)setEnabled:(BOOL)enabled
+{
+    NSArray* disabledA = [[NSUserDefaults standardUserDefaults] arrayForKey:DISABLED_KEY];
+    NSMutableSet* disabled;
+    if(disabledA)
+        disabled = [NSMutableSet setWithArray:disabledA];
+    else
+        disabled = [NSMutableSet set];
+    if(enabled)
+        [disabled removeObject:self.identifier];
+    else
+        [disabled addObject:self.identifier];
+    [[NSUserDefaults standardUserDefaults] setObject:[disabled allObjects] forKey:DISABLED_KEY];
+}
+
+- (BOOL)canEnable;
+{
+    return YES;
+}
 
 - (void)didLoad {}
 - (void)willUnload {}
@@ -61,7 +93,7 @@
     while(range.location != NSNotFound)
     {
         sub = [className substringWithRange:NSMakeRange(oldloc, range.location-oldloc)];
-        if(sub.length > 1)
+        if(sub.length > 1 && ret.length > 0)
             [ret appendString:@" "];
         [ret appendString:sub];
         NSUInteger max = NSMaxRange(range);
@@ -71,7 +103,7 @@
                                              range:NSMakeRange(max, length-max)];
     }
     sub = [className substringWithRange:NSMakeRange(oldloc, length-oldloc)];
-    if(sub.length > 1)
+    if(sub.length > 1 && ret.length > 0)
         [ret appendString:@" "];
     [ret appendString:sub];
     return [NSString stringWithString:ret];

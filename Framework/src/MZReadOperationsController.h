@@ -20,11 +20,13 @@
 
 + (id)controllerWithProvider:(id<MZDataProvider>)provider
                 fromFileName:(NSString *)fileName
-                    delegate:(id<MZDataReadDelegate>)delegate;
+                    delegate:(id<MZDataReadDelegate>)delegate
+                       extra:(NSDictionary *)extra;
 
 - (id)initWithProvider:(id<MZDataProvider>)provider
           fromFileName:(NSString *)fileName
-              delegate:(id<MZDataReadDelegate>)delegate;
+              delegate:(id<MZDataReadDelegate>)delegate
+                 extra:(NSDictionary *)extra;
 
 - (void)operationsFinished;
 

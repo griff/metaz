@@ -141,20 +141,6 @@
     [tagdict release];
     [super dealloc];
 }
-/*
-- (id)retain
-{
-    NSLog(@"APReadChapter retain %d", [self retainCount]);
-    return [super retain];
-}
-
-- (oneway void)release
-{
-    NSUInteger count = [self retainCount]-1;
-    [super release];
-    NSLog(@"APReadChapter release %d", count);
-}
-*/
 
 - (void)parseData
 {
@@ -165,7 +151,6 @@
     
     NSRange f = [str rangeOfString:@"Duration "];
     NSString* movieDurationStr = [str substringWithRange:NSMakeRange(f.location+f.length, 12)];
-    //MZLoggerDebug(@"Movie duration '%@'", movieDurationStr);
     MZTimeCode* movieDuration = [MZTimeCode timeCodeWithString:movieDurationStr];
     [tagdict setObject:movieDuration forKey:MZDurationTagIdent];
     
@@ -182,7 +167,6 @@
             NSString* startStr = [line substringWithRange:NSMakeRange(6, 12)];
             NSString* durationStr = [line substringWithRange:NSMakeRange(21, 12)];
             NSString* name = [line substringWithRange:NSMakeRange(37, [line length]-38)];
-            //MZLoggerDebug(@"Found args: '%@' '%@' '%@'", start, duration, name);
             
             MZTimeCode* start = [MZTimeCode timeCodeWithString:startStr];
             MZTimeCode* duration = [MZTimeCode timeCodeWithString:durationStr];
@@ -199,55 +183,3 @@
 }
 
 @end
-
-
-/*
-@implementation APReadOperationsController
-
-+ (id)controllerWithProvider:(id<MZDataProvider>)provider
-                fromFileName:(NSString *)fileName
-                    delegate:(id<MZDataReadDelegate>)delegate
-{
-    return [[[[self class] alloc] initWithProvider:provider fromFileName:fileName delegate:delegate] autorelease];
-}
-
-- (id)initWithProvider:(id<MZDataProvider>)theProvider
-          fromFileName:(NSString *)theFileName
-              delegate:(id<MZDataReadDelegate>)theDelegate
-{
-    self = [super init];
-    if(self)
-    {
-        provider = [theProvider retain];
-        fileName = [theFileName retain];
-        delegate = [theDelegate retain];
-        tagdict = [[NSMutableDictionary alloc] init];
-    }
-    return self;
-}
-
-- (void)dealloc
-{
-    [provider release];
-    [fileName release];
-    [delegate release];
-    [tagdict release];
-    [super dealloc];
-}
-
-@synthesize tagdict;
-
-- (void)operationsFinished
-{
-    MetaLoaded* loaded = nil;
-    if(!self.error)
-        loaded = [MetaLoaded metaWithOwner:provider filename:fileName dictionary:tagdict];
-    [delegate dataProvider:provider
-                controller:self
-                loadedMeta:loaded
-                  fromFile:fileName
-                     error:self.error];
-}
-
-@end
-*/
