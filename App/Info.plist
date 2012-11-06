@@ -9,6 +9,24 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>mzactions</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>MetaZ Actions Plugin</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin.actions</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>mzplugin</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
@@ -237,6 +255,25 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>mzplugin</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
+			</array>
+			<key>UTTypeIdentifier</key>
+			<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin.actions</string>
+			<key>UTTypeDescription</key>
+			<string>MetaZ Actions Plugin</string>
+			<key>UTTypeIconFile</key>
+			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>mzactions</string>
 				</array>
 			</dict>
 		</dict>

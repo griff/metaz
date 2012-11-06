@@ -158,6 +158,18 @@ static MZPluginController *gInstance = NULL;
 @synthesize saveQueue;
 @synthesize searchQueue;
 
+- (NSArray *)actionsPlugins;
+{
+    NSMutableArray* ret = [NSMutableArray array];
+    NSArray* thePlugins = [self loadedPlugins];
+    for(MZPlugin* plugin in thePlugins)
+    {
+        if([plugin isKindOfClass:[MZActionsPlugin class]])
+            [ret addObject:plugin];
+    }
+    return ret;
+}
+
 - (NSArray *)plugins
 {
     if(!plugins)

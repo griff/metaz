@@ -14,11 +14,6 @@
 #import "MZLogger.h"
 #import "MZPlugin+Private.h"
 
-#define MZQueueStarted @"MZQueueStarted"
-#define MZQueueCompletedPercent @"MZQueueCompletedPercent"
-#define MZQueueItemCompleted @"MZQueueItemCompleted"
-#define MZQueueItemFailed @"MZQueueItemFailed"
-#define MZQueueCompleted @"MZQueueCompleted"
 
 @implementation MZScriptActionsPlugin
 
@@ -92,25 +87,31 @@
     [[NSNotificationCenter defaultCenter]
         addObserver:self
            selector:@selector(queueStarted:)
-               name:MZQueueStarted
+               name:MZQueueStartedNotification
+             object:nil];
+
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(queueItemStarted:)
+               name:MZQueueItemStartedNotification
              object:nil];
 
     [[NSNotificationCenter defaultCenter]
         addObserver:self
            selector:@selector(queueItemCompleted:)
-               name:MZQueueItemCompleted
+               name:MZQueueItemCompletedNotification
              object:nil];
 
     [[NSNotificationCenter defaultCenter]
         addObserver:self
            selector:@selector(queueItemFailed:)
-               name:MZQueueItemFailed
+               name:MZQueueItemFailedNotification
              object:nil];
 
     [[NSNotificationCenter defaultCenter]
         addObserver:self
            selector:@selector(queueCompleted:)
-               name:MZQueueCompleted
+               name:MZQueueCompletedNotification
              object:nil];
 }
 
@@ -134,6 +135,28 @@
     NSAppleEventDescriptor* event = [AEVT class:kASAppleScriptSuite id:kASSubroutineEvent target:psn,
         [KEY : keyASSubroutineName],
         [STRING : @"queue_started"],
+        nil
+    ];
+    [self executeEvent:event];
+}
+
+- (void)queueItemStarted:(NSNotification *)note
+{
+    MetaEdits* edits = [[note userInfo] objectForKey:MZMetaEditsNotificationKey];
+    NSString* displayName = [[[edits loadedFileName] lastPathComponent] stringByDeletingPathExtension];
+    NSScriptClassDescription *containerClassDesc = (NSScriptClassDescription *)
+        [NSScriptClassDescription classDescriptionForClass:[NSApplication class]];// 1
+    NSScriptObjectSpecifier* spec = [[[NSNameSpecifier alloc]
+        initWithContainerClassDescription:containerClassDesc
+        containerSpecifier:nil key:@"queueDocuments"
+        name:displayName] autorelease];
+    
+    ProcessSerialNumber psn = {0, kCurrentProcess};
+    NSAppleEventDescriptor* event = [AEVT class:kASAppleScriptSuite id:kASSubroutineEvent target:psn,
+        [KEY : keyASSubroutineName],
+        [STRING : @"queue_writing"],
+        [KEY : keyASPrepositionOn],
+        [spec descriptor],
         nil
     ];
     [self executeEvent:event];

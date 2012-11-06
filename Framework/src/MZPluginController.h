@@ -56,6 +56,7 @@
 @property(readonly) NSOperationQueue* saveQueue;
 @property(readonly) NSOperationQueue* searchQueue;
 
+- (NSArray *)actionsPlugins;
 - (NSArray *)plugins;
 - (NSArray *)loadedPlugins;
 - (NSArray *)dataProviderTypes;

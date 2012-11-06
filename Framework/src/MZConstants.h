@@ -204,10 +204,18 @@ MZKIT_EXTERN NSString* const MZSearchFinishedNotification;
 MZKIT_EXTERN NSString* const MZUndoActionNameNotification;
 MZKIT_EXTERN NSString* const MZMetaEditsDeallocating;
 
+MZKIT_EXTERN NSString* const MZQueueStartedNotification;
+MZKIT_EXTERN NSString* const MZQueueItemStartedNotification;
+MZKIT_EXTERN NSString* const MZQueueItemCompletedPercentNotification;
+MZKIT_EXTERN NSString* const MZQueueItemCompletedNotification;
+MZKIT_EXTERN NSString* const MZQueueItemFailedNotification;
+MZKIT_EXTERN NSString* const MZQueueCompletedNotification;
+
 MZKIT_EXTERN NSString* const MZMetaEditsNotificationKey;
 MZKIT_EXTERN NSString* const MZUndoActionNameKey;
 MZKIT_EXTERN NSString* const MZDataControllerNotificationKey;
 MZKIT_EXTERN NSString* const MZDataControllerErrorKey;
+
 
 // Standard alert ids
 MZKIT_EXTERN NSString* const MZDataProviderFileAlreadyLoadedWarningKey;

@@ -28,13 +28,13 @@
 			<true/>
 		</dict>
 	</dict>
-	<key>whenDoneAction</key>
-	<integer>1</integer>
 	<key>autoSearch</key>
 	<true/>
 	<key>enabledActionPlugins</key>
 	<array>
 		<string>Update iTunes</string>
+		<string>org.maven-group.metaz.plugin.GrowlPlugin</string>
+		<string>org.maven-group.metaz.plugin.AlertWindowPlugin</string>
 	</array>
 </dict>
 </plist>

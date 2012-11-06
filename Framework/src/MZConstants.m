@@ -81,6 +81,13 @@ NSString* const MZSearchFinishedNotification = @"MZSearchFinishedNotification";
 NSString* const MZUndoActionNameNotification = @"MZUndoActionNameNotification";
 NSString* const MZMetaEditsDeallocating = @"MZMetaEditsDeallocating";
 
+NSString* const MZQueueStartedNotification = @"MZQueueStartedNotification";
+NSString* const MZQueueItemStartedNotification = @"MZQueueItemStartedNotification";
+NSString* const MZQueueItemCompletedPercentNotification = @"MZQueueItemCompletedPercentNotification";
+NSString* const MZQueueItemCompletedNotification = @"MZQueueItemCompletedNotification";
+NSString* const MZQueueItemFailedNotification = @"MZQueueItemFailedNotification";
+NSString* const MZQueueCompletedNotification = @"MZQueueCompletedNotification";
+
 NSString* const MZMetaEditsNotificationKey = @"MZMetaEditsNotificationKey";
 NSString* const MZUndoActionNameKey = @"MZUndoActionNameKey";
 NSString* const MZDataControllerNotificationKey = @"MZDataControllerNotificationKey";

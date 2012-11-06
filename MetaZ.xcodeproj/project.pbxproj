@@ -79,9 +79,6 @@
 		1B299D7014AE3E370048B7C0 /* TheMovieDbSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B299D6F14AE3E370048B7C0 /* TheMovieDbSearchProvider.m */; };
 		1B299D7314AE43900048B7C0 /* TheMovieDbSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B299D7214AE43900048B7C0 /* TheMovieDbSearch.m */; };
 		1B299DB714AE4D3A0048B7C0 /* TheMovieDb.mzplugin in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B8CB90B14ACD62000F859F7 /* TheMovieDb.mzplugin */; };
-		1B29A06614C5C6570048B7C0 /* MZMultiGrowlWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B29A06514C5C6570048B7C0 /* MZMultiGrowlWrapper.m */; };
-		1B29A19B14C5CFE80048B7C0 /* 1.2.3 in Copy Growl frameworks */ = {isa = PBXBuildFile; fileRef = 1B29A07314C5C9430048B7C0 /* 1.2.3 */; };
-		1B29A19C14C5CFE80048B7C0 /* 1.3.1 in Copy Growl frameworks */ = {isa = PBXBuildFile; fileRef = 1B29A07114C5C9430048B7C0 /* 1.3.1 */; };
 		1B2AEED611A0EC430074BAAD /* MZFileNameTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */; };
 		1B35446915B1D96B0033DD74 /* MetaZ.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 1B35446815B1D96B0033DD74 /* MetaZ.sdef */; };
 		1B3544E815B2160F0033DD74 /* MetaZApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3544E715B2160F0033DD74 /* MetaZApplication.m */; };
@@ -104,7 +101,6 @@
 		1B42F27210DEB14B00AFEBF6 /* RubyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B11A00610457B0D004C93D3 /* RubyCocoa.framework */; };
 		1B42F2B710DEB4A200AFEBF6 /* IMDBPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B42F2B610DEB4A200AFEBF6 /* IMDBPlugin.m */; };
 		1B44949910D57D6900B9C751 /* AtomicParsley in Resources */ = {isa = PBXBuildFile; fileRef = 1B44949810D57D6900B9C751 /* AtomicParsley */; };
-		1B44958510D6128700B9C751 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 1B44958410D6128700B9C751 /* Growl Registration Ticket.growlRegDict */; };
 		1B4499D210D9A5CE00B9C751 /* PresetSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4499D110D9A5CE00B9C751 /* PresetSegmentedControl.m */; };
 		1B449B8810DC7DE400B9C751 /* ChaptersTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B449B8710DC7DE400B9C751 /* ChaptersTableView.m */; };
 		1B449E3010DCCC4300B9C751 /* GTMDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B449D1B10DCCBDB00B9C751 /* GTMDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -227,6 +223,16 @@
 		1BD55C631648431D00F9C579 /* MZScriptActionsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD55C611648431D00F9C579 /* MZScriptActionsPlugin.m */; };
 		1BD55C661648466700F9C579 /* NSError+MZScriptError.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD55C641648466700F9C579 /* NSError+MZScriptError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BD55C671648466700F9C579 /* NSError+MZScriptError.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD55C651648466700F9C579 /* NSError+MZScriptError.m */; };
+		1BD55FAF1648BC4F00F9C579 /* GrowlPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD55FAE1648BC4F00F9C579 /* GrowlPlugin.m */; };
+		1BD55FBF1648BD2000F9C579 /* 1.2.3 in Copy Growl Frameworks */ = {isa = PBXBuildFile; fileRef = 1B29A07314C5C9430048B7C0 /* 1.2.3 */; };
+		1BD55FC01648BD2000F9C579 /* 1.3.1 in Copy Growl Frameworks */ = {isa = PBXBuildFile; fileRef = 1B29A07114C5C9430048B7C0 /* 1.3.1 */; };
+		1BD55FE01648BD7400F9C579 /* MZMultiGrowlWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B29A06514C5C6570048B7C0 /* MZMultiGrowlWrapper.m */; };
+		1BD5604D1648CC0200F9C579 /* GrowlPlugin.mzactions in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1BD55F8E1648BB4200F9C579 /* GrowlPlugin.mzactions */; };
+		1BD560AA1648CC3400F9C579 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
+		1BD5611F1648D51300F9C579 /* Quit MetaZ.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 1BD5611E1648D51300F9C579 /* Quit MetaZ.applescript */; };
+		1BD562111648F18900F9C579 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
+		1BD5622F1648F2B200F9C579 /* AlertWindowPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD5622E1648F2B200F9C579 /* AlertWindowPlugin.m */; };
+		1BD562471648F43A00F9C579 /* AlertWindowPlugin.mzactions in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1BD562071648F17C00F9C579 /* AlertWindowPlugin.mzactions */; };
 		1BD6E752105DADCC00E40151 /* AddToQueue.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74D105DADCC00E40151 /* AddToQueue.tiff */; };
 		1BD6E753105DADCC00E40151 /* Pause.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74E105DADCC00E40151 /* Pause.tiff */; };
 		1BD6E754105DADCC00E40151 /* Play.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74F105DADCC00E40151 /* Play.tiff */; };
@@ -416,6 +422,48 @@
 			remoteGlobalIDString = 1BA325C310545ACA00276F57;
 			remoteInfo = MetaZKit;
 		};
+		1BD55F941648BB4E00F9C579 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			remoteInfo = MetaZKit;
+		};
+		1BD55F961648BB4E00F9C579 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B2022F810B393CA00EE548A /* Plist Marcos */;
+			remoteInfo = "Plist Marcos";
+		};
+		1BD560451648CBF700F9C579 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1BD55F8D1648BB4200F9C579 /* GrowlPlugin */;
+			remoteInfo = GrowlPlugin;
+		};
+		1BD5620D1648F18400F9C579 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			remoteInfo = MetaZKit;
+		};
+		1BD5620F1648F18400F9C579 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B2022F810B393CA00EE548A /* Plist Marcos */;
+			remoteInfo = "Plist Marcos";
+		};
+		1BD562551648F44300F9C579 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1BD562061648F17C00F9C579 /* AlertWindowPlugin */;
+			remoteInfo = AlertWindowPlugin;
+		};
 		1BEA6E77106EF2B0004B1A7F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -433,18 +481,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		1B29A05A14C5C5B40048B7C0 /* Copy Growl frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Growl.framework/Versions;
-			dstSubfolderSpec = 10;
-			files = (
-				1B29A19B14C5CFE80048B7C0 /* 1.2.3 in Copy Growl frameworks */,
-				1B29A19C14C5CFE80048B7C0 /* 1.3.1 in Copy Growl frameworks */,
-			);
-			name = "Copy Growl frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1BB6C11E1052B199001D3D1D /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -457,12 +493,26 @@
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1BD55FBE1648BD2000F9C579 /* Copy Growl Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Growl.framework/Versions;
+			dstSubfolderSpec = 10;
+			files = (
+				1BD55FBF1648BD2000F9C579 /* 1.2.3 in Copy Growl Frameworks */,
+				1BD55FC01648BD2000F9C579 /* 1.3.1 in Copy Growl Frameworks */,
+			);
+			name = "Copy Growl Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BEA6F2F106EF6D5004B1A7F /* Copy Plugins */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				1BD562471648F43A00F9C579 /* AlertWindowPlugin.mzactions in Copy Plugins */,
+				1BD5604D1648CC0200F9C579 /* GrowlPlugin.mzactions in Copy Plugins */,
 				1B299DB714AE4D3A0048B7C0 /* TheMovieDb.mzplugin in Copy Plugins */,
 				1B4F53D8116EA0BE003221B1 /* TheTVDBPlugin.mzplugin in Copy Plugins */,
 				1B040EEE1081C0110027FA0D /* TagChimp.mzplugin in Copy Plugins */,
@@ -602,8 +652,6 @@
 		1B42F2B610DEB4A200AFEBF6 /* IMDBPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBPlugin.m; sourceTree = "<group>"; };
 		1B44949810D57D6900B9C751 /* AtomicParsley */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = AtomicParsley; sourceTree = "<group>"; };
 		1B4494BC10D584E000B9C751 /* next_release.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = next_release.txt; path = Release/next_release.txt; sourceTree = "<group>"; };
-		1B44956C10D6118F00B9C751 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = Externals/Growl.framework; sourceTree = "<group>"; };
-		1B44958410D6128700B9C751 /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Growl Registration Ticket.growlRegDict"; path = "App/resources/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
 		1B4499D010D9A5CE00B9C751 /* PresetSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetSegmentedControl.h; sourceTree = "<group>"; };
 		1B4499D110D9A5CE00B9C751 /* PresetSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresetSegmentedControl.m; sourceTree = "<group>"; };
 		1B449B8610DC7DE400B9C751 /* ChaptersTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChaptersTableView.h; sourceTree = "<group>"; };
@@ -1071,6 +1119,15 @@
 		1BD55C641648466700F9C579 /* NSError+MZScriptError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MZScriptError.h"; sourceTree = "<group>"; };
 		1BD55C651648466700F9C579 /* NSError+MZScriptError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MZScriptError.m"; sourceTree = "<group>"; };
 		1BD55D4516485AE700F9C579 /* Update iTunes.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Update iTunes.applescript"; sourceTree = "<group>"; };
+		1BD55F8E1648BB4200F9C579 /* GrowlPlugin.mzactions */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrowlPlugin.mzactions; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BD55F8F1648BB4200F9C579 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Growl/Info.plist; sourceTree = "<group>"; };
+		1BD55FAD1648BC4F00F9C579 /* GrowlPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowlPlugin.h; sourceTree = "<group>"; };
+		1BD55FAE1648BC4F00F9C579 /* GrowlPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowlPlugin.m; sourceTree = "<group>"; };
+		1BD5611E1648D51300F9C579 /* Quit MetaZ.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Quit MetaZ.applescript"; sourceTree = "<group>"; };
+		1BD562071648F17C00F9C579 /* AlertWindowPlugin.mzactions */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlertWindowPlugin.mzactions; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BD562081648F17C00F9C579 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = AlertWindow/Info.plist; sourceTree = "<group>"; };
+		1BD5622D1648F2B200F9C579 /* AlertWindowPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertWindowPlugin.h; sourceTree = "<group>"; };
+		1BD5622E1648F2B200F9C579 /* AlertWindowPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertWindowPlugin.m; sourceTree = "<group>"; };
 		1BD6E601105B355800E40151 /* MetaChangeNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaChangeNotification.m; sourceTree = "<group>"; };
 		1BD6E74D105DADCC00E40151 /* AddToQueue.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = AddToQueue.tiff; path = App/resources/AddToQueue.tiff; sourceTree = "<group>"; };
 		1BD6E74E105DADCC00E40151 /* Pause.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pause.tiff; path = App/resources/Pause.tiff; sourceTree = "<group>"; };
@@ -1181,6 +1238,22 @@
 				1B523C0F13F4B3F500C20B7D /* SystemConfiguration.framework in Frameworks */,
 				1B8E95711401BE7F006227B4 /* libz.dylib in Frameworks */,
 				1B8E96321401BE86006227B4 /* CoreServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1BD55F8C1648BB4200F9C579 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BD560AA1648CC3400F9C579 /* MetaZKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1BD562051648F17C00F9C579 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BD562111648F18900F9C579 /* MetaZKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1304,7 +1377,6 @@
 				1BB6C10A1052B154001D3D1D /* Sparkle.framework */,
 				1B11A00610457B0D004C93D3 /* RubyCocoa.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
-				1B44956C10D6118F00B9C751 /* Growl.framework */,
 				1B523B8813F4B39400C20B7D /* SystemConfiguration.framework */,
 				1B523B9013F4B3BE00C20B7D /* libz.dylib */,
 				1B523B9613F4B3D900C20B7D /* CoreServices.framework */,
@@ -1335,6 +1407,8 @@
 				1B42F25810DEB0D300AFEBF6 /* IMDBPlugin.mzplugin */,
 				1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzplugin */,
 				1B8CB90B14ACD62000F859F7 /* TheMovieDb.mzplugin */,
+				1BD55F8E1648BB4200F9C579 /* GrowlPlugin.mzactions */,
+				1BD562071648F17C00F9C579 /* AlertWindowPlugin.mzactions */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2090,8 +2164,6 @@
 				1BAC916413F056240022D625 /* MZYearDateFormatter.m */,
 				1B7B53F314A029FA00BF37DD /* MZMultipleDateFormatter.h */,
 				1B7B53F414A029FA00BF37DD /* MZMultipleDateFormatter.m */,
-				1B29A06414C5C6570048B7C0 /* MZMultiGrowlWrapper.h */,
-				1B29A06514C5C6570048B7C0 /* MZMultiGrowlWrapper.m */,
 				1B3544E615B2160F0033DD74 /* MetaZApplication.h */,
 				1B3544E715B2160F0033DD74 /* MetaZApplication.m */,
 				1B35452F15B223BB0033DD74 /* MZMetaDataDocument.h */,
@@ -2142,11 +2214,70 @@
 			path = "Externals/google-toolbox-for-mac/DebugUtils";
 			sourceTree = "<group>";
 		};
+		1BD55F761648BACA00F9C579 /* Growl */ = {
+			isa = PBXGroup;
+			children = (
+				1BD55F771648BAD800F9C579 /* Classes */,
+				1BD55F7D1648BB0700F9C579 /* Resources */,
+			);
+			name = Growl;
+			sourceTree = "<group>";
+		};
+		1BD55F771648BAD800F9C579 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1B29A06414C5C6570048B7C0 /* MZMultiGrowlWrapper.h */,
+				1B29A06514C5C6570048B7C0 /* MZMultiGrowlWrapper.m */,
+				1BD55FAD1648BC4F00F9C579 /* GrowlPlugin.h */,
+				1BD55FAE1648BC4F00F9C579 /* GrowlPlugin.m */,
+			);
+			name = Classes;
+			path = Growl/src;
+			sourceTree = "<group>";
+		};
+		1BD55F7D1648BB0700F9C579 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1BD55F8F1648BB4200F9C579 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		1BD561F01648F06700F9C579 /* AlertWindow */ = {
+			isa = PBXGroup;
+			children = (
+				1BD561F11648F07100F9C579 /* Classes */,
+				1BD561F41648F0A000F9C579 /* Resources */,
+			);
+			name = AlertWindow;
+			sourceTree = "<group>";
+		};
+		1BD561F11648F07100F9C579 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1BD5622D1648F2B200F9C579 /* AlertWindowPlugin.h */,
+				1BD5622E1648F2B200F9C579 /* AlertWindowPlugin.m */,
+			);
+			name = Classes;
+			path = AlertWindow/src;
+			sourceTree = "<group>";
+		};
+		1BD561F41648F0A000F9C579 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1BD562081648F17C00F9C579 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		1BEA6E68106EF248004B1A7F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
 				1B63A889164823FE00461FC9 /* Example Actions.applescript */,
 				1BD55D4516485AE700F9C579 /* Update iTunes.applescript */,
+				1BD5611E1648D51300F9C579 /* Quit MetaZ.applescript */,
+				1BD561F01648F06700F9C579 /* AlertWindow */,
+				1BD55F761648BACA00F9C579 /* Growl */,
 				1B8CB8FA14ACD5C700F859F7 /* TheMovieDb */,
 				1B4F538D116E9E1F003221B1 /* TheTVDB */,
 				1B42F23B10DEB05000AFEBF6 /* IMDB */,
@@ -2228,7 +2359,6 @@
 				1BAC8FEA13ECAFF20022D625 /* metaz.png */,
 				1BAC8ED913EB32110022D625 /* MetaZ.icns */,
 				1BCECEC410E98E4200D0AD35 /* Credits.html */,
-				1B44958410D6128700B9C751 /* Growl Registration Ticket.growlRegDict */,
 				1B03325510B15FF100B28E3A /* StopProgressOn.png */,
 				1B03325310B15CB200B28E3A /* StopProgressHover.png */,
 				1B03325110B1592D00B28E3A /* StopProgress.png */,
@@ -2481,6 +2611,45 @@
 			productReference = 1BA325C410545ACA00276F57 /* MetaZKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		1BD55F8D1648BB4200F9C579 /* GrowlPlugin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1BD55F931648BB4400F9C579 /* Build configuration list for PBXNativeTarget "GrowlPlugin" */;
+			buildPhases = (
+				1BD55F8A1648BB4200F9C579 /* Resources */,
+				1BD55F8B1648BB4200F9C579 /* Sources */,
+				1BD55F8C1648BB4200F9C579 /* Frameworks */,
+				1BD55FBE1648BD2000F9C579 /* Copy Growl Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1BD55F951648BB4E00F9C579 /* PBXTargetDependency */,
+				1BD55F971648BB4E00F9C579 /* PBXTargetDependency */,
+			);
+			name = GrowlPlugin;
+			productName = GrowlPlugin;
+			productReference = 1BD55F8E1648BB4200F9C579 /* GrowlPlugin.mzactions */;
+			productType = "com.apple.product-type.bundle";
+		};
+		1BD562061648F17C00F9C579 /* AlertWindowPlugin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1BD5620C1648F17D00F9C579 /* Build configuration list for PBXNativeTarget "AlertWindowPlugin" */;
+			buildPhases = (
+				1BD562031648F17C00F9C579 /* Resources */,
+				1BD562041648F17C00F9C579 /* Sources */,
+				1BD562051648F17C00F9C579 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1BD5620E1648F18400F9C579 /* PBXTargetDependency */,
+				1BD562101648F18400F9C579 /* PBXTargetDependency */,
+			);
+			name = AlertWindowPlugin;
+			productName = AlertWindowPlugin;
+			productReference = 1BD562071648F17C00F9C579 /* AlertWindowPlugin.mzactions */;
+			productType = "com.apple.product-type.bundle";
+		};
 		1BEA6E71106EF2A0004B1A7F /* AtomicParsley */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1BEA6E76106EF2A1004B1A7F /* Build configuration list for PBXNativeTarget "AtomicParsley" */;
@@ -2507,7 +2676,6 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				1BB6C11E1052B199001D3D1D /* Copy Frameworks */,
 				1BEA6F2F106EF6D5004B1A7F /* Copy Plugins */,
-				1B29A05A14C5C5B40048B7C0 /* Copy Growl frameworks */,
 				1B74B569164826980017E013 /* Compile Plugin Scripts */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
@@ -2517,6 +2685,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1BD560461648CBF700F9C579 /* PBXTargetDependency */,
 				1BA325CC10545BAE00276F57 /* PBXTargetDependency */,
 				1B040EEA1081C0030027FA0D /* PBXTargetDependency */,
 				1B032F9310B0C41200B28E3A /* PBXTargetDependency */,
@@ -2525,6 +2694,7 @@
 				1B4F53D2116EA0B7003221B1 /* PBXTargetDependency */,
 				1B20239310B395FA00EE548A /* PBXTargetDependency */,
 				1B299DA414AE4D2A0048B7C0 /* PBXTargetDependency */,
+				1BD562561648F44300F9C579 /* PBXTargetDependency */,
 			);
 			name = MetaZ;
 			productInstallPath = "$(HOME)/Applications";
@@ -2578,6 +2748,8 @@
 				1B42F25710DEB0D300AFEBF6 /* IMDB */,
 				1B4F53B3116E9F44003221B1 /* TheTVDB */,
 				1B8CB90A14ACD62000F859F7 /* TheMovieDb */,
+				1BD55F8D1648BB4200F9C579 /* GrowlPlugin */,
+				1BD562061648F17C00F9C579 /* AlertWindowPlugin */,
 			);
 		};
 /* End PBXProject section */
@@ -2637,6 +2809,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1BD55F8A1648BB4200F9C579 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1BD562031648F17C00F9C579 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BEA6E6E106EF2A0004B1A7F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2682,7 +2868,6 @@
 				1B03325210B1592D00B28E3A /* StopProgress.png in Resources */,
 				1B03325410B15CB200B28E3A /* StopProgressHover.png in Resources */,
 				1B03325610B15FF100B28E3A /* StopProgressOn.png in Resources */,
-				1B44958510D6128700B9C751 /* Growl Registration Ticket.growlRegDict in Resources */,
 				1B42F21F10DD5D6D00AFEBF6 /* MiniProgressGradient.png in Resources */,
 				1BCECEC510E98E4200D0AD35 /* Credits.html in Resources */,
 				1BAC8EDA13EB32110022D625 /* MetaZ.icns in Resources */,
@@ -2916,6 +3101,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1BD55F8B1648BB4200F9C579 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BD55FAF1648BC4F00F9C579 /* GrowlPlugin.m in Sources */,
+				1BD55FE01648BD7400F9C579 /* MZMultiGrowlWrapper.m in Sources */,
+				1BD5611F1648D51300F9C579 /* Quit MetaZ.applescript in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1BD562041648F17C00F9C579 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BD5622F1648F2B200F9C579 /* AlertWindowPlugin.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1BEA6E6F106EF2A0004B1A7F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2975,7 +3178,6 @@
 				1B069668149BD35B00B5FA90 /* MGViewAnimation.m in Sources */,
 				1B7B529D149EA26300BF37DD /* EnsureArrayTransformer.m in Sources */,
 				1B7B53F514A029FA00BF37DD /* MZMultipleDateFormatter.m in Sources */,
-				1B29A06614C5C6570048B7C0 /* MZMultiGrowlWrapper.m in Sources */,
 				1B3544E815B2160F0033DD74 /* MetaZApplication.m in Sources */,
 				1B35453115B223BB0033DD74 /* MZMetaDataDocument.m in Sources */,
 				1B89050A163F6E48008C5C8B /* MZGetCommand.m in Sources */,
@@ -3084,6 +3286,36 @@
 			isa = PBXTargetDependency;
 			target = 1BA325C310545ACA00276F57 /* MetaZKit */;
 			targetProxy = 1BA325CB10545BAE00276F57 /* PBXContainerItemProxy */;
+		};
+		1BD55F951648BB4E00F9C579 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			targetProxy = 1BD55F941648BB4E00F9C579 /* PBXContainerItemProxy */;
+		};
+		1BD55F971648BB4E00F9C579 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B2022F810B393CA00EE548A /* Plist Marcos */;
+			targetProxy = 1BD55F961648BB4E00F9C579 /* PBXContainerItemProxy */;
+		};
+		1BD560461648CBF700F9C579 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1BD55F8D1648BB4200F9C579 /* GrowlPlugin */;
+			targetProxy = 1BD560451648CBF700F9C579 /* PBXContainerItemProxy */;
+		};
+		1BD5620E1648F18400F9C579 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			targetProxy = 1BD5620D1648F18400F9C579 /* PBXContainerItemProxy */;
+		};
+		1BD562101648F18400F9C579 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B2022F810B393CA00EE548A /* Plist Marcos */;
+			targetProxy = 1BD5620F1648F18400F9C579 /* PBXContainerItemProxy */;
+		};
+		1BD562561648F44300F9C579 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1BD562061648F17C00F9C579 /* AlertWindowPlugin */;
+			targetProxy = 1BD562551648F44300F9C579 /* PBXContainerItemProxy */;
 		};
 		1BEA6E78106EF2B0004B1A7F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3910,6 +4142,165 @@
 			};
 			name = Release;
 		};
+		1BD55F901648BB4300F9C579 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/Growl/Info.plist;
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = GrowlPlugin;
+				USER_HEADER_SEARCH_PATHS = "Plugins/Growl/**";
+				WRAPPER_EXTENSION = mzactions;
+			};
+			name = Debug;
+		};
+		1BD55F911648BB4300F9C579 /* Remote Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/Growl/Info.plist;
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = GrowlPlugin;
+				USER_HEADER_SEARCH_PATHS = "Plugins/Growl/**";
+				WRAPPER_EXTENSION = mzactions;
+			};
+			name = "Remote Debug";
+		};
+		1BD55F921648BB4300F9C579 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/Growl/Info.plist;
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = GrowlPlugin;
+				USER_HEADER_SEARCH_PATHS = "Plugins/Growl/**";
+				WRAPPER_EXTENSION = mzactions;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		1BD562091648F17D00F9C579 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/AlertWindow/Info.plist;
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = AlertWindowPlugin;
+				WRAPPER_EXTENSION = mzactions;
+			};
+			name = Debug;
+		};
+		1BD5620A1648F17D00F9C579 /* Remote Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/AlertWindow/Info.plist;
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = AlertWindowPlugin;
+				WRAPPER_EXTENSION = mzactions;
+			};
+			name = "Remote Debug";
+		};
+		1BD5620B1648F17D00F9C579 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/AlertWindow/Info.plist;
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = AlertWindowPlugin;
+				WRAPPER_EXTENSION = mzactions;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		1BEA6E74106EF2A1004B1A7F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4149,6 +4540,26 @@
 				1BA325C610545ACB00276F57 /* Debug */,
 				1B44938010C95B0A00B9C751 /* Remote Debug */,
 				1BA325C710545ACB00276F57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1BD55F931648BB4400F9C579 /* Build configuration list for PBXNativeTarget "GrowlPlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1BD55F901648BB4300F9C579 /* Debug */,
+				1BD55F911648BB4300F9C579 /* Remote Debug */,
+				1BD55F921648BB4300F9C579 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1BD5620C1648F17D00F9C579 /* Build configuration list for PBXNativeTarget "AlertWindowPlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1BD562091648F17D00F9C579 /* Debug */,
+				1BD5620A1648F17D00F9C579 /* Remote Debug */,
+				1BD5620B1648F17D00F9C579 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

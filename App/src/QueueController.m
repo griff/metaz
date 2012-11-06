@@ -10,7 +10,6 @@
 #import "MZMetaLoader.h"
 #import "QueueWindowController.h"
 #import "Resources.h"
-#import "MZMultiGrowlWrapper.h"
 
 @interface QueueController ()
 @property(readwrite) NSInteger targetProgress;
@@ -48,7 +47,6 @@
     [writeQueue release];
     [controller release];
     [filesController release];
-    [startTime release];
     [dockIndicator release];
     [progressBar release];
     [mainView release];
@@ -60,30 +58,6 @@
 
 - (void)awakeFromNib
 {
-    [MZMultiGrowlWrapper setGrowlDelegate:self];
-    [[NSNotificationCenter defaultCenter]
-        addObserver:self
-           selector:@selector(queueItemCompleted:)
-               name:MZQueueItemCompleted
-             object:nil];
-
-    [[NSNotificationCenter defaultCenter]
-        addObserver:self
-           selector:@selector(queueItemFailed:)
-               name:MZQueueItemFailed
-             object:nil];
-
-    [[NSNotificationCenter defaultCenter]
-        addObserver:self
-           selector:@selector(queueStarted:)
-               name:MZQueueStarted
-             object:nil];
-    [[NSNotificationCenter defaultCenter]
-        addObserver:self
-           selector:@selector(queueCompleted:)
-               name:MZQueueCompleted
-             object:nil];
-
     [dockIndicator setMinValue:0];
     [dockIndicator bind:@"maxValue" toObject:self withKeyPath:@"targetProgress" options:nil];
     [dockIndicator bind:@"doubleValue" toObject:self withKeyPath:@"progress" options:nil];
@@ -112,7 +86,7 @@
 {
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidFinishLaunching:) name:NSApplicationDidFinishLaunchingNotification object:NSApp];
 	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateDriverDidFinish:) name:SUUpdateDriverFinishedNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(queueCompletedPercent:) name:MZQueueCompletedPercent object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(queueCompletedPercent:) name:MZQueueItemCompletedPercentNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowWillResize:) name:MZNSWindowWillResizeNotification object:mainWindow];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:mainWindow];
     [writeQueue addObserver:self forKeyPath:@"status" options:0 context:nil];
@@ -313,108 +287,6 @@
                    object:[note object]];
     [controller release];
     controller = nil;
-}
-
-- (void)queueStarted:(NSNotification *)note
-{
-    [startTime release];
-    startTime = [[NSDate alloc] init];
-}
-
-- (void)queueCompleted:(NSNotification *)note
-{
-    NSInteger action = [[NSUserDefaults standardUserDefaults] integerForKey:@"whenDoneAction"];
-    if(action == 2 || action == 5 || action == 1 || action == 3)
-    {
-        NSString* intervalStr;
-        NSTimeInterval interval = [startTime timeIntervalSinceNow]*-1.0;
-        if(interval > 86400) // Days
-        {
-            interval = interval/86400;
-            intervalStr = [NSString stringWithFormat:@"%1.1f days", interval];
-        }
-        else if (interval > 3600) // Hours
-        {
-            interval = interval/3600;
-            intervalStr = [NSString stringWithFormat:@"%1.1f hours", interval];
-        }
-        else if (interval > 60) // Minutes
-        {
-            interval = interval/60;
-            intervalStr = [NSString stringWithFormat:@"%1.1f min", interval];
-        }
-        else
-        {
-            intervalStr = [NSString stringWithFormat:@"%1.0f sec", interval];
-        }
-
-        NSString * title = NSLocalizedString(@"Queue run completed", @"Queue completed title");
-        NSString * msg = [NSString stringWithFormat:
-                    NSLocalizedString(@"Your MetaZ queue completed in %@",
-                        "Queue completed alert message"),
-                    intervalStr];
-
-        if(action == 2 || action == 5)
-        {
-            [MZMultiGrowlWrapper
-                notifyWithTitle:title
-                    description:msg
-               notificationName:@"Queue processing completed"
-                       iconData:nil
-                       priority:0
-                       isSticky:NO
-                   clickContext:nil];
-        }
-
-        if(action == 1 || action == 3)
-            NSRunAlertPanel( title, msg, NSLocalizedString(@"OK", @"OK button text"), nil, nil);
-    }
-    if(action == 4 || action == 5)
-        [NSApp terminate:self];
-}
-
-- (void)queueItemCompleted:(NSNotification *)note
-{
-    NSInteger action = [[NSUserDefaults standardUserDefaults] integerForKey:@"whenDoneAction"];
-    if(action == 2 || action == 3 || action == 5)
-    {
-        MetaEdits* edits = [[note userInfo] objectForKey:MZMetaEditsNotificationKey];
-        [MZMultiGrowlWrapper
-            notifyWithTitle:@"File writing completed"
-                description:[NSString stringWithFormat:@"Completed writing %@", [[edits savedFileName] lastPathComponent]]
-           notificationName:@"File writing completed"
-                   iconData:[edits picture]
-                   priority:0
-                   isSticky:NO
-               clickContext:[edits savedFileName]];
-    }
-}
-
-- (void)queueItemFailed:(NSNotification *)note
-{
-    NSInteger action = [[NSUserDefaults standardUserDefaults] integerForKey:@"whenDoneAction"];
-    if(action == 2 || action == 3)
-    {
-        MetaEdits* edits = [[note userInfo] objectForKey:MZMetaEditsNotificationKey];
-        [MZMultiGrowlWrapper
-            notifyWithTitle:@"File writing failed"
-                description:[NSString stringWithFormat:@"Failed writing %@", [[edits savedFileName] lastPathComponent]]
-           notificationName:@"File writing failed"
-                   iconData:[edits picture]
-                   priority:0
-                   isSticky:NO
-               clickContext:[edits loadedFileName]];
-    }
-}
-
-#pragma mark - as Growl delegate
-
-- (void) growlNotificationWasClicked:(id)clickContext
-{
-    NSString* path = clickContext;
-    [[NSWorkspace sharedWorkspace]
-                      selectFile:path
-        inFileViewerRootedAtPath:@""];
 }
 
 #pragma mark - as NSToolbarItemValidation

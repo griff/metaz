@@ -93,7 +93,7 @@ static MZWriteQueue* sharedQueue = nil;
         status = QueueRunning;
         [self didChangeValueForKey:@"status"];
         [[NSNotificationCenter defaultCenter]
-                postNotificationName:MZQueueStarted
+                postNotificationName:MZQueueStartedNotification
                               object:self];
         
         [self startNextItem];
@@ -163,7 +163,7 @@ static MZWriteQueue* sharedQueue = nil;
     BOOL stopping = [self doStopToStopping:YES];
     [self saveQueueWithError:NULL];
     [[NSNotificationCenter defaultCenter]
-            postNotificationName:MZQueueCompleted
+            postNotificationName:MZQueueCompletedNotification
                           object:self];
     if(stopping)
     {
