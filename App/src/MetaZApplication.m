@@ -52,21 +52,20 @@
 
 - (id)selectedDocuments;
 {
-    NSArray* sel = [filesController selectedObjects];
-    if([sel count]==0)
-        return nil;
-    if([sel count]==1)
-        return [MZSelectedMetaDataDocument documentWithEdit:[sel objectAtIndex:0]];
-    
     NSMutableArray* arr = [NSMutableArray array];
-    for(MetaEdits* edit in sel)
+    for(MetaEdits* edit in [filesController selectedObjects])
         [arr addObject:[MZSelectedMetaDataDocument documentWithEdit:edit]];
     return arr;
 }
 
 - (id)selection;
 {
-    return [self selectedDocuments];
+    NSArray* sel = [self selectedDocuments];
+    if([sel count] == 0)
+        return nil;
+    if([sel count]==1)
+        return [sel objectAtIndex:0];
+    return sel;
 }
 
 - (void)setSelection:(id)sel;
