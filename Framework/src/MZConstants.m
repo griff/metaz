@@ -70,6 +70,7 @@ NSString* const MZIMDBTagIdent = @"imdb";
 NSString* const MZASINTagIdent = @"asin";
 NSString* const MZDVDSeasonTagIdent = @"dvdSeason";
 NSString* const MZDVDEpisodeTagIdent = @"dvdEpisode";
+NSString* const MZiTunesPersistentIDTagIdent = @"iTunesPersistentID";
 
 /* Notifications */
 NSString* const MZDataProviderLoadedNotification = @"MZDataProviderLoadedNotification";
@@ -87,3 +88,12 @@ NSString* const MZDataControllerErrorKey = @"MZDataControllerErrorKey";
 
 // Standard alert ids
 NSString* const MZDataProviderFileAlreadyLoadedWarningKey = @"alerts.warnings.fileAlreadyLoaded";
+
+NSString* const iTunesMetadataPboardType = @"com.apple.itunes.metadata";
+NSString* const iTunesPboardType = @"CorePasteboardFlavorType 0x6974756E";
+
+// Plugin UTI
+const CFStringRef kMZUTMetaZPlugin = CFSTR("org.maven-group.MetaZ.plugin");
+const CFStringRef kMZUTMetaZActionsPlugin = CFSTR("org.maven-group.MetaZ.plugin.actions");
+const CFStringRef kMZUTAppleScriptText = CFSTR("com.apple.applescript.text");
+const CFStringRef kMZUTAppleScript = CFSTR("com.apple.applescript.script");

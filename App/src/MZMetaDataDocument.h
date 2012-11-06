@@ -28,11 +28,15 @@
 @interface MZMetaDataDocument : NSObject {
     MetaEdits *data;
     NSArray* tags;
+    NSString* container;
+    BOOL saved;
 }
 @property(readonly) MetaEdits *data;
 
 + (id)documentWithEdit:(MetaEdits *)edit;
++ (id)documentWithEdit:(MetaEdits *)edit container:(NSString *)container saved:(BOOL)saved;
 - (id)initWithEdit:(MetaEdits *)edit;
+- (id)initWithEdit:(MetaEdits *)edit container:(NSString *)container saved:(BOOL)saved;
 - (NSURL *)fileURL;
 - (NSString *)displayName;
 - (MZTimeCode *)duration;

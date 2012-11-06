@@ -18,5 +18,6 @@
 
 - (id)selectedDocuments;
 - (id)handleOpenScriptCommand:(id)command;
+- (NSArray *)queueDocuments;
 
 @end

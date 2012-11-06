@@ -18,22 +18,6 @@
     [super dealloc];
 }
 
-/*
--(void)release
-{
-    NSUInteger count = [self retainCount];
-    MZLoggerDebug(@"Releasing CollectionView %d", count);
-    [super release];
-}
-
-- (id)retain
-{
-    NSUInteger count = [self retainCount];
-    MZLoggerDebug(@"Retaining CollectionView %d", count);
-    return [super retain];
-}
-*/
-
 -(void)awakeFromNib
 {
     [self bind:NSContentBinding toObject:queues withKeyPath:@"arrangedObjects" options:nil];

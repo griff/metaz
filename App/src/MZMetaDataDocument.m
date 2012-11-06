@@ -116,12 +116,24 @@
     return [[[self alloc] initWithEdit:edit] autorelease];
 }
 
++ (id)documentWithEdit:(MetaEdits *)edit container:(NSString *)container saved:(BOOL)saved;
+{
+    return [[[self alloc] initWithEdit:edit container:container saved:saved] autorelease];
+}
+
 - (id)initWithEdit:(MetaEdits *)edit;
+{
+    return [self initWithEdit:edit container:@"orderedDocuments" saved:NO];
+}
+
+- (id)initWithEdit:(MetaEdits *)edit container:(NSString *)aContainer saved:(BOOL)theSaved;
 {
     self = [super init];
     if(self)
     {
         data = [edit retain];
+        container = [aContainer retain];
+        saved = theSaved;
     }
     return self;
 }
@@ -130,6 +142,7 @@
 {
     [data release];
     [tags release];
+    [container release];
     [super dealloc];
 }
 
@@ -137,7 +150,7 @@
 
 - (NSURL *)fileURL;
 {
-    return [NSURL fileURLWithPath:[data loadedFileName]];
+    return [NSURL fileURLWithPath:saved ? [data savedFileName] : [data loadedFileName]];
 }
 
 - (NSString *)displayName;
@@ -169,14 +182,13 @@
     return tags;
 }
 
-/*
-- (id)scriptingValueForSpecifier:(id)specifier
+- (id)valueInTagsWithName:(NSString *)name
 {
-    NSLog(@"Bla Bla: %@ %@ %@ %@ %@", specifier, [specifier key], [[specifier childSpecifier] key], [[specifier containerSpecifier] key]);
-    id ret = [super scriptingValueForSpecifier:specifier];
-    return ret;
+    MZTag* tag = [MZTag tagForScriptName:[name lowercaseString]];
+    if(tag)
+        return [MZTagItem itemWithTag:tag document:self];
+    return nil;
 }
-*/
 
 - (NSScriptObjectSpecifier *)objectSpecifier;
 {
@@ -184,16 +196,9 @@
         [NSScriptClassDescription classDescriptionForClass:[MetaZApplication class]];// 1
     return [[[NSNameSpecifier alloc]
         initWithContainerClassDescription:containerClassDesc
-        containerSpecifier:nil key:@"orderedDocuments"
+        containerSpecifier:nil key:container
         name:[self displayName]] autorelease];
 }
-/*
-- (NSArray *)indicesOfObjectsByEvaluatingObjectSpecifier:(NSScriptObjectSpecifier *)specifier
-{
-    NSLog(@"Bla Bla: %@ %@ %@", [specifier key], [[specifier childSpecifier] key], [[specifier containerSpecifier] key]);
-    return nil;
-}
-*/
 
 - (id)handleCloseScriptCommand:(NSScriptCommand *)cmd;
 {

@@ -112,10 +112,6 @@
 
 -(BOOL)changed
 {
-    /*
-    int count = [changes objectForKey:MZFileNameTag] != nil ? 1 : 0;
-    return [changes count] > count;
-    */
     return [changes count] > 0;
 }
 
@@ -218,20 +214,6 @@
     BOOL pureModified = (pureValue != aValue) &&
         !(pureValue && aValue && [pureValue isEqual:aValue]);
 
-    /*
-    id currentValue = [provider valueForKey:aKey];
-    currentValue = [tag convertObjectForStorage:currentValue];
-    
-    // If reverted to old value 
-    if([aValue isEqual:currentValue])
-    {
-        if(oldValue == nil)
-            return;
-        [self setterChanged:NO forKey:aKey];
-        return;
-    }
-    */
-    
     if(oldValue==nil)
     {
         [[[self undoManager] prepareWithInvocationTarget:self] setterChanged:NO forKey:aKey];

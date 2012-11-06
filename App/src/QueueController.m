@@ -128,13 +128,6 @@
     [writeQueue removeObserver:self forKeyPath:@"completedItems.@count"];
 }
 
-/*
-- (void)setTargetProgress:(NSInteger)val
-{
-    targetProgress = val;
-}
-*/
-
 - (void)updateUI
 {
     RunStatus status = [writeQueue status];
@@ -253,18 +246,6 @@
         NSString* title = [NSString stringWithFormat:
                 NSLocalizedString(@"MetaZ Has Detected %d Pending Item(s) In Your Queue", @"Loaded queue message box text"),
                 count];
-        /*
-        NSAlert* alert = [[NSAlert alloc] init];
-        [alert setMessageText:title];
-        [alert setInformativeText:NSLocalizedString(@"Do you want to reload them ?", @"Loaded queue message question")];
-        [alert setAlertStyle:NSCriticalAlertStyle];
-        [alert addButtonWithTitle:NSLocalizedString(@"Reload Queue", @"Button text for reload queue action")];
-        [alert addButtonWithTitle:NSLocalizedString(@"Empty Queue", @"Button text for empty queue action")];
-        [alert setShowsSuppressionButton:YES];
-        [[alert suppressionButton] setTitle:@"Apply to all in queue"];
-        NSInteger returnCode = [alert runModal];
-        [alert release];
-        */
         NSInteger returnCode = NSRunCriticalAlertPanel(title,
                 NSLocalizedString(@"Do you want to reload them ?", @"Loaded queue message question"),
                 NSLocalizedString(@"Reload Queue", @"Button text for reload queue action"), nil,
@@ -272,15 +253,6 @@
                 );
         if(returnCode == NSAlertOtherReturn)
             [writeQueue removeAllQueueItems];
-        /*
-        NSBeginCriticalAlertSheet(title, 
-                NSLocalizedString(@"Reload Queue", @"Button text for reload queue action"), nil,
-                NSLocalizedString(@"Empty Queue", @"Button text for empty queue action"),
-                mainWindow,
-                self, nil, @selector(didDismissReload:returnCode:contextInfo:), nil,
-                NSLocalizedString(@"Do you want to reload them ?", @"Loaded queue message question")
-                );
-        */
     }
 }
 
@@ -506,12 +478,6 @@
 
 - (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem
 {
-    /*
-    if([anItem action] == @selector(showQueue:))
-    {
-        return [[writeQueue queueItems] count] > 0;
-    }
-    */
     if([anItem action] == @selector(startEncoding:))
     {
         return [writeQueue status] == QueueStopped &&

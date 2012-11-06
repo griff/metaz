@@ -220,6 +220,13 @@
 		1BD3D3FE108E694100BE6943 /* faded_cow_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3D3FB108E694100BE6943 /* faded_cow_error.png */; };
 		1BD3D3FF108E694100BE6943 /* faded_cow_fatal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3D3FC108E694100BE6943 /* faded_cow_fatal.png */; };
 		1BD3D400108E694100BE6943 /* faded_cow_multiple.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3D3FD108E694100BE6943 /* faded_cow_multiple.png */; };
+		1BD55BED16482D7600F9C579 /* Return iTunes selected.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 1B63A36616458A1C00461FC9 /* Return iTunes selected.applescript */; };
+		1BD55C5E16483F5E00F9C579 /* MZActionsPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD55C5C16483F5E00F9C579 /* MZActionsPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BD55C5F16483F5E00F9C579 /* MZActionsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD55C5D16483F5E00F9C579 /* MZActionsPlugin.m */; };
+		1BD55C621648431D00F9C579 /* MZScriptActionsPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD55C601648431D00F9C579 /* MZScriptActionsPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BD55C631648431D00F9C579 /* MZScriptActionsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD55C611648431D00F9C579 /* MZScriptActionsPlugin.m */; };
+		1BD55C661648466700F9C579 /* NSError+MZScriptError.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD55C641648466700F9C579 /* NSError+MZScriptError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BD55C671648466700F9C579 /* NSError+MZScriptError.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD55C651648466700F9C579 /* NSError+MZScriptError.m */; };
 		1BD6E752105DADCC00E40151 /* AddToQueue.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74D105DADCC00E40151 /* AddToQueue.tiff */; };
 		1BD6E753105DADCC00E40151 /* Pause.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74E105DADCC00E40151 /* Pause.tiff */; };
 		1BD6E754105DADCC00E40151 /* Play.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74F105DADCC00E40151 /* Play.tiff */; };
@@ -469,7 +476,7 @@
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		1B032F5A10B0BE1A00B28E3A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/Amazon/Info.plist; sourceTree = "<group>"; };
+		1B032F5A10B0BE1A00B28E3A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Amazon/Info.plist; sourceTree = "<group>"; };
 		1B032F6710B0C12100B28E3A /* AmazonPlugin.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmazonPlugin.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B032FD910B0C5FE00B28E3A /* hmac_sha2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hmac_sha2.c; path = Externals/hmac/hmac_sha2.c; sourceTree = "<group>"; };
 		1B032FDA10B0C5FE00B28E3A /* hmac_sha2.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c.preprocessed; fileEncoding = 4; name = hmac_sha2.c; path = Externals/hmac/hmac_sha2.c; sourceTree = "<group>"; };
@@ -490,7 +497,7 @@
 		1B03325110B1592D00B28E3A /* StopProgress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StopProgress.png; path = App/resources/StopProgress.png; sourceTree = "<group>"; };
 		1B03325310B15CB200B28E3A /* StopProgressHover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StopProgressHover.png; path = App/resources/StopProgressHover.png; sourceTree = "<group>"; };
 		1B03325510B15FF100B28E3A /* StopProgressOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StopProgressOn.png; path = App/resources/StopProgressOn.png; sourceTree = "<group>"; };
-		1B040C13107F9DA20027FA0D /* mp4chaps */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = mp4chaps; path = Plugins/AtomicParsley/resources/mp4chaps; sourceTree = "<group>"; };
+		1B040C13107F9DA20027FA0D /* mp4chaps */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = mp4chaps; sourceTree = "<group>"; };
 		1B040C3C107FC7480027FA0D /* MZTimeCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTimeCode.h; sourceTree = "<group>"; };
 		1B040C3D107FC7480027FA0D /* MZTimeCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTimeCode.m; sourceTree = "<group>"; };
 		1B040C40107FD1110027FA0D /* MZTimedTextItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTimedTextItem.h; sourceTree = "<group>"; };
@@ -502,10 +509,10 @@
 		1B040DC2108176A70027FA0D /* UndoTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoTableView.h; sourceTree = "<group>"; };
 		1B040DC3108176A70027FA0D /* UndoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoTableView.m; sourceTree = "<group>"; };
 		1B040EBE1081B3C00027FA0D /* TagChimp.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagChimp.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B040EDA1081B4980027FA0D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/TagChimp/Info.plist; sourceTree = "<group>"; };
+		1B040EDA1081B4980027FA0D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		1B040EDB1081B4DC0027FA0D /* TagChimpPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagChimpPlugin.h; sourceTree = "<group>"; };
 		1B040EDC1081B4DC0027FA0D /* TagChimpPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagChimpPlugin.m; sourceTree = "<group>"; };
-		1B040EDE1081B53F0027FA0D /* tagChimp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tagChimp.png; path = Plugins/TagChimp/resources/tagChimp.png; sourceTree = "<group>"; };
+		1B040EDE1081B53F0027FA0D /* tagChimp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tagChimp.png; sourceTree = "<group>"; };
 		1B040EE01081B5550027FA0D /* TCSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSearchProvider.h; sourceTree = "<group>"; };
 		1B040EE11081B5550027FA0D /* TCSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSearchProvider.m; sourceTree = "<group>"; };
 		1B0604AB1199E24700589ACE /* MZBaseSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZBaseSearchProvider.h; sourceTree = "<group>"; };
@@ -590,10 +597,10 @@
 		1B42F21B10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKDockProgressIndicator.m; path = Externals/UKDockProgressIndicator/UKDockProgressIndicator.m; sourceTree = "<group>"; };
 		1B42F21E10DD5D6D00AFEBF6 /* English */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = English; path = Externals/UKDockProgressIndicator/English.lproj/MiniProgressGradient.png; sourceTree = "<group>"; };
 		1B42F25810DEB0D300AFEBF6 /* IMDBPlugin.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IMDBPlugin.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B42F25910DEB0D300AFEBF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/IMDB/Info.plist; sourceTree = "<group>"; };
+		1B42F25910DEB0D300AFEBF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		1B42F2B510DEB4A200AFEBF6 /* IMDBPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDBPlugin.h; sourceTree = "<group>"; };
 		1B42F2B610DEB4A200AFEBF6 /* IMDBPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBPlugin.m; sourceTree = "<group>"; };
-		1B44949810D57D6900B9C751 /* AtomicParsley */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = AtomicParsley; path = Plugins/AtomicParsley/resources/AtomicParsley; sourceTree = "<group>"; };
+		1B44949810D57D6900B9C751 /* AtomicParsley */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = AtomicParsley; sourceTree = "<group>"; };
 		1B4494BC10D584E000B9C751 /* next_release.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = next_release.txt; path = Release/next_release.txt; sourceTree = "<group>"; };
 		1B44956C10D6118F00B9C751 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = Externals/Growl.framework; sourceTree = "<group>"; };
 		1B44958410D6128700B9C751 /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Growl Registration Ticket.growlRegDict"; path = "App/resources/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
@@ -876,10 +883,10 @@
 		1B4AF829116F0AFD00E5C969 /* DebugSnowLeopardOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = DebugSnowLeopardOrLater.xcconfig; path = "Externals/google-toolbox-for-mac/XcodeConfig/Project/DebugSnowLeopardOrLater.xcconfig"; sourceTree = "<group>"; };
 		1B4AF8391170CFCC00E5C969 /* TheTVDBSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBSearch.h; sourceTree = "<group>"; };
 		1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBSearch.m; sourceTree = "<group>"; };
-		1B4AF84411715C8400E5C969 /* languages.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = languages.xml; path = Plugins/TheTVDB/resources/languages.xml; sourceTree = "<group>"; };
+		1B4AF84411715C8400E5C969 /* languages.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = languages.xml; sourceTree = "<group>"; };
 		1B4CFF8F161CDF0100B12009 /* AEVTBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEVTBuilder.h; sourceTree = "<group>"; };
 		1B4CFF90161CDF0100B12009 /* AEVTBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEVTBuilder.m; sourceTree = "<group>"; };
-		1B4F5394116E9EFC003221B1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/TheTVDB/Info.plist; sourceTree = "<group>"; };
+		1B4F5394116E9EFC003221B1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheTVDBPlugin.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B4F53DD116EA1B5003221B1 /* TheTVDBPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBPlugin.h; sourceTree = "<group>"; };
 		1B4F53DE116EA1B5003221B1 /* TheTVDBPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBPlugin.m; sourceTree = "<group>"; };
@@ -941,6 +948,8 @@
 		1B5AC76E10532E5200F9CE36 /* MetaEditPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditPanel.m; sourceTree = "<group>"; };
 		1B63A1D11644D8D100461FC9 /* MZArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZArrayController.h; sourceTree = "<group>"; };
 		1B63A1D21644D8D100461FC9 /* MZArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZArrayController.m; sourceTree = "<group>"; };
+		1B63A36616458A1C00461FC9 /* Return iTunes selected.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = "Return iTunes selected.applescript"; path = "App/resources/Return iTunes selected.applescript"; sourceTree = "<group>"; };
+		1B63A889164823FE00461FC9 /* Example Actions.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Example Actions.applescript"; sourceTree = "<group>"; };
 		1B6E43C610845F8200DFE165 /* TCSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSearch.h; sourceTree = "<group>"; };
 		1B6E43C710845F8200DFE165 /* TCSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSearch.m; sourceTree = "<group>"; };
 		1B6E43C9108468B100DFE165 /* MZSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSearchResult.h; sourceTree = "<group>"; };
@@ -968,7 +977,7 @@
 		1B8CB5E014AA31C500F859F7 /* modified_selected.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = modified_selected.tiff; path = App/resources/modified_selected.tiff; sourceTree = "<group>"; };
 		1B8CB5E114AA31C500F859F7 /* modified.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = modified.tiff; path = App/resources/modified.tiff; sourceTree = "<group>"; };
 		1B8CB90B14ACD62000F859F7 /* TheMovieDb.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheMovieDb.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B8CB95014ACD77800F859F7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/TheMovieDb/Info.plist; sourceTree = "<group>"; };
+		1B8CB95014ACD77800F859F7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = TheMovieDb/Info.plist; sourceTree = "<group>"; };
 		1B8CB96214AE3B2000F859F7 /* TheMovieDbPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheMovieDbPlugin.m; sourceTree = "<group>"; };
 		1B8CB97F14AE3C1800F859F7 /* Access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access.h; path = Plugins/TheMovieDb/Access.h; sourceTree = SOURCE_ROOT; };
 		1B92BB1A10876FBA0057EFD7 /* PureMetaEdits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureMetaEdits.h; sourceTree = "<group>"; };
@@ -1055,6 +1064,13 @@
 		1BD3D3FB108E694100BE6943 /* faded_cow_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = faded_cow_error.png; path = App/resources/faded_cow_error.png; sourceTree = "<group>"; };
 		1BD3D3FC108E694100BE6943 /* faded_cow_fatal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = faded_cow_fatal.png; path = App/resources/faded_cow_fatal.png; sourceTree = "<group>"; };
 		1BD3D3FD108E694100BE6943 /* faded_cow_multiple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = faded_cow_multiple.png; path = App/resources/faded_cow_multiple.png; sourceTree = "<group>"; };
+		1BD55C5C16483F5E00F9C579 /* MZActionsPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZActionsPlugin.h; sourceTree = "<group>"; };
+		1BD55C5D16483F5E00F9C579 /* MZActionsPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZActionsPlugin.m; sourceTree = "<group>"; };
+		1BD55C601648431D00F9C579 /* MZScriptActionsPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZScriptActionsPlugin.h; sourceTree = "<group>"; };
+		1BD55C611648431D00F9C579 /* MZScriptActionsPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZScriptActionsPlugin.m; sourceTree = "<group>"; };
+		1BD55C641648466700F9C579 /* NSError+MZScriptError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MZScriptError.h"; sourceTree = "<group>"; };
+		1BD55C651648466700F9C579 /* NSError+MZScriptError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MZScriptError.m"; sourceTree = "<group>"; };
+		1BD55D4516485AE700F9C579 /* Update iTunes.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Update iTunes.applescript"; sourceTree = "<group>"; };
 		1BD6E601105B355800E40151 /* MetaChangeNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaChangeNotification.m; sourceTree = "<group>"; };
 		1BD6E74D105DADCC00E40151 /* AddToQueue.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = AddToQueue.tiff; path = App/resources/AddToQueue.tiff; sourceTree = "<group>"; };
 		1BD6E74E105DADCC00E40151 /* Pause.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pause.tiff; path = App/resources/Pause.tiff; sourceTree = "<group>"; };
@@ -1086,7 +1102,7 @@
 		1BEA6E72106EF2A0004B1A7F /* AtomicParsleyPlugin.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AtomicParsleyPlugin.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEA6E8A106EF4CD004B1A7F /* APDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APDataProvider.h; sourceTree = "<group>"; };
 		1BEA6E8B106EF4CD004B1A7F /* APDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APDataProvider.m; sourceTree = "<group>"; };
-		1BEA6E8D106EF522004B1A7F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/AtomicParsley/Info.plist; sourceTree = "<group>"; };
+		1BEA6E8D106EF522004B1A7F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		1BEA6E8F106EF534004B1A7F /* AtomicParsleyPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicParsleyPlugin.h; sourceTree = "<group>"; };
 		1BEA6E90106EF534004B1A7F /* AtomicParsleyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicParsleyPlugin.m; sourceTree = "<group>"; };
 		1BEA718D10712A17004B1A7F /* NSArray+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Mapping.h"; sourceTree = "<group>"; };
@@ -1226,6 +1242,10 @@
 				1BEA6E49106EEF34004B1A7F /* MZPlugin+Private.m */,
 				1BEA6DAC106EC632004B1A7F /* MZPluginController.h */,
 				1BEA6DAD106EC632004B1A7F /* MZPluginController.m */,
+				1BD55C5C16483F5E00F9C579 /* MZActionsPlugin.h */,
+				1BD55C5D16483F5E00F9C579 /* MZActionsPlugin.m */,
+				1BD55C601648431D00F9C579 /* MZScriptActionsPlugin.h */,
+				1BD55C611648431D00F9C579 /* MZScriptActionsPlugin.m */,
 				1BBB39A71087083600C9E17F /* MZPriorObserverFix.h */,
 				1BBB39A81087083600C9E17F /* MZPriorObserverFix.m */,
 				1B3AD7A111055DF300B33F85 /* MZQueueOperation.h */,
@@ -1270,6 +1290,8 @@
 				1BAC91BC13F060300022D625 /* NSString+MZAllInCharacterSet.m */,
 				1B0696D5149BFB2D00B5FA90 /* NSString+MZQueryString.h */,
 				1B0696D6149BFB2D00B5FA90 /* NSString+MZQueryString.m */,
+				1BD55C641648466700F9C579 /* NSError+MZScriptError.h */,
+				1BD55C651648466700F9C579 /* NSError+MZScriptError.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -1340,7 +1362,7 @@
 				1B15A60D10B608D100EC0FBF /* AmazonSearch.m */,
 			);
 			name = Classes;
-			path = Plugins/Amazon/src;
+			path = Amazon/src;
 			sourceTree = "<group>";
 		};
 		1B032F5910B0BDFD00B28E3A /* Resources */ = {
@@ -1378,7 +1400,7 @@
 				1B6E43C710845F8200DFE165 /* TCSearch.m */,
 			);
 			name = Classes;
-			path = Plugins/TagChimp/src;
+			path = TagChimp/src;
 			sourceTree = "<group>";
 		};
 		1B040EAA1081B3950027FA0D /* Resources */ = {
@@ -1388,6 +1410,7 @@
 				1B040EDA1081B4980027FA0D /* Info.plist */,
 			);
 			name = Resources;
+			path = TagChimp/resources;
 			sourceTree = "<group>";
 		};
 		1B069665149BD32D00B5FA90 /* MGViewAnimation */ = {
@@ -1441,7 +1464,7 @@
 				1B060DF810E267810009D847 /* imdb_plugin.rb */,
 			);
 			name = Classes;
-			path = Plugins/IMDB/src;
+			path = IMDB/src;
 			sourceTree = "<group>";
 		};
 		1B42F23D10DEB08300AFEBF6 /* Resources */ = {
@@ -1450,6 +1473,7 @@
 				1B42F25910DEB0D300AFEBF6 /* Info.plist */,
 			);
 			name = Resources;
+			path = IMDB/resources;
 			sourceTree = "<group>";
 		};
 		1B449CEE10DCCAD500B9C751 /* External Sources */ = {
@@ -1807,6 +1831,7 @@
 				1B4F5394116E9EFC003221B1 /* Info.plist */,
 			);
 			name = Resources;
+			path = TheTVDB/resources;
 			sourceTree = "<group>";
 		};
 		1B4F538F116E9E33003221B1 /* Classes */ = {
@@ -1821,7 +1846,7 @@
 				1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */,
 			);
 			name = Classes;
-			path = Plugins/TheTVDB/src;
+			path = TheTVDB/src;
 			sourceTree = "<group>";
 		};
 		1B523B4813F4B24E00C20B7D /* asi-http-request */ = {
@@ -1936,7 +1961,7 @@
 				1B299D7214AE43900048B7C0 /* TheMovieDbSearch.m */,
 			);
 			name = Classes;
-			path = Plugins/TheMovieDb/src;
+			path = TheMovieDb/src;
 			sourceTree = "<group>";
 		};
 		1B92BB711087884C0057EFD7 /* Views */ = {
@@ -2120,6 +2145,8 @@
 		1BEA6E68106EF248004B1A7F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				1B63A889164823FE00461FC9 /* Example Actions.applescript */,
+				1BD55D4516485AE700F9C579 /* Update iTunes.applescript */,
 				1B8CB8FA14ACD5C700F859F7 /* TheMovieDb */,
 				1B4F538D116E9E1F003221B1 /* TheTVDB */,
 				1B42F23B10DEB05000AFEBF6 /* IMDB */,
@@ -2127,7 +2154,7 @@
 				1B040EA81081B3860027FA0D /* TagChimp */,
 				1BEA6E69106EF251004B1A7F /* AtomicParsley */,
 			);
-			name = Plugins;
+			path = Plugins;
 			sourceTree = "<group>";
 		};
 		1BEA6E69106EF251004B1A7F /* AtomicParsley */ = {
@@ -2152,7 +2179,7 @@
 				1B3AD7E11105884800B33F85 /* APReadDataTask.m */,
 			);
 			name = Classes;
-			path = Plugins/AtomicParsley/src;
+			path = AtomicParsley/src;
 			sourceTree = "<group>";
 		};
 		1BEA6E87106EF40C004B1A7F /* Resources */ = {
@@ -2163,6 +2190,7 @@
 				1BEA6E8D106EF522004B1A7F /* Info.plist */,
 			);
 			name = Resources;
+			path = AtomicParsley/resources;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* MetaZ */ = {
@@ -2193,6 +2221,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1B63A36616458A1C00461FC9 /* Return iTunes selected.applescript */,
 				1B8CB5DF14AA31C500F859F7 /* modified_header.tiff */,
 				1B8CB5E014AA31C500F859F7 /* modified_selected.tiff */,
 				1B8CB5E114AA31C500F859F7 /* modified.tiff */,
@@ -2310,6 +2339,9 @@
 				1B36E78C14066727009F542A /* MZASISearch.h in Headers */,
 				1B0696D7149BFB2D00B5FA90 /* NSString+MZQueryString.h in Headers */,
 				1BDEC5ED1620DE160051D656 /* AEVTBuilder.h in Headers */,
+				1BD55C5E16483F5E00F9C579 /* MZActionsPlugin.h in Headers */,
+				1BD55C621648431D00F9C579 /* MZScriptActionsPlugin.h in Headers */,
+				1BD55C661648466700F9C579 /* NSError+MZScriptError.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2472,14 +2504,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "MetaZ" */;
 			buildPhases = (
-				1BEA6F2F106EF6D5004B1A7F /* Copy Plugins */,
-				1BB6C11E1052B199001D3D1D /* Copy Frameworks */,
 				8D1107290486CEB800E47090 /* Resources */,
+				1BB6C11E1052B199001D3D1D /* Copy Frameworks */,
+				1BEA6F2F106EF6D5004B1A7F /* Copy Plugins */,
+				1B29A05A14C5C5B40048B7C0 /* Copy Growl frameworks */,
+				1B74B569164826980017E013 /* Compile Plugin Scripts */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				1B8262A710B39DE400DF101B /* Make Disk Image */,
 				1BB6BF3B1050ED38001D3D1D /* Sparkle Sign  */,
-				1B29A05A14C5C5B40048B7C0 /* Copy Growl frameworks */,
 			);
 			buildRules = (
 			);
@@ -2694,6 +2727,22 @@
 			shellPath = /bin/sh;
 			shellScript = "set -o errexit\n\nPATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin\nbuildid=`git log -n1 --pretty=oneline --format=%h`\nrelease=`cat $SCRIPT_INPUT_FILE_0`\nbuilddate=`date +%y.%m.%d.%H`\n\necho \"#define BUILDID $buildid\" > $SCRIPT_OUTPUT_FILE_0\necho \"#define BUILDDATE $builddate\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define BUILDVERSION $builddate.$buildid\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define WHOAMI `whoami`\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define RELEASE $release\" >> $SCRIPT_OUTPUT_FILE_0 \ncat $SCRIPT_INPUT_FILE_1 >> $SCRIPT_OUTPUT_FILE_0 \n\n# Delete the intermediate Info.plist so that Xcode re-preprocesses the Info.plist with our updated macros.\n# Use -f because after a clean build, this file doesn't exist yet, so a plain rm would fail and stop the build.\nrm -f \"${CONFIGURATION_TEMP_DIR}/MetaZ.build/Preprocessed-Info.plist\"\n";
 		};
+		1B74B569164826980017E013 /* Compile Plugin Scripts */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Plugins/*.applescript",
+			);
+			name = "Compile Plugin Scripts";
+			outputPaths = (
+				"$BUILT_PRODUCTS_DIR/$PLUGINS_FOLDER_PATH/*.scpt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$PROJECT_DIR\"\nfor k in Plugins/*.applescript ; do\n  BASE=`basename \"$k\" .applescript`\n\n  $OSAC -l AppleScript -i \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME\" -d -o \"$BUILT_PRODUCTS_DIR/$PLUGINS_FOLDER_PATH/$BASE.scpt\" \"$k\"\ndone";
+		};
 		1B8262A710B39DE400DF101B /* Make Disk Image */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2861,6 +2910,9 @@
 				1B36E78D14066727009F542A /* MZASISearch.m in Sources */,
 				1B0696D8149BFB2D00B5FA90 /* NSString+MZQueryString.m in Sources */,
 				1B4CFFE8161CE0ED00B12009 /* AEVTBuilder.m in Sources */,
+				1BD55C5F16483F5E00F9C579 /* MZActionsPlugin.m in Sources */,
+				1BD55C631648431D00F9C579 /* MZScriptActionsPlugin.m in Sources */,
+				1BD55C671648466700F9C579 /* NSError+MZScriptError.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2931,6 +2983,7 @@
 				1B89073116420437008C5C8B /* MZScriptingEnums.m in Sources */,
 				1B8908E416424790008C5C8B /* MZSelectedMetaDataDocument.m in Sources */,
 				1B63A1D31644D8D100461FC9 /* MZArrayController.m in Sources */,
+				1BD55BED16482D7600F9C579 /* Return iTunes selected.applescript in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -64,18 +64,6 @@
     return menu;
 }
 
-/*
-- (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem
-{
-    SEL action = [anItem action];
-    if(action == @selector(imdb:))
-    {
-        return 
-    }
-    return action == @selector(view:);
-}
-*/
-
 - (void)view:(id)sender
 {
     MZSearchResult* result = [sender representedObject];

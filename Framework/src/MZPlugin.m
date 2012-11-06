@@ -16,7 +16,7 @@
     self = [super init];
     if(self)
     {
-        bundle = [NSBundle bundleForClass:[self class]];
+        bundle = [[NSBundle bundleForClass:[self class]] retain];
     }
     return self;
 }
@@ -31,6 +31,11 @@
 }
 
 @synthesize bundle;
+
+- (NSString *)identifier
+{
+    return [bundle bundleIdentifier];
+}
 
 - (void)didLoad {}
 - (void)willUnload {}
@@ -61,7 +66,7 @@
     while(range.location != NSNotFound)
     {
         sub = [className substringWithRange:NSMakeRange(oldloc, range.location-oldloc)];
-        if(sub.length > 1)
+        if(sub.length > 1 && ret.length > 0)
             [ret appendString:@" "];
         [ret appendString:sub];
         NSUInteger max = NSMaxRange(range);

@@ -26,6 +26,13 @@
 @property(readonly) NSBundle* bundle;
 
 /*!
+ @abstract The identifier for this plugin.
+ @discussion Defaults to the bundleIdentifier of the bundle
+ @see bundle bundle
+ */
+@property(readonly) NSString* identifier;
+
+/*!
  * @name Loading and Unloading Plug-in Resources
  * @methodgroup Loading and Unloading Plug-in Resources
  */

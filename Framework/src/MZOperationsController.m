@@ -97,18 +97,6 @@
         [op cancel];
 }
 
-/*
-- (void)waitUntilFinished
-{
-    if(![self isFinished])
-    {
-        [self waitForChangedKeyPath:@"finished"];
-        if(![self isFinished])
-            MZLoggerDebug(@"Fuck that");
-    }
-}
-*/
-
 - (void)addOperationsToQueue:(NSOperationQueue*)queue
 {
     for(NSOperation* op in self.operations)

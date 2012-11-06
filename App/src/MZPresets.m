@@ -277,13 +277,6 @@ static MZPresets* sharedPresets = nil;
 {
     NSFileManager *mgr = [NSFileManager manager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    /*
-    NSMutableArray* items = [NSMutableArray array];
-    for(MZWriteQueueStatus* obj in queueItems)
-        if(![obj completed])
-            [items addObject:[obj edits]];
-    */
-    //if([items count] > 0)
     {
         if ([paths count] > 0)
         {
@@ -329,17 +322,6 @@ static MZPresets* sharedPresets = nil;
             return NO;
         }
     }
-    /*
-    else
-    {
-        for(NSString * path in paths)
-        {
-            NSString *destinationPath = [path stringByAppendingPathComponent: fileName];
-            if([mgr fileExistsAtPath:destinationPath] && ![mgr removeItemAtPath:destinationPath error:error])
-                return NO;
-        }
-    }
-    */
     return YES;
 }
 
@@ -454,17 +436,6 @@ static MZPresets* sharedPresets = nil;
         return nil;
     }
     return [NSArray arrayWithArray:ret];
-    /*
-    if(error != NULL)
-    {
-        //Make NSError;
-        NSDictionary* dict = [NSDictionary dictionaryWithObject:
-            NSLocalizedString(@"No presets found", @"No presets found error")
-            forKey:NSLocalizedDescriptionKey];
-        *error = [NSError errorWithDomain:@"MetaZ" code:14 userInfo:dict];
-    }
-    return nil;
-    */
 }
 
 #pragma mark - observation callbacks

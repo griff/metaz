@@ -425,11 +425,13 @@
 - (id<MZDataController>)loadFromFile:(NSString *)fileName
                             delegate:(id<MZDataReadDelegate>)delegate
                                queue:(NSOperationQueue *)queue
+                               extra:(NSDictionary *)extra
 {
     MZReadOperationsController* op = [MZReadOperationsController
         controllerWithProvider:self
                   fromFileName:fileName
-                      delegate:delegate];
+                      delegate:delegate
+                         extra:extra];
         
     APReadDataTask* dataRead = [APReadDataTask taskWithProvider:self fromFileName:fileName dictionary:op.tagdict];
     [dataRead setLaunchPath:[self launchPath]];
@@ -471,7 +473,10 @@
     
     // Initialize a null value for all known keys
     for(MZTag* tag in tags)
-        [tagdict setObject:[NSNull null] forKey:[tag identifier]];
+    {
+        if(![tagdict objectForKey:[tag identifier]])
+            [tagdict setObject:[NSNull null] forKey:[tag identifier]];
+    }
 
     // Store real parsed values using a simple key -> key mapping
     for(NSString* map in [read_mapping allKeys])

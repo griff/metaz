@@ -249,10 +249,6 @@
         NSString* coverArtLarge = [item stringForXPath:@"LargeImage/URL" error:NULL];
         if([coverArtLarge length] > 0)
         {
-            /*
-            MZLoggerDebug(@"ASIN %@", asin);
-            MZLoggerDebug(@"Image large url: %@", coverArtLarge);
-            */
             NSURL* url = [NSURL URLWithString:coverArtLarge];
             MZRemoteData* data = [MZRemoteData dataWithURL:url];
             [dict setObject:data forKey:MZPictureTagIdent];

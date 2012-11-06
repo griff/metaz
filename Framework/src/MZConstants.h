@@ -193,6 +193,7 @@ MZKIT_EXTERN NSString* const MZIMDBTagIdent;
 MZKIT_EXTERN NSString* const MZASINTagIdent;
 MZKIT_EXTERN NSString* const MZDVDSeasonTagIdent;
 MZKIT_EXTERN NSString* const MZDVDEpisodeTagIdent;
+MZKIT_EXTERN NSString* const MZiTunesPersistentIDTagIdent;
 
 /* Notifications */
 MZKIT_EXTERN NSString* const MZDataProviderLoadedNotification;
@@ -210,5 +211,14 @@ MZKIT_EXTERN NSString* const MZDataControllerErrorKey;
 
 // Standard alert ids
 MZKIT_EXTERN NSString* const MZDataProviderFileAlreadyLoadedWarningKey;
+
+MZKIT_EXTERN NSString* const iTunesMetadataPboardType;
+MZKIT_EXTERN NSString* const iTunesPboardType;
+
+// Plugin UTI
+MZKIT_EXTERN const CFStringRef kMZUTMetaZPlugin;
+MZKIT_EXTERN const CFStringRef kMZUTMetaZActionsPlugin;
+MZKIT_EXTERN const CFStringRef kMZUTAppleScriptText;
+MZKIT_EXTERN const CFStringRef kMZUTAppleScript;
 
 #endif // MZKIT_EXTERN
