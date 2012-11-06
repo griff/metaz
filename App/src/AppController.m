@@ -914,7 +914,7 @@ NSDictionary* findBinding(NSWindow* window) {
 - (void)application:(NSApplication *)sender openFiles:(NSArray *)filenames
 {
     [window makeKeyAndOrderFront:sender];
-    if([[MZMetaLoader sharedLoader] loadFromFiles: filenames])
+    if([[MZMetaLoader sharedLoader] loadFromFiles:filenames])
         [sender replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
     else
         [sender replyToOpenOrPrint:NSApplicationDelegateReplyCancel];
