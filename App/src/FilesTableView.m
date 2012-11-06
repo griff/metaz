@@ -209,9 +209,9 @@
     if(bestType != nil && ([bestType isEqualToString:iTunesMetadataPboardType] || 
             [bestType isEqualToString:iTunesPboardType]))
     {
-        NSDictionary* prop = [pboard propertyListForType:iTunesMetadataPboardType];
+        NSDictionary* prop = [pb propertyListForType:iTunesMetadataPboardType];
         if(!prop)
-            prop = [pboard propertyListForType:iTunesPboardType]; 
+            prop = [pb propertyListForType:iTunesPboardType]; 
 
         if(prop)
         {
