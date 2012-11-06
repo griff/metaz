@@ -1128,6 +1128,7 @@
 		1BD562081648F17C00F9C579 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = AlertWindow/Info.plist; sourceTree = "<group>"; };
 		1BD5622D1648F2B200F9C579 /* AlertWindowPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertWindowPlugin.h; sourceTree = "<group>"; };
 		1BD5622E1648F2B200F9C579 /* AlertWindowPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertWindowPlugin.m; sourceTree = "<group>"; };
+		1BD562AC16490AF900F9C579 /* Add to iTunes.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Add to iTunes.applescript"; sourceTree = "<group>"; };
 		1BD6E601105B355800E40151 /* MetaChangeNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaChangeNotification.m; sourceTree = "<group>"; };
 		1BD6E74D105DADCC00E40151 /* AddToQueue.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = AddToQueue.tiff; path = App/resources/AddToQueue.tiff; sourceTree = "<group>"; };
 		1BD6E74E105DADCC00E40151 /* Pause.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pause.tiff; path = App/resources/Pause.tiff; sourceTree = "<group>"; };
@@ -2273,6 +2274,7 @@
 		1BEA6E68106EF248004B1A7F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				1BD562AC16490AF900F9C579 /* Add to iTunes.applescript */,
 				1B63A889164823FE00461FC9 /* Example Actions.applescript */,
 				1BD55D4516485AE700F9C579 /* Update iTunes.applescript */,
 				1BD5611E1648D51300F9C579 /* Quit MetaZ.applescript */,
