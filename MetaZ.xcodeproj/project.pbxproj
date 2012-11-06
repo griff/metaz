@@ -469,7 +469,7 @@
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		1B032F5A10B0BE1A00B28E3A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/Amazon/Info.plist; sourceTree = "<group>"; };
+		1B032F5A10B0BE1A00B28E3A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Amazon/Info.plist; sourceTree = "<group>"; };
 		1B032F6710B0C12100B28E3A /* AmazonPlugin.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmazonPlugin.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B032FD910B0C5FE00B28E3A /* hmac_sha2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hmac_sha2.c; path = Externals/hmac/hmac_sha2.c; sourceTree = "<group>"; };
 		1B032FDA10B0C5FE00B28E3A /* hmac_sha2.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c.preprocessed; fileEncoding = 4; name = hmac_sha2.c; path = Externals/hmac/hmac_sha2.c; sourceTree = "<group>"; };
@@ -490,7 +490,7 @@
 		1B03325110B1592D00B28E3A /* StopProgress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StopProgress.png; path = App/resources/StopProgress.png; sourceTree = "<group>"; };
 		1B03325310B15CB200B28E3A /* StopProgressHover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StopProgressHover.png; path = App/resources/StopProgressHover.png; sourceTree = "<group>"; };
 		1B03325510B15FF100B28E3A /* StopProgressOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StopProgressOn.png; path = App/resources/StopProgressOn.png; sourceTree = "<group>"; };
-		1B040C13107F9DA20027FA0D /* mp4chaps */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = mp4chaps; path = Plugins/AtomicParsley/resources/mp4chaps; sourceTree = "<group>"; };
+		1B040C13107F9DA20027FA0D /* mp4chaps */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = mp4chaps; sourceTree = "<group>"; };
 		1B040C3C107FC7480027FA0D /* MZTimeCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTimeCode.h; sourceTree = "<group>"; };
 		1B040C3D107FC7480027FA0D /* MZTimeCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTimeCode.m; sourceTree = "<group>"; };
 		1B040C40107FD1110027FA0D /* MZTimedTextItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTimedTextItem.h; sourceTree = "<group>"; };
@@ -502,10 +502,10 @@
 		1B040DC2108176A70027FA0D /* UndoTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoTableView.h; sourceTree = "<group>"; };
 		1B040DC3108176A70027FA0D /* UndoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoTableView.m; sourceTree = "<group>"; };
 		1B040EBE1081B3C00027FA0D /* TagChimp.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagChimp.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B040EDA1081B4980027FA0D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/TagChimp/Info.plist; sourceTree = "<group>"; };
+		1B040EDA1081B4980027FA0D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		1B040EDB1081B4DC0027FA0D /* TagChimpPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagChimpPlugin.h; sourceTree = "<group>"; };
 		1B040EDC1081B4DC0027FA0D /* TagChimpPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagChimpPlugin.m; sourceTree = "<group>"; };
-		1B040EDE1081B53F0027FA0D /* tagChimp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tagChimp.png; path = Plugins/TagChimp/resources/tagChimp.png; sourceTree = "<group>"; };
+		1B040EDE1081B53F0027FA0D /* tagChimp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tagChimp.png; sourceTree = "<group>"; };
 		1B040EE01081B5550027FA0D /* TCSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSearchProvider.h; sourceTree = "<group>"; };
 		1B040EE11081B5550027FA0D /* TCSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSearchProvider.m; sourceTree = "<group>"; };
 		1B0604AB1199E24700589ACE /* MZBaseSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZBaseSearchProvider.h; sourceTree = "<group>"; };
@@ -590,10 +590,10 @@
 		1B42F21B10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKDockProgressIndicator.m; path = Externals/UKDockProgressIndicator/UKDockProgressIndicator.m; sourceTree = "<group>"; };
 		1B42F21E10DD5D6D00AFEBF6 /* English */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = English; path = Externals/UKDockProgressIndicator/English.lproj/MiniProgressGradient.png; sourceTree = "<group>"; };
 		1B42F25810DEB0D300AFEBF6 /* IMDBPlugin.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IMDBPlugin.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B42F25910DEB0D300AFEBF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/IMDB/Info.plist; sourceTree = "<group>"; };
+		1B42F25910DEB0D300AFEBF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		1B42F2B510DEB4A200AFEBF6 /* IMDBPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDBPlugin.h; sourceTree = "<group>"; };
 		1B42F2B610DEB4A200AFEBF6 /* IMDBPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBPlugin.m; sourceTree = "<group>"; };
-		1B44949810D57D6900B9C751 /* AtomicParsley */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = AtomicParsley; path = Plugins/AtomicParsley/resources/AtomicParsley; sourceTree = "<group>"; };
+		1B44949810D57D6900B9C751 /* AtomicParsley */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = AtomicParsley; sourceTree = "<group>"; };
 		1B4494BC10D584E000B9C751 /* next_release.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = next_release.txt; path = Release/next_release.txt; sourceTree = "<group>"; };
 		1B44956C10D6118F00B9C751 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = Externals/Growl.framework; sourceTree = "<group>"; };
 		1B44958410D6128700B9C751 /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Growl Registration Ticket.growlRegDict"; path = "App/resources/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
@@ -876,10 +876,10 @@
 		1B4AF829116F0AFD00E5C969 /* DebugSnowLeopardOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = DebugSnowLeopardOrLater.xcconfig; path = "Externals/google-toolbox-for-mac/XcodeConfig/Project/DebugSnowLeopardOrLater.xcconfig"; sourceTree = "<group>"; };
 		1B4AF8391170CFCC00E5C969 /* TheTVDBSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBSearch.h; sourceTree = "<group>"; };
 		1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBSearch.m; sourceTree = "<group>"; };
-		1B4AF84411715C8400E5C969 /* languages.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = languages.xml; path = Plugins/TheTVDB/resources/languages.xml; sourceTree = "<group>"; };
+		1B4AF84411715C8400E5C969 /* languages.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = languages.xml; sourceTree = "<group>"; };
 		1B4CFF8F161CDF0100B12009 /* AEVTBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEVTBuilder.h; sourceTree = "<group>"; };
 		1B4CFF90161CDF0100B12009 /* AEVTBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEVTBuilder.m; sourceTree = "<group>"; };
-		1B4F5394116E9EFC003221B1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/TheTVDB/Info.plist; sourceTree = "<group>"; };
+		1B4F5394116E9EFC003221B1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheTVDBPlugin.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B4F53DD116EA1B5003221B1 /* TheTVDBPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBPlugin.h; sourceTree = "<group>"; };
 		1B4F53DE116EA1B5003221B1 /* TheTVDBPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBPlugin.m; sourceTree = "<group>"; };
@@ -968,7 +968,7 @@
 		1B8CB5E014AA31C500F859F7 /* modified_selected.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = modified_selected.tiff; path = App/resources/modified_selected.tiff; sourceTree = "<group>"; };
 		1B8CB5E114AA31C500F859F7 /* modified.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = modified.tiff; path = App/resources/modified.tiff; sourceTree = "<group>"; };
 		1B8CB90B14ACD62000F859F7 /* TheMovieDb.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheMovieDb.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B8CB95014ACD77800F859F7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/TheMovieDb/Info.plist; sourceTree = "<group>"; };
+		1B8CB95014ACD77800F859F7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = TheMovieDb/Info.plist; sourceTree = "<group>"; };
 		1B8CB96214AE3B2000F859F7 /* TheMovieDbPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheMovieDbPlugin.m; sourceTree = "<group>"; };
 		1B8CB97F14AE3C1800F859F7 /* Access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access.h; path = Plugins/TheMovieDb/Access.h; sourceTree = SOURCE_ROOT; };
 		1B92BB1A10876FBA0057EFD7 /* PureMetaEdits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureMetaEdits.h; sourceTree = "<group>"; };
@@ -1086,7 +1086,7 @@
 		1BEA6E72106EF2A0004B1A7F /* AtomicParsleyPlugin.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AtomicParsleyPlugin.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEA6E8A106EF4CD004B1A7F /* APDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APDataProvider.h; sourceTree = "<group>"; };
 		1BEA6E8B106EF4CD004B1A7F /* APDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APDataProvider.m; sourceTree = "<group>"; };
-		1BEA6E8D106EF522004B1A7F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugins/AtomicParsley/Info.plist; sourceTree = "<group>"; };
+		1BEA6E8D106EF522004B1A7F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		1BEA6E8F106EF534004B1A7F /* AtomicParsleyPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicParsleyPlugin.h; sourceTree = "<group>"; };
 		1BEA6E90106EF534004B1A7F /* AtomicParsleyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicParsleyPlugin.m; sourceTree = "<group>"; };
 		1BEA718D10712A17004B1A7F /* NSArray+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Mapping.h"; sourceTree = "<group>"; };
@@ -1340,7 +1340,7 @@
 				1B15A60D10B608D100EC0FBF /* AmazonSearch.m */,
 			);
 			name = Classes;
-			path = Plugins/Amazon/src;
+			path = Amazon/src;
 			sourceTree = "<group>";
 		};
 		1B032F5910B0BDFD00B28E3A /* Resources */ = {
@@ -1378,7 +1378,7 @@
 				1B6E43C710845F8200DFE165 /* TCSearch.m */,
 			);
 			name = Classes;
-			path = Plugins/TagChimp/src;
+			path = TagChimp/src;
 			sourceTree = "<group>";
 		};
 		1B040EAA1081B3950027FA0D /* Resources */ = {
@@ -1388,6 +1388,7 @@
 				1B040EDA1081B4980027FA0D /* Info.plist */,
 			);
 			name = Resources;
+			path = TagChimp/resources;
 			sourceTree = "<group>";
 		};
 		1B069665149BD32D00B5FA90 /* MGViewAnimation */ = {
@@ -1441,7 +1442,7 @@
 				1B060DF810E267810009D847 /* imdb_plugin.rb */,
 			);
 			name = Classes;
-			path = Plugins/IMDB/src;
+			path = IMDB/src;
 			sourceTree = "<group>";
 		};
 		1B42F23D10DEB08300AFEBF6 /* Resources */ = {
@@ -1450,6 +1451,7 @@
 				1B42F25910DEB0D300AFEBF6 /* Info.plist */,
 			);
 			name = Resources;
+			path = IMDB/resources;
 			sourceTree = "<group>";
 		};
 		1B449CEE10DCCAD500B9C751 /* External Sources */ = {
@@ -1807,6 +1809,7 @@
 				1B4F5394116E9EFC003221B1 /* Info.plist */,
 			);
 			name = Resources;
+			path = TheTVDB/resources;
 			sourceTree = "<group>";
 		};
 		1B4F538F116E9E33003221B1 /* Classes */ = {
@@ -1821,7 +1824,7 @@
 				1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */,
 			);
 			name = Classes;
-			path = Plugins/TheTVDB/src;
+			path = TheTVDB/src;
 			sourceTree = "<group>";
 		};
 		1B523B4813F4B24E00C20B7D /* asi-http-request */ = {
@@ -1936,7 +1939,7 @@
 				1B299D7214AE43900048B7C0 /* TheMovieDbSearch.m */,
 			);
 			name = Classes;
-			path = Plugins/TheMovieDb/src;
+			path = TheMovieDb/src;
 			sourceTree = "<group>";
 		};
 		1B92BB711087884C0057EFD7 /* Views */ = {
@@ -2127,7 +2130,7 @@
 				1B040EA81081B3860027FA0D /* TagChimp */,
 				1BEA6E69106EF251004B1A7F /* AtomicParsley */,
 			);
-			name = Plugins;
+			path = Plugins;
 			sourceTree = "<group>";
 		};
 		1BEA6E69106EF251004B1A7F /* AtomicParsley */ = {
@@ -2152,7 +2155,7 @@
 				1B3AD7E11105884800B33F85 /* APReadDataTask.m */,
 			);
 			name = Classes;
-			path = Plugins/AtomicParsley/src;
+			path = AtomicParsley/src;
 			sourceTree = "<group>";
 		};
 		1BEA6E87106EF40C004B1A7F /* Resources */ = {
@@ -2163,6 +2166,7 @@
 				1BEA6E8D106EF522004B1A7F /* Info.plist */,
 			);
 			name = Resources;
+			path = AtomicParsley/resources;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* MetaZ */ = {
