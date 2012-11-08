@@ -49,7 +49,6 @@
     NSArrayController* picturesController;
     SUUpdater* updater;
     
-    MZFileNameTextStorage* fileNameStorage;
     NSTextView* fileNameEditor;
 }
 @property (nonatomic, retain) IBOutlet NSWindow* window;
