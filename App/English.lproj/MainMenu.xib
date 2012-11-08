@@ -12,11 +12,11 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="106"/>
-			<integer value="501"/>
-			<integer value="1798"/>
 			<integer value="1723"/>
+			<integer value="106"/>
+			<integer value="638"/>
 			<integer value="1833"/>
+			<integer value="1798"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2715,7 +2715,7 @@
 																							<int key="NSTCFlags">1</int>
 																						</object>
 																						<object class="NSTextViewSharedData" key="NSSharedData">
-																							<int key="NSFlags">11251</int>
+																							<int key="NSFlags">12275</int>
 																							<int key="NSTextCheckingTypes">0</int>
 																							<nil key="NSMarkedAttributes"/>
 																							<reference key="NSBackgroundColor" ref="600445500"/>
