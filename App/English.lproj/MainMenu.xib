@@ -7765,22 +7765,6 @@
 					<int key="connectionID">1310</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">selectPreviousFile:</string>
-						<reference key="source" ref="1053022543"/>
-						<reference key="destination" ref="208526632"/>
-					</object>
-					<int key="connectionID">1311</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">selectNextFile:</string>
-						<reference key="source" ref="1053022543"/>
-						<reference key="destination" ref="452284327"/>
-					</object>
-					<int key="connectionID">1312</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">filesController</string>
 						<reference key="source" ref="488851568"/>
@@ -9302,6 +9286,22 @@
 						<reference key="destination" ref="35104934"/>
 					</object>
 					<int key="connectionID">1914</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">selectPrevious:</string>
+						<reference key="source" ref="35104934"/>
+						<reference key="destination" ref="208526632"/>
+					</object>
+					<int key="connectionID">1915</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">selectNext:</string>
+						<reference key="source" ref="35104934"/>
+						<reference key="destination" ref="452284327"/>
+					</object>
+					<int key="connectionID">1916</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -14244,7 +14244,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1914</int>
+			<int key="maxID">1916</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

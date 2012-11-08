@@ -399,15 +399,6 @@ NSDictionary* findBinding(NSWindow* window) {
         [filesController remove:sender];
 }
 
-- (IBAction)selectNextFile:(id)sender {
-    [filesController selectNext:sender];
-}
-
-
-- (IBAction)selectPreviousFile:(id)sender {
-    [filesController selectPrevious:sender];
-}
-
 - (IBAction)selectNextResult:(id)sender {
     if([filesController commitEditing])
         [searchController selectNext:sender];
@@ -693,10 +684,6 @@ NSDictionary* findBinding(NSWindow* window) {
             return NO;
         return YES;
     }
-    if(action == @selector(selectNextFile:))
-        return [filesController canSelectNext];
-    if(action == @selector(selectPreviousFile:))
-        return [filesController canSelectPrevious];
     if(action == @selector(revertChanges:))
     {
         NSDictionary* dict = findBinding(window);

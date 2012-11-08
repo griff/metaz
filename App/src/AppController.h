@@ -83,8 +83,6 @@
 - (IBAction)showSortTab:(id)sender;
 - (IBAction)showVideoTab:(id)sender;
 - (IBAction)segmentClicked:(id)sender;
-- (IBAction)selectNextFile:(id)sender;
-- (IBAction)selectPreviousFile:(id)sender;
 - (IBAction)selectNextResult:(id)sender;
 - (IBAction)selectPreviousResult:(id)sender;
 - (IBAction)showPreferences:(id)sender;
