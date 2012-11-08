@@ -76,6 +76,9 @@
 		1B11A28B104DF1EC004C93D3 /* FilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A28A104DF1EC004C93D3 /* FilesTableView.m */; };
 		1B15A60E10B608D100EC0FBF /* AmazonSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B15A60D10B608D100EC0FBF /* AmazonSearch.m */; };
 		1B20209B10B36EC200EE548A /* VideoType.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B20209910B36EC200EE548A /* VideoType.strings */; };
+		1B26B88D164B1EEB00238517 /* MZTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26B88C164B1EEB00238517 /* MZTextView.m */; };
+		1B26B8FB164B264400238517 /* MZTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26B8FA164B264400238517 /* MZTextField.m */; };
+		1B26BA8B164B687B00238517 /* MZComboBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26BA8A164B687B00238517 /* MZComboBox.m */; };
 		1B299D7014AE3E370048B7C0 /* TheMovieDbSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B299D6F14AE3E370048B7C0 /* TheMovieDbSearchProvider.m */; };
 		1B299D7314AE43900048B7C0 /* TheMovieDbSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B299D7214AE43900048B7C0 /* TheMovieDbSearch.m */; };
 		1B299DB714AE4D3A0048B7C0 /* TheMovieDb.mzplugin in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B8CB90B14ACD62000F859F7 /* TheMovieDb.mzplugin */; };
@@ -614,6 +617,12 @@
 		1B15A60D10B608D100EC0FBF /* AmazonSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonSearch.m; sourceTree = "<group>"; };
 		1B15A62610B6316000EC0FBF /* Access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access.h; path = Plugins/Amazon/Access.h; sourceTree = SOURCE_ROOT; };
 		1B20209A10B36EC200EE548A /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/VideoType.strings; sourceTree = "<group>"; };
+		1B26B88B164B1EEB00238517 /* MZTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTextView.h; sourceTree = "<group>"; };
+		1B26B88C164B1EEB00238517 /* MZTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTextView.m; sourceTree = "<group>"; };
+		1B26B8F9164B264400238517 /* MZTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTextField.h; sourceTree = "<group>"; };
+		1B26B8FA164B264400238517 /* MZTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTextField.m; sourceTree = "<group>"; };
+		1B26BA89164B687B00238517 /* MZComboBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZComboBox.h; sourceTree = "<group>"; };
+		1B26BA8A164B687B00238517 /* MZComboBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZComboBox.m; sourceTree = "<group>"; };
 		1B299D6C14AE3CF50048B7C0 /* TheMovieDbPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheMovieDbPlugin.h; sourceTree = "<group>"; };
 		1B299D6E14AE3E370048B7C0 /* TheMovieDbSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheMovieDbSearchProvider.h; sourceTree = "<group>"; };
 		1B299D6F14AE3E370048B7C0 /* TheMovieDbSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheMovieDbSearchProvider.m; sourceTree = "<group>"; };
@@ -2064,6 +2073,12 @@
 				1B4499D110D9A5CE00B9C751 /* PresetSegmentedControl.m */,
 				1B449B8610DC7DE400B9C751 /* ChaptersTableView.h */,
 				1B449B8710DC7DE400B9C751 /* ChaptersTableView.m */,
+				1B26B88B164B1EEB00238517 /* MZTextView.h */,
+				1B26B88C164B1EEB00238517 /* MZTextView.m */,
+				1B26B8F9164B264400238517 /* MZTextField.h */,
+				1B26B8FA164B264400238517 /* MZTextField.m */,
+				1B26BA89164B687B00238517 /* MZComboBox.h */,
+				1B26BA8A164B687B00238517 /* MZComboBox.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -3192,6 +3207,9 @@
 				1B8908E416424790008C5C8B /* MZSelectedMetaDataDocument.m in Sources */,
 				1B63A1D31644D8D100461FC9 /* MZArrayController.m in Sources */,
 				1BD55BED16482D7600F9C579 /* Return iTunes selected.applescript in Sources */,
+				1B26B88D164B1EEB00238517 /* MZTextView.m in Sources */,
+				1B26B8FB164B264400238517 /* MZTextField.m in Sources */,
+				1B26BA8B164B687B00238517 /* MZComboBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

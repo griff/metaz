@@ -375,13 +375,7 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (IBAction)startSearch:(id)sender;
 {
-    NSResponder* oldResponder = findResponder(window);
-    if([filesController commitEditing])
-    {
-        NSResponder* currentResponder =  findResponder(window);
-        if(oldResponder != currentResponder)
-            [window makeFirstResponder:oldResponder];
-    }
+    [filesController commitEditing];
 
     NSString* term = [[searchField stringValue] 
         stringByTrimmingCharactersInSet:
@@ -406,48 +400,22 @@ NSDictionary* findBinding(NSWindow* window) {
 }
 
 - (IBAction)selectNextFile:(id)sender {
-    NSResponder* oldResponder = findResponder(window);
-    if([filesController commitEditing])
-    {
-        NSResponder* currentResponder =  findResponder(window);
-        if(oldResponder != currentResponder)
-            [window makeFirstResponder:oldResponder];
-    }
     [filesController selectNext:sender];
 }
 
 
 - (IBAction)selectPreviousFile:(id)sender {
-    NSResponder* oldResponder = findResponder(window);
-    if([filesController commitEditing])
-    {
-        NSResponder* currentResponder =  findResponder(window);
-        if(oldResponder != currentResponder)
-            [window makeFirstResponder:oldResponder];
-    }
     [filesController selectPrevious:sender];
 }
 
 - (IBAction)selectNextResult:(id)sender {
-    NSResponder* oldResponder = findResponder(window);
     if([filesController commitEditing])
-    {
-        NSResponder* currentResponder =  findResponder(window);
-        if(oldResponder != currentResponder)
-            [window makeFirstResponder:oldResponder];
-    }
-    [searchController selectNext:sender];
+        [searchController selectNext:sender];
 }
 
 - (IBAction)selectPreviousResult:(id)sender {
-    NSResponder* oldResponder = findResponder(window);
     if([filesController commitEditing])
-    {
-        NSResponder* currentResponder =  findResponder(window);
-        if(oldResponder != currentResponder)
-            [window makeFirstResponder:oldResponder];
-    }
-    [searchController selectPrevious:sender];
+        [searchController selectPrevious:sender];
 }
 
 
