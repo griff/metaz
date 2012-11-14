@@ -12,13 +12,13 @@ using terms from application "MetaZ"
 		display dialog "Wheee Started"
 	end queue started processing
 	
-	on queue started the_document
+	on queue started document the_document
 		display dialog "Wheee Writing " & (name of the_document)
-	end queue started
+	end queue started document
 	
-	on queue completed the_document
+	on queue completed document the_document
 		display dialog "Wheee Item Completed " & (name of the_document)
-	end queue completed
+	end queue completed document
 	
 	on queue failed to write the_document because of the_error
 		display dialog "Wheee Item Failed " & (name of the_document)

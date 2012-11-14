@@ -17,11 +17,11 @@
 
         <event name="queue started processing" code="MZqustar" description="The queue started processing items"/>
         
-        <event name="queue started" code="MZqistar" description="The queue started writing document">
+        <event name="queue started document" code="MZqistar" description="The queue started writing document">
             <direct-parameter description="The document written" type="document"/>
         </event>
 
-        <event name="queue completed" code="MZqicomp" description="The queue finished writing document">
+        <event name="queue completed document" code="MZqicomp" description="The queue finished writing document">
             <direct-parameter description="The document written" type="document"/>
         </event>
 
