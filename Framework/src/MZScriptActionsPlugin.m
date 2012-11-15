@@ -18,8 +18,10 @@ enum {
     keyMZStarted   = 'star',
     keyMZCompleted = 'comp',
     keyMZFailed    = 'fail',
+    keyMZOpenDoc   = 'odoc',
     keyMZQueue     = 'MZqu',
     keyMZQueueItem = 'MZqi',
+    keyMZEvent     = 'MZev',
     keyMZError     = 'Merr',
 };
 
@@ -120,6 +122,12 @@ enum {
         addObserver:self
            selector:@selector(queueCompleted:)
                name:MZQueueCompletedNotification
+             object:nil];
+
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(openedDocument:)
+               name:MZMetaLoaderFinishedNotification
              object:nil];
 }
 
@@ -241,6 +249,34 @@ enum {
         nil
     ];
     [self executeEvent:event];
+}
+
+/*
+        <event name="opened document" code="MZevodoc" description="Opened a document">
+            <direct-parameter description="The document opened" type="document"/>
+        </event>
+*/
+- (void)openedDocument:(NSNotification *)note
+{
+    MetaEdits* edits = [[note userInfo] objectForKey:MZMetaEditsNotificationKey];
+    if(edits)
+    {
+        NSString* displayName = [[[edits loadedFileName] lastPathComponent] stringByDeletingPathExtension];
+        NSScriptClassDescription *containerClassDesc = (NSScriptClassDescription *)
+            [NSScriptClassDescription classDescriptionForClass:[NSApplication class]];// 1
+        NSScriptObjectSpecifier* spec = [[[NSNameSpecifier alloc]
+            initWithContainerClassDescription:containerClassDesc
+            containerSpecifier:nil key:@"orderedDocuments"
+            name:displayName] autorelease];
+    
+        ProcessSerialNumber psn = {0, kCurrentProcess};
+        NSAppleEventDescriptor* event = [AEVT class:keyMZEvent id:keyMZOpenDoc target:psn,
+            [KEY : keyDirectObject],
+            [spec descriptor],
+            nil
+        ];
+        [self executeEvent:event];
+    }
 }
 
 @end

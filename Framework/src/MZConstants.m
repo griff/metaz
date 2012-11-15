@@ -88,6 +88,9 @@ NSString* const MZQueueItemCompletedNotification = @"MZQueueItemCompletedNotific
 NSString* const MZQueueItemFailedNotification = @"MZQueueItemFailedNotification";
 NSString* const MZQueueCompletedNotification = @"MZQueueCompletedNotification";
 
+NSString* const MZMetaLoaderStartedNotification = @"MZMetaLoaderStartedNotification";
+NSString* const MZMetaLoaderFinishedNotification = @"MZMetaLoaderFinishedNotification";
+
 NSString* const MZMetaEditsNotificationKey = @"MZMetaEditsNotificationKey";
 NSString* const MZUndoActionNameKey = @"MZUndoActionNameKey";
 NSString* const MZDataControllerNotificationKey = @"MZDataControllerNotificationKey";

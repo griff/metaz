@@ -13,8 +13,6 @@
 #import "NSUserDefaults+KeyPath.h"
 #import "MZMetaDataDocument.h"
 
-NSString* const MZMetaLoaderStartedNotification = @"MZMetaLoaderStartedNotification";
-NSString* const MZMetaLoaderFinishedNotification = @"MZMetaLoaderFinishedNotification";
 
 @interface MZLoadOperationDelegate : NSObject <MZEditsReadDelegate>
 {
@@ -410,10 +408,16 @@ static MZMetaLoader* sharedLoader = nil;
 
 - (void)notifyLoadedFile:(MZLoadOperation *)operation;
 {
+    NSMutableDictionary* info = [NSMutableDictionary dictionary];
+    if(operation.edits)
+        [info setObject:operation.edits forKey:MZMetaEditsNotificationKey];
+    if(operation.error)
+        [info setObject:operation.error forKey:MZNSErrorKey];
+
     [[NSNotificationCenter defaultCenter]
         postNotificationName:MZMetaLoaderFinishedNotification
                       object:operation
-                    userInfo:nil];
+                    userInfo:info];
 }
 
 

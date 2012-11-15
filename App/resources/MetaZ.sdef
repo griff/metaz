@@ -33,6 +33,11 @@
         </event>
 
         <event name="queue finished processing" code="MZqucomp" description="The queue finished processing items"/>
+
+        <event name="opened document" code="MZevodoc" description="Opened a document">
+            <direct-parameter description="The document opened" type="document"/>
+        </event>
+
         
 		<command name="open" code="aevtodoc" description="Open a document.">
 			<direct-parameter description="The file(s) to be opened.">

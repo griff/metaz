@@ -9,8 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaZKit.h>
 
-MZKIT_EXTERN NSString* const MZMetaLoaderStartedNotification;
-MZKIT_EXTERN NSString* const MZMetaLoaderFinishedNotification;
 
 @interface MZLoadOperation : NSObject <MZEditsReadDelegate>
 {

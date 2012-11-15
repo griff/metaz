@@ -28,4 +28,8 @@ using terms from application "MetaZ"
 		display dialog "Wheee Finished"
 	end queue finished processing
 	
+	on opened document the_document
+		display dialog "Wheee Opened " & (name of the_document)
+	end opened document
+	
 end using terms from

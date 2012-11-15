@@ -211,6 +211,9 @@ MZKIT_EXTERN NSString* const MZQueueItemCompletedNotification;
 MZKIT_EXTERN NSString* const MZQueueItemFailedNotification;
 MZKIT_EXTERN NSString* const MZQueueCompletedNotification;
 
+MZKIT_EXTERN NSString* const MZMetaLoaderStartedNotification;
+MZKIT_EXTERN NSString* const MZMetaLoaderFinishedNotification;
+
 MZKIT_EXTERN NSString* const MZMetaEditsNotificationKey;
 MZKIT_EXTERN NSString* const MZUndoActionNameKey;
 MZKIT_EXTERN NSString* const MZDataControllerNotificationKey;
