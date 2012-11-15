@@ -9,23 +9,13 @@
 #import "AppController.h"
 #import "UndoTableView.h"
 #import "PosterView.h"
-#import "MZMetaSearcher.h"
 #import "MZWriteQueue.h"
-#import "FakeSearchResult.h"
-#import "SearchMeta.h"
 #import "FilesTableView.h"
 #import "Resources.h"
 #import "MZMetaDataDocument.h"
 #import "MZScriptingAdditions.h"
 
 #define MaxShortDescription 256
-
-@interface AppController ()
-
-- (void)updateSearchMenu;
-- (void)registerUndoName:(NSUndoManager *)manager;
-
-@end
 
 
 NSArray* MZUTIFilenameExtension(NSArray* utis)
@@ -78,9 +68,6 @@ NSDictionary* findBinding(NSWindow* window) {
 @synthesize shortDescription;
 @synthesize longDescription;
 @synthesize imageView;
-@synthesize searchIndicator;
-@synthesize searchController;
-@synthesize searchField;
 @synthesize chapterEditor;
 @synthesize remainingInShortDescription;
 @synthesize picturesController;
@@ -106,8 +93,6 @@ NSDictionary* findBinding(NSWindow* window) {
     if(self)
     {
         remainingInShortDescription = MaxShortDescription;
-        activeProfile = [[SearchProfile unknownTypeProfile] retain];
-        [activeProfile addObserver:self forKeyPath:@"searchTerms" options:0 context:NULL];
     }
     return self;
 }
@@ -115,12 +100,6 @@ NSDictionary* findBinding(NSWindow* window) {
 -(void)awakeFromNib
 {   
     [NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    
-    [[NSNotificationCenter defaultCenter]
-        addObserver:self
-           selector:@selector(finishedSearch:)
-               name:MZSearchFinishedNotification
-             object:nil];
 
     [[NSNotificationCenter defaultCenter]
         addObserver:self
@@ -140,10 +119,6 @@ NSDictionary* findBinding(NSWindow* window) {
                name:MZMetaLoaderFinishedNotification
              object:nil];
 
-    [[MZPluginController sharedInstance] setDelegate:self];
-    [[MZMetaSearcher sharedSearcher] setFakeResult:[FakeSearchResult resultWithController:filesController]];
-    [self updateSearchMenu];
-
     undoManager = [[NSUndoManager alloc] init];
 
     [seasonFormatter setNilSymbol:@""];
@@ -160,10 +135,6 @@ NSDictionary* findBinding(NSWindow* window) {
                          options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionInitial
                          context:nil];
     [filesController addObserver:self
-                      forKeyPath:@"selection.pure.videoType"
-                         options:0
-                         context:nil];
-    [filesController addObserver:self
                       forKeyPath:@"selection.shortDescription"
                          options:0
                          context:nil];
@@ -172,9 +143,7 @@ NSDictionary* findBinding(NSWindow* window) {
 
 -(void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [activeProfile removeObserver:self forKeyPath:@"searchTerms"];
     [filesController removeObserver:self forKeyPath:@"selection.title"];
-    [filesController removeObserver:self forKeyPath:@"selection.pure.videoType"];
     [window release];
     [tabView release];
     [episodeFormatter release];
@@ -192,104 +161,11 @@ NSDictionary* findBinding(NSWindow* window) {
     [imageEditController release];
     [prefController release];
     [presetsController release];
-    [searchIndicator release];
-    [searchController release];
-    [searchField release];
-    [activeProfile release];
     [chapterEditor release];
     [fileNameEditor release];
     [picturesController release];
     [updater release];
     [super dealloc];
-}
-#pragma mark - private
-
-- (void)updateSearchMenu
-{
-    SearchProfile* profile;
-    
-    id videoType = [filesController protectedValueForKeyPath:@"selection.pure.videoType"];
-    MZVideoType vt;
-    MZTag* tag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
-    [tag convertObject:videoType toValue:&vt];
-    switch (vt) {
-        case MZMovieVideoType:
-            if([[activeProfile identifier] isEqual:@"movie"])
-                profile = [[activeProfile retain] autorelease];
-            else
-                profile = [SearchProfile movieProfile];
-            break;
-        case MZTVShowVideoType:
-            if([[activeProfile identifier] isEqual:@"tvShow"])
-                profile = [[activeProfile retain] autorelease];
-            else
-                profile = [SearchProfile tvShowProfile];
-            break;
-        default:
-            if([[activeProfile identifier] isEqual:@"unknown"])
-                profile = [[activeProfile retain] autorelease];
-            else
-                profile = [SearchProfile unknownTypeProfile];
-            break;
-    }
-    [activeProfile removeObserver:self forKeyPath:@"searchTerms"];
-    [activeProfile release];
-    activeProfile = [profile retain];
-    [activeProfile setCheckObject:filesController withPrefix:@"selection.pure."];
-    [activeProfile addObserver:self forKeyPath:@"searchTerms" options:0 context:NULL];
-
-    NSMenu* menu = [[NSMenu alloc] initWithTitle:
-        NSLocalizedString(@"Search terms", @"Search menu title")];
-    [menu addItemWithTitle:[menu title] action:nil keyEquivalent:@""];
-    NSInteger i = 0;
-    for(NSString* tagId in [profile tags])
-    {
-        if(![tagId isEqual:MZVideoTypeTagIdent])
-        {
-            MZTag* tag = [MZTag tagForIdentifier:tagId];
-            NSMenuItem* item = [[NSMenuItem alloc] initWithTitle:[tag localizedName]
-                action:@selector(switchItem:) keyEquivalent:@""];
-            [item setTarget:profile];
-            [item setTag:i];
-            [item setState:NSOnState];
-            [item setIndentationLevel:1];
-            [menu addItem:item];
-            [item release];
-        }
-        i++;
-    }
-    id searchCell = [searchField cell];
-    [searchCell setSearchMenuTemplate:menu];
-    [menu release];
-        
-    NSString* prefix = @"selection.pure.";
-    id mainValue = @"";
-    if([profile mainTag])
-    {
-        mainValue = [filesController protectedValueForKeyPath:
-            [prefix stringByAppendingString:[profile mainTag]]];
-    
-        if(mainValue == nil || mainValue == [NSNull null] || mainValue == NSMultipleValuesMarker ||
-            mainValue == NSNoSelectionMarker || mainValue == NSNotApplicableMarker)
-        {
-            mainValue = @"";
-        }
-    }
-    [searchField setStringValue:mainValue];
-
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"autoSearch"])
-    {
-        //[[MZMetaSearcher sharedSearcher] clearResults];
-        [self startSearch:searchField];
-    }
-}
-
-- (void)registerUndoName:(NSUndoManager *)manager
-{
-    [manager setActionName:NSLocalizedString(@"Apply Search", @"Apply search undo name")];
-    [manager registerUndoWithTarget:self 
-                           selector:@selector(registerUndoName:)
-                             object:manager];
 }
 
 #pragma mark - as observer
@@ -316,11 +192,6 @@ NSDictionary* findBinding(NSWindow* window) {
         else
             [filesSegmentControl setEnabled:YES forSegment:1];
     }
-    if([keyPath isEqual:@"selection.pure.videoType"] && object == filesController)
-    {
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updateSearchMenu) object:nil];
-        [self performSelector:@selector(updateSearchMenu) withObject:nil afterDelay:0.001];
-    }
     if([keyPath isEqual:@"selection.shortDescription"] && object == filesController)
     {
         NSInteger newRemain = 0;
@@ -331,18 +202,6 @@ NSDictionary* findBinding(NSWindow* window) {
         remainingInShortDescription = MaxShortDescription-newRemain;
         [self didChangeValueForKey:@"remainingInShortDescription"];
     }
-    if([keyPath isEqual:@"searchTerms"] && object == activeProfile)
-        [self startSearch:self];
-}
-
-
-#pragma mark - as MZPluginControllerDelegate
-
-- (id<MetaData>)pluginController:(MZPluginController *)controller
-        extraMetaDataForProvider:(id<MZDataProvider>)provider
-                          loaded:(MetaLoaded*)loaded
-{
-    return [[[SearchMeta alloc] initWithProvider:loaded controller:searchController] autorelease];
 }
 
 
@@ -373,22 +232,6 @@ NSDictionary* findBinding(NSWindow* window) {
     [tabView selectTabViewItemWithIdentifier:@"video"];    
 }
 
-- (IBAction)startSearch:(id)sender;
-{
-    [filesController commitEditing];
-
-    NSString* term = [[searchField stringValue] 
-        stringByTrimmingCharactersInSet:
-            [NSCharacterSet whitespaceCharacterSet]];
-    NSMutableDictionary* dict = [activeProfile searchTerms:term];
-    //[dict setObject:term forKey:[activeProfile mainTag]];
-    [searchIndicator startAnimation:searchField];
-    [searchController setSortDescriptors:nil];
-    searches++;
-    MZLoggerInfo(@"Starting search %d", searches);
-    [[MZMetaSearcher sharedSearcher] startSearchWithData:dict];
-}
-
 - (IBAction)segmentClicked:(id)sender {
     int clickedSegment = [sender selectedSegment];
     int clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
@@ -398,17 +241,6 @@ NSDictionary* findBinding(NSWindow* window) {
     else
         [filesController remove:sender];
 }
-
-- (IBAction)selectNextResult:(id)sender {
-    if([filesController commitEditing])
-        [searchController selectNext:sender];
-}
-
-- (IBAction)selectPreviousResult:(id)sender {
-    if([filesController commitEditing])
-        [searchController selectPrevious:sender];
-}
-
 
 - (IBAction)revertChanges:(id)sender {
     NSDictionary* dict = findBinding(window);
@@ -541,75 +373,6 @@ NSDictionary* findBinding(NSWindow* window) {
         [presetsController close];
 }
 
-- (IBAction)applySearchEntry:(id)sender
-{
-    id selection = [searchController valueForKeyPath:@"selection.self"];
-    if(![selection isKindOfClass:[MZSearchResult class]])
-        return;
-    
-    NSDictionary* result = [selection values];
-    for(NSString* key in [result allKeys])
-    {
-        id value = [result objectForKey:key];
-        if([value isKindOfClass:[MZRemoteData class]])
-        {
-            if(![value isLoaded])
-                return;
-        }
-    }
-    
-    id picture = [picturesController valueForKeyPath:@"selection.self"];
-    MZLoggerDebug(@"Picture is %@", picture);
-    if([picture isKindOfClass:[MZRemoteData class]])
-    {
-        if(![picture isLoaded])
-            return;
-    }
-    
-    
-    NSArray* edits = [filesController selectedObjects];
-    for(MetaEdits* edit in edits)
-    {
-        [self registerUndoName:edit.undoManager];
-    }
-
-    for(MetaEdits* edit in edits)
-    {
-        NSArray* providedTags = [edit providedTags];
-        for(MZTag* tag in providedTags)
-        {
-            if(![edit getterChangedForKey:[tag identifier]])
-            {
-                id value = [result objectForKey:[tag identifier]];
-                if([[tag identifier] isEqual:MZChapterNamesTagIdent])
-                {
-                    if(value)
-                    {
-                        [chapterEditor setChapterNames:value];
-                        [chapterEditor setChanged:[NSNumber numberWithBool:YES]];
-                    }
-                }
-                else if([[tag identifier] isEqual:MZPictureTagIdent])
-                {
-                    if([picture isKindOfClass:[MZRemoteData class]])
-                        picture = [picture data];
-                    if(picture)
-                        [edit setterValue:picture forKey:[tag identifier]];
-                }
-                else
-                {
-                    if([value isKindOfClass:[MZRemoteData class]])
-                        value = [value data];
-                    if(value)
-                        [edit setterValue:value forKey:[tag identifier]];
-                }
-
-            }
-        }
-        [self registerUndoName:edit.undoManager];
-    }
-}
-
 - (IBAction)showReleaseNotes:(id)sender
 {
     NSURL* url = [NSURL URLWithString:@"http://griff.github.com/metaz/release-notes.html"];
@@ -662,28 +425,9 @@ NSDictionary* findBinding(NSWindow* window) {
 
 #pragma mark - user interface validation
 
-- (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem {
+- (BOOL)validateUserInterfaceItem:(id < NSValidatedUserInterfaceItem >)anItem
+{
     SEL action = [anItem action];
-    if(action == @selector(applySearchEntry:))
-    {
-        id selection = [searchController protectedValueForKeyPath:@"selection.self"];
-        if(![selection isKindOfClass:[MZSearchResult class]])
-            return NO;
-        
-        NSDictionary* values = [selection values];
-        for(NSString* key in [values allKeys])
-        {
-            id value = [values objectForKey:key];
-            if([value isKindOfClass:[MZRemoteData class]])
-            {
-                if(![value isLoaded])
-                    return NO;
-            }
-        }
-        if(presetsController && [[presetsController window] isKeyWindow])
-            return NO;
-        return YES;
-    }
     if(action == @selector(revertChanges:))
     {
         NSDictionary* dict = findBinding(window);
@@ -726,14 +470,6 @@ NSDictionary* findBinding(NSWindow* window) {
 }
 
 #pragma mark - callbacks
-
-- (void)finishedSearch:(NSNotification *)note
-{
-    searches--;
-    MZLoggerDebug(@"Finished search %d", searches);
-    if(searches <= 0)
-        [searchIndicator stopAnimation:self];
-}
 
 - (void)startedLoading:(NSNotification *)note
 {

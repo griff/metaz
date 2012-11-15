@@ -14,12 +14,12 @@
 #import "ImageWindowController.h"
 #import "PreferencesWindowController.h"
 #import "PresetsWindowController.h"
-#import "SearchProfile.h"
 #import "ChapterEditor.h"
 #import "MZFileNameTextStorage.h"
 #import "MZYearDateFormatter.h"
+#import "FilesArrayController.h"
 
-@interface AppController : NSObject <NSUserInterfaceValidations,MZPluginControllerDelegate> {
+@interface AppController : NSObject <NSUserInterfaceValidations> {
     NSWindow* window;
     NSTabView *tabView;
     NSNumberFormatter* episodeFormatter;
@@ -27,7 +27,7 @@
     MZYearDateFormatter* dateFormatter;
     NSDateFormatter* purchaseDateFormatter;
     NSSegmentedControl* filesSegmentControl;
-    NSArrayController* filesController;
+    FilesArrayController* filesController;
     ResizeController* resizeController;
     FilesUndoController* undoController;
     NSTextView* shortDescription;
@@ -41,8 +41,6 @@
     NSArrayController* searchController;
     NSSearchField* searchField;
     NSInteger remainingInShortDescription;
-    SearchProfile* activeProfile;
-    NSInteger searches;
     ChapterEditor* chapterEditor;
     NSProgressIndicator* loadingIndicator;
     NSInteger loadings;
@@ -58,15 +56,12 @@
 @property (nonatomic, retain) IBOutlet MZYearDateFormatter* dateFormatter;
 @property (nonatomic, retain) IBOutlet NSDateFormatter* purchaseDateFormatter;
 @property (nonatomic, retain) IBOutlet NSSegmentedControl* filesSegmentControl;
-@property (nonatomic, retain) IBOutlet NSArrayController* filesController;
+@property (nonatomic, retain) IBOutlet FilesArrayController* filesController;
 @property (nonatomic, retain) IBOutlet ResizeController* resizeController;
 @property (nonatomic, retain) IBOutlet FilesUndoController* undoController;
 @property (nonatomic, retain) IBOutlet NSTextView* shortDescription;
 @property (nonatomic, retain) IBOutlet NSTextView* longDescription;
 @property (nonatomic, retain) IBOutlet NSImageView* imageView;
-@property (nonatomic, retain) IBOutlet NSProgressIndicator* searchIndicator;
-@property (nonatomic, retain) IBOutlet NSArrayController* searchController;
-@property (nonatomic, retain) IBOutlet NSSearchField* searchField;
 @property (nonatomic, retain) IBOutlet ChapterEditor* chapterEditor;
 @property (nonatomic, retain) IBOutlet NSProgressIndicator* loadingIndicator;
 @property (nonatomic, retain) IBOutlet NSArrayController* picturesController;
@@ -83,16 +78,12 @@
 - (IBAction)showSortTab:(id)sender;
 - (IBAction)showVideoTab:(id)sender;
 - (IBAction)segmentClicked:(id)sender;
-- (IBAction)selectNextResult:(id)sender;
-- (IBAction)selectPreviousResult:(id)sender;
 - (IBAction)showPreferences:(id)sender;
 - (IBAction)revertChanges:(id)sender;
 - (IBAction)showImageEditor:(id)sender;
-- (IBAction)startSearch:(id)sender;
 - (IBAction)searchForImages:(id)sender;
 - (IBAction)openDocument:(id)sender;
 - (IBAction)showPresets:(id)sender;
-- (IBAction)applySearchEntry:(id)sender;
 - (IBAction)showReleaseNotes:(id)sender;
 - (IBAction)showHomepage:(id)sender;
 - (IBAction)showIssues:(id)sender;

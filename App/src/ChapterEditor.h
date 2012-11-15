@@ -8,11 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 #import "FilesUndoController.h"
+#import "MZApplyEditor.h"
+#import "FilesArrayController.h"
 
-
-@interface ChapterEditor : NSObject {
+@interface ChapterEditor : NSObject <MZApplyEditor> {
     NSSlider* slider;
-    NSArrayController* filesController;
+    FilesArrayController* filesController;
     FilesUndoController* undoController;
     NSArray* editorChapters;
     NSArray* chapters;
@@ -24,7 +25,7 @@
     BOOL useCachedChanged;
 }
 @property (nonatomic,retain) IBOutlet NSSlider* slider;
-@property (nonatomic,retain) IBOutlet NSArrayController* filesController;
+@property (nonatomic,retain) IBOutlet FilesArrayController* filesController;
 @property (nonatomic, retain) IBOutlet FilesUndoController* undoController;
 @property (readonly) NSArray* editorChapters;
 @property (nonatomic,retain) NSArray* chapters;

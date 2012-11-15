@@ -3,12 +3,12 @@
 
 @interface ResizeController : NSObject {
     NSBox *filesBox;
-    NSBox *searchBox;
+    NSView* searchBox;
     NSTabView *tabView;
     NSSplitView *splitView;
 }
 @property (nonatomic, retain) IBOutlet NSBox *filesBox;
-@property (nonatomic, retain) IBOutlet NSBox *searchBox;
+@property (nonatomic, retain) IBOutlet NSView* searchBox;
 @property (nonatomic, retain) IBOutlet NSTabView *tabView;
 @property (nonatomic, retain) IBOutlet NSSplitView *splitView;
 

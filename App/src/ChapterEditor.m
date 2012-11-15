@@ -46,6 +46,7 @@
     [self bind:@"chapters" toObject:filesController withKeyPath:@"selection.chapters" options:dict];
     [self bind:@"chapterNames" toObject:filesController withKeyPath:@"selection.chapterNames" options:dict];
     [filesController addObserver:self forKeyPath:@"selection.chaptersChanged" options:0 context:NULL];
+    [filesController registerEditor:self];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -317,6 +318,24 @@
     [editorChapters release];
     editorChapters = [nextEdits retain];
     [self didChangeValueForKey:@"editorChapters"];
+}
+
+- (BOOL)canApply:(id)data;
+{
+    return YES;
+}
+
+- (void)applyData:(id)data toEdit:(MetaEdits *)edit;
+{
+    if(![edit getterChangedForKey:MZChapterNamesTagIdent])
+    {
+        id value = [data objectForKey:MZChapterNamesTagIdent];
+        if(value)
+        {
+            [self setChapterNames:value];
+            [self setChanged:[NSNumber numberWithBool:YES]];
+        }
+    }
 }
 
 @end

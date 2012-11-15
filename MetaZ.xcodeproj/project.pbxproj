@@ -76,13 +76,17 @@
 		1B11A28B104DF1EC004C93D3 /* FilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A28A104DF1EC004C93D3 /* FilesTableView.m */; };
 		1B15A60E10B608D100EC0FBF /* AmazonSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B15A60D10B608D100EC0FBF /* AmazonSearch.m */; };
 		1B20209B10B36EC200EE548A /* VideoType.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B20209910B36EC200EE548A /* VideoType.strings */; };
+		1B26B818164ACE1200238517 /* SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26B817164ACE1200238517 /* SearchController.m */; };
 		1B26B88D164B1EEB00238517 /* MZTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26B88C164B1EEB00238517 /* MZTextView.m */; };
 		1B26B8FB164B264400238517 /* MZTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26B8FA164B264400238517 /* MZTextField.m */; };
 		1B26BA8B164B687B00238517 /* MZComboBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26BA8A164B687B00238517 /* MZComboBox.m */; };
+		1B26BAC3164C3BA400238517 /* FilesArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26BAC2164C3BA400238517 /* FilesArrayController.m */; };
 		1B299D7014AE3E370048B7C0 /* TheMovieDbSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B299D6F14AE3E370048B7C0 /* TheMovieDbSearchProvider.m */; };
 		1B299D7314AE43900048B7C0 /* TheMovieDbSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B299D7214AE43900048B7C0 /* TheMovieDbSearch.m */; };
 		1B299DB714AE4D3A0048B7C0 /* TheMovieDb.mzplugin in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B8CB90B14ACD62000F859F7 /* TheMovieDb.mzplugin */; };
 		1B2AEED611A0EC430074BAAD /* MZFileNameTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */; };
+		1B31C310165378CE00853E10 /* PicturesArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B31C30F165378CE00853E10 /* PicturesArrayController.m */; };
+		1B31C37E16538DC300853E10 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B31C37C16538DC300853E10 /* SearchView.xib */; };
 		1B35446915B1D96B0033DD74 /* MetaZ.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 1B35446815B1D96B0033DD74 /* MetaZ.sdef */; };
 		1B3544E815B2160F0033DD74 /* MetaZApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3544E715B2160F0033DD74 /* MetaZApplication.m */; };
 		1B35453115B223BB0033DD74 /* MZMetaDataDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B35453015B223BB0033DD74 /* MZMetaDataDocument.m */; };
@@ -617,12 +621,16 @@
 		1B15A60D10B608D100EC0FBF /* AmazonSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonSearch.m; sourceTree = "<group>"; };
 		1B15A62610B6316000EC0FBF /* Access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access.h; path = Plugins/Amazon/Access.h; sourceTree = SOURCE_ROOT; };
 		1B20209A10B36EC200EE548A /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/VideoType.strings; sourceTree = "<group>"; };
+		1B26B816164ACE1200238517 /* SearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchController.h; sourceTree = "<group>"; };
+		1B26B817164ACE1200238517 /* SearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchController.m; sourceTree = "<group>"; };
 		1B26B88B164B1EEB00238517 /* MZTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTextView.h; sourceTree = "<group>"; };
 		1B26B88C164B1EEB00238517 /* MZTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTextView.m; sourceTree = "<group>"; };
 		1B26B8F9164B264400238517 /* MZTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTextField.h; sourceTree = "<group>"; };
 		1B26B8FA164B264400238517 /* MZTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTextField.m; sourceTree = "<group>"; };
 		1B26BA89164B687B00238517 /* MZComboBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZComboBox.h; sourceTree = "<group>"; };
 		1B26BA8A164B687B00238517 /* MZComboBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZComboBox.m; sourceTree = "<group>"; };
+		1B26BAC1164C3BA400238517 /* FilesArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesArrayController.h; sourceTree = "<group>"; };
+		1B26BAC2164C3BA400238517 /* FilesArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesArrayController.m; sourceTree = "<group>"; };
 		1B299D6C14AE3CF50048B7C0 /* TheMovieDbPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheMovieDbPlugin.h; sourceTree = "<group>"; };
 		1B299D6E14AE3E370048B7C0 /* TheMovieDbSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheMovieDbSearchProvider.h; sourceTree = "<group>"; };
 		1B299D6F14AE3E370048B7C0 /* TheMovieDbSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheMovieDbSearchProvider.m; sourceTree = "<group>"; };
@@ -634,6 +642,10 @@
 		1B29A07314C5C9430048B7C0 /* 1.2.3 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = 1.2.3; path = Externals/Growl/1.2.3; sourceTree = "<group>"; };
 		1B2AEED411A0EC430074BAAD /* MZFileNameTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFileNameTextStorage.h; sourceTree = "<group>"; };
 		1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFileNameTextStorage.m; sourceTree = "<group>"; };
+		1B31C2F3165371BD00853E10 /* MZApplyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZApplyEditor.h; sourceTree = "<group>"; };
+		1B31C30E165378CE00853E10 /* PicturesArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicturesArrayController.h; sourceTree = "<group>"; };
+		1B31C30F165378CE00853E10 /* PicturesArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicturesArrayController.m; sourceTree = "<group>"; };
+		1B31C37D16538DC300853E10 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/SearchView.xib; sourceTree = "<group>"; };
 		1B35446815B1D96B0033DD74 /* MetaZ.sdef */ = {isa = PBXFileReference; explicitFileType = text.xml; fileEncoding = 4; name = MetaZ.sdef; path = App/resources/MetaZ.sdef; sourceTree = "<group>"; };
 		1B3544E615B2160F0033DD74 /* MetaZApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaZApplication.h; sourceTree = "<group>"; };
 		1B3544E715B2160F0033DD74 /* MetaZApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaZApplication.m; sourceTree = "<group>"; };
@@ -1505,6 +1517,23 @@
 			name = MGViewAnimation;
 			sourceTree = "<group>";
 		};
+		1B26B815164ACDF100238517 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				1B26B816164ACE1200238517 /* SearchController.h */,
+				1B26B817164ACE1200238517 /* SearchController.m */,
+				1BB6BE7F1050BC88001D3D1D /* MZMetaSearcher.h */,
+				1BB6BE801050BC88001D3D1D /* MZMetaSearcher.m */,
+				1B92BB6E108787260057EFD7 /* SearchProfile.h */,
+				1B92BB6F108787260057EFD7 /* SearchProfile.m */,
+				1B92BBFF10887EF40057EFD7 /* FakeSearchResult.h */,
+				1B92BC0010887EF40057EFD7 /* FakeSearchResult.m */,
+				1B92BFB91089F9060057EFD7 /* SearchMeta.h */,
+				1B92BFBA1089F9060057EFD7 /* SearchMeta.m */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
 		1B29A18814C5CF9E0048B7C0 /* Growl */ = {
 			isa = PBXGroup;
 			children = (
@@ -2114,6 +2143,10 @@
 				1BD3D310108DD03E00BE6943 /* PictureEditor.m */,
 				1B63A1D11644D8D100461FC9 /* MZArrayController.h */,
 				1B63A1D21644D8D100461FC9 /* MZArrayController.m */,
+				1B26BAC1164C3BA400238517 /* FilesArrayController.h */,
+				1B26BAC2164C3BA400238517 /* FilesArrayController.m */,
+				1B31C30E165378CE00853E10 /* PicturesArrayController.h */,
+				1B31C30F165378CE00853E10 /* PicturesArrayController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -2142,12 +2175,11 @@
 		1BA325BD10545A2800276F57 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1B26B815164ACDF100238517 /* Search */,
 				1B92BB721087889A0057EFD7 /* Controller */,
 				1B92BB711087884C0057EFD7 /* Views */,
 				1B119FD510444DC4004C93D3 /* MZMetaLoader.h */,
 				1B119FD610444DC4004C93D3 /* MZMetaLoader.m */,
-				1BB6BE7F1050BC88001D3D1D /* MZMetaSearcher.h */,
-				1BB6BE801050BC88001D3D1D /* MZMetaSearcher.m */,
 				1BDD86A51094A8CC00E3C81D /* MZPresets.h */,
 				1BDD86A61094A8CC00E3C81D /* MZPresets.m */,
 				1BA326EE1054823100276F57 /* MZWriteQueue.h */,
@@ -2159,16 +2191,10 @@
 				1B0696AF149BD4B500B5FA90 /* MZViewAnimation.m */,
 				1BEA6C93106E7203004B1A7F /* Utilities.h */,
 				1BEA6C94106E7203004B1A7F /* Utilities.m */,
-				1B92BB6E108787260057EFD7 /* SearchProfile.h */,
-				1B92BB6F108787260057EFD7 /* SearchProfile.m */,
 				1B7B529B149EA26300BF37DD /* EnsureArrayTransformer.h */,
 				1B7B529C149EA26300BF37DD /* EnsureArrayTransformer.m */,
-				1B92BBFF10887EF40057EFD7 /* FakeSearchResult.h */,
-				1B92BC0010887EF40057EFD7 /* FakeSearchResult.m */,
 				1B92BC02108880D60057EFD7 /* Resources.h */,
 				1B92BC03108880D60057EFD7 /* Resources.m */,
-				1B92BFB91089F9060057EFD7 /* SearchMeta.h */,
-				1B92BFBA1089F9060057EFD7 /* SearchMeta.m */,
 				1B92C0A1108A23BA0057EFD7 /* NSUserDefaults+KeyPath.h */,
 				1B92C0A2108A23BA0057EFD7 /* NSUserDefaults+KeyPath.m */,
 				1B2AEED411A0EC430074BAAD /* MZFileNameTextStorage.h */,
@@ -2191,6 +2217,7 @@
 				1B89073016420437008C5C8B /* MZScriptingEnums.m */,
 				1B8908E216424790008C5C8B /* MZSelectedMetaDataDocument.h */,
 				1B8908E316424790008C5C8B /* MZSelectedMetaDataDocument.m */,
+				1B31C2F3165371BD00853E10 /* MZApplyEditor.h */,
 			);
 			name = Classes;
 			path = App/src;
@@ -2408,6 +2435,7 @@
 				1BCC990610771262007EFF57 /* FactorySettings.plist */,
 				1BC0661710AE223A005C2A9F /* PresetsPanel.xib */,
 				1B35446815B1D96B0033DD74 /* MetaZ.sdef */,
+				1B31C37C16538DC300853E10 /* SearchView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2892,6 +2920,7 @@
 				1B8CB5E314AA31C500F859F7 /* modified_selected.tiff in Resources */,
 				1B8CB5E414AA31C500F859F7 /* modified.tiff in Resources */,
 				1B35446915B1D96B0033DD74 /* MetaZ.sdef in Resources */,
+				1B31C37E16538DC300853E10 /* SearchView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3207,9 +3236,12 @@
 				1B8908E416424790008C5C8B /* MZSelectedMetaDataDocument.m in Sources */,
 				1B63A1D31644D8D100461FC9 /* MZArrayController.m in Sources */,
 				1BD55BED16482D7600F9C579 /* Return iTunes selected.applescript in Sources */,
+				1B26B818164ACE1200238517 /* SearchController.m in Sources */,
 				1B26B88D164B1EEB00238517 /* MZTextView.m in Sources */,
 				1B26B8FB164B264400238517 /* MZTextField.m in Sources */,
 				1B26BA8B164B687B00238517 /* MZComboBox.m in Sources */,
+				1B26BAC3164C3BA400238517 /* FilesArrayController.m in Sources */,
+				1B31C310165378CE00853E10 /* PicturesArrayController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3368,6 +3400,14 @@
 				1B20209A10B36EC200EE548A /* English */,
 			);
 			name = VideoType.strings;
+			sourceTree = "<group>";
+		};
+		1B31C37C16538DC300853E10 /* SearchView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B31C37D16538DC300853E10 /* English */,
+			);
+			name = SearchView.xib;
 			sourceTree = "<group>";
 		};
 		1B42F21D10DD5D6D00AFEBF6 /* MiniProgressGradient.png */ = {
