@@ -288,11 +288,19 @@
 
     NSMutableDictionary* seriesDict = [NSMutableDictionary dictionary];
 
-    NSString* tvShow = [doc stringForXPath:@"/Data/Series/SeriesName" error:NULL];
-    MZTag* tvShowTag = [MZTag tagForIdentifier:MZTVShowTagIdent];
-    [seriesDict setObject:[tvShowTag objectFromString:tvShow] forKey:MZTVShowTagIdent];
-    MZTag* artistTag = [MZTag tagForIdentifier:MZArtistTagIdent];
-    [seriesDict setObject:[artistTag objectFromString:tvShow] forKey:MZArtistTagIdent];
+    NSError* err = nil;
+    NSString* tvShow = [doc stringForXPath:@"/Data/Series/SeriesName" error:&err];
+    if(tvShow && [tvShow length] > 0)
+    {
+        MZTag* tvShowTag = [MZTag tagForIdentifier:MZTVShowTagIdent];
+        [seriesDict setObject:[tvShowTag objectFromString:tvShow] forKey:MZTVShowTagIdent];
+        MZTag* artistTag = [MZTag tagForIdentifier:MZArtistTagIdent];
+        [seriesDict setObject:[artistTag objectFromString:tvShow] forKey:MZArtistTagIdent];
+    }
+    else {
+        MZLoggerDebug(@"Series %d has no name: %@", series, [err localizedDescription]);
+    }
+
 
     NSString* tvNetwork = [doc stringForXPath:@"/Data/Series/Network" error:NULL];
     if(tvNetwork && [tvNetwork length] > 0)
