@@ -19,4 +19,28 @@ using terms from application "MetaZ"
 			end tell
 		end if
 	end queue completed document
+	
+	on opened document the_document
+		if application "iTunes" is running then
+			tell application "MetaZ"
+				set myid to content of tag "iTunes persistent ID" of the_document
+				set myname to content of tag "title" of the_document
+				set myloc to file of the_document as alias
+			end tell
+			if myid is missing value then
+				tell application "iTunes"
+					set trks to every track whose name is myname
+					repeat with currentTrack in trks
+						if location of currentTrack is equal to myloc then
+							set myid to persistent ID of currentTrack
+							tell application "MetaZ"
+								set content of tag "iTunes persistent ID" of the_document to myid
+								return
+							end tell
+						end if
+					end repeat
+				end tell
+			end if
+		end if
+	end opened document
 end using terms from
