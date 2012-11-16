@@ -60,10 +60,10 @@
             stringWithFormat:@"http://www.thetvdb.com/api/%@/mirrors.xml",
                 THETVDB_API_KEY]];
     MZLoggerDebug(@"Sending request to %@", [url absoluteString]);
-    mirrorRequest = [[ASIHTTPRequest alloc] initWithURL:url];
+    mirrorRequest = [[MZHTTPRequest alloc] initWithURL:url];
     mirrorRequest.cacheStoragePolicy = ASICachePermanentlyCacheStoragePolicy;
     [mirrorRequest setDelegate:self];
-    mirrorRequest.didFinishSelector = @selector(updateMirrorCompleted:);
+    mirrorRequest.didFinishBackgroundSelector = @selector(updateMirrorCompleted:);
     mirrorRequest.didFailSelector = @selector(updateMirrorFailed:);
 
     [self addOperation:mirrorRequest];
@@ -134,9 +134,9 @@
     NSString *urlWithParams = [url stringByAppendingFormat:@"?%@", params];
     
     MZLoggerDebug(@"Sending request to %@", urlWithParams);
-    ASIHTTPRequest* request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlWithParams]];
+    MZHTTPRequest* request = [[MZHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlWithParams]];
     [request setDelegate:self];
-    request.didFinishSelector = @selector(fetchSeriesCompleted:);
+    request.didFinishBackgroundSelector = @selector(fetchSeriesCompleted:);
     request.didFailSelector = @selector(fetchSeriesFailed:);
     
     if(mirrorRequest)
@@ -240,9 +240,9 @@
             THETVDB_API_KEY,
             theSeries];
     MZLoggerDebug(@"Sending request to %@", urlStr);
-    ASIHTTPRequest* request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlStr]];
+    MZHTTPRequest* request = [[MZHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlStr]];
     [request setDelegate:self];
-    request.didFinishSelector = @selector(fetchFullSeriesCompleted:);
+    request.didFinishBackgroundSelector = @selector(fetchFullSeriesCompleted:);
     request.didFailSelector = @selector(fetchFullSeriesFailed:);
 
     NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
@@ -254,9 +254,9 @@
             THETVDB_API_KEY,
             theSeries];
     MZLoggerDebug(@"Sending request to %@", bannerUrl);
-    ASIHTTPRequest* bannerRequest = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:bannerUrl]];
+    MZHTTPRequest* bannerRequest = [[MZHTTPRequest alloc] initWithURL:[NSURL URLWithString:bannerUrl]];
     [bannerRequest setDelegate:self];
-    bannerRequest.didFinishSelector = @selector(fetchSeriesBannersCompleted:);
+    bannerRequest.didFinishBackgroundSelector = @selector(fetchSeriesBannersCompleted:);
     bannerRequest.didFailSelector = @selector(fetchSeriesBannersFailed:);
     bannerRequest.userInfo = userInfo;
     [request addDependency:bannerRequest];
@@ -473,6 +473,11 @@
     }
     
     MZLoggerDebug(@"Parsed TheTVDB results %d", [results count]);
+    [self performSelectorOnMainThread:@selector(providedResults:) withObject:results waitUntilDone:NO];
+}
+
+- (void)providedResults:(NSArray *)results
+{
     [delegate searchProvider:provider result:results];
 }
 

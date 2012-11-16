@@ -60,9 +60,9 @@
 
     MZLoggerDebug(@"Sending request to %@", url);
     MZLoggerDebug(@"Sending request to %@", [NSURL URLWithString:url]);
-    ASIHTTPRequest* request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    MZHTTPRequest* request = [[MZHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [request setDelegate:self];
-    request.didFinishSelector = @selector(fetchMovieSearchCompleted:);
+    request.didFinishBackgroundSelector = @selector(fetchMovieSearchCompleted:);
     request.didFailSelector = @selector(fetchMovieSearchFailed:);
 
     [self addOperation:request];
@@ -106,9 +106,9 @@
         identifier] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
     MZLoggerDebug(@"Sending request to %@", url);
-    ASIHTTPRequest* request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    MZHTTPRequest* request = [[MZHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [request setDelegate:self];
-    request.didFinishSelector = @selector(fetchMovieInfoCompleted:);
+    request.didFinishBackgroundSelector = @selector(fetchMovieInfoCompleted:);
     request.didFailSelector = @selector(fetchMovieInfoFailed:);
 
     [self queueOperation:request];
@@ -213,6 +213,11 @@
         [dict setObject:[NSArray arrayWithArray:images] forKey:MZPictureTagIdent];
 
     MZSearchResult* result = [MZSearchResult resultWithOwner:provider dictionary:dict];
+    [self performSelectorOnMainThread:@selector(providedResult:) withObject:result waitUntilDone:NO];
+}
+
+- (void)providedResult:(MZSearchResult *)result
+{
     [delegate searchProvider:provider result:[NSArray arrayWithObject:result]];
 }
 

@@ -331,8 +331,7 @@
             MZLoggerError(@"Result contained an item with no id. Skipping.");
     }
     MZLoggerDebug(@"Parsed TagChimp results %d", [results count]);
-    [delegate searchProvider:provider result:results];
-    [super requestFinished:theRequest];
+    [self performSelectorOnMainThread:@selector(providedResults:) withObject:results waitUntilDone:NO];
 }
 
 @end

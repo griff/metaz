@@ -120,6 +120,8 @@
 		1B449E4B10DCCDB000B9C751 /* GTMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B449DCE10DCCC1C00B9C751 /* GTMLogger.m */; };
 		1B4AF83B1170CFCC00E5C969 /* TheTVDBSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */; };
 		1B4AF84511715C8400E5C969 /* languages.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1B4AF84411715C8400E5C969 /* languages.xml */; };
+		1B4C1F4016554B0100011621 /* MZHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B4C1F3C1655490D00011621 /* MZHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B4C1F4116554B0600011621 /* MZHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4C1F3D1655490D00011621 /* MZHTTPRequest.m */; };
 		1B4CFFE8161CE0ED00B12009 /* AEVTBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4CFF90161CDF0100B12009 /* AEVTBuilder.m */; };
 		1B4F53C4116E9F44003221B1 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1B4F53D8116EA0BE003221B1 /* TheTVDBPlugin.mzplugin in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzplugin */; };
@@ -952,6 +954,8 @@
 		1B4AF8391170CFCC00E5C969 /* TheTVDBSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBSearch.h; sourceTree = "<group>"; };
 		1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBSearch.m; sourceTree = "<group>"; };
 		1B4AF84411715C8400E5C969 /* languages.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = languages.xml; sourceTree = "<group>"; };
+		1B4C1F3C1655490D00011621 /* MZHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZHTTPRequest.h; sourceTree = "<group>"; };
+		1B4C1F3D1655490D00011621 /* MZHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZHTTPRequest.m; sourceTree = "<group>"; };
 		1B4CFF8F161CDF0100B12009 /* AEVTBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEVTBuilder.h; sourceTree = "<group>"; };
 		1B4CFF90161CDF0100B12009 /* AEVTBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEVTBuilder.m; sourceTree = "<group>"; };
 		1B4F5394116E9EFC003221B1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
@@ -1386,6 +1390,8 @@
 				1B0696D6149BFB2D00B5FA90 /* NSString+MZQueryString.m */,
 				1BD55C641648466700F9C579 /* NSError+MZScriptError.h */,
 				1BD55C651648466700F9C579 /* NSError+MZScriptError.m */,
+				1B4C1F3C1655490D00011621 /* MZHTTPRequest.h */,
+				1B4C1F3D1655490D00011621 /* MZHTTPRequest.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -2516,6 +2522,7 @@
 				1BD55C5E16483F5E00F9C579 /* MZActionsPlugin.h in Headers */,
 				1BD55C621648431D00F9C579 /* MZScriptActionsPlugin.h in Headers */,
 				1BD55C661648466700F9C579 /* NSError+MZScriptError.h in Headers */,
+				1B4C1F4016554B0100011621 /* MZHTTPRequest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3149,6 +3156,7 @@
 				1BD55C5F16483F5E00F9C579 /* MZActionsPlugin.m in Sources */,
 				1BD55C631648431D00F9C579 /* MZScriptActionsPlugin.m in Sources */,
 				1BD55C671648466700F9C579 /* NSError+MZScriptError.m in Sources */,
+				1B4C1F4116554B0600011621 /* MZHTTPRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

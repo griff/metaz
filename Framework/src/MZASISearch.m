@@ -27,7 +27,7 @@
         delegate = [theDelegate retain];
 
         parameters = [theParameters retain];
-        request = [[ASIHTTPRequest alloc] initWithURL:url];
+        request = [[MZHTTPRequest alloc] initWithURL:url];
         [request setDelegate:self];
     }
     return self;
@@ -86,10 +86,15 @@
 }
 
 
-- (void)requestFinished:(ASIHTTPRequest *)theRequest;
+- (void)requestFinishedBackground:(ASIHTTPRequest *)theRequest;
 {
     if([theRequest responseStatusCode] == 200)
-        [delegate searchProvider:provider result:[self parseResult]];
+        [self performSelectorOnMainThread:@selector(providedResults:) withObject:[self parseResult] waitUntilDone:NO];
+}
+
+- (void)providedResults:(NSArray *)results;
+{
+    [delegate searchProvider:provider result:results];
 }
 
 @end
