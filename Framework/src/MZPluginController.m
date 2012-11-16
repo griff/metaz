@@ -139,6 +139,7 @@ static MZPluginController *gInstance = NULL;
         loadQueue = [[NSOperationQueue alloc] init];
         saveQueue = [[NSOperationQueue alloc] init];
         searchQueue = [[NSOperationQueue alloc] init];
+        [searchQueue setMaxConcurrentOperationCount:12];
     }
     return self;
 }
