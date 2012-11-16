@@ -39,6 +39,14 @@
 @synthesize provider;
 @synthesize delegate;
 
+- (void)cancel
+{
+    [delegate searchFinished];
+    [delegate release];
+    delegate = nil;
+    [super cancel];
+}
+
 - (void)queueOperation:(NSOperation *)operation
 {
     [self addOperation:operation];

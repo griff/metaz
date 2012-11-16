@@ -60,6 +60,9 @@
 
 - (void)cancel;
 {
+    [delegate searchFinished];
+    [delegate release];
+    delegate = nil;
     [request cancel];
 }
 
