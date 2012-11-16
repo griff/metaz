@@ -22,6 +22,7 @@
     self = [super initWithProvider:theProvider delegate:theDelegate url:url parameters:params];
     if(self)
     {
+        request.secondsToCache = 120;
         NSArray* tags = [NSArray arrayWithObjects:
             MZTitleTagIdent, MZGenreTagIdent,
             MZDirectorTagIdent, MZProducerTagIdent,
