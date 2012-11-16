@@ -19,6 +19,7 @@
     SearchProfile* activeProfile;
     NSInteger searches;
     NSView* placeholder;
+    NSDictionary* currentSearchTerms;
 }
 @property (nonatomic, retain) IBOutlet NSArrayController* arrayController;
 @property (nonatomic, retain) IBOutlet FilesArrayController* filesController;

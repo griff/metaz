@@ -13,6 +13,7 @@
 
 @interface SearchController ()
 - (void)updateSearchMenu;
+- (void)doSearch:(BOOL)force;
 @end
 
 
@@ -132,19 +133,7 @@
 
 - (IBAction)startSearch:(id)sender;
 {
-    if(![filesController commitEditing])
-        [filesController discardEditing];
-        
-    NSString* term = [[searchField stringValue] 
-        stringByTrimmingCharactersInSet:
-            [NSCharacterSet whitespaceCharacterSet]];
-    NSMutableDictionary* dict = [activeProfile searchTerms:term];
-    //[dict setObject:term forKey:[activeProfile mainTag]];
-    [searchIndicator startAnimation:searchField];
-    [arrayController setSortDescriptors:nil];
-    searches++;
-    MZLoggerInfo(@"Starting search %d", searches);
-    [[MZMetaSearcher sharedSearcher] startSearchWithData:dict];
+    [self doSearch:YES];
 }
 
 - (IBAction)applyResult:(id)sender;
@@ -154,6 +143,29 @@
         return;
         
     [filesController apply:[selection values]];
+}
+
+- (void)doSearch:(BOOL)force
+{
+    if(![filesController commitEditing])
+        [filesController discardEditing];
+        
+    NSString* term = [[searchField stringValue] 
+        stringByTrimmingCharactersInSet:
+            [NSCharacterSet whitespaceCharacterSet]];
+    NSMutableDictionary* dict = [activeProfile searchTerms:term];
+    
+    if(!force && currentSearchTerms && [dict isEqualToDictionary:currentSearchTerms])
+        return;
+        
+    [currentSearchTerms release];
+    currentSearchTerms = [dict retain];
+    
+    [searchIndicator startAnimation:searchField];
+    [arrayController setSortDescriptors:nil];
+    searches++;
+    MZLoggerInfo(@"Starting search %d", searches);
+    [[MZMetaSearcher sharedSearcher] startSearchWithData:dict];
 }
 
 - (void)updateSearchMenu
@@ -237,7 +249,7 @@
 
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"autoSearch"])
     {
-        [self startSearch:searchField];
+        [self doSearch:NO];
     }
 }
 
