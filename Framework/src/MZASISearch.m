@@ -10,6 +10,7 @@
 #import <MetaZKit/ASIDownloadCache.h>
 #import <MetaZKit/NSString+MZQueryString.h>
 #import <MetaZKit/MZLogger.h>
+#import <MetaZKit/GTMNSObject+KeyValueObserving.h>
 
 @implementation MZASISearchResult
 
@@ -102,13 +103,29 @@
 
 @implementation MZASISearch
 
-- (void)requestFinished:(ASIHTTPRequest *)theRequest;
+- (id)initWithProvider:(id)theProvider delegate:(id<MZSearchProviderDelegate>)theDelegate url:(NSURL *)theUrl parameters:(NSDictionary *)params;
 {
-    [super requestFinished:theRequest];
-    [delegate searchFinished];
+    self = [super initWithProvider:theProvider delegate:theDelegate url:theUrl parameters:params];
+    if(self)
+    {
+        [request gtm_addObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:) userInfo:nil options:0];
+    }
+    return self;
 }
 
-- (void)requestFailed:(ASIHTTPRequest *)theRequest;
+- (void)dealloc
+{
+    [request gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:)];
+    [super dealloc];
+}
+
+- (void)operationFinished:(GTMKeyValueChangeNotification *)notification
+{
+    [request gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:)];
+    [self performSelectorOnMainThread:@selector(internalFinished) withObject:nil waitUntilDone:YES];
+}
+
+- (void)internalFinished
 {
     [delegate searchFinished];
 }

@@ -17,8 +17,6 @@
 @property(readwrite,copy) NSArray* operations;
 
 - (void)operationFinished:(GTMKeyValueChangeNotification *)notification;
-- (void)requestFailed:(ASIHTTPRequest*)request;
-- (void)requestFinished:(ASIHTTPRequest*)request;
 @end
 
 
@@ -46,6 +44,8 @@
         if([op isKindOfClass:[MZErrorOperation class]])
             [op gtm_removeObserver:self forKeyPath:@"error" selector:@selector(errorChanged:)];
     }
+    if(![self isFinished])
+        MZLoggerError(@"Deallocing unfinished controller");
     [operations release];
     [super dealloc];
 }
@@ -61,11 +61,7 @@
     {
         if([operation isKindOfClass:[MZErrorOperation class]])
             [operation gtm_addObserver:self forKeyPath:@"error" selector:@selector(errorChanged:) userInfo:nil options:0];
-        if([operation isKindOfClass:[ASIHTTPRequest class]]) {
-            ((ASIHTTPRequest*)operation).queue = self;
-        } else
-            [operation gtm_addObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:) userInfo:nil options:0];
-        //[operation gtm_addObserver:self forKeyPath:@"finished" selector:@selector(operationFinished:) userInfo:nil options:0];
+        [operation gtm_addObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:) userInfo:nil options:0];
         if([self isCancelled])
             [operation cancel];
         NSArray* old = operations;
@@ -78,7 +74,6 @@
 {
     @synchronized(self)
     {
-        //[operation gtm_removeObserver:self forKeyPath:@"finished" selector:@selector(operationFinished:)];
         [operation gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:)];
         if([operation isKindOfClass:[MZErrorOperation class]])
             [operation gtm_removeObserver:self forKeyPath:@"error" selector:@selector(errorChanged:)];
@@ -101,25 +96,6 @@
 {
     for(NSOperation* op in self.operations)
         [queue addOperation:op];
-}
-
-- (void)requestFailed:(ASIHTTPRequest*)request
-{
-    [self requestFinished:request];
-}
-
-- (void)requestFinished:(ASIHTTPRequest*)request
-{
-    @synchronized(self)
-    {
-        if(self.finished)
-            return;
-        for(NSOperation* op in self.operations)
-            if(![op isFinished])
-                return;
-        self.finished = YES;
-    }
-    [self operationsFinished];
 }
 
 - (void)operationFinished:(GTMKeyValueChangeNotification *)notification

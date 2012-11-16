@@ -35,7 +35,6 @@
 @interface MZASISearch : MZASISearchResult {
 }
 
-- (void)requestFinished:(ASIHTTPRequest *)request;
-- (void)requestFailed:(ASIHTTPRequest *)request;
+- (void)internalFinished;
 
 @end
