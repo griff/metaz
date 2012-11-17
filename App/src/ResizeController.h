@@ -6,6 +6,7 @@
     NSBox *searchBox;
     NSTabView *tabView;
     NSSplitView *splitView;
+    BOOL searchBoxFirst;
 }
 @property (nonatomic, retain) IBOutlet NSBox *filesBox;
 @property (nonatomic, retain) IBOutlet NSBox *searchBox;
