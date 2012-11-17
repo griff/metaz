@@ -125,7 +125,7 @@
 
 - (void)updateMirrorFailed:(id)request;
 {
-    ASIHTTPRequest* theRequest = request;
+    //ASIHTTPRequest* theRequest = request;
     //MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
 
     bannerMirror = @"http://www.thetvdb.com";
@@ -178,7 +178,7 @@
 
 - (void)fetchSeriesFailed:(id)request;
 {
-    ASIHTTPRequest* theRequest = request;
+    //ASIHTTPRequest* theRequest = request;
     //MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
 }
 
@@ -237,7 +237,7 @@
 
 - (void)fetchSeriesBannersFailed:(id)request;
 {
-    ASIHTTPRequest* theRequest = request;
+    //ASIHTTPRequest* theRequest = request;
     //MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
 }
 
@@ -491,7 +491,7 @@
 
 - (void)fetchFullSeriesFailed:(id)request;
 {
-    ASIHTTPRequest* theRequest = request;
+    //ASIHTTPRequest* theRequest = request;
     //MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
 }
 

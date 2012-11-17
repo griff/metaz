@@ -99,7 +99,7 @@
 
 - (void)fetchMovieSearchFailed:(id)request;
 {
-    ASIHTTPRequest* theRequest = request;
+    //ASIHTTPRequest* theRequest = request;
     //MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
 }
 
@@ -231,7 +231,7 @@
 
 - (void)fetchMovieInfoFailed:(id)request;
 {
-    ASIHTTPRequest* theRequest = request;
+    //ASIHTTPRequest* theRequest = request;
     //MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
 }
 
