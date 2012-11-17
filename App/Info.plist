@@ -218,6 +218,28 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
+				<string>com.apple.package</string>
+				<string>com.apple.applescript.script</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Compiled OSA Script (Bundle)</string>
+			<key>UTTypeIconFile</key>
+			<string>scptd</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.latenightsw.osa.bundle</string>
+			<key>UTTypeReferenceURL</key>
+			<string>http://www.latenightsw.com</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>scptd</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
 				<string>public.data</string>
 			</array>
 			<key>UTTypeIdentifier</key>

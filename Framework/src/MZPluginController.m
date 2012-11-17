@@ -205,7 +205,8 @@ static MZPluginController *gInstance = NULL;
                             MZLoggerError(@"Failed to load plugin at path '%@'", pluginPath);
                     }
                     else if(UTTypeEqual(uti, kMZUTAppleScriptText) || UTTypeConformsTo(uti, kMZUTAppleScriptText) ||
-                            UTTypeEqual(uti, kMZUTAppleScript) || UTTypeConformsTo(uti, kMZUTAppleScript))
+                            UTTypeEqual(uti, kMZUTAppleScript) || UTTypeConformsTo(uti, kMZUTAppleScript) ||
+                            UTTypeEqual(uti, kMZUTAppleScriptBundle) || UTTypeConformsTo(uti, kMZUTAppleScriptBundle))
                     {
                         NSURL* url = [NSURL URLWithString:[pluginDir gtm_stringByEscapingForURLArgument] relativeToURL:pathURL];
                         MZScriptActionsPlugin* plugin = [MZScriptActionsPlugin pluginWithURL:url];

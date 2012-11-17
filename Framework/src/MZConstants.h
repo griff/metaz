@@ -231,5 +231,6 @@ MZKIT_EXTERN const CFStringRef kMZUTMetaZPlugin;
 MZKIT_EXTERN const CFStringRef kMZUTMetaZActionsPlugin;
 MZKIT_EXTERN const CFStringRef kMZUTAppleScriptText;
 MZKIT_EXTERN const CFStringRef kMZUTAppleScript;
+MZKIT_EXTERN const CFStringRef kMZUTAppleScriptBundle;
 
 #endif // MZKIT_EXTERN
