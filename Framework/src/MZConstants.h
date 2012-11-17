@@ -229,6 +229,8 @@ MZKIT_EXTERN NSString* const iTunesPboardType;
 // Plugin UTI
 MZKIT_EXTERN const CFStringRef kMZUTMetaZPlugin;
 MZKIT_EXTERN const CFStringRef kMZUTMetaZActionsPlugin;
+MZKIT_EXTERN const CFStringRef kMZUTMetaZDataProviderPlugin;
+MZKIT_EXTERN const CFStringRef kMZUTMetaZSearchProviderPlugin;
 MZKIT_EXTERN const CFStringRef kMZUTAppleScriptText;
 MZKIT_EXTERN const CFStringRef kMZUTAppleScript;
 MZKIT_EXTERN const CFStringRef kMZUTAppleScriptBundle;

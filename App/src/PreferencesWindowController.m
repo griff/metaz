@@ -35,7 +35,7 @@
 - (void)awakeFromNib
 {
     views = [[NSArray alloc] initWithObjects:generalView, fileView, pluginsView, nil];
-    [pluginsButton setImage:[[NSWorkspace sharedWorkspace] iconForFileType:@"mzplugin"]];
+    [pluginsButton setImage:[[NSWorkspace sharedWorkspace] iconForFileType:@"mzactions"]];
     [foldersButton setImage:[[NSWorkspace sharedWorkspace] iconForFileType:(NSString*)kUTTypeFolder]];
     toolbar = [[pluginsButton toolbar] retain];
     

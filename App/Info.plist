@@ -61,6 +61,42 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>mzsearchprovider</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>MetaZ Search Provider Plugin</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin.searchprovider</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>mzdataprovider</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>MetaZ Data Provider Plugin</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin.dataprovider</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>applescript</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
@@ -73,24 +109,6 @@
 			<array>
 				<string>com.apple.applescript.text</string>
 			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>mzplugin</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
-			<key>CFBundleTypeName</key>
-			<string>MetaZ Plugin</string>
-			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
-			</array>
-			<key>LSTypeIsPackage</key>
-			<true/>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -322,13 +340,6 @@
 			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
 			<key>UTTypeIdentifier</key>
 			<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>mzplugin</string>
-				</array>
-			</dict>
 		</dict>
 		<dict>
 			<key>UTTypeConformsTo</key>
@@ -346,6 +357,44 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>mzactions</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
+			</array>
+			<key>UTTypeIdentifier</key>
+			<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin.searchprovider</string>
+			<key>UTTypeDescription</key>
+			<string>MetaZ Search Provider Plugin</string>
+			<key>UTTypeIconFile</key>
+			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>mzsearchprovider</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
+			</array>
+			<key>UTTypeIdentifier</key>
+			<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin.dataprovider</string>
+			<key>UTTypeDescription</key>
+			<string>MetaZ Data Provider Plugin</string>
+			<key>UTTypeIconFile</key>
+			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>mzdataprovider</string>
 				</array>
 			</dict>
 		</dict>

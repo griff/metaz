@@ -105,6 +105,8 @@ NSString* const iTunesPboardType = @"CorePasteboardFlavorType 0x6974756E";
 // Plugin UTI
 const CFStringRef kMZUTMetaZPlugin = CFSTR("org.maven-group.MetaZ.plugin");
 const CFStringRef kMZUTMetaZActionsPlugin = CFSTR("org.maven-group.MetaZ.plugin.actions");
+const CFStringRef kMZUTMetaZDataProviderPlugin = CFSTR("org.maven-group.MetaZ.plugin.dataprovider");
+const CFStringRef kMZUTMetaZSearchProviderPlugin = CFSTR("org.maven-group.MetaZ.plugin.searchprovider");
 const CFStringRef kMZUTAppleScriptText = CFSTR("com.apple.applescript.text");
 const CFStringRef kMZUTAppleScript = CFSTR("com.apple.applescript.script");
 const CFStringRef kMZUTAppleScriptBundle = CFSTR("com.latenightsw.osa.bundle");
