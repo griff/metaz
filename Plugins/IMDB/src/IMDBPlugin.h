@@ -8,14 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaZKit.h>
+#import "IMDBSearch.h"
 
-@interface IMDBPlugin : MZPlugin
+
+@interface IMDBPlugin : MZSearchProviderPlugin
 {
-    NSArray* searchProviders;
+    NSArray* supportedSearchTags;
+    NSMenu* menu;
 }
-
-- (void)didLoad;
-
-- (NSArray *)searchProviders;
 
 @end

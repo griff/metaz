@@ -46,19 +46,18 @@
 		1B040EC91081B3DC0027FA0D /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1B040EDD1081B4DC0027FA0D /* TagChimpPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B040EDC1081B4DC0027FA0D /* TagChimpPlugin.m */; };
 		1B040EDF1081B53F0027FA0D /* tagChimp.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B040EDE1081B53F0027FA0D /* tagChimp.png */; };
-		1B040EE21081B5550027FA0D /* TCSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B040EE11081B5550027FA0D /* TCSearchProvider.m */; };
 		1B040EEE1081C0110027FA0D /* TagChimp.mzplugin in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B040EBE1081B3C00027FA0D /* TagChimp.mzplugin */; };
-		1B0604AD1199E24700589ACE /* MZBaseSearchProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B0604AB1199E24700589ACE /* MZBaseSearchProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1B0604AE1199E24700589ACE /* MZBaseSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0604AC1199E24700589ACE /* MZBaseSearchProvider.m */; };
+		1B0604AD1199E24700589ACE /* MZSearchProviderPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B0604AB1199E24700589ACE /* MZSearchProviderPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B0604AE1199E24700589ACE /* MZSearchProviderPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0604AC1199E24700589ACE /* MZSearchProviderPlugin.m */; };
 		1B060DF910E267810009D847 /* imdb_plugin.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B060DF810E267810009D847 /* imdb_plugin.rb */; };
 		1B060E5A10E26BA90009D847 /* IMDBSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B060E5910E26BA90009D847 /* IMDBSearch.m */; };
-		1B060E6710E26F970009D847 /* IMDBSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B060E6610E26F970009D847 /* IMDBSearchProvider.m */; };
 		1B060F0810E286C00009D847 /* IMDBSearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B060F0710E286C00009D847 /* IMDBSearchItem.m */; };
 		1B069668149BD35B00B5FA90 /* MGViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B069667149BD35B00B5FA90 /* MGViewAnimation.m */; };
 		1B0696B0149BD4B500B5FA90 /* MZViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0696AF149BD4B500B5FA90 /* MZViewAnimation.m */; };
 		1B0696D7149BFB2D00B5FA90 /* NSString+MZQueryString.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B0696D5149BFB2D00B5FA90 /* NSString+MZQueryString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B0696D8149BFB2D00B5FA90 /* NSString+MZQueryString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0696D6149BFB2D00B5FA90 /* NSString+MZQueryString.m */; };
 		1B090A691069474600D88083 /* MyQueueCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B090A681069474600D88083 /* MyQueueCollectionView.m */; };
+		1B09EB0C165843BF0017FED3 /* MZDataProviderPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B09EB0B165843BF0017FED3 /* MZDataProviderPlugin.m */; };
 		1B0DEC3F10607A9A009D293F /* MGCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEC3E10607A9A009D293F /* MGCollectionView.m */; };
 		1B0DEDD81060F7B6009D293F /* ImageWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0DEDD71060F7B6009D293F /* ImageWindowController.m */; };
 		1B0DEDDB10610132009D293F /* ImageEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B0DEDD910610132009D293F /* ImageEdit.xib */; };
@@ -81,7 +80,6 @@
 		1B26B8FB164B264400238517 /* MZTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26B8FA164B264400238517 /* MZTextField.m */; };
 		1B26BA8B164B687B00238517 /* MZComboBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26BA8A164B687B00238517 /* MZComboBox.m */; };
 		1B26BAC3164C3BA400238517 /* FilesArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26BAC2164C3BA400238517 /* FilesArrayController.m */; };
-		1B299D7014AE3E370048B7C0 /* TheMovieDbSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B299D6F14AE3E370048B7C0 /* TheMovieDbSearchProvider.m */; };
 		1B299D7314AE43900048B7C0 /* TheMovieDbSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B299D7214AE43900048B7C0 /* TheMovieDbSearch.m */; };
 		1B299DB714AE4D3A0048B7C0 /* TheMovieDb.mzplugin in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B8CB90B14ACD62000F859F7 /* TheMovieDb.mzplugin */; };
 		1B2AEED611A0EC430074BAAD /* MZFileNameTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */; };
@@ -126,7 +124,6 @@
 		1B4F53C4116E9F44003221B1 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1B4F53D8116EA0BE003221B1 /* TheTVDBPlugin.mzplugin in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzplugin */; };
 		1B4F53DF116EA1B5003221B1 /* TheTVDBPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F53DE116EA1B5003221B1 /* TheTVDBPlugin.m */; };
-		1B4F53E2116EA398003221B1 /* TheTVDBSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F53E1116EA398003221B1 /* TheTVDBSearchProvider.m */; };
 		1B523C0F13F4B3F500C20B7D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B523B8813F4B39400C20B7D /* SystemConfiguration.framework */; };
 		1B523C1413FDCC9600C20B7D /* ASIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B523B5413F4B2B500C20B7D /* ASIHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B523C1513FDCC9600C20B7D /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B523B5513F4B2B500C20B7D /* ASIHTTPRequest.m */; };
@@ -150,7 +147,6 @@
 		1B7B53F514A029FA00BF37DD /* MZMultipleDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B53F414A029FA00BF37DD /* MZMultipleDateFormatter.m */; };
 		1B82647410B3C25000DF101B /* MetaEditsUndoManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B82647210B3C25000DF101B /* MetaEditsUndoManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B82647510B3C25000DF101B /* MetaEditsUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */; };
-		1B8268A510B3F82400DF101B /* AmazonSearchProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8268A410B3F82400DF101B /* AmazonSearchProvider.m */; };
 		1B89050A163F6E48008C5C8B /* MZGetCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B890509163F6E48008C5C8B /* MZGetCommand.m */; };
 		1B8905B1163F87BB008C5C8B /* MZScriptingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B8905B0163F87BB008C5C8B /* MZScriptingAdditions.m */; };
 		1B89073116420437008C5C8B /* MZScriptingEnums.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B89073016420437008C5C8B /* MZScriptingEnums.m */; };
@@ -257,7 +253,6 @@
 		1BEA6C95106E7203004B1A7F /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6C94106E7203004B1A7F /* Utilities.m */; };
 		1BEA6DDA106ED837004B1A7F /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BEA6DD8106ED837004B1A7F /* PreferencesWindow.xib */; };
 		1BEA6DDD106ED8E4004B1A7F /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6DDC106ED8E4004B1A7F /* PreferencesWindowController.m */; };
-		1BEA6E8C106EF4CD004B1A7F /* APDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6E8B106EF4CD004B1A7F /* APDataProvider.m */; };
 		1BEA6E91106EF534004B1A7F /* AtomicParsleyPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6E90106EF534004B1A7F /* AtomicParsleyPlugin.m */; };
 		1BEA6E97106EF662004B1A7F /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1BEA6F33106EF6FC004B1A7F /* AtomicParsleyPlugin.mzplugin in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1BEA6E72106EF2A0004B1A7F /* AtomicParsleyPlugin.mzplugin */; };
@@ -270,10 +265,9 @@
 		1BEA6FA2106EFC3F004B1A7F /* MZConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A47D104E627F004C93D3 /* MZConstants.m */; };
 		1BEA6FA3106EFC3F004B1A7F /* MZMethodData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B78A499105032A50072D89E /* MZMethodData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA6FA4106EFC3F004B1A7F /* MZMethodData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78A49A105032A50072D89E /* MZMethodData.m */; };
-		1BEA6FA5106EFC3F004B1A7F /* MZDataProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B11A02810458471004C93D3 /* MZDataProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BEA6FA5106EFC3F004B1A7F /* MZDataProviderPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B11A02810458471004C93D3 /* MZDataProviderPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA6FA6106EFC3F004B1A7F /* MZDynamicObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB6BB0810507DBB001D3D1D /* MZDynamicObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA6FA7106EFC3F004B1A7F /* MZDynamicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */; };
-		1BEA6FA8106EFC3F004B1A7F /* MZSearchProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB6BE821050BD3A001D3D1D /* MZSearchProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA6FA9106EFC3F004B1A7F /* MetaChangeNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD6E601105B355800E40151 /* MetaChangeNotification.m */; };
 		1BEA6FAA106EFC3F004B1A7F /* MZTag.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B090C80106A899300D88083 /* MZTag.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA6FAB106EFC3F004B1A7F /* MZTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B090C81106A899300D88083 /* MZTag.m */; };
@@ -571,15 +565,11 @@
 		1B040EDB1081B4DC0027FA0D /* TagChimpPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagChimpPlugin.h; sourceTree = "<group>"; };
 		1B040EDC1081B4DC0027FA0D /* TagChimpPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagChimpPlugin.m; sourceTree = "<group>"; };
 		1B040EDE1081B53F0027FA0D /* tagChimp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tagChimp.png; sourceTree = "<group>"; };
-		1B040EE01081B5550027FA0D /* TCSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSearchProvider.h; sourceTree = "<group>"; };
-		1B040EE11081B5550027FA0D /* TCSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSearchProvider.m; sourceTree = "<group>"; };
-		1B0604AB1199E24700589ACE /* MZBaseSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZBaseSearchProvider.h; sourceTree = "<group>"; };
-		1B0604AC1199E24700589ACE /* MZBaseSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZBaseSearchProvider.m; sourceTree = "<group>"; };
+		1B0604AB1199E24700589ACE /* MZSearchProviderPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSearchProviderPlugin.h; sourceTree = "<group>"; };
+		1B0604AC1199E24700589ACE /* MZSearchProviderPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZSearchProviderPlugin.m; sourceTree = "<group>"; };
 		1B060DF810E267810009D847 /* imdb_plugin.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = imdb_plugin.rb; sourceTree = "<group>"; };
 		1B060E5810E26BA90009D847 /* IMDBSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDBSearch.h; sourceTree = "<group>"; };
 		1B060E5910E26BA90009D847 /* IMDBSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBSearch.m; sourceTree = "<group>"; };
-		1B060E6510E26F970009D847 /* IMDBSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDBSearchProvider.h; sourceTree = "<group>"; };
-		1B060E6610E26F970009D847 /* IMDBSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBSearchProvider.m; sourceTree = "<group>"; };
 		1B060F0610E286C00009D847 /* IMDBSearchItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDBSearchItem.h; sourceTree = "<group>"; };
 		1B060F0710E286C00009D847 /* IMDBSearchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBSearchItem.m; sourceTree = "<group>"; };
 		1B069666149BD35B00B5FA90 /* MGViewAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGViewAnimation.h; path = Externals/MGViewAnimation/MGViewAnimation.h; sourceTree = "<group>"; };
@@ -591,6 +581,7 @@
 		1B090A681069474600D88083 /* MyQueueCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyQueueCollectionView.m; sourceTree = "<group>"; };
 		1B090C80106A899300D88083 /* MZTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTag.h; sourceTree = "<group>"; };
 		1B090C81106A899300D88083 /* MZTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTag.m; sourceTree = "<group>"; };
+		1B09EB0B165843BF0017FED3 /* MZDataProviderPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZDataProviderPlugin.m; sourceTree = "<group>"; };
 		1B0DEC3D10607A9A009D293F /* MGCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGCollectionView.h; sourceTree = "<group>"; };
 		1B0DEC3E10607A9A009D293F /* MGCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCollectionView.m; sourceTree = "<group>"; };
 		1B0DEDD61060F7B6009D293F /* ImageWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageWindowController.h; sourceTree = "<group>"; };
@@ -614,7 +605,7 @@
 		1B119FD610444DC4004C93D3 /* MZMetaLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMetaLoader.m; sourceTree = "<group>"; };
 		1B11A00610457B0D004C93D3 /* RubyCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RubyCocoa.framework; path = System/Library/Frameworks/RubyCocoa.framework; sourceTree = SDKROOT; };
 		1B11A02410457B76004C93D3 /* rb_main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = rb_main.rb; path = App/src/rb_main.rb; sourceTree = "<group>"; };
-		1B11A02810458471004C93D3 /* MZDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDataProvider.h; sourceTree = "<group>"; };
+		1B11A02810458471004C93D3 /* MZDataProviderPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDataProviderPlugin.h; sourceTree = "<group>"; };
 		1B11A289104DF1EC004C93D3 /* FilesTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesTableView.h; sourceTree = "<group>"; };
 		1B11A28A104DF1EC004C93D3 /* FilesTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesTableView.m; sourceTree = "<group>"; };
 		1B11A47C104E627F004C93D3 /* MZConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZConstants.h; sourceTree = "<group>"; };
@@ -634,8 +625,6 @@
 		1B26BAC1164C3BA400238517 /* FilesArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesArrayController.h; sourceTree = "<group>"; };
 		1B26BAC2164C3BA400238517 /* FilesArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesArrayController.m; sourceTree = "<group>"; };
 		1B299D6C14AE3CF50048B7C0 /* TheMovieDbPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheMovieDbPlugin.h; sourceTree = "<group>"; };
-		1B299D6E14AE3E370048B7C0 /* TheMovieDbSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheMovieDbSearchProvider.h; sourceTree = "<group>"; };
-		1B299D6F14AE3E370048B7C0 /* TheMovieDbSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheMovieDbSearchProvider.m; sourceTree = "<group>"; };
 		1B299D7114AE43900048B7C0 /* TheMovieDbSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheMovieDbSearch.h; sourceTree = "<group>"; };
 		1B299D7214AE43900048B7C0 /* TheMovieDbSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheMovieDbSearch.m; sourceTree = "<group>"; };
 		1B29A06414C5C6570048B7C0 /* MZMultiGrowlWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMultiGrowlWrapper.h; sourceTree = "<group>"; };
@@ -962,8 +951,6 @@
 		1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheTVDBPlugin.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B4F53DD116EA1B5003221B1 /* TheTVDBPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBPlugin.h; sourceTree = "<group>"; };
 		1B4F53DE116EA1B5003221B1 /* TheTVDBPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBPlugin.m; sourceTree = "<group>"; };
-		1B4F53E0116EA398003221B1 /* TheTVDBSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBSearchProvider.h; sourceTree = "<group>"; };
-		1B4F53E1116EA398003221B1 /* TheTVDBSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBSearchProvider.m; sourceTree = "<group>"; };
 		1B523B4913F4B2B500C20B7D /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = "Externals/asi-http-request/Classes/ASIAuthenticationDialog.h"; sourceTree = "<group>"; };
 		1B523B4A13F4B2B500C20B7D /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = "Externals/asi-http-request/Classes/ASIAuthenticationDialog.m"; sourceTree = "<group>"; };
 		1B523B4B13F4B2B500C20B7D /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASICacheDelegate.h; path = "Externals/asi-http-request/Classes/ASICacheDelegate.h"; sourceTree = "<group>"; };
@@ -1035,8 +1022,6 @@
 		1B7B53F414A029FA00BF37DD /* MZMultipleDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMultipleDateFormatter.m; sourceTree = "<group>"; };
 		1B82647210B3C25000DF101B /* MetaEditsUndoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaEditsUndoManager.h; sourceTree = "<group>"; };
 		1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditsUndoManager.m; sourceTree = "<group>"; };
-		1B8268A310B3F82400DF101B /* AmazonSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonSearchProvider.h; sourceTree = "<group>"; };
-		1B8268A410B3F82400DF101B /* AmazonSearchProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonSearchProvider.m; sourceTree = "<group>"; };
 		1B890508163F6E48008C5C8B /* MZGetCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZGetCommand.h; sourceTree = "<group>"; };
 		1B890509163F6E48008C5C8B /* MZGetCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZGetCommand.m; sourceTree = "<group>"; };
 		1B8905AF163F87BB008C5C8B /* MZScriptingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZScriptingAdditions.h; sourceTree = "<group>"; };
@@ -1098,7 +1083,6 @@
 		1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZDynamicObject.m; sourceTree = "<group>"; };
 		1BB6BE7F1050BC88001D3D1D /* MZMetaSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMetaSearcher.h; sourceTree = "<group>"; };
 		1BB6BE801050BC88001D3D1D /* MZMetaSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMetaSearcher.m; sourceTree = "<group>"; };
-		1BB6BE821050BD3A001D3D1D /* MZSearchProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSearchProvider.h; sourceTree = "<group>"; };
 		1BB6BF331050E5E2001D3D1D /* sparkle_public.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sparkle_public.pem; sourceTree = "<group>"; };
 		1BB6C10A1052B154001D3D1D /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Externals/Sparkle.framework; sourceTree = "<group>"; };
 		1BBB39A71087083600C9E17F /* MZPriorObserverFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZPriorObserverFix.h; sourceTree = "<group>"; };
@@ -1182,8 +1166,6 @@
 		1BEA6E48106EEF34004B1A7F /* MZPlugin+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MZPlugin+Private.h"; sourceTree = "<group>"; };
 		1BEA6E49106EEF34004B1A7F /* MZPlugin+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MZPlugin+Private.m"; sourceTree = "<group>"; };
 		1BEA6E72106EF2A0004B1A7F /* AtomicParsleyPlugin.mzplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AtomicParsleyPlugin.mzplugin; sourceTree = BUILT_PRODUCTS_DIR; };
-		1BEA6E8A106EF4CD004B1A7F /* APDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APDataProvider.h; sourceTree = "<group>"; };
-		1BEA6E8B106EF4CD004B1A7F /* APDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APDataProvider.m; sourceTree = "<group>"; };
 		1BEA6E8D106EF522004B1A7F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		1BEA6E8F106EF534004B1A7F /* AtomicParsleyPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicParsleyPlugin.h; sourceTree = "<group>"; };
 		1BEA6E90106EF534004B1A7F /* AtomicParsleyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicParsleyPlugin.m; sourceTree = "<group>"; };
@@ -1319,11 +1301,12 @@
 				1B119FCE10443655004C93D3 /* MetaLoaded.m */,
 				1B36E78A14066727009F542A /* MZASISearch.h */,
 				1B36E78B14066727009F542A /* MZASISearch.m */,
-				1B0604AB1199E24700589ACE /* MZBaseSearchProvider.h */,
-				1B0604AC1199E24700589ACE /* MZBaseSearchProvider.m */,
+				1B0604AB1199E24700589ACE /* MZSearchProviderPlugin.h */,
+				1B0604AC1199E24700589ACE /* MZSearchProviderPlugin.m */,
 				1B11A47C104E627F004C93D3 /* MZConstants.h */,
 				1B11A47D104E627F004C93D3 /* MZConstants.m */,
-				1B11A02810458471004C93D3 /* MZDataProvider.h */,
+				1B11A02810458471004C93D3 /* MZDataProviderPlugin.h */,
+				1B09EB0B165843BF0017FED3 /* MZDataProviderPlugin.m */,
 				1BB6BB0810507DBB001D3D1D /* MZDynamicObject.h */,
 				1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */,
 				1B3AD7D611057E9200B33F85 /* MZErrorOperation.h */,
@@ -1352,7 +1335,6 @@
 				1BAD35FB118D4C470052DE3B /* MZReadOperationsController.m */,
 				1BD3D2B9108CC5D700BE6943 /* MZRemoteData.h */,
 				1BD3D2BA108CC5D700BE6943 /* MZRemoteData.m */,
-				1BB6BE821050BD3A001D3D1D /* MZSearchProvider.h */,
 				1B6E43C9108468B100DFE165 /* MZSearchResult.h */,
 				1B6E43CA108468B100DFE165 /* MZSearchResult.m */,
 				1B090C80106A899300D88083 /* MZTag.h */,
@@ -1366,6 +1348,8 @@
 				1B6E43D610846BDA00DFE165 /* TagData.h */,
 				1B92BB1A10876FBA0057EFD7 /* PureMetaEdits.h */,
 				1B92BB1B10876FBA0057EFD7 /* PureMetaEdits.m */,
+				1B4C1F3C1655490D00011621 /* MZHTTPRequest.h */,
+				1B4C1F3D1655490D00011621 /* MZHTTPRequest.m */,
 				1B0330AB10B1010700B28E3A /* NSDate+UTC.h */,
 				1B0330AC10B1010700B28E3A /* NSDate+UTC.m */,
 				1BAD35FC118D4C470052DE3B /* NSFileManager+MZCreate.h */,
@@ -1390,8 +1374,6 @@
 				1B0696D6149BFB2D00B5FA90 /* NSString+MZQueryString.m */,
 				1BD55C641648466700F9C579 /* NSError+MZScriptError.h */,
 				1BD55C651648466700F9C579 /* NSError+MZScriptError.m */,
-				1B4C1F3C1655490D00011621 /* MZHTTPRequest.h */,
-				1B4C1F3D1655490D00011621 /* MZHTTPRequest.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -1457,8 +1439,6 @@
 				1B15A62610B6316000EC0FBF /* Access.h */,
 				1B03307C10B0FA4800B28E3A /* AmazonPlugin.h */,
 				1B03307D10B0FA4800B28E3A /* AmazonPlugin.m */,
-				1B8268A310B3F82400DF101B /* AmazonSearchProvider.h */,
-				1B8268A410B3F82400DF101B /* AmazonSearchProvider.m */,
 				1B15A60C10B608D100EC0FBF /* AmazonSearch.h */,
 				1B15A60D10B608D100EC0FBF /* AmazonSearch.m */,
 			);
@@ -1495,8 +1475,6 @@
 			children = (
 				1B040EDB1081B4DC0027FA0D /* TagChimpPlugin.h */,
 				1B040EDC1081B4DC0027FA0D /* TagChimpPlugin.m */,
-				1B040EE01081B5550027FA0D /* TCSearchProvider.h */,
-				1B040EE11081B5550027FA0D /* TCSearchProvider.m */,
 				1B6E43C610845F8200DFE165 /* TCSearch.h */,
 				1B6E43C710845F8200DFE165 /* TCSearch.m */,
 			);
@@ -1575,8 +1553,6 @@
 				1B42F2B610DEB4A200AFEBF6 /* IMDBPlugin.m */,
 				1B060E5810E26BA90009D847 /* IMDBSearch.h */,
 				1B060E5910E26BA90009D847 /* IMDBSearch.m */,
-				1B060E6510E26F970009D847 /* IMDBSearchProvider.h */,
-				1B060E6610E26F970009D847 /* IMDBSearchProvider.m */,
 				1B060F0610E286C00009D847 /* IMDBSearchItem.h */,
 				1B060F0710E286C00009D847 /* IMDBSearchItem.m */,
 				1B060DF810E267810009D847 /* imdb_plugin.rb */,
@@ -1958,8 +1934,6 @@
 				1B4AF74B116EF80500E5C969 /* Access.h */,
 				1B4F53DD116EA1B5003221B1 /* TheTVDBPlugin.h */,
 				1B4F53DE116EA1B5003221B1 /* TheTVDBPlugin.m */,
-				1B4F53E0116EA398003221B1 /* TheTVDBSearchProvider.h */,
-				1B4F53E1116EA398003221B1 /* TheTVDBSearchProvider.m */,
 				1B4AF8391170CFCC00E5C969 /* TheTVDBSearch.h */,
 				1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */,
 			);
@@ -2073,8 +2047,6 @@
 				1B8CB97F14AE3C1800F859F7 /* Access.h */,
 				1B299D6C14AE3CF50048B7C0 /* TheMovieDbPlugin.h */,
 				1B8CB96214AE3B2000F859F7 /* TheMovieDbPlugin.m */,
-				1B299D6E14AE3E370048B7C0 /* TheMovieDbSearchProvider.h */,
-				1B299D6F14AE3E370048B7C0 /* TheMovieDbSearchProvider.m */,
 				1B299D7114AE43900048B7C0 /* TheMovieDbSearch.h */,
 				1B299D7214AE43900048B7C0 /* TheMovieDbSearch.m */,
 			);
@@ -2351,8 +2323,6 @@
 			children = (
 				1BEA6E8F106EF534004B1A7F /* AtomicParsleyPlugin.h */,
 				1BEA6E90106EF534004B1A7F /* AtomicParsleyPlugin.m */,
-				1BEA6E8A106EF4CD004B1A7F /* APDataProvider.h */,
-				1BEA6E8B106EF4CD004B1A7F /* APDataProvider.m */,
 				1BEA71BD10716B90004B1A7F /* APWriteManager.h */,
 				1BEA71BE10716B90004B1A7F /* APWriteManager.m */,
 				1B3AD7E01105884800B33F85 /* APReadDataTask.h */,
@@ -2470,9 +2440,8 @@
 				1BEA6F9D106EFC3F004B1A7F /* MetaLoaded.h in Headers */,
 				1BEA6FA1106EFC3F004B1A7F /* MZConstants.h in Headers */,
 				1BEA6FA3106EFC3F004B1A7F /* MZMethodData.h in Headers */,
-				1BEA6FA5106EFC3F004B1A7F /* MZDataProvider.h in Headers */,
+				1BEA6FA5106EFC3F004B1A7F /* MZDataProviderPlugin.h in Headers */,
 				1BEA6FA6106EFC3F004B1A7F /* MZDynamicObject.h in Headers */,
-				1BEA6FA8106EFC3F004B1A7F /* MZSearchProvider.h in Headers */,
 				1BEA6FAA106EFC3F004B1A7F /* MZTag.h in Headers */,
 				1BEA6FAC106EFC3F004B1A7F /* MetaZKit.h in Headers */,
 				1BEA6FAD106EFC3F004B1A7F /* MZPlugin.h in Headers */,
@@ -2506,7 +2475,7 @@
 				1BAD3600118D4C470052DE3B /* NSFileManager+MZCreate.h in Headers */,
 				1BC256381192C183001B9E1E /* NSObject+WaitUntilChange.h in Headers */,
 				1BEC79071197B74400337403 /* GTMStackTrace.h in Headers */,
-				1B0604AD1199E24700589ACE /* MZBaseSearchProvider.h in Headers */,
+				1B0604AD1199E24700589ACE /* MZSearchProviderPlugin.h in Headers */,
 				1BAC91BD13F060300022D625 /* NSString+MZAllInCharacterSet.h in Headers */,
 				1B523C1413FDCC9600C20B7D /* ASIHTTPRequest.h in Headers */,
 				1B523C4013FDCCC300C20B7D /* ASIDownloadCache.h in Headers */,
@@ -3047,7 +3016,6 @@
 				1B03307E10B0FA4800B28E3A /* AmazonPlugin.m in Sources */,
 				1B032FDB10B0C5FE00B28E3A /* hmac_sha2.c in Sources */,
 				1B032FDE10B0C62800B28E3A /* sha2.c in Sources */,
-				1B8268A510B3F82400DF101B /* AmazonSearchProvider.m in Sources */,
 				1B15A60E10B608D100EC0FBF /* AmazonSearch.m in Sources */,
 				1B449E3110DCCC5600B9C751 /* GTMBase64.m in Sources */,
 				1B449E3210DCCC6900B9C751 /* GTMNSData+zlib.m in Sources */,
@@ -3066,7 +3034,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B040EDD1081B4DC0027FA0D /* TagChimpPlugin.m in Sources */,
-				1B040EE21081B5550027FA0D /* TCSearchProvider.m in Sources */,
 				1B6E43C810845F8200DFE165 /* TCSearch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3077,7 +3044,6 @@
 			files = (
 				1B42F2B710DEB4A200AFEBF6 /* IMDBPlugin.m in Sources */,
 				1B060E5A10E26BA90009D847 /* IMDBSearch.m in Sources */,
-				1B060E6710E26F970009D847 /* IMDBSearchProvider.m in Sources */,
 				1B060F0810E286C00009D847 /* IMDBSearchItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3087,7 +3053,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B4F53DF116EA1B5003221B1 /* TheTVDBPlugin.m in Sources */,
-				1B4F53E2116EA398003221B1 /* TheTVDBSearchProvider.m in Sources */,
 				1B4AF83B1170CFCC00E5C969 /* TheTVDBSearch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3097,7 +3062,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B8CB96314AE3B2000F859F7 /* TheMovieDbPlugin.m in Sources */,
-				1B299D7014AE3E370048B7C0 /* TheMovieDbSearchProvider.m in Sources */,
 				1B299D7314AE43900048B7C0 /* TheMovieDbSearch.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3143,7 +3107,7 @@
 				1BAD3601118D4C470052DE3B /* NSFileManager+MZCreate.m in Sources */,
 				1BC256391192C183001B9E1E /* NSObject+WaitUntilChange.m in Sources */,
 				1BEC79061197B73E00337403 /* GTMStackTrace.m in Sources */,
-				1B0604AE1199E24700589ACE /* MZBaseSearchProvider.m in Sources */,
+				1B0604AE1199E24700589ACE /* MZSearchProviderPlugin.m in Sources */,
 				1BAC91BE13F060300022D625 /* NSString+MZAllInCharacterSet.m in Sources */,
 				1B523C1513FDCC9600C20B7D /* ASIHTTPRequest.m in Sources */,
 				1B523C4113FDCCC300C20B7D /* ASIDownloadCache.m in Sources */,
@@ -3157,6 +3121,7 @@
 				1BD55C631648431D00F9C579 /* MZScriptActionsPlugin.m in Sources */,
 				1BD55C671648466700F9C579 /* NSError+MZScriptError.m in Sources */,
 				1B4C1F4116554B0600011621 /* MZHTTPRequest.m in Sources */,
+				1B09EB0C165843BF0017FED3 /* MZDataProviderPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3181,7 +3146,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BEA6E8C106EF4CD004B1A7F /* APDataProvider.m in Sources */,
 				1BEA6E91106EF534004B1A7F /* AtomicParsleyPlugin.m in Sources */,
 				1BEA71BF10716B90004B1A7F /* APWriteManager.m in Sources */,
 				1B3AD7E21105884800B33F85 /* APReadDataTask.m in Sources */,
@@ -3593,6 +3557,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = "Framework/Test-Info.plist";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				OTHER_LDFLAGS = (
@@ -3619,6 +3584,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = "Framework/Test-Info.plist";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				OTHER_LDFLAGS = (
@@ -3714,6 +3680,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = Plugins/IMDB/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -3735,6 +3702,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = Plugins/IMDB/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -3758,6 +3726,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = Plugins/IMDB/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -3963,6 +3932,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = "Framework/Test-Info.plist";
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				OTHER_LDFLAGS = (
@@ -4079,6 +4049,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = Plugins/TheMovieDb/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
@@ -4103,6 +4074,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = Plugins/TheMovieDb/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
@@ -4129,6 +4101,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = Plugins/TheMovieDb/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
@@ -4226,6 +4199,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = Plugins/Growl/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
@@ -4251,6 +4225,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = Plugins/Growl/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
@@ -4278,6 +4253,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = Plugins/Growl/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
@@ -4307,6 +4283,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = Plugins/AlertWindow/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
@@ -4331,6 +4308,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = Plugins/AlertWindow/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
@@ -4357,6 +4335,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = Plugins/AlertWindow/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(HOME)/Library/Bundles";

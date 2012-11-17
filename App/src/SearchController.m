@@ -300,7 +300,7 @@
 #pragma mark - as MZPluginControllerDelegate
 
 - (id<MetaData>)pluginController:(MZPluginController *)controller
-        extraMetaDataForProvider:(id<MZDataProvider>)provider
+        extraMetaDataForProvider:(MZDataProviderPlugin *)provider
                           loaded:(MetaLoaded*)loaded
 {
     return [[[SearchMeta alloc] initWithProvider:loaded controller:arrayController] autorelease];

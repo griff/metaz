@@ -8,16 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaZKit.h>
-#import "APDataProvider.h"
+#import "AtomicParsleyPlugin.h"
 
 @interface APReadDataTask : MZParseTaskOperation
 {
-    APDataProvider* provider;
+    AtomicParsleyPlugin* provider;
     NSMutableDictionary* tagdict;
     NSString* fileName;
 }
-+ (id)taskWithProvider:(APDataProvider*)provider fromFileName:(NSString *)fileName dictionary:(NSMutableDictionary *)tagdict;
-- (id)initWithProvider:(APDataProvider*)provider fromFileName:(NSString *)fileName dictionary:(NSMutableDictionary *)tagdict;
++ (id)taskWithProvider:(AtomicParsleyPlugin*)provider fromFileName:(NSString *)fileName dictionary:(NSMutableDictionary *)tagdict;
+- (id)initWithProvider:(AtomicParsleyPlugin*)provider fromFileName:(NSString *)fileName dictionary:(NSMutableDictionary *)tagdict;
 
 @end
 

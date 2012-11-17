@@ -284,19 +284,34 @@ static MZPluginController *gInstance = NULL;
     return NO;
 }
 
-- (NSArray *)actionsPlugins;
+- (NSArray *)pluginsWithClass:(Class )cls
 {
     NSMutableArray* ret = [NSMutableArray array];
     NSArray* thePlugins = [self loadedPlugins];
     for(MZPlugin* plugin in thePlugins)
     {
-        if([plugin isKindOfClass:[MZActionsPlugin class]])
+        if([plugin isKindOfClass:cls])
             [ret addObject:plugin];
     }
     NSSortDescriptor* desc = [[NSSortDescriptor alloc ] initWithKey:@"label" ascending:YES];
     [ret sortUsingDescriptors:[NSArray arrayWithObject:desc]];
     [desc release];
     return ret;
+}
+
+- (NSArray *)actionsPlugins;
+{
+    return [self pluginsWithClass:[MZActionsPlugin class]];
+}
+
+- (NSArray *)dataProviderPlugins;
+{
+    return [self pluginsWithClass:[MZDataProviderPlugin class]];
+}
+
+- (NSArray *)searchProviderPlugins;
+{
+    return [self pluginsWithClass:[MZSearchProviderPlugin class]];
 }
 
 - (id)loadPluginSourceWithName:(NSString *)name fromURL:(NSURL *)pathURL error:(NSError **)error
@@ -600,42 +615,36 @@ static MZPluginController *gInstance = NULL;
     return nil;
 }
 
-- (id<MZDataProvider>)dataProviderWithIdentifier:(NSString *)identifier
+- (MZDataProviderPlugin *)dataProviderWithIdentifier:(NSString *)identifier
 {
-    for(MZPlugin* plugin in [self activePlugins])
+    for(MZDataProviderPlugin* provider in [self dataProviderPlugins])
     {
-        NSArray* dataProviders = [plugin dataProviders];
-        for(id<MZDataProvider> provider in dataProviders)
-            if([[provider identifier] isEqualToString:identifier])
-                return provider;
+        if([[provider identifier] isEqualToString:identifier])
+            return provider;
     }
     return nil;
 }
 
-- (id<MZDataProvider>)dataProviderForType:(NSString *)uti
+- (MZDataProviderPlugin *)dataProviderForType:(NSString *)uti
 {
-    for(MZPlugin* plugin in [self activePlugins])
+    for(MZDataProviderPlugin* provider in [self dataProviderPlugins])
     {
-        NSArray* dataProviders = [plugin dataProviders];
-        for(id<MZDataProvider> provider in dataProviders)
+        NSArray* types = [provider types];
+        for(NSString* type in types)
         {
-            NSArray* types = [provider types];
-            for(NSString* type in types)
-            {
-                if(UTTypeConformsTo((CFStringRef)uti, (CFStringRef)type))
-                    return provider;
-            }
+            if(UTTypeConformsTo((CFStringRef)uti, (CFStringRef)type))
+                return provider;
         }
     }
     return nil;
 }
 
-- (id<MZDataProvider>)dataProviderForPath:(NSString *)path
+- (MZDataProviderPlugin *)dataProviderForPath:(NSString *)path
 {
     NSArray* types = (NSArray*)UTTypeCreateAllIdentifiersForTag(kUTTagClassFilenameExtension, (CFStringRef)[path pathExtension], kUTTypeMovie);
     for(NSString* uti in types)
     {
-        id<MZDataProvider> ret = [self dataProviderForType:uti];
+        MZDataProviderPlugin* ret = [self dataProviderForType:uti];
         if(ret)
         {
             [types release];
@@ -649,27 +658,19 @@ static MZPluginController *gInstance = NULL;
 - (NSArray *)dataProviderTypes
 {
     NSMutableArray* ret = [NSMutableArray array];
-    for(MZPlugin* plugin in [self activePlugins])
+    for(MZDataProviderPlugin* provider in [self dataProviderPlugins])
     {
-        NSArray* dataProviders = [plugin dataProviders];
-        for(id<MZDataProvider> provider in dataProviders)
-        {
-            NSArray* types = [provider types];
-            [ret addObjectsFromArray:types];
-        }
+        NSArray* types = [provider types];
+        [ret addObjectsFromArray:types];
     }
     return [NSArray arrayWithArray:ret]; 
 }
 
-- (id<MZSearchProvider>)searchProviderWithIdentifier:(NSString *)identifier
+- (MZSearchProviderPlugin *)searchProviderWithIdentifier:(NSString *)identifier
 {
-    for(MZPlugin* plugin in [self activePlugins])
-    {
-        NSArray* searchProviders = [plugin searchProviders];
-        for(id<MZSearchProvider> provider in searchProviders)
-            if([[provider identifier] isEqualToString:identifier])
-                return provider;
-    }
+    for(MZSearchProviderPlugin* provider in [self searchProviderPlugins])
+        if([[provider identifier] isEqualToString:identifier])
+            return provider;
     return nil;
 }
 
@@ -677,7 +678,7 @@ static MZPluginController *gInstance = NULL;
                             delegate:(id<MZEditsReadDelegate>)theDelegate
                                extra:(NSDictionary *)extra
 {
-    id<MZDataProvider> provider = [self dataProviderForPath:fileName];
+    MZDataProviderPlugin* provider = [self dataProviderForPath:fileName];
     if(!provider)
         return nil;
 
@@ -688,7 +689,7 @@ static MZPluginController *gInstance = NULL;
 - (id<MZDataController>)saveChanges:(MetaEdits *)data
                            delegate:(id<MZDataWriteDelegate>)theDelegate
 {
-    id<MZDataProvider> provider = [data owner];
+    MZDataProviderPlugin* provider = [data owner];
     id<MZDataWriteDelegate> otherDelegate = [MZWriteNotification notifierWithDelegate:theDelegate];
     return [provider saveChanges:data delegate:otherDelegate queue:saveQueue];
 }
@@ -697,14 +698,10 @@ static MZPluginController *gInstance = NULL;
                  delegate:(id<MZSearchProviderDelegate>)theDelegate
 {
     MZSearchDelegate* searchDelegate = [MZSearchDelegate searchWithDelegate:theDelegate];
-    for(MZPlugin* plugin in [self activePlugins])
+    for(MZSearchProviderPlugin* provider in [self searchProviderPlugins])
     {
-        NSArray* searchProviders = [plugin searchProviders];
-        for(id<MZSearchProvider> provider in searchProviders)
-        {
-            if([provider searchWithData:data delegate:searchDelegate queue:searchQueue])
-                [searchDelegate performedSearch];
-        }
+        if([provider searchWithData:data delegate:searchDelegate queue:searchQueue])
+            [searchDelegate performedSearch];
     }
     if(searchDelegate.performedSearches == 0)
     {
@@ -737,7 +734,7 @@ static MZPluginController *gInstance = NULL;
     [super dealloc];
 }
 
-- (void)dataProvider:(id<MZDataProvider>)provider
+- (void)dataProvider:(MZDataProviderPlugin *)provider
           controller:(id<MZDataController>)controller
         writeStartedForEdits:(MetaEdits *)edits
 {
@@ -752,7 +749,7 @@ static MZPluginController *gInstance = NULL;
         [delegate dataProvider:provider controller:controller writeStartedForEdits:edits];
 }
 
-- (void)dataProvider:(id<MZDataProvider>)provider
+- (void)dataProvider:(MZDataProviderPlugin *)provider
           controller:(id<MZDataController>)controller
         writeCanceledForEdits:(MetaEdits *)edits
             error:(NSError *)error
@@ -782,7 +779,7 @@ static MZPluginController *gInstance = NULL;
         [delegate dataProvider:provider controller:controller writeCanceledForEdits:edits error:error];
 }
 
-- (void)dataProvider:(id<MZDataProvider>)provider
+- (void)dataProvider:(MZDataProviderPlugin *)provider
           controller:(id<MZDataController>)controller
         writeFinishedForEdits:(MetaEdits *)edits percent:(int)percent
 {
@@ -790,7 +787,7 @@ static MZPluginController *gInstance = NULL;
         [delegate dataProvider:provider controller:controller writeFinishedForEdits:edits percent:percent];
 }
 
-- (void)dataProvider:(id<MZDataProvider>)provider
+- (void)dataProvider:(MZDataProviderPlugin *)provider
           controller:(id<MZDataController>)controller
         writeFinishedForEdits:(MetaEdits *)edits
 {
@@ -836,7 +833,7 @@ static MZPluginController *gInstance = NULL;
     [super dealloc];
 }
 
-- (void)dataProvider:(id<MZDataProvider>)provider
+- (void)dataProvider:(MZDataProviderPlugin *)provider
           controller:(id<MZDataController>)theController
           loadedMeta:(MetaLoaded *)loaded
             fromFile:(NSString *)fileName
@@ -899,7 +896,7 @@ static MZPluginController *gInstance = NULL;
     performedSearches++;
 }
 
-- (void) searchProvider:(id<MZSearchProvider>)provider result:(NSArray*)result
+- (void) searchProvider:(MZSearchProviderPlugin *)provider result:(NSArray*)result
 {
     [delegate searchProvider:provider result:result];
 }

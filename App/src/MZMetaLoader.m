@@ -491,7 +491,7 @@ static MZMetaLoader* sharedLoader = nil;
 @synthesize error;
 @synthesize scriptCommand;
 
-- (void)dataProvider:(id<MZDataProvider>)provider
+- (void)dataProvider:(MZDataProviderPlugin *)provider
           controller:(id<MZDataController>)controller
          loadedEdits:(MetaEdits *)theEdits
             fromFile:(NSString *)fileName
@@ -520,7 +520,7 @@ static MZMetaLoader* sharedLoader = nil;
     return self;
 }
 
-- (void)dataProvider:(id<MZDataProvider>)provider
+- (void)dataProvider:(MZDataProviderPlugin *)provider
           controller:(id<MZDataController>)controller
          loadedEdits:(MetaEdits *)theEdits
             fromFile:(NSString *)fileName

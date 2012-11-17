@@ -13,8 +13,8 @@
 #import <MetaZKit/MZASISearch.h>
 #import <MetaZKit/MZTag.h>
 #import <MetaZKit/MZConstants.h>
-#import <MetaZKit/MZDataProvider.h>
-#import <MetaZKit/MZSearchProvider.h>
+#import <MetaZKit/MZDataProviderPlugin.h>
+#import <MetaZKit/MZSearchProviderPlugin.h>
 #import <MetaZKit/MZSearchResult.h>
 #import <MetaZKit/MZPlugin.h>
 #import <MetaZKit/MZPluginController.h>
@@ -32,7 +32,6 @@
 #import <MetaZKit/MZTaskOperation.h>
 #import <MetaZKit/MZOperationsController.h>
 #import <MetaZKit/MZReadOperationsController.h>
-#import <MetaZKit/MZBaseSearchProvider.h>
 #import <MetaZKit/MZHTTPRequest.h>
 
 #import <MetaZKit/NSArray+Mapping.h>

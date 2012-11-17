@@ -82,20 +82,6 @@
 - (void)willUnload;
 
 
-/*! @name Getting the Plug-in’s Custom Providers
- */
-//@{
-#pragma mark - Getting the Plug-in’s Custom Providers
-
-/*!
- */
-- (NSArray *)dataProviders;
-
-/*!
- */
-- (NSArray *)searchProviders;
-//@}
-
 /*! @name Configuring Your Plug-in
  */
 //@{

@@ -13,12 +13,11 @@
 #define TVDBSeasonIdTagIdent @"tvdbSeasonId"
 #define TVDBSeriesIdTagIdent @"tvdbSeriesId"
 
-@interface TheTVDBPlugin : MZPlugin
+@interface TheTVDBPlugin : MZSearchProviderPlugin
 {
-    NSArray* searchProviders;
+    NSArray* supportedSearchTags;
+    NSMenu* menu;
 }
 
-- (id)init;
-- (NSArray *)searchProviders;
 
 @end

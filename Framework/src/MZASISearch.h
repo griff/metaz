@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MZHTTPRequest.h>
-#import <MetaZKit/MZSearchProvider.h>
+#import <MetaZKit/MZSearchProviderPlugin.h>
 
 @interface MZASISearchResult : NSObject {
     MZHTTPRequest* request;

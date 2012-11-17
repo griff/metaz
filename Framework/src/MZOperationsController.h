@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <MetaZKit/MZDataProvider.h>
+#import <MetaZKit/MZDataProviderPlugin.h>
 
 @interface MZOperationsController : NSObject <MZDataController>
 {

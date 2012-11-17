@@ -9,12 +9,10 @@
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaZKit.h>
 
-@interface AmazonPlugin : MZPlugin
+@interface AmazonPlugin : MZSearchProviderPlugin
 {
-    NSArray* searchProviders;
+    NSArray* supportedSearchTags;
+    NSMenu* menu;
 }
-
-- (id)init;
-- (NSArray *)searchProviders;
 
 @end

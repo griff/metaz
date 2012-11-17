@@ -98,7 +98,7 @@ static MZMetaSearcher* sharedSearcher = nil;
 
 #pragma mark - MZSearchProviderDelegate implementation
 
-- (void) searchProvider:(id<MZSearchProvider>)provider result:(NSArray*)result
+- (void) searchProvider:(MZSearchProviderPlugin *)provider result:(NSArray*)result
 {
     [self willChangeValueForKey:@"results"];
     [results addObjectsFromArray:result];
