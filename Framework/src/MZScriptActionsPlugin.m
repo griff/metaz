@@ -59,6 +59,11 @@ enum {
     return identifier;
 }
 
+- (NSString *)pluginPath
+{
+    return [url path];
+}
+
 - (NSString *)label
 {
     return self.identifier;
@@ -74,6 +79,11 @@ enum {
     NSURL* urlPath = [NSURL fileURLWithPath:[[NSBundle mainBundle] builtInPlugInsPath]];
     BOOL ret = [[url baseURL] isEqualTo:urlPath];
     return ret;
+}
+
+- (BOOL)unload
+{
+    return YES;
 }
 
 - (BOOL)loadAndReturnError:(NSError **)error

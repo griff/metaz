@@ -17,7 +17,7 @@
 }
 
 - (BOOL)canUnload
-{
+{/*
     if([self retainCount]>1)
         return NO;
     for(id obj in [self dataProviders])
@@ -25,7 +25,13 @@
             return NO;
     for(id obj in [self searchProviders])
         if([obj retainCount]>1)
-            return NO;
+            return NO;*/
     return YES;
 }
+
+- (BOOL)unload
+{
+    return [bundle unload];
+}
+
 @end

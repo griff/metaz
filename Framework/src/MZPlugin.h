@@ -32,6 +32,14 @@
  */
 @property(readonly) NSString* identifier;
 
+/*!
+ @abstract The path to the plugin.
+ @discussion Defaults to the bundlePath of the bundle
+ @see bundle bundle
+ */
+@property(readonly) NSString* pluginPath;
+
+
 @property(getter=isEnabled) BOOL enabled;
 
 - (BOOL)canEnable;

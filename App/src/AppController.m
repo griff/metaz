@@ -600,16 +600,35 @@ NSDictionary* findBinding(NSWindow* window) {
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
 {
     [window makeKeyAndOrderFront:sender];
-    return [[MZMetaLoader sharedLoader] loadFromFile:filename];
+
+    CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (CFStringRef)[filename pathExtension], NULL);
+    if(UTTypeConformsTo(uti, kMZUTMetaZPlugin) ||
+       UTTypeEqual(uti, kMZUTAppleScriptText) || UTTypeConformsTo(uti, kMZUTAppleScriptText) ||
+       UTTypeEqual(uti, kMZUTAppleScript) || UTTypeConformsTo(uti, kMZUTAppleScript) ||
+       UTTypeEqual(uti, kMZUTAppleScriptBundle) || UTTypeConformsTo(uti, kMZUTAppleScriptBundle))
+    {
+        NSError* error = nil;
+        if(![[MZPluginController sharedInstance] installPlugin:[NSURL fileURLWithPath:filename] force:NO error:&error] && error)
+            return [NSApp presentError:error];
+        return YES;
+    }
+    else
+    {
+        return [[MZMetaLoader sharedLoader] loadFromFile:filename];
+    }
 }
 
 - (void)application:(NSApplication *)sender openFiles:(NSArray *)filenames
 {
     [window makeKeyAndOrderFront:sender];
-    if([[MZMetaLoader sharedLoader] loadFromFiles:filenames])
-        [sender replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
-    else
-        [sender replyToOpenOrPrint:NSApplicationDelegateReplyCancel];
+    
+    NSApplicationDelegateReply response = NSApplicationDelegateReplySuccess;
+    for(NSString* filename in filenames)
+    {
+        if(![self application:sender openFile: filename])
+            response = NSApplicationDelegateReplyCancel;
+    }
+    [sender replyToOpenOrPrint:response];
 }
 
 - (void)applicationWillFinishLaunching:(NSNotification *)notification;

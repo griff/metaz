@@ -9,6 +9,40 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>scptd</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>scptd</string>
+			<key>CFBundleTypeName</key>
+			<string>Compiled OSA Script Bundle</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.latenightsw.osa.bundle</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>scpt</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>scpt</string>
+			<key>CFBundleTypeName</key>
+			<string>Compiled OSA Script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.apple.applescript.script</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>mzactions</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
@@ -23,6 +57,22 @@
 			</array>
 			<key>LSTypeIsPackage</key>
 			<true/>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>applescript</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>applescript</string>
+			<key>CFBundleTypeName</key>
+			<string>Text OSA Script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.apple.applescript.text</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>

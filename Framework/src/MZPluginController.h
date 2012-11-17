@@ -11,6 +11,15 @@
 #import <MetaZKit/MZDataProvider.h>
 #import <MetaZKit/MZSearchProvider.h>
 
+MZKIT_EXTERN const NSInteger errMZPluginMissingInstallLocation;
+MZKIT_EXTERN const NSInteger errMZPluginAlreadyExists;
+MZKIT_EXTERN const NSInteger errMZPluginFailedToCreateBundle;
+MZKIT_EXTERN const NSInteger errMZPluginUnknownPluginType;
+MZKIT_EXTERN const NSInteger errMZPluginAlreadyLoaded;
+MZKIT_EXTERN const NSInteger errMZPluginFailedToLoadSource;
+MZKIT_EXTERN const NSInteger errMZPluginFailedToLoadPrincipalClass;
+MZKIT_EXTERN const NSInteger errMZPluginFailedToCreatePrincipalClass;
+
 @class MZPluginController;
 
 @protocol MZPluginControllerDelegate <NSObject>
@@ -38,9 +47,10 @@
 
 
 @interface MZPluginController : NSObject {
-    NSArray* plugins;
+    NSMutableArray* plugins;
     NSMutableArray* loadedPlugins;
     NSMutableArray* activePlugins;
+    NSMutableSet* loadedBundles;
     id<MZPluginControllerDelegate> delegate;
     NSOperationQueue* loadQueue;
     NSOperationQueue* saveQueue;
@@ -56,6 +66,7 @@
 @property(readonly) NSOperationQueue* saveQueue;
 @property(readonly) NSOperationQueue* searchQueue;
 
+- (BOOL)installPlugin:(NSURL *)thePlugin force:(BOOL)force error:(NSError **)error;
 - (NSArray *)actionsPlugins;
 - (NSArray *)plugins;
 - (NSArray *)loadedPlugins;
