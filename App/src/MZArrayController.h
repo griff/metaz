@@ -10,6 +10,8 @@
 
 
 @interface MZArrayController : NSArrayController {
+    NSTimeInterval rearrangeDelay;
 }
+@property(assign) NSTimeInterval rearrangeDelay;
 
 @end
