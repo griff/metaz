@@ -163,6 +163,7 @@ NSDictionary* findBinding(NSWindow* window) {
     [presetsController release];
     [chapterEditor release];
     [fileNameEditor release];
+    [fileNameStorage release];
     [picturesController release];
     [updater release];
     [super dealloc];
@@ -563,7 +564,7 @@ NSDictionary* findBinding(NSWindow* window) {
     {
         if(!fileNameEditor)
         {
-            MZFileNameTextStorage* fileNameStorage = [[MZFileNameTextStorage alloc] init];
+            fileNameStorage = [[MZFileNameTextStorage alloc] init];
             
             NSLayoutManager *layoutManager;
             layoutManager = [[NSLayoutManager alloc] init];
@@ -580,7 +581,6 @@ NSDictionary* findBinding(NSWindow* window) {
                     initWithFrame:NSZeroRect textContainer:container];
             [fileNameEditor setFieldEditor:YES];
             [fileNameEditor setRichText:NO];
-            [fileNameStorage release];
         }
         return fileNameEditor;
     }
