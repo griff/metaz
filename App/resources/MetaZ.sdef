@@ -13,7 +13,31 @@
 			<enumerator name="ask" code="ask " description="Ask the user.">
 				<cocoa integer-value="-2"/>
             </enumerator>
-		</enumeration>
+        </enumeration>
+
+        <event name="queue started processing" code="MZqustar" description="The queue started processing items"/>
+        
+        <event name="queue started document" code="MZqistar" description="The queue started writing document">
+            <direct-parameter description="The document written" type="document"/>
+        </event>
+
+        <event name="queue completed document" code="MZqicomp" description="The queue finished writing document">
+            <direct-parameter description="The document written" type="document"/>
+        </event>
+
+        <event name="queue failed to write" code="MZqifail" description="The queue failed writing document">
+            <direct-parameter description="The document written" type="document"/>
+            <parameter name="because of" code="Merr" optional="yes" description="The error that cause the failure" type="text">
+                <cocoa key="error"/>
+            </parameter>
+        </event>
+
+        <event name="queue finished processing" code="MZqucomp" description="The queue finished processing items"/>
+
+        <event name="opened document" code="MZevodoc" description="Opened a document">
+            <direct-parameter description="The document opened" type="document"/>
+        </event>
+
         
 		<command name="open" code="aevtodoc" description="Open a document.">
 			<direct-parameter description="The file(s) to be opened.">
@@ -276,7 +300,7 @@
 		</enumeration>
 
 		<enumeration name="video type" code="MVty">
-			<enumerator name="Movie" code="MVov">
+			<enumerator name="Home Movie" code="MVhm">
 				<cocoa integer-value="0"/>
 			</enumerator>
 			<enumerator name="TV Show" code="MVtv">
@@ -294,11 +318,20 @@
 			<enumerator name="Music Video" code="MVmv">
 				<cocoa integer-value="6"/>
 			</enumerator>
-			<enumerator name="Short Film" code="MVsf">
+			<enumerator name="Movie" code="MVov">
 				<cocoa integer-value="9"/>
 			</enumerator>
 			<enumerator name="Booklet" code="MVbo">
 				<cocoa integer-value="11"/>
+			</enumerator>
+			<enumerator name="Ringtone" code="MVrt">
+				<cocoa integer-value="14"/>
+			</enumerator>
+			<enumerator name="Podcast" code="MVpc">
+				<cocoa integer-value="21"/>
+			</enumerator>
+			<enumerator name="iTunes U" code="MViU">
+				<cocoa integer-value="23"/>
 			</enumerator>
         </enumeration>
 

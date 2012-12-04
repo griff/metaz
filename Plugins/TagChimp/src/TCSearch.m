@@ -22,6 +22,7 @@
     self = [super initWithProvider:theProvider delegate:theDelegate url:url parameters:params];
     if(self)
     {
+        request.secondsToCache = 120;
         NSArray* tags = [NSArray arrayWithObjects:
             MZTitleTagIdent, MZGenreTagIdent,
             MZDirectorTagIdent, MZProducerTagIdent,
@@ -121,11 +122,11 @@
 
 #pragma mark - ASIHTTPRequest Delegate
 
-- (void)requestFinished:(ASIHTTPRequest *)theRequest;
+- (void)requestFinishedBackground:(ASIHTTPRequest *)theRequest;
 {
     NSError* error = nil;
-    MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
-    MZLoggerDebug(@"Got response encoding: %d", [theRequest responseEncoding]);
+    //MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
+    //MZLoggerDebug(@"Got response encoding: %d", [theRequest responseEncoding]);
     NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithXMLString:[theRequest responseString] options:0 error:&error] autorelease];
     if(error)
     {
@@ -138,7 +139,7 @@
         MZLoggerError(@"TagChimp error: %@", errorMessage);
     NSArray* items = [doc nodesForXPath:@"/items/movie" error:NULL];
     NSMutableArray* results = [NSMutableArray array];
-    MZLoggerDebug(@"Got TagChimp results %d", [items count]);
+    //MZLoggerDebug(@"Got TagChimp results %d", [items count]);
     for(NSXMLElement* item in items)
     {
         NSMutableDictionary* dict = [NSMutableDictionary dictionary];
@@ -330,9 +331,8 @@
         else
             MZLoggerError(@"Result contained an item with no id. Skipping.");
     }
-    MZLoggerDebug(@"Parsed TagChimp results %d", [results count]);
-    [delegate searchProvider:provider result:results];
-    [super requestFinished:theRequest];
+    //MZLoggerDebug(@"Parsed TagChimp results %d", [results count]);
+    [self performSelectorOnMainThread:@selector(providedResults:) withObject:results waitUntilDone:NO];
 }
 
 @end

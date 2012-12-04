@@ -32,6 +32,14 @@
  */
 @property(readonly) NSString* identifier;
 
+/*!
+ @abstract The path to the plugin.
+ @discussion Defaults to the bundlePath of the bundle
+ @see bundle bundle
+ */
+@property(readonly) NSString* pluginPath;
+
+
 @property(getter=isEnabled) BOOL enabled;
 
 - (BOOL)canEnable;
@@ -73,20 +81,6 @@
  */
 - (void)willUnload;
 
-
-/*! @name Getting the Plug-in’s Custom Providers
- */
-//@{
-#pragma mark - Getting the Plug-in’s Custom Providers
-
-/*!
- */
-- (NSArray *)dataProviders;
-
-/*!
- */
-- (NSArray *)searchProviders;
-//@}
 
 /*! @name Configuring Your Plug-in
  */

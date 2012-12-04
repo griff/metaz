@@ -7,24 +7,25 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <MetaZKit/ASIHTTPRequest.h>
-#import <MetaZKit/MZSearchProvider.h>
+#import <MetaZKit/MZHTTPRequest.h>
+#import <MetaZKit/MZSearchProviderPlugin.h>
 
 @interface MZASISearchResult : NSObject {
-    ASIHTTPRequest* request;
+    MZHTTPRequest* request;
     id provider;
     NSDictionary *parameters;
     id<MZSearchProviderDelegate> delegate;
 }
 
-- (id)initWithProvider:(id)provider delegate:(id<MZSearchProviderDelegate>)delegate url:(NSURL *)url parameters:(NSDictionary *)params;
+- (id)initWithProvider:(id)theProvider delegate:(id<MZSearchProviderDelegate>)theDelegate url:(NSURL *)theUrl parameters:(NSDictionary *)params;
 
 - (void)addToQueue:(NSOperationQueue *)queue;
 - (void)cancel;
 - (void)clearDelegatesAndCancel;
 - (NSArray *)parseResult;
 
-- (void)requestFinished:(ASIHTTPRequest *)request;
+- (void)requestFinishedBackground:(ASIHTTPRequest *)request;
+- (void)providedResults:(NSArray *)results;
 
 - (NSString *)queryStringForParameterDictionary:(NSDictionary *)parameters withUrl:(NSURL *)url;
 - (NSDictionary *)preparedParameterDictionaryForInput:(NSDictionary *)inParams;
@@ -34,7 +35,6 @@
 @interface MZASISearch : MZASISearchResult {
 }
 
-- (void)requestFinished:(ASIHTTPRequest *)request;
-- (void)requestFailed:(ASIHTTPRequest *)request;
+- (void)internalFinished;
 
 @end

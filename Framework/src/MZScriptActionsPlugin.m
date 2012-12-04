@@ -14,6 +14,16 @@
 #import "MZLogger.h"
 #import "MZPlugin+Private.h"
 
+enum {
+    keyMZStarted   = 'star',
+    keyMZCompleted = 'comp',
+    keyMZFailed    = 'fail',
+    keyMZOpenDoc   = 'odoc',
+    keyMZQueue     = 'MZqu',
+    keyMZQueueItem = 'MZqi',
+    keyMZEvent     = 'MZev',
+    keyMZError     = 'Merr',
+};
 
 @implementation MZScriptActionsPlugin
 
@@ -49,6 +59,11 @@
     return identifier;
 }
 
+- (NSString *)pluginPath
+{
+    return [url path];
+}
+
 - (NSString *)label
 {
     return self.identifier;
@@ -64,6 +79,11 @@
     NSURL* urlPath = [NSURL fileURLWithPath:[[NSBundle mainBundle] builtInPlugInsPath]];
     BOOL ret = [[url baseURL] isEqualTo:urlPath];
     return ret;
+}
+
+- (BOOL)unload
+{
+    return YES;
 }
 
 - (BOOL)loadAndReturnError:(NSError **)error
@@ -113,6 +133,12 @@
            selector:@selector(queueCompleted:)
                name:MZQueueCompletedNotification
              object:nil];
+
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(openedDocument:)
+               name:MZMetaLoaderFinishedNotification
+             object:nil];
 }
 
 - (void)executeEvent:(NSAppleEventDescriptor *)event
@@ -129,17 +155,23 @@
     }
 }
 
+/*
+		<event name="queue started processing" code="MZqustar" description="The queue started processing items"/>
+*/
 - (void)queueStarted:(NSNotification *)note
 {    
     ProcessSerialNumber psn = {0, kCurrentProcess};
-    NSAppleEventDescriptor* event = [AEVT class:kASAppleScriptSuite id:kASSubroutineEvent target:psn,
-        [KEY : keyASSubroutineName],
-        [STRING : @"queue_started"],
+    NSAppleEventDescriptor* event = [AEVT class:keyMZQueue id:keyMZStarted target:psn,
         nil
     ];
     [self executeEvent:event];
 }
 
+/*
+		<event name="queue started" code="MZqistar" description="The queue started writing document">
+			<direct-parameter description="The document written" type="document"/>
+        </event>
+*/
 - (void)queueItemStarted:(NSNotification *)note
 {
     MetaEdits* edits = [[note userInfo] objectForKey:MZMetaEditsNotificationKey];
@@ -152,16 +184,19 @@
         name:displayName] autorelease];
     
     ProcessSerialNumber psn = {0, kCurrentProcess};
-    NSAppleEventDescriptor* event = [AEVT class:kASAppleScriptSuite id:kASSubroutineEvent target:psn,
-        [KEY : keyASSubroutineName],
-        [STRING : @"queue_writing"],
-        [KEY : keyASPrepositionOn],
+    NSAppleEventDescriptor* event = [AEVT class:keyMZQueueItem id:keyMZStarted target:psn,
+        [KEY : keyDirectObject],
         [spec descriptor],
         nil
     ];
     [self executeEvent:event];
 }
 
+/*
+		<event name="queue completed" code="MZqicomp" description="The queue finished writing document">
+			<direct-parameter description="The document written" type="document"/>
+        </event>
+*/
 - (void)queueItemCompleted:(NSNotification *)note
 {
     MetaEdits* edits = [[note userInfo] objectForKey:MZMetaEditsNotificationKey];
@@ -174,16 +209,22 @@
         name:displayName] autorelease];
     
     ProcessSerialNumber psn = {0, kCurrentProcess};
-    NSAppleEventDescriptor* event = [AEVT class:kASAppleScriptSuite id:kASSubroutineEvent target:psn,
-        [KEY : keyASSubroutineName],
-        [STRING : @"queue_completed"],
-        [KEY : keyASPrepositionOn],
+    NSAppleEventDescriptor* event = [AEVT class:keyMZQueueItem id:keyMZCompleted target:psn,
+        [KEY : keyDirectObject],
         [spec descriptor],
         nil
     ];
     [self executeEvent:event];
 }
 
+/*
+		<event name="queue failed to write" code="MZqifail" description="The queue failed writing document">
+			<direct-parameter description="The document written" type="document"/>
+			<parameter name="because of" code="Merr" optional="yes" description="The error that cause the failure" type="text">
+				<cocoa key="error"/>
+            </parameter>
+        </event>
+*/
 - (void)queueItemFailed:(NSNotification *)note
 {
     MetaEdits* edits = [[note userInfo] objectForKey:MZMetaEditsNotificationKey];
@@ -194,27 +235,58 @@
         initWithContainerClassDescription:containerClassDesc
         containerSpecifier:nil key:@"queueDocuments"
         name:displayName] autorelease];
+        
+    NSError* error = [[note userInfo] objectForKey:MZNSErrorKey];
 
     ProcessSerialNumber psn = {0, kCurrentProcess};
-    NSAppleEventDescriptor* event = [AEVT class:kASAppleScriptSuite id:kASSubroutineEvent target:psn,
-        [KEY : keyASSubroutineName],
-        [STRING : @"queue_failed"],
-        [KEY : keyASPrepositionOn],
+    NSAppleEventDescriptor* event = [AEVT class:keyMZQueueItem id:keyMZFailed target:psn,
+        [KEY : keyDirectObject],
         [spec descriptor],
+        [KEY : keyMZError],
+        [STRING : [error localizedDescription]],
         nil
     ];
     [self executeEvent:event];
 }
 
+/*
+		<event name="queue finished processing" code="MZqucomp" description="The queue finished processing items"/>
+*/
 - (void)queueCompleted:(NSNotification *)note
 {
     ProcessSerialNumber psn = {0, kCurrentProcess};
-    NSAppleEventDescriptor* event = [AEVT class:kASAppleScriptSuite id:kASSubroutineEvent target:psn,
-        [KEY : keyASSubroutineName],
-        [STRING : @"queue_finished"],
+    NSAppleEventDescriptor* event = [AEVT class:keyMZQueue id:keyMZCompleted target:psn,
         nil
     ];
     [self executeEvent:event];
+}
+
+/*
+        <event name="opened document" code="MZevodoc" description="Opened a document">
+            <direct-parameter description="The document opened" type="document"/>
+        </event>
+*/
+- (void)openedDocument:(NSNotification *)note
+{
+    MetaEdits* edits = [[note userInfo] objectForKey:MZMetaEditsNotificationKey];
+    if(edits)
+    {
+        NSString* displayName = [[[edits loadedFileName] lastPathComponent] stringByDeletingPathExtension];
+        NSScriptClassDescription *containerClassDesc = (NSScriptClassDescription *)
+            [NSScriptClassDescription classDescriptionForClass:[NSApplication class]];// 1
+        NSScriptObjectSpecifier* spec = [[[NSNameSpecifier alloc]
+            initWithContainerClassDescription:containerClassDesc
+            containerSpecifier:nil key:@"orderedDocuments"
+            name:displayName] autorelease];
+    
+        ProcessSerialNumber psn = {0, kCurrentProcess};
+        NSAppleEventDescriptor* event = [AEVT class:keyMZEvent id:keyMZOpenDoc target:psn,
+            [KEY : keyDirectObject],
+            [spec descriptor],
+            nil
+        ];
+        [self executeEvent:event];
+    }
 }
 
 @end

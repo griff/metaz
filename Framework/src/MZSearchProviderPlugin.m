@@ -1,15 +1,15 @@
 //
-//  MZBaseSearchProvider.m
+//  MZSearchProviderPlugin.m
 //  MetaZ
 //
 //  Created by Brian Olsen on 11/05/10.
 //  Copyright 2010 Maven-Group. All rights reserved.
 //
 
-#import "MZBaseSearchProvider.h"
+#import "MZSearchProviderPlugin.h"
 #import "GTMNSObject+KeyValueObserving.h"
 
-@implementation MZBaseSearchProvider
+@implementation MZSearchProviderPlugin
 
 - (id)init
 {
@@ -28,6 +28,7 @@
 
     [search release];
     [canceledSearches release];
+    [icon release];
     [super dealloc];
 }
 
@@ -69,6 +70,50 @@
     [self performSelectorOnMainThread:@selector(canceledSearchFinishedMain:)
                            withObject:[notification object]
                         waitUntilDone:NO];
+}
+
+- (NSImage *)icon;
+{
+    if(!icon)
+    {
+        NSString* iconString = [[self bundle] objectForInfoDictionaryKey:@"IconURL"];
+        NSURL* iconURL = nil;
+        if(iconString)
+            iconURL = [NSURL URLWithString:iconString];
+        else
+        {
+            NSString* iconFile = [[self bundle] objectForInfoDictionaryKey:@"CFBundleIconFile"];
+            if(iconFile)
+            {
+                iconFile = [[self bundle] pathForResource:iconFile ofType:nil];
+                if(iconFile)
+                    iconURL = [NSURL fileURLWithPath:iconFile];
+            }
+        }
+        if(!iconURL)
+            return nil;
+        icon = [[NSImage alloc] initWithContentsOfURL:iconURL];
+    }
+    return icon;
+}
+
+- (NSArray *)supportedSearchTags;
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return nil;
+}
+
+- (BOOL)searchWithData:(NSDictionary *)data
+              delegate:(id<MZSearchProviderDelegate>)delegate
+                 queue:(NSOperationQueue *)queue;
+{
+    [self doesNotRecognizeSelector:_cmd];
+    return NO;
+}
+
+- (NSMenu *)menuForResult:(MZSearchResult *)result;
+{
+    return nil;
 }
 
 @end

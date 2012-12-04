@@ -7,24 +7,14 @@
 //
 
 #import "TheMovieDbPlugin.h"
-#import "TheMovieDbSearchProvider.h"
+#import "TheMovieDbSearch.h"
 
 @implementation TheMovieDbPlugin
 
-- (id)init
-{
-    self = [super init];
-    if(self)
-    {
-        TheMovieDbSearchProvider* a = [[[TheMovieDbSearchProvider alloc] init] autorelease];
-        searchProviders  = [[NSArray arrayWithObject:a] retain];
-    }
-    return self;
-}
-
 - (void)dealloc
 {
-    [searchProviders release];
+    [supportedSearchTags release];
+    [menu release];
     [super dealloc];
 }
 
@@ -40,9 +30,60 @@
     return YES;
 }
 
-- (NSArray *)searchProviders
+- (NSArray *)supportedSearchTags
 {
-    return searchProviders;
+    if(!supportedSearchTags)
+    {
+        NSMutableArray* ret = [NSMutableArray array];
+        [ret addObject:[MZTag tagForIdentifier:MZTitleTagIdent]];
+        [ret addObject:[MZTag tagForIdentifier:MZVideoTypeTagIdent]];
+        supportedSearchTags = [[NSArray alloc] initWithArray:ret];
+    }
+    return supportedSearchTags;
+}
+
+- (NSMenu *)menuForResult:(MZSearchResult *)result
+{
+    if(!menu)
+    {
+        menu = [[NSMenu alloc] initWithTitle:@"TheMovieDb"];
+        NSMenuItem* item = [menu addItemWithTitle:@"View in Browser" action:@selector(view:) keyEquivalent:@""];
+        [item setTarget:self];
+    }
+    for(NSMenuItem* item in [menu itemArray])
+        [item setRepresentedObject:result];
+    return menu;
+}
+
+- (void)view:(id)sender
+{
+    MZSearchResult* result = [sender representedObject];
+    NSString* str = [[result valueForKey:TMDbURLTagIdent] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL* url = [NSURL URLWithString:str];
+    [[NSWorkspace sharedWorkspace] openURL:url];
+}
+
+
+- (BOOL)searchWithData:(NSDictionary *)data
+              delegate:(id<MZSearchProviderDelegate>)delegate
+                 queue:(NSOperationQueue *)queue;
+{
+    [self cancelSearch];
+
+    NSNumber* videoKindObj = [data objectForKey:MZVideoTypeTagIdent];
+    NSString* title = [data objectForKey:MZTitleTagIdent];
+    if(!([videoKindObj intValue] == MZMovieVideoType && title && [title length] > 0))
+    {
+        return NO;
+    }
+    
+    TheMovieDbSearch* search = [TheMovieDbSearch searchWithProvider:self delegate:delegate queue:queue];
+    [search fetchMovieSearch:title];
+    
+    [self startSearch:search];
+    MZLoggerDebug(@"Sent request to TheMovieDb");
+    [search addOperationsToQueue:queue];
+    return YES;
 }
 
 @end

@@ -9,14 +9,17 @@
 typedef enum
 {
     MZUnsetVideoType = -1,
-    MZMovieVideoType = 0,
+    MZHomeMovieVideoType = 0,
     MZNormalVideoType = 1,
     MZAudiobookVideoType = 2,
     MZWhackedBookmarkVideoType = 5,
     MZMusicVideoType = 6,
-    MZShortFilmVideoType = 9,
+    MZMovieVideoType = 9,
     MZTVShowVideoType = 10,
-    MZBookletVideoType = 11
+    MZBookletVideoType = 11,
+    MZRingtoneVideoType = 14,
+    MZPodcastVideoType = 21,
+    MZITunesUVideoType = 23
     
 } MZVideoType;
 
@@ -211,10 +214,13 @@ MZKIT_EXTERN NSString* const MZQueueItemCompletedNotification;
 MZKIT_EXTERN NSString* const MZQueueItemFailedNotification;
 MZKIT_EXTERN NSString* const MZQueueCompletedNotification;
 
+MZKIT_EXTERN NSString* const MZMetaLoaderStartedNotification;
+MZKIT_EXTERN NSString* const MZMetaLoaderFinishedNotification;
+
 MZKIT_EXTERN NSString* const MZMetaEditsNotificationKey;
 MZKIT_EXTERN NSString* const MZUndoActionNameKey;
 MZKIT_EXTERN NSString* const MZDataControllerNotificationKey;
-MZKIT_EXTERN NSString* const MZDataControllerErrorKey;
+MZKIT_EXTERN NSString* const MZNSErrorKey;
 
 
 // Standard alert ids
@@ -226,7 +232,10 @@ MZKIT_EXTERN NSString* const iTunesPboardType;
 // Plugin UTI
 MZKIT_EXTERN const CFStringRef kMZUTMetaZPlugin;
 MZKIT_EXTERN const CFStringRef kMZUTMetaZActionsPlugin;
+MZKIT_EXTERN const CFStringRef kMZUTMetaZDataProviderPlugin;
+MZKIT_EXTERN const CFStringRef kMZUTMetaZSearchProviderPlugin;
 MZKIT_EXTERN const CFStringRef kMZUTAppleScriptText;
 MZKIT_EXTERN const CFStringRef kMZUTAppleScript;
+MZKIT_EXTERN const CFStringRef kMZUTAppleScriptBundle;
 
 #endif // MZKIT_EXTERN

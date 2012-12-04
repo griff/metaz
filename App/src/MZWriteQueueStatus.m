@@ -116,7 +116,7 @@
 
 #pragma mark - MZDataWriteDelegate implementation
 
-- (void)dataProvider:(id<MZDataProvider>)provider 
+- (void)dataProvider:(MZDataProviderPlugin *)provider 
           controller:(id<MZDataController>)controller
 writeStartedForEdits:(MetaEdits *)edits
 {
@@ -126,7 +126,7 @@ writeStartedForEdits:(MetaEdits *)edits
 }
 
 
-- (void)dataProvider:(id<MZDataProvider>)provider 
+- (void)dataProvider:(MZDataProviderPlugin *)provider 
           controller:(id<MZDataController>)controller
         writeCanceledForEdits:(MetaEdits *)theEdits
               error:(NSError *)theError
@@ -164,7 +164,9 @@ writeStartedForEdits:(MetaEdits *)edits
         }
         else
         {
-            NSDictionary* userInfo = [NSDictionary dictionaryWithObject:edits forKey:MZMetaEditsNotificationKey];
+            NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                theEdits, MZMetaEditsNotificationKey,
+                theError, MZNSErrorKey, nil];
             [[NSNotificationCenter defaultCenter]
                     postNotificationName:MZQueueItemFailedNotification
                                   object:self
@@ -187,7 +189,7 @@ writeStartedForEdits:(MetaEdits *)edits
     [[MZWriteQueue sharedQueue] itemStopped];
 }
 
-- (void)dataProvider:(id<MZDataProvider>)provider
+- (void)dataProvider:(MZDataProviderPlugin *)provider
           controller:(id<MZDataController>)controller
         writeFinishedForEdits:(MetaEdits *)theEdits percent:(int)newPercent
 {
@@ -201,7 +203,7 @@ writeStartedForEdits:(MetaEdits *)edits
     //[self didChangeValueForKey:@"percent"];
 }
 
-- (void)dataProvider:(id<MZDataProvider>)provider
+- (void)dataProvider:(MZDataProviderPlugin *)provider
           controller:(id<MZDataController>)controller
         writeFinishedForEdits:(MetaEdits *)theEdits
 {
@@ -331,15 +333,19 @@ writeStartedForEdits:(MetaEdits *)edits
     }
     self.completed = error == nil;
     
-    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:edits forKey:MZMetaEditsNotificationKey];
     if(error)
     {
+        NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+            edits, MZMetaEditsNotificationKey,
+            error, MZNSErrorKey, nil];
         [[NSNotificationCenter defaultCenter]
                 postNotificationName:MZQueueItemFailedNotification
                               object:self
                             userInfo:userInfo];
     } else
     {
+        NSDictionary* userInfo = [NSDictionary dictionaryWithObject:edits 
+            forKey:MZMetaEditsNotificationKey];
         [[NSNotificationCenter defaultCenter]
                 postNotificationName:MZQueueItemCompletedNotification
                               object:self

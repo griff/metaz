@@ -11,12 +11,12 @@
 
 @implementation APReadDataTask
 
-+ (id)taskWithProvider:(APDataProvider*)provider fromFileName:(NSString *)fileName dictionary:(NSMutableDictionary *)tagdict
++ (id)taskWithProvider:(AtomicParsleyPlugin *)provider fromFileName:(NSString *)fileName dictionary:(NSMutableDictionary *)tagdict
 {
     return [[[[self class] alloc] initWithProvider:provider fromFileName:fileName dictionary:tagdict] autorelease];
 }
 
-- (id)initWithProvider:(APDataProvider*)theProvider fromFileName:(NSString *)theFileName dictionary:(NSMutableDictionary *)theTagdict
+- (id)initWithProvider:(AtomicParsleyPlugin *)theProvider fromFileName:(NSString *)theFileName dictionary:(NSMutableDictionary *)theTagdict
 {
     self = [super init];
     if(self)

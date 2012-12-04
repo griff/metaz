@@ -43,6 +43,14 @@
 @synthesize season;
 @synthesize episode;
 
+- (void)cancel
+{
+    [delegate searchFinished];
+    [delegate release];
+    delegate = nil;
+    [super cancel];
+}
+
 - (void)queueOperation:(NSOperation *)operation
 {
     [self addOperation:operation];
@@ -59,11 +67,11 @@
     NSURL* url = [NSURL URLWithString:[NSString
             stringWithFormat:@"http://www.thetvdb.com/api/%@/mirrors.xml",
                 THETVDB_API_KEY]];
-    MZLoggerDebug(@"Sending request to %@", [url absoluteString]);
-    mirrorRequest = [[ASIHTTPRequest alloc] initWithURL:url];
+    //MZLoggerDebug(@"Sending request to %@", [url absoluteString]);
+    mirrorRequest = [[MZHTTPRequest alloc] initWithURL:url];
     mirrorRequest.cacheStoragePolicy = ASICachePermanentlyCacheStoragePolicy;
     [mirrorRequest setDelegate:self];
-    mirrorRequest.didFinishSelector = @selector(updateMirrorCompleted:);
+    mirrorRequest.didFinishBackgroundSelector = @selector(updateMirrorCompleted:);
     mirrorRequest.didFailSelector = @selector(updateMirrorFailed:);
 
     [self addOperation:mirrorRequest];
@@ -78,7 +86,7 @@
         return;
     }
     
-    MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
+    //MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
     NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithData:[theRequest responseData] options:0 error:NULL] autorelease];
     
     NSMutableArray* bannermirrors = [NSMutableArray array]; 
@@ -117,8 +125,8 @@
 
 - (void)updateMirrorFailed:(id)request;
 {
-    ASIHTTPRequest* theRequest = request;
-    MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
+    //ASIHTTPRequest* theRequest = request;
+    //MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
 
     bannerMirror = @"http://www.thetvdb.com";
     xmlMirror = @"http://www.thetvdb.com";
@@ -133,10 +141,10 @@
     NSString* params = [NSString mz_queryStringForParameterDictionary:p];
     NSString *urlWithParams = [url stringByAppendingFormat:@"?%@", params];
     
-    MZLoggerDebug(@"Sending request to %@", urlWithParams);
-    ASIHTTPRequest* request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlWithParams]];
+    //MZLoggerDebug(@"Sending request to %@", urlWithParams);
+    MZHTTPRequest* request = [[MZHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlWithParams]];
     [request setDelegate:self];
-    request.didFinishSelector = @selector(fetchSeriesCompleted:);
+    request.didFinishBackgroundSelector = @selector(fetchSeriesCompleted:);
     request.didFailSelector = @selector(fetchSeriesFailed:);
     
     if(mirrorRequest)
@@ -154,11 +162,11 @@
         [self fetchSeriesFailed:request];
         return;
     }
-    MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
+    //MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
     NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithData:[theRequest responseData] options:0 error:NULL] autorelease];
 
     NSArray* items = [doc nodesForXPath:@"/Data/Series" error:NULL];
-    MZLoggerDebug(@"Got TheTVDB series %d", [items count]);
+    //MZLoggerDebug(@"Got TheTVDB series %d", [items count]);
     for(NSXMLElement* item in items)
     {
         NSString* seriesStr = [item stringForXPath:@"seriesid" error:NULL];
@@ -170,8 +178,8 @@
 
 - (void)fetchSeriesFailed:(id)request;
 {
-    ASIHTTPRequest* theRequest = request;
-    MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
+    //ASIHTTPRequest* theRequest = request;
+    //MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
 }
 
 - (void)fetchSeriesBannersCompleted:(id)request;
@@ -182,7 +190,7 @@
         [self fetchSeriesBannersFailed:request];
         return;
     }
-    MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
+    //MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
     
     NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithData:[theRequest responseData] options:0 error:NULL] autorelease];
 
@@ -229,8 +237,8 @@
 
 - (void)fetchSeriesBannersFailed:(id)request;
 {
-    ASIHTTPRequest* theRequest = request;
-    MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
+    //ASIHTTPRequest* theRequest = request;
+    //MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
 }
 
 - (void)fetchFullSeries:(NSUInteger)theSeries;
@@ -239,10 +247,10 @@
             xmlMirror,
             THETVDB_API_KEY,
             theSeries];
-    MZLoggerDebug(@"Sending request to %@", urlStr);
-    ASIHTTPRequest* request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlStr]];
+    //MZLoggerDebug(@"Sending request to %@", urlStr);
+    MZHTTPRequest* request = [[MZHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlStr]];
     [request setDelegate:self];
-    request.didFinishSelector = @selector(fetchFullSeriesCompleted:);
+    request.didFinishBackgroundSelector = @selector(fetchFullSeriesCompleted:);
     request.didFailSelector = @selector(fetchFullSeriesFailed:);
 
     NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
@@ -253,10 +261,10 @@
             bannerMirror,
             THETVDB_API_KEY,
             theSeries];
-    MZLoggerDebug(@"Sending request to %@", bannerUrl);
-    ASIHTTPRequest* bannerRequest = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:bannerUrl]];
+    //MZLoggerDebug(@"Sending request to %@", bannerUrl);
+    MZHTTPRequest* bannerRequest = [[MZHTTPRequest alloc] initWithURL:[NSURL URLWithString:bannerUrl]];
     [bannerRequest setDelegate:self];
-    bannerRequest.didFinishSelector = @selector(fetchSeriesBannersCompleted:);
+    bannerRequest.didFinishBackgroundSelector = @selector(fetchSeriesBannersCompleted:);
     bannerRequest.didFailSelector = @selector(fetchSeriesBannersFailed:);
     bannerRequest.userInfo = userInfo;
     [request addDependency:bannerRequest];
@@ -280,7 +288,7 @@
     NSUInteger series = [[userInfo objectForKey:@"series"] unsignedIntegerValue];
     NSArray* banners = [userInfo objectForKey:@"banners"];
 
-    MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
+    //MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
  
 
     //MZLoggerDebug(@"Got response:\n%@", [theWrapper responseAsText]);
@@ -288,11 +296,19 @@
 
     NSMutableDictionary* seriesDict = [NSMutableDictionary dictionary];
 
-    NSString* tvShow = [doc stringForXPath:@"/Data/Series/SeriesName" error:NULL];
-    MZTag* tvShowTag = [MZTag tagForIdentifier:MZTVShowTagIdent];
-    [seriesDict setObject:[tvShowTag objectFromString:tvShow] forKey:MZTVShowTagIdent];
-    MZTag* artistTag = [MZTag tagForIdentifier:MZArtistTagIdent];
-    [seriesDict setObject:[artistTag objectFromString:tvShow] forKey:MZArtistTagIdent];
+    NSError* err = nil;
+    NSString* tvShow = [doc stringForXPath:@"/Data/Series/SeriesName" error:&err];
+    if(tvShow && [tvShow length] > 0)
+    {
+        MZTag* tvShowTag = [MZTag tagForIdentifier:MZTVShowTagIdent];
+        [seriesDict setObject:[tvShowTag objectFromString:tvShow] forKey:MZTVShowTagIdent];
+        MZTag* artistTag = [MZTag tagForIdentifier:MZArtistTagIdent];
+        [seriesDict setObject:[artistTag objectFromString:tvShow] forKey:MZArtistTagIdent];
+    }
+    else {
+        MZLoggerDebug(@"Series %d has no name: %@", series, [err localizedDescription]);
+    }
+
 
     NSString* tvNetwork = [doc stringForXPath:@"/Data/Series/Network" error:NULL];
     if(tvNetwork && [tvNetwork length] > 0)
@@ -343,7 +359,7 @@
     NSMutableArray* results = [NSMutableArray array];
 
     NSArray* items = [doc nodesForXPath:@"/Data/Episode" error:NULL];
-    MZLoggerDebug(@"Got TheTVDB series %d", [items count]);
+    //MZLoggerDebug(@"Got TheTVDB series %d", [items count]);
     for(NSXMLElement* item in items)
     {
         NSString* seasonNo = [item stringForXPath:@"SeasonNumber" error:NULL];
@@ -464,14 +480,19 @@
         [results addObject:result];
     }
     
-    MZLoggerDebug(@"Parsed TheTVDB results %d", [results count]);
+    //MZLoggerDebug(@"Parsed TheTVDB results %d", [results count]);
+    [self performSelectorOnMainThread:@selector(providedResults:) withObject:results waitUntilDone:NO];
+}
+
+- (void)providedResults:(NSArray *)results
+{
     [delegate searchProvider:provider result:results];
 }
 
 - (void)fetchFullSeriesFailed:(id)request;
 {
-    ASIHTTPRequest* theRequest = request;
-    MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
+    //ASIHTTPRequest* theRequest = request;
+    //MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
 }
 
 @end

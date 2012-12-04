@@ -38,6 +38,11 @@
     return [bundle bundleIdentifier];
 }
 
+- (NSString *)pluginPath
+{
+    return [bundle bundlePath];
+}
+
 - (BOOL)isEnabled
 {
     NSArray* disabled = [[NSUserDefaults standardUserDefaults] arrayForKey:DISABLED_KEY];
@@ -144,6 +149,11 @@
 {
     [preferencesView release];
     preferencesView = [view retain];
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@: %@", NSStringFromClass([self class]), [self identifier]];
 }
 
 @end

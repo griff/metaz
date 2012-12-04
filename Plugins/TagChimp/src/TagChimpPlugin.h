@@ -11,12 +11,10 @@
 
 #define TagChimpIdTagIdent @"tagChimpId"
 
-@interface TagChimpPlugin : MZPlugin
+@interface TagChimpPlugin : MZSearchProviderPlugin
 {
-    NSArray* searchProviders;
+    NSArray* supportedSearchTags;
+    NSMenu* menu;
 }
-
-- (id)init;
-- (NSArray *)searchProviders;
 
 @end

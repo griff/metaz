@@ -14,4 +14,5 @@
 @interface MZPlugin (Private)
 - (BOOL)isBuiltIn;
 - (BOOL)canUnload;
+- (BOOL)unload;
 @end

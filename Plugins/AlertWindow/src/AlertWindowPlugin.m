@@ -61,7 +61,7 @@
     startTime = [[NSDate alloc] init];
 }
 
-- (void)queueCompleted:(NSNotification *)note
+- (void)queueCompletedDelayed:(NSNotification *)note
 {
     NSString* intervalStr;
     NSTimeInterval interval = [startTime timeIntervalSinceNow]*-1.0;
@@ -92,6 +92,11 @@
                       intervalStr];
     
     NSRunAlertPanel( title, msg, NSLocalizedString(@"OK", @"OK button text"), nil, nil);
+}
+
+- (void)queueCompleted:(NSNotification *)note
+{
+    [self performSelector:@selector(queueCompletedDelayed:) withObject:note afterDelay:0.1];
 }
 
 @end

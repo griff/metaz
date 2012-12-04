@@ -93,7 +93,22 @@
     }
     @synchronized(self)
     {
-        self.data = [theRequest responseData];
+        NSError* err = [theRequest error];
+        if([theRequest responseStatusCode] >= 400)
+        {
+            if(!err)
+            {
+                NSDictionary* info = [NSDictionary 
+                    dictionaryWithObject:[theRequest responseStatusMessage]
+                                  forKey: NSLocalizedDescriptionKey];
+                err = [NSError errorWithDomain:NetworkRequestErrorDomain
+                                          code:[theRequest responseStatusCode]
+                                      userInfo:info];
+            }
+            self.error = err;
+        }
+        else
+            self.data = [theRequest responseData];
         self.isLoaded = YES;
         self.request = nil;
     }

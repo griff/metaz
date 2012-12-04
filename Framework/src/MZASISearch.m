@@ -10,6 +10,7 @@
 #import <MetaZKit/ASIDownloadCache.h>
 #import <MetaZKit/NSString+MZQueryString.h>
 #import <MetaZKit/MZLogger.h>
+#import <MetaZKit/GTMNSObject+KeyValueObserving.h>
 
 @implementation MZASISearchResult
 
@@ -27,7 +28,7 @@
         delegate = [theDelegate retain];
 
         parameters = [theParameters retain];
-        request = [[ASIHTTPRequest alloc] initWithURL:url];
+        request = [[MZHTTPRequest alloc] initWithURL:url];
         [request setDelegate:self];
     }
     return self;
@@ -59,6 +60,9 @@
 
 - (void)cancel;
 {
+    [delegate searchFinished];
+    [delegate release];
+    delegate = nil;
     [request cancel];
 }
 
@@ -86,10 +90,15 @@
 }
 
 
-- (void)requestFinished:(ASIHTTPRequest *)theRequest;
+- (void)requestFinishedBackground:(ASIHTTPRequest *)theRequest;
 {
     if([theRequest responseStatusCode] == 200)
-        [delegate searchProvider:provider result:[self parseResult]];
+        [self performSelectorOnMainThread:@selector(providedResults:) withObject:[self parseResult] waitUntilDone:NO];
+}
+
+- (void)providedResults:(NSArray *)results;
+{
+    [delegate searchProvider:provider result:results];
 }
 
 @end
@@ -97,13 +106,29 @@
 
 @implementation MZASISearch
 
-- (void)requestFinished:(ASIHTTPRequest *)theRequest;
+- (id)initWithProvider:(id)theProvider delegate:(id<MZSearchProviderDelegate>)theDelegate url:(NSURL *)theUrl parameters:(NSDictionary *)params;
 {
-    [super requestFinished:theRequest];
-    [delegate searchFinished];
+    self = [super initWithProvider:theProvider delegate:theDelegate url:theUrl parameters:params];
+    if(self)
+    {
+        [request gtm_addObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:) userInfo:nil options:0];
+    }
+    return self;
 }
 
-- (void)requestFailed:(ASIHTTPRequest *)theRequest;
+- (void)dealloc
+{
+    [request gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:)];
+    [super dealloc];
+}
+
+- (void)operationFinished:(GTMKeyValueChangeNotification *)notification
+{
+    [request gtm_removeObserver:self forKeyPath:@"isFinished" selector:@selector(operationFinished:)];
+    [self performSelectorOnMainThread:@selector(internalFinished) withObject:nil waitUntilDone:YES];
+}
+
+- (void)internalFinished
 {
     [delegate searchFinished];
 }
