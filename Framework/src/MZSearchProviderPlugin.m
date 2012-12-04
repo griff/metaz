@@ -76,13 +76,19 @@
 {
     if(!icon)
     {
-        NSURL* iconURL = [NSURL URLWithString:[[self bundle] objectForInfoDictionaryKey:@"IconURL"]];
-        if(!iconURL)
+        NSString* iconString = [[self bundle] objectForInfoDictionaryKey:@"IconURL"];
+        NSURL* iconURL = nil;
+        if(iconString)
+            iconURL = [NSURL URLWithString:iconString];
+        else
         {
             NSString* iconFile = [[self bundle] objectForInfoDictionaryKey:@"CFBundleIconFile"];
-            iconFile = [[self bundle] pathForResource:iconFile ofType:nil];
-            iconURL = [NSURL fileURLWithPath:iconFile];
-            return icon;
+            if(iconFile)
+            {
+                iconFile = [[self bundle] pathForResource:iconFile ofType:nil];
+                if(iconFile)
+                    iconURL = [NSURL fileURLWithPath:iconFile];
+            }
         }
         if(!iconURL)
             return nil;
