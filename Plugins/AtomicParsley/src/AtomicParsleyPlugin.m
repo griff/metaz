@@ -114,7 +114,7 @@
             @"©nam", @"©ART", @"©day",
             //@"com.apple.iTunes;iTunEXTC", @"©gen",
             @"©alb", @"aART", @"purd", @"desc",
-            @"ldes", @"stik",
+            @"ldes",
             @"tvsh", @"tven",
             @"tvsn", @"tves", @"tvnn", @"purl",
             @"egid", @"catg", @"keyw", @"rtng",
@@ -126,7 +126,7 @@
             MZTitleTagIdent, MZArtistTagIdent, MZDateTagIdent,
             //MZRatingTagIdent, MZGenreTagIdent,
             MZAlbumTagIdent, MZAlbumArtistTagIdent, MZPurchaseDateTagIdent, MZShortDescriptionTagIdent,
-            MZLongDescriptionTagIdent, MZVideoTypeTagIdent,
+            MZLongDescriptionTagIdent,
             MZTVShowTagIdent, MZTVEpisodeIDTagIdent,
             MZTVSeasonTagIdent, MZTVEpisodeTagIdent, MZTVNetworkTagIdent, MZFeedURLTagIdent,
             MZEpisodeURLTagIdent, MZCategoryTagIdent, MZKeywordTagIdent, MZAdvisoryTagIdent,
@@ -144,7 +144,7 @@
             //MZRatingTagIdent,
             MZGenreTagIdent,
             MZAlbumTagIdent, MZAlbumArtistTagIdent, MZPurchaseDateTagIdent, MZShortDescriptionTagIdent,
-            MZLongDescriptionTagIdent, MZVideoTypeTagIdent,
+            MZLongDescriptionTagIdent,
             MZTVShowTagIdent, MZTVEpisodeIDTagIdent,
             MZTVSeasonTagIdent, MZTVEpisodeTagIdent, MZTVNetworkTagIdent, MZFeedURLTagIdent,
             MZEpisodeURLTagIdent, MZCategoryTagIdent, MZKeywordTagIdent, MZAdvisoryTagIdent,
@@ -158,7 +158,7 @@
             //@"contentRating",
             @"genre",
             @"album", @"albumArtist", @"purchaseDate", @"description",
-            @"longDescription", @"stik",
+            @"longDescription",
             @"TVShowName", @"TVEpisode",
             @"TVSeasonNum", @"TVEpisodeNum", @"TVNetwork", @"podcastURL",
             @"podcastGUID",@"category", @"keyword", @"advisory",
@@ -391,6 +391,19 @@
         rating_read = [[NSDictionary alloc]
             initWithObjects:ratingkeys
                     forKeys:ratingvalues];
+                    
+        NSArray* typeNames = [[NSArray alloc] initWithObjects:
+            @"", @"Movie", @"Normal", 
+            @"Audiobook", @"Whacked Bookmark", @"Music Video",
+            @"Short Film", @"TV Show", @"Booklet",
+            @"Unknown value: 14", @"Unknown value: 21", @"Unknown value: 23",
+            nil];
+
+        MZEnumTag* videoTypeTag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
+        NSAssert([typeNames count] == [[videoTypeTag values] count], @"Bad number of types");
+        videotype_read = [[NSDictionary alloc]
+            initWithObjects:[videoTypeTag values]
+                    forKeys:typeNames];
 
     }
     return self;
@@ -405,6 +418,7 @@
     [write_mapping release];
     [rating_read release];
     [rating_write release];
+    [videotype_read release];
     [super dealloc];
 }
 
@@ -488,6 +502,18 @@
         if(value)
             [tagdict setObject:[tag convertObjectForStorage:[tag objectFromString:value]] forKey:tagId];
     }
+    
+    // Special video type handling
+    NSString* stik = [dict objectForKey:@"stik"];
+    if(stik)
+    {
+        MZLoggerDebug(@"Stik '%@'", stik);
+        MZTag* tag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
+        id videotype = [videotype_read objectForKey:stik];
+        if(videotype)
+            [tagdict setObject:[tag convertObjectForStorage:videotype] forKey:MZVideoTypeTagIdent];
+    }
+    
     
     // Special genre handling
     NSString* genre = [dict objectForKey:@"gnre"];
@@ -632,6 +658,15 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
             [args addObject:[@"--" stringByAppendingString:map]];
             [args addObject:value];
         }
+    }
+
+    // Special video type handling
+    id videoType = [changes objectForKey:MZVideoTypeTagIdent];
+    if(videoType)
+    {
+        MZLoggerDebug(@"Video type %@", videoType);
+        [args addObject:@"--stik"];
+        [args addObject:[NSString stringWithFormat:@"value=%d", [videoType intValue]]];
     }
     
     // Special rating handling

@@ -9,14 +9,17 @@
 typedef enum
 {
     MZUnsetVideoType = -1,
-    MZMovieVideoType = 0,
+    MZHomeMovieVideoType = 0,
     MZNormalVideoType = 1,
     MZAudiobookVideoType = 2,
     MZWhackedBookmarkVideoType = 5,
     MZMusicVideoType = 6,
-    MZShortFilmVideoType = 9,
+    MZMovieVideoType = 9,
     MZTVShowVideoType = 10,
-    MZBookletVideoType = 11
+    MZBookletVideoType = 11,
+    MZRingtoneVideoType = 14,
+    MZPodcastVideoType = 21,
+    MZITunesUVideoType = 23
     
 } MZVideoType;
 

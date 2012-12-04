@@ -17,6 +17,7 @@
     NSDictionary* write_mapping;
     NSDictionary* rating_read;
     NSDictionary* rating_write;
+    NSDictionary* videotype_read;
     NSMutableArray* writes;
 }
 

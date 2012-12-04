@@ -300,7 +300,7 @@
 		</enumeration>
 
 		<enumeration name="video type" code="MVty">
-			<enumerator name="Movie" code="MVov">
+			<enumerator name="Home Movie" code="MVhm">
 				<cocoa integer-value="0"/>
 			</enumerator>
 			<enumerator name="TV Show" code="MVtv">
@@ -318,11 +318,20 @@
 			<enumerator name="Music Video" code="MVmv">
 				<cocoa integer-value="6"/>
 			</enumerator>
-			<enumerator name="Short Film" code="MVsf">
+			<enumerator name="Movie" code="MVov">
 				<cocoa integer-value="9"/>
 			</enumerator>
 			<enumerator name="Booklet" code="MVbo">
 				<cocoa integer-value="11"/>
+			</enumerator>
+			<enumerator name="Ringtone" code="MVrt">
+				<cocoa integer-value="14"/>
+			</enumerator>
+			<enumerator name="Podcast" code="MVpc">
+				<cocoa integer-value="21"/>
+			</enumerator>
+			<enumerator name="iTunes U" code="MViU">
+				<cocoa integer-value="23"/>
 			</enumerator>
         </enumeration>
 
