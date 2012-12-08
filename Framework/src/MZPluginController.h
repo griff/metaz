@@ -49,7 +49,6 @@ MZKIT_EXTERN const NSInteger errMZPluginFailedToCreatePrincipalClass;
 @interface MZPluginController : NSObject {
     NSMutableArray* plugins;
     NSMutableArray* loadedPlugins;
-    NSMutableArray* activePlugins;
     NSMutableSet* loadedBundles;
     id<MZPluginControllerDelegate> delegate;
     NSOperationQueue* loadQueue;
@@ -67,6 +66,7 @@ MZKIT_EXTERN const NSInteger errMZPluginFailedToCreatePrincipalClass;
 @property(readonly) NSOperationQueue* searchQueue;
 
 - (BOOL)installPlugin:(NSURL *)thePlugin force:(BOOL)force error:(NSError **)error;
+- (NSArray *)activePlugins;
 - (NSArray *)actionsPlugins;
 - (NSArray *)dataProviderPlugins;
 - (NSArray *)searchProviderPlugins;

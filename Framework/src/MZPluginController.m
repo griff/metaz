@@ -290,6 +290,8 @@ static MZPluginController *gInstance = NULL;
     NSArray* thePlugins = [self loadedPlugins];
     for(MZPlugin* plugin in thePlugins)
     {
+        if(![plugin isEnabled])
+            continue;
         if([plugin isKindOfClass:cls])
             [ret addObject:plugin];
     }
@@ -297,6 +299,11 @@ static MZPluginController *gInstance = NULL;
     [ret sortUsingDescriptors:[NSArray arrayWithObject:desc]];
     [desc release];
     return ret;
+}
+
+- (NSArray *)activePlugins;
+{
+    return [self pluginsWithClass:[MZPlugin class]];
 }
 
 - (NSArray *)actionsPlugins;
@@ -508,35 +515,6 @@ static MZPluginController *gInstance = NULL;
     return loadedPlugins;
 }
 
-- (void)updateActivePlugins
-{
-    NSArray* disabledA = [[NSUserDefaults standardUserDefaults] arrayForKey:DISABLED_KEY];
-    NSSet* disabled;
-    if(disabledA)
-        disabled = [NSSet setWithArray:disabledA];
-    else
-        disabled = [NSSet set];
-    
-    [self willChangeValueForKey:@"activePlugins"];
-    [activePlugins release];
-    activePlugins = [[NSMutableArray alloc] init];
-    for(MZPlugin* plugin in [self loadedPlugins])
-    {
-        if(![disabled containsObject:[[plugin bundle] bundleIdentifier]])
-            [activePlugins addObject:plugin];
-        else
-            MZLoggerInfo(@"Disabled plugin '%@'", [[plugin bundle] bundleIdentifier]);
-    }
-    [self didChangeValueForKey:@"activePlugins"];
-}
-
-- (NSArray *)activePlugins
-{
-    if(!activePlugins)
-        [self updateActivePlugins];
-    return activePlugins;
-}
-
 - (BOOL)loadPlugin:(NSString *)name fromURL:(NSURL *)url error:(NSError **)error
 {
     id source = [self loadPluginSourceWithName:name fromURL:url error:error];
@@ -571,10 +549,6 @@ static MZPluginController *gInstance = NULL;
         [loadedPlugins removeObject:plugin];
         [self didChangeValueForKey:@"loadedPlugins"];
         
-        [self willChangeValueForKey:@"activePlugins"];
-        [activePlugins removeObject:plugin];
-        [self didChangeValueForKey:@"activePlugins"];
-        
         [loadedBundles removeObject:[plugin identifier]];
         
         BOOL unloaded = [plugin unload];
@@ -597,8 +571,7 @@ static MZPluginController *gInstance = NULL;
 {
     for(MZPlugin* plugin in [self activePlugins])
     {
-        NSBundle* bundle = [plugin bundle];
-        if([[bundle bundleIdentifier] isEqualToString:identifier])
+        if([[plugin identifier] isEqualToString:identifier])
             return plugin;
     }
     return nil;
@@ -608,8 +581,7 @@ static MZPluginController *gInstance = NULL;
 {
     for(MZPlugin* plugin in [self activePlugins])
     {
-        NSBundle* bundle = [plugin bundle];
-        if([[bundle bundlePath] isEqualToString:path])
+        if([[plugin pluginPath] isEqualToString:path])
             return plugin;
     }
     return nil;
