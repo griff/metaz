@@ -262,7 +262,7 @@
         {
             NSURL* url = [NSURL URLWithString:
                 [coverArtLarge stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            MZRemoteData* data = [MZRemoteData dataWithURL:url];
+            MZRemoteData* data = [MZRemoteData imageDataWithURL:url];
             [dict setObject:data forKey:MZPictureTagIdent];
             [data loadData];
         }

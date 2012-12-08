@@ -221,7 +221,7 @@
             bannerMirror,
             path];
         
-        MZRemoteData* data = [MZRemoteData dataWithURL:[NSURL URLWithString:bannerUrl]];
+        MZRemoteData* data = [MZRemoteData imageDataWithURL:[NSURL URLWithString:bannerUrl]];
         data.userInfo = [NSNumber numberWithFloat:rating];
         [banners addObject:data];
         [data loadData];

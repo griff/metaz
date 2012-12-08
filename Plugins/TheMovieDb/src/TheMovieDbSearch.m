@@ -213,7 +213,7 @@
     {
         NSString* path = [image stringForXPath:@"@url" error:NULL];
         
-        MZRemoteData* data = [MZRemoteData dataWithURL:[NSURL URLWithString:path]];
+        MZRemoteData* data = [MZRemoteData imageDataWithURL:[NSURL URLWithString:path]];
         [images addObject:data];
         [data loadData];
     }

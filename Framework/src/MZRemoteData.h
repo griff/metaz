@@ -16,9 +16,13 @@
     NSError* error;
     ASIHTTPRequest* request;
     id userInfo;
+    NSString* expectedMimeType;
 }
 + (id)dataWithURL:(NSURL *)url;
++ (id)imageDataWithURL:(NSURL *)url;
++ (id)dataWithURL:(NSURL *)url expectedMimeType:(NSString *)mimeType;
 - (id)initWithURL:(NSURL *)url;
+- (id)initWithURL:(NSURL *)url expectedMimeType:(NSString *)mimeType;
 
 @property(readonly) NSURL* url;
 @property(readonly, retain) NSData* data;
