@@ -91,6 +91,8 @@
 		1B36E75E1406612F009F542A /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B523B4D13F4B2B500C20B7D /* ASIDataCompressor.m */; };
 		1B36E78C14066727009F542A /* MZASISearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B36E78A14066727009F542A /* MZASISearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B36E78D14066727009F542A /* MZASISearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B36E78B14066727009F542A /* MZASISearch.m */; };
+		1B38FCDA1673F7E500C171F9 /* NSString+MimeTypePattern.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B38FCD81673F7E500C171F9 /* NSString+MimeTypePattern.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B38FCDB1673F7E500C171F9 /* NSString+MimeTypePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B38FCD91673F7E500C171F9 /* NSString+MimeTypePattern.m */; };
 		1B3AD7A311055DF300B33F85 /* MZQueueOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3AD7A111055DF300B33F85 /* MZQueueOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B3AD7A411055DF300B33F85 /* MZQueueOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3AD7A211055DF300B33F85 /* MZQueueOperation.m */; };
 		1B3AD7D811057E9200B33F85 /* MZErrorOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3AD7D611057E9200B33F85 /* MZErrorOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -644,6 +646,8 @@
 		1B35453015B223BB0033DD74 /* MZMetaDataDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMetaDataDocument.m; sourceTree = "<group>"; };
 		1B36E78A14066727009F542A /* MZASISearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZASISearch.h; sourceTree = "<group>"; };
 		1B36E78B14066727009F542A /* MZASISearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZASISearch.m; sourceTree = "<group>"; };
+		1B38FCD81673F7E500C171F9 /* NSString+MimeTypePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MimeTypePattern.h"; sourceTree = "<group>"; };
+		1B38FCD91673F7E500C171F9 /* NSString+MimeTypePattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MimeTypePattern.m"; sourceTree = "<group>"; };
 		1B3AD7A111055DF300B33F85 /* MZQueueOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZQueueOperation.h; sourceTree = "<group>"; };
 		1B3AD7A211055DF300B33F85 /* MZQueueOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZQueueOperation.m; sourceTree = "<group>"; };
 		1B3AD7D611057E9200B33F85 /* MZErrorOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZErrorOperation.h; sourceTree = "<group>"; };
@@ -1374,6 +1378,8 @@
 				1B0696D6149BFB2D00B5FA90 /* NSString+MZQueryString.m */,
 				1BD55C641648466700F9C579 /* NSError+MZScriptError.h */,
 				1BD55C651648466700F9C579 /* NSError+MZScriptError.m */,
+				1B38FCD81673F7E500C171F9 /* NSString+MimeTypePattern.h */,
+				1B38FCD91673F7E500C171F9 /* NSString+MimeTypePattern.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -2492,6 +2498,7 @@
 				1BD55C621648431D00F9C579 /* MZScriptActionsPlugin.h in Headers */,
 				1BD55C661648466700F9C579 /* NSError+MZScriptError.h in Headers */,
 				1B4C1F4016554B0100011621 /* MZHTTPRequest.h in Headers */,
+				1B38FCDA1673F7E500C171F9 /* NSString+MimeTypePattern.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3122,6 +3129,7 @@
 				1BD55C671648466700F9C579 /* NSError+MZScriptError.m in Sources */,
 				1B4C1F4116554B0600011621 /* MZHTTPRequest.m in Sources */,
 				1B09EB0C165843BF0017FED3 /* MZDataProviderPlugin.m in Sources */,
+				1B38FCDB1673F7E500C171F9 /* NSString+MimeTypePattern.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
