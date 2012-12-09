@@ -314,7 +314,7 @@
             for(NSNumber* idx in [[chapterDict allKeys] sortedArrayUsingSelector:@selector(compare:)])
             {
                 NSInteger number = [idx integerValue];
-                NSAssert1(number==i+1,@"Weird chapter number in tagChimp entry %@", tagChimpId);
+                //NSAssert1(number==i+1,@"Weird chapter number in tagChimp entry %@", tagChimpId);
                 MZTimedTextItem* text = [chapterDict objectForKey:idx];
                 if(hasTime)
                     [chapters addObject:text];
