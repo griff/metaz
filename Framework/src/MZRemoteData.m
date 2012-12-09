@@ -135,7 +135,7 @@
                 self.data = [theRequest responseData];
             else
             {
-                NSLog(@"URL '%@' type=%@", self.url, mimeType);
+                MZLoggerError(@"URL '%@' type=%@", self.url, mimeType);
                 NSDictionary* info = [NSDictionary 
                     dictionaryWithObject:[NSString stringWithFormat:@"Unsupported Media Type %@", mimeType]
                                   forKey:NSLocalizedDescriptionKey];

@@ -22,10 +22,7 @@
 {
     if(value == nil) return [NSArray array];
     if([value isKindOfClass:[NSArray class]])
-    {
-        NSLog(@"Transforming %d", [value count]);
         return value;
-    }
     return [NSArray arrayWithObject:value];
 }
 

@@ -11,6 +11,7 @@
 #import <GTMStackTrace.h>
 #import "GTMBase64.h"
 #import "hmac_sha2.h"
+#import <MetaZKit/MZLogger.h>
 
 @implementation AmazonSearch
 
@@ -71,7 +72,7 @@
             nil] autorelease];
         int ratingsCount;
         for(ratingsCount=0; ratingsCount<[ratingNames count]+5 && ratings[ratingsCount] > -1;ratingsCount++);
-        NSLog(@"Ratings %d %d", [ratingNames count], ratingsCount);
+        MZLoggerDebug(@"Ratings %d %d", [ratingNames count], ratingsCount);
         NSAssert([ratingNames count] == ratingsCount, @"Bad number of ratings");
         NSMutableDictionary* map = [NSMutableDictionary dictionaryWithCapacity:ratingsCount];
         for(int i=0; i<ratingsCount; i++)
