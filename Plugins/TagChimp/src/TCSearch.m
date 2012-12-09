@@ -299,7 +299,10 @@
                 
                 MZTimeCode* timeCode = [MZTimeCode timeCodeWithString:time];
                 
-                // Assumes timeCode is duration
+                // Ignore first chapter if its number is 0 and the duration is 0
+                if(number == 0 && [timeCode millis] == 0)
+                    continue;
+                    
                 hasTime = hasTime && [timeCode millis]>0;
 
                 MZTimedTextItem* text = [MZTimedTextItem textItemWithStart:start duration:timeCode text:title];
