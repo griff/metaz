@@ -114,7 +114,7 @@ static NSMutableDictionary *sharedScriptingEnums = nil;
     NSString* file = [bundle objectForInfoDictionaryKey:@"OSAScriptingDefinition"];
     file = [NSString pathWithComponents:[NSArray arrayWithObjects:[bundle resourcePath], file, nil]];
     NSURL* url = [NSURL fileURLWithPath:file];
-    NSError* error;
+    NSError* error = nil;
     
     NSMutableDictionary* codes = [NSMutableDictionary dictionary];
     NSMutableDictionary* enums = [NSMutableDictionary dictionary];
