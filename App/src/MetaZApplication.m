@@ -97,7 +97,7 @@
         documents = [[NSMutableArray alloc] init];
     [documents removeAllObjects];
     
-    NSArray* files = [MZMetaLoader sharedLoader].files;
+    NSArray* files = [filesController arrangedObjects];
     for(MetaEdits* edit in files)
     {
         [documents addObject:[MZMetaDataDocument documentWithEdit:edit]];
