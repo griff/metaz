@@ -106,8 +106,8 @@
                                  options:0];
                       
         NSView* view = [self view];
-        [view setFrame:[placeholder frame]];
         [placeholder addSubview:view];
+        [view setFrame: [placeholder bounds]];
         [view setNeedsDisplay:YES];
     }
     else
