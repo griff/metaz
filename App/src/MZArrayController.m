@@ -11,6 +11,39 @@
 
 @implementation MZArrayController
 
+- (id)initWithContent:(id)content
+{
+    self = [super initWithContent:content];
+    if(self)
+    {
+        rearrangeDelay = 0.5;
+    }
+    return self;
+}
+
+#pragma mark - NSCoding implementation
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if(self)
+    {
+        rearrangeDelay = 0.5;
+        if([aDecoder containsValueForKey:@"rearrangeDelay"])
+            rearrangeDelay = [aDecoder decodeDoubleForKey:@"rearrangeDelay"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeDouble:rearrangeDelay forKey:@"rearrangeDelay"];
+}
+
+#pragma mark - rearrange delay
+
+@synthesize rearrangeDelay;
+
 - (void)reallyRearrangeObjects
 {
     [super rearrangeObjects];
@@ -23,7 +56,7 @@
  */
 - (void)rearrangeObjects
 {
-    [self performSelector:@selector(reallyRearrangeObjects) withObject:nil afterDelay:0];
+    [self performSelector:@selector(reallyRearrangeObjects) withObject:nil afterDelay:self.rearrangeDelay];
 }
 
 @end

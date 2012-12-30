@@ -54,14 +54,14 @@
 
 @implementation APWriteOperationsController
 
-+ (id)controllerWithProvider:(id<MZDataProvider>)provider
++ (id)controllerWithProvider:(MZDataProviderPlugin *)provider
                     delegate:(id<MZDataWriteDelegate>)delegate
                        edits:(MetaEdits *)edits
 {
     return [[[self alloc] initWithProvider:provider delegate:delegate edits:edits] autorelease];
 }
 
-- (id)initWithProvider:(id<MZDataProvider>)theProvider
+- (id)initWithProvider:(MZDataProviderPlugin *)theProvider
               delegate:(id<MZDataWriteDelegate>)theDelegate
                  edits:(MetaEdits *)theEdits
 {

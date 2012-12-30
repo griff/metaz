@@ -9,6 +9,40 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>scptd</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>scptd</string>
+			<key>CFBundleTypeName</key>
+			<string>Compiled OSA Script Bundle</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.latenightsw.osa.bundle</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>scpt</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>scpt</string>
+			<key>CFBundleTypeName</key>
+			<string>Compiled OSA Script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.apple.applescript.script</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>mzactions</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
@@ -27,20 +61,54 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>mzplugin</string>
+				<string>mzsearchprovider</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
 			<key>CFBundleTypeName</key>
-			<string>MetaZ Plugin</string>
+			<string>MetaZ Search Provider Plugin</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
+				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin.searchprovider</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<true/>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>mzdataprovider</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>MetaZ Data Provider Plugin</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin.dataprovider</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>applescript</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>applescript</string>
+			<key>CFBundleTypeName</key>
+			<string>Text OSA Script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.apple.applescript.text</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -145,7 +213,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleGetInfoString</key>
-	<string>Copyright 2009 Brian Olsen &amp; Nigel Graham</string>
+	<string>Copyright 2009-2012 Brian Olsen &amp; Nigel Graham</string>
 	<key>CFBundleIconFile</key>
 	<string>MetaZ.icns</string>
 	<key>CFBundleIdentifier</key>
@@ -169,7 +237,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>10.5</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2012, Brian Olsen &amp; Nigel Graham</string>
+	<string>Copyright © 2009-2012, Brian Olsen &amp; Nigel Graham</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSAppleScriptEnabled</key>
@@ -218,6 +286,28 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
+				<string>com.apple.package</string>
+				<string>com.apple.applescript.script</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Compiled OSA Script (Bundle)</string>
+			<key>UTTypeIconFile</key>
+			<string>scptd</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.latenightsw.osa.bundle</string>
+			<key>UTTypeReferenceURL</key>
+			<string>http://www.latenightsw.com</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>scptd</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
 				<string>public.data</string>
 			</array>
 			<key>UTTypeIdentifier</key>
@@ -250,13 +340,6 @@
 			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
 			<key>UTTypeIdentifier</key>
 			<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>mzplugin</string>
-				</array>
-			</dict>
 		</dict>
 		<dict>
 			<key>UTTypeConformsTo</key>
@@ -274,6 +357,44 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>mzactions</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
+			</array>
+			<key>UTTypeIdentifier</key>
+			<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin.searchprovider</string>
+			<key>UTTypeDescription</key>
+			<string>MetaZ Search Provider Plugin</string>
+			<key>UTTypeIconFile</key>
+			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>mzsearchprovider</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
+			</array>
+			<key>UTTypeIdentifier</key>
+			<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin.dataprovider</string>
+			<key>UTTypeDescription</key>
+			<string>MetaZ Data Provider Plugin</string>
+			<key>UTTypeIconFile</key>
+			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>mzdataprovider</string>
 				</array>
 			</dict>
 		</dict>

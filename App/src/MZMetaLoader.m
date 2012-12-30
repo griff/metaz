@@ -13,8 +13,6 @@
 #import "NSUserDefaults+KeyPath.h"
 #import "MZMetaDataDocument.h"
 
-NSString* const MZMetaLoaderStartedNotification = @"MZMetaLoaderStartedNotification";
-NSString* const MZMetaLoaderFinishedNotification = @"MZMetaLoaderFinishedNotification";
 
 @interface MZLoadOperationDelegate : NSObject <MZEditsReadDelegate>
 {
@@ -410,10 +408,16 @@ static MZMetaLoader* sharedLoader = nil;
 
 - (void)notifyLoadedFile:(MZLoadOperation *)operation;
 {
+    NSMutableDictionary* info = [NSMutableDictionary dictionary];
+    if(operation.edits)
+        [info setObject:operation.edits forKey:MZMetaEditsNotificationKey];
+    if(operation.error)
+        [info setObject:operation.error forKey:MZNSErrorKey];
+
     [[NSNotificationCenter defaultCenter]
         postNotificationName:MZMetaLoaderFinishedNotification
                       object:operation
-                    userInfo:nil];
+                    userInfo:info];
 }
 
 
@@ -487,7 +491,7 @@ static MZMetaLoader* sharedLoader = nil;
 @synthesize error;
 @synthesize scriptCommand;
 
-- (void)dataProvider:(id<MZDataProvider>)provider
+- (void)dataProvider:(MZDataProviderPlugin *)provider
           controller:(id<MZDataController>)controller
          loadedEdits:(MetaEdits *)theEdits
             fromFile:(NSString *)fileName
@@ -516,7 +520,7 @@ static MZMetaLoader* sharedLoader = nil;
     return self;
 }
 
-- (void)dataProvider:(id<MZDataProvider>)provider
+- (void)dataProvider:(MZDataProviderPlugin *)provider
           controller:(id<MZDataController>)controller
          loadedEdits:(MetaEdits *)theEdits
             fromFile:(NSString *)fileName

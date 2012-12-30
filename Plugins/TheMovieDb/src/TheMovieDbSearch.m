@@ -39,6 +39,14 @@
 @synthesize provider;
 @synthesize delegate;
 
+- (void)cancel
+{
+    [delegate searchFinished];
+    [delegate release];
+    delegate = nil;
+    [super cancel];
+}
+
 - (void)queueOperation:(NSOperation *)operation
 {
     [self addOperation:operation];
@@ -58,11 +66,11 @@
         THEMOVIEDB_API_KEY,
         name] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-    MZLoggerDebug(@"Sending request to %@", url);
-    MZLoggerDebug(@"Sending request to %@", [NSURL URLWithString:url]);
-    ASIHTTPRequest* request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    //MZLoggerDebug(@"Sending request to %@", url);
+    //MZLoggerDebug(@"Sending request to %@", [NSURL URLWithString:url]);
+    MZHTTPRequest* request = [[MZHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [request setDelegate:self];
-    request.didFinishSelector = @selector(fetchMovieSearchCompleted:);
+    request.didFinishBackgroundSelector = @selector(fetchMovieSearchCompleted:);
     request.didFailSelector = @selector(fetchMovieSearchFailed:);
 
     [self addOperation:request];
@@ -77,11 +85,11 @@
         [self fetchMovieSearchFailed:request];
         return;
     }
-    MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
+    //MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
     NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithData:[theRequest responseData] options:0 error:NULL] autorelease];
 
     NSArray* items = [doc nodesForXPath:@"/OpenSearchDescription/movies/movie" error:NULL];
-    MZLoggerDebug(@"Got TheMovieDb results %d", [items count]);
+    //MZLoggerDebug(@"Got TheMovieDb results %d", [items count]);
     for(NSXMLElement* item in items)
     {
         NSString* movieId = [item stringForXPath:@"id" error:NULL];
@@ -91,8 +99,8 @@
 
 - (void)fetchMovieSearchFailed:(id)request;
 {
-    ASIHTTPRequest* theRequest = request;
-    MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
+    //ASIHTTPRequest* theRequest = request;
+    //MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
 }
 
 
@@ -105,10 +113,10 @@
         THEMOVIEDB_API_KEY,
         identifier] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-    MZLoggerDebug(@"Sending request to %@", url);
-    ASIHTTPRequest* request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    //MZLoggerDebug(@"Sending request to %@", url);
+    MZHTTPRequest* request = [[MZHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [request setDelegate:self];
-    request.didFinishSelector = @selector(fetchMovieInfoCompleted:);
+    request.didFinishBackgroundSelector = @selector(fetchMovieInfoCompleted:);
     request.didFailSelector = @selector(fetchMovieInfoFailed:);
 
     [self queueOperation:request];
@@ -124,7 +132,7 @@
         return;
     }
 
-    MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
+    //MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
     NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithData:[theRequest responseData] options:0 error:NULL] autorelease];
 
     NSXMLElement* item = [[doc nodesForXPath:@"/OpenSearchDescription/movies/movie" error:NULL] objectAtIndex:0];
@@ -213,13 +221,18 @@
         [dict setObject:[NSArray arrayWithArray:images] forKey:MZPictureTagIdent];
 
     MZSearchResult* result = [MZSearchResult resultWithOwner:provider dictionary:dict];
+    [self performSelectorOnMainThread:@selector(providedResult:) withObject:result waitUntilDone:NO];
+}
+
+- (void)providedResult:(MZSearchResult *)result
+{
     [delegate searchProvider:provider result:[NSArray arrayWithObject:result]];
 }
 
 - (void)fetchMovieInfoFailed:(id)request;
 {
-    ASIHTTPRequest* theRequest = request;
-    MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
+    //ASIHTTPRequest* theRequest = request;
+    //MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
 }
 
 @end

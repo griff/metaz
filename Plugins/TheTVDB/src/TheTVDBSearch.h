@@ -14,7 +14,7 @@
     NSOperationQueue* queue;
     id provider;
     id<MZSearchProviderDelegate> delegate;
-    ASIHTTPRequest* mirrorRequest;
+    MZHTTPRequest* mirrorRequest;
     NSString* bannerMirror;
     NSString* xmlMirror;
     NSUInteger season;

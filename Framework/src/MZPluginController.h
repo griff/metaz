@@ -8,8 +8,17 @@
 
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MZPlugin.h>
-#import <MetaZKit/MZDataProvider.h>
-#import <MetaZKit/MZSearchProvider.h>
+#import <MetaZKit/MZDataProviderPlugin.h>
+#import <MetaZKit/MZSearchProviderPlugin.h>
+
+MZKIT_EXTERN const NSInteger errMZPluginMissingInstallLocation;
+MZKIT_EXTERN const NSInteger errMZPluginAlreadyExists;
+MZKIT_EXTERN const NSInteger errMZPluginFailedToCreateBundle;
+MZKIT_EXTERN const NSInteger errMZPluginUnknownPluginType;
+MZKIT_EXTERN const NSInteger errMZPluginAlreadyLoaded;
+MZKIT_EXTERN const NSInteger errMZPluginFailedToLoadSource;
+MZKIT_EXTERN const NSInteger errMZPluginFailedToLoadPrincipalClass;
+MZKIT_EXTERN const NSInteger errMZPluginFailedToCreatePrincipalClass;
 
 @class MZPluginController;
 
@@ -17,7 +26,7 @@
 
 @optional
 - (id<MetaData>)pluginController:(MZPluginController *)controller
-        extraMetaDataForProvider:(id<MZDataProvider>)provider
+        extraMetaDataForProvider:(MZDataProviderPlugin *)provider
                           loaded:(MetaLoaded*)loaded;
 
 - (void)pluginController:(MZPluginController *)controller
@@ -29,7 +38,7 @@
 
 
 @protocol MZEditsReadDelegate <NSObject>
-- (void)dataProvider:(id<MZDataProvider>)provider
+- (void)dataProvider:(MZDataProviderPlugin *)provider
           controller:(id<MZDataController>)controller
          loadedEdits:(MetaEdits *)edits
             fromFile:(NSString *)fileName
@@ -38,9 +47,10 @@
 
 
 @interface MZPluginController : NSObject {
-    NSArray* plugins;
+    NSMutableArray* plugins;
     NSMutableArray* loadedPlugins;
     NSMutableArray* activePlugins;
+    NSMutableSet* loadedBundles;
     id<MZPluginControllerDelegate> delegate;
     NSOperationQueue* loadQueue;
     NSOperationQueue* saveQueue;
@@ -56,16 +66,19 @@
 @property(readonly) NSOperationQueue* saveQueue;
 @property(readonly) NSOperationQueue* searchQueue;
 
+- (BOOL)installPlugin:(NSURL *)thePlugin force:(BOOL)force error:(NSError **)error;
 - (NSArray *)actionsPlugins;
+- (NSArray *)dataProviderPlugins;
+- (NSArray *)searchProviderPlugins;
 - (NSArray *)plugins;
 - (NSArray *)loadedPlugins;
 - (NSArray *)dataProviderTypes;
 - (MZPlugin *)pluginWithIdentifier:(NSString *)identifier;
 - (MZPlugin *)pluginWithPath:(NSString *)path;
-- (id<MZDataProvider>)dataProviderWithIdentifier:(NSString *)identifier;
-- (id<MZDataProvider>)dataProviderForPath:(NSString *)path;
-- (id<MZDataProvider>)dataProviderForType:(NSString *)uti;
-- (id<MZSearchProvider>)searchProviderWithIdentifier:(NSString *)identifier;
+- (MZDataProviderPlugin *)dataProviderWithIdentifier:(NSString *)identifier;
+- (MZDataProviderPlugin *)dataProviderForPath:(NSString *)path;
+- (MZDataProviderPlugin *)dataProviderForType:(NSString *)uti;
+- (MZSearchProviderPlugin *)searchProviderWithIdentifier:(NSString *)identifier;
 - (id<MZDataController>)loadFromFile:(NSString *)fileName
                             delegate:(id<MZEditsReadDelegate>)deledate
                                extra:(NSDictionary *)extra;

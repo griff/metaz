@@ -12,18 +12,18 @@
 @interface MZReadOperationsController : MZOperationsController
 {
     id<MZDataReadDelegate> delegate;
-    id<MZDataProvider> provider;
+    MZDataProviderPlugin* provider;
     NSString* fileName;
     NSMutableDictionary* tagdict;
 }
 @property(readonly) NSMutableDictionary* tagdict;
 
-+ (id)controllerWithProvider:(id<MZDataProvider>)provider
++ (id)controllerWithProvider:(MZDataProviderPlugin *)provider
                 fromFileName:(NSString *)fileName
                     delegate:(id<MZDataReadDelegate>)delegate
                        extra:(NSDictionary *)extra;
 
-- (id)initWithProvider:(id<MZDataProvider>)provider
+- (id)initWithProvider:(MZDataProviderPlugin *)provider
           fromFileName:(NSString *)fileName
               delegate:(id<MZDataReadDelegate>)delegate
                  extra:(NSDictionary *)extra;

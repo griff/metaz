@@ -24,5 +24,7 @@
 	<string>BUILDID</string>
 	<key>BuildDate</key>
 	<string>BUILDDATE</string>
+	<key>IconURL</key>
+	<string>http://www.imdb.com/favicon.ico</string>
 </dict>
 </plist>

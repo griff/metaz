@@ -11,7 +11,7 @@
 
 @implementation MZReadOperationsController
 
-+ (id)controllerWithProvider:(id<MZDataProvider>)provider
++ (id)controllerWithProvider:(MZDataProviderPlugin *)provider
                 fromFileName:(NSString *)fileName
                     delegate:(id<MZDataReadDelegate>)delegate
                        extra:(NSDictionary *)extra
@@ -19,7 +19,7 @@
     return [[[[self class] alloc] initWithProvider:provider fromFileName:fileName delegate:delegate extra:extra] autorelease];
 }
 
-- (id)initWithProvider:(id<MZDataProvider>)theProvider
+- (id)initWithProvider:(MZDataProviderPlugin *)theProvider
           fromFileName:(NSString *)theFileName
               delegate:(id<MZDataReadDelegate>)theDelegate
                  extra:(NSDictionary *)extra

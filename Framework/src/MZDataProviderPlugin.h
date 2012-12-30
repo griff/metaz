@@ -9,8 +9,9 @@
 #import <MetaZKit/MetaData.h>
 #import <MetaZKit/MetaLoaded.h>
 #import <MetaZKit/MetaEdits.h>
+#import <MetaZKit/MZPlugin.h>
 
-@protocol MZDataProvider;
+@class MZDataProviderPlugin;
 
 @protocol MZDataController <NSObject>
 - (BOOL)isFinished;
@@ -19,7 +20,7 @@
 
 @protocol MZDataReadDelegate <NSObject>
 @optional
-- (void)dataProvider:(id<MZDataProvider>)provider
+- (void)dataProvider:(MZDataProviderPlugin *)provider
           controller:(id<MZDataController>)controller
           loadedMeta:(MetaLoaded *)loaded
             fromFile:(NSString *)fileName
@@ -28,20 +29,19 @@
 
 @protocol MZDataWriteDelegate <NSObject>
 @optional
-- (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataController>)controller writeStartedForEdits:(MetaEdits *)edits;
-- (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataController>)controller writeCanceledForEdits:(MetaEdits *)edits error:(NSError *)error;
-- (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataController>)controller writeFinishedForEdits:(MetaEdits *)edits percent:(int)percent;
-- (void)dataProvider:(id<MZDataProvider>)provider controller:(id<MZDataController>)controller writeFinishedForEdits:(MetaEdits *)edits;
+- (void)dataProvider:(MZDataProviderPlugin *)provider controller:(id<MZDataController>)controller writeStartedForEdits:(MetaEdits *)edits;
+- (void)dataProvider:(MZDataProviderPlugin *)provider controller:(id<MZDataController>)controller writeCanceledForEdits:(MetaEdits *)edits error:(NSError *)error;
+- (void)dataProvider:(MZDataProviderPlugin *)provider controller:(id<MZDataController>)controller writeFinishedForEdits:(MetaEdits *)edits percent:(int)percent;
+- (void)dataProvider:(MZDataProviderPlugin *)provider controller:(id<MZDataController>)controller writeFinishedForEdits:(MetaEdits *)edits;
 @end
 
 
 /*!
- @abstract Data provider
+ @abstract Data provider plugin base class
  */
-@protocol MZDataProvider <NSObject>
-@required
-
-- (NSString *)identifier;
+@interface MZDataProviderPlugin : MZPlugin
+{
+}
 
 /*!
  @abstract Returns array of UTIs supported by this provider.

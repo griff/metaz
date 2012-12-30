@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaZKit.h>
-#import "APDataProvider.h"
+#import "AtomicParsleyPlugin.h"
 
 @interface APChapterWriteTask : MZTaskOperation
 {
@@ -22,15 +22,15 @@
 @interface APWriteOperationsController : MZOperationsController
 {
     id<MZDataWriteDelegate> delegate;
-    APDataProvider* provider;
+    AtomicParsleyPlugin* provider;
     MetaEdits* edits;
 }
 
-+ (id)controllerWithProvider:(id<MZDataProvider>)provider
++ (id)controllerWithProvider:(MZDataProviderPlugin *)provider
                     delegate:(id<MZDataWriteDelegate>)delegate
                        edits:(MetaEdits *)edits;
 
-- (id)initWithProvider:(id<MZDataProvider>)provider
+- (id)initWithProvider:(MZDataProviderPlugin *)provider
               delegate:(id<MZDataWriteDelegate>)delegate
                  edits:(MetaEdits *)edits;
 

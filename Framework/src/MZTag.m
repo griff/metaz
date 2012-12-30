@@ -645,15 +645,17 @@ static NSMutableDictionary *sharedTagScriptNames = nil;
     if(self)
     {
         typeNames = [[NSArray alloc] initWithObjects:
-            @"", @"Movie", @"Normal", 
+            @"", @"Home Movie", @"Normal", 
             @"Audiobook", @"Whacked Bookmark", @"Music Video",
-            @"Short Film", @"TV Show", @"Booklet",
+            @"Movie", @"TV Show", @"Booklet",
+            @"Ringtone", @"Podcast", @"iTunes U",
             nil];
-        NSAssert([typeNames count] == 9, @"Bad number of types");
+        NSAssert([typeNames count] == 12, @"Bad number of types");
         int typeValuesTemp[] = {
-            MZUnsetVideoType, MZMovieVideoType, MZNormalVideoType, 
+            MZUnsetVideoType, MZHomeMovieVideoType, MZNormalVideoType, 
             MZAudiobookVideoType, MZWhackedBookmarkVideoType, MZMusicVideoType,
-            MZShortFilmVideoType, MZTVShowVideoType, MZBookletVideoType
+            MZMovieVideoType, MZTVShowVideoType, MZBookletVideoType,
+            MZRingtoneVideoType, MZPodcastVideoType, MZITunesUVideoType
             };
         NSMutableArray* names = [NSMutableArray array];
         NSMutableArray* values = [NSMutableArray array];
@@ -699,14 +701,17 @@ static NSMutableDictionary *sharedTagScriptNames = nil;
 - (NSCell *)editorCell
 {
     NSPopUpButtonCell* cell = [[[NSPopUpButtonCell alloc] initTextCell:@"" pullsDown:NO] autorelease]; 
-    [cell addItemWithTitle:NSLocalizedStringFromTable(@"Movie", @"VideoType", @"Video type") tag:MZMovieVideoType];
+    [cell addItemWithTitle:NSLocalizedStringFromTable(@"Home Movie", @"VideoType", @"Video type") tag:MZHomeMovieVideoType];
     [cell addItemWithTitle:NSLocalizedStringFromTable(@"Normal", @"VideoType", @"Video type") tag:MZNormalVideoType];
     [cell addItemWithTitle:NSLocalizedStringFromTable(@"Audiobook", @"VideoType", @"Video type") tag:MZAudiobookVideoType];
     [cell addItemWithTitle:NSLocalizedStringFromTable(@"Whacked Bookmark", @"VideoType", @"Video type") tag:MZWhackedBookmarkVideoType];
     [cell addItemWithTitle:NSLocalizedStringFromTable(@"Music Video", @"VideoType", @"Video type") tag:MZMusicVideoType];
-    [cell addItemWithTitle:NSLocalizedStringFromTable(@"Short Film", @"VideoType", @"Video type") tag:MZShortFilmVideoType];
+    [cell addItemWithTitle:NSLocalizedStringFromTable(@"Movie", @"VideoType", @"Video type") tag:MZMovieVideoType];
     [cell addItemWithTitle:NSLocalizedStringFromTable(@"TV Show", @"VideoType", @"Video type") tag:MZTVShowVideoType];
     [cell addItemWithTitle:NSLocalizedStringFromTable(@"Booklet", @"VideoType", @"Video type") tag:MZBookletVideoType];
+    [cell addItemWithTitle:NSLocalizedStringFromTable(@"Ringtone", @"VideoType", @"Video type") tag:MZRingtoneVideoType];
+    [cell addItemWithTitle:NSLocalizedStringFromTable(@"Podcast", @"VideoType", @"Video type") tag:MZPodcastVideoType];
+    [cell addItemWithTitle:NSLocalizedStringFromTable(@"iTunes U", @"VideoType", @"Video type") tag:MZITunesUVideoType];
     return cell;
 }
 

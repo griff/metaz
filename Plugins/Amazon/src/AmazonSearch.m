@@ -261,9 +261,6 @@
 
     MZLoggerDebug(@"Parsed Amazon results %d", [results count]);
     [delegate searchProvider:provider result:results];
-    
-    // TODO Make more requests for other pages
-    [super requestFinished:theRequest];
 }
 
 @end

@@ -13,6 +13,16 @@
 #import <MetaZKit/GTMNSString+URLArguments.h>
 #import "MZPlugin+Private.h"
 
+const NSInteger errMZPluginMissingInstallLocation = -1;
+const NSInteger errMZPluginAlreadyExists = -2;
+const NSInteger errMZPluginFailedToCreateBundle = -3;
+const NSInteger errMZPluginUnknownPluginType = -4;
+const NSInteger errMZPluginAlreadyLoaded = -5;
+const NSInteger errMZPluginFailedToLoadSource = -6;
+const NSInteger errMZPluginFailedToLoadPrincipalClass = -7;
+const NSInteger errMZPluginFailedToCreatePrincipalClass = -8;
+
+
 @interface MZWriteNotification : NSObject <MZDataWriteDelegate>
 {
     id<MZDataWriteDelegate> delegate;
@@ -51,6 +61,15 @@
 - (id)initWithSearchDelegate:(id<MZSearchProviderDelegate>)delegate;
 
 - (void)performedSearch;
+
+@end
+
+
+@interface MZPluginController()
+
+- (id)loadPluginSourceWithName:(NSString *)name fromURL:(NSURL *)pathURL error:(NSError **)error;
+- (BOOL)loadPluginFromSource:(id)source error:(NSError **)error;
+- (BOOL)loadPlugin:(NSString *)name fromURL:(NSURL *)url error:(NSError **)error;
 
 @end
 
@@ -139,6 +158,8 @@ static MZPluginController *gInstance = NULL;
         loadQueue = [[NSOperationQueue alloc] init];
         saveQueue = [[NSOperationQueue alloc] init];
         searchQueue = [[NSOperationQueue alloc] init];
+        [searchQueue setMaxConcurrentOperationCount:12];
+        loadedBundles = [[NSMutableSet alloc] init];
     }
     return self;
 }
@@ -150,6 +171,7 @@ static MZPluginController *gInstance = NULL;
     [loadQueue release];
     [saveQueue release];
     [searchQueue release];
+    [loadedBundles release];
     [super dealloc];
 }
 
@@ -158,15 +180,171 @@ static MZPluginController *gInstance = NULL;
 @synthesize saveQueue;
 @synthesize searchQueue;
 
-- (NSArray *)actionsPlugins;
+- (BOOL)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex
+{
+    if(![[error domain] isEqualToString:@"MZPluginController"] || [error code] != errMZPluginAlreadyExists)
+        return NO;
+    
+    if(recoveryOptionIndex == 0)
+    {
+        NSURL* url = [[error userInfo] objectForKey:@"URL"];
+        return [self installPlugin:url force:YES error:NULL];
+    }
+    return NO;
+}
+
+- (void)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex delegate:(id)theDelegate didRecoverSelector:(SEL)didRecoverSelector contextInfo:(void *)contextInfo
+{
+    BOOL ret = [self attemptRecoveryFromError:error optionIndex:recoveryOptionIndex];
+    
+    NSMethodSignature* sig = [theDelegate methodSignatureForSelector:didRecoverSelector];
+    NSInvocation* inv = [NSInvocation invocationWithMethodSignature:sig];
+    [inv setSelector:didRecoverSelector];
+    [inv setTarget:theDelegate];
+    [inv setArgument:&ret atIndex:2];
+    [inv setArgument:contextInfo atIndex:3];
+    [inv invoke];
+}
+
+- (BOOL)installPlugin:(NSURL *)thePlugin force:(BOOL)force error:(NSError **)error;
+{
+    NSFileManager *mgr = [NSFileManager manager];
+    NSString* thePluginPath = [thePlugin path];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    if ([paths count] == 0)
+    {
+        if(error)
+        {
+            NSDictionary* info = [NSDictionary dictionaryWithObject:@"No application support directory" forKey:NSLocalizedDescriptionKey];
+            *error = [NSError errorWithDomain:@"MZPluginController" code:errMZPluginMissingInstallLocation userInfo:info];
+        }
+        return NO;
+    }
+    
+    NSString *destinationDir = [[[paths objectAtIndex:0]
+                stringByAppendingPathComponent: @"MetaZ"]
+                stringByAppendingPathComponent: @"Plugins"];
+    BOOL isDir;
+    if([mgr fileExistsAtPath:destinationDir isDirectory:&isDir])
+    {
+        if(!isDir)
+        {
+            if(![mgr removeItemAtPath:destinationDir error:error])
+                return NO;
+            if(![mgr createDirectoryAtPath:destinationDir withIntermediateDirectories:YES attributes:nil error:error])
+                return NO;
+        }
+    }
+    else if(![mgr createDirectoryAtPath:destinationDir withIntermediateDirectories:YES attributes:nil error:error])
+        return NO;
+            
+    NSString* name = [thePluginPath lastPathComponent];
+    NSString *destinationPath = [destinationDir stringByAppendingPathComponent:name];
+                   
+    if([mgr fileExistsAtPath:destinationPath isDirectory:&isDir])
+    {
+        if(!force)
+        {
+            if(error)
+            {
+                NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys:
+                    @"Plugin already exists", NSLocalizedDescriptionKey,
+                    [NSString stringWithFormat:@"A plugin called '%@' already exists.\nDo you wish to replace it?", name],
+                        NSLocalizedRecoverySuggestionErrorKey,
+                    [NSArray arrayWithObjects:@"Replace", @"Cancel", nil], NSLocalizedRecoveryOptionsErrorKey,
+                    self, NSRecoveryAttempterErrorKey,
+                    thePlugin, @"URL",
+                nil ];
+            
+                *error = [NSError errorWithDomain:@"MZPluginController" code:errMZPluginAlreadyExists userInfo:info];
+            }
+            return NO;
+        }
+        MZPlugin* plg = nil;
+        for(MZPlugin* plugin in [self loadedPlugins])
+        {
+            if([[plugin pluginPath] isEqualToString:destinationPath])
+                plg = plugin;
+        }
+        if(plg)
+            [self unloadPlugin:plg];
+        if(![mgr removeItemAtPath:destinationPath error:error])
+            return NO;
+    }
+        
+    if([mgr copyItemAtPath:thePluginPath toPath:destinationPath error:error])
+    {
+        if(![self loadPlugin:name fromURL:[NSURL fileURLWithPath:destinationDir] error:error])
+        {
+            [mgr removeItemAtPath:destinationPath error:NULL];
+            return NO;
+        }
+        return YES;
+    }
+    return NO;
+}
+
+- (NSArray *)pluginsWithClass:(Class )cls
 {
     NSMutableArray* ret = [NSMutableArray array];
     NSArray* thePlugins = [self loadedPlugins];
     for(MZPlugin* plugin in thePlugins)
     {
-        if([plugin isKindOfClass:[MZActionsPlugin class]])
+        if([plugin isKindOfClass:cls])
             [ret addObject:plugin];
     }
+    NSSortDescriptor* desc = [[NSSortDescriptor alloc ] initWithKey:@"label" ascending:YES];
+    [ret sortUsingDescriptors:[NSArray arrayWithObject:desc]];
+    [desc release];
+    return ret;
+}
+
+- (NSArray *)actionsPlugins;
+{
+    return [self pluginsWithClass:[MZActionsPlugin class]];
+}
+
+- (NSArray *)dataProviderPlugins;
+{
+    return [self pluginsWithClass:[MZDataProviderPlugin class]];
+}
+
+- (NSArray *)searchProviderPlugins;
+{
+    return [self pluginsWithClass:[MZSearchProviderPlugin class]];
+}
+
+- (id)loadPluginSourceWithName:(NSString *)name fromURL:(NSURL *)pathURL error:(NSError **)error
+{
+    id ret;
+    NSString* pluginPath = [[pathURL path] stringByAppendingPathComponent:name];
+    CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (CFStringRef)[pluginPath pathExtension], NULL);
+    MZLoggerDebug(@"Loading plugin at path '%@'", pluginPath);
+    if(UTTypeConformsTo(uti, kMZUTMetaZPlugin))
+    {
+        NSBundle* plugin = [NSBundle bundleWithPath:pluginPath];
+        if(!plugin)
+        {
+            NSString* msg = [NSString stringWithFormat:@"Failed to create plugin bundle at path '%@'", pluginPath];
+            if(error)
+            {
+                NSDictionary* info = [NSDictionary dictionaryWithObject:msg forKey:NSLocalizedDescriptionKey];
+                *error = [NSError errorWithDomain:@"MZPluginController" code:errMZPluginFailedToCreateBundle userInfo:info];
+            }
+            else
+                MZLoggerError(@"%@", msg);
+        }
+        ret = plugin;
+    }
+    else if(UTTypeEqual(uti, kMZUTAppleScriptText) || UTTypeConformsTo(uti, kMZUTAppleScriptText) ||
+            UTTypeEqual(uti, kMZUTAppleScript) || UTTypeConformsTo(uti, kMZUTAppleScript) ||
+            UTTypeEqual(uti, kMZUTAppleScriptBundle) || UTTypeConformsTo(uti, kMZUTAppleScriptBundle))
+    {
+        NSURL* url = [NSURL URLWithString:[name gtm_stringByEscapingForURLArgument] relativeToURL:pathURL];
+        MZScriptActionsPlugin* plugin = [MZScriptActionsPlugin pluginWithURL:url];
+        ret = plugin;
+    }
+    CFRelease(uti);
     return ret;
 }
 
@@ -174,7 +352,7 @@ static MZPluginController *gInstance = NULL;
 {
     if(!plugins)
     {
-        NSMutableArray* thePlugins = [NSMutableArray array];
+        NSMutableArray* thePlugins = [[NSMutableArray alloc] init];
         NSArray* paths = [[self class] pluginPaths];
         NSFileManager* mgr = [NSFileManager manager];
         for(NSString* path in paths)
@@ -192,31 +370,126 @@ static MZPluginController *gInstance = NULL;
                 }
                 for(NSString* pluginDir in pluginPaths)
                 {
-                    NSString* pluginPath = [path stringByAppendingPathComponent:pluginDir];
-                    CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (CFStringRef)[pluginPath pathExtension], NULL);
-                    MZLoggerDebug(@"Loading plugin at path '%@'", pluginPath);
-                    if(UTTypeConformsTo(uti, kMZUTMetaZPlugin))
-                    {
-                        NSBundle* plugin = [NSBundle bundleWithPath:pluginPath];
-                        if(plugin)
-                            [thePlugins addObject:plugin];
-                        else
-                            MZLoggerError(@"Failed to load plugin at path '%@'", pluginPath);
-                    }
-                    else if(UTTypeEqual(uti, kMZUTAppleScriptText) || UTTypeConformsTo(uti, kMZUTAppleScriptText) ||
-                            UTTypeEqual(uti, kMZUTAppleScript) || UTTypeConformsTo(uti, kMZUTAppleScript))
-                    {
-                        NSURL* url = [NSURL URLWithString:[pluginDir gtm_stringByEscapingForURLArgument] relativeToURL:pathURL];
-                        MZScriptActionsPlugin* plugin = [MZScriptActionsPlugin pluginWithURL:url];
+                    id plugin = [self loadPluginSourceWithName:pluginDir fromURL:pathURL error:NULL];
+                    if(plugin)
                         [thePlugins addObject:plugin];
-                    }
-                    CFRelease(uti);
                 }
             }
         }
-        plugins = [[NSArray alloc] initWithArray:thePlugins];
+        plugins = thePlugins;
     }
     return plugins;
+}
+
+- (BOOL)loadPluginFromSource:(id)source error:(NSError **)error;
+{
+    NSString* identifier;
+    if([source isKindOfClass:[NSBundle class]])
+        identifier = [source bundleIdentifier];
+    else if([source isKindOfClass:[MZScriptActionsPlugin class]])
+        identifier = [source identifier];
+    else
+    {
+        NSString* msg = [NSString stringWithFormat:@"Unknown plugin %@ of type %@", 
+                source, NSStringFromClass([source class])];
+        if(error)
+        {
+            NSDictionary* info = [NSDictionary dictionaryWithObject:msg forKey:NSLocalizedDescriptionKey];
+            *error = [NSError errorWithDomain:@"MZPluginController" code:errMZPluginUnknownPluginType userInfo:info];
+        }
+        else
+            MZLoggerError(@"%@", msg);
+        return NO;
+    }
+            
+    // the plugins are in the order they should be loaded
+    // so if the same identifier is allready loaded we can skib to
+    // next
+    if([loadedBundles containsObject:identifier])
+    {
+        NSString* msg = [NSString stringWithFormat:@"Plugin with identifier %@ is already loaded", 
+                identifier];
+        if(error)
+        {
+            NSDictionary* info = [NSDictionary dictionaryWithObject:msg forKey:NSLocalizedDescriptionKey];
+            *error = [NSError errorWithDomain:@"MZPluginController" code:errMZPluginAlreadyLoaded userInfo:info];
+        }
+        else
+            MZLoggerError(@"%@", msg);
+        return NO;
+    }
+                
+    MZPlugin* plugin;
+    NSError* err = nil;
+    if(![source loadAndReturnError:&err])
+    {
+        NSString* msg = [NSString stringWithFormat:@"Failed to load code for '%@' because: %@", 
+            identifier,
+            [err localizedDescription]];
+        if(error)
+        {
+            NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys:
+                msg, NSLocalizedDescriptionKey,
+                err, NSUnderlyingErrorKey,
+                nil];
+            *error = [NSError errorWithDomain:@"MZPluginController" code:errMZPluginFailedToLoadSource userInfo:info];
+        }
+        else
+            MZLoggerError(@"%@", msg);
+        return NO;
+    }
+                
+    if([source isKindOfClass:[NSBundle class]])
+    {
+        Class cls = [source principalClass];
+        if(cls == Nil)
+        {
+            NSString* msg = [NSString stringWithFormat:@"Error loading principal class for '%@'", 
+                identifier];
+            if(error)
+            {
+                NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys:
+                    msg, NSLocalizedDescriptionKey,
+                    err, NSUnderlyingErrorKey,
+                    nil];
+                *error = [NSError errorWithDomain:@"MZPluginController" code:errMZPluginFailedToLoadPrincipalClass userInfo:info];
+            }
+            else
+                MZLoggerError(@"%@", msg);
+            return NO;
+        }
+                
+        plugin = [[cls alloc] init];
+        if(!plugin)
+        {
+            NSString* msg = [NSString stringWithFormat:@"Failed to create principal class '%@' for '%@'", 
+                NSStringFromClass(cls),
+                identifier];
+            if(error)
+            {
+                NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys:
+                    msg, NSLocalizedDescriptionKey,
+                    err, NSUnderlyingErrorKey,
+                    nil];
+                *error = [NSError errorWithDomain:@"MZPluginController" code:errMZPluginFailedToCreatePrincipalClass userInfo:info];
+            }
+            else
+                MZLoggerError(@"%@", msg);
+            [source unload];
+            return NO;
+        }
+    }
+    else
+        plugin = [source retain];
+
+    [loadedBundles addObject:identifier];
+    [loadedPlugins addObject:plugin];
+    [plugin release];
+    MZLoggerInfo(@"Loaded plugin '%@'", identifier);
+    [plugin didLoad];
+    if([[self delegate] respondsToSelector:@selector(pluginController:loadedPlugin:)])
+        [[self delegate] pluginController:self loadedPlugin:plugin];
+    return YES;
 }
 
 - (NSArray *)loadedPlugins
@@ -225,64 +498,10 @@ static MZPluginController *gInstance = NULL;
     {
         [self willChangeValueForKey:@"loadedPlugins"];
         loadedPlugins = [[NSMutableArray alloc] init];
-        NSMutableSet* loadedBundles = [NSMutableSet set];
         NSArray* thePlugins = [self plugins];
         for(id source in thePlugins)
         {
-            NSString* identifier;
-            if([source isKindOfClass:[NSBundle class]])
-                identifier = [source bundleIdentifier];
-            else if([source isKindOfClass:[MZScriptActionsPlugin class]])
-                identifier = [source identifier];
-            else
-                MZLoggerError(@"Unknown plugin %@ of type %@", source, NSStringFromClass([source class])); 
-            
-            // the plugins are in the order they should be loaded
-            // so if the same identifier is allready loaded we can skib to
-            // next
-            if([loadedBundles containsObject:identifier])
-                continue;
-                
-            MZPlugin* plugin;
-            NSError* error = nil;
-            if(![source loadAndReturnError:&error])
-            {
-                MZLoggerError(@"Failed to load code for '%@' because: %@", 
-                    identifier,
-                    [error localizedDescription]);
-                continue;
-            }
-                
-            if([source isKindOfClass:[NSBundle class]])
-            {
-                Class cls = [source principalClass];
-                if(cls == Nil)
-                {
-                    MZLoggerError(@"Error loading principal class for '%@'", 
-                        identifier);
-                    continue;
-                }
-                
-                plugin = [[cls alloc] init];
-                if(!plugin)
-                {
-                    MZLoggerError(@"Failed to create principal class '%@' for '%@'", 
-                        NSStringFromClass(cls),
-                        identifier);
-                    [source unload];
-                    continue;
-                }
-            }
-            else
-                plugin = [source retain];
-
-            [loadedBundles addObject:identifier];
-            [loadedPlugins addObject:plugin];
-            [plugin release];
-            MZLoggerInfo(@"Loaded plugin '%@'", identifier);
-            [plugin didLoad];
-            if([[self delegate] respondsToSelector:@selector(pluginController:loadedPlugin:)])
-                [[self delegate] pluginController:self loadedPlugin:plugin];
+            [self loadPluginFromSource:source error:NULL];
         }
         [self didChangeValueForKey:@"loadedPlugins"];
     }
@@ -299,6 +518,7 @@ static MZPluginController *gInstance = NULL;
         disabled = [NSSet set];
     
     [self willChangeValueForKey:@"activePlugins"];
+    [activePlugins release];
     activePlugins = [[NSMutableArray alloc] init];
     for(MZPlugin* plugin in [self loadedPlugins])
     {
@@ -317,28 +537,58 @@ static MZPluginController *gInstance = NULL;
     return activePlugins;
 }
 
+- (BOOL)loadPlugin:(NSString *)name fromURL:(NSURL *)url error:(NSError **)error
+{
+    id source = [self loadPluginSourceWithName:name fromURL:url error:error];
+    if(!source)
+    {
+        return NO;
+    }
+        
+    [self willChangeValueForKey:@"plugins"];
+    [plugins addObject:source];
+    [self didChangeValueForKey:@"plugins"];
+    
+    [self willChangeValueForKey:@"loadedPlugins"];
+    BOOL ret = [self loadPluginFromSource:source error:error];
+    [self didChangeValueForKey:@"loadedPlugins"];
+    return ret;
+}
 
 - (BOOL)unloadPlugin:(MZPlugin *)plugin
 {
     if([plugin canUnload])
     {
+        [plugin retain];
         [plugin willUnload];
+        
+        [self willChangeValueForKey:@"plugins"];
+        [plugins removeObject:plugin];
+        [plugins removeObject:[plugin bundle]];
+        [self didChangeValueForKey:@"plugins"];
+
         [self willChangeValueForKey:@"loadedPlugins"];
-        NSBundle* bundle = [plugin bundle];
-        [loadedPlugins removeObject:plugin]; // This should free the plugin object
+        [loadedPlugins removeObject:plugin];
         [self didChangeValueForKey:@"loadedPlugins"];
-        [self updateActivePlugins];
-        if([bundle unload])
+        
+        [self willChangeValueForKey:@"activePlugins"];
+        [activePlugins removeObject:plugin];
+        [self didChangeValueForKey:@"activePlugins"];
+        
+        [loadedBundles removeObject:[plugin identifier]];
+        
+        BOOL unloaded = [plugin unload];
+        [plugin release];
+        if(unloaded)
         {
             if([[self delegate] respondsToSelector:
                 @selector(pluginController:unloadedPlugin:)])
             {
                 [[self delegate] pluginController:self
-                                  unloadedPlugin:[bundle bundleIdentifier]];
+                                  unloadedPlugin:[plugin identifier]];
             }
             return YES;                      
         }
-
     }
     return NO;
 }
@@ -365,42 +615,36 @@ static MZPluginController *gInstance = NULL;
     return nil;
 }
 
-- (id<MZDataProvider>)dataProviderWithIdentifier:(NSString *)identifier
+- (MZDataProviderPlugin *)dataProviderWithIdentifier:(NSString *)identifier
 {
-    for(MZPlugin* plugin in [self activePlugins])
+    for(MZDataProviderPlugin* provider in [self dataProviderPlugins])
     {
-        NSArray* dataProviders = [plugin dataProviders];
-        for(id<MZDataProvider> provider in dataProviders)
-            if([[provider identifier] isEqualToString:identifier])
-                return provider;
+        if([[provider identifier] isEqualToString:identifier])
+            return provider;
     }
     return nil;
 }
 
-- (id<MZDataProvider>)dataProviderForType:(NSString *)uti
+- (MZDataProviderPlugin *)dataProviderForType:(NSString *)uti
 {
-    for(MZPlugin* plugin in [self activePlugins])
+    for(MZDataProviderPlugin* provider in [self dataProviderPlugins])
     {
-        NSArray* dataProviders = [plugin dataProviders];
-        for(id<MZDataProvider> provider in dataProviders)
+        NSArray* types = [provider types];
+        for(NSString* type in types)
         {
-            NSArray* types = [provider types];
-            for(NSString* type in types)
-            {
-                if(UTTypeConformsTo((CFStringRef)uti, (CFStringRef)type))
-                    return provider;
-            }
+            if(UTTypeConformsTo((CFStringRef)uti, (CFStringRef)type))
+                return provider;
         }
     }
     return nil;
 }
 
-- (id<MZDataProvider>)dataProviderForPath:(NSString *)path
+- (MZDataProviderPlugin *)dataProviderForPath:(NSString *)path
 {
     NSArray* types = (NSArray*)UTTypeCreateAllIdentifiersForTag(kUTTagClassFilenameExtension, (CFStringRef)[path pathExtension], kUTTypeMovie);
     for(NSString* uti in types)
     {
-        id<MZDataProvider> ret = [self dataProviderForType:uti];
+        MZDataProviderPlugin* ret = [self dataProviderForType:uti];
         if(ret)
         {
             [types release];
@@ -414,27 +658,19 @@ static MZPluginController *gInstance = NULL;
 - (NSArray *)dataProviderTypes
 {
     NSMutableArray* ret = [NSMutableArray array];
-    for(MZPlugin* plugin in [self activePlugins])
+    for(MZDataProviderPlugin* provider in [self dataProviderPlugins])
     {
-        NSArray* dataProviders = [plugin dataProviders];
-        for(id<MZDataProvider> provider in dataProviders)
-        {
-            NSArray* types = [provider types];
-            [ret addObjectsFromArray:types];
-        }
+        NSArray* types = [provider types];
+        [ret addObjectsFromArray:types];
     }
     return [NSArray arrayWithArray:ret]; 
 }
 
-- (id<MZSearchProvider>)searchProviderWithIdentifier:(NSString *)identifier
+- (MZSearchProviderPlugin *)searchProviderWithIdentifier:(NSString *)identifier
 {
-    for(MZPlugin* plugin in [self activePlugins])
-    {
-        NSArray* searchProviders = [plugin searchProviders];
-        for(id<MZSearchProvider> provider in searchProviders)
-            if([[provider identifier] isEqualToString:identifier])
-                return provider;
-    }
+    for(MZSearchProviderPlugin* provider in [self searchProviderPlugins])
+        if([[provider identifier] isEqualToString:identifier])
+            return provider;
     return nil;
 }
 
@@ -442,7 +678,7 @@ static MZPluginController *gInstance = NULL;
                             delegate:(id<MZEditsReadDelegate>)theDelegate
                                extra:(NSDictionary *)extra
 {
-    id<MZDataProvider> provider = [self dataProviderForPath:fileName];
+    MZDataProviderPlugin* provider = [self dataProviderForPath:fileName];
     if(!provider)
         return nil;
 
@@ -453,7 +689,7 @@ static MZPluginController *gInstance = NULL;
 - (id<MZDataController>)saveChanges:(MetaEdits *)data
                            delegate:(id<MZDataWriteDelegate>)theDelegate
 {
-    id<MZDataProvider> provider = [data owner];
+    MZDataProviderPlugin* provider = [data owner];
     id<MZDataWriteDelegate> otherDelegate = [MZWriteNotification notifierWithDelegate:theDelegate];
     return [provider saveChanges:data delegate:otherDelegate queue:saveQueue];
 }
@@ -462,14 +698,10 @@ static MZPluginController *gInstance = NULL;
                  delegate:(id<MZSearchProviderDelegate>)theDelegate
 {
     MZSearchDelegate* searchDelegate = [MZSearchDelegate searchWithDelegate:theDelegate];
-    for(MZPlugin* plugin in [self activePlugins])
+    for(MZSearchProviderPlugin* provider in [self searchProviderPlugins])
     {
-        NSArray* searchProviders = [plugin searchProviders];
-        for(id<MZSearchProvider> provider in searchProviders)
-        {
-            if([provider searchWithData:data delegate:searchDelegate queue:searchQueue])
-                [searchDelegate performedSearch];
-        }
+        if([provider searchWithData:data delegate:searchDelegate queue:searchQueue])
+            [searchDelegate performedSearch];
     }
     if(searchDelegate.performedSearches == 0)
     {
@@ -502,7 +734,7 @@ static MZPluginController *gInstance = NULL;
     [super dealloc];
 }
 
-- (void)dataProvider:(id<MZDataProvider>)provider
+- (void)dataProvider:(MZDataProviderPlugin *)provider
           controller:(id<MZDataController>)controller
         writeStartedForEdits:(MetaEdits *)edits
 {
@@ -517,7 +749,7 @@ static MZPluginController *gInstance = NULL;
         [delegate dataProvider:provider controller:controller writeStartedForEdits:edits];
 }
 
-- (void)dataProvider:(id<MZDataProvider>)provider
+- (void)dataProvider:(MZDataProviderPlugin *)provider
           controller:(id<MZDataController>)controller
         writeCanceledForEdits:(MetaEdits *)edits
             error:(NSError *)error
@@ -528,7 +760,7 @@ static MZPluginController *gInstance = NULL;
     {
         keys = [NSArray arrayWithObjects:MZMetaEditsNotificationKey, 
                 MZDataControllerNotificationKey, 
-                MZDataControllerErrorKey, nil];
+                MZNSErrorKey, nil];
         values = [NSArray arrayWithObjects:edits, controller, error, nil];
     }
     else
@@ -547,7 +779,7 @@ static MZPluginController *gInstance = NULL;
         [delegate dataProvider:provider controller:controller writeCanceledForEdits:edits error:error];
 }
 
-- (void)dataProvider:(id<MZDataProvider>)provider
+- (void)dataProvider:(MZDataProviderPlugin *)provider
           controller:(id<MZDataController>)controller
         writeFinishedForEdits:(MetaEdits *)edits percent:(int)percent
 {
@@ -555,7 +787,7 @@ static MZPluginController *gInstance = NULL;
         [delegate dataProvider:provider controller:controller writeFinishedForEdits:edits percent:percent];
 }
 
-- (void)dataProvider:(id<MZDataProvider>)provider
+- (void)dataProvider:(MZDataProviderPlugin *)provider
           controller:(id<MZDataController>)controller
         writeFinishedForEdits:(MetaEdits *)edits
 {
@@ -601,7 +833,7 @@ static MZPluginController *gInstance = NULL;
     [super dealloc];
 }
 
-- (void)dataProvider:(id<MZDataProvider>)provider
+- (void)dataProvider:(MZDataProviderPlugin *)provider
           controller:(id<MZDataController>)theController
           loadedMeta:(MetaLoaded *)loaded
             fromFile:(NSString *)fileName
@@ -664,7 +896,7 @@ static MZPluginController *gInstance = NULL;
     performedSearches++;
 }
 
-- (void) searchProvider:(id<MZSearchProvider>)provider result:(NSArray*)result
+- (void) searchProvider:(MZSearchProviderPlugin *)provider result:(NSArray*)result
 {
     [delegate searchProvider:provider result:result];
 }

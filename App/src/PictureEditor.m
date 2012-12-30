@@ -130,6 +130,8 @@
 
 - (void)pictureIsLoaded:(GTMKeyValueChangeNotification *)notification
 {
+    if([[notification object] isLoaded])
+        [[notification object] gtm_removeObserver:self forKeyPath:@"isLoaded" selector:@selector(pictureIsLoaded:)];
     [self willChangeValueForKey:@"data"];
     [self updateRemoteData];
     [self didChangeValueForKey:@"data"];

@@ -13,12 +13,10 @@
 #define TMDbURLTagIdent @"tmdbURL"
 
 
-@interface TheMovieDbPlugin : MZPlugin
+@interface TheMovieDbPlugin : MZSearchProviderPlugin
 {
-    NSArray* searchProviders;
+    NSArray* supportedSearchTags;
+    NSMenu* menu;
 }
-
-- (id)init;
-- (NSArray *)searchProviders;
 
 @end
