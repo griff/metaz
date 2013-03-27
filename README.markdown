@@ -12,6 +12,20 @@ reimplementation of MetaX with a few ideas of our own sprinkled in there.
 
 For bugs and feature requests you can use our [issue tracker at github](https://github.com/griff/metaz/issues)
 
+# Extras
+
+We have created some extra resources and small plugins that were deemed to
+small or silly to be included with the main program.
+
+The classic moo from MetaX is finally available via a small MetaZ plugin you
+can download from [here](https://github.com/downloads/griff/metaz/Moo.zip).
+To install it simply unpack the zip file and drop the unpacked script onto the
+MetaZ dock icon.
+
+If you use [Script Debugger](http://www.latenightsw.com/) from Late Night
+Software you are in luck because we have created a Script Debugger template
+for MetaZ plugins which illustrate the different types of events plugins can
+respond to. To get the template [click here](https://github.com/downloads/griff/metaz/MetaZ%20Plugin.sdtemplate.zip)
 
 # Building
 
