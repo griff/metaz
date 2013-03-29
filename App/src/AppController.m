@@ -335,10 +335,10 @@ NSDictionary* findBinding(NSWindow* window) {
 - (IBAction)openDocument:(id)sender {
     NSArray *fileTypes = [[MZMetaLoader sharedLoader] types];
 
-    NSArray* extensions = MZUTIFilenameExtension(fileTypes);
-    for(NSString* ext in extensions)
+    NSArray* utis = MZUTIFilenameExtension(fileTypes);
+    for(NSString* uti in utis)
     {
-        MZLoggerDebug(@"Found extention %@", ext);
+        MZLoggerDebug(@"Found UTI %@", uti);
     }
     
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
@@ -347,7 +347,7 @@ NSDictionary* findBinding(NSWindow* window) {
     [oPanel setCanChooseDirectories:NO];
     [oPanel beginSheetForDirectory: nil
                               file: nil
-                             types: extensions
+                             types: fileTypes
                     modalForWindow: window
                      modalDelegate: self
                     didEndSelector: @selector(openPanelDidEnd:returnCode:contextInfo:) 
