@@ -18,22 +18,6 @@
 #define MaxShortDescription 256
 
 
-NSArray* MZUTIFilenameExtension(NSArray* utis)
-{
-    NSMutableArray* ret = [NSMutableArray arrayWithCapacity:utis.count];
-    for(NSString* uti in utis)
-    {
-        NSDictionary* dict = (NSDictionary*)UTTypeCopyDeclaration((CFStringRef)uti);
-        //[dict writeToFile:[NSString stringWithFormat:@"/Users/bro/Documents/Maven-Group/MetaZ/%@.plist", uti] atomically:NO];
-        NSDictionary* tags = [dict objectForKey:(NSString*)kUTTypeTagSpecificationKey];
-        NSArray* extensions = [tags objectForKey:(NSString*)kUTTagClassFilenameExtension];
-        [ret addObjectsFromArray:extensions];
-        [dict release];
-    }
-    return ret;
-}
-
-
 NSResponder* findResponder(NSWindow* window) {
     NSResponder* oldResponder =  [window firstResponder];
     if([oldResponder isKindOfClass:[NSTextView class]] && [window fieldEditor:NO forObject:nil] != nil)
@@ -334,12 +318,6 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (IBAction)openDocument:(id)sender {
     NSArray *fileTypes = [[MZMetaLoader sharedLoader] types];
-
-    NSArray* utis = MZUTIFilenameExtension(fileTypes);
-    for(NSString* uti in utis)
-    {
-        MZLoggerDebug(@"Found UTI %@", uti);
-    }
     
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setAllowsMultipleSelection:YES];
