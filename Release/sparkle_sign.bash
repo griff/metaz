@@ -8,8 +8,8 @@ if [[ -z "$(security find-generic-password -s "$KEYCHAIN_PRIVKEY_NAME")" ]] ; th
 
 PATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin
 
-VERSION=$(defaults read "$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info" CFBundleShortVersionString)
-FULLVERSION=$(defaults read "$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info" CFBundleVersion)
+VERSION=$(/usr/libexec/PlistBuddy -c "print :CFBundleShortVersionString" "$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info.plist")
+FULLVERSION=$(/usr/libexec/PlistBuddy -c "print :CFBundleVersion" "$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info.plist")
 DOWNLOAD_BASE_URL="http://github.com/downloads/griff/metaz"
 RELEASENOTES_URL="http://griff.github.com/metaz/release-notes.html#version-$VERSION"
 

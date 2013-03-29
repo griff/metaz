@@ -6,7 +6,7 @@ if [ "${CONFIGURATION}" != "Release" ]; then exit; fi
 
 rm -f "$BUILT_PRODUCTS_DIR/$PROJECT_NAME"*.dmg
 
-VERSION=$(defaults read "$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info" CFBundleShortVersionString)
+VERSION=$(/usr/libexec/PlistBuddy -c "print :CFBundleShortVersionString" "$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info.plist")
 SOURCE_FILES=($CODESIGNING_FOLDER_PATH Thanks.txt License.txt)
 TEMPLATE_DMG=$SRCROOT/Release/template.dmg
 MASTER_DMG=$BUILT_PRODUCTS_DIR/$PROJECT_NAME-${VERSION}.dmg
