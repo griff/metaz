@@ -106,9 +106,6 @@
     if(self)
     {
         writes = [[NSMutableArray alloc] init];
-        types = [[NSArray alloc] initWithObjects:
-            @"public.mpeg-4", @"com.apple.quicktime-movie",
-            @"com.apple.m4v-video", @"com.apple.protected-mpeg-4-video", nil];
         tags = [[MZTag allKnownTags] retain];
         NSArray* readmapkeys = [NSArray arrayWithObjects:
             @"©nam", @"©ART", @"©day",
@@ -412,7 +409,6 @@
 - (void)dealloc
 {
     [writes release];
-    [types release];
     [tags release];
     [read_mapping release];
     [write_mapping release];
@@ -425,11 +421,6 @@
 - (BOOL)isBuiltIn
 {
     return YES;
-}
-
--(NSArray *)types
-{
-    return types;
 }
 
 -(NSArray *)providedTags
