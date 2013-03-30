@@ -34,7 +34,7 @@ enum {
 
 - (id)initWithURL:(NSURL *)theURL;
 {
-    self = [super init];
+    self = [super initWithBundle:nil];
     if(self)
     {
         url = [theURL retain];

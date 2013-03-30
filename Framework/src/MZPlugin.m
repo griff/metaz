@@ -13,14 +13,19 @@
 
 @implementation MZPlugin
 
-- (id)init
+- (id)initWithBundle:(NSBundle *)theBundle
 {
     self = [super init];
     if(self)
     {
-        bundle = [[NSBundle bundleForClass:[self class]] retain];
+        bundle = [theBundle retain];
     }
     return self;
+}
+
+- (id)init
+{
+    return [self initWithBundle:[NSBundle bundleForClass:[self class]]];
 }
 
 - (void)dealloc
@@ -122,7 +127,7 @@
         NSString* nibName = [self preferencesNibName];
         nib = [[NSNib alloc] 
             initWithNibNamed:nibName 
-                      bundle:bundle];
+                      bundle:self.bundle];
         if(!nib)
             return nil;
         
@@ -135,7 +140,7 @@
 
 - (NSString *)preferencesNibName
 {
-    NSString* ret = [bundle objectForInfoDictionaryKey:@"NSMainNibFile"];
+    NSString* ret = [self.bundle objectForInfoDictionaryKey:@"NSMainNibFile"];
     if(ret)
         return ret;
     return @"Main";

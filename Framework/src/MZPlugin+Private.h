@@ -12,6 +12,7 @@
 #define DISABLED_KEY @"disabledPlugins"
 
 @interface MZPlugin ()
+- (id)initWithBundle:(NSBundle *)theBundle;
 - (BOOL)isBuiltIn;
 - (BOOL)canUnload;
 - (BOOL)unload;
