@@ -279,7 +279,6 @@
 		1BEA6FAF106EFC3F004B1A7F /* MZPluginController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BEA6DAC106EC632004B1A7F /* MZPluginController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA6FB0106EFC3F004B1A7F /* MZPluginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6DAD106EC632004B1A7F /* MZPluginController.m */; };
 		1BEA6FB1106EFC3F004B1A7F /* MZPlugin+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BEA6E48106EEF34004B1A7F /* MZPlugin+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1BEA6FB2106EFC3F004B1A7F /* MZPlugin+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6E49106EEF34004B1A7F /* MZPlugin+Private.m */; };
 		1BEA718F10712A17004B1A7F /* NSArray+Mapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BEA718D10712A17004B1A7F /* NSArray+Mapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA719010712A17004B1A7F /* NSArray+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA718E10712A17004B1A7F /* NSArray+Mapping.m */; };
 		1BEA71BF10716B90004B1A7F /* APWriteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA71BE10716B90004B1A7F /* APWriteManager.m */; };
@@ -1168,7 +1167,6 @@
 		1BEA6DDB106ED8E4004B1A7F /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
 		1BEA6DDC106ED8E4004B1A7F /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		1BEA6E48106EEF34004B1A7F /* MZPlugin+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MZPlugin+Private.h"; sourceTree = "<group>"; };
-		1BEA6E49106EEF34004B1A7F /* MZPlugin+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MZPlugin+Private.m"; sourceTree = "<group>"; };
 		1BEA6E72106EF2A0004B1A7F /* AtomicParsleyPlugin.mzdataprovider */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AtomicParsleyPlugin.mzdataprovider; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEA6E8D106EF522004B1A7F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		1BEA6E8F106EF534004B1A7F /* AtomicParsleyPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicParsleyPlugin.h; sourceTree = "<group>"; };
@@ -1324,7 +1322,6 @@
 				1BEA6C2A106E613C004B1A7F /* MZPlugin.h */,
 				1BEA6C2B106E613C004B1A7F /* MZPlugin.m */,
 				1BEA6E48106EEF34004B1A7F /* MZPlugin+Private.h */,
-				1BEA6E49106EEF34004B1A7F /* MZPlugin+Private.m */,
 				1BEA6DAC106EC632004B1A7F /* MZPluginController.h */,
 				1BEA6DAD106EC632004B1A7F /* MZPluginController.m */,
 				1BD55C5C16483F5E00F9C579 /* MZActionsPlugin.h */,
@@ -3102,7 +3099,6 @@
 				1BEA6FAB106EFC3F004B1A7F /* MZTag.m in Sources */,
 				1BEA6FAE106EFC3F004B1A7F /* MZPlugin.m in Sources */,
 				1BEA6FB0106EFC3F004B1A7F /* MZPluginController.m in Sources */,
-				1BEA6FB2106EFC3F004B1A7F /* MZPlugin+Private.m in Sources */,
 				1BEA719010712A17004B1A7F /* NSArray+Mapping.m in Sources */,
 				1BCC97031076B73C007EFF57 /* NSInvocation+Wrapping.m in Sources */,
 				1B040C3F107FC7480027FA0D /* MZTimeCode.m in Sources */,

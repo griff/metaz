@@ -7,6 +7,7 @@
 //
 
 #import <MetaZKit/MZPlugin.h>
+#import "MZPlugin+Private.h"
 
 #define DISABLED_KEY @"disabledPlugins"
 
@@ -154,6 +155,31 @@
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@: %@", NSStringFromClass([self class]), [self identifier]];
+}
+
+#pragma mark private methods
+
+- (BOOL)isBuiltIn
+{
+    return NO;
+}
+
+- (BOOL)canUnload
+{/*
+    if([self retainCount]>1)
+        return NO;
+    for(id obj in [self dataProviders])
+        if([obj retainCount]>1)
+            return NO;
+    for(id obj in [self searchProviders])
+        if([obj retainCount]>1)
+            return NO;*/
+    return YES;
+}
+
+- (BOOL)unload
+{
+    return [self.bundle unload];
 }
 
 @end
