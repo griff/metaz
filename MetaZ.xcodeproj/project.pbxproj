@@ -2976,7 +2976,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -o errexit\nbash $SRCROOT/Release/make_diskimage.bash";
+			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/make_diskimage.bash";
 			showEnvVarsInLog = 0;
 		};
 		1BB6BF3B1050ED38001D3D1D /* Sparkle Sign  */ = {
@@ -2993,7 +2993,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -o errexit\nbash $SRCROOT/Release/sparkle_sign.bash\n";
+			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/sparkle_sign.bash\n";
 			showEnvVarsInLog = 0;
 		};
 		1BEA6D70106EA6D1004B1A7F /* Build Documentation */ = {
