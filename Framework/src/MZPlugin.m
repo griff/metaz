@@ -78,16 +78,6 @@
 - (void)didLoad {}
 - (void)willUnload {}
 
-- (NSArray *)dataProviders
-{
-    return [NSArray array];
-}
-
-- (NSArray *)searchProviders
-{
-    return [NSArray array];
-}
-
 - (NSString *)label
 {
     NSString* className = [self className];
