@@ -613,7 +613,7 @@ static MZPluginController *gInstance = NULL;
 
 - (MZDataProviderPlugin *)dataProviderForPath:(NSString *)path
 {
-    NSArray* types = (NSArray*)UTTypeCreateAllIdentifiersForTag(kUTTagClassFilenameExtension, (CFStringRef)[path pathExtension], kUTTypeMovie);
+    NSArray* types = (NSArray*)UTTypeCreateAllIdentifiersForTag(kUTTagClassFilenameExtension, (CFStringRef)[path pathExtension], kUTTypeAudiovisualContent);
     for(NSString* uti in types)
     {
         MZDataProviderPlugin* ret = [self dataProviderForType:uti];
