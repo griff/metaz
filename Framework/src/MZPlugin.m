@@ -80,6 +80,14 @@
 
 - (NSString *)label
 {
+    if(self.bundle)
+    {
+        NSString* name = [self.bundle objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+        if(!name)
+            name = [self.bundle objectForInfoDictionaryKey:@"CFBundleName"];
+        if(name)
+            return name;
+    }
     NSString* className = [self className];
     if([className hasPrefix:@"MZ"])
         className = [className substringFromIndex:2];
