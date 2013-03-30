@@ -67,6 +67,10 @@ MZKIT_EXTERN const NSInteger errMZPluginFailedToCreatePrincipalClass;
 
 - (BOOL)installPlugin:(NSURL *)thePlugin force:(BOOL)force error:(NSError **)error;
 - (NSArray *)activePlugins;
+- (NSArray *)activeActionsPlugins;
+- (NSArray *)activeDataProviderPlugins;
+- (NSArray *)activeSearchProviderPlugins;
+
 - (NSArray *)actionsPlugins;
 - (NSArray *)dataProviderPlugins;
 - (NSArray *)searchProviderPlugins;

@@ -284,7 +284,7 @@ static MZPluginController *gInstance = NULL;
     return NO;
 }
 
-- (NSArray *)pluginsWithClass:(Class )cls
+- (NSArray *)activePluginsWithClass:(Class )cls
 {
     NSMutableArray* ret = [NSMutableArray array];
     NSArray* thePlugins = [self loadedPlugins];
@@ -303,7 +303,37 @@ static MZPluginController *gInstance = NULL;
 
 - (NSArray *)activePlugins;
 {
-    return [self pluginsWithClass:[MZPlugin class]];
+    return [self activePluginsWithClass:[MZPlugin class]];
+}
+
+- (NSArray *)activeActionsPlugins;
+{
+    return [self activePluginsWithClass:[MZActionsPlugin class]];
+}
+
+- (NSArray *)activeDataProviderPlugins;
+{
+    return [self activePluginsWithClass:[MZDataProviderPlugin class]];
+}
+
+- (NSArray *)activeSearchProviderPlugins;
+{
+    return [self activePluginsWithClass:[MZSearchProviderPlugin class]];
+}
+
+- (NSArray *)pluginsWithClass:(Class )cls
+{
+    NSMutableArray* ret = [NSMutableArray array];
+    NSArray* thePlugins = [self loadedPlugins];
+    for(MZPlugin* plugin in thePlugins)
+    {
+        if([plugin isKindOfClass:cls])
+            [ret addObject:plugin];
+    }
+    NSSortDescriptor* desc = [[NSSortDescriptor alloc ] initWithKey:@"label" ascending:YES];
+    [ret sortUsingDescriptors:[NSArray arrayWithObject:desc]];
+    [desc release];
+    return ret;
 }
 
 - (NSArray *)actionsPlugins;
@@ -589,7 +619,7 @@ static MZPluginController *gInstance = NULL;
 
 - (MZDataProviderPlugin *)dataProviderWithIdentifier:(NSString *)identifier
 {
-    for(MZDataProviderPlugin* provider in [self dataProviderPlugins])
+    for(MZDataProviderPlugin* provider in [self activeDataProviderPlugins])
     {
         if([[provider identifier] isEqualToString:identifier])
             return provider;
@@ -599,7 +629,7 @@ static MZPluginController *gInstance = NULL;
 
 - (MZDataProviderPlugin *)dataProviderForType:(NSString *)uti
 {
-    for(MZDataProviderPlugin* provider in [self dataProviderPlugins])
+    for(MZDataProviderPlugin* provider in [self activeDataProviderPlugins])
     {
         NSArray* types = [provider types];
         for(NSString* type in types)
@@ -630,7 +660,7 @@ static MZPluginController *gInstance = NULL;
 - (NSArray *)dataProviderTypes
 {
     NSMutableArray* ret = [NSMutableArray array];
-    for(MZDataProviderPlugin* provider in [self dataProviderPlugins])
+    for(MZDataProviderPlugin* provider in [self activeDataProviderPlugins])
     {
         NSArray* types = [provider types];
         [ret addObjectsFromArray:types];
@@ -640,7 +670,7 @@ static MZPluginController *gInstance = NULL;
 
 - (MZSearchProviderPlugin *)searchProviderWithIdentifier:(NSString *)identifier
 {
-    for(MZSearchProviderPlugin* provider in [self searchProviderPlugins])
+    for(MZSearchProviderPlugin* provider in [self activeSearchProviderPlugins])
         if([[provider identifier] isEqualToString:identifier])
             return provider;
     return nil;
@@ -670,7 +700,7 @@ static MZPluginController *gInstance = NULL;
                  delegate:(id<MZSearchProviderDelegate>)theDelegate
 {
     MZSearchDelegate* searchDelegate = [MZSearchDelegate searchWithDelegate:theDelegate];
-    for(MZSearchProviderPlugin* provider in [self searchProviderPlugins])
+    for(MZSearchProviderPlugin* provider in [self activeSearchProviderPlugins])
     {
         if([provider searchWithData:data delegate:searchDelegate queue:searchQueue])
             [searchDelegate performedSearch];
