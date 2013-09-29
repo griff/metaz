@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -92,7 +92,7 @@
 		1B36E78C14066727009F542A /* MZASISearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B36E78A14066727009F542A /* MZASISearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B36E78D14066727009F542A /* MZASISearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B36E78B14066727009F542A /* MZASISearch.m */; };
 		1B38FCDA1673F7E500C171F9 /* NSString+MimeTypePattern.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B38FCD81673F7E500C171F9 /* NSString+MimeTypePattern.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1B38FCDB1673F7E500C171F9 /* NSString+MimeTypePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B38FCD91673F7E500C171F9 /* NSString+MimeTypePattern.m */; };
+		1B38FCDB1673F7E500C171F9 /* NSString+MimeTypePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B38FCD91673F7E500C171F9 /* NSString+MimeTypePattern.m */; settings = {COMPILER_FLAGS = "-Wno-comment"; }; };
 		1B3AD7A311055DF300B33F85 /* MZQueueOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3AD7A111055DF300B33F85 /* MZQueueOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B3AD7A411055DF300B33F85 /* MZQueueOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3AD7A211055DF300B33F85 /* MZQueueOperation.m */; };
 		1B3AD7D811057E9200B33F85 /* MZErrorOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3AD7D611057E9200B33F85 /* MZErrorOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -283,7 +283,6 @@
 		1BEA719010712A17004B1A7F /* NSArray+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA718E10712A17004B1A7F /* NSArray+Mapping.m */; };
 		1BEA71BF10716B90004B1A7F /* APWriteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA71BE10716B90004B1A7F /* APWriteManager.m */; };
 		1BEA71D110717785004B1A7F /* MZWriteQueueStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA71D010717785004B1A7F /* MZWriteQueueStatus.m */; };
-		1BEC79061197B73E00337403 /* GTMStackTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B449E2210DCCC1D00B9C751 /* GTMStackTrace.m */; };
 		1BEC79071197B74400337403 /* GTMStackTrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B449E2110DCCC1D00B9C751 /* GTMStackTrace.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BF5AD4B105DFC92005DD03E /* QueueWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5AD4A105DFC92005DD03E /* QueueWindowController.m */; };
 		1BF5ADBD105E0B8E005DD03E /* FileViewBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5ADBC105E0B8E005DD03E /* FileViewBox.m */; };
@@ -942,7 +941,6 @@
 		1B449E2F10DCCC1D00B9C751 /* GTMValidatingContainersTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMValidatingContainersTest.m; sourceTree = "<group>"; };
 		1B4AF736116EF6C100E5C969 /* Access_template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access_template.h; path = Plugins/Amazon/Access_template.h; sourceTree = SOURCE_ROOT; };
 		1B4AF74B116EF80500E5C969 /* Access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access.h; path = Plugins/TheTVDB/Access.h; sourceTree = SOURCE_ROOT; };
-		1B4AF829116F0AFD00E5C969 /* DebugSnowLeopardOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = DebugSnowLeopardOrLater.xcconfig; path = "Externals/google-toolbox-for-mac/XcodeConfig/Project/DebugSnowLeopardOrLater.xcconfig"; sourceTree = "<group>"; };
 		1B4AF8391170CFCC00E5C969 /* TheTVDBSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBSearch.h; sourceTree = "<group>"; };
 		1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBSearch.m; sourceTree = "<group>"; };
 		1B4AF84411715C8400E5C969 /* languages.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = languages.xml; sourceTree = "<group>"; };
@@ -2349,7 +2347,6 @@
 		29B97314FDCFA39411CA2CEA /* MetaZ */ = {
 			isa = PBXGroup;
 			children = (
-				1B4AF829116F0AFD00E5C969 /* DebugSnowLeopardOrLater.xcconfig */,
 				1B4494BC10D584E000B9C751 /* next_release.txt */,
 				1BEA6E68106EF248004B1A7F /* Plugins */,
 				1BA325BC10545A1B00276F57 /* App */,
@@ -2732,8 +2729,11 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MetaZ" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -3125,7 +3125,6 @@
 				1BAD35FF118D4C470052DE3B /* MZReadOperationsController.m in Sources */,
 				1BAD3601118D4C470052DE3B /* NSFileManager+MZCreate.m in Sources */,
 				1BC256391192C183001B9E1E /* NSObject+WaitUntilChange.m in Sources */,
-				1BEC79061197B73E00337403 /* GTMStackTrace.m in Sources */,
 				1B0604AE1199E24700589ACE /* MZSearchProviderPlugin.m in Sources */,
 				1BAC91BE13F060300022D625 /* NSString+MZAllInCharacterSet.m in Sources */,
 				1B523C1513FDCC9600C20B7D /* ASIHTTPRequest.m in Sources */,
@@ -3504,7 +3503,6 @@
 		1B032F6910B0C12200B28E3A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -3535,9 +3533,7 @@
 		1B032F6A10B0C12200B28E3A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
 					Externals/hmac,
@@ -3567,7 +3563,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3595,9 +3590,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
@@ -3622,7 +3615,6 @@
 		1B040EC01081B3C10027FA0D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -3649,9 +3641,7 @@
 		1B040EC11081B3C10027FA0D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3676,7 +3666,6 @@
 		1B2022F910B393CB00EE548A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "Plist Macos";
 			};
 			name = Debug;
@@ -3684,7 +3673,6 @@
 		1B2022FA10B393CB00EE548A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "Plist Macos";
 			};
 			name = Release;
@@ -3692,7 +3680,6 @@
 		1B42F25B10DEB0D400AFEBF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -3717,7 +3704,6 @@
 		1B42F25C10DEB0D400AFEBF6 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3739,9 +3725,7 @@
 		1B42F25D10DEB0D400AFEBF6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3769,9 +3753,10 @@
 					ppc,
 					"$(ARCHS_STANDARD_32_64_BIT)",
 				);
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -3784,7 +3769,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3816,7 +3800,6 @@
 		1B44938010C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -3851,7 +3834,6 @@
 		1B44938110C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3882,7 +3864,6 @@
 		1B44938210C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -3910,7 +3891,6 @@
 		1B44938310C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -3942,7 +3922,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3970,7 +3949,6 @@
 		1B44938510C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "Plist Macos";
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 			};
@@ -3979,7 +3957,6 @@
 		1B4F53C6116E9F44003221B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -4005,7 +3982,6 @@
 		1B4F53C7116E9F44003221B1 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -4033,9 +4009,7 @@
 		1B4F53C8116E9F44003221B1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/include";
 				INFOPLIST_FILE = Plugins/TheTVDB/Info.plist;
@@ -4061,7 +4035,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -4089,7 +4062,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -4114,9 +4086,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -4141,7 +4111,6 @@
 		1BA325C610545ACB00276F57 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -4176,9 +4145,7 @@
 		1BA325C710545ACB00276F57 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -4267,7 +4234,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4349,7 +4315,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4375,7 +4340,6 @@
 		1BEA6E74106EF2A1004B1A7F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -4405,9 +4369,7 @@
 		1BEA6E75106EF2A1004B1A7F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4436,7 +4398,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4468,9 +4429,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4504,9 +4463,10 @@
 					ppc,
 					"$(ARCHS_STANDARD_32_64_BIT)",
 				);
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -4523,8 +4483,10 @@
 					ppc,
 					"$(ARCHS_STANDARD_32_64_BIT)",
 				);
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				SDKROOT = macosx10.5;
