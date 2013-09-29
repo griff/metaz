@@ -42,35 +42,58 @@ int main(int argc, const char *argv[])
     [logger setWriter:[MZNSLogWriter logWriter]];
     [logger setFilter:[[[GTMLogNoFilter alloc] init] autorelease]];
     
-    //RBApplicationInit("rb_main.rb", argc, argv, nil);
+    NSNumber* versionObj = [[NSUserDefaults standardUserDefaults] objectForKey:@"version"];
+    NSInteger version;
+    if(!versionObj)
+    {
+        version = 0;
+        [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"version"];
+    }
+    else
+        version = [versionObj integerValue];
 
     NSBundle* bundle = [NSBundle mainBundle];
     NSString* dictPath;
-    if (dictPath = [bundle pathForResource:@"FactorySettings" ofType:@"plist"])
+    if ((dictPath = [bundle pathForResource:@"FactorySettings" ofType:@"plist"]))
     {
         NSMutableDictionary* dict = [[NSMutableDictionary alloc] initWithContentsOfFile:dictPath];
         [[NSUserDefaults standardUserDefaults] registerDefaults:dict];
         [dict release];
     }
-    NSNumber* whenDoneNum = [[NSUserDefaults standardUserDefaults] objectForKey:@"whenDoneAction"];
-    if(whenDoneNum)
+    
+    if(version == 0)
     {
-        NSInteger whenDone = [whenDoneNum integerValue];
-        if(whenDone < 0 || whenDone > 5)
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"enabledActionPlugins"];
-        else
+        NSNumber* whenDoneNum = [[NSUserDefaults standardUserDefaults] objectForKey:@"whenDoneAction"];
+        if(whenDoneNum)
         {
-            NSMutableArray* enabled = [NSMutableArray array];
-            [enabled addObject:@"Update iTunes"];
-            if(whenDone == 1 || whenDone == 3)
-                [enabled addObject:@"org.maven-group.metaz.plugin.AlertWindowPlugin"];
-            if(whenDone == 4 || whenDone == 5)
-                [enabled addObject:@"Quit MetaZ"];
-            if(whenDone == 2 || whenDone == 3 || whenDone == 5)
-                [enabled addObject:@"org.maven-group.metaz.plugin.GrowlPlugin"];
-            [[NSUserDefaults standardUserDefaults] setObject:enabled forKey:@"enabledActionPlugins"];
+            NSInteger whenDone = [whenDoneNum integerValue];
+            if(whenDone < 0 || whenDone > 5)
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"enabledActionPlugins"];
+            else
+            {
+                NSMutableArray* enabled = [NSMutableArray array];
+                [enabled addObject:@"Update iTunes"];
+                if(whenDone == 1 || whenDone == 3)
+                    [enabled addObject:@"org.maven-group.metaz.plugin.AlertWindowPlugin"];
+                if(whenDone == 4 || whenDone == 5)
+                    [enabled addObject:@"Quit MetaZ"];
+                if(whenDone == 2 || whenDone == 3 || whenDone == 5)
+                    [enabled addObject:@"org.maven-group.metaz.plugin.GrowlPlugin"];
+                [[NSUserDefaults standardUserDefaults] setObject:enabled forKey:@"enabledActionPlugins"];
+            }
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"whenDoneAction"];
         }
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"whenDoneAction"];
+        version = 1;
+        [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"version"];
+    }
+    
+    if(version == 1)
+    {
+        NSNumber* incomingVideoType = [[NSUserDefaults standardUserDefaults] objectForKey:@"incomingVideoType"];
+        if(incomingVideoType && [incomingVideoType intValue] == MZHomeMovieVideoType)
+            [[NSUserDefaults standardUserDefaults] setInteger:MZMovieVideoType forKey:@"incomingVideoType"];
+        version = 2;
+        [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"version"];
     }
 
     [pool release];
