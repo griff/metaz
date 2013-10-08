@@ -48,13 +48,30 @@ to use them they are not included in the repository.
 I have though made a tar with these files and uploaded it to github:
 [missing.tar.gz](http://github.com/downloads/griff/metaz/missing.tar.gz)
 
+### Building with Xcode 5
+
+It seems possible to build the project with Xcode 5 while still compiling with
+the 10.5 SDK. What you need to do is manually install the SDK from the Xcode 3.2.6 DMG.
+
+```bash
+# Download and mount the Xcode 3.2.6 DMG from Apple
+
+open /Volumes/Xcode\ and\ iOS\ SDK/Packages/MacOSX10.5.pkg
+# Install the SDK and choose a location like your user home 
+# You should now have the directory MacOSX10.5.sdk in ~/SDKs
+
+# Make a link from the Xcode 5 install location to the installed SDK
+cd /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs
+sudo ln -s ~/SDKs/MacOSX10.5.sdk MacOSX10.5.sdk
+```
+
 ## Contribution steps
 
 We follow [GitHub flow][flow], as a workflow. Basically:
 
 - Create a feature branch in your fork
-- Make your change, including tests and documentation as appropriate
-- Please run all the tests before submitting a pull request!
+- Make your change with documentation as appropriate
+- Please run and test a release build before submitting a pull request!
 - Submit a pull request from your branch
 - Someone with commit access will review the code and merge it. This applies even if you also have commit access.
 
