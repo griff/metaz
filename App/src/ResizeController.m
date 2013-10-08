@@ -25,7 +25,7 @@
 - (NSSize)windowWillResize:(NSWindow *)window toSize:(NSSize)proposedFrameSize {
     
     const CGFloat minSplitViewWidth = FILESBOX_WIDTH + TABVIEW_WIDTH + SEARCHBOX_WIDTH + 2 * [splitView dividerThickness];
-    const CGFloat margin = CGRectGetMinX([splitView frame]);
+    const CGFloat margin = CGRectGetMinX(NSRectToCGRect([splitView frame]));
     
     proposedFrameSize.width = MAX(proposedFrameSize.width, minSplitViewWidth + margin * 2.0);
 
@@ -71,7 +71,7 @@
     else
     {
         const CGFloat mins[] = { FILESBOX_WIDTH, TABVIEW_WIDTH, SEARCHBOX_WIDTH };
-        proposedMin = CGRectGetMinX([[[sender subviews] objectAtIndex: offset] frame]) + mins[offset];
+        proposedMin = CGRectGetMinX(NSRectToCGRect([[[sender subviews] objectAtIndex: offset] frame])) + mins[offset];
     }
 
     return proposedMin;
@@ -88,7 +88,7 @@
         const CGFloat mins[] = { FILESBOX_WIDTH, TABVIEW_WIDTH, SEARCHBOX_WIDTH };
         NSView *thisView = [[sender subviews] objectAtIndex:offset];
         NSView *nextView = [[sender subviews] objectAtIndex:offset + 1];
-        proposedMax = CGRectGetMaxX([thisView frame]) + [nextView frame].size.width - mins[offset+1];
+        proposedMax = CGRectGetMaxX(NSRectToCGRect([thisView frame])) + [nextView frame].size.width - mins[offset+1];
     }
 
     return proposedMax;
