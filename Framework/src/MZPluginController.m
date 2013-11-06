@@ -353,7 +353,7 @@ static MZPluginController *gInstance = NULL;
 
 - (id)loadPluginSourceWithName:(NSString *)name fromURL:(NSURL *)pathURL error:(NSError **)error
 {
-    id ret;
+    id ret = nil;
     NSString* pluginPath = [[pathURL path] stringByAppendingPathComponent:name];
     CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (CFStringRef)[pluginPath pathExtension], NULL);
     MZLoggerDebug(@"Loading plugin at path '%@'", pluginPath);

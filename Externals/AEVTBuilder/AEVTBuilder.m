@@ -151,7 +151,7 @@ id STRING			= nil;
 	OSStatus err = AECoerceDesc([descriptor aeDesc], ostype, &coercedDesc);
 	if(err)
 	{
-		NSLog(@"Got error %d when calling AECoerceDesc");
+		NSLog(@"Got error %d when calling AECoerceDesc", (int)err);
 		return nil;
 	}
 	

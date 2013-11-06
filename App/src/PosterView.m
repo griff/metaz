@@ -55,8 +55,9 @@
         case MZMultiplePosterImage:
         case MZNotApplicablePosterImage:
             return MZFadedIconMultiple;
+        default:
+            return MZFadedIcon;
     }
-    return MZFadedIcon;
 }
 
 - (void)reportError:(NSError *)theError
@@ -112,11 +113,11 @@
 {
     if(error)
         return [error localizedDescription];
-    switch (status) {
-        case MZMultiplePosterImage:
-            return NSLocalizedString(@"Editing Multiple", @"Text for size text field when editing multiple");
-        case MZNotApplicablePosterImage:
-            return NSLocalizedString(@"Not Applicable", @"Text for size text field when picture not applicable");
+    if(status == MZMultiplePosterImage) {
+        return NSLocalizedString(@"Editing Multiple", @"Text for size text field when editing multiple");
+    }
+    if(status == MZNotApplicablePosterImage) {
+        return NSLocalizedString(@"Not Applicable", @"Text for size text field when picture not applicable");
     }
     NSSize size = [[self objectValue] size];
     if(NSEqualSizes(size, NSZeroSize))

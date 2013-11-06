@@ -23,7 +23,7 @@
 @implementation GTMLogger (GTMLoggerASLAdditions)
 
 + (id)standardLoggerWithASL {
-  id me = [self standardLogger];
+  GTMLogger* me = [self standardLogger];
   [me setWriter:[[[GTMLogASLWriter alloc] init] autorelease]];
   [me setFormatter:[[[GTMLogBasicFormatter alloc] init] autorelease]];
   return me;

@@ -26,7 +26,7 @@ MZKIT_EXTERN NSString* const MZPresetNewNameKey;
 + (id)presetWithName:(NSString *)name values:(NSDictionary *)values;
 - (id)initWithName:(NSString *)name values:(NSDictionary *)values;
 
-@property (retain) NSString* name;
+@property (retain,nonatomic) NSString* name;
 @property (readonly, retain) NSDictionary* values;
 
 - (void)applyToObject:(id)object withPrefix:(NSString *)prefix;

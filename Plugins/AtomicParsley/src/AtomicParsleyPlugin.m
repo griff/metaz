@@ -389,7 +389,7 @@
             initWithObjects:ratingkeys
                     forKeys:ratingvalues];
                     
-        NSArray* typeNames = [[NSArray alloc] initWithObjects:
+        NSArray* typeNames = [NSArray arrayWithObjects:
             @"", @"Movie", @"Normal", 
             @"Audiobook", @"Whacked Bookmark", @"Music Video",
             @"Short Film", @"TV Show", @"Booklet",

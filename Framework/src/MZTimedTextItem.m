@@ -305,6 +305,7 @@ NSString* fixText(NSString *newText)
 
 
 @implementation MZMutableTimedTextItem
+@dynamic text;
 
 - (void)setText:(NSString *)aText
 {

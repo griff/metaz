@@ -585,6 +585,7 @@ NSDictionary* findBinding(NSWindow* window) {
        UTTypeEqual(uti, kMZUTAppleScript) || UTTypeConformsTo(uti, kMZUTAppleScript) ||
        UTTypeEqual(uti, kMZUTAppleScriptBundle) || UTTypeConformsTo(uti, kMZUTAppleScriptBundle))
     {
+        CFRelease(uti);
         NSError* error = nil;
         if(![[MZPluginController sharedInstance] installPlugin:[NSURL fileURLWithPath:filename] force:NO error:&error] && error)
             return [NSApp presentError:error];
@@ -592,6 +593,7 @@ NSDictionary* findBinding(NSWindow* window) {
     }
     else
     {
+        CFRelease(uti);
         return [[MZMetaLoader sharedLoader] loadFromFile:filename];
     }
 }
@@ -700,7 +702,7 @@ NSDictionary* findBinding(NSWindow* window) {
         NSError* err = [NSError errorWithAppleScriptError:errDict];
         if(error)
             *error =  [err localizedDescription];
-        GTMLoggerError(@"Error loading script %d %d", path, [err localizedDescription]);
+        GTMLoggerError(@"Error loading script %@ %@", path, [err localizedDescription]);
         return;
     }
     if(script)
@@ -711,7 +713,7 @@ NSDictionary* findBinding(NSWindow* window) {
             NSError* err = [NSError errorWithAppleScriptError:errDict];
             if(error)
                 *error = [err localizedDescription];
-            GTMLoggerError(@"Error running script %d %d", path, [err localizedDescription]);
+            GTMLoggerError(@"Error running script %@ %@", path, [err localizedDescription]);
         }
         else
         {
