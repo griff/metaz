@@ -545,12 +545,6 @@ static NSMutableDictionary *sharedTagScriptNames = nil;
     return [MZTimeCode timeCodeWithString:str];
 }
 
-- (id)convertObjectForStorage:(id)obj
-{
-    [NSException raise:@"MZTagReadOnly" format:@"Tag '%@' is read only", [self identifier]];
-    return nil;
-}
-
 @end
 
 

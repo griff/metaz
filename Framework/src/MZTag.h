@@ -84,7 +84,7 @@
 
 @end
 
-@interface MZTimeCodeTag : MZTag {}
+@interface MZTimeCodeTag : MZReadOnlyTag {}
 
 @end
 

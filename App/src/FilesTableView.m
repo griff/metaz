@@ -128,6 +128,8 @@
             {
                 for(MZTag* tag in [pasted providedTags])
                 {
+                    if([tag isKindOfClass:[MZReadOnlyTag class]])
+                        continue;
                     id value = [pasted pure];
                     value = [value valueForKey:[tag identifier]];
                     if( count == 1 || ![edit getterChangedForKey:[tag identifier]])
