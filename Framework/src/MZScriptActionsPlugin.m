@@ -151,7 +151,7 @@ enum {
         NSString* msg = [errDict objectForKey:NSAppleScriptErrorMessage];
         NSString* app = [errDict objectForKey:NSAppleScriptErrorAppName];
         if(code != -1708 || msg || app)
-            MZLoggerError(@"Notification failed %@ %d %@", app, code, msg);
+            MZLoggerError(@"Notification failed %@ %ld %@", app, (long)code, msg);
     }
 }
 

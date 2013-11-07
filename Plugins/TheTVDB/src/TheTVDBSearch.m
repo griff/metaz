@@ -306,7 +306,7 @@
         [seriesDict setObject:[artistTag objectFromString:tvShow] forKey:MZArtistTagIdent];
     }
     else {
-        MZLoggerDebug(@"Series %d has no name: %@", series, [err localizedDescription]);
+        MZLoggerDebug(@"Series %lu has no name: %@", (unsigned long)series, [err localizedDescription]);
     }
 
 

@@ -24,7 +24,11 @@ void MZCopyFSPathFileOperationStatusProc (
     MZAsyncOperation* op = (MZAsyncOperation*)info;
     NSString* strCurrentItem = [op.fileManager stringWithFileSystemRepresentation:currentItem length:strlen(currentItem)];
     NSError* error = status2Error(status);
-    [op.fileManager asyncCopyOperation:op currentItem:strCurrentItem stage:stage error:error statusDictionary:(NSDictionary*)statusDictionary];
+    [op.fileManager asyncCopyOperation:op
+                           currentItem:strCurrentItem
+                                 stage:stage
+                                 error:error
+                      statusDictionary:(NSDictionary*)statusDictionary];
 }
 
 void MZMoveFSPathFileOperationStatusProc (

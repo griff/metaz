@@ -164,7 +164,7 @@
     [searchIndicator startAnimation:searchField];
     [arrayController setSortDescriptors:nil];
     searches++;
-    MZLoggerInfo(@"Starting search %d", searches);
+    MZLoggerInfo(@"Starting search %ld", (long)searches);
     [[MZMetaSearcher sharedSearcher] startSearchWithData:dict];
 }
 
@@ -268,7 +268,7 @@
 - (void)finishedSearch:(NSNotification *)note
 {
     searches--;
-    MZLoggerDebug(@"Finished search %d", searches);
+    MZLoggerDebug(@"Finished search %ld", (long)searches);
     if(searches <= 0)
         [searchIndicator stopAnimation:self];
 }

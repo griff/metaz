@@ -66,7 +66,7 @@
     status = MZErrorPosterImage;
     [error release];
     error = [theError retain];
-    MZLoggerError(@"Poster error: %d %@", [error code], [error domain]);
+    MZLoggerError(@"Poster error: %ld %@", (long)[error code], [error domain]);
     MZLoggerError(@"    Description - %@", [error localizedDescription]);
     MZLoggerError(@"    Reason - %@", [error localizedFailureReason]);
     MZLoggerError(@"    Suggestion - %@", [error localizedRecoverySuggestion]);
