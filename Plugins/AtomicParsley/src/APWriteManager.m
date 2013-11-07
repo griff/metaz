@@ -49,20 +49,6 @@
     self.finished = YES;
 }
 
-- (void)setupBackgroundStandardError
-{
-}
-
-- (void)setErrorString:(NSString *)err code:(int)status
-{
-    NSData* data = [[[self standardError] fileHandleForReading] readDataToEndOfFile];
-    NSString* str = [[[NSString alloc]
-                      initWithData:data
-                      encoding:NSUTF8StringEncoding] autorelease];
-    [super setErrorString:str code:status];
-}
-
-
 @end
 
 
@@ -152,20 +138,6 @@
     self.executing = NO;
     self.finished = YES;
 }
-
-- (void)setupBackgroundStandardError
-{
-}
-
-- (void)setErrorString:(NSString *)err code:(int)status
-{
-    NSData* data = [[[self standardError] fileHandleForReading] readDataToEndOfFile];
-    NSString* str = [[[NSString alloc]
-                      initWithData:data
-                      encoding:NSUTF8StringEncoding] autorelease];
-    [super setErrorString:str code:status];
-}
-
 
 - (void)standardOutputGotData:(NSNotification *)note
 {

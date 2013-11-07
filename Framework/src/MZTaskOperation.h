@@ -14,6 +14,7 @@
     NSTask* task;
     BOOL executing;
     BOOL finished;
+    BOOL standardErrorReason;
 }
 
 + (id)taskOperation;
@@ -24,6 +25,7 @@
 
 @property(getter=isExecuting,assign) BOOL executing;
 @property(getter=isFinished,assign) BOOL finished;
+@property(getter=isStandardErrorReason,assign) BOOL standardErrorReason;
 
 - (void)start;
 - (void)startOnMainThread;
