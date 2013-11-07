@@ -877,7 +877,12 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     }
     
     NSString* fileName;
-    if([args count]-3 == 0)
+    if([args count] == 5 &&
+       [[args objectAtIndex:4] isEqualToString:@"REMOVE_ALL"] &&
+       [[args objectAtIndex:3] isEqualToString:@"--artwork"])
+    {
+        fileName = [data loadedFileName];
+    } else if([args count] == 3)
         fileName = [data loadedFileName];
     else
         fileName = [data savedTempFileName];
