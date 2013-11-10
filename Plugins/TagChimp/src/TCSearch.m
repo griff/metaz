@@ -276,7 +276,7 @@
         }
         
         NSInteger totalChapters = [[item stringForXPath:@"movieChapters/totalChapters" error:NULL] integerValue];
-        if(totalChapters>0)
+        if(totalChapters>1)
         {
             NSArray* numbers = [[item nodesForXPath:@"movieChapters/chapter/chapterNumber" error:NULL]
                 arrayByPerformingSelector:@selector(stringValue)];
