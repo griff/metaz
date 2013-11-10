@@ -78,6 +78,7 @@
     }
     
     TheMovieDbSearch* search = [TheMovieDbSearch searchWithProvider:self delegate:delegate queue:queue];
+    [search fetchConfiguration];
     [search fetchMovieSearch:title];
     
     [self startSearch:search];

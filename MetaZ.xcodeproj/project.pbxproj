@@ -250,6 +250,8 @@
 		1BDD86A71094A8CC00E3C81D /* MZPresets.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDD86A61094A8CC00E3C81D /* MZPresets.m */; };
 		1BDD87A11095FB5100E3C81D /* PresetsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDD87A01095FB5100E3C81D /* PresetsWindowController.m */; };
 		1BDEC5ED1620DE160051D656 /* AEVTBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B4CFF8F161CDF0100B12009 /* AEVTBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BE35216182C6C64004FAB1B /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE35214182C6C2B004FAB1B /* JSONKit.m */; };
+		1BE35217182C6C7C004FAB1B /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BE35213182C6C2B004FAB1B /* JSONKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA6B3B106CF01B004B1A7F /* PosterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6B3A106CF01B004B1A7F /* PosterView.m */; };
 		1BEA6B81106D66AD004B1A7F /* faded_cow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BEA6B80106D66AD004B1A7F /* faded_cow.png */; };
 		1BEA6C95106E7203004B1A7F /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6C94106E7203004B1A7F /* Utilities.m */; };
@@ -1151,6 +1153,10 @@
 		1BDD86A61094A8CC00E3C81D /* MZPresets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZPresets.m; sourceTree = "<group>"; };
 		1BDD879F1095FB5100E3C81D /* PresetsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetsWindowController.h; sourceTree = "<group>"; };
 		1BDD87A01095FB5100E3C81D /* PresetsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresetsWindowController.m; sourceTree = "<group>"; };
+		1BE35212182C6C2B004FAB1B /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
+		1BE35213182C6C2B004FAB1B /* JSONKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		1BE35214182C6C2B004FAB1B /* JSONKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		1BE35215182C6C2B004FAB1B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		1BEA6B39106CF01B004B1A7F /* PosterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterView.h; sourceTree = "<group>"; };
 		1BEA6B3A106CF01B004B1A7F /* PosterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterView.m; sourceTree = "<group>"; };
 		1BEA6B80106D66AD004B1A7F /* faded_cow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = faded_cow.png; path = App/resources/faded_cow.png; sourceTree = "<group>"; };
@@ -1574,6 +1580,7 @@
 		1B449CEE10DCCAD500B9C751 /* External Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1BE35211182C6BFE004FAB1B /* JSONKit */,
 				1B4CFF8E161CDED800B12009 /* AEVTBuilder */,
 				1B069665149BD32D00B5FA90 /* MGViewAnimation */,
 				1B523B4813F4B24E00C20B7D /* asi-http-request */,
@@ -2291,6 +2298,18 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		1BE35211182C6BFE004FAB1B /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				1BE35212182C6C2B004FAB1B /* CHANGELOG.md */,
+				1BE35213182C6C2B004FAB1B /* JSONKit.h */,
+				1BE35214182C6C2B004FAB1B /* JSONKit.m */,
+				1BE35215182C6C2B004FAB1B /* README.md */,
+			);
+			name = JSONKit;
+			path = Externals/JSONKit;
+			sourceTree = "<group>";
+		};
 		1BEA6E68106EF248004B1A7F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
@@ -2490,6 +2509,7 @@
 				1BDEC5ED1620DE160051D656 /* AEVTBuilder.h in Headers */,
 				1BD55C5E16483F5E00F9C579 /* MZActionsPlugin.h in Headers */,
 				1BD55C621648431D00F9C579 /* MZScriptActionsPlugin.h in Headers */,
+				1BE35217182C6C7C004FAB1B /* JSONKit.h in Headers */,
 				1BD55C661648466700F9C579 /* NSError+MZScriptError.h in Headers */,
 				1B4C1F4016554B0100011621 /* MZHTTPRequest.h in Headers */,
 				1B38FCDA1673F7E500C171F9 /* NSString+MimeTypePattern.h in Headers */,
@@ -3090,6 +3110,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BE35216182C6C64004FAB1B /* JSONKit.m in Sources */,
 				1BEA6F9C106EFC3F004B1A7F /* MetaEdits.m in Sources */,
 				1BEA6F9E106EFC3F004B1A7F /* MetaLoaded.m in Sources */,
 				1BEA6FA2106EFC3F004B1A7F /* MZConstants.m in Sources */,
