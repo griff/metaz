@@ -84,7 +84,7 @@
         [self willChangeValueForKey:@"duration"];
     
     MZMutableTimedTextItem* it = [theItem mutableCopy];
-    [item release];
+    MZMutableTimedTextItem* oldItem = item;
     item = it;
 
     if(![oldDuration isEqual:[theItem duration]])
@@ -92,6 +92,7 @@
 
     if(![oldStart isEqual:[theItem start]])
         [self didChangeValueForKey:@"start"];
+    [oldItem release];
 }
 
 - (MZTimeCode *)duration
