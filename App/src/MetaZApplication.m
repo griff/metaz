@@ -11,6 +11,7 @@
 #import "MZMetaLoader.h"
 #import "MZWriteQueue.h"
 #import "MZWriteQueueStatus.h"
+#import <MetaZKit/MZLogger.h>
 
 @implementation MetaZApplication
 @synthesize filesController;
@@ -18,7 +19,7 @@
 - (id)handleOpenScriptCommand:(NSScriptCommand *)test;
 {
     id direct = [test directParameter];
-    NSLog(@"Handle open: %@ %@", direct, [test evaluatedArguments]);
+    MZLoggerDebug(@"Handle open: %@ %@", direct, [test evaluatedArguments]);
     if([direct isKindOfClass:[NSArray class]])
     {
         NSMutableArray *names = [NSMutableArray arrayWithCapacity:[direct count]];
@@ -96,7 +97,7 @@
         documents = [[NSMutableArray alloc] init];
     [documents removeAllObjects];
     
-    NSArray* files = [MZMetaLoader sharedLoader].files;
+    NSArray* files = [filesController arrangedObjects];
     for(MetaEdits* edit in files)
     {
         [documents addObject:[MZMetaDataDocument documentWithEdit:edit]];

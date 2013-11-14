@@ -11,7 +11,6 @@
 
 @interface AtomicParsleyPlugin : MZDataProviderPlugin
 {
-    NSArray* types;
     NSArray* tags;
     NSDictionary* read_mapping;
     NSDictionary* write_mapping;

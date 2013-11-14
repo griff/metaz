@@ -19,7 +19,7 @@
 - (NSMenu *)menuForEvent:(NSEvent *)event
 {
     NSPoint event_location = [event locationInWindow];
-    NSPoint local_point = [self convertPointFromBase:event_location];
+    NSPoint local_point = [self convertPoint:event_location fromView:nil];
     NSInteger row = [self rowAtPoint:local_point];
     [self selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:NO];
     

@@ -18,22 +18,6 @@
 #define MaxShortDescription 256
 
 
-NSArray* MZUTIFilenameExtension(NSArray* utis)
-{
-    NSMutableArray* ret = [NSMutableArray arrayWithCapacity:utis.count];
-    for(NSString* uti in utis)
-    {
-        NSDictionary* dict = (NSDictionary*)UTTypeCopyDeclaration((CFStringRef)uti);
-        //[dict writeToFile:[NSString stringWithFormat:@"/Users/bro/Documents/Maven-Group/MetaZ/%@.plist", uti] atomically:NO];
-        NSDictionary* tags = [dict objectForKey:(NSString*)kUTTypeTagSpecificationKey];
-        NSArray* extensions = [tags objectForKey:(NSString*)kUTTagClassFilenameExtension];
-        [ret addObjectsFromArray:extensions];
-        [dict release];
-    }
-    return ret;
-}
-
-
 NSResponder* findResponder(NSWindow* window) {
     NSResponder* oldResponder =  [window firstResponder];
     if([oldResponder isKindOfClass:[NSTextView class]] && [window fieldEditor:NO forObject:nil] != nil)
@@ -334,12 +318,6 @@ NSDictionary* findBinding(NSWindow* window) {
 
 - (IBAction)openDocument:(id)sender {
     NSArray *fileTypes = [[MZMetaLoader sharedLoader] types];
-
-    NSArray* extensions = MZUTIFilenameExtension(fileTypes);
-    for(NSString* ext in extensions)
-    {
-        MZLoggerDebug(@"Found extention %@", ext);
-    }
     
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
     [oPanel setAllowsMultipleSelection:YES];
@@ -347,7 +325,7 @@ NSDictionary* findBinding(NSWindow* window) {
     [oPanel setCanChooseDirectories:NO];
     [oPanel beginSheetForDirectory: nil
                               file: nil
-                             types: extensions
+                             types: fileTypes
                     modalForWindow: window
                      modalDelegate: self
                     didEndSelector: @selector(openPanelDidEnd:returnCode:contextInfo:) 
@@ -607,6 +585,7 @@ NSDictionary* findBinding(NSWindow* window) {
        UTTypeEqual(uti, kMZUTAppleScript) || UTTypeConformsTo(uti, kMZUTAppleScript) ||
        UTTypeEqual(uti, kMZUTAppleScriptBundle) || UTTypeConformsTo(uti, kMZUTAppleScriptBundle))
     {
+        CFRelease(uti);
         NSError* error = nil;
         if(![[MZPluginController sharedInstance] installPlugin:[NSURL fileURLWithPath:filename] force:NO error:&error] && error)
             return [NSApp presentError:error];
@@ -614,6 +593,7 @@ NSDictionary* findBinding(NSWindow* window) {
     }
     else
     {
+        CFRelease(uti);
         return [[MZMetaLoader sharedLoader] loadFromFile:filename];
     }
 }
@@ -722,7 +702,7 @@ NSDictionary* findBinding(NSWindow* window) {
         NSError* err = [NSError errorWithAppleScriptError:errDict];
         if(error)
             *error =  [err localizedDescription];
-        GTMLoggerError(@"Error loading script %d %d", path, [err localizedDescription]);
+        GTMLoggerError(@"Error loading script %@ %@", path, [err localizedDescription]);
         return;
     }
     if(script)
@@ -733,7 +713,7 @@ NSDictionary* findBinding(NSWindow* window) {
             NSError* err = [NSError errorWithAppleScriptError:errDict];
             if(error)
                 *error = [err localizedDescription];
-            GTMLoggerError(@"Error running script %d %d", path, [err localizedDescription]);
+            GTMLoggerError(@"Error running script %@ %@", path, [err localizedDescription]);
         }
         else
         {

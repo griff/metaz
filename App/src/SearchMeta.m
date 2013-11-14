@@ -123,8 +123,9 @@
 -(id)getterValueForKey:(NSString *)aKey
 {
     id ret = nil;
-    if(!ignoreController)
+    if(!ignoreController) {
         ret = [searchController protectedValueForKeyPath:[@"selection." stringByAppendingString:aKey]];
+    }
     if(ret == nil || ret == NSNotApplicableMarker || ret == NSNoSelectionMarker)
         return [provider valueForKey:aKey];
     return ret;

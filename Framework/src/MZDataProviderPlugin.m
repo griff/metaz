@@ -11,8 +11,16 @@
 
 - (NSArray *)types
 {
-    [self doesNotRecognizeSelector:_cmd];
-    return nil;
+    NSArray* types = [self.bundle objectForInfoDictionaryKey:@"CFBundleDocumentTypes"];
+    if(!types)
+        [self doesNotRecognizeSelector:_cmd];
+    NSMutableArray* ret = [NSMutableArray array];
+    for(NSDictionary* dict in types)
+    {
+        NSArray* utis = [dict objectForKey:@"LSItemContentTypes"];
+        [ret addObjectsFromArray:utis];
+    }
+    return ret;
 }
 
 - (NSArray *)providedTags;

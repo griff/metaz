@@ -52,6 +52,8 @@
 {
     [editor release];
     [item release];
+    [text release];
+    [no release];
     [super dealloc];
 }
 
@@ -65,7 +67,9 @@
 - (void)updateText:(NSString *)newText
 {
     [self willChangeValueForKey:@"text"];
-    text = [newText copy];
+    NSString* te = [newText copy];
+    [text release];
+    text = te;
     [self didChangeValueForKey:@"text"];
 }
 
@@ -78,14 +82,17 @@
     MZTimeCode* oldDuration = [item duration];
     if(![oldDuration isEqual:[theItem duration]])
         [self willChangeValueForKey:@"duration"];
-        
-    item = [theItem mutableCopy];
+    
+    MZMutableTimedTextItem* it = [theItem mutableCopy];
+    MZMutableTimedTextItem* oldItem = item;
+    item = it;
 
     if(![oldDuration isEqual:[theItem duration]])
         [self didChangeValueForKey:@"duration"];
 
     if(![oldStart isEqual:[theItem start]])
         [self didChangeValueForKey:@"start"];
+    [oldItem release];
 }
 
 - (MZTimeCode *)duration
@@ -100,7 +107,9 @@
 
 - (void)setText:(NSString *)newText
 {
-    text = [newText copy];
+    NSString* te = [newText copy];
+    [text release];
+    text = te;
     [editor itemChanged:self];
 }
 

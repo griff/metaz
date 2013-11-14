@@ -106,9 +106,6 @@
     if(self)
     {
         writes = [[NSMutableArray alloc] init];
-        types = [[NSArray alloc] initWithObjects:
-            @"public.mpeg-4", @"com.apple.quicktime-movie",
-            @"com.apple.m4v-video", @"com.apple.protected-mpeg-4-video", nil];
         tags = [[MZTag allKnownTags] retain];
         NSArray* readmapkeys = [NSArray arrayWithObjects:
             @"©nam", @"©ART", @"©day",
@@ -392,7 +389,7 @@
             initWithObjects:ratingkeys
                     forKeys:ratingvalues];
                     
-        NSArray* typeNames = [[NSArray alloc] initWithObjects:
+        NSArray* typeNames = [NSArray arrayWithObjects:
             @"", @"Movie", @"Normal", 
             @"Audiobook", @"Whacked Bookmark", @"Music Video",
             @"Short Film", @"TV Show", @"Booklet",
@@ -412,7 +409,6 @@
 - (void)dealloc
 {
     [writes release];
-    [types release];
     [tags release];
     [read_mapping release];
     [write_mapping release];
@@ -425,11 +421,6 @@
 - (BOOL)isBuiltIn
 {
     return YES;
-}
-
--(NSArray *)types
-{
-    return types;
 }
 
 -(NSArray *)providedTags
@@ -574,18 +565,21 @@
     if(trkn)
     {
         NSArray* trks = [trkn componentsSeparatedByString:@"/"];
-        NSAssert([trks count] < 3, @"Only two tracks");
-
-        MZTag* tag1 = [MZTag tagForIdentifier:MZTrackNumberTagIdent];
-        NSNumber* num = [tag1 objectFromString:[trks objectAtIndex:0]];
-        [tagdict setObject:num forKey:MZTrackNumberTagIdent];
-
-        if([trks count] == 2)
+        if([trks count] < 3)
         {
-            MZTag* tag2 = [MZTag tagForIdentifier:MZTrackCountTagIdent];
-            NSNumber* count = [tag2 objectFromString:[trks objectAtIndex:1]];
-            [tagdict setObject:count forKey:MZTrackCountTagIdent];
-        }
+            MZTag* tag1 = [MZTag tagForIdentifier:MZTrackNumberTagIdent];
+            NSNumber* num = [tag1 objectFromString:[trks objectAtIndex:0]];
+            [tagdict setObject:num forKey:MZTrackNumberTagIdent];
+
+            if([trks count] == 2)
+            {
+                MZTag* tag2 = [MZTag tagForIdentifier:MZTrackCountTagIdent];
+                NSNumber* count = [tag2 objectFromString:[trks objectAtIndex:1]];
+                [tagdict setObject:count forKey:MZTrackCountTagIdent];
+            }
+        } else
+            MZLoggerError(@"More than two track values in %@", trkn);
+
     }
     
     // Special handling of disc num
@@ -593,18 +587,20 @@
     if(disk)
     {
         NSArray* trks = [disk componentsSeparatedByString:@"/"];
-        NSAssert([trks count] < 3, @"Only two disks");
-
-        MZTag* tag1 = [MZTag tagForIdentifier:MZDiscNumberTagIdent];
-        NSNumber* num = [tag1 objectFromString:[trks objectAtIndex:0]];
-        [tagdict setObject:num forKey:MZDiscNumberTagIdent];
-
-        if([trks count] == 2)
+        if([trks count] < 3)
         {
-            MZTag* tag2 = [MZTag tagForIdentifier:MZDiscCountTagIdent];
-            NSNumber* count = [tag2 objectFromString:[trks objectAtIndex:1]];
-            [tagdict setObject:count forKey:MZDiscCountTagIdent];
-        }
+            MZTag* tag1 = [MZTag tagForIdentifier:MZDiscNumberTagIdent];
+            NSNumber* num = [tag1 objectFromString:[trks objectAtIndex:0]];
+            [tagdict setObject:num forKey:MZDiscNumberTagIdent];
+
+            if([trks count] == 2)
+            {
+                MZTag* tag2 = [MZTag tagForIdentifier:MZDiscCountTagIdent];
+                NSNumber* count = [tag2 objectFromString:[trks objectAtIndex:1]];
+                [tagdict setObject:count forKey:MZDiscCountTagIdent];
+            }
+        } else
+            MZLoggerError(@"More than two disk values in %@", disk);
     }
         
     // Filename auto set
@@ -886,7 +882,12 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     }
     
     NSString* fileName;
-    if([args count]-3 == 0)
+    if([args count] == 5 &&
+       [[args objectAtIndex:4] isEqualToString:@"REMOVE_ALL"] &&
+       [[args objectAtIndex:3] isEqualToString:@"--artwork"])
+    {
+        fileName = [data loadedFileName];
+    } else if([args count] == 3)
         fileName = [data loadedFileName];
     else
         fileName = [data savedTempFileName];

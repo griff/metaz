@@ -107,6 +107,7 @@
     RunStatus status = [writeQueue status];
     switch (status)
     {
+        case QueuePaused:
         case QueueStopped:
             if(progressShowing)
             {

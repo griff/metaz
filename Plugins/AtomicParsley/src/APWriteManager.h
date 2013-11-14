@@ -26,11 +26,11 @@
     MetaEdits* edits;
 }
 
-+ (id)controllerWithProvider:(MZDataProviderPlugin *)provider
++ (id)controllerWithProvider:(AtomicParsleyPlugin *)provider
                     delegate:(id<MZDataWriteDelegate>)delegate
                        edits:(MetaEdits *)edits;
 
-- (id)initWithProvider:(MZDataProviderPlugin *)provider
+- (id)initWithProvider:(AtomicParsleyPlugin *)provider
               delegate:(id<MZDataWriteDelegate>)delegate
                  edits:(MetaEdits *)edits;
 

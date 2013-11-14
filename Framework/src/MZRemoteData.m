@@ -8,7 +8,7 @@
 
 #import "MZRemoteData.h"
 #import <MetaZKit/MZLogger.h>
-
+#import <MetaZKit/NSString+MimeTypePattern.h>
 
 @interface MZRemoteData()
 
@@ -44,17 +44,33 @@
     return _MZSharedRemoteDataOperationQueue;
 }
 
++ (id)imageDataWithURL:(NSURL *)url;
+{
+    return [self dataWithURL:url expectedMimeType:@"image/*"];
+}
+
 + (id)dataWithURL:(NSURL *)url
 {
     return [[[self alloc] initWithURL:url] autorelease];
 }
 
++ (id)dataWithURL:(NSURL *)url expectedMimeType:(NSString *)mimeType;
+{
+    return [[[self alloc] initWithURL:url expectedMimeType:mimeType] autorelease];
+}
+
 - (id)initWithURL:(NSURL *)finalURL
+{
+    return [self initWithURL:finalURL expectedMimeType:@"*"];
+}
+
+- (id)initWithURL:(NSURL *)finalURL expectedMimeType:(NSString *)mimeType;
 {
     self = [super init];
     if(self)
     {
         url = [finalURL retain];
+        expectedMimeType = [mimeType retain];
     }
     return self;
 }
@@ -66,6 +82,8 @@
     [data release];
     [error release];
     self.userInfo = nil;
+    [url release];
+    [expectedMimeType release];
     [super dealloc];
 }
 
@@ -108,7 +126,26 @@
             self.error = err;
         }
         else
-            self.data = [theRequest responseData];
+        {
+            NSStringEncoding charset = 0;
+            NSString* mimeType = nil;
+            [ASIHTTPRequest parseMimeType:&mimeType andResponseEncoding:&charset fromContentType:[[theRequest responseHeaders] valueForKey:@"Content-Type"]];
+
+            if([mimeType matchesMimeTypePattern:expectedMimeType])
+                self.data = [theRequest responseData];
+            else
+            {
+                MZLoggerError(@"URL '%@' type=%@", self.url, mimeType);
+                NSDictionary* info = [NSDictionary 
+                    dictionaryWithObject:[NSString stringWithFormat:@"Unsupported Media Type %@", mimeType]
+                                  forKey:NSLocalizedDescriptionKey];
+                err = [NSError errorWithDomain:NetworkRequestErrorDomain
+                                          code:415
+                                      userInfo:info];
+                self.error = err;
+            }
+
+        }
         self.isLoaded = YES;
         self.request = nil;
     }

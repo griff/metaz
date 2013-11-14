@@ -221,7 +221,7 @@
             bannerMirror,
             path];
         
-        MZRemoteData* data = [MZRemoteData dataWithURL:[NSURL URLWithString:bannerUrl]];
+        MZRemoteData* data = [MZRemoteData imageDataWithURL:[NSURL URLWithString:bannerUrl]];
         data.userInfo = [NSNumber numberWithFloat:rating];
         [banners addObject:data];
         [data loadData];
@@ -306,7 +306,7 @@
         [seriesDict setObject:[artistTag objectFromString:tvShow] forKey:MZArtistTagIdent];
     }
     else {
-        MZLoggerDebug(@"Series %d has no name: %@", series, [err localizedDescription]);
+        MZLoggerDebug(@"Series %lu has no name: %@", (unsigned long)series, [err localizedDescription]);
     }
 
 

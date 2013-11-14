@@ -20,7 +20,7 @@
 @property (assign)   NSInteger num;
 @property (readonly) MZTimeCode* duration;
 @property (readonly) MZTimeCode* start;
-@property (copy)     NSString* text;
+@property (copy,nonatomic)     NSString* text;
 @property (readonly) NSColor* itemColor;
 
 + (id)wrapperWithEditor:(ChapterEditor *)editor;

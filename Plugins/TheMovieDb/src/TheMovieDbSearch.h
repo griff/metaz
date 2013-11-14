@@ -15,6 +15,8 @@
     NSOperationQueue* queue;
     id provider;
     id<MZSearchProviderDelegate> delegate;
+    MZHTTPRequest* configurationRequest;
+    NSString* imageBaseURL;
 }
 @property(readonly) id provider;
 @property(readonly) id<MZSearchProviderDelegate> delegate;
@@ -26,11 +28,15 @@
 
 - (void)operationsFinished;
 
+- (void)fetchConfiguration;
+- (void)fetchConfigurationCompleted:(id)request;
+- (void)fetchConfigurationFailed:(id)request;
+
 - (void)fetchMovieSearch:(NSString *)name;
 - (void)fetchMovieSearchCompleted:(id)request;
 - (void)fetchMovieSearchFailed:(id)request;
 
-- (void)fetchMovieInfo:(NSString *)identifier;
+- (void)fetchMovieInfo:(NSNumber *)identifier;
 - (void)fetchMovieInfoCompleted:(id)request;
 - (void)fetchMovieInfoFailed:(id)request;
 

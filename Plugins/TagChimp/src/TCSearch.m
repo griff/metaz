@@ -262,7 +262,7 @@
         {
             NSURL* url = [NSURL URLWithString:
                 [coverArtLarge stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-            MZRemoteData* data = [MZRemoteData dataWithURL:url];
+            MZRemoteData* data = [MZRemoteData imageDataWithURL:url];
             [dict setObject:data forKey:MZPictureTagIdent];
             [data loadData];
         }
@@ -276,7 +276,7 @@
         }
         
         NSInteger totalChapters = [[item stringForXPath:@"movieChapters/totalChapters" error:NULL] integerValue];
-        if(totalChapters>0)
+        if(totalChapters>1)
         {
             NSArray* numbers = [[item nodesForXPath:@"movieChapters/chapter/chapterNumber" error:NULL]
                 arrayByPerformingSelector:@selector(stringValue)];
@@ -284,43 +284,57 @@
                 arrayByPerformingSelector:@selector(stringValue)];
             NSArray* times = [[item nodesForXPath:@"movieChapters/chapter/chapterTime" error:NULL]
                 arrayByPerformingSelector:@selector(stringValue)];
-            NSAssert1([numbers count] == totalChapters, @"chapter numbers do not match total chapter count in tagChimp entry %@", tagChimpId);
-            NSAssert1([titles count] == totalChapters, @"chapter titles do not match total chapter count in tagChimp entry %@", tagChimpId);
-            NSAssert1([times count] == totalChapters, @"chapter times do not match total chapter count in tagChimp entry %@", tagChimpId);
-            
-            NSMutableDictionary* chapterDict = [NSMutableDictionary dictionary];
-            MZTimeCode* start = [MZTimeCode timeCodeWithMillis:0];
-            BOOL hasTime = YES;
-            for(NSInteger i=0; i<totalChapters; i++)
-            {
-                NSInteger number = [[numbers objectAtIndex:i] integerValue];
-                NSString* title = [titles objectAtIndex:i];
-                NSString* time = [times objectAtIndex:i];
-                
-                MZTimeCode* timeCode = [MZTimeCode timeCodeWithString:time];
-                
-                // Assumes timeCode is duration
-                hasTime = hasTime && [timeCode millis]>0;
 
-                MZTimedTextItem* text = [MZTimedTextItem textItemWithStart:start duration:timeCode text:title];
-                [chapterDict setObject:text forKey:[NSNumber numberWithInteger:number]];
-                start = [start addTimeCode:timeCode];
-            }
-            NSMutableArray* chapters = [NSMutableArray array];
-            NSInteger i=0;
-            for(NSNumber* idx in [[chapterDict allKeys] sortedArrayUsingSelector:@selector(compare:)])
+            if([numbers count] == totalChapters &&
+               [titles count] == totalChapters &&
+               [times count] == totalChapters)
             {
-                NSInteger number = [idx integerValue];
-                NSAssert1(number==i+1,@"Weird chapter number in tagChimp entry %@", tagChimpId);
-                MZTimedTextItem* text = [chapterDict objectForKey:idx];
-                if(hasTime)
-                    [chapters addObject:text];
-                else
-                    [chapters addObject:[text text]];
-                i++;
+                NSMutableDictionary* chapterDict = [NSMutableDictionary dictionary];
+                MZTimeCode* start = [MZTimeCode timeCodeWithMillis:0];
+                BOOL hasTime = YES;
+                for(NSInteger i=0; i<totalChapters; i++)
+                {
+                    NSInteger number = [[numbers objectAtIndex:i] integerValue];
+                    NSString* title = [titles objectAtIndex:i];
+                    NSString* time = [times objectAtIndex:i];
+                
+                    MZTimeCode* timeCode = [MZTimeCode timeCodeWithString:time];
+                
+                    // Ignore first chapter if its number is 0 and the duration is 0
+                    if(number == 0 && [timeCode millis] == 0)
+                        continue;
+                    
+                    hasTime = hasTime && [timeCode millis]>0;
+
+                    MZTimedTextItem* text = [MZTimedTextItem textItemWithStart:start duration:timeCode text:title];
+                    [chapterDict setObject:text forKey:[NSNumber numberWithInteger:number]];
+                    start = [start addTimeCode:timeCode];
+                }
+                NSMutableArray* chapters = [NSMutableArray array];
+                NSInteger i=0;
+                for(NSNumber* idx in [[chapterDict allKeys] sortedArrayUsingSelector:@selector(compare:)])
+                {
+                    //NSInteger number = [idx integerValue];
+                    //NSAssert1(number==i+1,@"Weird chapter number in tagChimp entry %@", tagChimpId);
+                    MZTimedTextItem* text = [chapterDict objectForKey:idx];
+                    if(hasTime)
+                        [chapters addObject:text];
+                    else
+                        [chapters addObject:[text text]];
+                    i++;
+                }
+                NSString* key = hasTime ? MZChaptersTagIdent : MZChapterNamesTagIdent;
+                [dict setObject:[NSArray arrayWithArray:chapters] forKey:key];
             }
-            NSString* key = hasTime ? MZChaptersTagIdent : MZChapterNamesTagIdent;
-            [dict setObject:[NSArray arrayWithArray:chapters] forKey:key];
+            else
+            {
+                if([numbers count] != totalChapters)
+                    MZLoggerError(@"chapter numbers do not match total chapter count in tagChimp entry %@", tagChimpId);
+                if([titles count] != totalChapters)
+                    MZLoggerError(@"chapter titles do not match total chapter count in tagChimp entry %@", tagChimpId);
+                if([times count] != totalChapters)
+                    MZLoggerError(@"chapter times do not match total chapter count in tagChimp entry %@", tagChimpId);
+            }
         }
         
         if([dict objectForKey:TagChimpIdTagIdent])

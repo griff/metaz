@@ -39,8 +39,10 @@
 - (id)initWithTask:(NSTask *)theTask
 {
     self = [super init];
-    if(self)
+    if(self) {
         task = [theTask retain];
+        standardErrorReason = YES;
+    }
     return self;
 }
 
@@ -58,6 +60,7 @@
 
 @synthesize executing;
 @synthesize finished;
+@synthesize standardErrorReason;
 
 - (void)start
 {
@@ -117,6 +120,12 @@
 - (void)setupStandardError
 {
     [self setStandardError:[NSPipe pipe]];
+    if(!self.standardErrorReason)
+        [self setupBackgroundStandardError];
+}
+
+- (void)setupBackgroundStandardError;
+{
     [[NSNotificationCenter defaultCenter]
             addObserver:self
                selector:@selector(standardErrorGotData:)
@@ -264,19 +273,35 @@
     self.finished = YES;
 }
 
+- (void)setErrorString:(NSString *)err code:(int)status
+{
+    if(self.standardErrorReason) {
+        NSData* data = [[[self standardError] fileHandleForReading] readDataToEndOfFile];
+        NSString* errStr = [[[NSString alloc]
+                                initWithData:data
+                                    encoding:NSUTF8StringEncoding] autorelease];
+        errStr = [errStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if([errStr length] > 0)
+            err = errStr;
+    }
+
+    NSString* program = [[task launchPath] lastPathComponent];
+    MZLoggerError(@"%@", err);
+    NSDictionary* dict = [NSDictionary dictionaryWithObject:err
+                                                     forKey:NSLocalizedDescriptionKey];
+    self.error = [NSError errorWithDomain:program code:status userInfo:dict];
+}
+
 - (void)setErrorFromStatus:(int)status
 {
     if(status != 0)
     {
         NSString* program = [[task launchPath] lastPathComponent];
-        MZLoggerError(@"%@ terminated bad %d", program, status);
-        NSDictionary* dict = [NSDictionary dictionaryWithObject:
-            [NSString stringWithFormat:
-                NSLocalizedString(@"%@ failed with exit code %d", @"Write failed error"),
-                program,
-                status]
-            forKey:NSLocalizedDescriptionKey];
-        self.error = [NSError errorWithDomain:program code:status userInfo:dict];
+        [self setErrorString:[NSString stringWithFormat:
+                                NSLocalizedString(@"%@ failed with exit code %d", @"Write failed error"),
+                                program,
+                                status]
+                        code:status];
     }
 }
 

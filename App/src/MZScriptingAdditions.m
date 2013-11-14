@@ -8,6 +8,7 @@
 
 #import "MZScriptingAdditions.h"
 #import "MZScriptingEnums.h"
+#import <MetaZKit/MZLogger.h>
 
 const AEKeyword keyASUserRecordFields         = 'usrf';
 
@@ -312,7 +313,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
     CFAbsoluteTime absTime;
     UCConvertLongDateTimeToCFAbsoluteTime([desc longDateTimeValue], &absTime);
     NSDate *resultDate = (NSDate *)CFDateCreate(NULL, absTime);
-    return resultDate;
+    return [resultDate autorelease];
 }
 
 - (NSAppleEventDescriptor *)scriptingAnyDescriptor;
@@ -596,7 +597,7 @@ const AEKeyword keyASUserRecordFields         = 'usrf';
                 OSStatus cpyErr = FSCopyAliasInfo(handle, &t, &v, &path, NULL, NULL);
                 if(cpyErr == 0)
                     return [NSString stringWithString:(NSString *)path];
-                NSLog(@"FSCopyAliasInfo error %d", cpyErr);
+                MZLoggerError(@"FSCopyAliasInfo error %d", (int)cpyErr);
                 return [NSNull null];
             }
         case typeObjectSpecifier:

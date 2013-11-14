@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -91,6 +91,8 @@
 		1B36E75E1406612F009F542A /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B523B4D13F4B2B500C20B7D /* ASIDataCompressor.m */; };
 		1B36E78C14066727009F542A /* MZASISearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B36E78A14066727009F542A /* MZASISearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B36E78D14066727009F542A /* MZASISearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B36E78B14066727009F542A /* MZASISearch.m */; };
+		1B38FCDA1673F7E500C171F9 /* NSString+MimeTypePattern.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B38FCD81673F7E500C171F9 /* NSString+MimeTypePattern.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B38FCDB1673F7E500C171F9 /* NSString+MimeTypePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B38FCD91673F7E500C171F9 /* NSString+MimeTypePattern.m */; settings = {COMPILER_FLAGS = "-Wno-comment"; }; };
 		1B3AD7A311055DF300B33F85 /* MZQueueOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3AD7A111055DF300B33F85 /* MZQueueOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B3AD7A411055DF300B33F85 /* MZQueueOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3AD7A211055DF300B33F85 /* MZQueueOperation.m */; };
 		1B3AD7D811057E9200B33F85 /* MZErrorOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3AD7D611057E9200B33F85 /* MZErrorOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -218,9 +220,6 @@
 		1BD3D2BB108CC5D700BE6943 /* MZRemoteData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD3D2B9108CC5D700BE6943 /* MZRemoteData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BD3D2BC108CC5D700BE6943 /* MZRemoteData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD3D2BA108CC5D700BE6943 /* MZRemoteData.m */; };
 		1BD3D311108DD03E00BE6943 /* PictureEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD3D310108DD03E00BE6943 /* PictureEditor.m */; };
-		1BD3D3FE108E694100BE6943 /* faded_cow_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3D3FB108E694100BE6943 /* faded_cow_error.png */; };
-		1BD3D3FF108E694100BE6943 /* faded_cow_fatal.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3D3FC108E694100BE6943 /* faded_cow_fatal.png */; };
-		1BD3D400108E694100BE6943 /* faded_cow_multiple.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BD3D3FD108E694100BE6943 /* faded_cow_multiple.png */; };
 		1BD55BED16482D7600F9C579 /* Return iTunes selected.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 1B63A36616458A1C00461FC9 /* Return iTunes selected.applescript */; };
 		1BD55C5E16483F5E00F9C579 /* MZActionsPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD55C5C16483F5E00F9C579 /* MZActionsPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BD55C5F16483F5E00F9C579 /* MZActionsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD55C5D16483F5E00F9C579 /* MZActionsPlugin.m */; };
@@ -248,8 +247,9 @@
 		1BDD86A71094A8CC00E3C81D /* MZPresets.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDD86A61094A8CC00E3C81D /* MZPresets.m */; };
 		1BDD87A11095FB5100E3C81D /* PresetsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDD87A01095FB5100E3C81D /* PresetsWindowController.m */; };
 		1BDEC5ED1620DE160051D656 /* AEVTBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B4CFF8F161CDF0100B12009 /* AEVTBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BE35216182C6C64004FAB1B /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE35214182C6C2B004FAB1B /* JSONKit.m */; };
+		1BE35217182C6C7C004FAB1B /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BE35213182C6C2B004FAB1B /* JSONKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA6B3B106CF01B004B1A7F /* PosterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6B3A106CF01B004B1A7F /* PosterView.m */; };
-		1BEA6B81106D66AD004B1A7F /* faded_cow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BEA6B80106D66AD004B1A7F /* faded_cow.png */; };
 		1BEA6C95106E7203004B1A7F /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6C94106E7203004B1A7F /* Utilities.m */; };
 		1BEA6DDA106ED837004B1A7F /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BEA6DD8106ED837004B1A7F /* PreferencesWindow.xib */; };
 		1BEA6DDD106ED8E4004B1A7F /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6DDC106ED8E4004B1A7F /* PreferencesWindowController.m */; };
@@ -277,15 +277,16 @@
 		1BEA6FAF106EFC3F004B1A7F /* MZPluginController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BEA6DAC106EC632004B1A7F /* MZPluginController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA6FB0106EFC3F004B1A7F /* MZPluginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6DAD106EC632004B1A7F /* MZPluginController.m */; };
 		1BEA6FB1106EFC3F004B1A7F /* MZPlugin+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BEA6E48106EEF34004B1A7F /* MZPlugin+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1BEA6FB2106EFC3F004B1A7F /* MZPlugin+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6E49106EEF34004B1A7F /* MZPlugin+Private.m */; };
 		1BEA718F10712A17004B1A7F /* NSArray+Mapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BEA718D10712A17004B1A7F /* NSArray+Mapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA719010712A17004B1A7F /* NSArray+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA718E10712A17004B1A7F /* NSArray+Mapping.m */; };
 		1BEA71BF10716B90004B1A7F /* APWriteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA71BE10716B90004B1A7F /* APWriteManager.m */; };
 		1BEA71D110717785004B1A7F /* MZWriteQueueStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA71D010717785004B1A7F /* MZWriteQueueStatus.m */; };
-		1BEC79061197B73E00337403 /* GTMStackTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B449E2210DCCC1D00B9C751 /* GTMStackTrace.m */; };
 		1BEC79071197B74400337403 /* GTMStackTrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B449E2110DCCC1D00B9C751 /* GTMStackTrace.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BF5AD4B105DFC92005DD03E /* QueueWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5AD4A105DFC92005DD03E /* QueueWindowController.m */; };
 		1BF5ADBD105E0B8E005DD03E /* FileViewBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5ADBC105E0B8E005DD03E /* FileViewBox.m */; };
+		1BFEDE0018349138008A17D3 /* PosterBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BFEDDFD18349138008A17D3 /* PosterBackground.png */; };
+		1BFEDE0118349138008A17D3 /* PosterBackgroundError.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BFEDDFE18349138008A17D3 /* PosterBackgroundError.png */; };
+		1BFEDE0218349138008A17D3 /* PosterBackgroundMultiple.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BFEDDFF18349138008A17D3 /* PosterBackgroundMultiple.png */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -644,6 +645,8 @@
 		1B35453015B223BB0033DD74 /* MZMetaDataDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMetaDataDocument.m; sourceTree = "<group>"; };
 		1B36E78A14066727009F542A /* MZASISearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZASISearch.h; sourceTree = "<group>"; };
 		1B36E78B14066727009F542A /* MZASISearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZASISearch.m; sourceTree = "<group>"; };
+		1B38FCD81673F7E500C171F9 /* NSString+MimeTypePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MimeTypePattern.h"; sourceTree = "<group>"; };
+		1B38FCD91673F7E500C171F9 /* NSString+MimeTypePattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MimeTypePattern.m"; sourceTree = "<group>"; };
 		1B3AD7A111055DF300B33F85 /* MZQueueOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZQueueOperation.h; sourceTree = "<group>"; };
 		1B3AD7A211055DF300B33F85 /* MZQueueOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZQueueOperation.m; sourceTree = "<group>"; };
 		1B3AD7D611057E9200B33F85 /* MZErrorOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZErrorOperation.h; sourceTree = "<group>"; };
@@ -939,7 +942,6 @@
 		1B449E2F10DCCC1D00B9C751 /* GTMValidatingContainersTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMValidatingContainersTest.m; sourceTree = "<group>"; };
 		1B4AF736116EF6C100E5C969 /* Access_template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access_template.h; path = Plugins/Amazon/Access_template.h; sourceTree = SOURCE_ROOT; };
 		1B4AF74B116EF80500E5C969 /* Access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access.h; path = Plugins/TheTVDB/Access.h; sourceTree = SOURCE_ROOT; };
-		1B4AF829116F0AFD00E5C969 /* DebugSnowLeopardOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = DebugSnowLeopardOrLater.xcconfig; path = "Externals/google-toolbox-for-mac/XcodeConfig/Project/DebugSnowLeopardOrLater.xcconfig"; sourceTree = "<group>"; };
 		1B4AF8391170CFCC00E5C969 /* TheTVDBSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBSearch.h; sourceTree = "<group>"; };
 		1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBSearch.m; sourceTree = "<group>"; };
 		1B4AF84411715C8400E5C969 /* languages.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = languages.xml; sourceTree = "<group>"; };
@@ -1117,9 +1119,6 @@
 		1BD3D2BA108CC5D700BE6943 /* MZRemoteData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZRemoteData.m; sourceTree = "<group>"; };
 		1BD3D30F108DD03E00BE6943 /* PictureEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureEditor.h; sourceTree = "<group>"; };
 		1BD3D310108DD03E00BE6943 /* PictureEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureEditor.m; sourceTree = "<group>"; };
-		1BD3D3FB108E694100BE6943 /* faded_cow_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = faded_cow_error.png; path = App/resources/faded_cow_error.png; sourceTree = "<group>"; };
-		1BD3D3FC108E694100BE6943 /* faded_cow_fatal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = faded_cow_fatal.png; path = App/resources/faded_cow_fatal.png; sourceTree = "<group>"; };
-		1BD3D3FD108E694100BE6943 /* faded_cow_multiple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = faded_cow_multiple.png; path = App/resources/faded_cow_multiple.png; sourceTree = "<group>"; };
 		1BD55C5C16483F5E00F9C579 /* MZActionsPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZActionsPlugin.h; sourceTree = "<group>"; };
 		1BD55C5D16483F5E00F9C579 /* MZActionsPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZActionsPlugin.m; sourceTree = "<group>"; };
 		1BD55C601648431D00F9C579 /* MZScriptActionsPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZScriptActionsPlugin.h; sourceTree = "<group>"; };
@@ -1150,9 +1149,12 @@
 		1BDD86A61094A8CC00E3C81D /* MZPresets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZPresets.m; sourceTree = "<group>"; };
 		1BDD879F1095FB5100E3C81D /* PresetsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetsWindowController.h; sourceTree = "<group>"; };
 		1BDD87A01095FB5100E3C81D /* PresetsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresetsWindowController.m; sourceTree = "<group>"; };
+		1BE35212182C6C2B004FAB1B /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
+		1BE35213182C6C2B004FAB1B /* JSONKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		1BE35214182C6C2B004FAB1B /* JSONKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		1BE35215182C6C2B004FAB1B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		1BEA6B39106CF01B004B1A7F /* PosterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterView.h; sourceTree = "<group>"; };
 		1BEA6B3A106CF01B004B1A7F /* PosterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterView.m; sourceTree = "<group>"; };
-		1BEA6B80106D66AD004B1A7F /* faded_cow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = faded_cow.png; path = App/resources/faded_cow.png; sourceTree = "<group>"; };
 		1BEA6C2A106E613C004B1A7F /* MZPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZPlugin.h; sourceTree = "<group>"; };
 		1BEA6C2B106E613C004B1A7F /* MZPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZPlugin.m; sourceTree = "<group>"; };
 		1BEA6C93106E7203004B1A7F /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
@@ -1164,7 +1166,6 @@
 		1BEA6DDB106ED8E4004B1A7F /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
 		1BEA6DDC106ED8E4004B1A7F /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		1BEA6E48106EEF34004B1A7F /* MZPlugin+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MZPlugin+Private.h"; sourceTree = "<group>"; };
-		1BEA6E49106EEF34004B1A7F /* MZPlugin+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MZPlugin+Private.m"; sourceTree = "<group>"; };
 		1BEA6E72106EF2A0004B1A7F /* AtomicParsleyPlugin.mzdataprovider */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AtomicParsleyPlugin.mzdataprovider; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEA6E8D106EF522004B1A7F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		1BEA6E8F106EF534004B1A7F /* AtomicParsleyPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicParsleyPlugin.h; sourceTree = "<group>"; };
@@ -1180,6 +1181,9 @@
 		1BF5AD4A105DFC92005DD03E /* QueueWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueWindowController.m; sourceTree = "<group>"; };
 		1BF5ADBB105E0B8E005DD03E /* FileViewBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewBox.h; sourceTree = "<group>"; };
 		1BF5ADBC105E0B8E005DD03E /* FileViewBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewBox.m; sourceTree = "<group>"; };
+		1BFEDDFD18349138008A17D3 /* PosterBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PosterBackground.png; path = App/resources/PosterBackground.png; sourceTree = "<group>"; };
+		1BFEDDFE18349138008A17D3 /* PosterBackgroundError.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PosterBackgroundError.png; path = App/resources/PosterBackgroundError.png; sourceTree = "<group>"; };
+		1BFEDDFF18349138008A17D3 /* PosterBackgroundMultiple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PosterBackgroundMultiple.png; path = App/resources/PosterBackgroundMultiple.png; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = App/src/main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1320,7 +1324,6 @@
 				1BEA6C2A106E613C004B1A7F /* MZPlugin.h */,
 				1BEA6C2B106E613C004B1A7F /* MZPlugin.m */,
 				1BEA6E48106EEF34004B1A7F /* MZPlugin+Private.h */,
-				1BEA6E49106EEF34004B1A7F /* MZPlugin+Private.m */,
 				1BEA6DAC106EC632004B1A7F /* MZPluginController.h */,
 				1BEA6DAD106EC632004B1A7F /* MZPluginController.m */,
 				1BD55C5C16483F5E00F9C579 /* MZActionsPlugin.h */,
@@ -1374,6 +1377,8 @@
 				1B0696D6149BFB2D00B5FA90 /* NSString+MZQueryString.m */,
 				1BD55C641648466700F9C579 /* NSError+MZScriptError.h */,
 				1BD55C651648466700F9C579 /* NSError+MZScriptError.m */,
+				1B38FCD81673F7E500C171F9 /* NSString+MimeTypePattern.h */,
+				1B38FCD91673F7E500C171F9 /* NSString+MimeTypePattern.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -1573,6 +1578,7 @@
 		1B449CEE10DCCAD500B9C751 /* External Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1BE35211182C6BFE004FAB1B /* JSONKit */,
 				1B4CFF8E161CDED800B12009 /* AEVTBuilder */,
 				1B069665149BD32D00B5FA90 /* MGViewAnimation */,
 				1B523B4813F4B24E00C20B7D /* asi-http-request */,
@@ -2290,6 +2296,18 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		1BE35211182C6BFE004FAB1B /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				1BE35212182C6C2B004FAB1B /* CHANGELOG.md */,
+				1BE35213182C6C2B004FAB1B /* JSONKit.h */,
+				1BE35214182C6C2B004FAB1B /* JSONKit.m */,
+				1BE35215182C6C2B004FAB1B /* README.md */,
+			);
+			name = JSONKit;
+			path = Externals/JSONKit;
+			sourceTree = "<group>";
+		};
 		1BEA6E68106EF248004B1A7F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
@@ -2346,7 +2364,6 @@
 		29B97314FDCFA39411CA2CEA /* MetaZ */ = {
 			isa = PBXGroup;
 			children = (
-				1B4AF829116F0AFD00E5C969 /* DebugSnowLeopardOrLater.xcconfig */,
 				1B4494BC10D584E000B9C751 /* next_release.txt */,
 				1BEA6E68106EF248004B1A7F /* Plugins */,
 				1BA325BC10545A1B00276F57 /* App */,
@@ -2371,6 +2388,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1BFEDDFD18349138008A17D3 /* PosterBackground.png */,
+				1BFEDDFE18349138008A17D3 /* PosterBackgroundError.png */,
+				1BFEDDFF18349138008A17D3 /* PosterBackgroundMultiple.png */,
 				1B63A36616458A1C00461FC9 /* Return iTunes selected.applescript */,
 				1B8CB5DF14AA31C500F859F7 /* modified_header.tiff */,
 				1B8CB5E014AA31C500F859F7 /* modified_selected.tiff */,
@@ -2385,10 +2405,6 @@
 				1B03323610B14B6B00B28E3A /* Reveal.png */,
 				1B03323710B14B6B00B28E3A /* RevealOn.png */,
 				1BC0671310AE44CA005C2A9F /* presets.png */,
-				1BEA6B80106D66AD004B1A7F /* faded_cow.png */,
-				1BD3D3FB108E694100BE6943 /* faded_cow_error.png */,
-				1BD3D3FC108E694100BE6943 /* faded_cow_fatal.png */,
-				1BD3D3FD108E694100BE6943 /* faded_cow_multiple.png */,
 				1BEA6DD8106ED837004B1A7F /* PreferencesWindow.xib */,
 				1B9B393D106C0FA200928C83 /* Localizable.strings */,
 				1B0DEEB8106139E8009D293F /* RotateLeft.tif */,
@@ -2490,8 +2506,10 @@
 				1BDEC5ED1620DE160051D656 /* AEVTBuilder.h in Headers */,
 				1BD55C5E16483F5E00F9C579 /* MZActionsPlugin.h in Headers */,
 				1BD55C621648431D00F9C579 /* MZScriptActionsPlugin.h in Headers */,
+				1BE35217182C6C7C004FAB1B /* JSONKit.h in Headers */,
 				1BD55C661648466700F9C579 /* NSError+MZScriptError.h in Headers */,
 				1B4C1F4016554B0100011621 /* MZHTTPRequest.h in Headers */,
+				1B38FCDA1673F7E500C171F9 /* NSString+MimeTypePattern.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2699,6 +2717,7 @@
 				1B74B569164826980017E013 /* Compile Plugin Scripts */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				1B56A4BB17065FC300BDE79D /* Copy document types from plugins */,
 				1B8262A710B39DE400DF101B /* Make Disk Image */,
 				1BB6BF3B1050ED38001D3D1D /* Sparkle Sign  */,
 			);
@@ -2727,8 +2746,11 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MetaZ" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -2863,6 +2885,7 @@
 				1BD6E752105DADCC00E40151 /* AddToQueue.tiff in Resources */,
 				1BD6E753105DADCC00E40151 /* Pause.tiff in Resources */,
 				1BD6E754105DADCC00E40151 /* Play.tiff in Resources */,
+				1BFEDE0118349138008A17D3 /* PosterBackgroundError.png in Resources */,
 				1BD6E755105DADCC00E40151 /* Queue.tiff in Resources */,
 				1BD6E756105DADCC00E40151 /* Stop.tiff in Resources */,
 				1BD6E7A8105DC4D000E40151 /* Queue.xib in Resources */,
@@ -2874,20 +2897,18 @@
 				1B0DEEC2106139E8009D293F /* ZoomIn.tif in Resources */,
 				1B0DEEC3106139E8009D293F /* ZoomOut.tif in Resources */,
 				1B9B393F106C0FA200928C83 /* Localizable.strings in Resources */,
-				1BEA6B81106D66AD004B1A7F /* faded_cow.png in Resources */,
 				1BEA6DDA106ED837004B1A7F /* PreferencesWindow.xib in Resources */,
 				1BCC990710771262007EFF57 /* FactorySettings.plist in Resources */,
-				1BD3D3FE108E694100BE6943 /* faded_cow_error.png in Resources */,
-				1BD3D3FF108E694100BE6943 /* faded_cow_fatal.png in Resources */,
-				1BD3D400108E694100BE6943 /* faded_cow_multiple.png in Resources */,
 				1BC0661910AE223A005C2A9F /* PresetsPanel.xib in Resources */,
 				1BC0671410AE44CA005C2A9F /* presets.png in Resources */,
 				1B03323810B14B6B00B28E3A /* RevealHover.png in Resources */,
+				1BFEDE0218349138008A17D3 /* PosterBackgroundMultiple.png in Resources */,
 				1B03323910B14B6B00B28E3A /* Reveal.png in Resources */,
 				1B03323A10B14B6B00B28E3A /* RevealOn.png in Resources */,
 				1B03325210B1592D00B28E3A /* StopProgress.png in Resources */,
 				1B03325410B15CB200B28E3A /* StopProgressHover.png in Resources */,
 				1B03325610B15FF100B28E3A /* StopProgressOn.png in Resources */,
+				1BFEDE0018349138008A17D3 /* PosterBackground.png in Resources */,
 				1B42F21F10DD5D6D00AFEBF6 /* MiniProgressGradient.png in Resources */,
 				1BCECEC510E98E4200D0AD35 /* Credits.html in Resources */,
 				1BAC8EDA13EB32110022D625 /* MetaZ.icns in Resources */,
@@ -2933,6 +2954,21 @@
 			shellPath = /bin/sh;
 			shellScript = "set -o errexit\n\nPATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin\nbuildid=`git log -n1 --pretty=oneline --format=%h`\nrelease=`cat $SCRIPT_INPUT_FILE_0`\nbuilddate=`date +%y.%m.%d.%H`\n\necho \"#define BUILDID $buildid\" > $SCRIPT_OUTPUT_FILE_0\necho \"#define BUILDDATE $builddate\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define BUILDVERSION $builddate.$buildid\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define WHOAMI `whoami`\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define RELEASE $release\" >> $SCRIPT_OUTPUT_FILE_0 \ncat $SCRIPT_INPUT_FILE_1 >> $SCRIPT_OUTPUT_FILE_0 \n\n# Delete the intermediate Info.plist so that Xcode re-preprocesses the Info.plist with our updated macros.\n# Use -f because after a clean build, this file doesn't exist yet, so a plain rm would fail and stop the build.\nrm -f \"${CONFIGURATION_TEMP_DIR}/MetaZ.build/Preprocessed-Info.plist\"\n";
 		};
+		1B56A4BB17065FC300BDE79D /* Copy document types from plugins */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info.plist,
+			);
+			name = "Copy document types from plugins";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/document_types.bash";
+		};
 		1B74B569164826980017E013 /* Compile Plugin Scripts */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2969,7 +3005,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -o errexit\nbash $SRCROOT/Release/make_diskimage.bash";
+			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/make_diskimage.bash";
 			showEnvVarsInLog = 0;
 		};
 		1BB6BF3B1050ED38001D3D1D /* Sparkle Sign  */ = {
@@ -2986,7 +3022,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -o errexit\nbash $SRCROOT/Release/sparkle_sign.bash\n";
+			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/sparkle_sign.bash\n";
 			showEnvVarsInLog = 0;
 		};
 		1BEA6D70106EA6D1004B1A7F /* Build Documentation */ = {
@@ -3070,6 +3106,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BE35216182C6C64004FAB1B /* JSONKit.m in Sources */,
 				1BEA6F9C106EFC3F004B1A7F /* MetaEdits.m in Sources */,
 				1BEA6F9E106EFC3F004B1A7F /* MetaLoaded.m in Sources */,
 				1BEA6FA2106EFC3F004B1A7F /* MZConstants.m in Sources */,
@@ -3079,7 +3116,6 @@
 				1BEA6FAB106EFC3F004B1A7F /* MZTag.m in Sources */,
 				1BEA6FAE106EFC3F004B1A7F /* MZPlugin.m in Sources */,
 				1BEA6FB0106EFC3F004B1A7F /* MZPluginController.m in Sources */,
-				1BEA6FB2106EFC3F004B1A7F /* MZPlugin+Private.m in Sources */,
 				1BEA719010712A17004B1A7F /* NSArray+Mapping.m in Sources */,
 				1BCC97031076B73C007EFF57 /* NSInvocation+Wrapping.m in Sources */,
 				1B040C3F107FC7480027FA0D /* MZTimeCode.m in Sources */,
@@ -3106,7 +3142,6 @@
 				1BAD35FF118D4C470052DE3B /* MZReadOperationsController.m in Sources */,
 				1BAD3601118D4C470052DE3B /* NSFileManager+MZCreate.m in Sources */,
 				1BC256391192C183001B9E1E /* NSObject+WaitUntilChange.m in Sources */,
-				1BEC79061197B73E00337403 /* GTMStackTrace.m in Sources */,
 				1B0604AE1199E24700589ACE /* MZSearchProviderPlugin.m in Sources */,
 				1BAC91BE13F060300022D625 /* NSString+MZAllInCharacterSet.m in Sources */,
 				1B523C1513FDCC9600C20B7D /* ASIHTTPRequest.m in Sources */,
@@ -3122,6 +3157,7 @@
 				1BD55C671648466700F9C579 /* NSError+MZScriptError.m in Sources */,
 				1B4C1F4116554B0600011621 /* MZHTTPRequest.m in Sources */,
 				1B09EB0C165843BF0017FED3 /* MZDataProviderPlugin.m in Sources */,
+				1B38FCDB1673F7E500C171F9 /* NSString+MimeTypePattern.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3484,7 +3520,6 @@
 		1B032F6910B0C12200B28E3A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -3515,9 +3550,7 @@
 		1B032F6A10B0C12200B28E3A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
 					Externals/hmac,
@@ -3547,7 +3580,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3575,9 +3607,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
@@ -3602,7 +3632,6 @@
 		1B040EC01081B3C10027FA0D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -3629,9 +3658,7 @@
 		1B040EC11081B3C10027FA0D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3656,7 +3683,6 @@
 		1B2022F910B393CB00EE548A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "Plist Macos";
 			};
 			name = Debug;
@@ -3664,7 +3690,6 @@
 		1B2022FA10B393CB00EE548A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "Plist Macos";
 			};
 			name = Release;
@@ -3672,7 +3697,6 @@
 		1B42F25B10DEB0D400AFEBF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -3697,7 +3721,6 @@
 		1B42F25C10DEB0D400AFEBF6 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3719,9 +3742,7 @@
 		1B42F25D10DEB0D400AFEBF6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3749,9 +3770,10 @@
 					ppc,
 					"$(ARCHS_STANDARD_32_64_BIT)",
 				);
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -3764,7 +3786,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3796,7 +3817,6 @@
 		1B44938010C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -3831,7 +3851,6 @@
 		1B44938110C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3862,7 +3881,6 @@
 		1B44938210C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -3890,7 +3908,6 @@
 		1B44938310C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -3922,7 +3939,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3950,7 +3966,6 @@
 		1B44938510C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "Plist Macos";
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 			};
@@ -3959,7 +3974,6 @@
 		1B4F53C6116E9F44003221B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -3985,7 +3999,6 @@
 		1B4F53C7116E9F44003221B1 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -4013,9 +4026,7 @@
 		1B4F53C8116E9F44003221B1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/include";
 				INFOPLIST_FILE = Plugins/TheTVDB/Info.plist;
@@ -4041,7 +4052,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -4069,7 +4079,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -4094,9 +4103,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -4121,7 +4128,6 @@
 		1BA325C610545ACB00276F57 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -4156,9 +4162,7 @@
 		1BA325C710545ACB00276F57 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -4247,7 +4251,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4329,7 +4332,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4355,7 +4357,6 @@
 		1BEA6E74106EF2A1004B1A7F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -4385,9 +4386,7 @@
 		1BEA6E75106EF2A1004B1A7F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4416,7 +4415,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4448,9 +4446,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4484,9 +4480,10 @@
 					ppc,
 					"$(ARCHS_STANDARD_32_64_BIT)",
 				);
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -4503,8 +4500,10 @@
 					ppc,
 					"$(ARCHS_STANDARD_32_64_BIT)",
 				);
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				SDKROOT = macosx10.5;

@@ -7,6 +7,7 @@
 //
 
 #import "MZMultiGrowlWrapper.h"
+#import <MetaZKit/MZLogger.h>
 
 @interface MZMultiGrowlWrapper ()
 - (void)load;
@@ -90,12 +91,12 @@ static MZMultiGrowlWrapper *_MZSharedMultiGrowlWrapper = nil;
     else
         path = [path stringByAppendingPathComponent:@"1.2.3"];
 	
-    NSLog(@"path: %@", path);
+    MZLoggerDebug(@"path: %@", path);
     NSBundle *growlFramework = [NSBundle bundleWithPath:path];
     if([growlFramework load])
 	{
 		NSDictionary *infoDictionary = [growlFramework infoDictionary];
-		NSLog(@"Using Growl.framework %@ (%@)",
+		MZLoggerInfo(@"Using Growl.framework %@ (%@)",
 			  [infoDictionary objectForKey:@"CFBundleShortVersionString"],
 			  [infoDictionary objectForKey:(NSString *)kCFBundleVersionKey]);
 	

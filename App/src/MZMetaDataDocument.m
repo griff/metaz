@@ -10,6 +10,7 @@
 #import "MZMetaLoader.h"
 #import "MZScriptingAdditions.h"
 #import "MZScriptingEnums.h"
+#import <MetaZKit/MZLogger.h>
 
 @implementation MZTagItem
 
@@ -78,7 +79,7 @@
 {
     if([value isKindOfClass:[NSAppleEventDescriptor class]])
         value = [value objectValue];
-    NSLog(@"Set Value %@ %@ %@", document.data, value, tag.identifier);
+    MZLoggerDebug(@"Set Value %@ %@ %@", document.data, value, tag.identifier);
     self.value = value;
 }
 

@@ -41,7 +41,7 @@
     while (nextAnimation = [animationsEnum nextObject]) {
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithDictionary:nextAnimation];
         id thisView;
-        if (thisView = [dict objectForKey:NSViewAnimationTargetKey]) {
+        if ((thisView = [dict objectForKey:NSViewAnimationTargetKey])) {
             if ([thisView isKindOfClass:[NSWindow class]] || [thisView isKindOfClass:[NSView class]]) {
                 [_views addObject:thisView];
                 NSValue *viewFrameValue = [NSValue valueWithRect:[thisView frame]];

@@ -13,7 +13,7 @@
 
 + (id)errorWithAppleScriptError:(NSDictionary *)errDict
 {
-    return [[[self alloc] errorWithAppleScriptError:errDict] autorelease];
+    return [[[self alloc] initWithAppleScriptError:errDict] autorelease];
 }
 
 - (id)initWithAppleScriptError:(NSDictionary *)errDict

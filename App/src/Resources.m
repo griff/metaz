@@ -8,10 +8,9 @@
 
 #import "Resources.h"
 
-NSString* const MZFadedIcon = @"faded_cow";
-NSString* const MZFadedIconError = @"faded_cow_error";
-NSString* const MZFadedIconFatalError = @"faded_cow_fatal";
-NSString* const MZFadedIconMultiple = @"faded_cow_multiple";
+NSString* const MZFadedIcon = @"PosterBackground";
+NSString* const MZFadedIconError = @"PosterBackgroundError";
+NSString* const MZFadedIconMultiple = @"PosterBackgroundMultiple";
 NSString* const MZSmallIcon = @"metaz";
 
 NSString* const MZNSWindowWillResizeNotification = @"MZNSWindowWillResizeNotification";

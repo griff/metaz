@@ -14,6 +14,7 @@
     NSTask* task;
     BOOL executing;
     BOOL finished;
+    BOOL standardErrorReason;
 }
 
 + (id)taskOperation;
@@ -24,6 +25,7 @@
 
 @property(getter=isExecuting,assign) BOOL executing;
 @property(getter=isFinished,assign) BOOL finished;
+@property(getter=isStandardErrorReason,assign) BOOL standardErrorReason;
 
 - (void)start;
 - (void)startOnMainThread;
@@ -34,10 +36,12 @@
 - (void)setupStandardInput;
 - (void)setupStandardOutput;
 - (void)setupStandardError;
+- (void)setupBackgroundStandardError;
 - (void)releaseStandardOutput;
 - (void)releaseStandardError;
 - (void)taskTerminatedWithStatus:(int)status;
 - (void)setErrorFromStatus:(int)status;
+- (void)setErrorString:(NSString *)err code:(int)status;
 - (void)standardOutputGotData:(NSNotification *)note;
 - (void)standardErrorGotData:(NSNotification *)note;
 

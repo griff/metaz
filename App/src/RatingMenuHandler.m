@@ -78,17 +78,17 @@ NSString* findItem(NSMenu* menu, MZRating rating)
     [tag convertObject:value toValue:&rating];
     NSString* ret;
     //MZLoggerDebug(@"Getting rating %d", rating);
-    if(ret = findItem([ratingButton menu], rating)) return ret;
-    if(ret = findItem(menuUK, rating)) return ret;
-    if(ret = findItem(menuDE, rating)) return ret;
-    if(ret = findItem(menuIE, rating)) return ret;
-    if(ret = findItem(menuCA, rating)) return ret;
-    if(ret = findItem(menuAU, rating)) return ret;
-    if(ret = findItem(menuNZ, rating)) return ret;
+    if((ret = findItem([ratingButton menu], rating))) return ret;
+    if((ret = findItem(menuUK, rating))) return ret;
+    if((ret = findItem(menuDE, rating))) return ret;
+    if((ret = findItem(menuIE, rating))) return ret;
+    if((ret = findItem(menuCA, rating))) return ret;
+    if((ret = findItem(menuAU, rating))) return ret;
+    if((ret = findItem(menuNZ, rating))) return ret;
     return nil;
 }
 
-MZRating findRating(MZRating found, NSMenu* menu, NSString* title)
+MZRating findRating(int found, NSMenu* menu, NSString* title)
 {
     if(found!=INT_MAX)
         return found;
@@ -104,7 +104,7 @@ MZRating findRating(MZRating found, NSMenu* menu, NSString* title)
     if(value == NSNoSelectionMarker || value == NSNotApplicableMarker)
         return;
 
-    MZRating rating = findRating(INT_MAX, [ratingButton menu], newRating);
+    int rating = findRating(INT_MAX, [ratingButton menu], newRating);
     rating = findRating(rating, menuUK, newRating);
     rating = findRating(rating, menuDE, newRating);
     rating = findRating(rating, menuIE, newRating);

@@ -284,6 +284,43 @@ static MZPluginController *gInstance = NULL;
     return NO;
 }
 
+- (NSArray *)activePluginsWithClass:(Class )cls
+{
+    NSMutableArray* ret = [NSMutableArray array];
+    NSArray* thePlugins = [self loadedPlugins];
+    for(MZPlugin* plugin in thePlugins)
+    {
+        if(![plugin isEnabled])
+            continue;
+        if([plugin isKindOfClass:cls])
+            [ret addObject:plugin];
+    }
+    NSSortDescriptor* desc = [[NSSortDescriptor alloc ] initWithKey:@"label" ascending:YES];
+    [ret sortUsingDescriptors:[NSArray arrayWithObject:desc]];
+    [desc release];
+    return ret;
+}
+
+- (NSArray *)activePlugins;
+{
+    return [self activePluginsWithClass:[MZPlugin class]];
+}
+
+- (NSArray *)activeActionsPlugins;
+{
+    return [self activePluginsWithClass:[MZActionsPlugin class]];
+}
+
+- (NSArray *)activeDataProviderPlugins;
+{
+    return [self activePluginsWithClass:[MZDataProviderPlugin class]];
+}
+
+- (NSArray *)activeSearchProviderPlugins;
+{
+    return [self activePluginsWithClass:[MZSearchProviderPlugin class]];
+}
+
 - (NSArray *)pluginsWithClass:(Class )cls
 {
     NSMutableArray* ret = [NSMutableArray array];
@@ -316,7 +353,7 @@ static MZPluginController *gInstance = NULL;
 
 - (id)loadPluginSourceWithName:(NSString *)name fromURL:(NSURL *)pathURL error:(NSError **)error
 {
-    id ret;
+    id ret = nil;
     NSString* pluginPath = [[pathURL path] stringByAppendingPathComponent:name];
     CFStringRef uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (CFStringRef)[pluginPath pathExtension], NULL);
     MZLoggerDebug(@"Loading plugin at path '%@'", pluginPath);
@@ -508,35 +545,6 @@ static MZPluginController *gInstance = NULL;
     return loadedPlugins;
 }
 
-- (void)updateActivePlugins
-{
-    NSArray* disabledA = [[NSUserDefaults standardUserDefaults] arrayForKey:DISABLED_KEY];
-    NSSet* disabled;
-    if(disabledA)
-        disabled = [NSSet setWithArray:disabledA];
-    else
-        disabled = [NSSet set];
-    
-    [self willChangeValueForKey:@"activePlugins"];
-    [activePlugins release];
-    activePlugins = [[NSMutableArray alloc] init];
-    for(MZPlugin* plugin in [self loadedPlugins])
-    {
-        if(![disabled containsObject:[[plugin bundle] bundleIdentifier]])
-            [activePlugins addObject:plugin];
-        else
-            MZLoggerInfo(@"Disabled plugin '%@'", [[plugin bundle] bundleIdentifier]);
-    }
-    [self didChangeValueForKey:@"activePlugins"];
-}
-
-- (NSArray *)activePlugins
-{
-    if(!activePlugins)
-        [self updateActivePlugins];
-    return activePlugins;
-}
-
 - (BOOL)loadPlugin:(NSString *)name fromURL:(NSURL *)url error:(NSError **)error
 {
     id source = [self loadPluginSourceWithName:name fromURL:url error:error];
@@ -571,10 +579,6 @@ static MZPluginController *gInstance = NULL;
         [loadedPlugins removeObject:plugin];
         [self didChangeValueForKey:@"loadedPlugins"];
         
-        [self willChangeValueForKey:@"activePlugins"];
-        [activePlugins removeObject:plugin];
-        [self didChangeValueForKey:@"activePlugins"];
-        
         [loadedBundles removeObject:[plugin identifier]];
         
         BOOL unloaded = [plugin unload];
@@ -597,8 +601,7 @@ static MZPluginController *gInstance = NULL;
 {
     for(MZPlugin* plugin in [self activePlugins])
     {
-        NSBundle* bundle = [plugin bundle];
-        if([[bundle bundleIdentifier] isEqualToString:identifier])
+        if([[plugin identifier] isEqualToString:identifier])
             return plugin;
     }
     return nil;
@@ -608,8 +611,7 @@ static MZPluginController *gInstance = NULL;
 {
     for(MZPlugin* plugin in [self activePlugins])
     {
-        NSBundle* bundle = [plugin bundle];
-        if([[bundle bundlePath] isEqualToString:path])
+        if([[plugin pluginPath] isEqualToString:path])
             return plugin;
     }
     return nil;
@@ -617,7 +619,7 @@ static MZPluginController *gInstance = NULL;
 
 - (MZDataProviderPlugin *)dataProviderWithIdentifier:(NSString *)identifier
 {
-    for(MZDataProviderPlugin* provider in [self dataProviderPlugins])
+    for(MZDataProviderPlugin* provider in [self activeDataProviderPlugins])
     {
         if([[provider identifier] isEqualToString:identifier])
             return provider;
@@ -627,7 +629,7 @@ static MZPluginController *gInstance = NULL;
 
 - (MZDataProviderPlugin *)dataProviderForType:(NSString *)uti
 {
-    for(MZDataProviderPlugin* provider in [self dataProviderPlugins])
+    for(MZDataProviderPlugin* provider in [self activeDataProviderPlugins])
     {
         NSArray* types = [provider types];
         for(NSString* type in types)
@@ -641,7 +643,7 @@ static MZPluginController *gInstance = NULL;
 
 - (MZDataProviderPlugin *)dataProviderForPath:(NSString *)path
 {
-    NSArray* types = (NSArray*)UTTypeCreateAllIdentifiersForTag(kUTTagClassFilenameExtension, (CFStringRef)[path pathExtension], kUTTypeMovie);
+    NSArray* types = (NSArray*)UTTypeCreateAllIdentifiersForTag(kUTTagClassFilenameExtension, (CFStringRef)[path pathExtension], kUTTypeAudiovisualContent);
     for(NSString* uti in types)
     {
         MZDataProviderPlugin* ret = [self dataProviderForType:uti];
@@ -658,7 +660,7 @@ static MZPluginController *gInstance = NULL;
 - (NSArray *)dataProviderTypes
 {
     NSMutableArray* ret = [NSMutableArray array];
-    for(MZDataProviderPlugin* provider in [self dataProviderPlugins])
+    for(MZDataProviderPlugin* provider in [self activeDataProviderPlugins])
     {
         NSArray* types = [provider types];
         [ret addObjectsFromArray:types];
@@ -668,7 +670,7 @@ static MZPluginController *gInstance = NULL;
 
 - (MZSearchProviderPlugin *)searchProviderWithIdentifier:(NSString *)identifier
 {
-    for(MZSearchProviderPlugin* provider in [self searchProviderPlugins])
+    for(MZSearchProviderPlugin* provider in [self activeSearchProviderPlugins])
         if([[provider identifier] isEqualToString:identifier])
             return provider;
     return nil;
@@ -698,7 +700,7 @@ static MZPluginController *gInstance = NULL;
                  delegate:(id<MZSearchProviderDelegate>)theDelegate
 {
     MZSearchDelegate* searchDelegate = [MZSearchDelegate searchWithDelegate:theDelegate];
-    for(MZSearchProviderPlugin* provider in [self searchProviderPlugins])
+    for(MZSearchProviderPlugin* provider in [self activeSearchProviderPlugins])
     {
         if([provider searchWithData:data delegate:searchDelegate queue:searchQueue])
             [searchDelegate performedSearch];

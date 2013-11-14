@@ -1,3 +1,6 @@
 [submodule "Externals/asi-http-request"]
 	path = Externals/asi-http-request
 	url = https://github.com/pokeb/asi-http-request.git
+[submodule "Externals/JSONKit"]
+	path = Externals/JSONKit
+	url = https://github.com/johnezang/JSONKit.git

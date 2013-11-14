@@ -11,6 +11,7 @@
 #import <GTMStackTrace.h>
 #import "GTMBase64.h"
 #import "hmac_sha2.h"
+#import <MetaZKit/MZLogger.h>
 
 @implementation AmazonSearch
 
@@ -71,7 +72,7 @@
             nil] autorelease];
         int ratingsCount;
         for(ratingsCount=0; ratingsCount<[ratingNames count]+5 && ratings[ratingsCount] > -1;ratingsCount++);
-        NSLog(@"Ratings %d %d", [ratingNames count], ratingsCount);
+        MZLoggerDebug(@"Ratings %lu %d", (unsigned long)[ratingNames count], ratingsCount);
         NSAssert([ratingNames count] == ratingsCount, @"Bad number of ratings");
         NSMutableDictionary* map = [NSMutableDictionary dictionaryWithCapacity:ratingsCount];
         for(int i=0; i<ratingsCount; i++)
@@ -206,7 +207,7 @@
 
     NSArray* items = [doc nodesForXPath:@"/ItemSearchResponse/Items/Item" error:NULL];
     NSMutableArray* results = [NSMutableArray array];
-    MZLoggerDebug(@"Got Amazon results %d", [items count]);
+    MZLoggerDebug(@"Got Amazon results %lu", (unsigned long)[items count]);
     for(NSXMLElement* item in items)
     {
         NSMutableDictionary* dict = [NSMutableDictionary dictionary];
@@ -250,7 +251,7 @@
         if([coverArtLarge length] > 0)
         {
             NSURL* url = [NSURL URLWithString:coverArtLarge];
-            MZRemoteData* data = [MZRemoteData dataWithURL:url];
+            MZRemoteData* data = [MZRemoteData imageDataWithURL:url];
             [dict setObject:data forKey:MZPictureTagIdent];
             [data loadData];
         }
@@ -259,7 +260,7 @@
         [results addObject:result];
     }
 
-    MZLoggerDebug(@"Parsed Amazon results %d", [results count]);
+    MZLoggerDebug(@"Parsed Amazon results %lu", (unsigned long)[results count]);
     [delegate searchProvider:provider result:results];
 }
 

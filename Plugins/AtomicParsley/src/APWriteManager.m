@@ -54,14 +54,14 @@
 
 @implementation APWriteOperationsController
 
-+ (id)controllerWithProvider:(MZDataProviderPlugin *)provider
++ (id)controllerWithProvider:(AtomicParsleyPlugin *)provider
                     delegate:(id<MZDataWriteDelegate>)delegate
                        edits:(MetaEdits *)edits
 {
     return [[[self alloc] initWithProvider:provider delegate:delegate edits:edits] autorelease];
 }
 
-- (id)initWithProvider:(MZDataProviderPlugin *)theProvider
+- (id)initWithProvider:(AtomicParsleyPlugin *)theProvider
               delegate:(id<MZDataWriteDelegate>)theDelegate
                  edits:(MetaEdits *)theEdits
 {

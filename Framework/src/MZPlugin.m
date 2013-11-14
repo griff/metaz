@@ -7,19 +7,25 @@
 //
 
 #import <MetaZKit/MZPlugin.h>
+#import "MZPlugin+Private.h"
 
 #define DISABLED_KEY @"disabledPlugins"
 
 @implementation MZPlugin
 
-- (id)init
+- (id)initWithBundle:(NSBundle *)theBundle
 {
     self = [super init];
     if(self)
     {
-        bundle = [[NSBundle bundleForClass:[self class]] retain];
+        bundle = [theBundle retain];
     }
     return self;
+}
+
+- (id)init
+{
+    return [self initWithBundle:[NSBundle bundleForClass:[self class]]];
 }
 
 - (void)dealloc
@@ -72,18 +78,16 @@
 - (void)didLoad {}
 - (void)willUnload {}
 
-- (NSArray *)dataProviders
-{
-    return [NSArray array];
-}
-
-- (NSArray *)searchProviders
-{
-    return [NSArray array];
-}
-
 - (NSString *)label
 {
+    if(self.bundle)
+    {
+        NSString* name = [self.bundle objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+        if(!name)
+            name = [self.bundle objectForInfoDictionaryKey:@"CFBundleName"];
+        if(name)
+            return name;
+    }
     NSString* className = [self className];
     if([className hasPrefix:@"MZ"])
         className = [className substringFromIndex:2];
@@ -121,7 +125,7 @@
         NSString* nibName = [self preferencesNibName];
         nib = [[NSNib alloc] 
             initWithNibNamed:nibName 
-                      bundle:bundle];
+                      bundle:self.bundle];
         if(!nib)
             return nil;
         
@@ -134,7 +138,7 @@
 
 - (NSString *)preferencesNibName
 {
-    NSString* ret = [bundle objectForInfoDictionaryKey:@"NSMainNibFile"];
+    NSString* ret = [self.bundle objectForInfoDictionaryKey:@"NSMainNibFile"];
     if(ret)
         return ret;
     return @"Main";
@@ -154,6 +158,31 @@
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@: %@", NSStringFromClass([self class]), [self identifier]];
+}
+
+#pragma mark private methods
+
+- (BOOL)isBuiltIn
+{
+    return NO;
+}
+
+- (BOOL)canUnload
+{/*
+    if([self retainCount]>1)
+        return NO;
+    for(id obj in [self dataProviders])
+        if([obj retainCount]>1)
+            return NO;
+    for(id obj in [self searchProviders])
+        if([obj retainCount]>1)
+            return NO;*/
+    return YES;
+}
+
+- (BOOL)unload
+{
+    return [self.bundle unload];
 }
 
 @end
