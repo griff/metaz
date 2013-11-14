@@ -146,9 +146,6 @@ static NSString* const TCToken = @"8363185134824C8CD908AA";
     if([title length] == 0 && !supportsEmptyTitle)
         return NO;
 
-    MZLoggerDebug(@"Sent request to tagChimp:");
-    for(NSString* key in [params allKeys])
-        MZLoggerDebug(@"    '%@' -> '%@'", key, [params objectForKey:key]);
     TCSearch* search = [TCSearch searchWithProvider:self delegate:delegate url:searchURL parameters:params];
     [self startSearch:search];
     [search addToQueue:queue];
