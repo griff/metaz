@@ -12,7 +12,6 @@ typedef enum {
     MZOKPosterImage,
     MZEmptyPosterImage,
     MZErrorPosterImage,
-    MZFatalErrorPosterImage,
     MZMultiplePosterImage,
     MZNotApplicablePosterImage
 } PosterImageStatus;

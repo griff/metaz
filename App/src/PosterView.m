@@ -50,8 +50,6 @@
     switch (status) {
         case MZErrorPosterImage:
             return MZFadedIconError;
-        case MZFatalErrorPosterImage:
-            return MZFadedIconFatalError;
         case MZMultiplePosterImage:
         case MZNotApplicablePosterImage:
             return MZFadedIconMultiple;
@@ -92,7 +90,6 @@
     NSImage* ret = [super objectValue];
     if(ret == [NSImage imageNamed:MZFadedIcon] ||
         ret == [NSImage imageNamed:MZFadedIconError] ||
-        ret == [NSImage imageNamed:MZFadedIconFatalError] ||
         ret == [NSImage imageNamed:MZFadedIconMultiple])
     {
         return nil;
@@ -172,8 +169,7 @@
             case NSBackspaceCharacter:
             case NSDeleteCharacter:
                 if([self image] == [NSImage imageNamed:MZFadedIcon] ||
-                   [self image] == [NSImage imageNamed:MZFadedIconError] ||
-                   [self image] == [NSImage imageNamed:MZFadedIconFatalError])
+                   [self image] == [NSImage imageNamed:MZFadedIconError])
                 {
                     NSBeep();
                 }

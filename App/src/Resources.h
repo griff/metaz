@@ -11,7 +11,6 @@
 
 MZKIT_EXTERN NSString* const MZFadedIcon;
 MZKIT_EXTERN NSString* const MZFadedIconError;
-MZKIT_EXTERN NSString* const MZFadedIconFatalError;
 MZKIT_EXTERN NSString* const MZFadedIconMultiple;
 MZKIT_EXTERN NSString* const MZSmallIcon;
 
