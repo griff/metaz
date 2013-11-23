@@ -180,7 +180,7 @@
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
     
     NSString* title = [doc objectForKey:@"title"];
-    if(title && [title length] > 0)
+    if(title && ![title isEqual:[NSNull null]] && [title length] > 0)
     {
         MZTag* tag = [MZTag tagForIdentifier:MZTitleTagIdent];
         [dict setObject:[tag objectFromString:title] forKey:MZTitleTagIdent];
@@ -196,21 +196,22 @@
     [dict setObject:[urlTag objectFromString:url] forKey:TMDbURLTagIdent];
 
     NSString* imdbId = [doc objectForKey:@"imdb_id"];
-    if(imdbId && [imdbId length] > 0)
+    if(imdbId && ![imdbId isEqual:[NSNull null]] && [imdbId length] > 0)
     {
         MZTag* imdbTag = [MZTag tagForIdentifier:MZIMDBTagIdent];
         [dict setObject:[imdbTag objectFromString:imdbId] forKey:MZIMDBTagIdent];
     }
 
     NSString* description = [doc objectForKey:@"overview"];
-    if(description && [description length] > 0)
+    if(description && ![description isEqual:[NSNull null]] && [description length] > 0)
     {
         [dict setObject:description forKey:MZShortDescriptionTagIdent];
         [dict setObject:description forKey:MZLongDescriptionTagIdent];
     }
 
     NSArray* countries = [[doc objectForKey:@"releases"] objectForKey:@"countries"];
-    if(countries && [countries count] > 0) {
+    if(countries && ![countries isEqual:[NSNull null]] && [countries count] > 0)
+    {
         NSString* rating = [[countries objectAtIndex:0] objectForKey:@"certification"];
         MZTag* ratingTag = [MZTag tagForIdentifier:MZRatingTagIdent];
         NSNumber* ratingNr = [ratingTag objectFromString:rating];
@@ -219,7 +220,7 @@
     }
 
     NSString* release = [doc objectForKey:@"release_date"];
-    if( release && [release length] > 0 )
+    if( release && ![release isEqual:[NSNull null]] && [release length] > 0 )
     {
         NSDateFormatter* format = [[[NSDateFormatter alloc] init] autorelease];
         format.dateFormat = @"yyyy-MM-dd";
@@ -231,69 +232,87 @@
     }
     
     
-    NSMutableArray* directorsArray = [NSMutableArray array];
-    NSMutableArray* writersArray = [NSMutableArray array];
-    NSMutableArray* producersArray = [NSMutableArray array];
     NSDictionary* credits = [doc objectForKey:@"credits"];
-    
-    for(NSDictionary* crew in [credits objectForKey:@"crew"])
+    if(credits && ![credits isEqual:[NSNull null]])
     {
-        NSString* department = [crew objectForKey:@"department"];
-        NSString* job = [crew objectForKey:@"job"];
-        NSString* name = [crew objectForKey:@"name"];
-        if([department isEqualToString:@"Writing"]) {
-            [writersArray addObject:name];
-        } else if([department isEqualToString:@"Directing"]) {
-            [directorsArray addObject:name];
-        } else if([job rangeOfString:@"Producer"].location != NSNotFound)
-            [producersArray addObject:name];
-    }
-    
-    if([directorsArray count] > 0) {
-        NSString* directors = [directorsArray componentsJoinedByString:@", "];
-        [dict setObject:directors forKey:MZDirectorTagIdent];
-    }
-    
-    if([writersArray count] > 0) {
-        NSString* writers = [writersArray componentsJoinedByString:@", "];
-        [dict setObject:writers forKey:MZScreenwriterTagIdent];
-    }
-    
-    if([producersArray count] > 0) {
-        NSString* producers = [producersArray componentsJoinedByString:@", "];
-        [dict setObject:producers forKey:MZProducerTagIdent];
-    }
+        NSMutableArray* directorsArray = [NSMutableArray array];
+        NSMutableArray* writersArray = [NSMutableArray array];
+        NSMutableArray* producersArray = [NSMutableArray array];
 
-    NSMutableArray* actorsArray = [NSMutableArray array];
-    for(NSDictionary* member in [credits objectForKey:@"cast"])
-    {
-        [actorsArray addObject:[member objectForKey:@"name"]];
-    }
-    if([actorsArray count] > 0) {
-        NSString* actors = [actorsArray componentsJoinedByString:@", "];
-        [dict setObject:actors forKey:MZActorsTagIdent];
-        [dict setObject:actors forKey:MZArtistTagIdent];
+        id crews = [credits objectForKey:@"crew"];
+        if(crews && ![crews isEqual:[NSNull null]])
+        {
+            for(NSDictionary* crew in crews)
+            {
+                NSString* department = [crew objectForKey:@"department"];
+                NSString* job = [crew objectForKey:@"job"];
+                NSString* name = [crew objectForKey:@"name"];
+                if([department isEqualToString:@"Writing"]) {
+                    [writersArray addObject:name];
+                } else if([department isEqualToString:@"Directing"]) {
+                    [directorsArray addObject:name];
+                } else if([job rangeOfString:@"Producer"].location != NSNotFound)
+                    [producersArray addObject:name];
+            }
+        }
+    
+        if([directorsArray count] > 0) {
+            NSString* directors = [directorsArray componentsJoinedByString:@", "];
+            [dict setObject:directors forKey:MZDirectorTagIdent];
+        }
+    
+        if([writersArray count] > 0) {
+            NSString* writers = [writersArray componentsJoinedByString:@", "];
+            [dict setObject:writers forKey:MZScreenwriterTagIdent];
+        }
+    
+        if([producersArray count] > 0) {
+            NSString* producers = [producersArray componentsJoinedByString:@", "];
+            [dict setObject:producers forKey:MZProducerTagIdent];
+        }
+
+        NSMutableArray* actorsArray = [NSMutableArray array];
+        id casts = [credits objectForKey:@"cast"];
+        if(crews && ![crews isEqual:[NSNull null]])
+        {
+            for(NSDictionary* member in casts)
+            {
+                [actorsArray addObject:[member objectForKey:@"name"]];
+            }
+        }
+        if([actorsArray count] > 0) {
+            NSString* actors = [actorsArray componentsJoinedByString:@", "];
+            [dict setObject:actors forKey:MZActorsTagIdent];
+            [dict setObject:actors forKey:MZArtistTagIdent];
+        }
     }
 
     
     NSArray* genres = [doc objectForKey:@"genres"];
-    if([genres count] > 0) {
+    if(genres && ![genres isEqual:[NSNull null]] && [genres count] > 0) {
         NSString* genre = [[genres objectAtIndex:0] objectForKey:@"name"];
         [dict setObject:genre forKey:MZGenreTagIdent];
     }
     
-    NSMutableArray* images = [NSMutableArray array];
-    NSArray* posters = [[doc objectForKey:@"images"] objectForKey:@"posters"];
-    for(NSDictionary* poster in posters)
+    id imageJson = [doc objectForKey:@"images"];
+    if(imageJson && ![imageJson isEqual:[NSNull null]])
     {
-        NSString* path = [poster objectForKey:@"file_path"];
-        NSString* url = [NSString stringWithFormat:@"%@%@%@", imageBaseURL, @"original", path];
-        MZRemoteData* data = [MZRemoteData imageDataWithURL:[NSURL URLWithString:url]];
-        [images addObject:data];
-        [data loadData];
+        NSArray* posters = [imageJson objectForKey:@"posters"];
+        if(posters && ![posters isEqual:[NSNull null]])
+        {
+            NSMutableArray* images = [NSMutableArray array];
+            for(NSDictionary* poster in posters)
+            {
+                NSString* path = [poster objectForKey:@"file_path"];
+                NSString* url = [NSString stringWithFormat:@"%@%@%@", imageBaseURL, @"original", path];
+                MZRemoteData* data = [MZRemoteData imageDataWithURL:[NSURL URLWithString:url]];
+                [images addObject:data];
+                [data loadData];
+            }
+            if([images count] > 0)
+                [dict setObject:[NSArray arrayWithArray:images] forKey:MZPictureTagIdent];
+        }
     }
-    if([images count] > 0)
-        [dict setObject:[NSArray arrayWithArray:images] forKey:MZPictureTagIdent];
 
     MZSearchResult* result = [MZSearchResult resultWithOwner:provider dictionary:dict];
     [self performSelectorOnMainThread:@selector(providedResult:) withObject:result waitUntilDone:NO];
