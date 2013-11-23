@@ -3543,6 +3543,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = AmazonPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/Amazon/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 			};
@@ -3571,6 +3572,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = AmazonPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/Amazon/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 				ZERO_LINK = NO;
@@ -3651,6 +3653,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = TagChimp;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TagChimp/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 			};
@@ -3675,6 +3678,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = TagChimp;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TagChimp/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 				ZERO_LINK = NO;
@@ -3706,7 +3710,7 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = Plugins/IMDB/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3714,6 +3718,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = IMDBPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/IMDB/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 			};
@@ -3727,7 +3732,7 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = Plugins/IMDB/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3735,6 +3740,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = IMDBPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/IMDB/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 			};
@@ -3749,7 +3755,7 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = Plugins/IMDB/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3757,6 +3763,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = IMDBPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/IMDB/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 				ZERO_LINK = NO;
@@ -3809,7 +3816,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = /Applications;
 				PRODUCT_NAME = MetaZ;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 			};
@@ -3873,6 +3880,7 @@
 					MetaZKit,
 				);
 				PRODUCT_NAME = AtomicParsleyPlugin;
+				SKIP_INSTALL = YES;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
 				WRAPPER_EXTENSION = mzdataprovider;
@@ -3900,6 +3908,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = TagChimp;
+				SKIP_INSTALL = YES;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TagChimp/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
@@ -3930,6 +3939,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = AmazonPlugin;
+				SKIP_INSTALL = YES;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = "Plugins/Amazon/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
@@ -3992,6 +4002,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = TheTVDBPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 			};
@@ -4018,6 +4029,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = TheTVDBPlugin;
+				SKIP_INSTALL = YES;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
@@ -4043,6 +4055,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = TheTVDBPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 				ZERO_LINK = NO;
@@ -4063,7 +4076,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -4071,6 +4084,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = TheMovieDb;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 			};
@@ -4087,7 +4101,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -4095,6 +4109,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = TheMovieDb;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 			};
@@ -4112,7 +4127,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -4120,6 +4135,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = TheMovieDb;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 				ZERO_LINK = NO;
@@ -4207,7 +4223,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -4216,6 +4232,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = GrowlPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/Growl/**";
 				WRAPPER_EXTENSION = mzactions;
 			};
@@ -4233,7 +4250,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -4242,6 +4259,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = GrowlPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/Growl/**";
 				WRAPPER_EXTENSION = mzactions;
 			};
@@ -4260,7 +4278,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -4269,6 +4287,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = GrowlPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/Growl/**";
 				WRAPPER_EXTENSION = mzactions;
 				ZERO_LINK = NO;
@@ -4290,7 +4309,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -4299,6 +4318,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = AlertWindowPlugin;
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = mzactions;
 			};
 			name = Debug;
@@ -4315,7 +4335,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -4324,6 +4344,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = AlertWindowPlugin;
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = mzactions;
 			};
 			name = "Remote Debug";
@@ -4341,7 +4362,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -4350,6 +4371,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = AlertWindowPlugin;
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = mzactions;
 				ZERO_LINK = NO;
 			};
@@ -4379,6 +4401,7 @@
 					MetaZKit,
 				);
 				PRODUCT_NAME = AtomicParsleyPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
 				WRAPPER_EXTENSION = mzdataprovider;
 			};
@@ -4406,6 +4429,7 @@
 					MetaZKit,
 				);
 				PRODUCT_NAME = AtomicParsleyPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
 				WRAPPER_EXTENSION = mzdataprovider;
 				ZERO_LINK = NO;
@@ -4438,7 +4462,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = /Applications;
 				PRODUCT_NAME = MetaZ;
 			};
 			name = Debug;
@@ -4468,7 +4492,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = /Applications;
 				PRODUCT_NAME = MetaZ;
 			};
 			name = Release;
