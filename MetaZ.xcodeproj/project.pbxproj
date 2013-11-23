@@ -2951,8 +2951,9 @@
 				"$(TARGET_TEMP_DIR)/DummyFileToForceScriptToRunEveryTimeWithoutBeingCreated",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -o errexit\n\nPATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin\nbuildid=`git log -n1 --pretty=oneline --format=%h`\nrelease=`cat $SCRIPT_INPUT_FILE_0`\nbuilddate=`date +%y.%m.%d.%H`\n\necho \"#define BUILDID $buildid\" > $SCRIPT_OUTPUT_FILE_0\necho \"#define BUILDDATE $builddate\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define BUILDVERSION $builddate.$buildid\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define WHOAMI `whoami`\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define RELEASE $release\" >> $SCRIPT_OUTPUT_FILE_0 \ncat $SCRIPT_INPUT_FILE_1 >> $SCRIPT_OUTPUT_FILE_0 \n\n# Delete the intermediate Info.plist so that Xcode re-preprocesses the Info.plist with our updated macros.\n# Use -f because after a clean build, this file doesn't exist yet, so a plain rm would fail and stop the build.\nrm -f \"${CONFIGURATION_TEMP_DIR}/MetaZ.build/Preprocessed-Info.plist\"\n";
+			shellPath = /bin/bash;
+			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/plist.bash\n";
+			showEnvVarsInLog = 0;
 		};
 		1B56A4BB17065FC300BDE79D /* Copy document types from plugins */ = {
 			isa = PBXShellScriptBuildPhase;
