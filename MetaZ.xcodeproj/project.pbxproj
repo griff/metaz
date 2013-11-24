@@ -86,6 +86,8 @@
 		1B3185871841E167001EDE79 /* NSData+MZCleanUTF8.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3185851841E167001EDE79 /* NSData+MZCleanUTF8.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B3185881841E167001EDE79 /* NSData+MZCleanUTF8.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3185861841E167001EDE79 /* NSData+MZCleanUTF8.m */; };
 		1B31858A1841E2B0001EDE79 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B3185891841E2B0001EDE79 /* libiconv.dylib */; };
+		1B3185BE1841F5A1001EDE79 /* MZVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3185BC1841F5A1001EDE79 /* MZVersion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B3185BF1841F5A1001EDE79 /* MZVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3185BD1841F5A1001EDE79 /* MZVersion.m */; };
 		1B31C310165378CE00853E10 /* PicturesArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B31C30F165378CE00853E10 /* PicturesArrayController.m */; };
 		1B31C37E16538DC300853E10 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B31C37C16538DC300853E10 /* SearchView.xib */; };
 		1B35446915B1D96B0033DD74 /* MetaZ.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 1B35446815B1D96B0033DD74 /* MetaZ.sdef */; };
@@ -640,6 +642,8 @@
 		1B3185851841E167001EDE79 /* NSData+MZCleanUTF8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MZCleanUTF8.h"; sourceTree = "<group>"; };
 		1B3185861841E167001EDE79 /* NSData+MZCleanUTF8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MZCleanUTF8.m"; sourceTree = "<group>"; };
 		1B3185891841E2B0001EDE79 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		1B3185BC1841F5A1001EDE79 /* MZVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZVersion.h; sourceTree = "<group>"; };
+		1B3185BD1841F5A1001EDE79 /* MZVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZVersion.m; sourceTree = "<group>"; };
 		1B31C2F3165371BD00853E10 /* MZApplyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZApplyEditor.h; sourceTree = "<group>"; };
 		1B31C30E165378CE00853E10 /* PicturesArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicturesArrayController.h; sourceTree = "<group>"; };
 		1B31C30F165378CE00853E10 /* PicturesArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicturesArrayController.m; sourceTree = "<group>"; };
@@ -1388,6 +1392,8 @@
 				1B38FCD91673F7E500C171F9 /* NSString+MimeTypePattern.m */,
 				1B3185851841E167001EDE79 /* NSData+MZCleanUTF8.h */,
 				1B3185861841E167001EDE79 /* NSData+MZCleanUTF8.m */,
+				1B3185BC1841F5A1001EDE79 /* MZVersion.h */,
+				1B3185BD1841F5A1001EDE79 /* MZVersion.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -2517,6 +2523,7 @@
 				1BD55C5E16483F5E00F9C579 /* MZActionsPlugin.h in Headers */,
 				1BD55C621648431D00F9C579 /* MZScriptActionsPlugin.h in Headers */,
 				1B3185871841E167001EDE79 /* NSData+MZCleanUTF8.h in Headers */,
+				1B3185BE1841F5A1001EDE79 /* MZVersion.h in Headers */,
 				1BE35217182C6C7C004FAB1B /* JSONKit.h in Headers */,
 				1BD55C661648466700F9C579 /* NSError+MZScriptError.h in Headers */,
 				1B4C1F4016554B0100011621 /* MZHTTPRequest.h in Headers */,
@@ -3164,6 +3171,7 @@
 				1B36E75E1406612F009F542A /* ASIDataCompressor.m in Sources */,
 				1B36E78D14066727009F542A /* MZASISearch.m in Sources */,
 				1B0696D8149BFB2D00B5FA90 /* NSString+MZQueryString.m in Sources */,
+				1B3185BF1841F5A1001EDE79 /* MZVersion.m in Sources */,
 				1B4CFFE8161CE0ED00B12009 /* AEVTBuilder.m in Sources */,
 				1BD55C5F16483F5E00F9C579 /* MZActionsPlugin.m in Sources */,
 				1BD55C631648431D00F9C579 /* MZScriptActionsPlugin.m in Sources */,
