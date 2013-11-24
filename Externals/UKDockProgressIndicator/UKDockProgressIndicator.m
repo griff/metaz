@@ -111,15 +111,17 @@
 {
     if (hidden)
         return;
-        
-    NSImage* dockIcon = [[[NSImage alloc] initWithSize: NSMakeSize(128,128)] autorelease];
-
+    
+    NSImage* appIcon = [NSImage imageNamed: @"NSApplicationIcon"];
+    
+    NSRect rect = NSMakeRect(0, 0, 128, 128);
+    NSImage* dockIcon = [[[NSImage alloc] initWithSize:rect.size] autorelease];
 
     [dockIcon lockFocus];
     NSRect box = { {4, 4}, {120, 16} };
     
     // App icon:
-    [[NSImage imageNamed: @"NSApplicationIcon"] dissolveToPoint: NSZeroPoint fraction: 1.0];
+    [appIcon drawInRect:rect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
     
     // Track & Outline:
     [[NSColor whiteColor] set];
