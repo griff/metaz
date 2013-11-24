@@ -83,6 +83,9 @@
 		1B299D7314AE43900048B7C0 /* TheMovieDbSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B299D7214AE43900048B7C0 /* TheMovieDbSearch.m */; };
 		1B299DB714AE4D3A0048B7C0 /* TheMovieDb.mzsearchprovider in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B8CB90B14ACD62000F859F7 /* TheMovieDb.mzsearchprovider */; };
 		1B2AEED611A0EC430074BAAD /* MZFileNameTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */; };
+		1B3185871841E167001EDE79 /* NSData+MZCleanUTF8.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3185851841E167001EDE79 /* NSData+MZCleanUTF8.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B3185881841E167001EDE79 /* NSData+MZCleanUTF8.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3185861841E167001EDE79 /* NSData+MZCleanUTF8.m */; };
+		1B31858A1841E2B0001EDE79 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B3185891841E2B0001EDE79 /* libiconv.dylib */; };
 		1B31C310165378CE00853E10 /* PicturesArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B31C30F165378CE00853E10 /* PicturesArrayController.m */; };
 		1B31C37E16538DC300853E10 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B31C37C16538DC300853E10 /* SearchView.xib */; };
 		1B35446915B1D96B0033DD74 /* MetaZ.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 1B35446815B1D96B0033DD74 /* MetaZ.sdef */; };
@@ -634,6 +637,9 @@
 		1B29A07314C5C9430048B7C0 /* 1.2.3 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = 1.2.3; path = Externals/Growl/1.2.3; sourceTree = "<group>"; };
 		1B2AEED411A0EC430074BAAD /* MZFileNameTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFileNameTextStorage.h; sourceTree = "<group>"; };
 		1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFileNameTextStorage.m; sourceTree = "<group>"; };
+		1B3185851841E167001EDE79 /* NSData+MZCleanUTF8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MZCleanUTF8.h"; sourceTree = "<group>"; };
+		1B3185861841E167001EDE79 /* NSData+MZCleanUTF8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MZCleanUTF8.m"; sourceTree = "<group>"; };
+		1B3185891841E2B0001EDE79 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		1B31C2F3165371BD00853E10 /* MZApplyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZApplyEditor.h; sourceTree = "<group>"; };
 		1B31C30E165378CE00853E10 /* PicturesArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicturesArrayController.h; sourceTree = "<group>"; };
 		1B31C30F165378CE00853E10 /* PicturesArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicturesArrayController.m; sourceTree = "<group>"; };
@@ -1245,6 +1251,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B31858A1841E2B0001EDE79 /* libiconv.dylib in Frameworks */,
 				1BA325E110545CD900276F57 /* Cocoa.framework in Frameworks */,
 				1B523C0F13F4B3F500C20B7D /* SystemConfiguration.framework in Frameworks */,
 				1B8E95711401BE7F006227B4 /* libz.dylib in Frameworks */,
@@ -1379,6 +1386,8 @@
 				1BD55C651648466700F9C579 /* NSError+MZScriptError.m */,
 				1B38FCD81673F7E500C171F9 /* NSString+MimeTypePattern.h */,
 				1B38FCD91673F7E500C171F9 /* NSString+MimeTypePattern.m */,
+				1B3185851841E167001EDE79 /* NSData+MZCleanUTF8.h */,
+				1B3185861841E167001EDE79 /* NSData+MZCleanUTF8.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -2435,6 +2444,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1B3185891841E2B0001EDE79 /* libiconv.dylib */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -2506,6 +2516,7 @@
 				1BDEC5ED1620DE160051D656 /* AEVTBuilder.h in Headers */,
 				1BD55C5E16483F5E00F9C579 /* MZActionsPlugin.h in Headers */,
 				1BD55C621648431D00F9C579 /* MZScriptActionsPlugin.h in Headers */,
+				1B3185871841E167001EDE79 /* NSData+MZCleanUTF8.h in Headers */,
 				1BE35217182C6C7C004FAB1B /* JSONKit.h in Headers */,
 				1BD55C661648466700F9C579 /* NSError+MZScriptError.h in Headers */,
 				1B4C1F4016554B0100011621 /* MZHTTPRequest.h in Headers */,
@@ -3114,6 +3125,7 @@
 				1BEA6FA4106EFC3F004B1A7F /* MZMethodData.m in Sources */,
 				1BEA6FA7106EFC3F004B1A7F /* MZDynamicObject.m in Sources */,
 				1BEA6FA9106EFC3F004B1A7F /* MetaChangeNotification.m in Sources */,
+				1B3185881841E167001EDE79 /* NSData+MZCleanUTF8.m in Sources */,
 				1BEA6FAB106EFC3F004B1A7F /* MZTag.m in Sources */,
 				1BEA6FAE106EFC3F004B1A7F /* MZPlugin.m in Sources */,
 				1BEA6FB0106EFC3F004B1A7F /* MZPluginController.m in Sources */,
