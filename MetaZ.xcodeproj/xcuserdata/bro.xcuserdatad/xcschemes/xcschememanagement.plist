@@ -44,6 +44,11 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>OSXNotification.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
 		<key>Plist Marcos.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -83,6 +88,16 @@
 			<true/>
 		</dict>
 		<key>1B2022F810B393CA00EE548A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1B3185911841E838001EDE79</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1B3185A01841E9D6001EDE79</key>
 		<dict>
 			<key>primary</key>
 			<true/>

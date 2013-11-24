@@ -86,8 +86,12 @@
 		1B3185871841E167001EDE79 /* NSData+MZCleanUTF8.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3185851841E167001EDE79 /* NSData+MZCleanUTF8.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B3185881841E167001EDE79 /* NSData+MZCleanUTF8.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3185861841E167001EDE79 /* NSData+MZCleanUTF8.m */; };
 		1B31858A1841E2B0001EDE79 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B3185891841E2B0001EDE79 /* libiconv.dylib */; };
+		1B3185AA1841E9D6001EDE79 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
+		1B3185B81841EB18001EDE79 /* OSXNotificationPlugin.mzactions in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B3185B21841E9D6001EDE79 /* OSXNotificationPlugin.mzactions */; };
+		1B3185BB1841EB4A001EDE79 /* OSXNotificationPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3185BA1841EB4A001EDE79 /* OSXNotificationPlugin.m */; };
 		1B3185BE1841F5A1001EDE79 /* MZVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3185BC1841F5A1001EDE79 /* MZVersion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B3185BF1841F5A1001EDE79 /* MZVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3185BD1841F5A1001EDE79 /* MZVersion.m */; };
+		1B3185C318423AF5001EDE79 /* MZNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3185C218423AF5001EDE79 /* MZNotification.m */; };
 		1B31C310165378CE00853E10 /* PicturesArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B31C30F165378CE00853E10 /* PicturesArrayController.m */; };
 		1B31C37E16538DC300853E10 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B31C37C16538DC300853E10 /* SearchView.xib */; };
 		1B35446915B1D96B0033DD74 /* MetaZ.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 1B35446815B1D96B0033DD74 /* MetaZ.sdef */; };
@@ -374,6 +378,27 @@
 			remoteGlobalIDString = 1B8CB90A14ACD62000F859F7;
 			remoteInfo = TheMovieDb;
 		};
+		1B3185A21841E9D6001EDE79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1BA325C310545ACA00276F57;
+			remoteInfo = MetaZKit;
+		};
+		1B3185A41841E9D6001EDE79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B2022F810B393CA00EE548A;
+			remoteInfo = "Plist Marcos";
+		};
+		1B3185B61841EAF5001EDE79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B3185A01841E9D6001EDE79;
+			remoteInfo = OSXNotificationPlugin;
+		};
 		1B42F25F10DEB0DC00AFEBF6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -519,6 +544,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				1B3185B81841EB18001EDE79 /* OSXNotificationPlugin.mzactions in Copy Plugins */,
 				1BD562471648F43A00F9C579 /* AlertWindowPlugin.mzactions in Copy Plugins */,
 				1BD5604D1648CC0200F9C579 /* GrowlPlugin.mzactions in Copy Plugins */,
 				1B299DB714AE4D3A0048B7C0 /* TheMovieDb.mzsearchprovider in Copy Plugins */,
@@ -642,8 +668,14 @@
 		1B3185851841E167001EDE79 /* NSData+MZCleanUTF8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MZCleanUTF8.h"; sourceTree = "<group>"; };
 		1B3185861841E167001EDE79 /* NSData+MZCleanUTF8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MZCleanUTF8.m"; sourceTree = "<group>"; };
 		1B3185891841E2B0001EDE79 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		1B3185B21841E9D6001EDE79 /* OSXNotificationPlugin.mzactions */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSXNotificationPlugin.mzactions; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B3185B41841EAC7001EDE79 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = OSXNotification/Info.plist; sourceTree = "<group>"; };
+		1B3185B91841EB4A001EDE79 /* OSXNotificationPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSXNotificationPlugin.h; sourceTree = "<group>"; };
+		1B3185BA1841EB4A001EDE79 /* OSXNotificationPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSXNotificationPlugin.m; sourceTree = "<group>"; };
 		1B3185BC1841F5A1001EDE79 /* MZVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZVersion.h; sourceTree = "<group>"; };
 		1B3185BD1841F5A1001EDE79 /* MZVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZVersion.m; sourceTree = "<group>"; };
+		1B3185C118423AF5001EDE79 /* MZNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZNotification.h; sourceTree = "<group>"; };
+		1B3185C218423AF5001EDE79 /* MZNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZNotification.m; sourceTree = "<group>"; };
 		1B31C2F3165371BD00853E10 /* MZApplyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZApplyEditor.h; sourceTree = "<group>"; };
 		1B31C30E165378CE00853E10 /* PicturesArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicturesArrayController.h; sourceTree = "<group>"; };
 		1B31C30F165378CE00853E10 /* PicturesArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicturesArrayController.m; sourceTree = "<group>"; };
@@ -1226,6 +1258,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1B3185A91841E9D6001EDE79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B3185AA1841E9D6001EDE79 /* MetaZKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1B42F25610DEB0D300AFEBF6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1438,6 +1478,7 @@
 				1B8CB90B14ACD62000F859F7 /* TheMovieDb.mzsearchprovider */,
 				1BD55F8E1648BB4200F9C579 /* GrowlPlugin.mzactions */,
 				1BD562071648F17C00F9C579 /* AlertWindowPlugin.mzactions */,
+				1B3185B21841E9D6001EDE79 /* OSXNotificationPlugin.mzactions */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1545,6 +1586,35 @@
 				1B29A07114C5C9430048B7C0 /* 1.3.1 */,
 			);
 			name = Growl;
+			sourceTree = "<group>";
+		};
+		1B31858B1841E7A8001EDE79 /* OSXNotification */ = {
+			isa = PBXGroup;
+			children = (
+				1B31858D1841E7CB001EDE79 /* Resources */,
+				1B31858C1841E7C4001EDE79 /* Classes */,
+			);
+			name = OSXNotification;
+			sourceTree = "<group>";
+		};
+		1B31858C1841E7C4001EDE79 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1B3185B91841EB4A001EDE79 /* OSXNotificationPlugin.h */,
+				1B3185BA1841EB4A001EDE79 /* OSXNotificationPlugin.m */,
+				1B3185C118423AF5001EDE79 /* MZNotification.h */,
+				1B3185C218423AF5001EDE79 /* MZNotification.m */,
+			);
+			name = Classes;
+			path = OSXNotification/src;
+			sourceTree = "<group>";
+		};
+		1B31858D1841E7CB001EDE79 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1B3185B41841EAC7001EDE79 /* Info.plist */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		1B42F21910DD534500AFEBF6 /* UKDockProgressIndicator */ = {
@@ -2326,6 +2396,7 @@
 		1BEA6E68106EF248004B1A7F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				1B31858B1841E7A8001EDE79 /* OSXNotification */,
 				1BD562AC16490AF900F9C579 /* Add to iTunes.applescript */,
 				1B63A889164823FE00461FC9 /* Example Actions.applescript */,
 				1BD55D4516485AE700F9C579 /* Update iTunes.applescript */,
@@ -2590,6 +2661,25 @@
 			productReference = 1B040EBE1081B3C00027FA0D /* TagChimp.mzsearchprovider */;
 			productType = "com.apple.product-type.bundle";
 		};
+		1B3185A01841E9D6001EDE79 /* OSXNotificationPlugin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B3185AE1841E9D6001EDE79 /* Build configuration list for PBXNativeTarget "OSXNotificationPlugin" */;
+			buildPhases = (
+				1B3185A51841E9D6001EDE79 /* Resources */,
+				1B3185A61841E9D6001EDE79 /* Sources */,
+				1B3185A91841E9D6001EDE79 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1B3185A11841E9D6001EDE79 /* PBXTargetDependency */,
+				1B3185A31841E9D6001EDE79 /* PBXTargetDependency */,
+			);
+			name = OSXNotificationPlugin;
+			productName = GrowlPlugin;
+			productReference = 1B3185B21841E9D6001EDE79 /* OSXNotificationPlugin.mzactions */;
+			productType = "com.apple.product-type.bundle";
+		};
 		1B42F25710DEB0D300AFEBF6 /* IMDB */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B42F25E10DEB0D400AFEBF6 /* Build configuration list for PBXNativeTarget "IMDB" */;
@@ -2742,6 +2832,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1B3185B71841EAF5001EDE79 /* PBXTargetDependency */,
 				1BD560461648CBF700F9C579 /* PBXTargetDependency */,
 				1BA325CC10545BAE00276F57 /* PBXTargetDependency */,
 				1B040EEA1081C0030027FA0D /* PBXTargetDependency */,
@@ -2810,6 +2901,7 @@
 				1B8CB90A14ACD62000F859F7 /* TheMovieDb */,
 				1BD55F8D1648BB4200F9C579 /* GrowlPlugin */,
 				1BD562061648F17C00F9C579 /* AlertWindowPlugin */,
+				1B3185A01841E9D6001EDE79 /* OSXNotificationPlugin */,
 			);
 		};
 /* End PBXProject section */
@@ -2834,6 +2926,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B040EDF1081B53F0027FA0D /* tagChimp.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B3185A51841E9D6001EDE79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3093,6 +3192,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1B3185A61841E9D6001EDE79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B3185BB1841EB4A001EDE79 /* OSXNotificationPlugin.m in Sources */,
+				1B3185C318423AF5001EDE79 /* MZNotification.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1B42F25510DEB0D300AFEBF6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3331,6 +3439,21 @@
 			isa = PBXTargetDependency;
 			target = 1B8CB90A14ACD62000F859F7 /* TheMovieDb */;
 			targetProxy = 1B299DA314AE4D2A0048B7C0 /* PBXContainerItemProxy */;
+		};
+		1B3185A11841E9D6001EDE79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			targetProxy = 1B3185A21841E9D6001EDE79 /* PBXContainerItemProxy */;
+		};
+		1B3185A31841E9D6001EDE79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B2022F810B393CA00EE548A /* Plist Marcos */;
+			targetProxy = 1B3185A41841E9D6001EDE79 /* PBXContainerItemProxy */;
+		};
+		1B3185B71841EAF5001EDE79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B3185A01841E9D6001EDE79 /* OSXNotificationPlugin */;
+			targetProxy = 1B3185B61841EAF5001EDE79 /* PBXContainerItemProxy */;
 		};
 		1B42F26010DEB0DC00AFEBF6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3716,6 +3839,92 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "Plist Macos";
+			};
+			name = Release;
+		};
+		1B3185AF1841E9D6001EDE79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/OSXNotification/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = OSXNotificationPlugin;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "Plugins/OSXNotification/**";
+				WRAPPER_EXTENSION = mzactions;
+			};
+			name = Debug;
+		};
+		1B3185B01841E9D6001EDE79 /* Remote Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/OSXNotification/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = OSXNotificationPlugin;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "Plugins/OSXNotification/**";
+				WRAPPER_EXTENSION = mzactions;
+			};
+			name = "Remote Debug";
+		};
+		1B3185B11841E9D6001EDE79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/OSXNotification/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = OSXNotificationPlugin;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "Plugins/OSXNotification/**";
+				WRAPPER_EXTENSION = mzactions;
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -4595,6 +4804,16 @@
 				1B2022F910B393CB00EE548A /* Debug */,
 				1B44938510C95B0A00B9C751 /* Remote Debug */,
 				1B2022FA10B393CB00EE548A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1B3185AE1841E9D6001EDE79 /* Build configuration list for PBXNativeTarget "OSXNotificationPlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B3185AF1841E9D6001EDE79 /* Debug */,
+				1B3185B01841E9D6001EDE79 /* Remote Debug */,
+				1B3185B11841E9D6001EDE79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
