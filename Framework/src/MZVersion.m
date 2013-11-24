@@ -74,6 +74,26 @@
     return NSOrderedSame;
 }
 
+- (BOOL)isLessThan:(MZVersion *)aVersion;
+{
+    return [self compare:aVersion] == NSOrderedAscending;
+}
+
+- (BOOL)isLessThanOrEqualTo:(MZVersion *)aVersion;
+{
+    return [self compare:aVersion] <= NSOrderedSame;
+}
+
+- (BOOL)isGreaterThan:(MZVersion *)aVersion;
+{
+    return [self compare:aVersion] == NSOrderedDescending;
+}
+
+- (BOOL)isGreaterThanOrEqualTo:(MZVersion *)aVersion;
+{
+    return [self compare:aVersion] >= NSOrderedSame;
+}
+
 - (BOOL)isEqual:(id)anObject
 {
     if(![anObject isKindOfClass:[MZVersion class]])

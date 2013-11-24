@@ -21,6 +21,10 @@
 - (id)initWithMajor:(NSUInteger)major minor:(NSUInteger)minor bugFix:(NSUInteger)bugFix;
 - (id)initWithString:(NSString *)systemVersion;
 
+- (BOOL)isLessThan:(MZVersion *)aVersion;
+- (BOOL)isLessThanOrEqualTo:(MZVersion *)aVersion;
+- (BOOL)isGreaterThan:(MZVersion *)aVersion;
+- (BOOL)isGreaterThanOrEqualTo:(MZVersion *)aVersion;
 - (NSComparisonResult)compare:(MZVersion *)aVersion;
 
 @end
