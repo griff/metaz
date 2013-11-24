@@ -24,11 +24,6 @@
 			<key>orderHint</key>
 			<integer>10</integer>
 		</dict>
-		<key>IMDB.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
-		</dict>
 		<key>MetaZ.xcscheme</key>
 		<dict>
 			<key>orderHint</key>

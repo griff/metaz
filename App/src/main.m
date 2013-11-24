@@ -7,7 +7,6 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <RubyCocoa/RBRuntime.h>
 #import <MetaZKit/MZLogger.h>
 #import <MetaZKit/MZVersion.h>
 #import <sys/stat.h>
