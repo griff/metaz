@@ -18,12 +18,14 @@
 static MZMultiGrowlWrapper *_MZSharedMultiGrowlWrapper = nil;
 + (MZMultiGrowlWrapper *)shared
 {
+    MZMultiGrowlWrapper* _shared = nil;
     @synchronized(self)
     {
         if (_MZSharedMultiGrowlWrapper == nil)
             [[[MZMultiGrowlWrapper alloc] init] release];
+        _shared = _MZSharedMultiGrowlWrapper;
     }
-    return _MZSharedMultiGrowlWrapper;
+    return _shared;
 }
 
 + (void) notifyWithTitle:(NSString *)title

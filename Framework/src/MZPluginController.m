@@ -11,6 +11,7 @@
 #import <MetaZKit/NSFileManager+MZCreate.h>
 #import <MetaZKit/MZScriptActionsPlugin.h>
 #import <MetaZKit/GTMNSString+URLArguments.h>
+#import <MetaZKit/MZVersion.h>
 #import "MZPlugin+Private.h"
 
 const NSInteger errMZPluginMissingInstallLocation = -1;
@@ -19,8 +20,9 @@ const NSInteger errMZPluginFailedToCreateBundle = -3;
 const NSInteger errMZPluginUnknownPluginType = -4;
 const NSInteger errMZPluginAlreadyLoaded = -5;
 const NSInteger errMZPluginFailedToLoadSource = -6;
-const NSInteger errMZPluginFailedToLoadPrincipalClass = -7;
-const NSInteger errMZPluginFailedToCreatePrincipalClass = -8;
+const NSInteger errMZPluginFailedLSMinimumSystemVersionCheck = -7;
+const NSInteger errMZPluginFailedToLoadPrincipalClass = -8;
+const NSInteger errMZPluginFailedToCreatePrincipalClass = -9;
 
 
 @interface MZWriteNotification : NSObject <MZDataWriteDelegate>
@@ -478,6 +480,28 @@ static MZPluginController *gInstance = NULL;
                 
     if([source isKindOfClass:[NSBundle class]])
     {
+        NSString* minimumVersionStr = [source objectForInfoDictionaryKey:@"LSMinimumSystemVersion"];
+        if(minimumVersionStr)
+        {
+            MZVersion* minimumVersion = [MZVersion versionWithString:minimumVersionStr];
+            if([minimumVersion compare:[MZVersion systemVersion]] > NSOrderedSame)
+            {
+                NSString* msg = [NSString stringWithFormat:
+                                 @"Plugin %@ requires at least Mac OS X version %@, but is being run on %@, and so is ignored.",
+                                 identifier, minimumVersion, [MZVersion systemVersion]];
+                if(error)
+                {
+                    NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys:
+                        msg, NSLocalizedDescriptionKey,
+                        identifier, @"MZPlugin",
+                        nil];
+                    *error = [NSError errorWithDomain:@"MZPluginController" code:errMZPluginFailedLSMinimumSystemVersionCheck userInfo:info];
+                }
+                else
+                    MZLoggerError(@"%@", msg);
+                return NO;
+            }
+        }
         Class cls = [source principalClass];
         if(cls == Nil)
         {
@@ -487,7 +511,7 @@ static MZPluginController *gInstance = NULL;
             {
                 NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys:
                     msg, NSLocalizedDescriptionKey,
-                    err, NSUnderlyingErrorKey,
+                    identifier, @"MZPlugin",
                     nil];
                 *error = [NSError errorWithDomain:@"MZPluginController" code:errMZPluginFailedToLoadPrincipalClass userInfo:info];
             }
@@ -506,7 +530,7 @@ static MZPluginController *gInstance = NULL;
             {
                 NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys:
                     msg, NSLocalizedDescriptionKey,
-                    err, NSUnderlyingErrorKey,
+                    identifier, @"MZPlugin",
                     nil];
                 *error = [NSError errorWithDomain:@"MZPluginController" code:errMZPluginFailedToCreatePrincipalClass userInfo:info];
             }
