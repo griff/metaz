@@ -27,19 +27,20 @@ SIGNATURE=$(openssl dgst -sha1 -binary < "$ARCHIVE_FILENAME" | openssl dgst -dss
 [ $SIGNATURE ] || { echo Unable to load signing private key with name "'$KEYCHAIN_PRIVKEY_NAME'" from keychain; false; }
 
 cat > "$PROJECT_NAME-$VERSION.xml" <<EOF
-		<item>
-			<title>Version $VERSION</title>
-			<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>
-			<pubDate>$PUBDATE</pubDate>
 			<enclosure
-				url="$DOWNLOAD_URL"
 				sparkle:version="$FULLVERSION"
 				sparkle:shortVersionString="$VERSION"
-				type="application/octet-stream"
 				length="$SIZE"
 				sparkle:dsaSignature="$SIGNATURE"
 			/>
-		</item>
+EOF
+cat > "$PROJECT_NAME-$VERSION.json" <<EOF
+{
+  "version": "$FULLVERSION",
+  "shortVersionString": "$VERSION",
+  "size": $SIZE,
+  "dsaSignature": "$SIGNATURE"
+}
 EOF
 
 echo scp "'$HOME/svn/my-cool-app/build/Release/$ARCHIVE_FILENAME'" www.example.com:download/
