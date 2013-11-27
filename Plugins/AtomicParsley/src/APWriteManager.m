@@ -154,7 +154,7 @@
         str = [str substringFromIndex:29];
     str = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSInteger percent = [str integerValue];
-    MZLoggerDebug(@"Got data: %d '%@'", percent, origStr);
+    MZLoggerDebug(@"Got data: %ld '%@'", (long)percent, origStr);
     if(percent > 0)
         [controller notifyPercent:percent];
         

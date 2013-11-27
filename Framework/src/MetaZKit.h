@@ -33,8 +33,10 @@
 #import <MetaZKit/MZOperationsController.h>
 #import <MetaZKit/MZReadOperationsController.h>
 #import <MetaZKit/MZHTTPRequest.h>
+#import <MetaZKit/MZVersion.h>
 
 #import <MetaZKit/NSArray+Mapping.h>
+#import <MetaZKit/NSData+MZCleanUTF8.h>
 #import <MetaZKit/NSDate+UTC.h>
 #import <MetaZKit/NSInvocation+Wrapping.h>
 #import <MetaZKit/NSObject+ProtectedKeyValue.h>

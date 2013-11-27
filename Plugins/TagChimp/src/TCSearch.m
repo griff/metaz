@@ -127,7 +127,8 @@
     NSError* error = nil;
     //MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
     //MZLoggerDebug(@"Got response encoding: %d", [theRequest responseEncoding]);
-    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithXMLString:[theRequest responseString] options:0 error:&error] autorelease];
+    NSData* data = [[theRequest responseData] mz_cleanUTF8];
+    NSXMLDocument* doc = [[[NSXMLDocument alloc] initWithData:data options:0 error:&error] autorelease];
     if(error)
     {
         MZLoggerError(@"TagChimp document error: %@", [error localizedDescription]);

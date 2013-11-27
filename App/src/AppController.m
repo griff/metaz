@@ -82,8 +82,8 @@ NSDictionary* findBinding(NSWindow* window) {
 }
 
 -(void)awakeFromNib
-{   
-    [NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+{
+    [NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:-60*60*11]];    
 
     [[NSNotificationCenter defaultCenter]
         addObserver:self

@@ -49,9 +49,6 @@
 		1B040EEE1081C0110027FA0D /* TagChimp.mzsearchprovider in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B040EBE1081B3C00027FA0D /* TagChimp.mzsearchprovider */; };
 		1B0604AD1199E24700589ACE /* MZSearchProviderPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B0604AB1199E24700589ACE /* MZSearchProviderPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B0604AE1199E24700589ACE /* MZSearchProviderPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0604AC1199E24700589ACE /* MZSearchProviderPlugin.m */; };
-		1B060DF910E267810009D847 /* imdb_plugin.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B060DF810E267810009D847 /* imdb_plugin.rb */; };
-		1B060E5A10E26BA90009D847 /* IMDBSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B060E5910E26BA90009D847 /* IMDBSearch.m */; };
-		1B060F0810E286C00009D847 /* IMDBSearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B060F0710E286C00009D847 /* IMDBSearchItem.m */; };
 		1B069668149BD35B00B5FA90 /* MGViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B069667149BD35B00B5FA90 /* MGViewAnimation.m */; };
 		1B0696B0149BD4B500B5FA90 /* MZViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0696AF149BD4B500B5FA90 /* MZViewAnimation.m */; };
 		1B0696D7149BFB2D00B5FA90 /* NSString+MZQueryString.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B0696D5149BFB2D00B5FA90 /* NSString+MZQueryString.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -70,8 +67,6 @@
 		1B0DEEC3106139E8009D293F /* ZoomOut.tif in Resources */ = {isa = PBXBuildFile; fileRef = 1B0DEEBD106139E8009D293F /* ZoomOut.tif */; };
 		1B119D1F103F17D5004C93D3 /* ResizeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119D1E103F17D5004C93D3 /* ResizeController.m */; };
 		1B119FD710444DC4004C93D3 /* MZMetaLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119FD610444DC4004C93D3 /* MZMetaLoader.m */; };
-		1B11A00710457B0D004C93D3 /* RubyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B11A00610457B0D004C93D3 /* RubyCocoa.framework */; };
-		1B11A02510457B76004C93D3 /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 1B11A02410457B76004C93D3 /* rb_main.rb */; };
 		1B11A28B104DF1EC004C93D3 /* FilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A28A104DF1EC004C93D3 /* FilesTableView.m */; };
 		1B15A60E10B608D100EC0FBF /* AmazonSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B15A60D10B608D100EC0FBF /* AmazonSearch.m */; };
 		1B20209B10B36EC200EE548A /* VideoType.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1B20209910B36EC200EE548A /* VideoType.strings */; };
@@ -83,6 +78,15 @@
 		1B299D7314AE43900048B7C0 /* TheMovieDbSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B299D7214AE43900048B7C0 /* TheMovieDbSearch.m */; };
 		1B299DB714AE4D3A0048B7C0 /* TheMovieDb.mzsearchprovider in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B8CB90B14ACD62000F859F7 /* TheMovieDb.mzsearchprovider */; };
 		1B2AEED611A0EC430074BAAD /* MZFileNameTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */; };
+		1B3185871841E167001EDE79 /* NSData+MZCleanUTF8.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3185851841E167001EDE79 /* NSData+MZCleanUTF8.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B3185881841E167001EDE79 /* NSData+MZCleanUTF8.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3185861841E167001EDE79 /* NSData+MZCleanUTF8.m */; };
+		1B31858A1841E2B0001EDE79 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B3185891841E2B0001EDE79 /* libiconv.dylib */; };
+		1B3185AA1841E9D6001EDE79 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
+		1B3185B81841EB18001EDE79 /* OSXNotificationPlugin.mzactions in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B3185B21841E9D6001EDE79 /* OSXNotificationPlugin.mzactions */; };
+		1B3185BB1841EB4A001EDE79 /* OSXNotificationPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3185BA1841EB4A001EDE79 /* OSXNotificationPlugin.m */; };
+		1B3185BE1841F5A1001EDE79 /* MZVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3185BC1841F5A1001EDE79 /* MZVersion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B3185BF1841F5A1001EDE79 /* MZVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3185BD1841F5A1001EDE79 /* MZVersion.m */; };
+		1B3185C318423AF5001EDE79 /* MZNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3185C218423AF5001EDE79 /* MZNotification.m */; };
 		1B31C310165378CE00853E10 /* PicturesArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B31C30F165378CE00853E10 /* PicturesArrayController.m */; };
 		1B31C37E16538DC300853E10 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B31C37C16538DC300853E10 /* SearchView.xib */; };
 		1B35446915B1D96B0033DD74 /* MetaZ.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 1B35446815B1D96B0033DD74 /* MetaZ.sdef */; };
@@ -104,9 +108,6 @@
 		1B3AD7F4110595C300B33F85 /* NSString+TempFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3AD7F2110595C300B33F85 /* NSString+TempFile.m */; };
 		1B42F21C10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B42F21B10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m */; };
 		1B42F21F10DD5D6D00AFEBF6 /* MiniProgressGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B42F21D10DD5D6D00AFEBF6 /* MiniProgressGradient.png */; };
-		1B42F26D10DEB11E00AFEBF6 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
-		1B42F27210DEB14B00AFEBF6 /* RubyCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B11A00610457B0D004C93D3 /* RubyCocoa.framework */; };
-		1B42F2B710DEB4A200AFEBF6 /* IMDBPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B42F2B610DEB4A200AFEBF6 /* IMDBPlugin.m */; };
 		1B44949910D57D6900B9C751 /* AtomicParsley in Resources */ = {isa = PBXBuildFile; fileRef = 1B44949810D57D6900B9C751 /* AtomicParsley */; };
 		1B4499D210D9A5CE00B9C751 /* PresetSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4499D110D9A5CE00B9C751 /* PresetSegmentedControl.m */; };
 		1B449B8810DC7DE400B9C751 /* ChaptersTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B449B8710DC7DE400B9C751 /* ChaptersTableView.m */; };
@@ -320,13 +321,6 @@
 			remoteGlobalIDString = 1B040EBD1081B3C00027FA0D;
 			remoteInfo = TagChimp;
 		};
-		1B060E1010E269F60009D847 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1B42F25710DEB0D300AFEBF6;
-			remoteInfo = IMDB;
-		};
 		1B20239210B395FA00EE548A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -369,19 +363,26 @@
 			remoteGlobalIDString = 1B8CB90A14ACD62000F859F7;
 			remoteInfo = TheMovieDb;
 		};
-		1B42F25F10DEB0DC00AFEBF6 /* PBXContainerItemProxy */ = {
+		1B3185A21841E9D6001EDE79 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1BA325C310545ACA00276F57;
 			remoteInfo = MetaZKit;
 		};
-		1B42F26110DEB0E900AFEBF6 /* PBXContainerItemProxy */ = {
+		1B3185A41841E9D6001EDE79 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1B2022F810B393CA00EE548A;
 			remoteInfo = "Plist Marcos";
+		};
+		1B3185B61841EAF5001EDE79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B3185A01841E9D6001EDE79;
+			remoteInfo = OSXNotificationPlugin;
 		};
 		1B4F53B5116E9F44003221B1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -514,6 +515,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				1B3185B81841EB18001EDE79 /* OSXNotificationPlugin.mzactions in Copy Plugins */,
 				1BD562471648F43A00F9C579 /* AlertWindowPlugin.mzactions in Copy Plugins */,
 				1BD5604D1648CC0200F9C579 /* GrowlPlugin.mzactions in Copy Plugins */,
 				1B299DB714AE4D3A0048B7C0 /* TheMovieDb.mzsearchprovider in Copy Plugins */,
@@ -568,11 +570,6 @@
 		1B040EDE1081B53F0027FA0D /* tagChimp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tagChimp.png; sourceTree = "<group>"; };
 		1B0604AB1199E24700589ACE /* MZSearchProviderPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSearchProviderPlugin.h; sourceTree = "<group>"; };
 		1B0604AC1199E24700589ACE /* MZSearchProviderPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZSearchProviderPlugin.m; sourceTree = "<group>"; };
-		1B060DF810E267810009D847 /* imdb_plugin.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = imdb_plugin.rb; sourceTree = "<group>"; };
-		1B060E5810E26BA90009D847 /* IMDBSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDBSearch.h; sourceTree = "<group>"; };
-		1B060E5910E26BA90009D847 /* IMDBSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBSearch.m; sourceTree = "<group>"; };
-		1B060F0610E286C00009D847 /* IMDBSearchItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDBSearchItem.h; sourceTree = "<group>"; };
-		1B060F0710E286C00009D847 /* IMDBSearchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBSearchItem.m; sourceTree = "<group>"; };
 		1B069666149BD35B00B5FA90 /* MGViewAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGViewAnimation.h; path = Externals/MGViewAnimation/MGViewAnimation.h; sourceTree = "<group>"; };
 		1B069667149BD35B00B5FA90 /* MGViewAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGViewAnimation.m; path = Externals/MGViewAnimation/MGViewAnimation.m; sourceTree = "<group>"; };
 		1B0696AF149BD4B500B5FA90 /* MZViewAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZViewAnimation.m; sourceTree = "<group>"; };
@@ -604,8 +601,6 @@
 		1B119FCE10443655004C93D3 /* MetaLoaded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaLoaded.m; sourceTree = "<group>"; };
 		1B119FD510444DC4004C93D3 /* MZMetaLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMetaLoader.h; sourceTree = "<group>"; };
 		1B119FD610444DC4004C93D3 /* MZMetaLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMetaLoader.m; sourceTree = "<group>"; };
-		1B11A00610457B0D004C93D3 /* RubyCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RubyCocoa.framework; path = System/Library/Frameworks/RubyCocoa.framework; sourceTree = SDKROOT; };
-		1B11A02410457B76004C93D3 /* rb_main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = rb_main.rb; path = App/src/rb_main.rb; sourceTree = "<group>"; };
 		1B11A02810458471004C93D3 /* MZDataProviderPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZDataProviderPlugin.h; sourceTree = "<group>"; };
 		1B11A289104DF1EC004C93D3 /* FilesTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesTableView.h; sourceTree = "<group>"; };
 		1B11A28A104DF1EC004C93D3 /* FilesTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesTableView.m; sourceTree = "<group>"; };
@@ -634,6 +629,17 @@
 		1B29A07314C5C9430048B7C0 /* 1.2.3 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = 1.2.3; path = Externals/Growl/1.2.3; sourceTree = "<group>"; };
 		1B2AEED411A0EC430074BAAD /* MZFileNameTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFileNameTextStorage.h; sourceTree = "<group>"; };
 		1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFileNameTextStorage.m; sourceTree = "<group>"; };
+		1B3185851841E167001EDE79 /* NSData+MZCleanUTF8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MZCleanUTF8.h"; sourceTree = "<group>"; };
+		1B3185861841E167001EDE79 /* NSData+MZCleanUTF8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MZCleanUTF8.m"; sourceTree = "<group>"; };
+		1B3185891841E2B0001EDE79 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		1B3185B21841E9D6001EDE79 /* OSXNotificationPlugin.mzactions */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSXNotificationPlugin.mzactions; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B3185B41841EAC7001EDE79 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = OSXNotification/Info.plist; sourceTree = "<group>"; };
+		1B3185B91841EB4A001EDE79 /* OSXNotificationPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSXNotificationPlugin.h; sourceTree = "<group>"; };
+		1B3185BA1841EB4A001EDE79 /* OSXNotificationPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSXNotificationPlugin.m; sourceTree = "<group>"; };
+		1B3185BC1841F5A1001EDE79 /* MZVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZVersion.h; sourceTree = "<group>"; };
+		1B3185BD1841F5A1001EDE79 /* MZVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZVersion.m; sourceTree = "<group>"; };
+		1B3185C118423AF5001EDE79 /* MZNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZNotification.h; sourceTree = "<group>"; };
+		1B3185C218423AF5001EDE79 /* MZNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZNotification.m; sourceTree = "<group>"; };
 		1B31C2F3165371BD00853E10 /* MZApplyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZApplyEditor.h; sourceTree = "<group>"; };
 		1B31C30E165378CE00853E10 /* PicturesArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicturesArrayController.h; sourceTree = "<group>"; };
 		1B31C30F165378CE00853E10 /* PicturesArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicturesArrayController.m; sourceTree = "<group>"; };
@@ -660,10 +666,6 @@
 		1B42F21A10DD5D5D00AFEBF6 /* UKDockProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UKDockProgressIndicator.h; path = Externals/UKDockProgressIndicator/UKDockProgressIndicator.h; sourceTree = "<group>"; };
 		1B42F21B10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UKDockProgressIndicator.m; path = Externals/UKDockProgressIndicator/UKDockProgressIndicator.m; sourceTree = "<group>"; };
 		1B42F21E10DD5D6D00AFEBF6 /* English */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = English; path = Externals/UKDockProgressIndicator/English.lproj/MiniProgressGradient.png; sourceTree = "<group>"; };
-		1B42F25810DEB0D300AFEBF6 /* IMDBPlugin.mzsearchprovider */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IMDBPlugin.mzsearchprovider; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B42F25910DEB0D300AFEBF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
-		1B42F2B510DEB4A200AFEBF6 /* IMDBPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDBPlugin.h; sourceTree = "<group>"; };
-		1B42F2B610DEB4A200AFEBF6 /* IMDBPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDBPlugin.m; sourceTree = "<group>"; };
 		1B44949810D57D6900B9C751 /* AtomicParsley */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = AtomicParsley; sourceTree = "<group>"; };
 		1B4494BC10D584E000B9C751 /* next_release.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = next_release.txt; path = Release/next_release.txt; sourceTree = "<group>"; };
 		1B4499D010D9A5CE00B9C751 /* PresetSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetSegmentedControl.h; sourceTree = "<group>"; };
@@ -1216,12 +1218,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1B42F25610DEB0D300AFEBF6 /* Frameworks */ = {
+		1B3185A91841E9D6001EDE79 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B42F26D10DEB11E00AFEBF6 /* MetaZKit.framework in Frameworks */,
-				1B42F27210DEB14B00AFEBF6 /* RubyCocoa.framework in Frameworks */,
+				1B3185AA1841E9D6001EDE79 /* MetaZKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1245,6 +1246,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B31858A1841E2B0001EDE79 /* libiconv.dylib in Frameworks */,
 				1BA325E110545CD900276F57 /* Cocoa.framework in Frameworks */,
 				1B523C0F13F4B3F500C20B7D /* SystemConfiguration.framework in Frameworks */,
 				1B8E95711401BE7F006227B4 /* libz.dylib in Frameworks */,
@@ -1282,7 +1284,6 @@
 			files = (
 				1BA326C61054723000276F57 /* MetaZKit.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				1B11A00710457B0D004C93D3 /* RubyCocoa.framework in Frameworks */,
 				1B0DEDE010610412009D293F /* Quartz.framework in Frameworks */,
 				1BCC98261076D1A3007EFF57 /* Sparkle.framework in Frameworks */,
 			);
@@ -1379,6 +1380,10 @@
 				1BD55C651648466700F9C579 /* NSError+MZScriptError.m */,
 				1B38FCD81673F7E500C171F9 /* NSString+MimeTypePattern.h */,
 				1B38FCD91673F7E500C171F9 /* NSString+MimeTypePattern.m */,
+				1B3185851841E167001EDE79 /* NSData+MZCleanUTF8.h */,
+				1B3185861841E167001EDE79 /* NSData+MZCleanUTF8.m */,
+				1B3185BC1841F5A1001EDE79 /* MZVersion.h */,
+				1B3185BD1841F5A1001EDE79 /* MZVersion.m */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -1389,7 +1394,6 @@
 			children = (
 				1B0DEDDF10610412009D293F /* Quartz.framework */,
 				1BB6C10A1052B154001D3D1D /* Sparkle.framework */,
-				1B11A00610457B0D004C93D3 /* RubyCocoa.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				1B523B8813F4B39400C20B7D /* SystemConfiguration.framework */,
 				1B523B9013F4B3BE00C20B7D /* libz.dylib */,
@@ -1418,11 +1422,11 @@
 				1B040EBE1081B3C00027FA0D /* TagChimp.mzsearchprovider */,
 				1B032F6710B0C12100B28E3A /* AmazonPlugin.mzsearchprovider */,
 				1B03304310B0CD3C00B28E3A /* MetaZKitTest.octest */,
-				1B42F25810DEB0D300AFEBF6 /* IMDBPlugin.mzsearchprovider */,
 				1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzsearchprovider */,
 				1B8CB90B14ACD62000F859F7 /* TheMovieDb.mzsearchprovider */,
 				1BD55F8E1648BB4200F9C579 /* GrowlPlugin.mzactions */,
 				1BD562071648F17C00F9C579 /* AlertWindowPlugin.mzactions */,
+				1B3185B21841E9D6001EDE79 /* OSXNotificationPlugin.mzactions */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1532,6 +1536,35 @@
 			name = Growl;
 			sourceTree = "<group>";
 		};
+		1B31858B1841E7A8001EDE79 /* OSXNotification */ = {
+			isa = PBXGroup;
+			children = (
+				1B31858D1841E7CB001EDE79 /* Resources */,
+				1B31858C1841E7C4001EDE79 /* Classes */,
+			);
+			name = OSXNotification;
+			sourceTree = "<group>";
+		};
+		1B31858C1841E7C4001EDE79 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1B3185B91841EB4A001EDE79 /* OSXNotificationPlugin.h */,
+				1B3185BA1841EB4A001EDE79 /* OSXNotificationPlugin.m */,
+				1B3185C118423AF5001EDE79 /* MZNotification.h */,
+				1B3185C218423AF5001EDE79 /* MZNotification.m */,
+			);
+			name = Classes;
+			path = OSXNotification/src;
+			sourceTree = "<group>";
+		};
+		1B31858D1841E7CB001EDE79 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1B3185B41841EAC7001EDE79 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		1B42F21910DD534500AFEBF6 /* UKDockProgressIndicator */ = {
 			isa = PBXGroup;
 			children = (
@@ -1540,39 +1573,6 @@
 				1B42F21B10DD5D5D00AFEBF6 /* UKDockProgressIndicator.m */,
 			);
 			name = UKDockProgressIndicator;
-			sourceTree = "<group>";
-		};
-		1B42F23B10DEB05000AFEBF6 /* IMDB */ = {
-			isa = PBXGroup;
-			children = (
-				1B42F23C10DEB07B00AFEBF6 /* Classes */,
-				1B42F23D10DEB08300AFEBF6 /* Resources */,
-			);
-			name = IMDB;
-			sourceTree = "<group>";
-		};
-		1B42F23C10DEB07B00AFEBF6 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				1B42F2B510DEB4A200AFEBF6 /* IMDBPlugin.h */,
-				1B42F2B610DEB4A200AFEBF6 /* IMDBPlugin.m */,
-				1B060E5810E26BA90009D847 /* IMDBSearch.h */,
-				1B060E5910E26BA90009D847 /* IMDBSearch.m */,
-				1B060F0610E286C00009D847 /* IMDBSearchItem.h */,
-				1B060F0710E286C00009D847 /* IMDBSearchItem.m */,
-				1B060DF810E267810009D847 /* imdb_plugin.rb */,
-			);
-			name = Classes;
-			path = IMDB/src;
-			sourceTree = "<group>";
-		};
-		1B42F23D10DEB08300AFEBF6 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				1B42F25910DEB0D300AFEBF6 /* Info.plist */,
-			);
-			name = Resources;
-			path = IMDB/resources;
 			sourceTree = "<group>";
 		};
 		1B449CEE10DCCAD500B9C751 /* External Sources */ = {
@@ -2311,6 +2311,7 @@
 		1BEA6E68106EF248004B1A7F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				1B31858B1841E7A8001EDE79 /* OSXNotification */,
 				1BD562AC16490AF900F9C579 /* Add to iTunes.applescript */,
 				1B63A889164823FE00461FC9 /* Example Actions.applescript */,
 				1BD55D4516485AE700F9C579 /* Update iTunes.applescript */,
@@ -2319,7 +2320,6 @@
 				1BD55F761648BACA00F9C579 /* Growl */,
 				1B8CB8FA14ACD5C700F859F7 /* TheMovieDb */,
 				1B4F538D116E9E1F003221B1 /* TheTVDB */,
-				1B42F23B10DEB05000AFEBF6 /* IMDB */,
 				1B032F5410B0BDAC00B28E3A /* Amazon */,
 				1B040EA81081B3860027FA0D /* TagChimp */,
 				1BEA6E69106EF251004B1A7F /* AtomicParsley */,
@@ -2380,7 +2380,6 @@
 			children = (
 				32CA4F630368D1EE00C91783 /* MetaZ_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
-				1B11A02410457B76004C93D3 /* rb_main.rb */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -2435,6 +2434,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1B3185891841E2B0001EDE79 /* libiconv.dylib */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -2506,6 +2506,8 @@
 				1BDEC5ED1620DE160051D656 /* AEVTBuilder.h in Headers */,
 				1BD55C5E16483F5E00F9C579 /* MZActionsPlugin.h in Headers */,
 				1BD55C621648431D00F9C579 /* MZScriptActionsPlugin.h in Headers */,
+				1B3185871841E167001EDE79 /* NSData+MZCleanUTF8.h in Headers */,
+				1B3185BE1841F5A1001EDE79 /* MZVersion.h in Headers */,
 				1BE35217182C6C7C004FAB1B /* JSONKit.h in Headers */,
 				1BD55C661648466700F9C579 /* NSError+MZScriptError.h in Headers */,
 				1B4C1F4016554B0100011621 /* MZHTTPRequest.h in Headers */,
@@ -2572,23 +2574,23 @@
 			productReference = 1B040EBE1081B3C00027FA0D /* TagChimp.mzsearchprovider */;
 			productType = "com.apple.product-type.bundle";
 		};
-		1B42F25710DEB0D300AFEBF6 /* IMDB */ = {
+		1B3185A01841E9D6001EDE79 /* OSXNotificationPlugin */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1B42F25E10DEB0D400AFEBF6 /* Build configuration list for PBXNativeTarget "IMDB" */;
+			buildConfigurationList = 1B3185AE1841E9D6001EDE79 /* Build configuration list for PBXNativeTarget "OSXNotificationPlugin" */;
 			buildPhases = (
-				1B42F25410DEB0D300AFEBF6 /* Resources */,
-				1B42F25510DEB0D300AFEBF6 /* Sources */,
-				1B42F25610DEB0D300AFEBF6 /* Frameworks */,
+				1B3185A51841E9D6001EDE79 /* Resources */,
+				1B3185A61841E9D6001EDE79 /* Sources */,
+				1B3185A91841E9D6001EDE79 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1B42F26010DEB0DC00AFEBF6 /* PBXTargetDependency */,
-				1B42F26210DEB0E900AFEBF6 /* PBXTargetDependency */,
+				1B3185A11841E9D6001EDE79 /* PBXTargetDependency */,
+				1B3185A31841E9D6001EDE79 /* PBXTargetDependency */,
 			);
-			name = IMDB;
-			productName = IMDBPlugin;
-			productReference = 1B42F25810DEB0D300AFEBF6 /* IMDBPlugin.mzsearchprovider */;
+			name = OSXNotificationPlugin;
+			productName = GrowlPlugin;
+			productReference = 1B3185B21841E9D6001EDE79 /* OSXNotificationPlugin.mzactions */;
 			productType = "com.apple.product-type.bundle";
 		};
 		1B4F53B3116E9F44003221B1 /* TheTVDB */ = {
@@ -2724,12 +2726,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				1B3185B71841EAF5001EDE79 /* PBXTargetDependency */,
 				1BD560461648CBF700F9C579 /* PBXTargetDependency */,
 				1BA325CC10545BAE00276F57 /* PBXTargetDependency */,
 				1B040EEA1081C0030027FA0D /* PBXTargetDependency */,
 				1B032F9310B0C41200B28E3A /* PBXTargetDependency */,
 				1BEA6F2A106EF693004B1A7F /* PBXTargetDependency */,
-				1B060E1110E269F60009D847 /* PBXTargetDependency */,
 				1B4F53D2116EA0B7003221B1 /* PBXTargetDependency */,
 				1B20239310B395FA00EE548A /* PBXTargetDependency */,
 				1B299DA414AE4D2A0048B7C0 /* PBXTargetDependency */,
@@ -2787,11 +2789,11 @@
 				1B032F6610B0C12100B28E3A /* Amazon */,
 				1B03304210B0CD3C00B28E3A /* MetaZKitTest */,
 				1B2022F810B393CA00EE548A /* Plist Marcos */,
-				1B42F25710DEB0D300AFEBF6 /* IMDB */,
 				1B4F53B3116E9F44003221B1 /* TheTVDB */,
 				1B8CB90A14ACD62000F859F7 /* TheMovieDb */,
 				1BD55F8D1648BB4200F9C579 /* GrowlPlugin */,
 				1BD562061648F17C00F9C579 /* AlertWindowPlugin */,
+				1B3185A01841E9D6001EDE79 /* OSXNotificationPlugin */,
 			);
 		};
 /* End PBXProject section */
@@ -2819,11 +2821,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1B42F25410DEB0D300AFEBF6 /* Resources */ = {
+		1B3185A51841E9D6001EDE79 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B060DF910E267810009D847 /* imdb_plugin.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2878,7 +2879,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B11A02510457B76004C93D3 /* rb_main.rb in Resources */,
 				1BB6BF341050E5E2001D3D1D /* sparkle_public.pem in Resources */,
 				1BA3269D10546EC800276F57 /* InfoPlist.strings in Resources */,
 				1BA326A010546F4600276F57 /* MainMenu.xib in Resources */,
@@ -2951,8 +2951,9 @@
 				"$(TARGET_TEMP_DIR)/DummyFileToForceScriptToRunEveryTimeWithoutBeingCreated",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -o errexit\n\nPATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin\nbuildid=`git log -n1 --pretty=oneline --format=%h`\nrelease=`cat $SCRIPT_INPUT_FILE_0`\nbuilddate=`date +%y.%m.%d.%H`\n\necho \"#define BUILDID $buildid\" > $SCRIPT_OUTPUT_FILE_0\necho \"#define BUILDDATE $builddate\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define BUILDVERSION $builddate.$buildid\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define WHOAMI `whoami`\" >> $SCRIPT_OUTPUT_FILE_0\necho \"#define RELEASE $release\" >> $SCRIPT_OUTPUT_FILE_0 \ncat $SCRIPT_INPUT_FILE_1 >> $SCRIPT_OUTPUT_FILE_0 \n\n# Delete the intermediate Info.plist so that Xcode re-preprocesses the Info.plist with our updated macros.\n# Use -f because after a clean build, this file doesn't exist yet, so a plain rm would fail and stop the build.\nrm -f \"${CONFIGURATION_TEMP_DIR}/MetaZ.build/Preprocessed-Info.plist\"\n";
+			shellPath = /bin/bash;
+			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/plist.bash\n";
+			showEnvVarsInLog = 0;
 		};
 		1B56A4BB17065FC300BDE79D /* Copy document types from plugins */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3074,13 +3075,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1B42F25510DEB0D300AFEBF6 /* Sources */ = {
+		1B3185A61841E9D6001EDE79 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B42F2B710DEB4A200AFEBF6 /* IMDBPlugin.m in Sources */,
-				1B060E5A10E26BA90009D847 /* IMDBSearch.m in Sources */,
-				1B060F0810E286C00009D847 /* IMDBSearchItem.m in Sources */,
+				1B3185BB1841EB4A001EDE79 /* OSXNotificationPlugin.m in Sources */,
+				1B3185C318423AF5001EDE79 /* MZNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3113,6 +3113,7 @@
 				1BEA6FA4106EFC3F004B1A7F /* MZMethodData.m in Sources */,
 				1BEA6FA7106EFC3F004B1A7F /* MZDynamicObject.m in Sources */,
 				1BEA6FA9106EFC3F004B1A7F /* MetaChangeNotification.m in Sources */,
+				1B3185881841E167001EDE79 /* NSData+MZCleanUTF8.m in Sources */,
 				1BEA6FAB106EFC3F004B1A7F /* MZTag.m in Sources */,
 				1BEA6FAE106EFC3F004B1A7F /* MZPlugin.m in Sources */,
 				1BEA6FB0106EFC3F004B1A7F /* MZPluginController.m in Sources */,
@@ -3151,6 +3152,7 @@
 				1B36E75E1406612F009F542A /* ASIDataCompressor.m in Sources */,
 				1B36E78D14066727009F542A /* MZASISearch.m in Sources */,
 				1B0696D8149BFB2D00B5FA90 /* NSString+MZQueryString.m in Sources */,
+				1B3185BF1841F5A1001EDE79 /* MZVersion.m in Sources */,
 				1B4CFFE8161CE0ED00B12009 /* AEVTBuilder.m in Sources */,
 				1BD55C5F16483F5E00F9C579 /* MZActionsPlugin.m in Sources */,
 				1BD55C631648431D00F9C579 /* MZScriptActionsPlugin.m in Sources */,
@@ -3276,11 +3278,6 @@
 			target = 1B040EBD1081B3C00027FA0D /* TagChimp */;
 			targetProxy = 1B040EE91081C0030027FA0D /* PBXContainerItemProxy */;
 		};
-		1B060E1110E269F60009D847 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1B42F25710DEB0D300AFEBF6 /* IMDB */;
-			targetProxy = 1B060E1010E269F60009D847 /* PBXContainerItemProxy */;
-		};
 		1B20239310B395FA00EE548A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1B2022F810B393CA00EE548A /* Plist Marcos */;
@@ -3311,15 +3308,20 @@
 			target = 1B8CB90A14ACD62000F859F7 /* TheMovieDb */;
 			targetProxy = 1B299DA314AE4D2A0048B7C0 /* PBXContainerItemProxy */;
 		};
-		1B42F26010DEB0DC00AFEBF6 /* PBXTargetDependency */ = {
+		1B3185A11841E9D6001EDE79 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1BA325C310545ACA00276F57 /* MetaZKit */;
-			targetProxy = 1B42F25F10DEB0DC00AFEBF6 /* PBXContainerItemProxy */;
+			targetProxy = 1B3185A21841E9D6001EDE79 /* PBXContainerItemProxy */;
 		};
-		1B42F26210DEB0E900AFEBF6 /* PBXTargetDependency */ = {
+		1B3185A31841E9D6001EDE79 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1B2022F810B393CA00EE548A /* Plist Marcos */;
-			targetProxy = 1B42F26110DEB0E900AFEBF6 /* PBXContainerItemProxy */;
+			targetProxy = 1B3185A41841E9D6001EDE79 /* PBXContainerItemProxy */;
+		};
+		1B3185B71841EAF5001EDE79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B3185A01841E9D6001EDE79 /* OSXNotificationPlugin */;
+			targetProxy = 1B3185B61841EAF5001EDE79 /* PBXContainerItemProxy */;
 		};
 		1B4F53B4116E9F44003221B1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3542,6 +3544,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = AmazonPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/Amazon/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 			};
@@ -3570,6 +3573,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = AmazonPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/Amazon/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 				ZERO_LINK = NO;
@@ -3650,6 +3654,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = TagChimp;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TagChimp/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 			};
@@ -3674,6 +3679,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = TagChimp;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TagChimp/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 				ZERO_LINK = NO;
@@ -3694,70 +3700,88 @@
 			};
 			name = Release;
 		};
-		1B42F25B10DEB0D400AFEBF6 /* Debug */ = {
+		1B3185AF1841E9D6001EDE79 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = Plugins/IMDB/Info.plist;
+				INFOPLIST_FILE = Plugins/OSXNotification/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_NAME = IMDBPlugin;
-				USER_HEADER_SEARCH_PATHS = "Plugins/IMDB/**";
-				WRAPPER_EXTENSION = mzsearchprovider;
+				PREBINDING = NO;
+				PRODUCT_NAME = OSXNotificationPlugin;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "Plugins/OSXNotification/**";
+				WRAPPER_EXTENSION = mzactions;
 			};
 			name = Debug;
 		};
-		1B42F25C10DEB0D400AFEBF6 /* Remote Debug */ = {
+		1B3185B01841E9D6001EDE79 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = Plugins/IMDB/Info.plist;
+				INFOPLIST_FILE = Plugins/OSXNotification/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_NAME = IMDBPlugin;
-				USER_HEADER_SEARCH_PATHS = "Plugins/IMDB/**";
-				WRAPPER_EXTENSION = mzsearchprovider;
+				PREBINDING = NO;
+				PRODUCT_NAME = OSXNotificationPlugin;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "Plugins/OSXNotification/**";
+				WRAPPER_EXTENSION = mzactions;
 			};
 			name = "Remote Debug";
 		};
-		1B42F25D10DEB0D400AFEBF6 /* Release */ = {
+		1B3185B11841E9D6001EDE79 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = Plugins/IMDB/Info.plist;
+				INFOPLIST_FILE = Plugins/OSXNotification/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_NAME = IMDBPlugin;
-				USER_HEADER_SEARCH_PATHS = "Plugins/IMDB/**";
-				WRAPPER_EXTENSION = mzsearchprovider;
+				PREBINDING = NO;
+				PRODUCT_NAME = OSXNotificationPlugin;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "Plugins/OSXNotification/**";
+				WRAPPER_EXTENSION = mzactions;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -3808,7 +3832,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = /Applications;
 				PRODUCT_NAME = MetaZ;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 			};
@@ -3872,6 +3896,7 @@
 					MetaZKit,
 				);
 				PRODUCT_NAME = AtomicParsleyPlugin;
+				SKIP_INSTALL = YES;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
 				WRAPPER_EXTENSION = mzdataprovider;
@@ -3899,6 +3924,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = TagChimp;
+				SKIP_INSTALL = YES;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TagChimp/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
@@ -3929,6 +3955,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = AmazonPlugin;
+				SKIP_INSTALL = YES;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = "Plugins/Amazon/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
@@ -3991,6 +4018,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = TheTVDBPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 			};
@@ -4017,6 +4045,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = TheTVDBPlugin;
+				SKIP_INSTALL = YES;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
@@ -4042,6 +4071,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = TheTVDBPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 				ZERO_LINK = NO;
@@ -4062,7 +4092,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -4070,6 +4100,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = TheMovieDb;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 			};
@@ -4086,7 +4117,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -4094,6 +4125,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = TheMovieDb;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 			};
@@ -4111,7 +4143,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -4119,6 +4151,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = TheMovieDb;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 				ZERO_LINK = NO;
@@ -4206,7 +4239,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -4215,6 +4248,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = GrowlPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/Growl/**";
 				WRAPPER_EXTENSION = mzactions;
 			};
@@ -4232,7 +4266,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -4241,6 +4275,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = GrowlPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/Growl/**";
 				WRAPPER_EXTENSION = mzactions;
 			};
@@ -4259,7 +4294,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -4268,6 +4303,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = GrowlPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/Growl/**";
 				WRAPPER_EXTENSION = mzactions;
 				ZERO_LINK = NO;
@@ -4289,7 +4325,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -4298,6 +4334,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = AlertWindowPlugin;
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = mzactions;
 			};
 			name = Debug;
@@ -4314,7 +4351,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -4323,6 +4360,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = AlertWindowPlugin;
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = mzactions;
 			};
 			name = "Remote Debug";
@@ -4340,7 +4378,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -4349,6 +4387,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = AlertWindowPlugin;
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = mzactions;
 				ZERO_LINK = NO;
 			};
@@ -4378,6 +4417,7 @@
 					MetaZKit,
 				);
 				PRODUCT_NAME = AtomicParsleyPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
 				WRAPPER_EXTENSION = mzdataprovider;
 			};
@@ -4405,6 +4445,7 @@
 					MetaZKit,
 				);
 				PRODUCT_NAME = AtomicParsleyPlugin;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
 				WRAPPER_EXTENSION = mzdataprovider;
 				ZERO_LINK = NO;
@@ -4437,7 +4478,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = /Applications;
 				PRODUCT_NAME = MetaZ;
 			};
 			name = Debug;
@@ -4467,7 +4508,7 @@
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = /Applications;
 				PRODUCT_NAME = MetaZ;
 			};
 			name = Release;
@@ -4554,12 +4595,12 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1B42F25E10DEB0D400AFEBF6 /* Build configuration list for PBXNativeTarget "IMDB" */ = {
+		1B3185AE1841E9D6001EDE79 /* Build configuration list for PBXNativeTarget "OSXNotificationPlugin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1B42F25B10DEB0D400AFEBF6 /* Debug */,
-				1B42F25C10DEB0D400AFEBF6 /* Remote Debug */,
-				1B42F25D10DEB0D400AFEBF6 /* Release */,
+				1B3185AF1841E9D6001EDE79 /* Debug */,
+				1B3185B01841E9D6001EDE79 /* Remote Debug */,
+				1B3185B11841E9D6001EDE79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

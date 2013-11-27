@@ -7,8 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <RubyCocoa/RBRuntime.h>
 #import <MetaZKit/MZLogger.h>
+#import <MetaZKit/MZVersion.h>
 #import <sys/stat.h>
 
 int main(int argc, const char *argv[])
@@ -93,6 +93,23 @@ int main(int argc, const char *argv[])
         if(incomingVideoType && [incomingVideoType intValue] == MZHomeMovieVideoType)
             [[NSUserDefaults standardUserDefaults] setInteger:MZMovieVideoType forKey:@"incomingVideoType"];
         version = 2;
+        [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"version"];
+    }
+
+    if(version == 2)
+    {
+        if([[MZVersion systemVersion] isGreaterThanOrEqualTo:[MZVersion versionWithString:@"10.8"]])
+        {
+            NSArray* actions = [[NSUserDefaults standardUserDefaults] arrayForKey:@"enabledActionPlugins"];
+            if([actions indexOfObject:@"org.maven-group.metaz.plugin.GrowlPlugin"] != NSNotFound)
+            {
+                NSMutableArray* enabled = [NSMutableArray arrayWithArray:actions];
+                [enabled removeObject:@"org.maven-group.metaz.plugin.GrowlPlugin"];
+                [enabled addObject:@"org.maven-group.metaz.plugin.OSXNotificationPlugin"];
+                [[NSUserDefaults standardUserDefaults] setObject:enabled forKey:@"enabledActionPlugins"];
+            }
+        }
+        version = 3;
         [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"version"];
     }
 
