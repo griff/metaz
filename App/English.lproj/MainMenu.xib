@@ -1336,7 +1336,7 @@
 																			<object class="NSSortDescriptor" key="NSSortDescriptorPrototype" id="1081">
 																				<string key="NSKey">fileName</string>
 																				<bool key="NSAscending">YES</bool>
-																				<string key="NSSelector">compare:</string>
+																				<string key="NSSelector">numericCompare:</string>
 																			</object>
 																		</object>
 																		<object class="NSTableColumn" id="873454490">

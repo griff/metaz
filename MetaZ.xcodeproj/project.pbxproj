@@ -288,6 +288,7 @@
 		1BFEDE0018349138008A17D3 /* PosterBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BFEDDFD18349138008A17D3 /* PosterBackground.png */; };
 		1BFEDE0118349138008A17D3 /* PosterBackgroundError.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BFEDDFE18349138008A17D3 /* PosterBackgroundError.png */; };
 		1BFEDE0218349138008A17D3 /* PosterBackgroundMultiple.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BFEDDFF18349138008A17D3 /* PosterBackgroundMultiple.png */; };
+		7F4F84D818CD1F8A00D002DA /* NSString+NumericCompare.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F84D618CD1F8000D002DA /* NSString+NumericCompare.m */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -1190,6 +1191,8 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* MetaZ_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaZ_Prefix.pch; path = App/MetaZ_Prefix.pch; sourceTree = "<group>"; };
+		7F4F84D518CD1F8000D002DA /* NSString+NumericCompare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NumericCompare.h"; sourceTree = "<group>"; };
+		7F4F84D618CD1F8000D002DA /* NSString+NumericCompare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NumericCompare.m"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = App/Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MetaZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetaZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1376,6 +1379,8 @@
 				1BAC91BC13F060300022D625 /* NSString+MZAllInCharacterSet.m */,
 				1B0696D5149BFB2D00B5FA90 /* NSString+MZQueryString.h */,
 				1B0696D6149BFB2D00B5FA90 /* NSString+MZQueryString.m */,
+				7F4F84D518CD1F8000D002DA /* NSString+NumericCompare.h */,
+				7F4F84D618CD1F8000D002DA /* NSString+NumericCompare.m */,
 				1BD55C641648466700F9C579 /* NSError+MZScriptError.h */,
 				1BD55C651648466700F9C579 /* NSError+MZScriptError.m */,
 				1B38FCD81673F7E500C171F9 /* NSString+MimeTypePattern.h */,
@@ -3160,6 +3165,7 @@
 				1B4C1F4116554B0600011621 /* MZHTTPRequest.m in Sources */,
 				1B09EB0C165843BF0017FED3 /* MZDataProviderPlugin.m in Sources */,
 				1B38FCDB1673F7E500C171F9 /* NSString+MimeTypePattern.m in Sources */,
+				7F4F84D818CD1F8A00D002DA /* NSString+NumericCompare.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
