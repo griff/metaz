@@ -93,6 +93,12 @@
         if(!iconURL)
             return nil;
         icon = [[NSImage alloc] initWithContentsOfURL:iconURL];
+		if (!icon)
+		{
+			// We couldn't load the required icon. Fallback to a warning icon.
+			icon = [[[NSWorkspace sharedWorkspace]
+					 iconForFileType:NSFileTypeForHFSTypeCode(kAlertCautionIcon)] retain];
+		}
     }
     return icon;
 }
