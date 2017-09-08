@@ -1,4 +1,5 @@
 set -o errexit
+set -x
 
 #[ -n "$CONFIGURATION_TEMP_DIR" ] || CONFIGURATION_TEMP_DIR="build/MetaZ.build/Debug"
 #[ -n "$TARGET_TEMP_DIR" ] || TARGET_TEMP_DIR="$CONFIGURATION_TEMP_DIR/Plist\ Marcos.build"
@@ -8,7 +9,7 @@ set -o errexit
 
 PATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin
 buildid=`git log -n1 --pretty=oneline --format=%h`
-release=`cat $SCRIPT_INPUT_FILE_0`
+release=`cat "$SCRIPT_INPUT_FILE_0"`
 builddate=`date +%y.%m.%d.%H`
 
 if git show-ref --tags --quiet --verify -- "refs/tags/v$release"; then
@@ -26,7 +27,7 @@ echo "#define BUILDDATE $builddate" >> "$SCRIPT_OUTPUT_FILE_0"
 echo "#define BUILDVERSION $builddate.$buildid" >> "$SCRIPT_OUTPUT_FILE_0"
 echo "#define WHOAMI `whoami`" >> "$SCRIPT_OUTPUT_FILE_0"
 echo "#define RELEASE $release" >> "$SCRIPT_OUTPUT_FILE_0" 
-cat $SCRIPT_INPUT_FILE_1 >> "$SCRIPT_OUTPUT_FILE_0" 
+cat "$SCRIPT_INPUT_FILE_1" >> "$SCRIPT_OUTPUT_FILE_0" 
 
 # Delete the intermediate Info.plist so that Xcode re-preprocesses the Info.plist with our updated macros.
 # Use -f because after a clean build, this file doesn't exist yet, so a plain rm would fail and stop the build.
