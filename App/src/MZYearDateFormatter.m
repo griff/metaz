@@ -57,8 +57,8 @@
 - (NSString *)editingStringForObjectValue:(id)obj;
 {
     return [self stringForObjectValue:obj];
-    NSString* ret = [dateFormatter editingStringForObjectValue:obj];
-    return ret;
+    /*NSString* ret = [dateFormatter editingStringForObjectValue:obj];
+    return ret;*/
 }
 
 

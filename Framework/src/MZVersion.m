@@ -11,11 +11,10 @@
 @implementation MZVersion
 
 + (id)systemVersion; {
-    SInt32 versMajor, versMinor, versBugFix;
-    Gestalt(gestaltSystemVersionMajor, &versMajor);
-    Gestalt(gestaltSystemVersionMinor, &versMinor);
-    Gestalt(gestaltSystemVersionBugFix, &versBugFix);
-    return [self versionWithMajor:versMajor minor:versMinor bugFix:versBugFix];
+    NSOperatingSystemVersion version = [[NSProcessInfo processInfo] operatingSystemVersion];
+    return [self versionWithMajor:version.majorVersion
+                            minor:version.minorVersion
+                           bugFix:version.patchVersion];
 }
 
 + (id)versionWithMajor:(NSUInteger)major minor:(NSUInteger)minor bugFix:(NSUInteger)bugFix;
@@ -104,7 +103,10 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%d.%d.%d", major, minor, bugFix];
+    return [NSString stringWithFormat:@"%lu.%lu.%lu",
+                (unsigned long)major,
+                (unsigned long)minor,
+                (unsigned long)bugFix];
 }
 
 @end

@@ -121,7 +121,7 @@
     NSRect box = { {4, 4}, {120, 16} };
     
     // App icon:
-    [appIcon drawInRect:rect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+    [appIcon drawInRect:rect fromRect:NSZeroRect operation:NSCompositingOperationSourceOver fraction:1.0];
     
     // Track & Outline:
     [[NSColor whiteColor] set];
@@ -141,7 +141,7 @@
     if( prImg )
     {
         picBox.size = [prImg size];
-        [prImg drawInRect: box fromRect: picBox operation: NSCompositeCopy fraction: 1.0];
+        [prImg drawInRect: box fromRect: picBox operation: NSCompositingOperationCopy fraction: 1.0];
     }
     else
         NSRectFill( box );

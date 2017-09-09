@@ -79,10 +79,19 @@
     if([self selectedRow] >= 0)
     {
         NSRect rowRect = [self rectOfRow:[self selectedRow]];
+        NSRect prect;
+        prect.origin = NSMakePoint(
+                                   rowRect.origin.x + rowRect.size.width/2,
+                                   rowRect.origin.y + rowRect.size.height/2);
+        prect.size = NSZeroSize;
+        prect = [self.window convertRectToScreen:[self convertRect:prect toView:nil]];
+        NSPoint point = prect.origin;
+        /*
         NSPoint point = NSMakePoint(
             rowRect.origin.x + rowRect.size.width/2,
             rowRect.origin.y + rowRect.size.height/2);
         point = [[self window] convertBaseToScreen:[self convertPointToBase:point]];
+         */
         NSShowAnimationEffect(NSAnimationEffectDisappearingItemDefault,point,NSZeroSize,nil,Nil,NULL);
     }
     [filesController remove:sender];
@@ -560,7 +569,7 @@
         switch(ch) {
             case NSBackspaceCharacter:
             case NSDeleteCharacter:
-                if([self numberOfSelectedRows] > 0 && (modifierFlags & NSCommandKeyMask) == NSCommandKeyMask )
+                if([self numberOfSelectedRows] > 0 && (modifierFlags & NSEventModifierFlagCommand) == NSEventModifierFlagCommand )
                 {
                     [self delete:self];
                     return;

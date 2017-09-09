@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BuildId</key>
+	<string>BUILDID</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -9,7 +11,7 @@
 	<key>CFBundleGetInfoString</key>
 	<string>Copyright 2009-2012 Brian Olsen</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.maven-group.${PRODUCT_NAME:identifier}</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -22,8 +24,6 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>BUILDDATE</string>
-	<key>BuildId</key>
-	<string>BUILDID</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2009-2012, Brian Olsen</string>
 </dict>

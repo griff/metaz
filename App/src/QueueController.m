@@ -215,25 +215,28 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)note
 {
     [writeQueue loadQueueWithError:NULL];
-    int count = [[writeQueue queueItems] count];
+    NSUInteger count = [[writeQueue queueItems] count];
     if(count > 0)
     {
         NSString* title = [NSString stringWithFormat:
                 NSLocalizedString(@"MetaZ Has Detected %d Pending Item(s) In Your Queue", @"Loaded queue message box text"),
                 count];
-        NSInteger returnCode = NSRunCriticalAlertPanel(title,
-                NSLocalizedString(@"Do you want to reload them ?", @"Loaded queue message question"),
-                NSLocalizedString(@"Reload Queue", @"Button text for reload queue action"), nil,
-                NSLocalizedString(@"Empty Queue", @"Button text for empty queue action")
-                );
-        if(returnCode == NSAlertOtherReturn)
+        NSAlert *alert = [NSAlert new];
+        alert.alertStyle = NSAlertStyleCritical;
+        alert.messageText = title;
+        alert.informativeText = NSLocalizedString(@"Do you want to reload them ?", @"Loaded queue message question");
+        [alert addButtonWithTitle:NSLocalizedString(@"Reload Queue", @"Button text for reload queue action")];
+        [alert addButtonWithTitle:NSLocalizedString(@"Empty Queue", @"Button text for empty queue action")];
+        NSModalResponse returnCode = [alert runModal];
+
+        if(returnCode == NSAlertSecondButtonReturn)
             [writeQueue removeAllQueueItems];
     }
 }
 
 -(void)didDismissReload:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void  *)contextInfo
 {
-    if(returnCode == NSAlertOtherReturn)
+    if(returnCode == NSAlertSecondButtonReturn)
         [writeQueue removeAllQueueItems];
 }
 
@@ -366,11 +369,6 @@
             [[writeQueue pendingItems] count] > 0 || 
             [[[MZMetaLoader sharedLoader] files] count] > 0;
     }
-    if([anItem action] == @selector(pauseResumeEncoding:))
-    {
-        return [writeQueue status] != QueueStopped;
-    }
-    
     if([anItem action] == @selector(addToQueue:) || [anItem action] == @selector(writeSelected:))
     {
         return [[filesController selectedObjects] count] > 0;

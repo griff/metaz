@@ -75,17 +75,17 @@
 {
     // create preset: cmd + N
     [segmentedControl setKeyEquivalent:@"N" forSegment:0];
-    [segmentedControl setKeyEquivalentModifierMask:NSCommandKeyMask forSegment:0];
+    [segmentedControl setKeyEquivalentModifierMask:NSEventModifierFlagCommand forSegment:0];
 
     // delete preset: cmd + backspace
     const unichar back = NSDeleteCharacter;
     NSString* back2 = [NSString stringWithCharacters:&back length:1];
     [segmentedControl setKeyEquivalent:back2  forSegment:1];
-    [segmentedControl setKeyEquivalentModifierMask:NSCommandKeyMask forSegment:1];
+    [segmentedControl setKeyEquivalentModifierMask:NSEventModifierFlagCommand forSegment:1];
 
     // apply preset: shift + cmd + A
     [segmentedControl setKeyEquivalent:@"A" forSegment:2];
-    [segmentedControl setKeyEquivalentModifierMask:NSShiftKeyMask|NSCommandKeyMask forSegment:2];
+    [segmentedControl setKeyEquivalentModifierMask:NSEventModifierFlagShift|NSEventModifierFlagCommand forSegment:2];
 
 
     NSArray* sorters = [presetsController sortDescriptors];
@@ -174,7 +174,7 @@
 
 - (IBAction)segmentClicked:(id)sender
 {
-    int clickedSegment = [sender selectedSegment];
+    NSInteger clickedSegment = [sender selectedSegment];
     if(clickedSegment == 0)
         [self addPreset:sender];
     else if(clickedSegment == 1)
@@ -251,10 +251,13 @@
     if([presetsView selectedRow] >= 0)
     {
         NSRect rowRect = [presetsView rectOfRow:[presetsView selectedRow]];
-        NSPoint point = NSMakePoint(
-            rowRect.origin.x + rowRect.size.width/2,
-            rowRect.origin.y + rowRect.size.height/2);
-        point = [[self window] convertBaseToScreen:[presetsView convertPointToBase:point]];
+        NSRect prect;
+        prect.origin = NSMakePoint(rowRect.origin.x + rowRect.size.width/2,
+                                   rowRect.origin.y + rowRect.size.height/2);
+        prect.size = NSZeroSize;
+        prect = [self.window convertRectToScreen:[presetsView convertRect:prect toView:nil]];
+        NSPoint point = prect.origin;
+        //point = [[self window] convertBaseToScreen:[presetsView convertPointToBase:point]];
         NSShowAnimationEffect(NSAnimationEffectDisappearingItemDefault,point,NSZeroSize,nil,Nil,NULL);
     }
 

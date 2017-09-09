@@ -2,24 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleShortVersionString</key>
-	<string>RELEASE</string>
-	<key>CFBundleIdentifier</key>
-	<string>org.maven-group.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}</string>
-	<key>BuildId</key>
-	<string>BUILDID</string>
 	<key>BuildDate</key>
 	<string>BUILDDATE</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
+	<key>BuildId</key>
+	<string>BUILDID</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>RELEASE</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>BUILDVERSION</string>
 	<key>LSMinimumSystemVersion</key>

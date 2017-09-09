@@ -158,8 +158,8 @@
     if([lines count]>1)
     {
         NSMutableArray* chapters = [NSMutableArray array];
-        int len = [lines count];
-        for(int i=1; i<len; i++)
+        NSUInteger len = [lines count];
+        for(NSUInteger i=1; i<len; i++)
         {
             NSString* line = [[lines objectAtIndex:i]
                               stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];

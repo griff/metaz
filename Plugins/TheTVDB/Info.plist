@@ -11,7 +11,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
@@ -22,9 +22,9 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>BUILDVERSION</string>
-	<key>NSPrincipalClass</key>
-	<string>TheTVDBPlugin</string>
 	<key>IconURL</key>
 	<string>http://thetvdb.com/favicon.ico</string>
+	<key>NSPrincipalClass</key>
+	<string>TheTVDBPlugin</string>
 </dict>
 </plist>

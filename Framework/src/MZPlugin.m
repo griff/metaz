@@ -130,7 +130,7 @@
             return nil;
         
         NSArray* theTopLevelObjects = nil;
-        if([nib instantiateNibWithOwner:self topLevelObjects:&theTopLevelObjects])
+        if([nib instantiateWithOwner:self topLevelObjects:&theTopLevelObjects])
             topLevelObjects = [theTopLevelObjects retain];
     }
     return [self preferencesView];

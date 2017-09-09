@@ -218,8 +218,8 @@ NSDictionary* findBinding(NSWindow* window) {
 }
 
 - (IBAction)segmentClicked:(id)sender {
-    int clickedSegment = [sender selectedSegment];
-    int clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
+    NSInteger clickedSegment = [sender selectedSegment];
+    NSInteger clickedSegmentTag = [[sender cell] tagForSegment:clickedSegment];
 
     if(clickedSegmentTag == 0)
         [self openDocument:sender];
@@ -262,7 +262,7 @@ NSDictionary* findBinding(NSWindow* window) {
                     [NSCharacterSet whitespaceCharacterSet]];
                 NSNumber* season = [filesController valueForKeyPath:@"selection.pure.tvSeason"];
                 if([season isKindOfClass:[NSNumber class]])
-                    query = [NSString stringWithFormat:@"\"%@\" season %d", show, [season integerValue]];
+                    query = [NSString stringWithFormat:@"\"%@\" season %ld", show, (long)[season integerValue]];
                 else
                     query = [NSString stringWithFormat:@"\"%@\"", show];
                 break;
@@ -275,17 +275,18 @@ NSDictionary* findBinding(NSWindow* window) {
     
     // Escape even the "reserved" characters for URLs 
     // as defined in http://www.ietf.org/rfc/rfc2396.txt
-    CFStringRef encodedValue = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, 
+    query = [query stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
+    /*CFStringRef encodedValue = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
                                                                        (CFStringRef)query,
                                                                        NULL, 
                                                                        (CFStringRef)@";/?:@&=+$,", 
                                                                         kCFStringEncodingUTF8);
 
-    query = (NSString*)encodedValue;
+    query = (NSString*)encodedValue;*/
     NSString* str = [NSString stringWithFormat:
         @"http://images.google.com/images?q=%@&gbv=2&svnum=10&safe=active&sa=G&imgsz=small%%7Cmedium%%7Clarge%%7Cxlarge",
         query];
-    CFRelease(encodedValue);
+    //CFRelease(encodedValue);
     NSURL* url = [NSURL URLWithString:str];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
@@ -323,13 +324,10 @@ NSDictionary* findBinding(NSWindow* window) {
     [oPanel setAllowsMultipleSelection:YES];
     [oPanel setCanChooseFiles:YES];
     [oPanel setCanChooseDirectories:NO];
-    [oPanel beginSheetForDirectory: nil
-                              file: nil
-                             types: fileTypes
-                    modalForWindow: window
-                     modalDelegate: self
-                    didEndSelector: @selector(openPanelDidEnd:returnCode:contextInfo:) 
-                       contextInfo: nil];
+    oPanel.allowedFileTypes = fileTypes;
+    [oPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
+        [self openPanelDidEnd:oPanel returnCode:result contextInfo:NULL];
+    }];
 }
 
 - (IBAction)showPresets:(id)sender
@@ -498,8 +496,8 @@ NSDictionary* findBinding(NSWindow* window) {
     [other.undoManager removeAllActionsWithTarget:self];
 }
 
-- (void)openPanelDidEnd:(NSOpenPanel *)oPanel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo {
-    if (returnCode == NSOKButton)
+- (void)openPanelDidEnd:(NSOpenPanel *)oPanel returnCode:(NSInteger)returnCode  contextInfo:(void  *)contextInfo {
+    if (returnCode == NSModalResponseOK)
     {
         if([filesController commitEditing])
             [[MZMetaLoader sharedLoader] loadFromFiles: [oPanel filenames]];
@@ -623,40 +621,45 @@ NSDictionary* findBinding(NSWindow* window) {
 {
     BOOL changed = NO;
     NSArray* arr = [[MZMetaLoader sharedLoader] files];
-    int count = [arr count];
+    NSUInteger count = [arr count];
     for(int i=0; i<count && !changed; i++)
     {
         MetaEdits* edit = [arr objectAtIndex:i];
         changed = [edit changed];
     }
     
-    int result = NSAlertDefaultReturn;
+    NSModalResponse result = NSAlertFirstButtonReturn;
     if(changed)
     {
-        result = NSRunCriticalAlertPanel(
-            NSLocalizedString(@"Are you sure you want to quit MetaZ?", nil),
-            NSLocalizedString(@"You have files loaded with unsaved changes. Do you want to quit anyway?", nil),
-            NSLocalizedString(@"Quit", nil), NSLocalizedString(@"Don't Quit", nil), nil);
+        NSAlert* alert = [NSAlert new];
+        alert.messageText = NSLocalizedString(@"Are you sure you want to quit MetaZ?", nil);
+        alert.informativeText = NSLocalizedString(@"You have files loaded with unsaved changes. Do you want to quit anyway?", nil);
+        [alert addButtonWithTitle:NSLocalizedString(@"Quit", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Don't Quit", nil)];
+        result = [alert runModal];
     }
     else if([[MZWriteQueue sharedQueue] status] == QueueRunning)
     {
-        result = NSRunCriticalAlertPanel(
-            NSLocalizedString(@"Are you sure you want to quit MetaZ?", nil),
-            NSLocalizedString(@"If you quit MetaZ your current jobs will be reloaded into your queue at next launch. Do you want to quit anyway?", nil),
-            NSLocalizedString(@"Quit", nil), NSLocalizedString(@"Don't Quit", nil), nil, @"A movie" );
-        
+        NSAlert* alert = [NSAlert new];
+        alert.messageText = NSLocalizedString(@"Are you sure you want to quit MetaZ?", nil);
+        alert.informativeText = NSLocalizedString(@"If you quit MetaZ your current jobs will be reloaded into your queue at next launch. Do you want to quit anyway?", nil);
+        [alert addButtonWithTitle:NSLocalizedString(@"Quit", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Don't Quit", nil)];
+        result = [alert runModal];
     }
     
     // Warn if items still in the queue
     else if([[[MZWriteQueue sharedQueue] pendingItems] count] > 0)
     {
-        result = NSRunCriticalAlertPanel(
-            NSLocalizedString(@"Are you sure you want to quit MetaZ?", nil),
-            NSLocalizedString(@"There are pending jobs in your queue. Do you want to quit anyway?",nil),
-            NSLocalizedString(@"Quit", nil), NSLocalizedString(@"Don't Quit", nil), nil);
+        NSAlert* alert = [NSAlert new];
+        alert.messageText = NSLocalizedString(@"Are you sure you want to quit MetaZ?", nil);
+        alert.informativeText = NSLocalizedString(@"There are pending jobs in your queue. Do you want to quit anyway?",nil);
+        [alert addButtonWithTitle:NSLocalizedString(@"Quit", nil)];
+        [alert addButtonWithTitle:NSLocalizedString(@"Don't Quit", nil)];
+        result = [alert runModal];
     }
     
-    if( result == NSAlertDefaultReturn )
+    if( result == NSAlertFirstButtonReturn )
     {
         if([[MZWriteQueue sharedQueue] status] == QueueRunning || [[MZWriteQueue sharedQueue] status] == QueueStopping)
         {

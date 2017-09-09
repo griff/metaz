@@ -249,7 +249,7 @@ writeStartedForEdits:(MetaEdits *)edits
                         [alert setInformativeText:NSLocalizedString(@"Do you wish to remove it anyway ?", @"Trash removal question")];
                         [alert addButtonWithTitle:NSLocalizedString(@"Remove", @"Button text for remove action")];
                     }
-                    [alert setAlertStyle:NSCriticalAlertStyle];
+                    [alert setAlertStyle:NSAlertStyleCritical];
 
                     BOOL applyToAll = NO;
                     if(q.hasNextItem)

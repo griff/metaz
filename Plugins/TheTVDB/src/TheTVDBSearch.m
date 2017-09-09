@@ -243,10 +243,10 @@
 
 - (void)fetchFullSeries:(NSUInteger)theSeries;
 {
-    NSString* urlStr = [NSString stringWithFormat:@"%@/api/%@/series/%d/all/en.xml",
+    NSString* urlStr = [NSString stringWithFormat:@"%@/api/%@/series/%ld/all/en.xml",
             xmlMirror,
             THETVDB_API_KEY,
-            theSeries];
+            (unsigned long)theSeries];
     //MZLoggerDebug(@"Sending request to %@", urlStr);
     MZHTTPRequest* request = [[MZHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlStr]];
     [request setDelegate:self];
@@ -257,10 +257,10 @@
     [userInfo setObject:[NSNumber numberWithUnsignedInteger:theSeries] forKey:@"series"];
     request.userInfo = userInfo;
     
-    NSString* bannerUrl = [NSString stringWithFormat:@"%@/api/%@/series/%d/banners.xml",
+    NSString* bannerUrl = [NSString stringWithFormat:@"%@/api/%@/series/%ld/banners.xml",
             bannerMirror,
             THETVDB_API_KEY,
-            theSeries];
+            (unsigned long)theSeries];
     //MZLoggerDebug(@"Sending request to %@", bannerUrl);
     MZHTTPRequest* bannerRequest = [[MZHTTPRequest alloc] initWithURL:[NSURL URLWithString:bannerUrl]];
     [bannerRequest setDelegate:self];
@@ -385,7 +385,7 @@
             [episodeDict setObject:[tag objectFromString:episodeNo] forKey:MZTVEpisodeTagIdent];
         }
 
-        [episodeDict setObject:[NSNumber numberWithUnsignedInt:series] forKey:TVDBSeriesIdTagIdent];
+        [episodeDict setObject:[NSNumber numberWithUnsignedInteger:series] forKey:TVDBSeriesIdTagIdent];
         NSString* seasonId = [item stringForXPath:@"seasonid" error:NULL];
         [episodeDict setObject:seasonId forKey:TVDBSeasonIdTagIdent];
         NSString* episodeId = [item stringForXPath:@"id" error:NULL];

@@ -123,7 +123,6 @@
                 } else if (![nextView isHidden] || ![_fadeViews objectForKey:key]) { // we always hide the view before starting a fade effect
                                                                                      // Create view image for this view and NSImageView to display it
                     NSImage *thisImg = [[NSImage alloc] initWithSize:[nextView bounds].size];
-                    [thisImg setFlipped: [nextView isFlipped]];
                     [thisImg lockFocus];
                     // Make nextView draw itself into our image, even though it's hidden
                     [nextView drawRect:[nextView bounds]];
@@ -133,7 +132,7 @@
                     
                     NSImageView *imgView = [[NSImageView alloc] initWithFrame:newFrame];
                     [imgView setImageFrameStyle:NSImageFrameNone];
-                    [imgView setImageScaling:NSScaleNone];
+                    [imgView setImageScaling:NSImageScaleNone];
                     if (fadeOut) {
                         [imgView setImage:thisImg];
                     }
@@ -148,7 +147,6 @@
                     NSImage *thisImg;
                     if ([self continuouslyUpdatesFadingViews]) {
                         thisImg = [[[NSImage alloc] initWithSize:[nextView bounds].size] autorelease];
-                        [thisImg setFlipped: [nextView isFlipped]];
                         [thisImg lockFocus];
                         // Make nextView draw itself into our image, even though it's hidden
                         [nextView drawRect:[nextView bounds]];
@@ -161,7 +159,7 @@
                     
                     float fraction = (fadeOut) ? 1.0 - progress : progress;
                     [thisViewImage lockFocus];
-                    [thisImg compositeToPoint:NSZeroPoint operation:NSCompositeSourceOver fraction:fraction];
+                    [thisImg compositeToPoint:NSZeroPoint operation:NSCompositingOperationSourceOver fraction:fraction];
                     [thisViewImage unlockFocus];
                     
                     NSImageView *fadeView = (NSImageView *)[_fadeViews objectForKey:key];

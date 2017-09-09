@@ -453,12 +453,16 @@ static MZPresets* sharedPresets = nil;
                 NSString* title = [NSString stringWithFormat:
                         NSLocalizedString(@"Found %d MetaX Presets", @"Found MetaX presets message box text"),
                         [mxPresets count]];
-                NSInteger returnCode = NSRunCriticalAlertPanel(title,
-                        NSLocalizedString(@"Do you wish to import them ?", @"Found MetaX presets message question"),
-                        NSLocalizedString(@"Import", @"Button text for presets import action"), nil,
-                        NSLocalizedString(@"Ignore", @"Button text for presets ignore action")
-                );
-                if(returnCode == NSAlertDefaultReturn)
+                
+                NSAlert *alert = [NSAlert new];
+                alert.alertStyle = NSAlertStyleCritical;
+                alert.messageText = title;
+                alert.informativeText = NSLocalizedString(@"Do you wish to import them ?", @"Found MetaX presets message question");
+                [alert addButtonWithTitle:NSLocalizedString(@"Import", @"Button text for presets import action")];
+                [alert addButtonWithTitle:NSLocalizedString(@"Ignore", @"Button text for presets ignore action")];
+                NSModalResponse returnCode = [alert runModal];
+
+                if(returnCode == NSAlertFirstButtonReturn)
                 {
                     [self willChangeValueForKey:@"presets"];
                     [presets addObjectsFromArray:mxPresets];
@@ -528,7 +532,7 @@ static MZPresets* sharedPresets = nil;
                     MZTag* tag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
                     [sel setCell:[tag editorCell]];
                     [sel setKeyEquivalent:@"t"];
-                    [sel setKeyEquivalentModifierMask:NSCommandKeyMask];
+                    [sel setKeyEquivalentModifierMask:NSEventModifierFlagCommand];
                     
                     if(lastSelection != MZUnsetVideoType)
                         [sel selectItemWithTag:lastSelection];

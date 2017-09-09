@@ -35,7 +35,7 @@
                  edits:(MetaEdits *)edits;
 
 - (void)operationsFinished;
-- (void)notifyPercent:(NSInteger)percent;
+- (void)notifyPercent:(int)percent;
 
 @end
 

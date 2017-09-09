@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3C948D453FAB2CA9CE45C9309D054828BB58F224",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "9245F4ABE6B2B191575834AAD6BD4734A18142EF" : 9223372036854775807,
+    "3C948D453FAB2CA9CE45C9309D054828BB58F224" : 9223372036854775807,
+    "FAF40D7FD305BB7D5BE5F87AE969BD7D31922D57" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F17A7BBE-DC83-447E-B888-090FC3C97449",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "9245F4ABE6B2B191575834AAD6BD4734A18142EF" : "MetaZ\/Externals\/google-toolbox-for-mac\/",
+    "3C948D453FAB2CA9CE45C9309D054828BB58F224" : "MetaZ\/",
+    "FAF40D7FD305BB7D5BE5F87AE969BD7D31922D57" : "MetaZ\/Externals\/asi-http-request\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MetaZ",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MetaZ.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:griff\/metaz.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3C948D453FAB2CA9CE45C9309D054828BB58F224"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/google\/google-toolbox-for-mac.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9245F4ABE6B2B191575834AAD6BD4734A18142EF"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/pokeb\/asi-http-request.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FAF40D7FD305BB7D5BE5F87AE969BD7D31922D57"
+    }
+  ]
+}

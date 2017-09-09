@@ -91,7 +91,7 @@
     [provider removeWriteManager:self];
 }
 
-- (void)notifyPercent:(NSInteger)percent
+- (void)notifyPercent:(int)percent
 {
     if([delegate respondsToSelector:@selector(dataProvider:controller:writeFinishedForEdits:percent:)])
         [delegate dataProvider:provider controller:self writeFinishedForEdits:edits percent:percent];
@@ -153,8 +153,8 @@
     if([str hasPrefix:@"Started writing to temp file."])
         str = [str substringFromIndex:29];
     str = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSInteger percent = [str integerValue];
-    MZLoggerDebug(@"Got data: %ld '%@'", (long)percent, origStr);
+    int percent = [str intValue];
+    MZLoggerDebug(@"Got data: %d '%@'", percent, origStr);
     if(percent > 0)
         [controller notifyPercent:percent];
         

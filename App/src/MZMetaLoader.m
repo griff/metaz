@@ -314,9 +314,16 @@ static MZMetaLoader* sharedLoader = nil;
         NSString* baseFile = [operation.filePath lastPathComponent];
         NSString* errMsg = [NSString stringWithFormat:
             NSLocalizedString(@"The file '%@' is in an unsupported format.", @"Bad file title"), baseFile];
-            
-        NSRunCriticalAlertPanel(errMsg,
-            @"", NSLocalizedString(@"OK", @"Button text"), nil, nil);
+        
+        NSAlert *alert = [NSAlert new];
+        alert.alertStyle = NSAlertStyleCritical;
+        alert.messageText = errMsg;
+        alert.informativeText = @"";
+        [alert addButtonWithTitle:NSLocalizedString(@"OK", @"Button text")];
+        [alert runModal];
+        
+        /*NSRunCriticalAlertPanel(errMsg,
+            @"", NSLocalizedString(@"OK", @"Button text"), nil, nil);*/
         MZLoggerError(@"Could no load file '%@'", operation.filePath);
         [self notifyLoadedFile:operation];
         if( operation.scriptCommand )
@@ -344,7 +351,7 @@ static MZMetaLoader* sharedLoader = nil;
             MZTag* tag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
             [sel setCell:[tag editorCell]];
             [sel setKeyEquivalent:@"t"];
-            [sel setKeyEquivalentModifierMask:NSCommandKeyMask];
+            [sel setKeyEquivalentModifierMask:NSEventModifierFlagCommand];
 
             if(lastSelection!=MZUnsetVideoType)
                 [sel selectItemWithTag:lastSelection];

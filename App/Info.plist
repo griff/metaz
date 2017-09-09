@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BuildDate</key>
+	<string>BUILDDATE</string>
+	<key>BuildId</key>
+	<string>BUILDID</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDocumentTypes</key>
@@ -118,7 +122,7 @@
 	<key>CFBundleIconFile</key>
 	<string>MetaZ.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.maven-group.${PRODUCT_NAME:identifier}</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -131,25 +135,24 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>BUILDVERSION</string>
-	<key>BuildId</key>
-	<string>BUILDID</string>
-	<key>BuildDate</key>
-	<string>BUILDDATE</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.5</string>
+	<key>NSAppleScriptEnabled</key>
+	<true/>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2009-2012, Brian Olsen &amp; Nigel Graham</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
-	<key>NSAppleScriptEnabled</key>
-	<true/>
-	<key>OSAScriptingDefinition</key>
-	<string>MetaZ.sdef</string>
 	<key>NSPrincipalClass</key>
 	<string>MetaZApplication</string>
 	<key>NSServices</key>
 	<array>
 		<dict>
+			<key>NSMenuItem</key>
+			<dict>
+				<key>default</key>
+				<string>Open in MetaZ</string>
+			</dict>
 			<key>NSMessage</key>
 			<string>doiTunesMetadata</string>
 			<key>NSSendTypes</key>
@@ -157,13 +160,13 @@
 				<string>org.liscio.itun</string>
 				<string>com.apple.itunes.metadata</string>
 			</array>
+		</dict>
+		<dict>
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>Open in MetaZ</string>
+				<string>Open selected tracks in MetaZ</string>
 			</dict>
-		</dict>
-		<dict>
 			<key>NSMessage</key>
 			<string>doiTunes</string>
 			<key>NSRequiredContext</key>
@@ -171,17 +174,90 @@
 				<key>NSApplicationIdentifier</key>
 				<string>com.apple.iTunes</string>
 			</dict>
-			<key>NSMenuItem</key>
-			<dict>
-				<key>default</key>
-				<string>Open selected tracks in MetaZ</string>
-			</dict>
 		</dict>
 	</array>
+	<key>OSAScriptingDefinition</key>
+	<string>MetaZ.sdef</string>
 	<key>SUEnableAutomaticChecks</key>
+	<string>YES</string>
+	<key>SUEnableSystemProfiling</key>
 	<string>YES</string>
 	<key>SUFeedURL</key>
 	<string>http://maven-group.org/metaz/appcast.xml</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>sparkle_public.pem</string>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>com.apple.plugin</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>MetaZ Plugin</string>
+			<key>UTTypeIconFile</key>
+			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
+			<key>UTTypeIdentifier</key>
+			<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>MetaZ Actions Plugin</string>
+			<key>UTTypeIconFile</key>
+			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
+			<key>UTTypeIdentifier</key>
+			<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin.actions</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>mzactions</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>MetaZ Search Provider Plugin</string>
+			<key>UTTypeIconFile</key>
+			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
+			<key>UTTypeIdentifier</key>
+			<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin.searchprovider</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>mzsearchprovider</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>MetaZ Data Provider Plugin</string>
+			<key>UTTypeIconFile</key>
+			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
+			<key>UTTypeIdentifier</key>
+			<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin.dataprovider</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>mzdataprovider</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict>
@@ -220,85 +296,9 @@
 			</dict>
 		</dict>
 	</array>
-	<key>SUEnableSystemProfiling</key>
-	<string>YES</string>
-	<key>SUPublicDSAKeyFile</key>
-	<string>sparkle_public.pem</string>
 	<key>com.apple.PreferenceSync.ExcludeSyncKeys</key>
 	<array>
 		<string>SULastCheckTime</string>
-	</array>
-	<key>UTExportedTypeDeclarations</key>
-	<array>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>com.apple.plugin</string>
-			</array>
-			<key>UTTypeDescription</key>
-			<string>MetaZ Plugin</string>
-			<key>UTTypeIconFile</key>
-			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
-			<key>UTTypeIdentifier</key>
-			<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
-		</dict>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
-			</array>
-			<key>UTTypeIdentifier</key>
-			<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin.actions</string>
-			<key>UTTypeDescription</key>
-			<string>MetaZ Actions Plugin</string>
-			<key>UTTypeIconFile</key>
-			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>mzactions</string>
-				</array>
-			</dict>
-		</dict>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
-			</array>
-			<key>UTTypeIdentifier</key>
-			<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin.searchprovider</string>
-			<key>UTTypeDescription</key>
-			<string>MetaZ Search Provider Plugin</string>
-			<key>UTTypeIconFile</key>
-			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>mzsearchprovider</string>
-				</array>
-			</dict>
-		</dict>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin</string>
-			</array>
-			<key>UTTypeIdentifier</key>
-			<string>org.maven-group.${PRODUCT_NAME:identifier}.plugin.dataprovider</string>
-			<key>UTTypeDescription</key>
-			<string>MetaZ Data Provider Plugin</string>
-			<key>UTTypeIconFile</key>
-			<string>/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/KEXT.icns</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>mzdataprovider</string>
-				</array>
-			</dict>
-		</dict>
 	</array>
 </dict>
 </plist>

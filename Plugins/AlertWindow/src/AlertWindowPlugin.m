@@ -91,7 +91,10 @@
                                         "Queue completed alert message"),
                       intervalStr];
     
-    NSRunAlertPanel( title, msg, NSLocalizedString(@"OK", @"OK button text"), nil, nil);
+    NSAlert* alert = [NSAlert new];
+    alert.messageText = title;
+    alert.informativeText = msg;
+    [alert runModal];
 }
 
 - (void)queueCompleted:(NSNotification *)note

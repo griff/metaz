@@ -7,7 +7,6 @@
 //
 
 #import "TheMovieDbSearch.h"
-#import <MetaZKit/JSONKit.h>
 #import <MetaZKit/MZLogger.h>
 #import "Access.h"
 #import "TheMovieDbPlugin.h"
@@ -86,8 +85,8 @@
         return;
     }
  
-    id obj = [[theRequest responseData] objectFromJSONData];
-    imageBaseURL = [[[obj objectForKey:@"images"] objectForKey:@"base_url"] retain];
+    id obj = [NSJSONSerialization JSONObjectWithData:[theRequest responseData] options:0 error:nil];
+    imageBaseURL = [[[obj objectForKey:@"images"] objectForKey:@"secure_base_url"] retain];
 }
 
 - (void)fetchConfigurationFailed:(id)request;
@@ -101,7 +100,8 @@
         @"http://api.themoviedb.org/3/search/movie?api_key=%@&language=%@&query=%@",
         THEMOVIEDB_API_KEY,
         @"en",
-        [query stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        [query stringByAddingPercentEncodingWithAllowedCharacters: [NSCharacterSet URLQueryAllowedCharacterSet]]
+        ];
 
     //MZLoggerDebug(@"Sending request to %@", url);
     //MZLoggerDebug(@"Sending request to %@", [NSURL URLWithString:url]);
@@ -127,7 +127,7 @@
         return;
     }
     //MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
-    id doc = [[theRequest responseData] objectFromJSONData];
+    id doc = [NSJSONSerialization JSONObjectWithData:[theRequest responseData] options:0 error:nil];
 
     NSArray* items = [doc objectForKey:@"results"];
     //MZLoggerDebug(@"Got TheMovieDb results %d", [items count]);
@@ -175,7 +175,7 @@
     }
 
     //MZLoggerDebug(@"Got response from cache %@", [theRequest didUseCachedResponse] ? @"YES" : @"NO");
-    id doc = [[theRequest responseData] objectFromJSONData];
+    id doc = [NSJSONSerialization JSONObjectWithData:[theRequest responseData] options:0 error:nil];
 
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
     

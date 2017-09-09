@@ -206,7 +206,7 @@
     
     // No delegate so delete myself.
     [self release];
-    return [theProvider retain];
+    return nil;
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder

@@ -70,11 +70,11 @@
 
 - (void)replaceCharactersInRange:(NSRange)aRange withString:(NSString *)aString
 {
-	int strlen = [aString length];
+	NSUInteger strlen = [aString length];
 	
 	[text replaceCharactersInRange:aRange withString:aString];
 
-	int lengthChange = strlen - aRange.length;
+	NSUInteger lengthChange = strlen - aRange.length;
 	[self edited:NSTextStorageEditedCharacters
 		   range:aRange
   changeInLength:lengthChange];

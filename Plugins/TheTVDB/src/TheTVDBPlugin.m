@@ -72,7 +72,9 @@
     
     NSString* str = [[NSString stringWithFormat:
         @"http://thetvdb.com/?tab=episode&seriesid=%d&seasonid=%@&id=%@",
-        [series unsignedIntValue], season, episode] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [series unsignedIntValue], season, episode]
+                     stringByAddingPercentEncodingWithAllowedCharacters: [NSCharacterSet URLQueryAllowedCharacterSet]
+                     ];
     NSURL* url = [NSURL URLWithString:str];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
@@ -85,7 +87,9 @@
     
     NSString* str = [[NSString stringWithFormat:
         @"http://thetvdb.com/?tab=season&seriesid=%d&seasonid=%@",
-        [series unsignedIntValue], season] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [series unsignedIntValue], season]
+                     stringByAddingPercentEncodingWithAllowedCharacters: [NSCharacterSet URLQueryAllowedCharacterSet]
+                     ];
     NSURL* url = [NSURL URLWithString:str];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }
@@ -97,7 +101,9 @@
     
     NSString* str = [[NSString stringWithFormat:
         @"http://thetvdb.com/?tab=series&id=%d",
-        [series unsignedIntValue]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [series unsignedIntValue]]
+                     stringByAddingPercentEncodingWithAllowedCharacters: [NSCharacterSet URLQueryAllowedCharacterSet]
+                     ];
     NSURL* url = [NSURL URLWithString:str];
     [[NSWorkspace sharedWorkspace] openURL:url];
 }

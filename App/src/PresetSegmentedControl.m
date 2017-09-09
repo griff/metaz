@@ -84,7 +84,7 @@
 - (BOOL)performKeyEquivalent:(NSEvent *)theEvent
 {
     NSString* charCode = [theEvent charactersIgnoringModifiers];
-    NSUInteger modifierFlags = [theEvent modifierFlags] & NSDeviceIndependentModifierFlagsMask;
+    NSUInteger modifierFlags = [theEvent modifierFlags] & NSEventModifierFlagDeviceIndependentFlagsMask;
 
     NSInteger count = [self segmentCount];
     for(NSInteger i=0; i<count; i++)
