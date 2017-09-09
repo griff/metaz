@@ -8,4 +8,4 @@ install:
 script:
   - echo Script
   - xcodebuild -version
-  - xcodebuild | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}
+  - xcodebuild | xcpretty -f xcpretty-travis-formatter && exit ${PIPESTATUS[0]}
