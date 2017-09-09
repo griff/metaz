@@ -64,7 +64,7 @@
 - (void)fetchConfiguration;
 {
     NSString* url = [NSString stringWithFormat:
-                     @"http://api.themoviedb.org/3/configuration?api_key=%@",
+                     @"https://api.themoviedb.org/3/configuration?api_key=%@",
                      THEMOVIEDB_API_KEY];
     configurationRequest = [[MZHTTPRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [configurationRequest addRequestHeader:@"Accept" value:@"application/json"];
@@ -91,13 +91,13 @@
 
 - (void)fetchConfigurationFailed:(id)request;
 {
-    imageBaseURL = @"http://d3gtl9l2a4fn1j.cloudfront.net/t/p/";
+    imageBaseURL = @"https://image.tmdb.org/t/p/";
 }
 
 - (void)fetchMovieSearch:(NSString *)query
 {
     NSString* url = [NSString stringWithFormat:
-        @"http://api.themoviedb.org/3/search/movie?api_key=%@&language=%@&query=%@",
+        @"https://api.themoviedb.org/3/search/movie?api_key=%@&language=%@&query=%@",
         THEMOVIEDB_API_KEY,
         @"en",
         [query stringByAddingPercentEncodingWithAllowedCharacters: [NSCharacterSet URLQueryAllowedCharacterSet]]
@@ -149,7 +149,7 @@
 - (void)fetchMovieInfo:(NSNumber *)identifier;
 {
     NSString* url = [NSString stringWithFormat:
-        @"http://api.themoviedb.org/3/movie/%@?api_key=%@&language=%@&append_to_response=credits,images,releases",
+        @"https://api.themoviedb.org/3/movie/%@?api_key=%@&language=%@&append_to_response=credits,images,releases",
         identifier,
         THEMOVIEDB_API_KEY,
         @"en"];
@@ -190,7 +190,7 @@
     MZTag* identTag = [MZTag tagForIdentifier:TMDbIdTagIdent];
     [dict setObject:[identTag objectFromString:[ident stringValue]] forKey:TMDbIdTagIdent];
 
-    NSString* url = [NSString stringWithFormat:@"http://www.themoviedb.org/movie/%@", ident];
+    NSString* url = [NSString stringWithFormat:@"https://www.themoviedb.org/movie/%@", ident];
     //NSString* url = [doc objectForKey:@"homepage"];
     MZTag* urlTag = [MZTag tagForIdentifier:TMDbURLTagIdent];
     [dict setObject:[urlTag objectFromString:url] forKey:TMDbURLTagIdent];
