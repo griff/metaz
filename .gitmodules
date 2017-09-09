@@ -1,3 +1,6 @@
 [submodule "Externals/asi-http-request"]
 	path = Externals/asi-http-request
 	url = https://github.com/pokeb/asi-http-request.git
+[submodule "Externals/google-toolbox-for-mac"]
+	path = Externals/google-toolbox-for-mac
+	url = https://github.com/google/google-toolbox-for-mac.git
