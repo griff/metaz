@@ -6,9 +6,9 @@
 //  Licensed under the Apache License, Version 2.0 (the "License"); you may not
 //  use this file except in compliance with the License.  You may obtain a copy
 //  of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
 //  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
@@ -54,15 +54,21 @@ typedef NSUInteger GTMRegexOptions;
 
 /// Global contants needed for errors from consuming patterns
 
+// Ignore the "Macro name is a reserved identifier" warning in this section
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreserved-id-macro"
+
 #undef _EXTERN
 #undef _INITIALIZE_AS
-#ifdef GTMREGEX_DEFINE_GLOBALS
-#define _EXTERN 
+#if GTMREGEX_DEFINE_GLOBALS
+#define _EXTERN
 #define _INITIALIZE_AS(x) =x
 #else
 #define _EXTERN GTM_EXTERN
 #define _INITIALIZE_AS(x)
 #endif
+
+#pragma clang diagnostic pop
 
 _EXTERN NSString* kGTMRegexErrorDomain _INITIALIZE_AS(@"com.google.mactoolbox.RegexDomain");
 

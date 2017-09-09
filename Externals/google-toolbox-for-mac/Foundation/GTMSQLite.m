@@ -20,14 +20,10 @@
 
 
 #import <Foundation/Foundation.h>
-#if MAC_OS_X_VERSION_MIN_REQUIRED <= MAC_OS_X_VERSION_10_4
-#import <dlfcn.h>
-#endif
 #import "GTMSQLite.h"
 #import "GTMMethodCheck.h"
 #import "GTMDefines.h"
 #include <limits.h>
-#import "GTMGarbageCollection.h"
 
 typedef struct {
   BOOL upperCase;
@@ -44,22 +40,6 @@ typedef struct {
   CFOptionFlags   *compareOptionPtr;
   int             textRep;
 } LikeGlobUserArgs;
-
-#if MAC_OS_X_VERSION_MIN_REQUIRED <= MAC_OS_X_VERSION_10_4
-// While we want to be compatible with Tiger, some operations are more
-// efficient when implemented with Leopard APIs. We look those up dynamically.
-// CFStringCreateWithBytesNoCopy
-static const char* const kCFStringCreateWithBytesNoCopySymbolName =
-  "CFStringCreateWithBytesNoCopy";
-
-typedef CFStringRef (*CFStringCreateWithBytesNoCopyPtrType)(CFAllocatorRef,
-                                                            const UInt8 *,
-                                                            CFIndex,
-                                                            CFStringEncoding,
-                                                            Boolean,
-                                                            CFAllocatorRef);
-static CFStringCreateWithBytesNoCopyPtrType gCFStringCreateWithBytesNoCopySymbol = NULL;
-#endif  // MAC_OS_X_VERSION_MIN_REQUIRED <= MAC_OS_X_VERSION_10_4
 
 // Helper inline for SQLite text type to CF endcoding
 GTM_INLINE CFStringEncoding SqliteTextEncodingToCFStringEncoding(int enc) {
@@ -88,14 +68,12 @@ GTM_INLINE CFOptionFlags FilteredStringCompareFlags(CFOptionFlags inOptions) {
   if (inOptions & kCFCompareNonliteral) outOptions |= kCFCompareNonliteral;
   if (inOptions & kCFCompareLocalized) outOptions |= kCFCompareLocalized;
   if (inOptions & kCFCompareNumerically) outOptions |= kCFCompareNumerically;
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
   if (inOptions & kCFCompareDiacriticInsensitive) {
     outOptions |= kCFCompareDiacriticInsensitive;
   }
   if (inOptions & kCFCompareWidthInsensitive) {
     outOptions |= kCFCompareWidthInsensitive;
   }
-#endif
   return outOptions;
 }
 
@@ -142,14 +120,6 @@ static CFLocaleRef gCurrentLocale = NULL;
 + (void)initialize {
   // Need the locale for some CFString enhancements
   gCurrentLocale = CFLocaleCopyCurrent();
-
-#if MAC_OS_X_VERSION_MIN_REQUIRED <= MAC_OS_X_VERSION_10_4
-  // Compiling pre-Leopard try to find some symbols dynamically
-  gCFStringCreateWithBytesNoCopySymbol =
-      (CFStringCreateWithBytesNoCopyPtrType)dlsym(
-        RTLD_DEFAULT,
-        kCFStringCreateWithBytesNoCopySymbolName);
-#endif  // MAC_OS_X_VERSION_MIN_REQUIRED <= MAC_OS_X_VERSION_10_4
 }
 
 + (int)sqliteVersionNumber {
@@ -177,7 +147,7 @@ static CFLocaleRef gCurrentLocale = NULL;
 #else
       cfEncoding = kCFStringEncodingUTF16LE;
 #endif
-      NSStringEncoding nsEncoding 
+      NSStringEncoding nsEncoding
         = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
       NSData *data = [path dataUsingEncoding:nsEncoding];
       // Using -[NSString cStringUsingEncoding] causes sqlite3_open16
@@ -223,13 +193,6 @@ static CFLocaleRef gCurrentLocale = NULL;
                        utf8:useUTF8
                   errorCode:err];
 }
-
-#if GTM_SUPPORT_GC
-- (void)finalize {
-  [self cleanupDB];
-  [super finalize];
-}
-#endif
 
 - (void)dealloc {
   [self cleanupDB];
@@ -428,7 +391,7 @@ static CFLocaleRef gCurrentLocale = NULL;
 
 - (CFOptionFlags)likeComparisonOptions {
   CFOptionFlags flags = 0;
-  if (hasCFAdditions_) 
+  if (hasCFAdditions_)
     flags = likeOptions_;
   return flags;
 }
@@ -518,7 +481,7 @@ static CFLocaleRef gCurrentLocale = NULL;
 }
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"<%@: %p - %@>", 
+  return [NSString stringWithFormat:@"<%@: %p - %@>",
           [self class], self, path_];
 }
 @end
@@ -761,6 +724,7 @@ static void UpperLower16(sqlite3_context *context,
                                 convertedBytesForSQLite, &free);
         break;
       default:
+        free(returnBuffer);
         // COV_NF_START no way to tell sqlite to not use utf8 or utf16?
         sqlite3_result_error(context,
                              "LOWER/UPPER CF implementation " \
@@ -794,7 +758,7 @@ static void CollateNeeded(void *userContext, sqlite3 *db, int textRep,
     [collationName componentsSeparatedByString:@"_"];
   NSString *collationFlag = nil;
   BOOL atLeastOneValidFlag = NO;
-  GTM_FOREACH_OBJECT(collationFlag, collationComponents) {
+  for (collationFlag in collationComponents) {
     if ([collationFlag isEqualToString:@"reverse"]) {
       userArgs->reverse = YES;
       atLeastOneValidFlag = YES;
@@ -810,19 +774,12 @@ static void CollateNeeded(void *userContext, sqlite3 *db, int textRep,
     } else if ([collationFlag isEqualToString:@"numeric"]) {
       userArgs->compareOptions |= kCFCompareNumerically;
       atLeastOneValidFlag = YES;
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
     } else if ([collationFlag isEqualToString:@"nodiacritic"]) {
       userArgs->compareOptions |= kCFCompareDiacriticInsensitive;
       atLeastOneValidFlag = YES;
     } else if ([collationFlag isEqualToString:@"widthinsensitive"]) {
       userArgs->compareOptions |= kCFCompareWidthInsensitive;
       atLeastOneValidFlag = YES;
-#else
-    } else if (([collationFlag isEqualToString:@"nodiacritic"]) ||
-              ([collationFlag isEqualToString:@"widthinsensitive"])) {
-      _GTMDevLog(@"GTMSQLiteDatabase 10.5 collating not "
-                 @"available on 10.4 or earlier");
-#endif
     }
   }
 
@@ -881,34 +838,6 @@ static int Collate8(void *userContext, int length1, const void *str1,
   // creation function, we'll use it when we can but we want to stay compatible
   // with Tiger.
   CFStringRef string1 = NULL, string2 = NULL;
-#if MAC_OS_X_VERSION_MIN_REQUIRED <= MAC_OS_X_VERSION_10_4
-  if (gCFStringCreateWithBytesNoCopySymbol) {
-    string1 = gCFStringCreateWithBytesNoCopySymbol(kCFAllocatorDefault,
-                                                   str1,
-                                                   length1,
-                                                   kCFStringEncodingUTF8,
-                                                   false,
-                                                   kCFAllocatorNull);
-    string2 = gCFStringCreateWithBytesNoCopySymbol(kCFAllocatorDefault,
-                                                   str2,
-                                                   length2,
-                                                   kCFStringEncodingUTF8,
-                                                   false,
-                                                   kCFAllocatorNull);
-  } else {
-    // Have to use the copy-based variants
-    string1 = CFStringCreateWithBytes(kCFAllocatorDefault,
-                                      str1,
-                                      length1,
-                                      kCFStringEncodingUTF8,
-                                      false);
-    string2 = CFStringCreateWithBytes(kCFAllocatorDefault,
-                                      str2,
-                                      length2,
-                                      kCFStringEncodingUTF8,
-                                      false);
-  }
-#else  // MAC_OS_X_VERSION_MIN_REQUIRED <= MAC_OS_X_VERSION_10_4
   string1 = CFStringCreateWithBytesNoCopy(kCFAllocatorDefault,
                                           str1,
                                           length1,
@@ -921,7 +850,6 @@ static int Collate8(void *userContext, int length1, const void *str1,
                                           kCFStringEncodingUTF8,
                                           false,
                                           kCFAllocatorNull);
-#endif  // MAC_OS_X_VERSION_MIN_REQUIRED <= MAC_OS_X_VERSION_10_4
   GTMCFAutorelease(string1);
   GTMCFAutorelease(string2);
   // Allocation failures can't really be sanely handled from a collator
@@ -944,7 +872,7 @@ static int Collate8(void *userContext, int length1, const void *str1,
     if (userArgs->reverse && sqliteResult) {
       sqliteResult = -sqliteResult;
     }
-    
+
   }
   return sqliteResult;
 }
@@ -1032,7 +960,7 @@ static int Collate16(void *userContext, int length1, const void *str1,
                              string2,
                              userArgs->compareOptions);
 
-    sqliteResult = (int)result; 
+    sqliteResult = (int)result;
     //Reverse
     if (userArgs->reverse && sqliteResult) {
       sqliteResult = -sqliteResult;
@@ -1059,8 +987,8 @@ static void LikeGlobCompare(sqlite3_context *context,
   // Setup for pattern walk
   CFIndex patternLength = CFStringGetLength(pattern);
   CFStringInlineBuffer patternBuffer;
-  CFStringInitInlineBuffer(pattern, 
-                           &patternBuffer, 
+  CFStringInitInlineBuffer(pattern,
+                           &patternBuffer,
                            CFRangeMake(0, patternLength));
   UniChar patternChar;
   CFIndex patternIndex = 0;
@@ -1135,7 +1063,7 @@ static void LikeGlobCompare(sqlite3_context *context,
       }
       // There's at least one character, try to match the remainder of the
       // string using a CFCharacterSet
-      CFMutableCharacterSetRef charSet 
+      CFMutableCharacterSetRef charSet
         = CFCharacterSetCreateMutable(kCFAllocatorDefault);
       GTMCFAutorelease(charSet);
       if (!charSet) {
@@ -1716,16 +1644,6 @@ static void Glob16(sqlite3_context *context, int argc, sqlite3_value **argv) {
   return obj;
 }
 
-#if GTM_SUPPORT_GC
-- (void)finalize {
-  if (statement_) {
-    _GTMDevLog(@"-[GTMSQLiteStatement finalizeStatement] must be called when"
-               @" statement is no longer needed");
-  }
-  [super finalize];
-}
-#endif
-
 - (void)dealloc {
   if (statement_) {
     _GTMDevLog(@"-[GTMSQLiteStatement finalizeStatement] must be called when"
@@ -1793,8 +1711,8 @@ static void Glob16(sqlite3_context *context, int argc, sqlite3_value **argv) {
 - (int)bindBlobAtPosition:(int)position data:(NSData *)data {
   if (!statement_ || !data || !position) return SQLITE_MISUSE;
   int blobLength = (int)[data length];
-  _GTMDevAssert((blobLength < INT_MAX), 
-                @"sqlite methods do not support data lengths " 
+  _GTMDevAssert((blobLength < INT_MAX),
+                @"sqlite methods do not support data lengths "
                 @"exceeding 32 bit sizes");
   return [self bindBlobAtPosition:position
                             bytes:(void *)[data bytes]
@@ -1839,8 +1757,8 @@ static void Glob16(sqlite3_context *context, int argc, sqlite3_value **argv) {
   }
   return sqlite3_bind_text(statement_,
                            position,
-                           [string UTF8String], 
-                           -1, 
+                           [string UTF8String],
+                           -1,
                            SQLITE_TRANSIENT);
 }
 

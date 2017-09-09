@@ -1,0 +1,8 @@
+os: osx
+osx_image: xcode8.3
+
+before_install:
+  - gem install xcpretty-travis-formatter
+
+script:
+  - xcodebuild | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}

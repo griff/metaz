@@ -18,8 +18,11 @@
 
 #import "GTMSenTestCase.h"
 #import "GTMPath.h"
-#import "GTMUnitTestDevLog.h"
+#import "GTMNSFileHandle+UniqueName.h"
 
+#if MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_5
+// NSFileManager has improved substantially in Leopard and beyond, so GTMPath
+// is now deprecated.
 
 @interface GTMPathTest : GTMTestCase {
  @private
@@ -30,23 +33,18 @@
 @implementation GTMPathTest
 
 - (void)setUp {
-  NSString *tmp = NSTemporaryDirectory();
-  STAssertNotNil(tmp, nil);
-  
-  testDirectory_ = [[tmp stringByAppendingPathComponent:@"GTMPathTest"] retain];
+  NSFileManager *mgr = [NSFileManager defaultManager];
+  testDirectory_
+    = [[mgr gtm_createTemporaryDirectoryBasedOn:@"GTMPathTestXXXXXX"] retain];
+
   STAssertNotNil(testDirectory_, nil);
- 
-  BOOL created = [[NSFileManager defaultManager]
-                  createDirectoryAtPath:testDirectory_
-                             attributes:nil];
-  STAssertTrue(created, nil);
 }
 
 - (void)tearDown {
   // Make sure it's safe to remove this directory before nuking it.
   STAssertNotNil(testDirectory_, nil);
   STAssertNotEqualObjects(testDirectory_, @"/", nil);
-#if MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_5
+#if GTM_MACOS_SDK && (MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_5)
   [[NSFileManager defaultManager] removeFileAtPath:testDirectory_ handler:nil];
 #else
   [[NSFileManager defaultManager] removeItemAtPath:testDirectory_ error:NULL];
@@ -56,10 +54,10 @@
 
 - (void)testBasicCreation {
   GTMPath *path = nil;
-  
+
   path = [[[GTMPath alloc] init] autorelease];
   STAssertNil(path, nil);
-  
+
   path = [GTMPath pathWithFullPath:@"/"];
   STAssertNotNil(path, nil);
   STAssertNil([path parent], nil);
@@ -71,16 +69,16 @@
 
 - (void)testRecursiveInitialization {
   GTMPath *path = nil;
-  
+
   path = [GTMPath pathWithFullPath:nil];
   STAssertNil(path, nil);
-  
+
   path = [GTMPath pathWithFullPath:@""];
   STAssertNil(path, nil);
-  
+
   path = [GTMPath pathWithFullPath:@"etc"];
   STAssertNil(path, nil);
-  
+
   path = [GTMPath pathWithFullPath:@"/"];
   STAssertNotNil(path, nil);
   STAssertNil([path parent], nil);
@@ -88,7 +86,7 @@
   STAssertTrue([path isDirectory], nil);
   STAssertEqualObjects([path name], @"/", nil);
   STAssertEqualObjects([path fullPath], @"/", nil);
-  
+
   path = [GTMPath pathWithFullPath:@"/etc"];
   STAssertNotNil(path, nil);
   STAssertEqualObjects([path name], @"etc", nil);
@@ -97,7 +95,7 @@
   STAssertFalse([path isRoot], nil);
   STAssertNotNil([path parent], nil);
   STAssertTrue([[path parent] isRoot], nil);
-  
+
   path = [GTMPath pathWithFullPath:@"/etc/passwd"];
   STAssertNotNil(path, nil);
   STAssertEqualObjects([path name], @"passwd", nil);
@@ -108,22 +106,22 @@
   STAssertFalse([[path parent] isRoot], nil);
   STAssertTrue([[path parent] isDirectory], nil);
   STAssertTrue([[[path parent] parent] isRoot], nil);
-  
+
   STAssertTrue([[path description] length] > 1, nil);
 }
 
 - (void)testCreationWithNonExistentPath {
   GTMPath *path = nil;
-  
+
   path = [GTMPath pathWithFullPath:@" "];
   STAssertNil(path, nil);
-  
+
   path = [GTMPath pathWithFullPath:@"/abcxyz"];
   STAssertNil(path, nil);
-  
+
   path = [GTMPath pathWithFullPath:@"/etc/foo"];
   STAssertNil(path, nil);
-  
+
   path = [GTMPath pathWithFullPath:@"/foo/bar/baz"];
   STAssertNil(path, nil);
 }
@@ -131,36 +129,39 @@
 - (void)testDirectoryCreation {
   GTMPath *tmp = [GTMPath pathWithFullPath:testDirectory_];
   GTMPath *path = nil;
-  
+
   NSString *fooPath = [[tmp fullPath] stringByAppendingPathComponent:@"foo"];
   path = [GTMPath pathWithFullPath:fooPath];
   STAssertNil(path, nil);
-  
+
   path = [tmp createDirectoryName:@"foo" mode:0555];
   STAssertNotNil(path, nil);
   STAssertEqualObjects([path name], @"foo", nil);
   // filePosixPermissions has odd return types in different SDKs, so we use
   // STAssertTrue to avoid the macros type checks from choking us.
-  STAssertTrue([[path attributes] filePosixPermissions] == 0555, nil);
+  STAssertTrue([[path attributes] filePosixPermissions] == 0555,
+               @"got %o", (int)[[path attributes] filePosixPermissions]);
   STAssertTrue([path isDirectory], nil);
   STAssertFalse([path isRoot], nil);
-  
+
   // Trying to create a file where a dir already exists should fail
   path = [tmp createFileName:@"foo" mode:0555];
   STAssertNil(path, nil);
-  
+
   // Calling create again should succeed
   path = [tmp createDirectoryName:@"foo" mode:0555];
   STAssertNotNil(path, nil);
   STAssertEqualObjects([path name], @"foo", nil);
-  STAssertTrue([[path attributes] filePosixPermissions] == 0555, nil);
+  STAssertTrue([[path attributes] filePosixPermissions] == 0555,
+               @"got %o", (int)[[path attributes] filePosixPermissions]);
   STAssertTrue([path isDirectory], nil);
   STAssertFalse([path isRoot], nil);
-  
+
   GTMPath *foo = [GTMPath pathWithFullPath:fooPath];
   STAssertNotNil(foo, nil);
   STAssertEqualObjects([path name], @"foo", nil);
-  STAssertTrue([[path attributes] filePosixPermissions] == 0555, nil);
+  STAssertTrue([[path attributes] filePosixPermissions] == 0555,
+               @"got %o", (int)[[path attributes] filePosixPermissions]);
   STAssertTrue([path isDirectory], nil);
   STAssertFalse([path isRoot], nil);
 }
@@ -168,22 +169,22 @@
 - (void)testFileCreation {
   GTMPath *tmp = [GTMPath pathWithFullPath:testDirectory_];
   GTMPath *path = nil;
-  
+
   NSString *fooPath = [[tmp fullPath] stringByAppendingPathComponent:@"foo"];
   path = [GTMPath pathWithFullPath:fooPath];
   STAssertNil(path, nil);
-    
+
   path = [tmp createFileName:@"foo" mode:0555];
   STAssertNotNil(path, nil);
   STAssertEqualObjects([path name], @"foo", nil);
   STAssertTrue([[path attributes] filePosixPermissions] == 0555, nil);
   STAssertFalse([path isDirectory], nil);
   STAssertFalse([path isRoot], nil);
-  
+
   // Trying to create a dir where a file already exists should fail.
   path = [tmp createDirectoryName:@"foo" mode:0555];
   STAssertNil(path, nil);
-  
+
   // Calling create again should succeed
   path = [tmp createFileName:@"foo" mode:0555];
   STAssertNotNil(path, nil);
@@ -191,14 +192,14 @@
   STAssertTrue([[path attributes] filePosixPermissions] == 0555, nil);
   STAssertFalse([path isDirectory], nil);
   STAssertFalse([path isRoot], nil);
-  
+
   GTMPath *foo = [GTMPath pathWithFullPath:fooPath];
   STAssertNotNil(foo, nil);
   STAssertEqualObjects([path name], @"foo", nil);
   STAssertTrue([[path attributes] filePosixPermissions] == 0555, nil);
   STAssertFalse([path isDirectory], nil);
   STAssertFalse([path isRoot], nil);
-  
+
   // Make sure we can't create a file/directory rooted off of |foo|, since it's
   // not a directory.
   path = [foo createFileName:@"bar" mode:0555];
@@ -212,21 +213,21 @@
   NSString *fooPath = [[tmp fullPath] stringByAppendingPathComponent:@"foo"];
   GTMPath *path = [GTMPath pathWithFullPath:fooPath];
   STAssertNil(path, nil);
-  
+
   path = [[[tmp createDirectoryName:@"foo" mode:0755]
                   createDirectoryName:@"bar" mode:0756]
                     createDirectoryName:@"baz" mode:0757];
   STAssertNotNil(path, nil);
-  
+
   // Check "baz"
   STAssertEqualObjects([path name], @"baz", nil);
   STAssertTrue([[path attributes] filePosixPermissions] == 0757, nil);
-  
+
   // Check "bar"
   path = [path parent];
   STAssertEqualObjects([path name], @"bar", nil);
   STAssertTrue([[path attributes] filePosixPermissions] == 0756, nil);
-  
+
   // Check "foo"
   path = [path parent];
   STAssertEqualObjects([path name], @"foo", nil);
@@ -234,3 +235,5 @@
 }
 
 @end
+
+#endif //  MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_5

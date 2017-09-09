@@ -6,9 +6,9 @@
 //  Licensed under the Apache License, Version 2.0 (the "License"); you may not
 //  use this file except in compliance with the License.  You may obtain a copy
 //  of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
 //  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
@@ -21,6 +21,12 @@
 #import "GTMMethodCheck.h"
 #import "GTMDefines.h"
 
+
+// Export a nonsense symbol to suppress a libtool warning when this is linked alone in a static lib.
+__attribute__((visibility("default")))
+    char GTMNSDictionaryURLArgumentsExportToSuppressLibToolWarning = 0;
+
+
 @implementation NSDictionary (GTMNSDictionaryURLArgumentsAdditions)
 
 GTM_METHOD_CHECK(NSString, gtm_stringByEscapingForURLArgument);
@@ -32,7 +38,7 @@ GTM_METHOD_CHECK(NSString, gtm_stringByUnescapingFromURLArgument);
   NSString* component;
   // Use reverse order so that the first occurrence of a key replaces
   // those subsequent.
-  GTM_FOREACH_ENUMEREE(component, [components reverseObjectEnumerator]) {
+  for (component in [components reverseObjectEnumerator]) {
     if ([component length] == 0)
       continue;
     NSRange pos = [component rangeOfString:@"="];
@@ -59,7 +65,7 @@ GTM_METHOD_CHECK(NSString, gtm_stringByUnescapingFromURLArgument);
 - (NSString *)gtm_httpArgumentsString {
   NSMutableArray* arguments = [NSMutableArray arrayWithCapacity:[self count]];
   NSString* key;
-  GTM_FOREACH_KEY(key, self) {
+  for (key in self) {
     [arguments addObject:[NSString stringWithFormat:@"%@=%@",
                           [key gtm_stringByEscapingForURLArgument],
                           [[[self objectForKey:key] description] gtm_stringByEscapingForURLArgument]]];

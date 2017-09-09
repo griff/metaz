@@ -6,9 +6,9 @@
 //  Licensed under the Apache License, Version 2.0 (the "License"); you may not
 //  use this file except in compliance with the License.  You may obtain a copy
 //  of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
 //  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
@@ -75,7 +75,7 @@ struct {
 - (void)testJSONObject {
   NSCharacterSet *set = [[NSCharacterSet illegalCharacterSet] invertedSet];
   for (size_t i = 0; i < sizeof(testStrings) / sizeof(testStrings[0]); ++i) {
-    NSScanner *scanner 
+    NSScanner *scanner
       = [NSScanner scannerWithString:testStrings[i].testString_];
     [scanner setCharactersToBeSkipped:set];
     NSString *array = nil;
@@ -86,23 +86,27 @@ struct {
     BOOL goodObject = [scanner gtm_scanJSONObjectString:&object];
     if (testStrings[i].resultString_) {
       if (testStrings[i].isObject_) {
-        STAssertEqualStrings(testStrings[i].resultString_, 
-                             object, @"Test String: %@", testStrings[i]);
-        STAssertNil(array, @"Test String: %@", testStrings[i]);
-        STAssertTrue(goodObject, @"Test String: %@", testStrings[i]);
-        STAssertFalse(goodArray, @"Test String: %@", testStrings[i]);
+        XCTAssertEqualStrings(testStrings[i].resultString_,
+                              object, @"Test String: %@",
+                              testStrings[i].testString_);
+        XCTAssertNil(array, @"Test String: %@", testStrings[i].testString_);
+        XCTAssertTrue(goodObject, @"Test String: %@",
+                      testStrings[i].testString_);
+        XCTAssertFalse(goodArray, @"Test String: %@",
+                       testStrings[i].testString_);
       } else {
-        STAssertEqualStrings(testStrings[i].resultString_, array, 
-                             @"Test String: %@", testStrings[i]);
-        STAssertNil(object, @"Test String: %@", testStrings[i]);
-        STAssertTrue(goodArray, @"Test String: %@", testStrings[i]);
-        STAssertFalse(goodObject, @"Test String: %@", testStrings[i]);
+        XCTAssertEqualStrings(testStrings[i].resultString_, array,
+                              @"Test String: %@", testStrings[i].testString_);
+        XCTAssertNil(object, @"Test String: %@", testStrings[i].testString_);
+        XCTAssertTrue(goodArray, @"Test String: %@", testStrings[i].testString_);
+        XCTAssertFalse(goodObject, @"Test String: %@",
+                       testStrings[i].testString_);
       }
     } else {
-      STAssertNil(object, @"Test String: %@", testStrings[i]);
-      STAssertNil(array, @"Test String: %@", testStrings[i]);
-      STAssertFalse(goodArray, @"Test String: %@", testStrings[i]);
-      STAssertFalse(goodObject, @"Test String: %@", testStrings[i]);
+      XCTAssertNil(object, @"Test String: %@", testStrings[i].testString_);
+      XCTAssertNil(array, @"Test String: %@", testStrings[i].testString_);
+      XCTAssertFalse(goodArray, @"Test String: %@", testStrings[i].testString_);
+      XCTAssertFalse(goodObject, @"Test String: %@", testStrings[i].testString_);
     }
   }
 }
@@ -113,13 +117,13 @@ struct {
   NSScanner *scanner = [NSScanner scannerWithString:testString];
   [scanner setCharactersToBeSkipped:alphaSet];
   NSString *array = nil;
-  STAssertTrue([scanner gtm_scanJSONArrayString:&array], nil);
-  STAssertEqualStrings(array, @"[]", nil);
+  XCTAssertTrue([scanner gtm_scanJSONArrayString:&array]);
+  XCTAssertEqualStrings(array, @"[]");
   NSString *nextValue = nil;
-  STAssertTrue([scanner scanString:@":," intoString:&nextValue], nil);
-  STAssertEqualStrings(@":,", nextValue, nil);
+  XCTAssertTrue([scanner scanString:@":," intoString:&nextValue]);
+  XCTAssertEqualStrings(@":,", nextValue);
   scanner = [NSScanner scannerWithString:testString];
-  STAssertFalse([scanner gtm_scanJSONArrayString:&array], nil);
+  XCTAssertFalse([scanner gtm_scanJSONArrayString:&array]);
 }
 
 @end

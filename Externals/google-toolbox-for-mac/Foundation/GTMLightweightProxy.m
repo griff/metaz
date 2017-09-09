@@ -6,9 +6,9 @@
 //  Licensed under the Apache License, Version 2.0 (the "License"); you may not
 //  use this file except in compliance with the License.  You may obtain a copy
 //  of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
 //  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
@@ -27,15 +27,9 @@
   return self;
 }
 
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
-#if GTM_SUPPORT_GC
-// -[NSProxy finalize] is only in 10.5 or later
-- (void)finalize {
-  representedObject_ = nil;
-  [super finalize];
+- (id)init {
+  return [self initWithRepresentedObject:nil];
 }
-#endif
-#endif
 
 - (void)dealloc {
   // it's weak, we don't release

@@ -6,9 +6,9 @@
 //  Licensed under the Apache License, Version 2.0 (the "License"); you may not
 //  use this file except in compliance with the License.  You may obtain a copy
 //  of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
 //  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
@@ -18,7 +18,13 @@
 
 #import "GTMSenTestCase.h"
 #import "GTMFileSystemKQueue.h"
-#import "GTMUnitTestDevLog.h"
+
+
+// Private methods of GTMFileSystemKQueue we use for some tests
+@interface GTMFileSystemKQueue (PrivateMethods)
+- (void)unregisterWithKQueue;
+@end
+
 
 @interface GTMFileSystemKQueueTest : GTMTestCase {
  @private
@@ -32,27 +38,19 @@
 @interface GTMFSKQTestHelper : NSObject {
  @private
   int writes_, renames_, deletes_;
-  __weak GTMFileSystemKQueue *queue_;
+  GTM_WEAK GTMFileSystemKQueue *queue_;
 }
 @end
 
 @implementation GTMFSKQTestHelper
 
-- (void)callbackForQueue:(GTMFileSystemKQueue *)queue 
+- (void)callbackForQueue:(GTMFileSystemKQueue *)queue
                   events:(GTMFileSystemKQueueEvents)event {
-  // Can't use standard ST macros here because our helper
-  // is not a subclass of GTMTestCase. This is intentional.
   if (queue != queue_) {
-    NSString *file = [NSString stringWithUTF8String:__FILE__];
-    NSException *exception 
-      = [NSException failureInEqualityBetweenObject:queue
-                                          andObject:queue_
-                                             inFile:file
-                                             atLine:__LINE__
-                                    withDescription:nil];
-    [exception raise];
+    // We should never get here.
+    [NSException raise:NSInternalInconsistencyException format:@"Bad Queue!"];
   }
-  
+
   if (event & kGTMFileSystemKQueueWriteEvent) {
     ++writes_;
   }
@@ -94,15 +92,27 @@
 
   // make sure the files aren't in the way of the test
   NSFileManager *fm = [NSFileManager defaultManager];
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
+  NSError *error = nil;
+  [fm removeItemAtPath:testPath_ error:&error];
+  [fm removeItemAtPath:testPath2_ error:&error];
+#else
   [fm removeFileAtPath:testPath_ handler:nil];
   [fm removeFileAtPath:testPath2_ handler:nil];
+#endif  // MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
 }
 
 - (void)tearDown {
   // make sure we clean up the files from a failed test
   NSFileManager *fm = [NSFileManager defaultManager];
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
+  NSError *error = nil;
+  [fm removeItemAtPath:testPath_ error:&error];
+  [fm removeItemAtPath:testPath2_ error:&error];
+#else
   [fm removeFileAtPath:testPath_ handler:nil];
   [fm removeFileAtPath:testPath2_ handler:nil];
+#endif  // MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
 
   [testPath_ release];
   testPath_ = nil;
@@ -113,14 +123,12 @@
 - (void)testInit {
   GTMFileSystemKQueue *testKQ;
   GTMFSKQTestHelper *helper = [[[GTMFSKQTestHelper alloc] init] autorelease];
-  STAssertNotNil(helper, nil);
-  
+  XCTAssertNotNil(helper);
+
   // init should fail
-  [GTMUnitTestDevLog expectString:@"Don't call init, use "
-                     @"initWithPath:forEvents:acrossReplace:target:action:"];
   testKQ = [[[GTMFileSystemKQueue alloc] init] autorelease];
-  STAssertNil(testKQ, nil);
-  
+  XCTAssertNil(testKQ);
+
   // no path
   testKQ
     = [[[GTMFileSystemKQueue alloc] initWithPath:nil
@@ -128,8 +136,8 @@
                                    acrossReplace:YES
                                           target:helper
                                           action:@selector(callbackForQueue:events:)] autorelease];
-  STAssertNil(testKQ, nil);
-  
+  XCTAssertNil(testKQ);
+
   // not events
   testKQ
     = [[[GTMFileSystemKQueue alloc] initWithPath:@"/var/log/system.log"
@@ -137,8 +145,8 @@
                                    acrossReplace:YES
                                           target:helper
                                           action:@selector(callbackForQueue:events:)] autorelease];
-  STAssertNil(testKQ, nil);
-  
+  XCTAssertNil(testKQ);
+
   // no target
   testKQ
     = [[[GTMFileSystemKQueue alloc] initWithPath:@"/var/log/system.log"
@@ -146,8 +154,8 @@
                                    acrossReplace:YES
                                           target:nil
                                           action:@selector(callbackForQueue:events:)] autorelease];
-  STAssertNil(testKQ, nil);
-  
+  XCTAssertNil(testKQ);
+
   // no handler
   testKQ
     = [[[GTMFileSystemKQueue alloc] initWithPath:@"/var/log/system.log"
@@ -155,9 +163,9 @@
                                    acrossReplace:YES
                                           target:helper
                                           action:nil] autorelease];
-  STAssertNil(testKQ, nil);
+  XCTAssertNil(testKQ);
 
-  
+
   // path that doesn't exist
   testKQ
     = [[[GTMFileSystemKQueue alloc] initWithPath:@"/path/that/does/not/exist"
@@ -165,7 +173,7 @@
                                    acrossReplace:YES
                                           target:helper
                                           action:@selector(callbackForQueue:events:)] autorelease];
-  STAssertNil(testKQ, nil);
+  XCTAssertNil(testKQ);
 }
 
 - (void)spinForEvents:(GTMFSKQTestHelper *)helper {
@@ -179,15 +187,15 @@
 }
 
 - (void)testWriteAndDelete {
-  
+
   NSFileManager *fm = [NSFileManager defaultManager];
   GTMFSKQTestHelper *helper = [[[GTMFSKQTestHelper alloc] init] autorelease];
-  STAssertNotNil(helper, nil);
-  
-  STAssertTrue([fm createFileAtPath:testPath_ contents:nil attributes:nil], nil);
+  XCTAssertNotNil(helper);
+
+  XCTAssertTrue([fm createFileAtPath:testPath_ contents:nil attributes:nil]);
   NSFileHandle *testFH = [NSFileHandle fileHandleForWritingAtPath:testPath_];
-  STAssertNotNil(testFH, nil);
-  
+  XCTAssertNotNil(testFH);
+
   // Start monitoring the file
   GTMFileSystemKQueue *testKQ
     = [[GTMFileSystemKQueue alloc] initWithPath:testPath_
@@ -195,48 +203,53 @@
                                   acrossReplace:YES
                                          target:helper
                                          action:@selector(callbackForQueue:events:)];
-  STAssertNotNil(testKQ, nil);
-  STAssertEqualObjects([testKQ path], testPath_, nil);
+  XCTAssertNotNil(testKQ);
+  XCTAssertEqualObjects([testKQ path], testPath_);
   [helper setKQueue:testKQ];
-  
+
   // Write to the file
   [testFH writeData:[@"doh!" dataUsingEncoding:NSUnicodeStringEncoding]];
-  
+
   // Spin the runloop for a second so that the helper callbacks fire
   [self spinForEvents:helper];
-  STAssertEquals([helper totals], 1, nil);
-  
+  XCTAssertEqual([helper totals], 1);
+
   // Close and delete
   [testFH closeFile];
-  STAssertTrue([fm removeFileAtPath:testPath_ handler:nil], nil);
-  
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
+  NSError *error = nil;
+  XCTAssertTrue([fm removeItemAtPath:testPath_ error:&error], @"Err: %@", error);
+#else
+  XCTAssertTrue([fm removeFileAtPath:testPath_ handler:nil]);
+#endif  // MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
+
   [self spinForEvents:helper];
-  STAssertEquals([helper totals], 2, nil);
+  XCTAssertEqual([helper totals], 2);
 
   // Clean up the kqueue
   [testKQ release];
   testKQ = nil;
-  
-  STAssertEquals([helper writes], 1, nil);
-  STAssertEquals([helper deletes], 1, nil);
-  STAssertEquals([helper renames], 0, nil);
+
+  XCTAssertEqual([helper writes], 1);
+  XCTAssertEqual([helper deletes], 1);
+  XCTAssertEqual([helper renames], 0);
 }
 
 - (void)testWriteAndDeleteAndWrite {
-  
+
   // One will pass YES to |acrossReplace|, the other will pass NO.
-  
+
   NSFileManager *fm = [NSFileManager defaultManager];
   GTMFSKQTestHelper *helper = [[[GTMFSKQTestHelper alloc] init] autorelease];
-  STAssertNotNil(helper, nil);
+  XCTAssertNotNil(helper);
   GTMFSKQTestHelper *helper2 = [[[GTMFSKQTestHelper alloc] init] autorelease];
-  STAssertNotNil(helper, nil);
-  
+  XCTAssertNotNil(helper);
+
   // Create a temp file path
-  STAssertTrue([fm createFileAtPath:testPath_ contents:nil attributes:nil], nil);
+  XCTAssertTrue([fm createFileAtPath:testPath_ contents:nil attributes:nil]);
   NSFileHandle *testFH = [NSFileHandle fileHandleForWritingAtPath:testPath_];
-  STAssertNotNil(testFH, nil);
-  
+  XCTAssertNotNil(testFH);
+
   // Start monitoring the file
   GTMFileSystemKQueue *testKQ
     = [[GTMFileSystemKQueue alloc] initWithPath:testPath_
@@ -244,89 +257,98 @@
                                   acrossReplace:YES
                                          target:helper
                                          action:@selector(callbackForQueue:events:)];
-  STAssertNotNil(testKQ, nil);
-  STAssertEqualObjects([testKQ path], testPath_, nil);
+  XCTAssertNotNil(testKQ);
+  XCTAssertEqualObjects([testKQ path], testPath_);
   [helper setKQueue:testKQ];
-  
+
   GTMFileSystemKQueue *testKQ2
     = [[GTMFileSystemKQueue alloc] initWithPath:testPath_
                                       forEvents:kGTMFileSystemKQueueAllEvents
                                   acrossReplace:NO
                                          target:helper2
                                          action:@selector(callbackForQueue:events:)];
-  STAssertNotNil(testKQ2, nil);
-  STAssertEqualObjects([testKQ2 path], testPath_, nil);
+  XCTAssertNotNil(testKQ2);
+  XCTAssertEqualObjects([testKQ2 path], testPath_);
   [helper2 setKQueue:testKQ2];
-  
+
   // Write to the file
   [testFH writeData:[@"doh!" dataUsingEncoding:NSUnicodeStringEncoding]];
 
   // Spin the runloop for a second so that the helper callbacks fire
   [self spinForEvents:helper];
-  STAssertEquals([helper totals], 1, nil);
-  STAssertEquals([helper2 totals], 1, nil);
+  XCTAssertEqual([helper totals], 1);
+  XCTAssertEqual([helper2 totals], 1);
 
   // Close and delete
   [testFH closeFile];
-  STAssertTrue([fm removeFileAtPath:testPath_ handler:nil], nil);
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
+  NSError *error = nil;
+  XCTAssertTrue([fm removeItemAtPath:testPath_ error:&error], @"Err: %@", error);
+#else
+  XCTAssertTrue([fm removeFileAtPath:testPath_ handler:nil]);
+#endif  // MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
 
   // Recreate
-  STAssertTrue([fm createFileAtPath:testPath_ contents:nil attributes:nil], nil);
+  XCTAssertTrue([fm createFileAtPath:testPath_ contents:nil attributes:nil]);
   testFH = [NSFileHandle fileHandleForWritingAtPath:testPath_];
-  STAssertNotNil(testFH, nil);
+  XCTAssertNotNil(testFH);
   [testFH writeData:[@"ha!" dataUsingEncoding:NSUnicodeStringEncoding]];
-  
+
   // Spin the runloop for a second so that the helper callbacks fire
   [self spinForEvents:helper];
-  STAssertEquals([helper totals], 2, nil);
-  STAssertEquals([helper2 totals], 2, nil);
+  XCTAssertEqual([helper totals], 2);
+  XCTAssertEqual([helper2 totals], 2);
 
   // Write to it again
   [testFH writeData:[@"continued..." dataUsingEncoding:NSUnicodeStringEncoding]];
-  
-  // Spin the runloop for a second so that the helper callbacks fire
-  [self spinForEvents:helper];
-  STAssertEquals([helper totals], 3, nil);
-  STAssertEquals([helper2 totals], 2, nil);
-  
-  // Close and delete
-  [testFH closeFile];
-  STAssertTrue([fm removeFileAtPath:testPath_ handler:nil], nil);
 
   // Spin the runloop for a second so that the helper callbacks fire
   [self spinForEvents:helper];
-  STAssertEquals([helper totals], 4, nil);
-  STAssertEquals([helper2 totals], 2, nil);
-  
+  XCTAssertEqual([helper totals], 3);
+  XCTAssertEqual([helper2 totals], 2);
+
+  // Close and delete
+  [testFH closeFile];
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
+  XCTAssertTrue([fm removeItemAtPath:testPath_ error:&error], @"Err: %@", error);
+#else
+  XCTAssertTrue([fm removeFileAtPath:testPath_ handler:nil]);
+#endif  // MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
+
+  // Spin the runloop for a second so that the helper callbacks fire
+  [self spinForEvents:helper];
+  XCTAssertEqual([helper totals], 4);
+  XCTAssertEqual([helper2 totals], 2);
+
   // Clean up the kqueue
   [testKQ release];
   testKQ = nil;
   [testKQ2 release];
   testKQ2 = nil;
-  
-  STAssertEquals([helper writes], 2, nil);
-  STAssertEquals([helper deletes], 2, nil);
-  STAssertEquals([helper renames], 0, nil);
-  STAssertEquals([helper2 writes], 1, nil);
-  STAssertEquals([helper2 deletes], 1, nil);
-  STAssertEquals([helper2 renames], 0, nil);
+
+  XCTAssertEqual([helper writes], 2);
+  XCTAssertEqual([helper deletes], 2);
+  XCTAssertEqual([helper renames], 0);
+  XCTAssertEqual([helper2 writes], 1);
+  XCTAssertEqual([helper2 deletes], 1);
+  XCTAssertEqual([helper2 renames], 0);
 }
 
 - (void)testWriteAndRenameAndWrite {
-  
+
   // One will pass YES to |acrossReplace|, the other will pass NO.
 
   NSFileManager *fm = [NSFileManager defaultManager];
   GTMFSKQTestHelper *helper = [[[GTMFSKQTestHelper alloc] init] autorelease];
-  STAssertNotNil(helper, nil);
+  XCTAssertNotNil(helper);
   GTMFSKQTestHelper *helper2 = [[[GTMFSKQTestHelper alloc] init] autorelease];
-  STAssertNotNil(helper2, nil);
-  
+  XCTAssertNotNil(helper2);
+
   // Create a temp file path
-  STAssertTrue([fm createFileAtPath:testPath_ contents:nil attributes:nil], nil);
+  XCTAssertTrue([fm createFileAtPath:testPath_ contents:nil attributes:nil]);
   NSFileHandle *testFH = [NSFileHandle fileHandleForWritingAtPath:testPath_];
-  STAssertNotNil(testFH, nil);
-  
+  XCTAssertNotNil(testFH);
+
   // Start monitoring the file
   GTMFileSystemKQueue *testKQ
     = [[GTMFileSystemKQueue alloc] initWithPath:testPath_
@@ -334,87 +356,155 @@
                                   acrossReplace:YES
                                          target:helper
                                          action:@selector(callbackForQueue:events:)];
-  STAssertNotNil(testKQ, nil);
-  STAssertEqualObjects([testKQ path], testPath_, nil);
+  XCTAssertNotNil(testKQ);
+  XCTAssertEqualObjects([testKQ path], testPath_);
   [helper setKQueue:testKQ];
-  
+
   GTMFileSystemKQueue *testKQ2
     = [[GTMFileSystemKQueue alloc] initWithPath:testPath_
                                       forEvents:kGTMFileSystemKQueueAllEvents
                                   acrossReplace:NO
                                          target:helper2
                                          action:@selector(callbackForQueue:events:)];
-  STAssertNotNil(testKQ2, nil);
-  STAssertEqualObjects([testKQ2 path], testPath_, nil);
+  XCTAssertNotNil(testKQ2);
+  XCTAssertEqualObjects([testKQ2 path], testPath_);
   [helper2 setKQueue:testKQ2];
-  
+
   // Write to the file
   [testFH writeData:[@"doh!" dataUsingEncoding:NSUnicodeStringEncoding]];
-  
+
   // Spin the runloop for a second so that the helper callbacks fire
   [self spinForEvents:helper];
-  STAssertEquals([helper totals], 1, nil);
-  STAssertEquals([helper2 totals], 1, nil);
-  
+  XCTAssertEqual([helper totals], 1);
+  XCTAssertEqual([helper2 totals], 1);
+
   // Move it and create the file again
-  STAssertTrue([fm movePath:testPath_ toPath:testPath2_ handler:nil], nil);
-  STAssertTrue([fm createFileAtPath:testPath_ contents:nil attributes:nil], nil);
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
+  NSError *error = nil;
+  XCTAssertTrue([fm moveItemAtPath:testPath_ toPath:testPath2_ error:&error],
+                @"Error: %@", error);
+#else
+  XCTAssertTrue([fm movePath:testPath_ toPath:testPath2_ handler:nil]);
+#endif  // MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
+
+  XCTAssertTrue([fm createFileAtPath:testPath_ contents:nil attributes:nil]);
   NSFileHandle *testFHPrime
     = [NSFileHandle fileHandleForWritingAtPath:testPath_];
-  STAssertNotNil(testFHPrime, nil);
+  XCTAssertNotNil(testFHPrime);
   [testFHPrime writeData:[@"eh?" dataUsingEncoding:NSUnicodeStringEncoding]];
-  
+
   // Spin the runloop for a second so that the helper callbacks fire
   [self spinForEvents:helper];
-  STAssertEquals([helper totals], 2, nil);
-  STAssertEquals([helper2 totals], 2, nil);
-  
+  XCTAssertEqual([helper totals], 2);
+  XCTAssertEqual([helper2 totals], 2);
+
   // Write to the new file
   [testFHPrime writeData:[@"continue..." dataUsingEncoding:NSUnicodeStringEncoding]];
-  
+
   // Spin the runloop for a second so that the helper callbacks fire
   [self spinForEvents:helper];
-  STAssertEquals([helper totals], 3, nil);
-  STAssertEquals([helper2 totals], 2, nil);
-  
+  XCTAssertEqual([helper totals], 3);
+  XCTAssertEqual([helper2 totals], 2);
+
   // Write to the old file
   [testFH writeData:[@"continue old..." dataUsingEncoding:NSUnicodeStringEncoding]];
 
   // Spin the runloop for a second so that the helper callbacks fire
   [self spinForEvents:helper];
-  STAssertEquals([helper totals], 3, nil);
-  STAssertEquals([helper2 totals], 3, nil);
-  
+  XCTAssertEqual([helper totals], 3);
+  XCTAssertEqual([helper2 totals], 3);
+
   // and now close old
   [testFH closeFile];
-  STAssertTrue([fm removeFileAtPath:testPath2_ handler:nil], nil);
-  
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
+  XCTAssertTrue([fm removeItemAtPath:testPath2_ error:&error], @"Err: %@", error);
+#else
+  XCTAssertTrue([fm removeFileAtPath:testPath2_ handler:nil]);
+#endif  // MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
+
   // Spin the runloop for a second so that the helper callbacks fire
   [self spinForEvents:helper];
-  STAssertEquals([helper totals], 3, nil);
-  STAssertEquals([helper2 totals], 4, nil);
-  
+  XCTAssertEqual([helper totals], 3);
+  XCTAssertEqual([helper2 totals], 4);
+
   // and now close new
   [testFHPrime closeFile];
-  STAssertTrue([fm removeFileAtPath:testPath_ handler:nil], nil);
-  
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
+  XCTAssertTrue([fm removeItemAtPath:testPath_ error:&error], @"Err: %@", error);
+#else
+  XCTAssertTrue([fm removeFileAtPath:testPath_ handler:nil]);
+#endif  // MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
+
   // Spin the runloop for a second so that the helper callbacks fire
   [self spinForEvents:helper];
-  STAssertEquals([helper totals], 4, nil);
-  STAssertEquals([helper2 totals], 4, nil);
-  
+  XCTAssertEqual([helper totals], 4);
+  XCTAssertEqual([helper2 totals], 4);
+
   // Clean up the kqueue
   [testKQ release];
   testKQ = nil;
   [testKQ2 release];
   testKQ2 = nil;
-  
-  STAssertEquals([helper writes], 2, nil);
-  STAssertEquals([helper deletes], 1, nil);
-  STAssertEquals([helper renames], 1, nil);
-  STAssertEquals([helper2 writes], 2, nil);
-  STAssertEquals([helper2 deletes], 1, nil);
-  STAssertEquals([helper2 renames], 1, nil);
+
+  XCTAssertEqual([helper writes], 2);
+  XCTAssertEqual([helper deletes], 1);
+  XCTAssertEqual([helper renames], 1);
+  XCTAssertEqual([helper2 writes], 2);
+  XCTAssertEqual([helper2 deletes], 1);
+  XCTAssertEqual([helper2 renames], 1);
+}
+
+- (void)testNoSpinHang {
+  // This case tests a specific historically problematic interaction of
+  // GTMFileSystemKQueue and the runloop. GTMFileSystemKQueue uses the CFSocket
+  // notifications (and thus the runloop) for monitoring, however, you can
+  // dealloc the instance (and thus unregister the underlying kevent descriptor)
+  // prior to any runloop spin. The unregister removes the pending notifications
+  // from the monitored main kqueue file descriptor that CFSocket has previously
+  // noticed but not yet called back. At that point a kevent() call in the
+  // socket callback without a timeout would hang the runloop.
+
+  // Warn this may hang
+  NSLog(@"%s on failure this will hang.", __PRETTY_FUNCTION__);
+
+  NSFileManager *fm = [NSFileManager defaultManager];
+  GTMFSKQTestHelper *helper = [[[GTMFSKQTestHelper alloc] init] autorelease];
+  XCTAssertNotNil(helper);
+  XCTAssertTrue([fm createFileAtPath:testPath_ contents:nil attributes:nil]);
+  NSFileHandle *testFH = [NSFileHandle fileHandleForWritingAtPath:testPath_];
+  XCTAssertNotNil(testFH);
+
+  // Start monitoring the file
+  GTMFileSystemKQueue *testKQ
+    = [[GTMFileSystemKQueue alloc] initWithPath:testPath_
+                                      forEvents:kGTMFileSystemKQueueAllEvents
+                                  acrossReplace:YES
+                                         target:helper
+                                         action:@selector(callbackForQueue:events:)];
+  XCTAssertNotNil(testKQ);
+  XCTAssertEqualObjects([testKQ path], testPath_);
+  [helper setKQueue:testKQ];
+
+  // Write to the file
+  [testFH writeData:[@"doh!" dataUsingEncoding:NSUnicodeStringEncoding]];
+  // Close and delete
+  [testFH closeFile];
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
+  NSError *error = nil;
+  XCTAssertTrue([fm removeItemAtPath:testPath_ error:&error], @"Err: %@", error);
+#else
+  XCTAssertTrue([fm removeFileAtPath:testPath_ handler:nil]);
+#endif  // MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
+
+  // Now destroy the queue, with events outstanding from the CFSocket, but
+  // unconsumed.
+  XCTAssertEqual([testKQ retainCount], (NSUInteger)1);
+  [testKQ release];
+  testKQ = nil;
+
+  // Spin the runloop, no events were delivered (and we should not hang)
+  [self spinForEvents:helper];
+  XCTAssertEqual([helper totals], 0);
 }
 
 @end
