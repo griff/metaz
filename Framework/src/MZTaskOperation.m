@@ -153,6 +153,7 @@
 
 - (void)cancel
 {
+    MZLoggerDebug(@"%@ Cancel task", [[task launchPath] lastPathComponent]);
     [super cancel];
     if([self isRunning]) [task terminate];
 }
@@ -233,11 +234,13 @@
 
 - (void)interrupt; // Not always possible. Sends SIGINT.
 {
+    MZLoggerDebug(@"%@ Sending SIGINT", [[task launchPath] lastPathComponent]);
     [task interrupt];
 }
 
 - (void)terminate; // Not always possible. Sends SIGTERM.
 {
+    MZLoggerDebug(@"%@ Sending SIGTERM", [[task launchPath] lastPathComponent]);
     [task terminate];
 }
 
@@ -402,10 +405,17 @@
 
 - (void)standardOutputGotData:(NSNotification *)note
 {
+    NSData* outdata = [[note userInfo]
+                    objectForKey:NSFileHandleNotificationDataItem];
+    NSString* str = [[[NSString alloc]
+                      initWithData:outdata
+                      encoding:NSUTF8StringEncoding] autorelease];
+    if([str length] > 0)
+        MZLoggerDebug(@"%@ stdout %@", [[task launchPath] lastPathComponent], str);
+
     if(self.finished || [self isCancelled])
         return;
-    self.data = [[note userInfo]
-            objectForKey:NSFileHandleNotificationDataItem];
+    self.data = outdata;
     if(self.terminated)
     {
         [self parseData];
