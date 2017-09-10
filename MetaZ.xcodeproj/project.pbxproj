@@ -2137,7 +2137,6 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Release/next_release.txt",
-				"$(SRCROOT)/Plugins/Amazon/Access.h",
 			);
 			outputPaths = (
 				"$(TARGET_TEMP_DIR)/PlistMacros.h",

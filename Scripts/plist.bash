@@ -4,7 +4,6 @@ set -x
 #[ -n "$CONFIGURATION_TEMP_DIR" ] || CONFIGURATION_TEMP_DIR="build/MetaZ.build/Debug"
 #[ -n "$TARGET_TEMP_DIR" ] || TARGET_TEMP_DIR="$CONFIGURATION_TEMP_DIR/Plist\ Marcos.build"
 #[ -n "$SCRIPT_INPUT_FILE_0" ] || SCRIPT_INPUT_FILE_0="Release/next_release.txt"
-#[ -n "$SCRIPT_INPUT_FILE_1" ] || SCRIPT_INPUT_FILE_1="Plugins/Amazon/Access.h"
 #[ -n "$SCRIPT_OUTPUT_FILE_0" ] || SCRIPT_OUTPUT_FILE_0="$TARGET_TEMP_DIR/PlistMacros.h"
 
 PATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin
@@ -27,7 +26,6 @@ echo "#define BUILDDATE $builddate" >> "$SCRIPT_OUTPUT_FILE_0"
 echo "#define BUILDVERSION $builddate.$buildid" >> "$SCRIPT_OUTPUT_FILE_0"
 echo "#define WHOAMI `whoami`" >> "$SCRIPT_OUTPUT_FILE_0"
 echo "#define RELEASE $release" >> "$SCRIPT_OUTPUT_FILE_0" 
-cat "$SCRIPT_INPUT_FILE_1" >> "$SCRIPT_OUTPUT_FILE_0" 
 
 # Delete the intermediate Info.plist so that Xcode re-preprocesses the Info.plist with our updated macros.
 # Use -f because after a clean build, this file doesn't exist yet, so a plain rm would fail and stop the build.
