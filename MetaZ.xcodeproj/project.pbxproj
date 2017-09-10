@@ -109,6 +109,10 @@
 		1B44949910D57D6900B9C751 /* AtomicParsley in Resources */ = {isa = PBXBuildFile; fileRef = 1B44949810D57D6900B9C751 /* AtomicParsley */; };
 		1B4499D210D9A5CE00B9C751 /* PresetSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4499D110D9A5CE00B9C751 /* PresetSegmentedControl.m */; };
 		1B449B8810DC7DE400B9C751 /* ChaptersTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B449B8710DC7DE400B9C751 /* ChaptersTableView.m */; };
+		1B492FA91F65537800A2FD3F /* Add to iTunes.scpt in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B492FA51F65537800A2FD3F /* Add to iTunes.scpt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		1B492FAA1F65537800A2FD3F /* Example Actions.scpt in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B492FA61F65537800A2FD3F /* Example Actions.scpt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		1B492FAB1F65537800A2FD3F /* Quit MetaZ.scpt in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B492FA71F65537800A2FD3F /* Quit MetaZ.scpt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		1B492FAC1F65537800A2FD3F /* Update iTunes.scpt in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B492FA81F65537800A2FD3F /* Update iTunes.scpt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1B4AF83B1170CFCC00E5C969 /* TheTVDBSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */; };
 		1B4AF84511715C8400E5C969 /* languages.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1B4AF84411715C8400E5C969 /* languages.xml */; };
 		1B4C1F4016554B0100011621 /* MZHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B4C1F3C1655490D00011621 /* MZHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -453,6 +457,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				1B492FA91F65537800A2FD3F /* Add to iTunes.scpt in Copy Plugins */,
+				1B492FAA1F65537800A2FD3F /* Example Actions.scpt in Copy Plugins */,
+				1B492FAB1F65537800A2FD3F /* Quit MetaZ.scpt in Copy Plugins */,
+				1B492FAC1F65537800A2FD3F /* Update iTunes.scpt in Copy Plugins */,
 				1B3185B81841EB18001EDE79 /* OSXNotificationPlugin.mzactions in Copy Plugins */,
 				1BD562471648F43A00F9C579 /* AlertWindowPlugin.mzactions in Copy Plugins */,
 				1BD5604D1648CC0200F9C579 /* GrowlPlugin.mzactions in Copy Plugins */,
@@ -604,6 +612,16 @@
 		1B4499D110D9A5CE00B9C751 /* PresetSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresetSegmentedControl.m; sourceTree = "<group>"; };
 		1B449B8610DC7DE400B9C751 /* ChaptersTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChaptersTableView.h; sourceTree = "<group>"; };
 		1B449B8710DC7DE400B9C751 /* ChaptersTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChaptersTableView.m; sourceTree = "<group>"; };
+		1B492F921F65530500A2FD3F /* Add to iTunes.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = "Add to iTunes.applescript"; path = "AppleScript/Add to iTunes.applescript"; sourceTree = "<group>"; };
+		1B492F931F65530500A2FD3F /* Example Actions.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = "Example Actions.applescript"; path = "AppleScript/Example Actions.applescript"; sourceTree = "<group>"; };
+		1B492F951F65530500A2FD3F /* Quit MetaZ.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = "Quit MetaZ.applescript"; path = "AppleScript/Quit MetaZ.applescript"; sourceTree = "<group>"; };
+		1B492F971F65530500A2FD3F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = AppleScript/README.md; sourceTree = "<group>"; };
+		1B492F981F65530500A2FD3F /* Update iTunes.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = "Update iTunes.applescript"; path = "AppleScript/Update iTunes.applescript"; sourceTree = "<group>"; };
+		1B492F9A1F65530500A2FD3F /* update.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = update.sh; path = AppleScript/update.sh; sourceTree = "<group>"; };
+		1B492FA51F65537800A2FD3F /* Add to iTunes.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Add to iTunes.scpt"; path = "AppleScript/Add to iTunes.scpt"; sourceTree = "<group>"; };
+		1B492FA61F65537800A2FD3F /* Example Actions.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Example Actions.scpt"; path = "AppleScript/Example Actions.scpt"; sourceTree = "<group>"; };
+		1B492FA71F65537800A2FD3F /* Quit MetaZ.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quit MetaZ.scpt"; path = "AppleScript/Quit MetaZ.scpt"; sourceTree = "<group>"; };
+		1B492FA81F65537800A2FD3F /* Update iTunes.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Update iTunes.scpt"; path = "AppleScript/Update iTunes.scpt"; sourceTree = "<group>"; };
 		1B4AF74B116EF80500E5C969 /* Access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access.h; path = Plugins/TheTVDB/Access.h; sourceTree = SOURCE_ROOT; };
 		1B4AF8391170CFCC00E5C969 /* TheTVDBSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBSearch.h; sourceTree = "<group>"; };
 		1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBSearch.m; sourceTree = "<group>"; };
@@ -673,7 +691,6 @@
 		1B63A1D11644D8D100461FC9 /* MZArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZArrayController.h; sourceTree = "<group>"; };
 		1B63A1D21644D8D100461FC9 /* MZArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZArrayController.m; sourceTree = "<group>"; };
 		1B63A36616458A1C00461FC9 /* Return iTunes selected.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = "Return iTunes selected.applescript"; path = "App/resources/Return iTunes selected.applescript"; sourceTree = "<group>"; };
-		1B63A889164823FE00461FC9 /* Example Actions.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Example Actions.applescript"; sourceTree = "<group>"; };
 		1B6E43C9108468B100DFE165 /* MZSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSearchResult.h; sourceTree = "<group>"; };
 		1B6E43CA108468B100DFE165 /* MZSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZSearchResult.m; sourceTree = "<group>"; };
 		1B6E43D610846BDA00DFE165 /* TagData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagData.h; sourceTree = "<group>"; };
@@ -777,17 +794,14 @@
 		1BD55C611648431D00F9C579 /* MZScriptActionsPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZScriptActionsPlugin.m; sourceTree = "<group>"; };
 		1BD55C641648466700F9C579 /* NSError+MZScriptError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MZScriptError.h"; sourceTree = "<group>"; };
 		1BD55C651648466700F9C579 /* NSError+MZScriptError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MZScriptError.m"; sourceTree = "<group>"; };
-		1BD55D4516485AE700F9C579 /* Update iTunes.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Update iTunes.applescript"; sourceTree = "<group>"; };
 		1BD55F8E1648BB4200F9C579 /* GrowlPlugin.mzactions */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrowlPlugin.mzactions; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BD55F8F1648BB4200F9C579 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Growl/Info.plist; sourceTree = "<group>"; };
 		1BD55FAD1648BC4F00F9C579 /* GrowlPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowlPlugin.h; sourceTree = "<group>"; };
 		1BD55FAE1648BC4F00F9C579 /* GrowlPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrowlPlugin.m; sourceTree = "<group>"; };
-		1BD5611E1648D51300F9C579 /* Quit MetaZ.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Quit MetaZ.applescript"; sourceTree = "<group>"; };
 		1BD562071648F17C00F9C579 /* AlertWindowPlugin.mzactions */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlertWindowPlugin.mzactions; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BD562081648F17C00F9C579 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = AlertWindow/Info.plist; sourceTree = "<group>"; };
 		1BD5622D1648F2B200F9C579 /* AlertWindowPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertWindowPlugin.h; sourceTree = "<group>"; };
 		1BD5622E1648F2B200F9C579 /* AlertWindowPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertWindowPlugin.m; sourceTree = "<group>"; };
-		1BD562AC16490AF900F9C579 /* Add to iTunes.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Add to iTunes.applescript"; sourceTree = "<group>"; };
 		1BD6E601105B355800E40151 /* MetaChangeNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaChangeNotification.m; sourceTree = "<group>"; };
 		1BD6E74D105DADCC00E40151 /* AddToQueue.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = AddToQueue.tiff; path = App/resources/AddToQueue.tiff; sourceTree = "<group>"; };
 		1BD6E74E105DADCC00E40151 /* Pause.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Pause.tiff; path = App/resources/Pause.tiff; sourceTree = "<group>"; };
@@ -1189,6 +1203,31 @@
 			path = "Externals/google-toolbox-for-mac/Foundation";
 			sourceTree = "<group>";
 		};
+		1B492F901F654FC800A2FD3F /* AppleScript */ = {
+			isa = PBXGroup;
+			children = (
+				1B492FAD1F6553D300A2FD3F /* Compiled */,
+				1B492F921F65530500A2FD3F /* Add to iTunes.applescript */,
+				1B492F931F65530500A2FD3F /* Example Actions.applescript */,
+				1B492F951F65530500A2FD3F /* Quit MetaZ.applescript */,
+				1B492F971F65530500A2FD3F /* README.md */,
+				1B492F981F65530500A2FD3F /* Update iTunes.applescript */,
+				1B492F9A1F65530500A2FD3F /* update.sh */,
+			);
+			name = AppleScript;
+			sourceTree = "<group>";
+		};
+		1B492FAD1F6553D300A2FD3F /* Compiled */ = {
+			isa = PBXGroup;
+			children = (
+				1B492FA51F65537800A2FD3F /* Add to iTunes.scpt */,
+				1B492FA61F65537800A2FD3F /* Example Actions.scpt */,
+				1B492FA71F65537800A2FD3F /* Quit MetaZ.scpt */,
+				1B492FA81F65537800A2FD3F /* Update iTunes.scpt */,
+			);
+			name = Compiled;
+			sourceTree = "<group>";
+		};
 		1B4CFF8E161CDED800B12009 /* AEVTBuilder */ = {
 			isa = PBXGroup;
 			children = (
@@ -1569,11 +1608,8 @@
 		1BEA6E68106EF248004B1A7F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				1B492F901F654FC800A2FD3F /* AppleScript */,
 				1B31858B1841E7A8001EDE79 /* OSXNotification */,
-				1BD562AC16490AF900F9C579 /* Add to iTunes.applescript */,
-				1B63A889164823FE00461FC9 /* Example Actions.applescript */,
-				1BD55D4516485AE700F9C579 /* Update iTunes.applescript */,
-				1BD5611E1648D51300F9C579 /* Quit MetaZ.applescript */,
 				1BD561F01648F06700F9C579 /* AlertWindow */,
 				1BD55F761648BACA00F9C579 /* Growl */,
 				1B8CB8FA14ACD5C700F859F7 /* TheMovieDb */,
@@ -1928,7 +1964,6 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				1BB6C11E1052B199001D3D1D /* Copy Frameworks */,
 				1BEA6F2F106EF6D5004B1A7F /* Copy Plugins */,
-				1B74B569164826980017E013 /* Compile Plugin Scripts */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				1B56A4BB17065FC300BDE79D /* Copy document types from plugins */,
@@ -2161,23 +2196,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/document_types.bash";
-		};
-		1B74B569164826980017E013 /* Compile Plugin Scripts */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Plugins/*.applescript",
-			);
-			name = "Compile Plugin Scripts";
-			outputPaths = (
-				"$BUILT_PRODUCTS_DIR/$PLUGINS_FOLDER_PATH/*.scpt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -x\ncd \"$PROJECT_DIR\"\nfor k in Plugins/*.applescript ; do\n  BASE=`basename \"$k\" .applescript`\n\n  $OSAC -l AppleScript -i \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME\" -d -o \"$BUILT_PRODUCTS_DIR/$PLUGINS_FOLDER_PATH/$BASE.scpt\" \"$k\"\ndone";
-			showEnvVarsInLog = 0;
 		};
 		1B8262A710B39DE400DF101B /* Make Disk Image */ = {
 			isa = PBXShellScriptBuildPhase;
