@@ -1,10 +1,11 @@
 set -o errexit
-#set -x
-
-export KEYCHAIN_PRIVKEY_NAME="MetaZ Sparkle Private"
+set -x
 
 if [ "${CONFIGURATION}" != "Release" ]; then exit; fi
-if [[ -z "$(security find-generic-password -s "$KEYCHAIN_PRIVKEY_NAME")" ]] ; then exit; fi
+if [[ ! -f "sparkle_private.pem" ]] ; then 
+  echo "No sparkle_private.pem found so skipping package sign"
+  exit
+fi
 
 PATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin
 
@@ -21,10 +22,9 @@ cd "$BUILT_PRODUCTS_DIR"
 
 SIZE=$(stat -f %z "$ARCHIVE_FILENAME")
 PUBDATE=$(date +"%a, %d %b %G %T %z")
-KEY=$(security find-generic-password -g -s "$KEYCHAIN_PRIVKEY_NAME" 2>&1 1>/dev/null | perl -pe '($_) = /"(.+)"/; s/\\012/\n/g')
-SIGNATURE=$(openssl dgst -sha1 -binary < "$ARCHIVE_FILENAME" | openssl dgst -dss1 -sign <(echo "$KEY") | openssl enc -base64)
+SIGNATURE=$(openssl dgst -sha1 -binary < "$ARCHIVE_FILENAME" | openssl dgst -dss1 -sign <$WD/sparkle_private.pem | openssl enc -base64)
 
-[ $SIGNATURE ] || { echo Unable to load signing private key with name "'$KEYCHAIN_PRIVKEY_NAME'" from keychain; false; }
+[ $SIGNATURE ] || { echo "Unable to load signing key from sparkle_private.pem"; false; }
 
 cat > "$PROJECT_NAME-$VERSION.xml" <<EOF
 			<enclosure
@@ -42,6 +42,3 @@ cat > "$PROJECT_NAME-$VERSION.json" <<EOF
   "dsaSignature": "$SIGNATURE"
 }
 EOF
-
-echo scp "'$HOME/svn/my-cool-app/build/Release/$ARCHIVE_FILENAME'" www.example.com:download/
-echo scp "'$WD/appcast.xml'" www.example.com:web/software/my-cool-app/appcast.xml

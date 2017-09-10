@@ -1,11 +1,36 @@
 os: osx
 osx_image: xcode8.3
-
+language: objective-c
+before_install:
+- openssl aes-256-cbc -K $encrypted_8e7577110561_key -iv $encrypted_8e7577110561_iv
+  -in sparkle_private.pem.enc -out sparkle_private.pem -d
 install:
-  - echo "Hello"
-  - gem install xcpretty-travis-formatter
-
+- echo "Hello"
+- gem install xcpretty-travis-formatter
 script:
-  - echo Script
-  - xcodebuild -version
-  - xcodebuild
+- echo Script
+- xcodebuild -version
+- xcodebuild
+before_deploy:
+- source Scripts/tag-beta.bash
+- mkdir Upload
+- cp build/Release/MetaZ-* Upload/
+- mv Upload/MetaZ-*.json Upload/Sparke.json
+- mv Upload/MetaZ-*.xml Upload/Sparke.xml
+- rm Upload/*.dmg
+deploy:
+  - provider: releases
+    api_key:
+      secure: PaSyHBl2Yw2WfKQulZ/oJhGjBUZuAscrgJ56WoSP7B/WHEBUDi4uulX/sO8qobs5HEVcR3aIcSVGkbapf/QNKdSpVqzGyJbjl9GTvEtjMdulynS/xMd+Mc+DD4HdVm6N4aAJj6xpwylrZQF4fAhzZKEhtxZICqPdXfyIwJGRVrehuEWt47yyamOZ1dT4C+xed5xlDXfBuTWeyAn2idix70oAVX9mJHjQja9L8HR6Bg/9HMnkppxtm+p+vF+jkx+RHG+W1Y9LmLxoIgzJa4TKOPxlEXFG5kqsLPct5ZBaOj3TVm6jU6nwUpN4RetpF8an/rsIkpgPEP8r4lU7FY00GRcHn5lD2vBvw/8SOiW7tGuouqpvGFZqxEk2WxijuCKl//LKaxQOUaTG6B2Bj4eQ27rtzkMjYGK5OliH/2p52P45mrc++B/slnVNHxtlOG7R3N7tBOvRRkznyl+e0LQmTclWXaVViSDZ+FlkoFgVnqGk+VtOuMwN8kAQzgqtCJ0f/zOrpF4zzw27aRwMX1M+nhflwozBVNMVxez6Pfm35XKrs0Dv0Pae/WZFiZgbfGr5AlsPoJQa2TfpB4tbN3N7Ol7iqZT2k23vs4knv4l+3IRubvNkj8G5XJuf+7VjMQ7cU7k27B56nX9JBnRLY5/o5WdurcERe9B6zV6z/RHN4Vk=
+    file_glob: true
+    file: "Upload/*"
+    skip_cleanup: true
+    prerelease: true
+    on:
+      branch: develop
+branches:
+  except:
+  - "/^v+[0-9]\\.+[0-9]\\.beta-+[0-9]/"
+env:
+  global:
+    secure: iafuNhke+X5fGBoWVZl39Qr5jtzOlgNvtQ/9EQ309Jfjp0pHDsMqyBqJ43g7t1IEB28AiaKcuOqO3CTMDJDuvluo8vcyXRdpRZH/lupbD08/S3iLXBUuradko8Qg02C981Tw0ao0M12bk5JNVZhkTypK/yse4qRcGgB9N1o6CsERnEY2Vp3oGnqG6rhdHC7BUrIBZrdRZfG9EZt7WJoGMUMlCyfkP87Qgx+2KrY+GD/nCgP71U9kLDU8eWvCLj/+sy+tH94NWzF10ybKeQQaA1BUb6Ulrn/pdoDJ+JPojZsrCyODVTWKdjsduFXrq53WG+leuJoJ8MxvYKu3o5FPhpV1wVbHa7+4j6qWPl4IB3k0rG8abk01LJXe01CQvUiecsKd6CTgYRoTCS4z0VFsueOEsjmXJ4VWYm23LjjG3rGnmxuPI3UCMW5PQ5K/XsMWNd/k/KBIoWXBUOF5bFMi/ewVRgXLaNDdzEoQu9iRbzIsHyYTNHQ+RBPcmsntR/YqB5jYxlAQrPsP2hWNY3Oc2L89DOsDCmSOMsNTXmoSATJQSnLaoKERaZlxlwzAcxas725UBzjmPeLjuqZEL88dUuGdGu9cEbsQB9LoL2TtFlIDXuRiuO4r/yU3LT25waut+gpbDGXL5Qkzjyg8RMP0PwINFHXnVSzF+hpDsRuUnP8=

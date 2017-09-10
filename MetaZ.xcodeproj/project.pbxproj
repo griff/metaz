@@ -634,6 +634,10 @@
 		1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzsearchprovider */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheTVDBPlugin.mzsearchprovider; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B4F53DD116EA1B5003221B1 /* TheTVDBPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBPlugin.h; sourceTree = "<group>"; };
 		1B4F53DE116EA1B5003221B1 /* TheTVDBPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBPlugin.m; sourceTree = "<group>"; };
+		1B521CEA1F65558600979D60 /* document_types.bash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = document_types.bash; path = Scripts/document_types.bash; sourceTree = "<group>"; };
+		1B521CEB1F65558600979D60 /* make_diskimage.bash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = make_diskimage.bash; path = Scripts/make_diskimage.bash; sourceTree = "<group>"; };
+		1B521CEC1F65558600979D60 /* plist.bash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = plist.bash; path = Scripts/plist.bash; sourceTree = "<group>"; };
+		1B521CED1F65558600979D60 /* sparkle_sign.bash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = sparkle_sign.bash; path = Scripts/sparkle_sign.bash; sourceTree = "<group>"; };
 		1B523B4913F4B2B500C20B7D /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIAuthenticationDialog.h; path = "Externals/asi-http-request/Classes/ASIAuthenticationDialog.h"; sourceTree = "<group>"; };
 		1B523B4A13F4B2B500C20B7D /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIAuthenticationDialog.m; path = "Externals/asi-http-request/Classes/ASIAuthenticationDialog.m"; sourceTree = "<group>"; };
 		1B523B4B13F4B2B500C20B7D /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASICacheDelegate.h; path = "Externals/asi-http-request/Classes/ASICacheDelegate.h"; sourceTree = "<group>"; };
@@ -1271,6 +1275,17 @@
 			path = TheTVDB/src;
 			sourceTree = "<group>";
 		};
+		1B521CE91F65557100979D60 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				1B521CEA1F65558600979D60 /* document_types.bash */,
+				1B521CEB1F65558600979D60 /* make_diskimage.bash */,
+				1B521CEC1F65558600979D60 /* plist.bash */,
+				1B521CED1F65558600979D60 /* sparkle_sign.bash */,
+			);
+			name = Scripts;
+			sourceTree = "<group>";
+		};
 		1B523B4813F4B24E00C20B7D /* asi-http-request */ = {
 			isa = PBXGroup;
 			children = (
@@ -1656,6 +1671,7 @@
 		29B97314FDCFA39411CA2CEA /* MetaZ */ = {
 			isa = PBXGroup;
 			children = (
+				1B521CE91F65557100979D60 /* Scripts */,
 				1B4494BC10D584E000B9C751 /* next_release.txt */,
 				1BEA6E68106EF248004B1A7F /* Plugins */,
 				1BA325BC10545A1B00276F57 /* App */,
