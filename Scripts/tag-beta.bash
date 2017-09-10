@@ -3,7 +3,7 @@ if [[ "$TRAVIS_BRANCH" != "$TRAVIS_TAG" ]]; then
 
   git config --global user.email "builds@travis-ci.com"
   git config --global user.name "Travis CI"
-  export GIT_TAG=v${VERSION}.beta-$TRAVIS_BUILD_NUMBER
+  export GIT_TAG=v${VERSION}
   echo git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
   git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
   git push -q https://$GITHUB_TOKEN@github.com/griff/metaz --tags
