@@ -136,7 +136,7 @@
 	<key>CFBundleVersion</key>
 	<string>BUILDVERSION</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.5</string>
+	<string>10.12</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
