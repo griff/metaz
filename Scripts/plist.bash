@@ -20,7 +20,12 @@ done
 if [[ "$TRAVIS_BRANCH" != "$TRAVIS_TAG" ]]; then
   release="${major}.${minor}.beta-$TRAVIS_BUILD_NUMBER"
 else
-  release="${major}.${minor}"
+  ((minors = $minor - 1))
+  if [[ -n "$TRAVIS_TAG" -a "$TRAVIS_TAG" == "v${major}.${minors}" ]]; then
+    release="${major}.${minors}"
+  else
+    release="${major}.${minor}"
+  fi
 fi
 
 if git show-ref --tags --quiet --verify -- "refs/tags/v$release"; then
