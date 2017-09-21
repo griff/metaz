@@ -16,6 +16,9 @@ if ENV['TRAVIS_BRANCH'] != ENV['TRAVIS_TAG']
 else
   prerelease = false
   release = all_releases.select {|r| !r[:prerelease] && !r[:draft] }.first
+  if ENV['TRAVIS_TAG'] == release[:tag_name]
+    release = all_releases.select {|r| !r[:prerelease] && !r[:draft] }[1]
+  end
 end
 version=`/usr/libexec/PlistBuddy -c "print :CFBundleShortVersionString" "build/Release/MetaZ.app/Contents/Info.plist"`
 log = `git log '--pretty=format:- %s' #{release[:tag_name]}..HEAD`
