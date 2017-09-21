@@ -13,7 +13,8 @@ before_deploy:
 - source Scripts/tag-beta.bash
 - mkdir Upload
 - cp build/Release/MetaZ-* Upload/
-- mv Upload/MetaZ-*.dSYM.zip Upload/Debug.dSYM.zip
+- ls Upload/
+- mv Upload/MetaZ-*+dSYM.zip Upload/Debug.dSYM.zip
 - mv Upload/MetaZ-*.json Upload/Sparke.json
 - rm Upload/*.dmg
 deploy:
