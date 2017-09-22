@@ -15,6 +15,7 @@ before_deploy:
 - mkdir Upload
 - cp build/Release/MetaZ-* Upload/
 - ls Upload/
+- rm Upload/MetaZ-*.xml
 - mv Upload/MetaZ-*+dSYM.zip Upload/Debug.dSYM.zip
 - mv Upload/MetaZ-*.json Upload/Sparkle.json
 - rm Upload/*.dmg
