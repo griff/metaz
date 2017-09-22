@@ -68,8 +68,8 @@ ditto -ck --keepParent "$PROJECT_NAME.app" "$ARCHIVE_FILENAME"
 mkdir -p DSYMS
 cp -R *.dSYM DSYMS/
 
-#ditto -ck --keepParent "$PROJECT_NAME.app.dSYM" "$PROJECT_NAME-$VERSION-$GITV+dYSM.zip"
-ditto -ck DSYMS "$PROJECT_NAME-$VERSION-$GITV+dYSM.zip"
+#ditto -ck --keepParent "$PROJECT_NAME.app.dSYM" "$PROJECT_NAME-$VERSION-$GITV+dSYM.zip"
+ditto -ck DSYMS "$PROJECT_NAME-$VERSION-$GITV+dSYM.zip"
 rm -rf DSYMS
 
 

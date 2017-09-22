@@ -15,7 +15,7 @@ before_deploy:
 - cp build/Release/MetaZ-* Upload/
 - ls Upload/
 - mv Upload/MetaZ-*+dSYM.zip Upload/Debug.dSYM.zip
-- mv Upload/MetaZ-*.json Upload/Sparke.json
+- mv Upload/MetaZ-*.json Upload/Sparkle.json
 - rm Upload/*.dmg
 deploy:
   - provider: releases
