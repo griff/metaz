@@ -13,4 +13,9 @@ else
   echo "Skipping because build is a tag"
 fi
 Scripts/release-notes.rb
-export RELEASE_NOTES="$(Scripts/release-notes.rb)"
+Scripts/release-notes.rb > build/Release/Release-notes.md
+bundle exec Scripts/github_release.rb \
+  --secret "$GITHUB_TOKEN" \
+  --repo-slug griff/metaz \
+  --changelog-file build/Release/Release-notes.md \
+  --tag $GIT_TAG

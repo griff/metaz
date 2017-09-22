@@ -5,6 +5,7 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_8e7577110561_key -iv $encrypted_8e7577110561_iv
   -in sparkle_private.pem.enc -out sparkle_private.pem -d
 install:
+- bundle install
 - gem install xcpretty-travis-formatter
 script:
 - xcodebuild -version
@@ -26,7 +27,6 @@ deploy:
     skip_cleanup: true
     prerelease: true
     name: $RELEASE_NAME
-    body: $RELEASE_NOTES
     on:
       branch: develop
   - provider: releases
@@ -36,7 +36,6 @@ deploy:
     file: "Upload/*"
     skip_cleanup: true
     name: $RELEASE_NAME
-    body: $RELEASE_NOTES
     on:
       tags: true
 branches:
