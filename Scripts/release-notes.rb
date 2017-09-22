@@ -5,7 +5,8 @@ require 'open-uri'
 require 'fileutils'
 require 'date'
 
-all_releases = open('https://api.github.com/repos/griff/metaz/releases', 'r') do |f|
+all_releases = open('https://api.github.com/repos/griff/metaz/releases',
+  http_basic_authentication: ['griff', ENV['GITHUB_TOKEN']] ) do |f|
   JSON.parse(f.read, symbolize_names: true)
 end
 all_releases.sort! {|a, b| b[:created_at] <=> a[:created_at] }
