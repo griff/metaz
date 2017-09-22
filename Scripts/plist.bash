@@ -33,7 +33,7 @@ if git show-ref --tags --quiet --verify -- "refs/tags/v$release"; then
 elif git show-ref --tags --quiet --verify -- "refs/tags/$release"; then
   TAG="$release"
 fi
-if [ -n "$TAG" -a "$TAG" != "$(git describe --exact-match --tags HEAD 2> /dev/null)" ]; then
+if [ -n "$TAG" -a "$TAG" != "$(git tag --points-at HEAD | grep -e  "^${TAG}$" 2> /dev/null)" ]; then
   echo "Tag $TAG exists and HEAD is not on it so we can't build version $release"
   exit 1
 fi
