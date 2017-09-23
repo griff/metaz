@@ -5,10 +5,16 @@ require 'open-uri'
 require 'fileutils'
 require 'date'
 
-all_releases = open('https://api.github.com/repos/griff/metaz/releases',
-  http_basic_authentication: ['griff', ENV['GITHUB_TOKEN']] ) do |f|
-  JSON.parse(f.read, symbolize_names: true)
-end
+if ENV['GITHUB_TOKEN'] != ''
+  all_releases = open('https://api.github.com/repos/griff/metaz/releases',
+    http_basic_authentication: ['griff', ENV['GITHUB_TOKEN']] ) do |f|
+    JSON.parse(f.read, symbolize_names: true)
+  end
+else
+  all_releases = open('https://api.github.com/repos/griff/metaz/releases') do |f|
+    JSON.parse(f.read, symbolize_names: true)
+  end
+end  
 all_releases.sort! {|a, b| b[:created_at] <=> a[:created_at] }
 
 if ENV['TRAVIS_BRANCH'] != ENV['TRAVIS_TAG']
@@ -22,7 +28,7 @@ else
   end
 end
 version=`/usr/libexec/PlistBuddy -c "print :CFBundleShortVersionString" "build/Release/MetaZ.app/Contents/Info.plist"`
-log = `git log '--pretty=format:- %s' #{release[:tag_name]}..HEAD`
+log = `git log '--pretty=format:- %s' #{release[:tag_name]}..#{ENV['TRAVIS_BRANCH']}`
 puts "### Changes in version #{version.strip} (#{Date.today.strftime('%e. %B %Y')})"
 puts ''
 if prerelease

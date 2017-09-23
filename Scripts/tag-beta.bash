@@ -10,6 +10,7 @@ if [[ "$TRAVIS_BRANCH" != "$TRAVIS_TAG" ]]; then
   export RELEASE_NAME="$(echo "$VERSION" | sed -e 's/.beta-/ Beta /')"
 else
   export RELEASE_NAME=$(/usr/libexec/PlistBuddy -c "print :CFBundleShortVersionString" "build/Release/MetaZ.app/Contents/Info.plist")
+  export GIT_TAG="$TRAVIS_TAG"
   echo "Skipping because build is a tag"
 fi
 Scripts/release-notes.rb
