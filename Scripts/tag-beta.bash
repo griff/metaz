@@ -9,9 +9,10 @@ if [[ "$TRAVIS_BRANCH" != "$TRAVIS_TAG" ]]; then
   git push -q https://$GITHUB_TOKEN@github.com/griff/metaz --tags
   export RELEASE_NAME="$(echo "$VERSION" | sed -e 's/.beta-/ Beta /')"
 else
+  echo "Build is a tag"
   export RELEASE_NAME=$(/usr/libexec/PlistBuddy -c "print :CFBundleShortVersionString" "build/Release/MetaZ.app/Contents/Info.plist")
   export GIT_TAG="$TRAVIS_TAG"
-  echo "Skipping because build is a tag"
+  git fetch --tags
 fi
 Scripts/release-notes.rb
 Scripts/release-notes.rb > build/Release/Release-notes.md

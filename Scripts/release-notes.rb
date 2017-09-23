@@ -28,7 +28,7 @@ else
   end
 end
 version=`/usr/libexec/PlistBuddy -c "print :CFBundleShortVersionString" "build/Release/MetaZ.app/Contents/Info.plist"`
-log = `git log '--pretty=format:- %s' #{release[:tag_name]}..#{ENV['TRAVIS_BRANCH']}`
+log = `git log '--pretty=format:- %s' #{release[:tag_name]}..HEAD`
 puts "### Changes in version #{version.strip} (#{Date.today.strftime('%e. %B %Y')})"
 puts ''
 if prerelease
