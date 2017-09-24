@@ -137,10 +137,10 @@
 
 
         NSArray* writemapkeys = [NSArray arrayWithObjects:
-            MZTitleTagIdent, MZArtistTagIdent, MZDateTagIdent,
+            MZTitleTagIdent, /*MZArtistTagIdent,*/ MZDateTagIdent,
             //MZRatingTagIdent,
             MZGenreTagIdent,
-            MZAlbumTagIdent, MZAlbumArtistTagIdent, MZPurchaseDateTagIdent, MZShortDescriptionTagIdent,
+            /*MZAlbumTagIdent, MZAlbumArtistTagIdent,*/ MZPurchaseDateTagIdent, MZShortDescriptionTagIdent,
             MZLongDescriptionTagIdent,
             MZTVShowTagIdent, MZTVEpisodeIDTagIdent,
             MZTVSeasonTagIdent, MZTVEpisodeTagIdent, MZTVNetworkTagIdent, MZFeedURLTagIdent,
@@ -151,10 +151,10 @@
             //MZSortTitleTagIdent, MZSortArtistTagIdent, MZSortAlbumArtistTagIdent,
             //MZSortAlbumTagIdent, MZSortTVShowTagIdent,nil];
         NSArray* writemapvalues = [NSArray arrayWithObjects:
-            @"title", @"artist", @"year",
+            @"title", /*@"artist",*/ @"year",
             //@"contentRating",
             @"genre",
-            @"album", @"albumArtist", @"purchaseDate", @"description",
+            /*@"album", @"albumArtist",*/ @"purchaseDate", @"description",
             @"longDescription",
             @"TVShowName", @"TVEpisode",
             @"TVSeasonNum", @"TVEpisodeNum", @"TVNetwork", @"podcastURL",
@@ -657,12 +657,24 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
     }
 
     // Special video type handling
-    id videoType = [changes objectForKey:MZVideoTypeTagIdent];
-    if(videoType)
     {
-        MZLoggerDebug(@"Video type %@", videoType);
-        [args addObject:@"--stik"];
-        [args addObject:[NSString stringWithFormat:@"value=%d", [videoType intValue]]];
+        id videoType = [changes objectForKey:MZVideoTypeTagIdent];
+        if(videoType)
+        {
+            MZLoggerDebug(@"Video type %@", videoType);
+            [args addObject:@"--stik"];
+            [args addObject:[NSString stringWithFormat:@"value=%d", [videoType intValue]]];
+        }
+    }
+    
+    MZVideoType video_type = MZUnsetVideoType;
+    {
+        id stikNo = [data getterValueForKey:MZVideoTypeTagIdent];
+        if( stikNo )
+        {
+            MZTag* tag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
+            [tag nullConvertObject:stikNo toValue:&video_type];
+        }
     }
     
     // Special rating handling
@@ -748,6 +760,64 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
             [args addObject:@"--disk"];
             [args addObject:value];
         }
+    }
+    
+    // Special TV Handling
+    {
+        NSString* album_value = [NSString string];
+        NSString* artist_value = [NSString string];
+        NSString* album_artist_value = [NSString string];
+        
+        id show          = [data getterValueForKey:MZTVShowTagIdent];
+        id season        = [data getterValueForKey:MZTVSeasonTagIdent];
+        MZTag* showTag   = [MZTag tagForIdentifier:MZArtistTagIdent];
+        MZTag* seasonTag = [MZTag tagForIdentifier:MZTVSeasonTagIdent];
+        
+        id album              = [data getterValueForKey:MZAlbumTagIdent];
+        id artist             = [data getterValueForKey:MZArtistTagIdent];
+        id albumArtist        = [data getterValueForKey:MZAlbumArtistTagIdent];
+        MZTag* albumTag       = [MZTag tagForIdentifier:MZAlbumTagIdent];
+        MZTag* artistTag      = [MZTag tagForIdentifier:MZArtistTagIdent];
+        MZTag* albumArtistTag = [MZTag tagForIdentifier:MZAlbumArtistTagIdent];
+        
+        if(MZTVShowVideoType == video_type && show && season)
+        {
+            album_value = [NSString stringWithFormat:@"%@, Season %@",
+                           [showTag stringForObject:show],
+                           [seasonTag stringForObject:season]];
+            
+        }
+        else if(album)
+        {
+            album_value = [albumTag stringForObject:album];
+        }
+        
+        [args addObject:@"--album"];
+        [args addObject:album_value];
+        
+        if(MZTVShowVideoType == video_type && show)
+        {
+            album_artist_value = [showTag stringForObject:show];
+        }
+        else if(albumArtist)
+        {
+            album_artist_value = [albumArtistTag stringForObject:albumArtist];
+        }
+        
+        [args addObject:@"--albumArtist"];
+        [args addObject:album_artist_value];
+        
+        if(MZTVShowVideoType == video_type && show)
+        {
+            artist_value = [artistTag stringForObject:show];
+        }
+        else if(artist)
+        {
+            artist_value = [artistTag stringForObject:artist];
+        }
+        
+        [args addObject:@"--artist"];
+        [args addObject:artist_value];
     }
     
     // Special image handling

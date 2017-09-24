@@ -41,11 +41,14 @@
     NSArrayController* searchController;
     NSSearchField* searchField;
     NSInteger remainingInShortDescription;
+    NSTextField *tvShow;
+    NSTextField *tvSeason;
     ChapterEditor* chapterEditor;
     NSProgressIndicator* loadingIndicator;
     NSInteger loadings;
     NSArrayController* picturesController;
     SUUpdater* updater;
+    BOOL usingiTunesTVStandard_;
     
     MZFileNameTextStorage* fileNameStorage;
     NSTextView* fileNameEditor;
@@ -68,6 +71,9 @@
 @property (nonatomic, retain) IBOutlet NSArrayController* picturesController;
 @property (nonatomic, retain) IBOutlet SUUpdater* updater;
 @property (readonly) NSInteger remainingInShortDescription;
+@property (nonatomic, retain) IBOutlet NSTextField *tvShow;
+@property (nonatomic, retain) IBOutlet NSTextField *tvSeason;
+@property (readonly) BOOL usingiTunesTVStandard;
 
 + (void)initialize;
 
@@ -91,6 +97,8 @@
 - (IBAction)reportIssue:(id)sender;
 - (IBAction)viewLog:(id)sender;
 - (IBAction)sendFeedback:(id)sender;
+- (IBAction)tvShowChanged:(NSTextField *)sender;
+- (IBAction)tvSeasonChanged:(NSTextField *)sender;
 
 //- (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo;
 

@@ -54,9 +54,12 @@ NSDictionary* findBinding(NSWindow* window) {
 @synthesize imageView;
 @synthesize chapterEditor;
 @synthesize remainingInShortDescription;
+@synthesize tvShow;
+@synthesize tvSeason;
 @synthesize picturesController;
 @synthesize updater;
 @synthesize loadingIndicator;
+@synthesize usingiTunesTVStandard = usingiTunesTVStandard_;
 
 #pragma mark - initialization
 
@@ -122,6 +125,14 @@ NSDictionary* findBinding(NSWindow* window) {
                       forKeyPath:@"selection.shortDescription"
                          options:0
                          context:nil];
+    [filesController addObserver:self
+                      forKeyPath:@"selection.pure.videoType"
+                         options:NSKeyValueChangeOldKey
+                         context:nil];
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+                                            forKeyPath:@"useiTunesTVFormat"
+                                               options:NSKeyValueChangeOldKey
+                                               context:nil];
     [updater setSendsSystemProfile:YES];
 }
 
@@ -186,6 +197,29 @@ NSDictionary* findBinding(NSWindow* window) {
         [self willChangeValueForKey:@"remainingInShortDescription"];
         remainingInShortDescription = MaxShortDescription-newRemain;
         [self didChangeValueForKey:@"remainingInShortDescription"];
+    }
+    
+    if( ([keyPath isEqual:@"selection.pure.videoType"] && object == filesController) ||
+        ([keyPath isEqual:@"useiTunesTVFormat"] && object == [NSUserDefaults standardUserDefaults]) )
+    {
+        [self willChangeValueForKey:@"usingiTunesTVStandard"];
+        
+        usingiTunesTVStandard_ = false;
+        
+        NSUserDefaults* d = [NSUserDefaults standardUserDefaults];
+        if( [d boolForKey:@"useiTunesTVFormat"] )
+        {
+            id videoType = [filesController protectedValueForKeyPath:@"selection.pure.videoType"];
+            MZVideoType vt;
+            MZTag* tag = [MZTag tagForIdentifier:MZVideoTypeTagIdent];
+            [tag convertObject:videoType toValue:&vt];
+            if(vt == MZTVShowVideoType)
+            {
+                usingiTunesTVStandard_ = true;
+            }
+        }
+        
+        [self didChangeValueForKey:@"usingiTunesTVStandard"];
     }
 }
 
@@ -767,4 +801,33 @@ NSDictionary* findBinding(NSWindow* window) {
     }
 }
 
+-(void)updateTV {
+    if( self.usingiTunesTVStandard )
+    {
+        NSString* show   = tvShow.stringValue;
+        
+        if( show != nil && show.length )
+        {
+            NSString* album  = show;
+            NSString* season = tvSeason.stringValue;
+            
+            if( season != nil && season.length )
+            {
+                album = [NSString stringWithFormat:@"%@, Season %@", show, season];
+            }
+            
+            [filesController setValue:album forKeyPath:@"selection.album"];
+            [filesController setValue:show  forKeyPath:@"selection.artist"];
+            [filesController setValue:show  forKeyPath:@"selection.albumArtist"];
+        }
+    }
+}
+
+- (IBAction)tvSeasonChanged:(NSTextField *)sender {
+    [self updateTV];
+}
+
+- (IBAction)tvShowChanged:(NSTextField *)sender {
+    [self updateTV];
+}
 @end
