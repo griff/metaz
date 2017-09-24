@@ -8,7 +8,7 @@ GEM
     multipart-post (2.0.0)
     octokit (4.7.0)
       sawyer (~> 0.8.0, >= 0.5.3)
-    public_suffix (3.0.0)
+    public_suffix (2.0.5)
     sawyer (0.8.1)
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 1.0)
@@ -20,4 +20,4 @@ DEPENDENCIES
   octokit
 
 BUNDLED WITH
-   1.10.6
+   1.15.4
