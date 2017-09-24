@@ -12,7 +12,7 @@ reimplementation of MetaX with a few ideas of our own sprinkled in there.
 
 # Bugs / Feature request
 
-For bugs and feature requests you can use our [issue tracker at github](issues)
+For bugs and feature requests you can use our [issue tracker at github][issues]
 
 # Extras
 
