@@ -2,7 +2,7 @@ os: osx
 osx_image: xcode8
 language: objective-c
 before_install:
-- source Scripts/decrypt.bash
+- bash Scripts/decrypt.bash
 install:
 - bundle install
 - gem install xcpretty-travis-formatter
