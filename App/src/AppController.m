@@ -22,9 +22,9 @@ NSResponder* findResponder(NSWindow* window) {
     NSResponder* oldResponder =  [window firstResponder];
     if([oldResponder isKindOfClass:[NSTextView class]] && [window fieldEditor:NO forObject:nil] != nil)
     {
-        NSResponder* delegate = [((NSTextView*)oldResponder) delegate];
+        id<NSTextViewDelegate> delegate = [((NSTextView*)oldResponder) delegate];
         if([delegate isKindOfClass:[NSTextField class]])
-            oldResponder = delegate;
+            oldResponder = (NSResponder*)delegate;
     }
     return oldResponder;
 }
