@@ -21,6 +21,24 @@
     return [NSSet setWithObjects:@"executing", nil];
 }
 
++ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)theKey
+{
+    if ([theKey isEqualToString:@"isFinished"]) {
+        return YES;
+    }
+    if ([theKey isEqualToString:@"finished"]) {
+        return YES;
+    }
+    if ([theKey isEqualToString:@"executing"]) {
+        return YES;
+    }
+    if ([theKey isEqualToString:@"isExecuting"]) {
+        return YES;
+    }
+    BOOL o = [super automaticallyNotifiesObserversForKey: theKey];
+    return o;
+}
+
 + (id)taskOperation
 {
     return [[[self alloc] init] autorelease];
