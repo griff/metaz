@@ -1,4 +1,4 @@
-# Introduction
+# Introduction [![Build Status](https://travis-ci.org/griff/metaz.svg?branch=develop)](https://travis-ci.org/griff/metaz)
 
 MetaZ is an mp4 meta-data editor for OS X.  
 It started its life when another great meta-data editor MetaX stopped getting
