@@ -13,6 +13,7 @@ VERSION=$(/usr/libexec/PlistBuddy -c "print :CFBundleShortVersionString" "$BUILT
 FULLVERSION=$(/usr/libexec/PlistBuddy -c "print :CFBundleVersion" "$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info.plist")
 DOWNLOAD_BASE_URL="http://github.com/downloads/griff/metaz"
 RELEASENOTES_URL="http://griff.github.com/metaz/release-notes.html#version-$VERSION"
+MINIMUM_VERSION="$(/usr/libexec/PlistBuddy -c "print :LSMinimumSystemVersion" "$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info.plist")"
 
 ARCHIVE_FILENAME="$PROJECT_NAME-$VERSION.zip"
 DOWNLOAD_URL="$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME"
@@ -39,6 +40,7 @@ cat > "$PROJECT_NAME-$VERSION.json" <<EOF
   "version": "$FULLVERSION",
   "shortVersionString": "$VERSION",
   "size": $SIZE,
-  "dsaSignature": "$SIGNATURE"
+  "dsaSignature": "$SIGNATURE",
+  "minimumSystemVersion": "$MINIMUM_VERSION"
 }
 EOF
