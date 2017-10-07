@@ -71,7 +71,7 @@
     NSString* episode = [result valueForKey:TVDBEpisodeIdTagIdent];
     
     NSString* str = [[NSString stringWithFormat:
-        @"http://thetvdb.com/?tab=episode&seriesid=%d&seasonid=%@&id=%@",
+        @"https://thetvdb.com/?tab=episode&seriesid=%d&seasonid=%@&id=%@",
         [series unsignedIntValue], season, episode]
                      stringByAddingPercentEncodingWithAllowedCharacters: [NSCharacterSet URLQueryAllowedCharacterSet]
                      ];
@@ -86,7 +86,7 @@
     NSString* season = [result valueForKey:TVDBSeasonIdTagIdent];
     
     NSString* str = [[NSString stringWithFormat:
-        @"http://thetvdb.com/?tab=season&seriesid=%d&seasonid=%@",
+        @"https://thetvdb.com/?tab=season&seriesid=%d&seasonid=%@",
         [series unsignedIntValue], season]
                      stringByAddingPercentEncodingWithAllowedCharacters: [NSCharacterSet URLQueryAllowedCharacterSet]
                      ];
@@ -100,7 +100,7 @@
     NSNumber* series = [result valueForKey:TVDBSeriesIdTagIdent];
     
     NSString* str = [[NSString stringWithFormat:
-        @"http://thetvdb.com/?tab=series&id=%d",
+        @"https://thetvdb.com/?tab=series&id=%d",
         [series unsignedIntValue]]
                      stringByAddingPercentEncodingWithAllowedCharacters: [NSCharacterSet URLQueryAllowedCharacterSet]
                      ];

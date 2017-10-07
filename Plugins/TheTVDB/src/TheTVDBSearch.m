@@ -65,7 +65,7 @@
 - (void)updateMirror;
 {
     NSURL* url = [NSURL URLWithString:[NSString
-            stringWithFormat:@"http://www.thetvdb.com/api/%@/mirrors.xml",
+            stringWithFormat:@"https://www.thetvdb.com/api/%@/mirrors.xml",
                 THETVDB_API_KEY]];
     //MZLoggerDebug(@"Sending request to %@", [url absoluteString]);
     mirrorRequest = [[MZHTTPRequest alloc] initWithURL:url];
@@ -105,7 +105,7 @@
     
     srandom(time(NULL));
     if([bannermirrors count] == 0)
-        bannerMirror = @"http://www.thetvdb.com";
+        bannerMirror = @"https://www.thetvdb.com";
     else if([bannermirrors count] == 1)
         bannerMirror = [[bannermirrors objectAtIndex:0] retain];
     else {
@@ -114,7 +114,7 @@
     }
     
     if([xmlmirrors count] == 0)
-        xmlMirror = @"http://www.thetvdb.com";
+        xmlMirror = @"https://www.thetvdb.com";
     else if([xmlmirrors count] == 1)
         xmlMirror = [[xmlmirrors objectAtIndex:0] retain];
     else {
@@ -128,14 +128,14 @@
     //ASIHTTPRequest* theRequest = request;
     //MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
 
-    bannerMirror = @"http://www.thetvdb.com";
-    xmlMirror = @"http://www.thetvdb.com";
+    bannerMirror = @"https://www.thetvdb.com";
+    xmlMirror = @"https://www.thetvdb.com";
 }
 
 
 - (void)fetchSeriesByName:(NSString *)name
 {
-    NSString* url = @"http://www.thetvdb.com/api/GetSeries.php";
+    NSString* url = @"https://www.thetvdb.com/api/GetSeries.php";
     NSDictionary* p = [NSDictionary dictionaryWithObjectsAndKeys:name, @"seriesname", @"en", @"language", nil];
 
     NSString* params = [NSString mz_queryStringForParameterDictionary:p];

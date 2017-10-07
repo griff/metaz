@@ -23,7 +23,7 @@
 	<key>CFBundleVersion</key>
 	<string>BUILDVERSION</string>
 	<key>IconURL</key>
-	<string>http://thetvdb.com/favicon.ico</string>
+	<string>https://thetvdb.com/favicon.ico</string>
 	<key>NSPrincipalClass</key>
 	<string>TheTVDBPlugin</string>
 </dict>
