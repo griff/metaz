@@ -938,9 +938,10 @@ void sortTags(NSMutableArray* args, NSDictionary* changes, NSString* tag, NSStri
                 [dict setObject:arr2 forKey:@"screenwriters"];
             }
             
-            NSData* xmlData = [NSPropertyListSerialization dataFromPropertyList:dict
-                                       format:NSPropertyListXMLFormat_v1_0
-                                       errorDescription:NULL];
+            NSData* xmlData = [NSPropertyListSerialization dataWithPropertyList:dict
+                                                                         format:NSPropertyListXMLFormat_v1_0
+                                                                        options:0
+                                                                          error:NULL];
             NSString* movi = [[[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding] autorelease];
             [args addObject:movi];
         }
