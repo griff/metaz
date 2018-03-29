@@ -2836,7 +2836,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.12;
+				SDKROOT = macosx;
 				USE_HEADERMAP = NO;
 			};
 			name = "Remote Debug";
@@ -3539,7 +3539,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.12;
+				SDKROOT = macosx;
 				USE_HEADERMAP = NO;
 			};
 			name = Debug;
@@ -3571,7 +3571,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				SDKROOT = macosx10.12;
+				SDKROOT = macosx;
 				USE_HEADERMAP = NO;
 			};
 			name = Release;
