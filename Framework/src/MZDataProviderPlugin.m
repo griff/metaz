@@ -9,6 +9,12 @@
 
 @implementation MZDataProviderPlugin
 
+- (BOOL)isEnabled
+{
+    return YES;
+}
+
+
 - (NSArray *)types
 {
     NSArray* types = [self.bundle objectForInfoDictionaryKey:@"CFBundleDocumentTypes"];

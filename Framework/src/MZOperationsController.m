@@ -100,15 +100,22 @@
 
 - (void)operationFinished:(GTMKeyValueChangeNotification *)notification
 {
+    MZLoggerDebug("Finished operation");
     @synchronized(self)
     {
-        if(self.finished)
+        if(self.finished) {
+            MZLoggerDebug("Everything already finished");
             return;
-        for(NSOperation* op in self.operations)
-            if(![op isFinished])
+        }
+        for(NSOperation* op in self.operations) {
+            if(![op isFinished]) {
+                MZLoggerDebug("Not all finished");
                 return;
+            }
+        }
         self.finished = YES;
     }
+    MZLoggerDebug("Sending operationsFinished");
     [self retain];
     [self performSelectorOnMainThread:@selector(operationsFinished) withObject:nil waitUntilDone:YES];
     [self release];
@@ -116,6 +123,7 @@
 
 - (void)errorChanged:(GTMKeyValueChangeNotification *)notification
 {
+    MZLoggerDebug("Error changed");
     MZErrorOperation* op = [notification object];
     self.error = op.error;
 }

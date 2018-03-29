@@ -307,7 +307,7 @@
     }
 
     NSString* program = [[task launchPath] lastPathComponent];
-    MZLoggerError(@"%@", err);
+    MZLoggerError(@"Task error %@", err);
     NSDictionary* dict = [NSDictionary dictionaryWithObject:err
                                                      forKey:NSLocalizedDescriptionKey];
     self.error = [NSError errorWithDomain:program code:status userInfo:dict];

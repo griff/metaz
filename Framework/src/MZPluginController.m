@@ -550,6 +550,9 @@ static MZPluginController *gInstance = NULL;
     [plugin didLoad];
     if([[self delegate] respondsToSelector:@selector(pluginController:loadedPlugin:)])
         [[self delegate] pluginController:self loadedPlugin:plugin];
+    if (![plugin isEnabled]) {
+        MZLoggerInfo(@"Disabled plugin '%@'", identifier);
+    }
     return YES;
 }
 
@@ -705,8 +708,10 @@ static MZPluginController *gInstance = NULL;
                                extra:(NSDictionary *)extra
 {
     MZDataProviderPlugin* provider = [self dataProviderForPath:fileName];
-    if(!provider)
+    if(!provider) {
+        MZLoggerInfo(@"No plugin for file '%@'", fileName);
         return nil;
+    }
 
     id<MZDataReadDelegate> otherDelegate = [MZReadNotification notifierWithController:self delegate:theDelegate];
     return [provider loadFromFile:fileName delegate:otherDelegate queue:loadQueue extra:extra];
