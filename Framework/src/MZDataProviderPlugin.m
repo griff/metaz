@@ -14,7 +14,6 @@
     return YES;
 }
 
-
 - (NSArray *)types
 {
     NSArray* types = [self.bundle objectForInfoDictionaryKey:@"CFBundleDocumentTypes"];

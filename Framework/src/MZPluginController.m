@@ -49,6 +49,20 @@ const NSInteger errMZPluginFailedToCreatePrincipalClass = -9;
 
 @end
 
+@interface MZNoPluginNotification : MZReadNotification <MZDataController>
+{
+    NSString* fileName;
+}
+
++ (id)notifierWithController:(MZPluginController *)controller
+                    delegate:(id<MZEditsReadDelegate>)delegate
+                    fromFile:(NSString *)fileName;
+- (id)initWithController:(MZPluginController *)controller
+                delegate:(id<MZEditsReadDelegate>)delegate
+                fromFile:(NSString *)fileName;
+
+@end
+
 
 @interface MZSearchDelegate : NSObject <MZSearchProviderDelegate>
 {
@@ -709,8 +723,12 @@ static MZPluginController *gInstance = NULL;
 {
     MZDataProviderPlugin* provider = [self dataProviderForPath:fileName];
     if(!provider) {
+        id<MZDataReadDelegate> otherDelegate =
+            [MZNoPluginNotification notifierWithController:self
+                                                  delegate:theDelegate
+                                                  fromFile:fileName];
         MZLoggerInfo(@"No plugin for file '%@'", fileName);
-        return nil;
+        return otherDelegate;
     }
 
     id<MZDataReadDelegate> otherDelegate = [MZReadNotification notifierWithController:self delegate:theDelegate];
@@ -892,6 +910,57 @@ static MZPluginController *gInstance = NULL;
                             userInfo:userInfo];
     }
     [delegate dataProvider:provider controller:theController loadedEdits:edits fromFile:fileName error:error];
+}
+
+@end
+
+
+@implementation MZNoPluginNotification
+
++ (id)notifierWithController:(MZPluginController *)controller
+                    delegate:(id<MZEditsReadDelegate>)delegate
+                    fromFile:(NSString *)fileName
+{
+    return [[[self alloc] initWithController:controller delegate:delegate fromFile:fileName] autorelease];
+}
+
+- (id)initWithController:(MZPluginController *)theController
+                delegate:(id<MZEditsReadDelegate>)theDelegate
+                fromFile:(NSString *)theFileName
+{
+    self = [super initWithController:theController
+                            delegate:theDelegate];
+    if(self)
+    {
+        fileName = [theFileName retain];
+        [self performSelectorOnMainThread:@selector(noPlugin) withObject:nil waitUntilDone:NO];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [fileName release];
+    [super dealloc];
+}
+
+- (void)noPlugin
+{
+    NSDictionary* dict = [NSDictionary dictionaryWithObject:
+                          NSLocalizedString(@"No plugin found for file", @"No read plugin error")
+                                                     forKey:NSLocalizedDescriptionKey];
+    NSError* error = [NSError errorWithDomain:@"MetaZ" code:12 userInfo:dict];
+
+    [self dataProvider:nil controller:self loadedMeta:nil fromFile:fileName error:error];
+}
+
+- (BOOL)isFinished
+{
+    return YES;
+}
+
+- (void)cancel
+{
 }
 
 @end
