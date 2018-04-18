@@ -19,28 +19,34 @@ before_deploy:
 - mv Upload/MetaZ-*.json Upload/Sparkle.json
 - rm Upload/*.dmg
 deploy:
-  - provider: releases
-    api_key:
-      secure: PaSyHBl2Yw2WfKQulZ/oJhGjBUZuAscrgJ56WoSP7B/WHEBUDi4uulX/sO8qobs5HEVcR3aIcSVGkbapf/QNKdSpVqzGyJbjl9GTvEtjMdulynS/xMd+Mc+DD4HdVm6N4aAJj6xpwylrZQF4fAhzZKEhtxZICqPdXfyIwJGRVrehuEWt47yyamOZ1dT4C+xed5xlDXfBuTWeyAn2idix70oAVX9mJHjQja9L8HR6Bg/9HMnkppxtm+p+vF+jkx+RHG+W1Y9LmLxoIgzJa4TKOPxlEXFG5kqsLPct5ZBaOj3TVm6jU6nwUpN4RetpF8an/rsIkpgPEP8r4lU7FY00GRcHn5lD2vBvw/8SOiW7tGuouqpvGFZqxEk2WxijuCKl//LKaxQOUaTG6B2Bj4eQ27rtzkMjYGK5OliH/2p52P45mrc++B/slnVNHxtlOG7R3N7tBOvRRkznyl+e0LQmTclWXaVViSDZ+FlkoFgVnqGk+VtOuMwN8kAQzgqtCJ0f/zOrpF4zzw27aRwMX1M+nhflwozBVNMVxez6Pfm35XKrs0Dv0Pae/WZFiZgbfGr5AlsPoJQa2TfpB4tbN3N7Ol7iqZT2k23vs4knv4l+3IRubvNkj8G5XJuf+7VjMQ7cU7k27B56nX9JBnRLY5/o5WdurcERe9B6zV6z/RHN4Vk=
-    file_glob: true
-    file: "Upload/*"
-    skip_cleanup: true
-    prerelease: true
-    name: $RELEASE_NAME
-    on:
-      branch: develop
-  - provider: releases
-    api_key:
-      secure: PaSyHBl2Yw2WfKQulZ/oJhGjBUZuAscrgJ56WoSP7B/WHEBUDi4uulX/sO8qobs5HEVcR3aIcSVGkbapf/QNKdSpVqzGyJbjl9GTvEtjMdulynS/xMd+Mc+DD4HdVm6N4aAJj6xpwylrZQF4fAhzZKEhtxZICqPdXfyIwJGRVrehuEWt47yyamOZ1dT4C+xed5xlDXfBuTWeyAn2idix70oAVX9mJHjQja9L8HR6Bg/9HMnkppxtm+p+vF+jkx+RHG+W1Y9LmLxoIgzJa4TKOPxlEXFG5kqsLPct5ZBaOj3TVm6jU6nwUpN4RetpF8an/rsIkpgPEP8r4lU7FY00GRcHn5lD2vBvw/8SOiW7tGuouqpvGFZqxEk2WxijuCKl//LKaxQOUaTG6B2Bj4eQ27rtzkMjYGK5OliH/2p52P45mrc++B/slnVNHxtlOG7R3N7tBOvRRkznyl+e0LQmTclWXaVViSDZ+FlkoFgVnqGk+VtOuMwN8kAQzgqtCJ0f/zOrpF4zzw27aRwMX1M+nhflwozBVNMVxez6Pfm35XKrs0Dv0Pae/WZFiZgbfGr5AlsPoJQa2TfpB4tbN3N7Ol7iqZT2k23vs4knv4l+3IRubvNkj8G5XJuf+7VjMQ7cU7k27B56nX9JBnRLY5/o5WdurcERe9B6zV6z/RHN4Vk=
-    file_glob: true
-    file: "Upload/*"
-    skip_cleanup: true
-    name: $RELEASE_NAME
-    on:
-      tags: true
+- provider: releases
+  api_key:
+    secure: PaSyHBl2Yw2WfKQulZ/oJhGjBUZuAscrgJ56WoSP7B/WHEBUDi4uulX/sO8qobs5HEVcR3aIcSVGkbapf/QNKdSpVqzGyJbjl9GTvEtjMdulynS/xMd+Mc+DD4HdVm6N4aAJj6xpwylrZQF4fAhzZKEhtxZICqPdXfyIwJGRVrehuEWt47yyamOZ1dT4C+xed5xlDXfBuTWeyAn2idix70oAVX9mJHjQja9L8HR6Bg/9HMnkppxtm+p+vF+jkx+RHG+W1Y9LmLxoIgzJa4TKOPxlEXFG5kqsLPct5ZBaOj3TVm6jU6nwUpN4RetpF8an/rsIkpgPEP8r4lU7FY00GRcHn5lD2vBvw/8SOiW7tGuouqpvGFZqxEk2WxijuCKl//LKaxQOUaTG6B2Bj4eQ27rtzkMjYGK5OliH/2p52P45mrc++B/slnVNHxtlOG7R3N7tBOvRRkznyl+e0LQmTclWXaVViSDZ+FlkoFgVnqGk+VtOuMwN8kAQzgqtCJ0f/zOrpF4zzw27aRwMX1M+nhflwozBVNMVxez6Pfm35XKrs0Dv0Pae/WZFiZgbfGr5AlsPoJQa2TfpB4tbN3N7Ol7iqZT2k23vs4knv4l+3IRubvNkj8G5XJuf+7VjMQ7cU7k27B56nX9JBnRLY5/o5WdurcERe9B6zV6z/RHN4Vk=
+  file_glob: true
+  file: Upload/*
+  skip_cleanup: true
+  prerelease: true
+  name: $RELEASE_NAME
+  on:
+    branch: develop
+- provider: releases
+  api_key:
+    secure: PaSyHBl2Yw2WfKQulZ/oJhGjBUZuAscrgJ56WoSP7B/WHEBUDi4uulX/sO8qobs5HEVcR3aIcSVGkbapf/QNKdSpVqzGyJbjl9GTvEtjMdulynS/xMd+Mc+DD4HdVm6N4aAJj6xpwylrZQF4fAhzZKEhtxZICqPdXfyIwJGRVrehuEWt47yyamOZ1dT4C+xed5xlDXfBuTWeyAn2idix70oAVX9mJHjQja9L8HR6Bg/9HMnkppxtm+p+vF+jkx+RHG+W1Y9LmLxoIgzJa4TKOPxlEXFG5kqsLPct5ZBaOj3TVm6jU6nwUpN4RetpF8an/rsIkpgPEP8r4lU7FY00GRcHn5lD2vBvw/8SOiW7tGuouqpvGFZqxEk2WxijuCKl//LKaxQOUaTG6B2Bj4eQ27rtzkMjYGK5OliH/2p52P45mrc++B/slnVNHxtlOG7R3N7tBOvRRkznyl+e0LQmTclWXaVViSDZ+FlkoFgVnqGk+VtOuMwN8kAQzgqtCJ0f/zOrpF4zzw27aRwMX1M+nhflwozBVNMVxez6Pfm35XKrs0Dv0Pae/WZFiZgbfGr5AlsPoJQa2TfpB4tbN3N7Ol7iqZT2k23vs4knv4l+3IRubvNkj8G5XJuf+7VjMQ7cU7k27B56nX9JBnRLY5/o5WdurcERe9B6zV6z/RHN4Vk=
+  file_glob: true
+  file: Upload/*
+  skip_cleanup: true
+  name: $RELEASE_NAME
+  on:
+    tags: true
+- provider: script
+  script: bash Scripts/trigger-site.bash
+  on:
+    branch: develop
+    tags: true
 branches:
   except:
-  - "/^v+[0-9]\\.+[0-9]\\.beta-+[0-9]/"
+  - /^v+[0-9]\.+[0-9]\.beta-+[0-9]/
 env:
   global:
-    secure: iafuNhke+X5fGBoWVZl39Qr5jtzOlgNvtQ/9EQ309Jfjp0pHDsMqyBqJ43g7t1IEB28AiaKcuOqO3CTMDJDuvluo8vcyXRdpRZH/lupbD08/S3iLXBUuradko8Qg02C981Tw0ao0M12bk5JNVZhkTypK/yse4qRcGgB9N1o6CsERnEY2Vp3oGnqG6rhdHC7BUrIBZrdRZfG9EZt7WJoGMUMlCyfkP87Qgx+2KrY+GD/nCgP71U9kLDU8eWvCLj/+sy+tH94NWzF10ybKeQQaA1BUb6Ulrn/pdoDJ+JPojZsrCyODVTWKdjsduFXrq53WG+leuJoJ8MxvYKu3o5FPhpV1wVbHa7+4j6qWPl4IB3k0rG8abk01LJXe01CQvUiecsKd6CTgYRoTCS4z0VFsueOEsjmXJ4VWYm23LjjG3rGnmxuPI3UCMW5PQ5K/XsMWNd/k/KBIoWXBUOF5bFMi/ewVRgXLaNDdzEoQu9iRbzIsHyYTNHQ+RBPcmsntR/YqB5jYxlAQrPsP2hWNY3Oc2L89DOsDCmSOMsNTXmoSATJQSnLaoKERaZlxlwzAcxas725UBzjmPeLjuqZEL88dUuGdGu9cEbsQB9LoL2TtFlIDXuRiuO4r/yU3LT25waut+gpbDGXL5Qkzjyg8RMP0PwINFHXnVSzF+hpDsRuUnP8=
+  - secure: iafuNhke+X5fGBoWVZl39Qr5jtzOlgNvtQ/9EQ309Jfjp0pHDsMqyBqJ43g7t1IEB28AiaKcuOqO3CTMDJDuvluo8vcyXRdpRZH/lupbD08/S3iLXBUuradko8Qg02C981Tw0ao0M12bk5JNVZhkTypK/yse4qRcGgB9N1o6CsERnEY2Vp3oGnqG6rhdHC7BUrIBZrdRZfG9EZt7WJoGMUMlCyfkP87Qgx+2KrY+GD/nCgP71U9kLDU8eWvCLj/+sy+tH94NWzF10ybKeQQaA1BUb6Ulrn/pdoDJ+JPojZsrCyODVTWKdjsduFXrq53WG+leuJoJ8MxvYKu3o5FPhpV1wVbHa7+4j6qWPl4IB3k0rG8abk01LJXe01CQvUiecsKd6CTgYRoTCS4z0VFsueOEsjmXJ4VWYm23LjjG3rGnmxuPI3UCMW5PQ5K/XsMWNd/k/KBIoWXBUOF5bFMi/ewVRgXLaNDdzEoQu9iRbzIsHyYTNHQ+RBPcmsntR/YqB5jYxlAQrPsP2hWNY3Oc2L89DOsDCmSOMsNTXmoSATJQSnLaoKERaZlxlwzAcxas725UBzjmPeLjuqZEL88dUuGdGu9cEbsQB9LoL2TtFlIDXuRiuO4r/yU3LT25waut+gpbDGXL5Qkzjyg8RMP0PwINFHXnVSzF+hpDsRuUnP8=
+  - secure: G2J2BqifbOxiu+QZ4lIvIjjQHnRFq7RFtWwBpm9c9nJoEy2VEaaRnaFrW/Owi73Gxl3IyZ6fSgQ1VpcOpDDTfKE4ug3rNynKYO1lwRHxAImdTRFxzOh9rQnu5yINddrW6ZJXrrEw0XDFWGfRuABHjP2ZHml4J2DZCIBfcLeSALB4EajrgWLonhNhv/J7hYVi0bY94kh7Tmyqdc1tABKHUigFNX2YqkzFePQJN7D1toTKj6rSOe/kBl+sDgIqTdgrBftYK3uZtIymtEGk1cKyJELOXUsSANcCDPYyfbCR5WsLcFcU1TfvBlJRjCOdzwgx2wlL9Lmf7/GGM6MTVThsJpBGC2gxm6xd49SyhuK2l6fLZcBSUg9odQMX3ESbirgyUz4J0L4QknvK6ev3WZoaSLDRcXB46aDG37gZeKCOAJhObEmLZkh3pnx2cvyV/cQSbbN3CsuS7vD5gVQ88lBmOuxANrE/WFNhMs/a8838vIufjyqmmxqvtRm6Ei0oGZZp38SK4eFhqi1Z27amvRTn561hLYBopGMnQdh3nmkWzV9LsIT9SCRN4T3fayCdgSHtVmuL4Qb92sRJZUg1zGTQ5lPAIfciLb2eo0x4nuSITPOqC38wNCILTVVgkcFT3Ot2u92g5Wl/aa69TDslwgip5ZCj+EaWjXjx3UtVnvb/cxM=
