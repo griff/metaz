@@ -108,7 +108,6 @@
 		1B4499D210D9A5CE00B9C751 /* PresetSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4499D110D9A5CE00B9C751 /* PresetSegmentedControl.m */; };
 		1B449B8810DC7DE400B9C751 /* ChaptersTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B449B8710DC7DE400B9C751 /* ChaptersTableView.m */; };
 		1B492FA91F65537800A2FD3F /* Add to iTunes.scpt in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B492FA51F65537800A2FD3F /* Add to iTunes.scpt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		1B492FAA1F65537800A2FD3F /* Example Actions.scpt in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B492FA61F65537800A2FD3F /* Example Actions.scpt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1B492FAB1F65537800A2FD3F /* Quit MetaZ.scpt in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B492FA71F65537800A2FD3F /* Quit MetaZ.scpt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1B492FAC1F65537800A2FD3F /* Update iTunes.scpt in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B492FA81F65537800A2FD3F /* Update iTunes.scpt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1B4AF83B1170CFCC00E5C969 /* TheTVDBSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */; };
@@ -456,7 +455,6 @@
 			dstSubfolderSpec = 13;
 			files = (
 				1B492FA91F65537800A2FD3F /* Add to iTunes.scpt in Copy Plugins */,
-				1B492FAA1F65537800A2FD3F /* Example Actions.scpt in Copy Plugins */,
 				1B492FAB1F65537800A2FD3F /* Quit MetaZ.scpt in Copy Plugins */,
 				1B492FAC1F65537800A2FD3F /* Update iTunes.scpt in Copy Plugins */,
 				1B3185B81841EB18001EDE79 /* OSXNotificationPlugin.mzactions in Copy Plugins */,
