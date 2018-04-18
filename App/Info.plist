@@ -183,7 +183,7 @@
 	<key>SUEnableSystemProfiling</key>
 	<string>YES</string>
 	<key>SUFeedURL</key>
-	<string>http://maven-group.org/metaz/appcast.xml</string>
+	<string>https://metaz.io/appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>sparkle_public.pem</string>
 	<key>UTExportedTypeDeclarations</key>
