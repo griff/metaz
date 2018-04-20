@@ -16,6 +16,8 @@
 @property(retain) IBOutlet NSArrayController* filesController; 
 @property(retain) id selection;
 
+- (IBAction)updateFeedURL:(id)button;
+
 - (id)selectedDocuments;
 - (id)handleOpenScriptCommand:(id)command;
 - (NSArray *)queueDocuments;

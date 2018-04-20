@@ -12,6 +12,7 @@
 #import "MZWriteQueue.h"
 #import "MZWriteQueueStatus.h"
 #import <MetaZKit/MZLogger.h>
+#import <Sparkle/Sparkle.h>
 
 @implementation MetaZApplication
 @synthesize filesController;
@@ -116,6 +117,17 @@
                        saved:item.completed]];
     }
     return queue;
+}
+
+- (IBAction)updateFeedURL:(id)button {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"updateIncludePrerelease"]) {
+        NSURL *url = [NSURL URLWithString: [[NSBundle mainBundle]objectForInfoDictionaryKey:@"SUFeedURL"]];
+        NSURL *prerelease = [NSURL URLWithString: @"appcast-prerelease.xml" relativeToURL:url];
+        [[SUUpdater sharedUpdater] setFeedURL:prerelease];
+    } else {
+        NSURL *url = [NSURL URLWithString: [[NSBundle mainBundle] objectForInfoDictionaryKey:@"SUFeedURL"]];
+        [[SUUpdater sharedUpdater] setFeedURL:url];
+    }
 }
 
 @end

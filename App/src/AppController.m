@@ -14,6 +14,7 @@
 #import "Resources.h"
 #import "MZMetaDataDocument.h"
 #import "MZScriptingAdditions.h"
+#import "MetaZApplication.h"
 
 #define MaxShortDescription 256
 
@@ -649,7 +650,8 @@ NSDictionary* findBinding(NSWindow* window) {
     [NSApp setServicesProvider:self];
     
     // Load scriptability early to allow sdef open handler to override default AppKit handler.
-    [NSScriptSuiteRegistry sharedScriptSuiteRegistry]; 
+    [NSScriptSuiteRegistry sharedScriptSuiteRegistry];
+    [NSApp updateFeedURL: nil];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
