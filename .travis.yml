@@ -4,6 +4,7 @@ language: objective-c
 before_install:
 - bash Scripts/decrypt.bash
 install:
+- carthage bootstrap
 - bundle install
 - gem install xcpretty-travis-formatter
 script:

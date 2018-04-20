@@ -133,7 +133,8 @@ NSDictionary* findBinding(NSWindow* window) {
                                             forKeyPath:@"useiTunesTVFormat"
                                                options:NSKeyValueChangeOldKey
                                                context:nil];
-    [updater setSendsSystemProfile:YES];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SUFeedURL"];
+    updater.sendsSystemProfile = YES;
 }
 
 -(void)dealloc {
