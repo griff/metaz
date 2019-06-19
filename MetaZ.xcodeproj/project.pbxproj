@@ -554,6 +554,11 @@
 		1B26BA8A164B687B00238517 /* MZComboBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZComboBox.m; sourceTree = "<group>"; };
 		1B26BAC1164C3BA400238517 /* FilesArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesArrayController.h; sourceTree = "<group>"; };
 		1B26BAC2164C3BA400238517 /* FilesArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesArrayController.m; sourceTree = "<group>"; };
+		1B2861D122B9EF1900A37DEF /* github_release.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; name = github_release.rb; path = Scripts/github_release.rb; sourceTree = "<group>"; };
+		1B2861D222B9EF1A00A37DEF /* tag-beta.bash */ = {isa = PBXFileReference; lastKnownFileType = text; name = "tag-beta.bash"; path = "Scripts/tag-beta.bash"; sourceTree = "<group>"; };
+		1B2861D322B9EF1A00A37DEF /* release-notes.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; name = "release-notes.rb"; path = "Scripts/release-notes.rb"; sourceTree = "<group>"; };
+		1B2861D422B9EF1A00A37DEF /* decrypt.bash */ = {isa = PBXFileReference; lastKnownFileType = text; name = decrypt.bash; path = Scripts/decrypt.bash; sourceTree = "<group>"; };
+		1B2861D522B9EF1A00A37DEF /* trigger-site.bash */ = {isa = PBXFileReference; lastKnownFileType = text; name = "trigger-site.bash"; path = "Scripts/trigger-site.bash"; sourceTree = "<group>"; };
 		1B299D6C14AE3CF50048B7C0 /* TheMovieDbPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheMovieDbPlugin.h; sourceTree = "<group>"; };
 		1B299D7114AE43900048B7C0 /* TheMovieDbSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheMovieDbSearch.h; sourceTree = "<group>"; };
 		1B299D7214AE43900048B7C0 /* TheMovieDbSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheMovieDbSearch.m; sourceTree = "<group>"; };
@@ -1270,6 +1275,11 @@
 		1B521CE91F65557100979D60 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				1B2861D422B9EF1A00A37DEF /* decrypt.bash */,
+				1B2861D122B9EF1900A37DEF /* github_release.rb */,
+				1B2861D322B9EF1A00A37DEF /* release-notes.rb */,
+				1B2861D222B9EF1A00A37DEF /* tag-beta.bash */,
+				1B2861D522B9EF1A00A37DEF /* trigger-site.bash */,
 				1B521CEA1F65558600979D60 /* document_types.bash */,
 				1B521CEB1F65558600979D60 /* make_diskimage.bash */,
 				1B521CEC1F65558600979D60 /* plist.bash */,
