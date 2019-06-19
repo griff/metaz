@@ -178,8 +178,10 @@
 
 - (void)fetchSeriesFailed:(id)request;
 {
-    //ASIHTTPRequest* theRequest = request;
-    //MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
+    ASIHTTPRequest* theRequest = request;
+    MZLoggerDebug(@"Request failed with status code %d", [theRequest responseStatusCode]);
+    MZLoggerDebug(@"Request failed with data %@", [theRequest responseString]);
+    
 }
 
 - (void)fetchSeriesBannersCompleted:(id)request;
