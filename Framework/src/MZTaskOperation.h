@@ -42,6 +42,7 @@
 - (void)taskTerminatedWithStatus:(int)status;
 - (void)setErrorFromStatus:(int)status;
 - (void)setErrorString:(NSString *)err code:(int)status;
+- (NSError *)willError:(NSError *)error;
 - (void)standardOutputGotData:(NSNotification *)note;
 - (void)standardErrorGotData:(NSNotification *)note;
 
@@ -80,8 +81,16 @@
 
 @end
 
+@interface MZFileTaskOperation : MZTaskOperation
+{
+    NSURL* file;
+}
+@property(retain) NSURL* file;
 
-@interface MZParseTaskOperation : MZTaskOperation
+@end
+
+
+@interface MZParseTaskOperation : MZFileTaskOperation
 {
     NSData* data;
     BOOL terminated;

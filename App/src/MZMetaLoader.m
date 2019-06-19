@@ -315,12 +315,17 @@ static MZMetaLoader* sharedLoader = nil;
         NSString* errMsg = [NSString stringWithFormat:
             NSLocalizedString(@"The file '%@' is in an unsupported format.", @"Bad file title"), baseFile];
         
+        NSAlert *alerts = [NSAlert alertWithError:operation.error];
+        [alerts runModal];
+
+        /*
         NSAlert *alert = [NSAlert new];
         alert.alertStyle = NSAlertStyleCritical;
         alert.messageText = errMsg;
         alert.informativeText = @"";
         [alert addButtonWithTitle:NSLocalizedString(@"OK", @"Button text")];
         [alert runModal];
+         */
         
         /*NSRunCriticalAlertPanel(errMsg,
             @"", NSLocalizedString(@"OK", @"Button text"), nil, nil);*/
