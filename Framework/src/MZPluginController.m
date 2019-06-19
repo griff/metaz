@@ -723,7 +723,7 @@ static MZPluginController *gInstance = NULL;
 {
     MZDataProviderPlugin* provider = [self dataProviderForPath:fileName];
     if(!provider) {
-        id<MZDataReadDelegate> otherDelegate =
+        id<MZDataController> otherDelegate =
             [MZNoPluginNotification notifierWithController:self
                                                   delegate:theDelegate
                                                   fromFile:fileName];
@@ -946,8 +946,11 @@ static MZPluginController *gInstance = NULL;
 
 - (void)noPlugin
 {
-    NSDictionary* dict = [NSDictionary dictionaryWithObject:
-                          NSLocalizedString(@"No plugin found for file", @"No read plugin error")
+    NSString* baseFile = [fileName lastPathComponent];
+    NSString* errMsg = [NSString stringWithFormat:
+                        NSLocalizedString(@"No plugin can read file '%@'.", @"No read plugin error"), baseFile];
+
+    NSDictionary* dict = [NSDictionary dictionaryWithObject:errMsg
                                                      forKey:NSLocalizedDescriptionKey];
     NSError* error = [NSError errorWithDomain:@"MetaZ" code:12 userInfo:dict];
 

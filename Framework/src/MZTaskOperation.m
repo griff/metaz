@@ -294,34 +294,48 @@
     self.finished = YES;
 }
 
-- (void)setErrorString:(NSString *)err code:(int)status
+- (NSString *)errorDescriptionForStatus:(int)status
 {
     if(self.standardErrorReason) {
         NSData* data = [[[self standardError] fileHandleForReading] readDataToEndOfFile];
         NSString* errStr = [[[NSString alloc]
                                 initWithData:data
-                                    encoding:NSUTF8StringEncoding] autorelease];
-        errStr = [errStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                                encoding:NSUTF8StringEncoding] autorelease];
+        errStr = [errStr stringByTrimmingCharactersInSet:
+                  [NSCharacterSet whitespaceAndNewlineCharacterSet]];
         if([errStr length] > 0)
-            err = errStr;
+            return errStr;
     }
+    NSString* program = [[task launchPath] lastPathComponent];
+    NSString* err = [NSString stringWithFormat:
+                     NSLocalizedString(@"%@ failed with exit code %d", @"Write failed error"),
+                     program,
+                     status];
+    return err;
+}
 
+- (NSError *)willError:(NSError *)error
+{
+    return error;
+}
+
+
+- (void)setErrorString:(NSString *)err code:(int)status
+{
     NSString* program = [[task launchPath] lastPathComponent];
     MZLoggerError(@"Task error %@", err);
     NSDictionary* dict = [NSDictionary dictionaryWithObject:err
                                                      forKey:NSLocalizedDescriptionKey];
-    self.error = [NSError errorWithDomain:program code:status userInfo:dict];
+    NSError* error = [NSError errorWithDomain:program code:status userInfo:dict];
+    error = [self willError:error];
+    self.error = error;
 }
 
 - (void)setErrorFromStatus:(int)status
 {
     if(status != 0)
     {
-        NSString* program = [[task launchPath] lastPathComponent];
-        [self setErrorString:[NSString stringWithFormat:
-                                NSLocalizedString(@"%@ failed with exit code %d", @"Write failed error"),
-                                program,
-                                status]
+        [self setErrorString:[self errorDescriptionForStatus:status]
                         code:status];
     }
 }
@@ -364,6 +378,30 @@
 
 @end
 
+@implementation MZFileTaskOperation
+
+- (void)dealloc
+{
+    [file release];
+    [super dealloc];
+}
+@synthesize file;
+
+- (NSError *)willError:(NSError *)error
+{
+    NSMutableDictionary<NSErrorUserInfoKey, id> *userInfo =
+     [NSMutableDictionary dictionaryWithDictionary:error.userInfo];
+    NSString* baseFile = [file lastPathComponent];
+    NSString* err = [NSString stringWithFormat:
+                     NSLocalizedString(@"Failed to process file '%@'. %@", @"Write failed error"),
+                     baseFile,
+                     [userInfo objectForKey:NSLocalizedDescriptionKey]];
+    [userInfo setObject:err
+                 forKey:NSLocalizedDescriptionKey];
+    return [NSError errorWithDomain:error.domain code:error.code userInfo:userInfo];
+}
+
+@end
 
 @implementation MZParseTaskOperation
 

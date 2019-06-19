@@ -21,6 +21,7 @@
     self = [super init];
     if(self)
     {
+        self.file = [NSURL fileURLWithPath:theFileName];
         provider = [theProvider retain];
         fileName = [theFileName retain];
         tagdict = [theTagdict retain];
@@ -130,6 +131,7 @@
     self = [super init];
     if(self)
     {
+        self.file = [NSURL fileURLWithPath:fileName];
         [self setArguments:[NSArray arrayWithObjects:@"-l", fileName, nil]];
         tagdict = [theTagdict retain];
     }
