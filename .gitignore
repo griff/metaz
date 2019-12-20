@@ -1,6 +1,5 @@
 */project.xcworkspace/xcuserdata/
-**/xcuserdata/*/*/**
-!**/xcuserdata/*/xcschemes/**
+**/xcuserdata/**
 .DS_Store
 *.mode1v3
 *.pbxuser
