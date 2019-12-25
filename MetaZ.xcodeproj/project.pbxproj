@@ -120,9 +120,6 @@
 		1B44949910D57D6900B9C751 /* AtomicParsley in Resources */ = {isa = PBXBuildFile; fileRef = 1B44949810D57D6900B9C751 /* AtomicParsley */; };
 		1B4499D210D9A5CE00B9C751 /* PresetSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4499D110D9A5CE00B9C751 /* PresetSegmentedControl.m */; };
 		1B449B8810DC7DE400B9C751 /* ChaptersTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B449B8710DC7DE400B9C751 /* ChaptersTableView.m */; };
-		1B492FA91F65537800A2FD3F /* Add to iTunes.scpt in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B492FA51F65537800A2FD3F /* Add to iTunes.scpt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		1B492FAB1F65537800A2FD3F /* Quit MetaZ.scpt in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B492FA71F65537800A2FD3F /* Quit MetaZ.scpt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		1B492FAC1F65537800A2FD3F /* Update iTunes.scpt in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B492FA81F65537800A2FD3F /* Update iTunes.scpt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1B4AF83B1170CFCC00E5C969 /* TheTVDBSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */; };
 		1B4AF84511715C8400E5C969 /* languages.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1B4AF84411715C8400E5C969 /* languages.xml */; };
 		1B4C1F4016554B0100011621 /* MZHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B4C1F3C1655490D00011621 /* MZHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -293,6 +290,10 @@
 		1BFEDE0118349138008A17D3 /* PosterBackgroundError.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BFEDDFE18349138008A17D3 /* PosterBackgroundError.png */; };
 		1BFEDE0218349138008A17D3 /* PosterBackgroundMultiple.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BFEDDFF18349138008A17D3 /* PosterBackgroundMultiple.png */; };
 		7F4F84D818CD1F8A00D002DA /* NSString+NumericCompare.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F84D618CD1F8000D002DA /* NSString+NumericCompare.m */; };
+		7F67C0FE23B1C3DD005BCE8E /* Add to iTunes.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 7F67C0FA23B1C3DC005BCE8E /* Add to iTunes.applescript */; };
+		7F67C0FF23B1C3DD005BCE8E /* Example Actions.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 7F67C0FB23B1C3DD005BCE8E /* Example Actions.applescript */; };
+		7F67C10023B1C3DD005BCE8E /* Quit MetaZ.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 7F67C0FC23B1C3DD005BCE8E /* Quit MetaZ.applescript */; };
+		7F67C10123B1C3DD005BCE8E /* Update iTunes.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 7F67C0FD23B1C3DD005BCE8E /* Update iTunes.applescript */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -645,16 +646,6 @@
 		1B4499D110D9A5CE00B9C751 /* PresetSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresetSegmentedControl.m; sourceTree = "<group>"; };
 		1B449B8610DC7DE400B9C751 /* ChaptersTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChaptersTableView.h; sourceTree = "<group>"; };
 		1B449B8710DC7DE400B9C751 /* ChaptersTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChaptersTableView.m; sourceTree = "<group>"; };
-		1B492F921F65530500A2FD3F /* Add to iTunes.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = "Add to iTunes.applescript"; path = "AppleScript/Add to iTunes.applescript"; sourceTree = "<group>"; };
-		1B492F931F65530500A2FD3F /* Example Actions.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = "Example Actions.applescript"; path = "AppleScript/Example Actions.applescript"; sourceTree = "<group>"; };
-		1B492F951F65530500A2FD3F /* Quit MetaZ.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = "Quit MetaZ.applescript"; path = "AppleScript/Quit MetaZ.applescript"; sourceTree = "<group>"; };
-		1B492F971F65530500A2FD3F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = AppleScript/README.md; sourceTree = "<group>"; };
-		1B492F981F65530500A2FD3F /* Update iTunes.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; name = "Update iTunes.applescript"; path = "AppleScript/Update iTunes.applescript"; sourceTree = "<group>"; };
-		1B492F9A1F65530500A2FD3F /* update.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = update.sh; path = AppleScript/update.sh; sourceTree = "<group>"; };
-		1B492FA51F65537800A2FD3F /* Add to iTunes.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Add to iTunes.scpt"; path = "AppleScript/Add to iTunes.scpt"; sourceTree = "<group>"; };
-		1B492FA61F65537800A2FD3F /* Example Actions.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Example Actions.scpt"; path = "AppleScript/Example Actions.scpt"; sourceTree = "<group>"; };
-		1B492FA71F65537800A2FD3F /* Quit MetaZ.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quit MetaZ.scpt"; path = "AppleScript/Quit MetaZ.scpt"; sourceTree = "<group>"; };
-		1B492FA81F65537800A2FD3F /* Update iTunes.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Update iTunes.scpt"; path = "AppleScript/Update iTunes.scpt"; sourceTree = "<group>"; };
 		1B4AF74B116EF80500E5C969 /* Access.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Access.h; path = Plugins/TheTVDB/Access.h; sourceTree = SOURCE_ROOT; };
 		1B4AF8391170CFCC00E5C969 /* TheTVDBSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBSearch.h; sourceTree = "<group>"; };
 		1B4AF83A1170CFCC00E5C969 /* TheTVDBSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBSearch.m; sourceTree = "<group>"; };
@@ -908,6 +899,10 @@
 		32CA4F630368D1EE00C91783 /* MetaZ_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaZ_Prefix.pch; path = App/MetaZ_Prefix.pch; sourceTree = "<group>"; };
 		7F4F84D518CD1F8000D002DA /* NSString+NumericCompare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NumericCompare.h"; sourceTree = "<group>"; };
 		7F4F84D618CD1F8000D002DA /* NSString+NumericCompare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NumericCompare.m"; sourceTree = "<group>"; };
+		7F67C0FA23B1C3DC005BCE8E /* Add to iTunes.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Add to iTunes.applescript"; sourceTree = "<group>"; };
+		7F67C0FB23B1C3DD005BCE8E /* Example Actions.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Example Actions.applescript"; sourceTree = "<group>"; };
+		7F67C0FC23B1C3DD005BCE8E /* Quit MetaZ.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Quit MetaZ.applescript"; sourceTree = "<group>"; };
+		7F67C0FD23B1C3DD005BCE8E /* Update iTunes.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Update iTunes.applescript"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = App/Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MetaZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetaZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1266,31 +1261,6 @@
 			);
 			name = Foundation;
 			path = "Externals/google-toolbox-for-mac/Foundation";
-			sourceTree = "<group>";
-		};
-		1B492F901F654FC800A2FD3F /* AppleScript */ = {
-			isa = PBXGroup;
-			children = (
-				1B492FAD1F6553D300A2FD3F /* Compiled */,
-				1B492F921F65530500A2FD3F /* Add to iTunes.applescript */,
-				1B492F931F65530500A2FD3F /* Example Actions.applescript */,
-				1B492F951F65530500A2FD3F /* Quit MetaZ.applescript */,
-				1B492F971F65530500A2FD3F /* README.md */,
-				1B492F981F65530500A2FD3F /* Update iTunes.applescript */,
-				1B492F9A1F65530500A2FD3F /* update.sh */,
-			);
-			name = AppleScript;
-			sourceTree = "<group>";
-		};
-		1B492FAD1F6553D300A2FD3F /* Compiled */ = {
-			isa = PBXGroup;
-			children = (
-				1B492FA51F65537800A2FD3F /* Add to iTunes.scpt */,
-				1B492FA61F65537800A2FD3F /* Example Actions.scpt */,
-				1B492FA71F65537800A2FD3F /* Quit MetaZ.scpt */,
-				1B492FA81F65537800A2FD3F /* Update iTunes.scpt */,
-			);
-			name = Compiled;
 			sourceTree = "<group>";
 		};
 		1B4CFF8E161CDED800B12009 /* AEVTBuilder */ = {
@@ -1713,6 +1683,10 @@
 		1BEA6E68106EF248004B1A7F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				7F67C0FA23B1C3DC005BCE8E /* Add to iTunes.applescript */,
+				7F67C0FB23B1C3DD005BCE8E /* Example Actions.applescript */,
+				7F67C0FC23B1C3DD005BCE8E /* Quit MetaZ.applescript */,
+				7F67C0FD23B1C3DD005BCE8E /* Update iTunes.applescript */,
 				1B7B1043240604020018DB18 /* TheMovieDbNG */,
 				1B7FF3FB24048024001457CE /* TheTVDB3 */,
 				1B492F901F654FC800A2FD3F /* AppleScript */,
@@ -2416,6 +2390,30 @@
 			shellScript = "mkdir -p $TARGET_BUILD_DIR/$DOCUMENTATION_FOLDER_PATH\n#/usr/bin/headerdoc2html -o $TARGET_BUILD_DIR/$DOCUMENTATION_FOLDER_PATH/ $SRCROOT/Framework/src/*.h && /usr/bin/gatherheaderdoc $TARGET_BUILD_DIR/$DOCUMENTATION_FOLDER_PATH\n";
 			showEnvVarsInLog = 0;
 		};
+		7F67C10223B1C537005BCE8E /* Create Plugin Symlinks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Plugins/Add to iTunes.applescript",
+				"$(SRCROOT)/Plugins/Quit MetaZ.applescript",
+				"$(SRCROOT)/Plugins/Update iTunes.applescript",
+			);
+			name = "Create Plugin Symlinks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(CONTENTS_FOLDER_PATH)/Plugins/Add to iTunes.scpt",
+				"$(CONTENTS_FOLDER_PATH)/Plugins/Quit MetaZ.scpt",
+				"$(CONTENTS_FOLDER_PATH)/Plugins/Update iTunes.scpt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# UNLOCALIZED_RESOURCES_FOLDER_PATH\n# CONTENTS_FOLDER_PATH\nfor (( n = 0; n < SCRIPT_INPUT_FILE_COUNT; n++ )); do\n    #VAR=SCRIPT_INPUT_FILE_$n\n    #framework=$(basename \"${!VAR}\")\n    #export SCRIPT_INPUT_FILE_$n=\"$SRCROOT\"/Carthage/Build/$plat/\"$framework\"\n    VAR=SCRIPT_INPUT_FILE_$n\n    RAW_SCRIPT_NAME=$(basename \"${!VAR}\")\n    #echo ${RAW_SCRIPT_NAME}\n    COMPILED_SCRIPT_NAME=\"${RAW_SCRIPT_NAME%.applescript}.scpt\"\n    #echo ${COMPILED_SCRIPT_NAME}\n    ln -s \"../Resources/${COMPILED_SCRIPT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/${COMPILED_SCRIPT_NAME}\"\ndone\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2582,6 +2580,7 @@
 				1BEA6DDD106ED8E4004B1A7F /* PreferencesWindowController.m in Sources */,
 				1BEA71D110717785004B1A7F /* MZWriteQueueStatus.m in Sources */,
 				1B0696B0149BD4B500B5FA90 /* MZViewAnimation.m in Sources */,
+				7F67C10023B1C3DD005BCE8E /* Quit MetaZ.applescript in Sources */,
 				1BCC9C6B107C3E80007EFF57 /* RatingMenuHandler.m in Sources */,
 				1BCC9D3F107E9C08007EFF57 /* GenreDataSource.m in Sources */,
 				1B040CD410813C1F0027FA0D /* ChapterEditor.m in Sources */,
@@ -2603,6 +2602,7 @@
 				1B2AEED611A0EC430074BAAD /* MZFileNameTextStorage.m in Sources */,
 				1BAC912A13F053980022D625 /* MZDateFormatter.m in Sources */,
 				1BAC916513F056240022D625 /* MZYearDateFormatter.m in Sources */,
+				7F67C0FE23B1C3DD005BCE8E /* Add to iTunes.applescript in Sources */,
 				1B069668149BD35B00B5FA90 /* MGViewAnimation.m in Sources */,
 				1B7B529D149EA26300BF37DD /* EnsureArrayTransformer.m in Sources */,
 				1B7B53F514A029FA00BF37DD /* MZMultipleDateFormatter.m in Sources */,
@@ -2614,10 +2614,12 @@
 				1B8908E416424790008C5C8B /* MZSelectedMetaDataDocument.m in Sources */,
 				1B63A1D31644D8D100461FC9 /* MZArrayController.m in Sources */,
 				1BD55BED16482D7600F9C579 /* Return iTunes selected.applescript in Sources */,
+				7F67C0FF23B1C3DD005BCE8E /* Example Actions.applescript in Sources */,
 				1B26B818164ACE1200238517 /* SearchController.m in Sources */,
 				1B26B88D164B1EEB00238517 /* MZTextView.m in Sources */,
 				1B26B8FB164B264400238517 /* MZTextField.m in Sources */,
 				1B26BA8B164B687B00238517 /* MZComboBox.m in Sources */,
+				7F67C10123B1C3DD005BCE8E /* Update iTunes.applescript in Sources */,
 				1B26BAC3164C3BA400238517 /* FilesArrayController.m in Sources */,
 				1B31C310165378CE00853E10 /* PicturesArrayController.m in Sources */,
 			);
