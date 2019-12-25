@@ -2251,7 +2251,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "PATH=${PATH}:/usr/local/bin:/opt/local/bin\ncarthage copy-frameworks\n";
 		};
 		1BB6BF3B1050ED38001D3D1D /* Sparkle Sign  */ = {
 			isa = PBXShellScriptBuildPhase;
