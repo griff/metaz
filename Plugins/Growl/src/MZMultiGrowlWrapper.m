@@ -86,8 +86,7 @@ static MZMultiGrowlWrapper *_MZSharedMultiGrowlWrapper = nil;
 - (void)load
 {
     NSBundle *mainBundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [[mainBundle privateFrameworksPath] stringByAppendingPathComponent:@"Growl.framework"];
-    path = [path stringByAppendingPathComponent:@"Versions"];
+    NSString *path = [mainBundle resourcePath];
     if(NSAppKitVersionNumber >= 1038)
         path = [path stringByAppendingPathComponent:@"1.3.1"];
     else

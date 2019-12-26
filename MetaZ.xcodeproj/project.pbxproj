@@ -211,8 +211,6 @@
 		1BD55C661648466700F9C579 /* NSError+MZScriptError.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD55C641648466700F9C579 /* NSError+MZScriptError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BD55C671648466700F9C579 /* NSError+MZScriptError.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD55C651648466700F9C579 /* NSError+MZScriptError.m */; };
 		1BD55FAF1648BC4F00F9C579 /* GrowlPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD55FAE1648BC4F00F9C579 /* GrowlPlugin.m */; };
-		1BD55FBF1648BD2000F9C579 /* 1.2.3 in Copy Growl Frameworks */ = {isa = PBXBuildFile; fileRef = 1B29A07314C5C9430048B7C0 /* 1.2.3 */; };
-		1BD55FC01648BD2000F9C579 /* 1.3.1 in Copy Growl Frameworks */ = {isa = PBXBuildFile; fileRef = 1B29A07114C5C9430048B7C0 /* 1.3.1 */; };
 		1BD55FE01648BD7400F9C579 /* MZMultiGrowlWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B29A06514C5C6570048B7C0 /* MZMultiGrowlWrapper.m */; };
 		1BD5604D1648CC0200F9C579 /* GrowlPlugin.mzactions in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1BD55F8E1648BB4200F9C579 /* GrowlPlugin.mzactions */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1BD560AA1648CC3400F9C579 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
@@ -268,6 +266,8 @@
 		1BFEDE0118349138008A17D3 /* PosterBackgroundError.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BFEDDFE18349138008A17D3 /* PosterBackgroundError.png */; };
 		1BFEDE0218349138008A17D3 /* PosterBackgroundMultiple.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BFEDDFF18349138008A17D3 /* PosterBackgroundMultiple.png */; };
 		7F4F84D818CD1F8A00D002DA /* NSString+NumericCompare.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4F84D618CD1F8000D002DA /* NSString+NumericCompare.m */; };
+		7FA0B39A23B4184D005BCE8E /* 1.2.3 in Resources */ = {isa = PBXBuildFile; fileRef = 1B29A07314C5C9430048B7C0 /* 1.2.3 */; };
+		7FA0B39B23B4185B005BCE8E /* 1.3.1 in Resources */ = {isa = PBXBuildFile; fileRef = 1B29A07114C5C9430048B7C0 /* 1.3.1 */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -432,18 +432,6 @@
 				1BA9B57D208957B200DDC17F /* MetaZKit.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1BD55FBE1648BD2000F9C579 /* Copy Growl Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Growl.framework/Versions;
-			dstSubfolderSpec = 10;
-			files = (
-				1BD55FBF1648BD2000F9C579 /* 1.2.3 in Copy Growl Frameworks */,
-				1BD55FC01648BD2000F9C579 /* 1.3.1 in Copy Growl Frameworks */,
-			);
-			name = "Copy Growl Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1BEA6F2F106EF6D5004B1A7F /* Copy Plugins */ = {
@@ -1923,7 +1911,6 @@
 				1BD55F8A1648BB4200F9C579 /* Resources */,
 				1BD55F8B1648BB4200F9C579 /* Sources */,
 				1BD55F8C1648BB4200F9C579 /* Frameworks */,
-				1BD55FBE1648BD2000F9C579 /* Copy Growl Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2102,6 +2089,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FA0B39B23B4185B005BCE8E /* 1.3.1 in Resources */,
+				7FA0B39A23B4184D005BCE8E /* 1.2.3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
