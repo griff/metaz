@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1BD55F8D1648BB4200F9C579"
-               BuildableName = "GrowlPlugin.mzactions"
-               BlueprintName = "GrowlPlugin"
+               BlueprintIdentifier = "8D1107260486CEB800E47090"
+               BuildableName = "MetaZ.app"
+               BlueprintName = "MetaZ"
                ReferencedContainer = "container:MetaZ.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -27,10 +27,17 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8D1107260486CEB800E47090"
+            BuildableName = "MetaZ.app"
+            BlueprintName = "MetaZ"
+            ReferencedContainer = "container:MetaZ.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
       </Testables>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -39,20 +46,25 @@
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
-      debugDocumentVersioning = "YES"
+      debugDocumentVersioning = "NO"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1BD55F8D1648BB4200F9C579"
-            BuildableName = "GrowlPlugin.mzactions"
-            BlueprintName = "GrowlPlugin"
+            BlueprintIdentifier = "8D1107260486CEB800E47090"
+            BuildableName = "MetaZ.app"
+            BlueprintName = "MetaZ"
             ReferencedContainer = "container:MetaZ.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
+      </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "-l"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -60,6 +72,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8D1107260486CEB800E47090"
+            BuildableName = "MetaZ.app"
+            BlueprintName = "MetaZ"
+            ReferencedContainer = "container:MetaZ.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1BEA6E71106EF2A0004B1A7F"
-               BuildableName = "AtomicParsleyPlugin.mzdataprovider"
-               BlueprintName = "AtomicParsley"
+               BlueprintIdentifier = "1BD562061648F17C00F9C579"
+               BuildableName = "AlertWindowPlugin.mzactions"
+               BlueprintName = "AlertWindowPlugin"
                ReferencedContainer = "container:MetaZ.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,8 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -45,14 +43,12 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1BEA6E71106EF2A0004B1A7F"
-            BuildableName = "AtomicParsleyPlugin.mzdataprovider"
-            BlueprintName = "AtomicParsley"
+            BlueprintIdentifier = "1BD562061648F17C00F9C579"
+            BuildableName = "AlertWindowPlugin.mzactions"
+            BlueprintName = "AlertWindowPlugin"
             ReferencedContainer = "container:MetaZ.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

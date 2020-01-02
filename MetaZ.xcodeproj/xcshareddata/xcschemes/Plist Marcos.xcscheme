@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1B8CB90A14ACD62000F859F7"
-               BuildableName = "TheMovieDb.mzsearchprovider"
-               BlueprintName = "TheMovieDb"
+               BlueprintIdentifier = "1B2022F810B393CA00EE548A"
+               BuildableName = "Plist Marcos"
+               BlueprintName = "Plist Marcos"
                ReferencedContainer = "container:MetaZ.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,8 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -45,14 +43,12 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1B8CB90A14ACD62000F859F7"
-            BuildableName = "TheMovieDb.mzsearchprovider"
-            BlueprintName = "TheMovieDb"
+            BlueprintIdentifier = "1B2022F810B393CA00EE548A"
+            BuildableName = "Plist Marcos"
+            BlueprintName = "Plist Marcos"
             ReferencedContainer = "container:MetaZ.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

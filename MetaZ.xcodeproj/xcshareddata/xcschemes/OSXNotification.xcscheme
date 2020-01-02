@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1B4F53B3116E9F44003221B1"
-               BuildableName = "TheTVDBPlugin.mzsearchprovider"
-               BlueprintName = "TheTVDB"
+               BlueprintIdentifier = "1B3185A01841E9D6001EDE79"
+               BuildableName = "OSXNotificationPlugin.mzactions"
+               BlueprintName = "OSXNotificationPlugin"
                ReferencedContainer = "container:MetaZ.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,8 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -45,14 +43,12 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1B4F53B3116E9F44003221B1"
-            BuildableName = "TheTVDBPlugin.mzsearchprovider"
-            BlueprintName = "TheTVDB"
+            BlueprintIdentifier = "1B3185A01841E9D6001EDE79"
+            BuildableName = "OSXNotificationPlugin.mzactions"
+            BlueprintName = "OSXNotificationPlugin"
             ReferencedContainer = "container:MetaZ.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
