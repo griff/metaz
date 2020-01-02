@@ -2357,7 +2357,6 @@
 			shellPath = /bin/sh;
 			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/sparkle_sign.bash\n";
 		};
-		1BA9B57B2089550F00DDC17F /* carthage copy-frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
