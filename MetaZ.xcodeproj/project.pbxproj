@@ -2411,7 +2411,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# UNLOCALIZED_RESOURCES_FOLDER_PATH\n# CONTENTS_FOLDER_PATH\nfor (( n = 0; n < SCRIPT_INPUT_FILE_COUNT; n++ )); do\n    #VAR=SCRIPT_INPUT_FILE_$n\n    #framework=$(basename \"${!VAR}\")\n    #export SCRIPT_INPUT_FILE_$n=\"$SRCROOT\"/Carthage/Build/$plat/\"$framework\"\n    VAR=SCRIPT_INPUT_FILE_$n\n    RAW_SCRIPT_NAME=$(basename \"${!VAR}\")\n    #echo ${RAW_SCRIPT_NAME}\n    COMPILED_SCRIPT_NAME=\"${RAW_SCRIPT_NAME%.applescript}.scpt\"\n    #echo ${COMPILED_SCRIPT_NAME}\n    ln -s \"../Resources/${COMPILED_SCRIPT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/${COMPILED_SCRIPT_NAME}\"\ndone\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# UNLOCALIZED_RESOURCES_FOLDER_PATH\n# CONTENTS_FOLDER_PATH\nfor (( n = 0; n < SCRIPT_INPUT_FILE_COUNT; n++ )); do\n    #VAR=SCRIPT_INPUT_FILE_$n\n    #framework=$(basename \"${!VAR}\")\n    #export SCRIPT_INPUT_FILE_$n=\"$SRCROOT\"/Carthage/Build/$plat/\"$framework\"\n    VAR=SCRIPT_INPUT_FILE_$n\n    RAW_SCRIPT_NAME=$(basename \"${!VAR}\")\n    #echo ${RAW_SCRIPT_NAME}\n    COMPILED_SCRIPT_NAME=\"${RAW_SCRIPT_NAME%.applescript}.scpt\"\n    #echo ${COMPILED_SCRIPT_NAME}\n    ln -sf \"../Resources/${COMPILED_SCRIPT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/Plugins/${COMPILED_SCRIPT_NAME}\"\ndone\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
