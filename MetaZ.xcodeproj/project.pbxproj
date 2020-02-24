@@ -474,7 +474,6 @@
 		1B0DEC3E10607A9A009D293F /* MGCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCollectionView.m; sourceTree = "<group>"; };
 		1B0DEDD61060F7B6009D293F /* ImageWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageWindowController.h; sourceTree = "<group>"; };
 		1B0DEDD71060F7B6009D293F /* ImageWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageWindowController.m; sourceTree = "<group>"; };
-		1B0DEDDA10610132009D293F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/ImageEdit.xib; sourceTree = "<group>"; };
 		1B0DEDDF10610412009D293F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		1B0DEEB8106139E8009D293F /* RotateLeft.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = RotateLeft.tif; path = App/resources/RotateLeft.tif; sourceTree = SOURCE_ROOT; };
 		1B0DEEB9106139E8009D293F /* RotateRight.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = RotateRight.tif; path = App/resources/RotateRight.tif; sourceTree = SOURCE_ROOT; };
@@ -538,7 +537,6 @@
 		1B31C2F3165371BD00853E10 /* MZApplyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZApplyEditor.h; sourceTree = "<group>"; };
 		1B31C30E165378CE00853E10 /* PicturesArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicturesArrayController.h; sourceTree = "<group>"; };
 		1B31C30F165378CE00853E10 /* PicturesArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicturesArrayController.m; sourceTree = "<group>"; };
-		1B31C37D16538DC300853E10 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/SearchView.xib; sourceTree = "<group>"; };
 		1B35446815B1D96B0033DD74 /* MetaZ.sdef */ = {isa = PBXFileReference; explicitFileType = text.xml; fileEncoding = 4; name = MetaZ.sdef; path = App/resources/MetaZ.sdef; sourceTree = "<group>"; };
 		1B3544E615B2160F0033DD74 /* MetaZApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaZApplication.h; sourceTree = "<group>"; };
 		1B3544E715B2160F0033DD74 /* MetaZApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaZApplication.m; sourceTree = "<group>"; };
@@ -651,6 +649,12 @@
 		1B6E43C9108468B100DFE165 /* MZSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSearchResult.h; sourceTree = "<group>"; };
 		1B6E43CA108468B100DFE165 /* MZSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZSearchResult.m; sourceTree = "<group>"; };
 		1B6E43D610846BDA00DFE165 /* TagData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagData.h; sourceTree = "<group>"; };
+		1B7223A2240219E7005DEE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = App/Base.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
+		1B7223A3240219E7005DEE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = App/Base.lproj/Queue.xib; sourceTree = "<group>"; };
+		1B7223A4240219E7005DEE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = App/Base.lproj/ImageEdit.xib; sourceTree = "<group>"; };
+		1B7223A5240219E7005DEE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = App/Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		1B7223A6240219E8005DEE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = App/Base.lproj/PresetsPanel.xib; sourceTree = "<group>"; };
+		1B7223A7240219E8005DEE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = App/Base.lproj/SearchView.xib; sourceTree = "<group>"; };
 		1B78A499105032A50072D89E /* MZMethodData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMethodData.h; sourceTree = "<group>"; };
 		1B78A49A105032A50072D89E /* MZMethodData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMethodData.m; sourceTree = "<group>"; };
 		1B7B529B149EA26300BF37DD /* EnsureArrayTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnsureArrayTransformer.h; sourceTree = "<group>"; };
@@ -696,7 +700,6 @@
 		1BA325C510545ACA00276F57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Framework/Info.plist; sourceTree = "<group>"; };
 		1BA3268210546CB500276F57 /* MetaZKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaZKit_Prefix.pch; path = Framework/MetaZKit_Prefix.pch; sourceTree = "<group>"; };
 		1BA3269C10546EC800276F57 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = App/English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1BA3269F10546F4600276F57 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		1BA326A210546F9700276F57 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/MZTags.strings; sourceTree = "<group>"; };
 		1BA326EE1054823100276F57 /* MZWriteQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZWriteQueue.h; sourceTree = "<group>"; };
 		1BA326EF1054823100276F57 /* MZWriteQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZWriteQueue.m; sourceTree = "<group>"; };
@@ -727,7 +730,6 @@
 		1BBB39A81087083600C9E17F /* MZPriorObserverFix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZPriorObserverFix.m; sourceTree = "<group>"; };
 		1BBC025E10FC115F001DDB1C /* MZTaskOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTaskOperation.h; sourceTree = "<group>"; };
 		1BBC025F10FC115F001DDB1C /* MZTaskOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTaskOperation.m; sourceTree = "<group>"; };
-		1BC0661810AE223A005C2A9F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/PresetsPanel.xib; sourceTree = "<group>"; };
 		1BC0671310AE44CA005C2A9F /* presets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = presets.png; path = App/resources/presets.png; sourceTree = "<group>"; };
 		1BC256361192C183001B9E1E /* NSObject+WaitUntilChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WaitUntilChange.h"; sourceTree = "<group>"; };
 		1BC256371192C183001B9E1E /* NSObject+WaitUntilChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WaitUntilChange.m"; sourceTree = "<group>"; };
@@ -764,7 +766,6 @@
 		1BD6E751105DADCC00E40151 /* Stop.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Stop.tiff; path = App/resources/Stop.tiff; sourceTree = "<group>"; };
 		1BD6E7A0105DC33400E40151 /* QueueController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueController.h; sourceTree = "<group>"; };
 		1BD6E7A1105DC33400E40151 /* QueueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueController.m; sourceTree = "<group>"; };
-		1BD6E7A7105DC4D000E40151 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/Queue.xib; sourceTree = "<group>"; };
 		1BDD86A51094A8CC00E3C81D /* MZPresets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZPresets.h; sourceTree = "<group>"; };
 		1BDD86A61094A8CC00E3C81D /* MZPresets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZPresets.m; sourceTree = "<group>"; };
 		1BDD879F1095FB5100E3C81D /* PresetsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetsWindowController.h; sourceTree = "<group>"; };
@@ -778,7 +779,6 @@
 		1BEA6D4F106E8B7C004B1A7F /* IKImageView-Missing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IKImageView-Missing.h"; sourceTree = "<group>"; };
 		1BEA6DAC106EC632004B1A7F /* MZPluginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZPluginController.h; sourceTree = "<group>"; };
 		1BEA6DAD106EC632004B1A7F /* MZPluginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZPluginController.m; sourceTree = "<group>"; };
-		1BEA6DD9106ED837004B1A7F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
 		1BEA6DDB106ED8E4004B1A7F /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
 		1BEA6DDC106ED8E4004B1A7F /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		1BEA6E48106EEF34004B1A7F /* MZPlugin+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MZPlugin+Private.h"; sourceTree = "<group>"; };
@@ -1922,6 +1922,7 @@
 				sv,
 				zh_CN,
 				zh_TW,
+				Base,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* MetaZ */;
 			projectDirPath = "";
@@ -2438,7 +2439,7 @@
 		1B0DEDD910610132009D293F /* ImageEdit.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1B0DEDDA10610132009D293F /* English */,
+				1B7223A4240219E7005DEE47 /* Base */,
 			);
 			name = ImageEdit.xib;
 			sourceTree = "<group>";
@@ -2454,7 +2455,7 @@
 		1B31C37C16538DC300853E10 /* SearchView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1B31C37D16538DC300853E10 /* English */,
+				1B7223A7240219E8005DEE47 /* Base */,
 			);
 			name = SearchView.xib;
 			sourceTree = "<group>";
@@ -2486,7 +2487,7 @@
 		1BA3269E10546F4600276F57 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1BA3269F10546F4600276F57 /* English */,
+				1B7223A5240219E7005DEE47 /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -2502,7 +2503,7 @@
 		1BC0661710AE223A005C2A9F /* PresetsPanel.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1BC0661810AE223A005C2A9F /* English */,
+				1B7223A6240219E8005DEE47 /* Base */,
 			);
 			name = PresetsPanel.xib;
 			sourceTree = "<group>";
@@ -2510,7 +2511,7 @@
 		1BD6E7A6105DC4D000E40151 /* Queue.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1BD6E7A7105DC4D000E40151 /* English */,
+				1B7223A3240219E7005DEE47 /* Base */,
 			);
 			name = Queue.xib;
 			sourceTree = "<group>";
@@ -2518,7 +2519,7 @@
 		1BEA6DD8106ED837004B1A7F /* PreferencesWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1BEA6DD9106ED837004B1A7F /* English */,
+				1B7223A2240219E7005DEE47 /* Base */,
 			);
 			name = PreferencesWindow.xib;
 			sourceTree = "<group>";
