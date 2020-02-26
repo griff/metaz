@@ -57,6 +57,7 @@
 		1B0DEEC1106139E8009D293F /* ZoomActualSize.tif in Resources */ = {isa = PBXBuildFile; fileRef = 1B0DEEBB106139E8009D293F /* ZoomActualSize.tif */; };
 		1B0DEEC2106139E8009D293F /* ZoomIn.tif in Resources */ = {isa = PBXBuildFile; fileRef = 1B0DEEBC106139E8009D293F /* ZoomIn.tif */; };
 		1B0DEEC3106139E8009D293F /* ZoomOut.tif in Resources */ = {isa = PBXBuildFile; fileRef = 1B0DEEBD106139E8009D293F /* ZoomOut.tif */; };
+		1B0E593424071D6900534F2F /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0E593224071D6900534F2F /* logo.png */; };
 		1B0F08A31F632A2D00032E83 /* GTMLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B0F089D1F632A2D00032E83 /* GTMLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B0F08A41F632A2D00032E83 /* GTMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F089E1F632A2D00032E83 /* GTMLogger.m */; };
 		1B0F08A51F632A2D00032E83 /* GTMNSObject+KeyValueObserving.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B0F089F1F632A2D00032E83 /* GTMNSObject+KeyValueObserving.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -135,6 +136,13 @@
 		1B6E43CB108468B100DFE165 /* MZSearchResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6E43C9108468B100DFE165 /* MZSearchResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B6E43CC108468B100DFE165 /* MZSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E43CA108468B100DFE165 /* MZSearchResult.m */; };
 		1B6E43DD10846DBC00DFE165 /* TagData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6E43D610846BDA00DFE165 /* TagData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B7B103C240603930018DB18 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
+		1B7B104C240604020018DB18 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B1046240604020018DB18 /* Configuration.swift */; };
+		1B7B104D240604020018DB18 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B1047240604020018DB18 /* JSON.swift */; };
+		1B7B104E240604020018DB18 /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B1048240604020018DB18 /* Plugin.swift */; };
+		1B7B104F240604020018DB18 /* TVSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B104A240604020018DB18 /* TVSearch.swift */; };
+		1B7B1052240605820018DB18 /* TheMovieDbNG.mzsearchprovider in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B7B1041240603930018DB18 /* TheMovieDbNG.mzsearchprovider */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1B7B1054240615DA0018DB18 /* MovieSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B1053240615DA0018DB18 /* MovieSearch.swift */; };
 		1B7B529D149EA26300BF37DD /* EnsureArrayTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B529C149EA26300BF37DD /* EnsureArrayTransformer.m */; };
 		1B7B53F514A029FA00BF37DD /* MZMultipleDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B53F414A029FA00BF37DD /* MZMultipleDateFormatter.m */; };
 		1B7FF3DE24047DE4001457CE /* RemoteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7FF3D924047DE4001457CE /* RemoteData.swift */; };
@@ -347,6 +355,27 @@
 			remoteGlobalIDString = 1B4F53B3116E9F44003221B1;
 			remoteInfo = TheTVDB;
 		};
+		1B7B1034240603930018DB18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1BA325C310545ACA00276F57;
+			remoteInfo = MetaZKit;
+		};
+		1B7B1036240603930018DB18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B2022F810B393CA00EE548A;
+			remoteInfo = "Plist Marcos";
+		};
+		1B7B1050240605780018DB18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B7B1032240603930018DB18;
+			remoteInfo = TheMovieDbNG;
+		};
 		1B7FF3E524047EE3001457CE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -444,6 +473,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				1B7B1052240605820018DB18 /* TheMovieDbNG.mzsearchprovider in Copy Plugins */,
 				1B7FF3F724047F27001457CE /* TheTVDB3.mzsearchprovider in Copy Plugins */,
 				1B492FA91F65537800A2FD3F /* Add to iTunes.scpt in Copy Plugins */,
 				1B492FAB1F65537800A2FD3F /* Quit MetaZ.scpt in Copy Plugins */,
@@ -513,6 +543,7 @@
 		1B0DEEBB106139E8009D293F /* ZoomActualSize.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = ZoomActualSize.tif; path = App/resources/ZoomActualSize.tif; sourceTree = SOURCE_ROOT; };
 		1B0DEEBC106139E8009D293F /* ZoomIn.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = ZoomIn.tif; path = App/resources/ZoomIn.tif; sourceTree = SOURCE_ROOT; };
 		1B0DEEBD106139E8009D293F /* ZoomOut.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = ZoomOut.tif; path = App/resources/ZoomOut.tif; sourceTree = SOURCE_ROOT; };
+		1B0E593224071D6900534F2F /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Plugins/TheMovieDbNG/resources/logo.png; sourceTree = SOURCE_ROOT; };
 		1B0F089D1F632A2D00032E83 /* GTMLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMLogger.h; sourceTree = "<group>"; };
 		1B0F089E1F632A2D00032E83 /* GTMLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMLogger.m; sourceTree = "<group>"; };
 		1B0F089F1F632A2D00032E83 /* GTMNSObject+KeyValueObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSObject+KeyValueObserving.h"; sourceTree = "<group>"; };
@@ -688,6 +719,14 @@
 		1B7223A7240219E8005DEE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = App/Base.lproj/SearchView.xib; sourceTree = "<group>"; };
 		1B78A499105032A50072D89E /* MZMethodData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMethodData.h; sourceTree = "<group>"; };
 		1B78A49A105032A50072D89E /* MZMethodData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMethodData.m; sourceTree = "<group>"; };
+		1B7B1041240603930018DB18 /* TheMovieDbNG.mzsearchprovider */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheMovieDbNG.mzsearchprovider; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B7B1044240604020018DB18 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B7B1046240604020018DB18 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		1B7B1047240604020018DB18 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		1B7B1048240604020018DB18 /* Plugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin.swift; sourceTree = "<group>"; };
+		1B7B1049240604020018DB18 /* TheMovieDbNG-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TheMovieDbNG-Bridging-Header.h"; sourceTree = "<group>"; };
+		1B7B104A240604020018DB18 /* TVSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVSearch.swift; sourceTree = "<group>"; };
+		1B7B1053240615DA0018DB18 /* MovieSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearch.swift; sourceTree = "<group>"; };
 		1B7B529B149EA26300BF37DD /* EnsureArrayTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnsureArrayTransformer.h; sourceTree = "<group>"; };
 		1B7B529C149EA26300BF37DD /* EnsureArrayTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnsureArrayTransformer.m; sourceTree = "<group>"; };
 		1B7B53F314A029FA00BF37DD /* MZMultipleDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMultipleDateFormatter.h; sourceTree = "<group>"; };
@@ -874,6 +913,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B4F53C4116E9F44003221B1 /* MetaZKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B7B103B240603930018DB18 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B7B103C240603930018DB18 /* MetaZKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1068,6 +1115,7 @@
 				1BD562071648F17C00F9C579 /* AlertWindowPlugin.mzactions */,
 				1B3185B21841E9D6001EDE79 /* OSXNotificationPlugin.mzactions */,
 				1B7FF3F324047EE3001457CE /* TheTVDB3.mzsearchprovider */,
+				1B7B1041240603930018DB18 /* TheMovieDbNG.mzsearchprovider */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1086,6 +1134,14 @@
 				1B069667149BD35B00B5FA90 /* MGViewAnimation.m */,
 			);
 			name = MGViewAnimation;
+			sourceTree = "<group>";
+		};
+		1B0E593024071D4600534F2F /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				1B0E593224071D6900534F2F /* logo.png */,
+			);
+			path = resources;
 			sourceTree = "<group>";
 		};
 		1B26B815164ACDF100238517 /* Search */ = {
@@ -1359,6 +1415,29 @@
 			path = "Externals/asi-http-request/Classes/S3";
 			sourceTree = "<group>";
 		};
+		1B7B1043240604020018DB18 /* TheMovieDbNG */ = {
+			isa = PBXGroup;
+			children = (
+				1B0E593024071D4600534F2F /* resources */,
+				1B7B1044240604020018DB18 /* Info.plist */,
+				1B7B1045240604020018DB18 /* src */,
+			);
+			path = TheMovieDbNG;
+			sourceTree = "<group>";
+		};
+		1B7B1045240604020018DB18 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				1B7B1046240604020018DB18 /* Configuration.swift */,
+				1B7B1047240604020018DB18 /* JSON.swift */,
+				1B7B1048240604020018DB18 /* Plugin.swift */,
+				1B7B1049240604020018DB18 /* TheMovieDbNG-Bridging-Header.h */,
+				1B7B104A240604020018DB18 /* TVSearch.swift */,
+				1B7B1053240615DA0018DB18 /* MovieSearch.swift */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		1B7FF3FB24048024001457CE /* TheTVDB3 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1614,6 +1693,7 @@
 		1BEA6E68106EF248004B1A7F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				1B7B1043240604020018DB18 /* TheMovieDbNG */,
 				1B7FF3FB24048024001457CE /* TheTVDB3 */,
 				1B492F901F654FC800A2FD3F /* AppleScript */,
 				1B31858B1841E7A8001EDE79 /* OSXNotification */,
@@ -1863,6 +1943,25 @@
 			productReference = 1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzsearchprovider */;
 			productType = "com.apple.product-type.bundle";
 		};
+		1B7B1032240603930018DB18 /* TheMovieDbNG */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B7B103D240603930018DB18 /* Build configuration list for PBXNativeTarget "TheMovieDbNG" */;
+			buildPhases = (
+				1B7B1037240603930018DB18 /* Resources */,
+				1B7B1038240603930018DB18 /* Sources */,
+				1B7B103B240603930018DB18 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1B7B1033240603930018DB18 /* PBXTargetDependency */,
+				1B7B1035240603930018DB18 /* PBXTargetDependency */,
+			);
+			name = TheMovieDbNG;
+			productName = TheMovieDb;
+			productReference = 1B7B1041240603930018DB18 /* TheMovieDbNG.mzsearchprovider */;
+			productType = "com.apple.product-type.bundle";
+		};
 		1B7FF3E324047EE3001457CE /* TheTVDB3 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B7FF3EF24047EE3001457CE /* Build configuration list for PBXNativeTarget "TheTVDB3" */;
@@ -1976,6 +2075,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1B7B1051240605780018DB18 /* PBXTargetDependency */,
 				1B7FF3F624047F16001457CE /* PBXTargetDependency */,
 				1B3185B71841EAF5001EDE79 /* PBXTargetDependency */,
 				1BA325CC10545BAE00276F57 /* PBXTargetDependency */,
@@ -2046,6 +2146,7 @@
 				1BD562061648F17C00F9C579 /* AlertWindowPlugin */,
 				1B3185A01841E9D6001EDE79 /* OSXNotificationPlugin */,
 				1B7FF3E324047EE3001457CE /* TheTVDB3 */,
+				1B7B1032240603930018DB18 /* TheMovieDbNG */,
 			);
 		};
 /* End PBXProject section */
@@ -2070,6 +2171,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B4AF84511715C8400E5C969 /* languages.xml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B7B1037240603930018DB18 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B0E593424071D6900534F2F /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2307,6 +2416,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1B7B1038240603930018DB18 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B7B104E240604020018DB18 /* Plugin.swift in Sources */,
+				1B7B1054240615DA0018DB18 /* MovieSearch.swift in Sources */,
+				1B7B104F240604020018DB18 /* TVSearch.swift in Sources */,
+				1B7B104C240604020018DB18 /* Configuration.swift in Sources */,
+				1B7B104D240604020018DB18 /* JSON.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1B7FF3EA24047EE3001457CE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2526,6 +2647,21 @@
 			isa = PBXTargetDependency;
 			target = 1B4F53B3116E9F44003221B1 /* TheTVDB */;
 			targetProxy = 1B4F53D1116EA0B7003221B1 /* PBXContainerItemProxy */;
+		};
+		1B7B1033240603930018DB18 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			targetProxy = 1B7B1034240603930018DB18 /* PBXContainerItemProxy */;
+		};
+		1B7B1035240603930018DB18 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B2022F810B393CA00EE548A /* Plist Marcos */;
+			targetProxy = 1B7B1036240603930018DB18 /* PBXContainerItemProxy */;
+		};
+		1B7B1051240605780018DB18 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B7B1032240603930018DB18 /* TheMovieDbNG */;
+			targetProxy = 1B7B1050240605780018DB18 /* PBXContainerItemProxy */;
 		};
 		1B7FF3E424047EE3001457CE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3113,6 +3249,92 @@
 				PRODUCT_NAME = TheTVDBPlugin;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
+				WRAPPER_EXTENSION = mzsearchprovider;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		1B7B103E240603930018DB18 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/TheMovieDbNG/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
+				WRAPPER_EXTENSION = mzsearchprovider;
+			};
+			name = Debug;
+		};
+		1B7B103F240603930018DB18 /* Remote Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/TheMovieDbNG/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
+				WRAPPER_EXTENSION = mzsearchprovider;
+			};
+			name = "Remote Debug";
+		};
+		1B7B1040240603930018DB18 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/TheMovieDbNG/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 				ZERO_LINK = NO;
 			};
@@ -3722,6 +3944,16 @@
 				1B4F53C6116E9F44003221B1 /* Debug */,
 				1B4F53C7116E9F44003221B1 /* Remote Debug */,
 				1B4F53C8116E9F44003221B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1B7B103D240603930018DB18 /* Build configuration list for PBXNativeTarget "TheMovieDbNG" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B7B103E240603930018DB18 /* Debug */,
+				1B7B103F240603930018DB18 /* Remote Debug */,
+				1B7B1040240603930018DB18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
