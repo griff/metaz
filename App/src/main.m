@@ -78,7 +78,7 @@ int main(int argc, const char *argv[])
                 if(whenDone == 4 || whenDone == 5)
                     [enabled addObject:@"Quit MetaZ"];
                 if(whenDone == 2 || whenDone == 3 || whenDone == 5)
-                    [enabled addObject:@"org.maven-group.metaz.plugin.GrowlPlugin"];
+                    [enabled addObject:@"org.maven-group.metaz.plugin.OSXNotificationPlugin"];
                 [[NSUserDefaults standardUserDefaults] setObject:enabled forKey:@"enabledActionPlugins"];
             }
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"whenDoneAction"];
@@ -96,20 +96,17 @@ int main(int argc, const char *argv[])
         [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"version"];
     }
 
-    if(version == 2)
+    if(version == 2 || version == 3)
     {
-        if([[MZVersion systemVersion] isGreaterThanOrEqualTo:[MZVersion versionWithString:@"10.8"]])
+        NSArray* actions = [[NSUserDefaults standardUserDefaults] arrayForKey:@"enabledActionPlugins"];
+        if([actions indexOfObject:@"org.maven-group.metaz.plugin.GrowlPlugin"] != NSNotFound)
         {
-            NSArray* actions = [[NSUserDefaults standardUserDefaults] arrayForKey:@"enabledActionPlugins"];
-            if([actions indexOfObject:@"org.maven-group.metaz.plugin.GrowlPlugin"] != NSNotFound)
-            {
-                NSMutableArray* enabled = [NSMutableArray arrayWithArray:actions];
-                [enabled removeObject:@"org.maven-group.metaz.plugin.GrowlPlugin"];
-                [enabled addObject:@"org.maven-group.metaz.plugin.OSXNotificationPlugin"];
-                [[NSUserDefaults standardUserDefaults] setObject:enabled forKey:@"enabledActionPlugins"];
-            }
+            NSMutableArray* enabled = [NSMutableArray arrayWithArray:actions];
+            [enabled removeObject:@"org.maven-group.metaz.plugin.GrowlPlugin"];
+            [enabled addObject:@"org.maven-group.metaz.plugin.OSXNotificationPlugin"];
+            [[NSUserDefaults standardUserDefaults] setObject:enabled forKey:@"enabledActionPlugins"];
         }
-        version = 3;
+        version = 4;
         [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"version"];
     }
 
