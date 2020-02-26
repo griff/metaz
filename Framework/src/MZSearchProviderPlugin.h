@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <MetaZKit/MZPlugin.h>
 #import <MetaZKit/MZSearchResult.h>
+#import <MetaZKit/MZTag.h>
 
 @class MZSearchProviderPlugin;
 
@@ -27,8 +28,8 @@
 }
 
 - (NSImage *)icon;
-- (NSArray *)supportedSearchTags;
-- (BOOL)searchWithData:(NSDictionary *)data
+- (NSArray<MZTag *> *)supportedSearchTags;
+- (BOOL)searchWithData:(NSDictionary<NSString*, id> *)data
               delegate:(id<MZSearchProviderDelegate>)delegate
                  queue:(NSOperationQueue *)queue;
 - (NSMenu *)menuForResult:(MZSearchResult *)result;

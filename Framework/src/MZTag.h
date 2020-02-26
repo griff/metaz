@@ -20,6 +20,7 @@
 + (NSArray *)allKnownTags;
 + (NSString *)localizedNameForKnownIdentifier:(NSString *)identifier;
 + (void)registerTag:(MZTag *)tag;
++ (MZTag *)lookupWithIdentifier: (NSString *)identifier;
 + (id)tagForIdentifier:(NSString *)identifier;
 + (MZTag *)tagForScriptName:(NSString *)scriptName;
 

@@ -118,7 +118,7 @@ static NSMutableDictionary *sharedTagScriptNames = nil;
     }
 }
 
-+ (MZTag *)tagForIdentifier:(NSString *)identifier
++ (MZTag *)lookupWithIdentifier: (NSString *)identifier
 {
     MZTag *ret = nil;
     @synchronized(self)
@@ -127,6 +127,11 @@ static NSMutableDictionary *sharedTagScriptNames = nil;
             ret = [sharedTags objectForKey:identifier];
     }
     return ret;
+}
+
++ (MZTag *)tagForIdentifier:(NSString *)identifier
+{
+    return [MZTag lookupWithIdentifier:identifier];
 }
 
 + (MZTag *)tagForScriptName:(NSString *)scriptName

@@ -8,7 +8,6 @@
 
 #import "PicturesArrayController.h"
 
-
 @implementation PicturesArrayController
 
 - (BOOL)canApply:(id)data;
@@ -16,7 +15,7 @@
     if([[data objectForKey:MZPictureTagIdent] isKindOfClass:[NSArray class]])
     {
         id picture = [self valueForKeyPath:@"selection.self"];
-        if([picture isKindOfClass:[MZRemoteData class]])
+        if([picture isKindOfClass:[RemoteData class]])
         {
             if(![picture isLoaded])
                 return NO;
@@ -30,7 +29,7 @@
     if([[data objectForKey:MZPictureTagIdent] isKindOfClass:[NSArray class]])
     {
         id picture = [self valueForKeyPath:@"selection.self"];
-        if([picture isKindOfClass:[MZRemoteData class]])
+        if([picture isKindOfClass:[RemoteData class]])
             picture = [picture data];
         if(picture)
             [edit setterValue:picture forKey:MZPictureTagIdent];

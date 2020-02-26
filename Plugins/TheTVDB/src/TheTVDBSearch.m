@@ -9,7 +9,7 @@
 #import "TheTVDBSearch.h"
 #import "Access.h"
 #import "TheTVDBPlugin.h"
-
+#import <MetaZKit/MetaZKit-Swift.h>
 
 @implementation TheTVDBSearch
 
@@ -223,8 +223,9 @@
             bannerMirror,
             path];
         
-        MZRemoteData* data = [MZRemoteData imageDataWithURL:[NSURL URLWithString:bannerUrl]];
-        data.userInfo = [NSNumber numberWithFloat:rating];
+        RemoteData* data = [[[RemoteData alloc] initWithImageUrl: [NSURL URLWithString:bannerUrl]] autorelease];
+        //MZRemoteData* data = [MZRemoteData imageDataWithURL:[NSURL URLWithString:bannerUrl]];
+        data.userInfo = [NSString stringWithFormat:@"%f", rating];
         [banners addObject:data];
         [data loadData];
     }

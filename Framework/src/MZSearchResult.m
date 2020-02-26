@@ -72,6 +72,24 @@
     return [self valueForKey:@"title"];
 }
 
+- (NSString *)sortKey
+{
+    NSNumber* type = [self valueForKey:MZVideoTypeTagIdent];
+    if (type != nil && [type intValue] == MZTVShowVideoType) {
+        NSString* showName = [self valueForKey:MZTVShowTagIdent];
+        NSNumber* season = [self valueForKey:MZTVSeasonTagIdent];
+        NSNumber* episode = [self valueForKey:MZTVEpisodeTagIdent];
+        if (showName != nil && season != nil && episode != nil) {
+            return [NSString stringWithFormat:@"%@ - s%04de%04d - %@",
+                    showName,
+                    [season intValue],
+                    [episode intValue],
+                    [self searchResultTitle]];
+        }
+    }
+    return [self searchResultTitle];
+}
+
 -(id)getterValueForKey:(NSString *)aKey
 {
     id ret = [values objectForKey:aKey];

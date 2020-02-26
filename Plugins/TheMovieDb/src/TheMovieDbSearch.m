@@ -10,6 +10,7 @@
 #import <MetaZKit/MZLogger.h>
 #import "Access.h"
 #import "TheMovieDbPlugin.h"
+#import <MetaZKit/MetaZKit-Swift.h>
 
 @implementation TheMovieDbSearch
 
@@ -305,7 +306,8 @@
             {
                 NSString* path = [poster objectForKey:@"file_path"];
                 NSString* url = [NSString stringWithFormat:@"%@%@%@", imageBaseURL, @"original", path];
-                MZRemoteData* data = [MZRemoteData imageDataWithURL:[NSURL URLWithString:url]];
+                RemoteData* data = [[[RemoteData alloc] initWithImageUrl: [NSURL URLWithString:url]] autorelease];
+                //MZRemoteData* data = [MZRemoteData imageDataWithURL:[NSURL URLWithString:url]];
                 [images addObject:data];
                 [data loadData];
             }

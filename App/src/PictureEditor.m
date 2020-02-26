@@ -32,9 +32,9 @@
 
 - (void)dealloc
 {
-    if([picture isKindOfClass:[MZRemoteData class]])
+    if([picture isKindOfClass:[RemoteData class]])
     {
-        MZRemoteData* remote = picture;
+        RemoteData* remote = picture;
         if(!remote.isLoaded)
             [remote gtm_removeObserver:self forKeyPath:@"isLoaded" selector:@selector(pictureIsLoaded:)];
     }
@@ -72,9 +72,9 @@
 
 - (NSData *)data
 {
-    if([picture isKindOfClass:[MZRemoteData class]])
+    if([picture isKindOfClass:[RemoteData class]])
     {
-        MZRemoteData* remote = picture;
+        RemoteData* remote = picture;
         if(!remote.isLoaded)
             return nil;
         return remote.data;
@@ -92,7 +92,7 @@
 
 - (void)updateRemoteData
 {
-    MZRemoteData* remote = self.picture;
+    RemoteData* remote = self.picture;
     if(remote.isLoaded)
     {
         [indicator stopAnimation:self];
@@ -116,7 +116,7 @@
 {
     id status = [picturesController protectedValueForKeyPath:@"selection.self"];
     self.picture = status;
-    if([status isKindOfClass:[MZRemoteData class]])
+    if([status isKindOfClass:[RemoteData class]])
         return;
     if(status == NSMultipleValuesMarker)
         [posterView setStatus:MZMultiplePosterImage];
@@ -151,9 +151,9 @@
 
 - (BOOL)dataChangedEditable
 {
-    if([picture isKindOfClass:[MZRemoteData class]])
+    if([picture isKindOfClass:[RemoteData class]])
     {
-        MZRemoteData* remote = picture;
+        RemoteData* remote = picture;
         return remote.isLoaded && remote.error == nil;
     }
     id changed = [self.observerFix valueForKeyPath:@"selection.pictureChanged"];
@@ -164,9 +164,9 @@
 
 - (void)setDataChanged:(NSNumber*)newValue
 {
-    if([picture isKindOfClass:[MZRemoteData class]])
+    if([picture isKindOfClass:[RemoteData class]])
     {
-        MZRemoteData* remote = picture;
+        RemoteData* remote = picture;
         if(!remote.isLoaded)
             return;
         [filesController setValue:remote.data forKeyPath:@"selection.picture"];
@@ -177,9 +177,9 @@
 
 - (NSNumber*)dataChanged
 {
-    if([picture isKindOfClass:[MZRemoteData class]])
+    if([picture isKindOfClass:[RemoteData class]])
     {
-        MZRemoteData* remote = picture;
+        RemoteData* remote = picture;
         if(!remote.isLoaded || remote.error != nil)
             return NSNotApplicableMarker;
     }
@@ -195,9 +195,9 @@
 - (void)setPicture:(id)newPicture
 {
     [self willChangeValueForKey:@"data"];
-    if([picture isKindOfClass:[MZRemoteData class]])
+    if([picture isKindOfClass:[RemoteData class]])
     {
-        MZRemoteData* remote = picture;
+        RemoteData* remote = picture;
         if(!remote.isLoaded)
         {
             [indicator stopAnimation:self];
@@ -209,9 +209,9 @@
     id oldPicture = picture;
     picture = [newPicture retain];
     [oldPicture release];
-    if([picture isKindOfClass:[MZRemoteData class]])
+    if([picture isKindOfClass:[RemoteData class]])
     {
-        MZRemoteData* remote = picture;
+        RemoteData* remote = picture;
         if(!remote.isLoaded)
         {
             [remote gtm_addObserver:self forKeyPath:@"isLoaded" selector:@selector(pictureIsLoaded:) userInfo:nil options:0];
@@ -236,9 +236,9 @@
 
 - (IBAction)retryLoad:(id)sender
 {
-    if([picture isKindOfClass:[MZRemoteData class]])
+    if([picture isKindOfClass:[RemoteData class]])
     {
-        MZRemoteData* remote = picture;
+        RemoteData* remote = picture;
         if(remote.isLoaded && remote.error != nil)
         {
             [indicator setHidden:NO];
