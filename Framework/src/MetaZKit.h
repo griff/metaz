@@ -6,11 +6,11 @@
 //  Copyright 2009 Maven-Group. All rights reserved.
 //
 
+#import <Cocoa/Cocoa.h>
 #import <MetaZKit/MetaData.h>
 #import <MetaZKit/TagData.h>
 #import <MetaZKit/MetaEdits.h>
 #import <MetaZKit/MetaLoaded.h>
-#import <MetaZKit/MZASISearch.h>
 #import <MetaZKit/MZTag.h>
 #import <MetaZKit/MZConstants.h>
 #import <MetaZKit/MZDataProviderPlugin.h>
@@ -23,7 +23,7 @@
 #import <MetaZKit/MZTimeCode.h>
 #import <MetaZKit/MZTimedTextItem.h>
 #import <MetaZKit/MetaEditsUndoManager.h>
-#import <MetaZKit/MZRemoteData.h>
+//#import <MetaZKit/MZRemoteData.h>
 #import <MetaZKit/MZPriorObserverFix.h>
 #import <MetaZKit/MZMethodData.h>
 #import <MetaZKit/MZDynamicObject.h>

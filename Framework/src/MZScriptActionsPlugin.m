@@ -12,7 +12,6 @@
 #import "AEVTBuilder.h"
 #import "MetaEdits.h"
 #import "MZLogger.h"
-#import "MZPlugin+Private.h"
 
 enum {
     keyMZStarted   = 'star',

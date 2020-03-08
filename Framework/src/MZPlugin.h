@@ -143,5 +143,11 @@
  */
 - (void)setPreferencesView:(NSView *)view;
 
+- (MZPlugin *)initWithBundle:(NSBundle *)theBundle;
+- (MZPlugin *)init;
+- (BOOL)isBuiltIn;
+- (BOOL)canUnload;
+- (BOOL)unload;
+
 //@}
 @end

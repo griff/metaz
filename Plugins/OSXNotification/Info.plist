@@ -2,29 +2,31 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>BuildDate</key>
-	<string>BUILDDATE</string>
-	<key>BuildId</key>
-	<string>BUILDID</string>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>BNDL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>RELEASE</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>BUILDVERSION</string>
-	<key>LSMinimumSystemVersion</key>
-	<string>10.8</string>
+	<key>BuildDate</key>
+	<string>BUILDDATE</string>
+	<key>BuildId</key>
+	<string>BUILDID</string>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
 	<key>NSPrincipalClass</key>
 	<string>OSXNotificationPlugin</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.8</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleShortVersionString</key>
+	<string>RELEASE</string>
+	<key>CFBundleDisplayName</key>
+	<string>Show macOS Notification</string>
 </dict>
 </plist>

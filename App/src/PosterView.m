@@ -178,6 +178,21 @@
     [super keyDown:theEvent];
 }
 
+- (BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+    SEL action = [menuItem action];
+    if(action == @selector(delete:)
+       || action == @selector(cut:)
+       || action == @selector(copy:))
+    {
+        if([self image] == [NSImage imageNamed:MZFadedIcon] ||
+           [self image] == [NSImage imageNamed:MZFadedIconError])
+        {
+            return NO;
+        }
+    }
+    return [super validateMenuItem:menuItem];
+}
+
 - (NSDragOperation)draggingEntered:(id < NSDraggingInfo >)sender
 {
     if(![self isEnabled])

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0830"
+   LastUpgradeVersion = "1010"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1B4F53B3116E9F44003221B1"
-               BuildableName = "TheTVDBPlugin.mzsearchprovider"
+               BuildableName = "TheTVDB.mzsearchprovider"
                BlueprintName = "TheTVDB"
                ReferencedContainer = "container:MetaZ.xcodeproj">
             </BuildableReference>
@@ -29,6 +29,8 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -44,11 +46,13 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1B4F53B3116E9F44003221B1"
-            BuildableName = "TheTVDBPlugin.mzsearchprovider"
+            BuildableName = "TheTVDB.mzsearchprovider"
             BlueprintName = "TheTVDB"
             ReferencedContainer = "container:MetaZ.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

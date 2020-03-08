@@ -26,5 +26,6 @@
 - (id)getterValueForKey:(NSString *)aKey;
 
 - (NSMenu *)menu;
+- (NSString *)sortKey;
 
 @end

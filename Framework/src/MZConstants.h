@@ -1,10 +1,6 @@
 #ifndef MZKIT_EXTERN
 
-#ifdef __cplusplus
-#define MZKIT_EXTERN		extern "C"
-#else
-#define MZKIT_EXTERN		extern
-#endif
+#define MZKIT_EXTERN        extern
 
 typedef enum
 {
@@ -135,7 +131,7 @@ typedef enum
 } MZRating;
 
 // Info
-MZKIT_EXTERN NSString* const MZFileNameTagIdent;
+extern NSString* const MZFileNameTagIdent;
 MZKIT_EXTERN NSString* const MZPictureTagIdent;
 MZKIT_EXTERN NSString* const MZTitleTagIdent;
 MZKIT_EXTERN NSString* const MZArtistTagIdent;

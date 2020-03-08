@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0830"
+   LastUpgradeVersion = "1010"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1BD55F8D1648BB4200F9C579"
-               BuildableName = "GrowlPlugin.mzactions"
-               BlueprintName = "GrowlPlugin"
+               BlueprintIdentifier = "1B7B1032240603930018DB18"
+               BuildableName = "TheMovieDbNG.mzsearchprovider"
+               BlueprintName = "TheMovieDbNG"
                ReferencedContainer = "container:MetaZ.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,6 +29,8 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -43,12 +45,14 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1BD55F8D1648BB4200F9C579"
-            BuildableName = "GrowlPlugin.mzactions"
-            BlueprintName = "GrowlPlugin"
+            BlueprintIdentifier = "1B7B1032240603930018DB18"
+            BuildableName = "TheMovieDbNG.mzsearchprovider"
+            BlueprintName = "TheMovieDbNG"
             ReferencedContainer = "container:MetaZ.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -56,6 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "1B7B1032240603930018DB18"
+            BuildableName = "TheMovieDbNG.mzsearchprovider"
+            BlueprintName = "TheMovieDbNG"
+            ReferencedContainer = "container:MetaZ.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

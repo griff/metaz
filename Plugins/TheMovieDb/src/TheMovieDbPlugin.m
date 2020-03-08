@@ -58,6 +58,7 @@
 - (void)view:(id)sender
 {
     MZSearchResult* result = [sender representedObject];
+    
     NSString* str = [[result valueForKey:TMDbURLTagIdent] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL* url = [NSURL URLWithString:str];
     [[NSWorkspace sharedWorkspace] openURL:url];

@@ -7,7 +7,6 @@
 //
 
 #import "MZActionsPlugin.h"
-#import "MZPlugin+Private.h"
 
 #define ENABLED_ACTIONS_KEY @"enabledActionPlugins"
 

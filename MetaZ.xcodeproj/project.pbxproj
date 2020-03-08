@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -57,6 +57,7 @@
 		1B0DEEC1106139E8009D293F /* ZoomActualSize.tif in Resources */ = {isa = PBXBuildFile; fileRef = 1B0DEEBB106139E8009D293F /* ZoomActualSize.tif */; };
 		1B0DEEC2106139E8009D293F /* ZoomIn.tif in Resources */ = {isa = PBXBuildFile; fileRef = 1B0DEEBC106139E8009D293F /* ZoomIn.tif */; };
 		1B0DEEC3106139E8009D293F /* ZoomOut.tif in Resources */ = {isa = PBXBuildFile; fileRef = 1B0DEEBD106139E8009D293F /* ZoomOut.tif */; };
+		1B0E593424071D6900534F2F /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0E593224071D6900534F2F /* logo.png */; };
 		1B0F08A31F632A2D00032E83 /* GTMLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B0F089D1F632A2D00032E83 /* GTMLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B0F08A41F632A2D00032E83 /* GTMLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0F089E1F632A2D00032E83 /* GTMLogger.m */; };
 		1B0F08A51F632A2D00032E83 /* GTMNSObject+KeyValueObserving.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B0F089F1F632A2D00032E83 /* GTMNSObject+KeyValueObserving.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -73,6 +74,7 @@
 		1B26B8FB164B264400238517 /* MZTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26B8FA164B264400238517 /* MZTextField.m */; };
 		1B26BA8B164B687B00238517 /* MZComboBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26BA8A164B687B00238517 /* MZComboBox.m */; };
 		1B26BAC3164C3BA400238517 /* FilesArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B26BAC2164C3BA400238517 /* FilesArrayController.m */; };
+		1B27653A240B5F2900723C13 /* Data+Base64URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B276539240B5F2900723C13 /* Data+Base64URL.swift */; };
 		1B299D7314AE43900048B7C0 /* TheMovieDbSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B299D7214AE43900048B7C0 /* TheMovieDbSearch.m */; };
 		1B299DB714AE4D3A0048B7C0 /* TheMovieDb.mzsearchprovider in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B8CB90B14ACD62000F859F7 /* TheMovieDb.mzsearchprovider */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1B2AEED611A0EC430074BAAD /* MZFileNameTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AEED511A0EC430074BAAD /* MZFileNameTextStorage.m */; };
@@ -80,7 +82,7 @@
 		1B3185881841E167001EDE79 /* NSData+MZCleanUTF8.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3185861841E167001EDE79 /* NSData+MZCleanUTF8.m */; };
 		1B31858A1841E2B0001EDE79 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B3185891841E2B0001EDE79 /* libiconv.dylib */; };
 		1B3185AA1841E9D6001EDE79 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
-		1B3185B81841EB18001EDE79 /* OSXNotificationPlugin.mzactions in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B3185B21841E9D6001EDE79 /* OSXNotificationPlugin.mzactions */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		1B3185B81841EB18001EDE79 /* OSXNotification.mzactions in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B3185B21841E9D6001EDE79 /* OSXNotification.mzactions */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1B3185BB1841EB4A001EDE79 /* OSXNotificationPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3185BA1841EB4A001EDE79 /* OSXNotificationPlugin.m */; };
 		1B3185BE1841F5A1001EDE79 /* MZVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3185BC1841F5A1001EDE79 /* MZVersion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B3185BF1841F5A1001EDE79 /* MZVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3185BD1841F5A1001EDE79 /* MZVersion.m */; };
@@ -91,8 +93,6 @@
 		1B3544E815B2160F0033DD74 /* MetaZApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3544E715B2160F0033DD74 /* MetaZApplication.m */; };
 		1B35453115B223BB0033DD74 /* MZMetaDataDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B35453015B223BB0033DD74 /* MZMetaDataDocument.m */; };
 		1B36E75E1406612F009F542A /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B523B4D13F4B2B500C20B7D /* ASIDataCompressor.m */; };
-		1B36E78C14066727009F542A /* MZASISearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B36E78A14066727009F542A /* MZASISearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1B36E78D14066727009F542A /* MZASISearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B36E78B14066727009F542A /* MZASISearch.m */; };
 		1B38FCDA1673F7E500C171F9 /* NSString+MimeTypePattern.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B38FCD81673F7E500C171F9 /* NSString+MimeTypePattern.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B38FCDB1673F7E500C171F9 /* NSString+MimeTypePattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B38FCD91673F7E500C171F9 /* NSString+MimeTypePattern.m */; settings = {COMPILER_FLAGS = "-Wno-comment"; }; };
 		1B3AD7D811057E9200B33F85 /* MZErrorOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3AD7D611057E9200B33F85 /* MZErrorOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -116,7 +116,7 @@
 		1B4C1F4116554B0600011621 /* MZHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4C1F3D1655490D00011621 /* MZHTTPRequest.m */; };
 		1B4CFFE8161CE0ED00B12009 /* AEVTBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4CFF90161CDF0100B12009 /* AEVTBuilder.m */; };
 		1B4F53C4116E9F44003221B1 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
-		1B4F53D8116EA0BE003221B1 /* TheTVDBPlugin.mzsearchprovider in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzsearchprovider */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		1B4F53D8116EA0BE003221B1 /* TheTVDB.mzsearchprovider in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B4F53C9116E9F44003221B1 /* TheTVDB.mzsearchprovider */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1B4F53DF116EA1B5003221B1 /* TheTVDBPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F53DE116EA1B5003221B1 /* TheTVDBPlugin.m */; };
 		1B523C0F13F4B3F500C20B7D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B523B8813F4B39400C20B7D /* SystemConfiguration.framework */; };
 		1B523C1413FDCC9600C20B7D /* ASIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B523B5413F4B2B500C20B7D /* ASIHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -136,8 +136,28 @@
 		1B6E43CB108468B100DFE165 /* MZSearchResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6E43C9108468B100DFE165 /* MZSearchResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B6E43CC108468B100DFE165 /* MZSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E43CA108468B100DFE165 /* MZSearchResult.m */; };
 		1B6E43DD10846DBC00DFE165 /* TagData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6E43D610846BDA00DFE165 /* TagData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B7B103C240603930018DB18 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
+		1B7B104C240604020018DB18 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B1046240604020018DB18 /* Configuration.swift */; };
+		1B7B104D240604020018DB18 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B1047240604020018DB18 /* JSON.swift */; };
+		1B7B104E240604020018DB18 /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B1048240604020018DB18 /* Plugin.swift */; };
+		1B7B104F240604020018DB18 /* TVSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B104A240604020018DB18 /* TVSearch.swift */; };
+		1B7B1052240605820018DB18 /* TheMovieDbNG.mzsearchprovider in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B7B1041240603930018DB18 /* TheMovieDbNG.mzsearchprovider */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1B7B1054240615DA0018DB18 /* MovieSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B1053240615DA0018DB18 /* MovieSearch.swift */; };
 		1B7B529D149EA26300BF37DD /* EnsureArrayTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B529C149EA26300BF37DD /* EnsureArrayTransformer.m */; };
 		1B7B53F514A029FA00BF37DD /* MZMultipleDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B53F414A029FA00BF37DD /* MZMultipleDateFormatter.m */; };
+		1B7FF3DE24047DE4001457CE /* RemoteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7FF3D924047DE4001457CE /* RemoteData.swift */; };
+		1B7FF3DF24047DE5001457CE /* Array-safe-get.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7FF3DA24047DE4001457CE /* Array-safe-get.swift */; };
+		1B7FF3E024047DE5001457CE /* URLSession-dataSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7FF3DB24047DE4001457CE /* URLSession-dataSync.swift */; };
+		1B7FF3E124047DE5001457CE /* SearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7FF3DC24047DE4001457CE /* SearchDelegate.swift */; };
+		1B7FF3E224047DE5001457CE /* String-matches-mimetype-pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7FF3DD24047DE4001457CE /* String-matches-mimetype-pattern.swift */; };
+		1B7FF3EE24047EE3001457CE /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
+		1B7FF3F724047F27001457CE /* TheTVDB3.mzsearchprovider in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B7FF3F324047EE3001457CE /* TheTVDB3.mzsearchprovider */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1B7FF40624048024001457CE /* logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B7FF3FE24048024001457CE /* logo2.png */; };
+		1B7FF40724048024001457CE /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7FF40024048024001457CE /* JSON.swift */; };
+		1B7FF40824048024001457CE /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7FF40124048024001457CE /* Plugin.swift */; };
+		1B7FF40924048024001457CE /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7FF40224048024001457CE /* Search.swift */; };
+		1B7FF40A24048024001457CE /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7FF40424048024001457CE /* Token.swift */; };
+		1B7FF40C24059A43001457CE /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7FF40B24059A43001457CE /* Search.swift */; };
 		1B82647410B3C25000DF101B /* MetaEditsUndoManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B82647210B3C25000DF101B /* MetaEditsUndoManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B82647510B3C25000DF101B /* MetaEditsUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */; };
 		1B89050A163F6E48008C5C8B /* MZGetCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B890509163F6E48008C5C8B /* MZGetCommand.m */; };
@@ -200,8 +220,6 @@
 		1BCECD8910E39AE200D0AD35 /* MZLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BCECD8710E39AE200D0AD35 /* MZLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BCECD8A10E39AE200D0AD35 /* MZLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCECD8810E39AE200D0AD35 /* MZLogger.m */; };
 		1BCECEC510E98E4200D0AD35 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 1BCECEC410E98E4200D0AD35 /* Credits.html */; };
-		1BD3D2BB108CC5D700BE6943 /* MZRemoteData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD3D2B9108CC5D700BE6943 /* MZRemoteData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1BD3D2BC108CC5D700BE6943 /* MZRemoteData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD3D2BA108CC5D700BE6943 /* MZRemoteData.m */; };
 		1BD3D311108DD03E00BE6943 /* PictureEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD3D310108DD03E00BE6943 /* PictureEditor.m */; };
 		1BD55BED16482D7600F9C579 /* Return iTunes selected.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 1B63A36616458A1C00461FC9 /* Return iTunes selected.applescript */; };
 		1BD55C5E16483F5E00F9C579 /* MZActionsPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD55C5C16483F5E00F9C579 /* MZActionsPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -212,7 +230,7 @@
 		1BD55C671648466700F9C579 /* NSError+MZScriptError.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD55C651648466700F9C579 /* NSError+MZScriptError.m */; };
 		1BD562111648F18900F9C579 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1BD5622F1648F2B200F9C579 /* AlertWindowPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD5622E1648F2B200F9C579 /* AlertWindowPlugin.m */; };
-		1BD562471648F43A00F9C579 /* AlertWindowPlugin.mzactions in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1BD562071648F17C00F9C579 /* AlertWindowPlugin.mzactions */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		1BD562471648F43A00F9C579 /* AlertWindow.mzactions in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1BD562071648F17C00F9C579 /* AlertWindow.mzactions */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1BD6E752105DADCC00E40151 /* AddToQueue.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74D105DADCC00E40151 /* AddToQueue.tiff */; };
 		1BD6E753105DADCC00E40151 /* Pause.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74E105DADCC00E40151 /* Pause.tiff */; };
 		1BD6E754105DADCC00E40151 /* Play.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74F105DADCC00E40151 /* Play.tiff */; };
@@ -230,7 +248,7 @@
 		1BEA6DDD106ED8E4004B1A7F /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6DDC106ED8E4004B1A7F /* PreferencesWindowController.m */; };
 		1BEA6E91106EF534004B1A7F /* AtomicParsleyPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6E90106EF534004B1A7F /* AtomicParsleyPlugin.m */; };
 		1BEA6E97106EF662004B1A7F /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
-		1BEA6F33106EF6FC004B1A7F /* AtomicParsleyPlugin.mzdataprovider in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1BEA6E72106EF2A0004B1A7F /* AtomicParsleyPlugin.mzdataprovider */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		1BEA6F33106EF6FC004B1A7F /* AtomicParsley.mzdataprovider in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1BEA6E72106EF2A0004B1A7F /* AtomicParsley.mzdataprovider */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1BEA6F9A106EFC3F004B1A7F /* MetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B119FCA104304C5004C93D3 /* MetaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA6F9B106EFC3F004B1A7F /* MetaEdits.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B119FC7104300ED004C93D3 /* MetaEdits.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA6F9C106EFC3F004B1A7F /* MetaEdits.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119FC8104300ED004C93D3 /* MetaEdits.m */; };
@@ -251,13 +269,13 @@
 		1BEA6FAE106EFC3F004B1A7F /* MZPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6C2B106E613C004B1A7F /* MZPlugin.m */; };
 		1BEA6FAF106EFC3F004B1A7F /* MZPluginController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BEA6DAC106EC632004B1A7F /* MZPluginController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA6FB0106EFC3F004B1A7F /* MZPluginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6DAD106EC632004B1A7F /* MZPluginController.m */; };
-		1BEA6FB1106EFC3F004B1A7F /* MZPlugin+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BEA6E48106EEF34004B1A7F /* MZPlugin+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		1BEA718F10712A17004B1A7F /* NSArray+Mapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BEA718D10712A17004B1A7F /* NSArray+Mapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA719010712A17004B1A7F /* NSArray+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA718E10712A17004B1A7F /* NSArray+Mapping.m */; };
 		1BEA71BF10716B90004B1A7F /* APWriteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA71BE10716B90004B1A7F /* APWriteManager.m */; };
 		1BEA71D110717785004B1A7F /* MZWriteQueueStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA71D010717785004B1A7F /* MZWriteQueueStatus.m */; };
 		1BF5AD4B105DFC92005DD03E /* QueueWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5AD4A105DFC92005DD03E /* QueueWindowController.m */; };
 		1BF5ADBD105E0B8E005DD03E /* FileViewBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5ADBC105E0B8E005DD03E /* FileViewBox.m */; };
+		1BFA198F240CAAEA002D3E48 /* Normalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA198E240CAAEA002D3E48 /* Normalize.swift */; };
 		1BFEDE0018349138008A17D3 /* PosterBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BFEDDFD18349138008A17D3 /* PosterBackground.png */; };
 		1BFEDE0118349138008A17D3 /* PosterBackgroundError.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BFEDDFE18349138008A17D3 /* PosterBackgroundError.png */; };
 		1BFEDE0218349138008A17D3 /* PosterBackgroundMultiple.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BFEDDFF18349138008A17D3 /* PosterBackgroundMultiple.png */; };
@@ -337,6 +355,48 @@
 			remoteGlobalIDString = 1B4F53B3116E9F44003221B1;
 			remoteInfo = TheTVDB;
 		};
+		1B7B1034240603930018DB18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1BA325C310545ACA00276F57;
+			remoteInfo = MetaZKit;
+		};
+		1B7B1036240603930018DB18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B2022F810B393CA00EE548A;
+			remoteInfo = "Plist Marcos";
+		};
+		1B7B1050240605780018DB18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B7B1032240603930018DB18;
+			remoteInfo = TheMovieDbNG;
+		};
+		1B7FF3E524047EE3001457CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B2022F810B393CA00EE548A;
+			remoteInfo = "Plist Marcos";
+		};
+		1B7FF3E724047EE3001457CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1BA325C310545ACA00276F57;
+			remoteInfo = MetaZKit;
+		};
+		1B7FF3F524047F16001457CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B7FF3E324047EE3001457CE;
+			remoteInfo = TheTVDB3;
+		};
 		1B8CB91114ACD63100F859F7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -413,14 +473,16 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				1B7B1052240605820018DB18 /* TheMovieDbNG.mzsearchprovider in Copy Plugins */,
+				1B7FF3F724047F27001457CE /* TheTVDB3.mzsearchprovider in Copy Plugins */,
 				1B492FA91F65537800A2FD3F /* Add to iTunes.scpt in Copy Plugins */,
 				1B492FAB1F65537800A2FD3F /* Quit MetaZ.scpt in Copy Plugins */,
 				1B492FAC1F65537800A2FD3F /* Update iTunes.scpt in Copy Plugins */,
-				1B3185B81841EB18001EDE79 /* OSXNotificationPlugin.mzactions in Copy Plugins */,
-				1BD562471648F43A00F9C579 /* AlertWindowPlugin.mzactions in Copy Plugins */,
+				1B3185B81841EB18001EDE79 /* OSXNotification.mzactions in Copy Plugins */,
+				1BD562471648F43A00F9C579 /* AlertWindow.mzactions in Copy Plugins */,
 				1B299DB714AE4D3A0048B7C0 /* TheMovieDb.mzsearchprovider in Copy Plugins */,
-				1B4F53D8116EA0BE003221B1 /* TheTVDBPlugin.mzsearchprovider in Copy Plugins */,
-				1BEA6F33106EF6FC004B1A7F /* AtomicParsleyPlugin.mzdataprovider in Copy Plugins */,
+				1B4F53D8116EA0BE003221B1 /* TheTVDB.mzsearchprovider in Copy Plugins */,
+				1BEA6F33106EF6FC004B1A7F /* AtomicParsley.mzdataprovider in Copy Plugins */,
 			);
 			name = "Copy Plugins";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,7 +536,6 @@
 		1B0DEC3E10607A9A009D293F /* MGCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCollectionView.m; sourceTree = "<group>"; };
 		1B0DEDD61060F7B6009D293F /* ImageWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageWindowController.h; sourceTree = "<group>"; };
 		1B0DEDD71060F7B6009D293F /* ImageWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageWindowController.m; sourceTree = "<group>"; };
-		1B0DEDDA10610132009D293F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/ImageEdit.xib; sourceTree = "<group>"; };
 		1B0DEDDF10610412009D293F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		1B0DEEB8106139E8009D293F /* RotateLeft.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = RotateLeft.tif; path = App/resources/RotateLeft.tif; sourceTree = SOURCE_ROOT; };
 		1B0DEEB9106139E8009D293F /* RotateRight.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = RotateRight.tif; path = App/resources/RotateRight.tif; sourceTree = SOURCE_ROOT; };
@@ -482,6 +543,7 @@
 		1B0DEEBB106139E8009D293F /* ZoomActualSize.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = ZoomActualSize.tif; path = App/resources/ZoomActualSize.tif; sourceTree = SOURCE_ROOT; };
 		1B0DEEBC106139E8009D293F /* ZoomIn.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = ZoomIn.tif; path = App/resources/ZoomIn.tif; sourceTree = SOURCE_ROOT; };
 		1B0DEEBD106139E8009D293F /* ZoomOut.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = ZoomOut.tif; path = App/resources/ZoomOut.tif; sourceTree = SOURCE_ROOT; };
+		1B0E593224071D6900534F2F /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Plugins/TheMovieDbNG/resources/logo.png; sourceTree = SOURCE_ROOT; };
 		1B0F089D1F632A2D00032E83 /* GTMLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMLogger.h; sourceTree = "<group>"; };
 		1B0F089E1F632A2D00032E83 /* GTMLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMLogger.m; sourceTree = "<group>"; };
 		1B0F089F1F632A2D00032E83 /* GTMNSObject+KeyValueObserving.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSObject+KeyValueObserving.h"; sourceTree = "<group>"; };
@@ -514,6 +576,7 @@
 		1B26BA8A164B687B00238517 /* MZComboBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZComboBox.m; sourceTree = "<group>"; };
 		1B26BAC1164C3BA400238517 /* FilesArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesArrayController.h; sourceTree = "<group>"; };
 		1B26BAC2164C3BA400238517 /* FilesArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesArrayController.m; sourceTree = "<group>"; };
+		1B276539240B5F2900723C13 /* Data+Base64URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Base64URL.swift"; sourceTree = "<group>"; };
 		1B2861D122B9EF1900A37DEF /* github_release.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; name = github_release.rb; path = Scripts/github_release.rb; sourceTree = "<group>"; };
 		1B2861D222B9EF1A00A37DEF /* tag-beta.bash */ = {isa = PBXFileReference; lastKnownFileType = text; name = "tag-beta.bash"; path = "Scripts/tag-beta.bash"; sourceTree = "<group>"; };
 		1B2861D322B9EF1A00A37DEF /* release-notes.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; name = "release-notes.rb"; path = "Scripts/release-notes.rb"; sourceTree = "<group>"; };
@@ -527,7 +590,7 @@
 		1B3185851841E167001EDE79 /* NSData+MZCleanUTF8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MZCleanUTF8.h"; sourceTree = "<group>"; };
 		1B3185861841E167001EDE79 /* NSData+MZCleanUTF8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MZCleanUTF8.m"; sourceTree = "<group>"; };
 		1B3185891841E2B0001EDE79 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
-		1B3185B21841E9D6001EDE79 /* OSXNotificationPlugin.mzactions */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSXNotificationPlugin.mzactions; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B3185B21841E9D6001EDE79 /* OSXNotification.mzactions */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSXNotification.mzactions; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B3185B41841EAC7001EDE79 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = OSXNotification/Info.plist; sourceTree = "<group>"; };
 		1B3185B91841EB4A001EDE79 /* OSXNotificationPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSXNotificationPlugin.h; sourceTree = "<group>"; };
 		1B3185BA1841EB4A001EDE79 /* OSXNotificationPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSXNotificationPlugin.m; sourceTree = "<group>"; };
@@ -538,14 +601,11 @@
 		1B31C2F3165371BD00853E10 /* MZApplyEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZApplyEditor.h; sourceTree = "<group>"; };
 		1B31C30E165378CE00853E10 /* PicturesArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicturesArrayController.h; sourceTree = "<group>"; };
 		1B31C30F165378CE00853E10 /* PicturesArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicturesArrayController.m; sourceTree = "<group>"; };
-		1B31C37D16538DC300853E10 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/SearchView.xib; sourceTree = "<group>"; };
 		1B35446815B1D96B0033DD74 /* MetaZ.sdef */ = {isa = PBXFileReference; explicitFileType = text.xml; fileEncoding = 4; name = MetaZ.sdef; path = App/resources/MetaZ.sdef; sourceTree = "<group>"; };
 		1B3544E615B2160F0033DD74 /* MetaZApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaZApplication.h; sourceTree = "<group>"; };
 		1B3544E715B2160F0033DD74 /* MetaZApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaZApplication.m; sourceTree = "<group>"; };
 		1B35452F15B223BB0033DD74 /* MZMetaDataDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMetaDataDocument.h; sourceTree = "<group>"; };
 		1B35453015B223BB0033DD74 /* MZMetaDataDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMetaDataDocument.m; sourceTree = "<group>"; };
-		1B36E78A14066727009F542A /* MZASISearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZASISearch.h; sourceTree = "<group>"; };
-		1B36E78B14066727009F542A /* MZASISearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZASISearch.m; sourceTree = "<group>"; };
 		1B38FCD81673F7E500C171F9 /* NSString+MimeTypePattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MimeTypePattern.h"; sourceTree = "<group>"; };
 		1B38FCD91673F7E500C171F9 /* NSString+MimeTypePattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MimeTypePattern.m"; sourceTree = "<group>"; };
 		1B3AD7D611057E9200B33F85 /* MZErrorOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZErrorOperation.h; sourceTree = "<group>"; };
@@ -584,7 +644,7 @@
 		1B4CFF8F161CDF0100B12009 /* AEVTBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEVTBuilder.h; sourceTree = "<group>"; };
 		1B4CFF90161CDF0100B12009 /* AEVTBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEVTBuilder.m; sourceTree = "<group>"; };
 		1B4F5394116E9EFC003221B1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
-		1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzsearchprovider */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheTVDBPlugin.mzsearchprovider; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B4F53C9116E9F44003221B1 /* TheTVDB.mzsearchprovider */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheTVDB.mzsearchprovider; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B4F53DD116EA1B5003221B1 /* TheTVDBPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBPlugin.h; sourceTree = "<group>"; };
 		1B4F53DE116EA1B5003221B1 /* TheTVDBPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBPlugin.m; sourceTree = "<group>"; };
 		1B521CEA1F65558600979D60 /* document_types.bash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = document_types.bash; path = Scripts/document_types.bash; sourceTree = "<group>"; };
@@ -651,12 +711,40 @@
 		1B6E43C9108468B100DFE165 /* MZSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZSearchResult.h; sourceTree = "<group>"; };
 		1B6E43CA108468B100DFE165 /* MZSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZSearchResult.m; sourceTree = "<group>"; };
 		1B6E43D610846BDA00DFE165 /* TagData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagData.h; sourceTree = "<group>"; };
+		1B7223A2240219E7005DEE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = App/Base.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
+		1B7223A3240219E7005DEE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = App/Base.lproj/Queue.xib; sourceTree = "<group>"; };
+		1B7223A4240219E7005DEE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = App/Base.lproj/ImageEdit.xib; sourceTree = "<group>"; };
+		1B7223A5240219E7005DEE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = App/Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		1B7223A6240219E8005DEE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = App/Base.lproj/PresetsPanel.xib; sourceTree = "<group>"; };
+		1B7223A7240219E8005DEE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = App/Base.lproj/SearchView.xib; sourceTree = "<group>"; };
 		1B78A499105032A50072D89E /* MZMethodData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMethodData.h; sourceTree = "<group>"; };
 		1B78A49A105032A50072D89E /* MZMethodData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMethodData.m; sourceTree = "<group>"; };
+		1B7B1041240603930018DB18 /* TheMovieDbNG.mzsearchprovider */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheMovieDbNG.mzsearchprovider; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B7B1044240604020018DB18 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B7B1046240604020018DB18 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		1B7B1047240604020018DB18 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		1B7B1048240604020018DB18 /* Plugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin.swift; sourceTree = "<group>"; };
+		1B7B1049240604020018DB18 /* TheMovieDbNG-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TheMovieDbNG-Bridging-Header.h"; sourceTree = "<group>"; };
+		1B7B104A240604020018DB18 /* TVSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVSearch.swift; sourceTree = "<group>"; };
+		1B7B1053240615DA0018DB18 /* MovieSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearch.swift; sourceTree = "<group>"; };
 		1B7B529B149EA26300BF37DD /* EnsureArrayTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnsureArrayTransformer.h; sourceTree = "<group>"; };
 		1B7B529C149EA26300BF37DD /* EnsureArrayTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnsureArrayTransformer.m; sourceTree = "<group>"; };
 		1B7B53F314A029FA00BF37DD /* MZMultipleDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMultipleDateFormatter.h; sourceTree = "<group>"; };
 		1B7B53F414A029FA00BF37DD /* MZMultipleDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMultipleDateFormatter.m; sourceTree = "<group>"; };
+		1B7FF3D924047DE4001457CE /* RemoteData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteData.swift; sourceTree = "<group>"; };
+		1B7FF3DA24047DE4001457CE /* Array-safe-get.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array-safe-get.swift"; sourceTree = "<group>"; };
+		1B7FF3DB24047DE4001457CE /* URLSession-dataSync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession-dataSync.swift"; sourceTree = "<group>"; };
+		1B7FF3DC24047DE4001457CE /* SearchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDelegate.swift; sourceTree = "<group>"; };
+		1B7FF3DD24047DE4001457CE /* String-matches-mimetype-pattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String-matches-mimetype-pattern.swift"; sourceTree = "<group>"; };
+		1B7FF3F324047EE3001457CE /* TheTVDB3.mzsearchprovider */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheTVDB3.mzsearchprovider; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B7FF3FC24048024001457CE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B7FF3FE24048024001457CE /* logo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo2.png; sourceTree = "<group>"; };
+		1B7FF40024048024001457CE /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		1B7FF40124048024001457CE /* Plugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin.swift; sourceTree = "<group>"; };
+		1B7FF40224048024001457CE /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		1B7FF40324048024001457CE /* TheTVDB3-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TheTVDB3-Bridging-Header.h"; sourceTree = "<group>"; };
+		1B7FF40424048024001457CE /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		1B7FF40B24059A43001457CE /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		1B82647210B3C25000DF101B /* MetaEditsUndoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetaEditsUndoManager.h; sourceTree = "<group>"; };
 		1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetaEditsUndoManager.m; sourceTree = "<group>"; };
 		1B890508163F6E48008C5C8B /* MZGetCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZGetCommand.h; sourceTree = "<group>"; };
@@ -696,7 +784,6 @@
 		1BA325C510545ACA00276F57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Framework/Info.plist; sourceTree = "<group>"; };
 		1BA3268210546CB500276F57 /* MetaZKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetaZKit_Prefix.pch; path = Framework/MetaZKit_Prefix.pch; sourceTree = "<group>"; };
 		1BA3269C10546EC800276F57 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = App/English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1BA3269F10546F4600276F57 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		1BA326A210546F9700276F57 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/MZTags.strings; sourceTree = "<group>"; };
 		1BA326EE1054823100276F57 /* MZWriteQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZWriteQueue.h; sourceTree = "<group>"; };
 		1BA326EF1054823100276F57 /* MZWriteQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZWriteQueue.m; sourceTree = "<group>"; };
@@ -727,7 +814,6 @@
 		1BBB39A81087083600C9E17F /* MZPriorObserverFix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZPriorObserverFix.m; sourceTree = "<group>"; };
 		1BBC025E10FC115F001DDB1C /* MZTaskOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTaskOperation.h; sourceTree = "<group>"; };
 		1BBC025F10FC115F001DDB1C /* MZTaskOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTaskOperation.m; sourceTree = "<group>"; };
-		1BC0661810AE223A005C2A9F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/PresetsPanel.xib; sourceTree = "<group>"; };
 		1BC0671310AE44CA005C2A9F /* presets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = presets.png; path = App/resources/presets.png; sourceTree = "<group>"; };
 		1BC256361192C183001B9E1E /* NSObject+WaitUntilChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WaitUntilChange.h"; sourceTree = "<group>"; };
 		1BC256371192C183001B9E1E /* NSObject+WaitUntilChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WaitUntilChange.m"; sourceTree = "<group>"; };
@@ -742,8 +828,6 @@
 		1BCECD8710E39AE200D0AD35 /* MZLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZLogger.h; sourceTree = "<group>"; };
 		1BCECD8810E39AE200D0AD35 /* MZLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZLogger.m; sourceTree = "<group>"; };
 		1BCECEC410E98E4200D0AD35 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
-		1BD3D2B9108CC5D700BE6943 /* MZRemoteData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZRemoteData.h; sourceTree = "<group>"; };
-		1BD3D2BA108CC5D700BE6943 /* MZRemoteData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZRemoteData.m; sourceTree = "<group>"; };
 		1BD3D30F108DD03E00BE6943 /* PictureEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureEditor.h; sourceTree = "<group>"; };
 		1BD3D310108DD03E00BE6943 /* PictureEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureEditor.m; sourceTree = "<group>"; };
 		1BD55C5C16483F5E00F9C579 /* MZActionsPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZActionsPlugin.h; sourceTree = "<group>"; };
@@ -752,7 +836,7 @@
 		1BD55C611648431D00F9C579 /* MZScriptActionsPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZScriptActionsPlugin.m; sourceTree = "<group>"; };
 		1BD55C641648466700F9C579 /* NSError+MZScriptError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MZScriptError.h"; sourceTree = "<group>"; };
 		1BD55C651648466700F9C579 /* NSError+MZScriptError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MZScriptError.m"; sourceTree = "<group>"; };
-		1BD562071648F17C00F9C579 /* AlertWindowPlugin.mzactions */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlertWindowPlugin.mzactions; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BD562071648F17C00F9C579 /* AlertWindow.mzactions */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlertWindow.mzactions; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BD562081648F17C00F9C579 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = AlertWindow/Info.plist; sourceTree = "<group>"; };
 		1BD5622D1648F2B200F9C579 /* AlertWindowPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertWindowPlugin.h; sourceTree = "<group>"; };
 		1BD5622E1648F2B200F9C579 /* AlertWindowPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertWindowPlugin.m; sourceTree = "<group>"; };
@@ -764,7 +848,6 @@
 		1BD6E751105DADCC00E40151 /* Stop.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Stop.tiff; path = App/resources/Stop.tiff; sourceTree = "<group>"; };
 		1BD6E7A0105DC33400E40151 /* QueueController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueController.h; sourceTree = "<group>"; };
 		1BD6E7A1105DC33400E40151 /* QueueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueController.m; sourceTree = "<group>"; };
-		1BD6E7A7105DC4D000E40151 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/Queue.xib; sourceTree = "<group>"; };
 		1BDD86A51094A8CC00E3C81D /* MZPresets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZPresets.h; sourceTree = "<group>"; };
 		1BDD86A61094A8CC00E3C81D /* MZPresets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZPresets.m; sourceTree = "<group>"; };
 		1BDD879F1095FB5100E3C81D /* PresetsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetsWindowController.h; sourceTree = "<group>"; };
@@ -778,11 +861,9 @@
 		1BEA6D4F106E8B7C004B1A7F /* IKImageView-Missing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IKImageView-Missing.h"; sourceTree = "<group>"; };
 		1BEA6DAC106EC632004B1A7F /* MZPluginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZPluginController.h; sourceTree = "<group>"; };
 		1BEA6DAD106EC632004B1A7F /* MZPluginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZPluginController.m; sourceTree = "<group>"; };
-		1BEA6DD9106ED837004B1A7F /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = App/English.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
 		1BEA6DDB106ED8E4004B1A7F /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
 		1BEA6DDC106ED8E4004B1A7F /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
-		1BEA6E48106EEF34004B1A7F /* MZPlugin+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MZPlugin+Private.h"; sourceTree = "<group>"; };
-		1BEA6E72106EF2A0004B1A7F /* AtomicParsleyPlugin.mzdataprovider */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AtomicParsleyPlugin.mzdataprovider; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BEA6E72106EF2A0004B1A7F /* AtomicParsley.mzdataprovider */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AtomicParsley.mzdataprovider; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEA6E8D106EF522004B1A7F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		1BEA6E8F106EF534004B1A7F /* AtomicParsleyPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicParsleyPlugin.h; sourceTree = "<group>"; };
 		1BEA6E90106EF534004B1A7F /* AtomicParsleyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicParsleyPlugin.m; sourceTree = "<group>"; };
@@ -797,6 +878,7 @@
 		1BF5AD4A105DFC92005DD03E /* QueueWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueWindowController.m; sourceTree = "<group>"; };
 		1BF5ADBB105E0B8E005DD03E /* FileViewBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewBox.h; sourceTree = "<group>"; };
 		1BF5ADBC105E0B8E005DD03E /* FileViewBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewBox.m; sourceTree = "<group>"; };
+		1BFA198E240CAAEA002D3E48 /* Normalize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Normalize.swift; sourceTree = "<group>"; };
 		1BFEDDFD18349138008A17D3 /* PosterBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PosterBackground.png; path = App/resources/PosterBackground.png; sourceTree = "<group>"; };
 		1BFEDDFE18349138008A17D3 /* PosterBackgroundError.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PosterBackgroundError.png; path = App/resources/PosterBackgroundError.png; sourceTree = "<group>"; };
 		1BFEDDFF18349138008A17D3 /* PosterBackgroundMultiple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PosterBackgroundMultiple.png; path = App/resources/PosterBackgroundMultiple.png; sourceTree = "<group>"; };
@@ -831,6 +913,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B4F53C4116E9F44003221B1 /* MetaZKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B7B103B240603930018DB18 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B7B103C240603930018DB18 /* MetaZKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B7FF3ED24047EE3001457CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B7FF3EE24047EE3001457CE /* MetaZKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -887,6 +985,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1B7FF3D924047DE4001457CE /* RemoteData.swift */,
 				1B9B3AB4106CC14B00928C83 /* MetaZKit.h */,
 				1BD6E601105B355800E40151 /* MetaChangeNotification.m */,
 				1B119FCA104304C5004C93D3 /* MetaData.h */,
@@ -896,14 +995,8 @@
 				1B82647310B3C25000DF101B /* MetaEditsUndoManager.m */,
 				1B119FCD10443655004C93D3 /* MetaLoaded.h */,
 				1B119FCE10443655004C93D3 /* MetaLoaded.m */,
-				1B36E78A14066727009F542A /* MZASISearch.h */,
-				1B36E78B14066727009F542A /* MZASISearch.m */,
-				1B0604AB1199E24700589ACE /* MZSearchProviderPlugin.h */,
-				1B0604AC1199E24700589ACE /* MZSearchProviderPlugin.m */,
 				1B11A47C104E627F004C93D3 /* MZConstants.h */,
 				1B11A47D104E627F004C93D3 /* MZConstants.m */,
-				1B11A02810458471004C93D3 /* MZDataProviderPlugin.h */,
-				1B09EB0B165843BF0017FED3 /* MZDataProviderPlugin.m */,
 				1BB6BB0810507DBB001D3D1D /* MZDynamicObject.h */,
 				1BB6BB0910507DBB001D3D1D /* MZDynamicObject.m */,
 				1B3AD7D611057E9200B33F85 /* MZErrorOperation.h */,
@@ -916,19 +1009,22 @@
 				1B3AD7DB1105829500B33F85 /* MZOperationsController.m */,
 				1BEA6C2A106E613C004B1A7F /* MZPlugin.h */,
 				1BEA6C2B106E613C004B1A7F /* MZPlugin.m */,
-				1BEA6E48106EEF34004B1A7F /* MZPlugin+Private.h */,
 				1BEA6DAC106EC632004B1A7F /* MZPluginController.h */,
 				1BEA6DAD106EC632004B1A7F /* MZPluginController.m */,
 				1BD55C5C16483F5E00F9C579 /* MZActionsPlugin.h */,
 				1BD55C5D16483F5E00F9C579 /* MZActionsPlugin.m */,
 				1BD55C601648431D00F9C579 /* MZScriptActionsPlugin.h */,
 				1BD55C611648431D00F9C579 /* MZScriptActionsPlugin.m */,
+				1B7FF3DC24047DE4001457CE /* SearchDelegate.swift */,
+				1B7FF40B24059A43001457CE /* Search.swift */,
+				1B0604AB1199E24700589ACE /* MZSearchProviderPlugin.h */,
+				1B0604AC1199E24700589ACE /* MZSearchProviderPlugin.m */,
+				1B11A02810458471004C93D3 /* MZDataProviderPlugin.h */,
+				1B09EB0B165843BF0017FED3 /* MZDataProviderPlugin.m */,
 				1BBB39A71087083600C9E17F /* MZPriorObserverFix.h */,
 				1BBB39A81087083600C9E17F /* MZPriorObserverFix.m */,
 				1BAD35FA118D4C470052DE3B /* MZReadOperationsController.h */,
 				1BAD35FB118D4C470052DE3B /* MZReadOperationsController.m */,
-				1BD3D2B9108CC5D700BE6943 /* MZRemoteData.h */,
-				1BD3D2BA108CC5D700BE6943 /* MZRemoteData.m */,
 				1B6E43C9108468B100DFE165 /* MZSearchResult.h */,
 				1B6E43CA108468B100DFE165 /* MZSearchResult.m */,
 				1B090C80106A899300D88083 /* MZTag.h */,
@@ -972,8 +1068,13 @@
 				1B38FCD91673F7E500C171F9 /* NSString+MimeTypePattern.m */,
 				1B3185851841E167001EDE79 /* NSData+MZCleanUTF8.h */,
 				1B3185861841E167001EDE79 /* NSData+MZCleanUTF8.m */,
+				1B7FF3DA24047DE4001457CE /* Array-safe-get.swift */,
+				1B7FF3DD24047DE4001457CE /* String-matches-mimetype-pattern.swift */,
+				1B7FF3DB24047DE4001457CE /* URLSession-dataSync.swift */,
 				1B3185BC1841F5A1001EDE79 /* MZVersion.h */,
 				1B3185BD1841F5A1001EDE79 /* MZVersion.m */,
+				1B276539240B5F2900723C13 /* Data+Base64URL.swift */,
+				1BFA198E240CAAEA002D3E48 /* Normalize.swift */,
 			);
 			name = Classes;
 			path = Framework/src;
@@ -1007,12 +1108,14 @@
 			children = (
 				1BA325C410545ACA00276F57 /* MetaZKit.framework */,
 				8D1107320486CEB800E47090 /* MetaZ.app */,
-				1BEA6E72106EF2A0004B1A7F /* AtomicParsleyPlugin.mzdataprovider */,
+				1BEA6E72106EF2A0004B1A7F /* AtomicParsley.mzdataprovider */,
 				1B03304310B0CD3C00B28E3A /* MetaZKitTest.octest */,
-				1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzsearchprovider */,
+				1B4F53C9116E9F44003221B1 /* TheTVDB.mzsearchprovider */,
 				1B8CB90B14ACD62000F859F7 /* TheMovieDb.mzsearchprovider */,
-				1BD562071648F17C00F9C579 /* AlertWindowPlugin.mzactions */,
-				1B3185B21841E9D6001EDE79 /* OSXNotificationPlugin.mzactions */,
+				1BD562071648F17C00F9C579 /* AlertWindow.mzactions */,
+				1B3185B21841E9D6001EDE79 /* OSXNotification.mzactions */,
+				1B7FF3F324047EE3001457CE /* TheTVDB3.mzsearchprovider */,
+				1B7B1041240603930018DB18 /* TheMovieDbNG.mzsearchprovider */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1031,6 +1134,14 @@
 				1B069667149BD35B00B5FA90 /* MGViewAnimation.m */,
 			);
 			name = MGViewAnimation;
+			sourceTree = "<group>";
+		};
+		1B0E593024071D4600534F2F /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				1B0E593224071D6900534F2F /* logo.png */,
+			);
+			path = resources;
 			sourceTree = "<group>";
 		};
 		1B26B815164ACDF100238517 /* Search */ = {
@@ -1304,6 +1415,59 @@
 			path = "Externals/asi-http-request/Classes/S3";
 			sourceTree = "<group>";
 		};
+		1B7B1043240604020018DB18 /* TheMovieDbNG */ = {
+			isa = PBXGroup;
+			children = (
+				1B0E593024071D4600534F2F /* resources */,
+				1B7B1044240604020018DB18 /* Info.plist */,
+				1B7B1045240604020018DB18 /* src */,
+			);
+			path = TheMovieDbNG;
+			sourceTree = "<group>";
+		};
+		1B7B1045240604020018DB18 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				1B7B1046240604020018DB18 /* Configuration.swift */,
+				1B7B1047240604020018DB18 /* JSON.swift */,
+				1B7B1048240604020018DB18 /* Plugin.swift */,
+				1B7B1049240604020018DB18 /* TheMovieDbNG-Bridging-Header.h */,
+				1B7B104A240604020018DB18 /* TVSearch.swift */,
+				1B7B1053240615DA0018DB18 /* MovieSearch.swift */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		1B7FF3FB24048024001457CE /* TheTVDB3 */ = {
+			isa = PBXGroup;
+			children = (
+				1B7FF3FC24048024001457CE /* Info.plist */,
+				1B7FF3FD24048024001457CE /* resources */,
+				1B7FF3FF24048024001457CE /* src */,
+			);
+			path = TheTVDB3;
+			sourceTree = "<group>";
+		};
+		1B7FF3FD24048024001457CE /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				1B7FF3FE24048024001457CE /* logo2.png */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		1B7FF3FF24048024001457CE /* src */ = {
+			isa = PBXGroup;
+			children = (
+				1B7FF40024048024001457CE /* JSON.swift */,
+				1B7FF40124048024001457CE /* Plugin.swift */,
+				1B7FF40224048024001457CE /* Search.swift */,
+				1B7FF40324048024001457CE /* TheTVDB3-Bridging-Header.h */,
+				1B7FF40424048024001457CE /* Token.swift */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		1B8CB8FA14ACD5C700F859F7 /* TheMovieDb */ = {
 			isa = PBXGroup;
 			children = (
@@ -1529,6 +1693,8 @@
 		1BEA6E68106EF248004B1A7F /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				1B7B1043240604020018DB18 /* TheMovieDbNG */,
+				1B7FF3FB24048024001457CE /* TheTVDB3 */,
 				1B492F901F654FC800A2FD3F /* AppleScript */,
 				1B31858B1841E7A8001EDE79 /* OSXNotification */,
 				1BD561F01648F06700F9C579 /* AlertWindow */,
@@ -1676,7 +1842,6 @@
 				1BEA6FAC106EFC3F004B1A7F /* MetaZKit.h in Headers */,
 				1BEA6FAD106EFC3F004B1A7F /* MZPlugin.h in Headers */,
 				1BEA6FAF106EFC3F004B1A7F /* MZPluginController.h in Headers */,
-				1BEA6FB1106EFC3F004B1A7F /* MZPlugin+Private.h in Headers */,
 				1B0F08AA1F632AA900032E83 /* GTMDefines.h in Headers */,
 				1BEA718F10712A17004B1A7F /* NSArray+Mapping.h in Headers */,
 				1BCC97021076B73C007EFF57 /* NSInvocation+Wrapping.h in Headers */,
@@ -1684,7 +1849,6 @@
 				1B040C42107FD1110027FA0D /* MZTimedTextItem.h in Headers */,
 				1B92BB1C10876FBA0057EFD7 /* PureMetaEdits.h in Headers */,
 				1B92BC57108890090057EFD7 /* NSObject+ProtectedKeyValue.h in Headers */,
-				1BD3D2BB108CC5D700BE6943 /* MZRemoteData.h in Headers */,
 				1B99355010AC818300E78D2D /* NSXMLNode+MZExtensions.h in Headers */,
 				1B0330AD10B1010700B28E3A /* NSDate+UTC.h in Headers */,
 				1B82647410B3C25000DF101B /* MetaEditsUndoManager.h in Headers */,
@@ -1707,7 +1871,6 @@
 				1B523C5013FDCD1A00C20B7D /* ASIHTTPRequestConfig.h in Headers */,
 				1B523C5113FDCD1A00C20B7D /* ASIHTTPRequestDelegate.h in Headers */,
 				1B523C5213FDCD1A00C20B7D /* ASIProgressDelegate.h in Headers */,
-				1B36E78C14066727009F542A /* MZASISearch.h in Headers */,
 				1B0696D7149BFB2D00B5FA90 /* NSString+MZQueryString.h in Headers */,
 				1BDEC5ED1620DE160051D656 /* AEVTBuilder.h in Headers */,
 				1BD55C5E16483F5E00F9C579 /* MZActionsPlugin.h in Headers */,
@@ -1758,7 +1921,7 @@
 			);
 			name = OSXNotificationPlugin;
 			productName = GrowlPlugin;
-			productReference = 1B3185B21841E9D6001EDE79 /* OSXNotificationPlugin.mzactions */;
+			productReference = 1B3185B21841E9D6001EDE79 /* OSXNotification.mzactions */;
 			productType = "com.apple.product-type.bundle";
 		};
 		1B4F53B3116E9F44003221B1 /* TheTVDB */ = {
@@ -1777,7 +1940,45 @@
 			);
 			name = TheTVDB;
 			productName = Amazon;
-			productReference = 1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzsearchprovider */;
+			productReference = 1B4F53C9116E9F44003221B1 /* TheTVDB.mzsearchprovider */;
+			productType = "com.apple.product-type.bundle";
+		};
+		1B7B1032240603930018DB18 /* TheMovieDbNG */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B7B103D240603930018DB18 /* Build configuration list for PBXNativeTarget "TheMovieDbNG" */;
+			buildPhases = (
+				1B7B1037240603930018DB18 /* Resources */,
+				1B7B1038240603930018DB18 /* Sources */,
+				1B7B103B240603930018DB18 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1B7B1033240603930018DB18 /* PBXTargetDependency */,
+				1B7B1035240603930018DB18 /* PBXTargetDependency */,
+			);
+			name = TheMovieDbNG;
+			productName = TheMovieDb;
+			productReference = 1B7B1041240603930018DB18 /* TheMovieDbNG.mzsearchprovider */;
+			productType = "com.apple.product-type.bundle";
+		};
+		1B7FF3E324047EE3001457CE /* TheTVDB3 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B7FF3EF24047EE3001457CE /* Build configuration list for PBXNativeTarget "TheTVDB3" */;
+			buildPhases = (
+				1B7FF3E824047EE3001457CE /* Resources */,
+				1B7FF3EA24047EE3001457CE /* Sources */,
+				1B7FF3ED24047EE3001457CE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1B7FF3E424047EE3001457CE /* PBXTargetDependency */,
+				1B7FF3E624047EE3001457CE /* PBXTargetDependency */,
+			);
+			name = TheTVDB3;
+			productName = Amazon;
+			productReference = 1B7FF3F324047EE3001457CE /* TheTVDB3.mzsearchprovider */;
 			productType = "com.apple.product-type.bundle";
 		};
 		1B8CB90A14ACD62000F859F7 /* TheMovieDb */ = {
@@ -1835,7 +2036,7 @@
 			);
 			name = AlertWindowPlugin;
 			productName = AlertWindowPlugin;
-			productReference = 1BD562071648F17C00F9C579 /* AlertWindowPlugin.mzactions */;
+			productReference = 1BD562071648F17C00F9C579 /* AlertWindow.mzactions */;
 			productType = "com.apple.product-type.bundle";
 		};
 		1BEA6E71106EF2A0004B1A7F /* AtomicParsley */ = {
@@ -1854,7 +2055,7 @@
 			);
 			name = AtomicParsley;
 			productName = AtomicParsleyPlugin;
-			productReference = 1BEA6E72106EF2A0004B1A7F /* AtomicParsleyPlugin.mzdataprovider */;
+			productReference = 1BEA6E72106EF2A0004B1A7F /* AtomicParsley.mzdataprovider */;
 			productType = "com.apple.product-type.bundle";
 		};
 		8D1107260486CEB800E47090 /* MetaZ */ = {
@@ -1874,6 +2075,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				1B7B1051240605780018DB18 /* PBXTargetDependency */,
+				1B7FF3F624047F16001457CE /* PBXTargetDependency */,
 				1B3185B71841EAF5001EDE79 /* PBXTargetDependency */,
 				1BA325CC10545BAE00276F57 /* PBXTargetDependency */,
 				1BEA6F2A106EF693004B1A7F /* PBXTargetDependency */,
@@ -1894,10 +2097,15 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 1010;
+				TargetAttributes = {
+					1BA325C310545ACA00276F57 = {
+						LastSwiftMigration = 1010;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MetaZ" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -1922,6 +2130,7 @@
 				sv,
 				zh_CN,
 				zh_TW,
+				Base,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* MetaZ */;
 			projectDirPath = "";
@@ -1936,6 +2145,8 @@
 				1B8CB90A14ACD62000F859F7 /* TheMovieDb */,
 				1BD562061648F17C00F9C579 /* AlertWindowPlugin */,
 				1B3185A01841E9D6001EDE79 /* OSXNotificationPlugin */,
+				1B7FF3E324047EE3001457CE /* TheTVDB3 */,
+				1B7B1032240603930018DB18 /* TheMovieDbNG */,
 			);
 		};
 /* End PBXProject section */
@@ -1960,6 +2171,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B4AF84511715C8400E5C969 /* languages.xml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B7B1037240603930018DB18 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B0E593424071D6900534F2F /* logo.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B7FF3E824047EE3001457CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B7FF40624048024001457CE /* logo2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2189,6 +2416,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1B7B1038240603930018DB18 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B7B104E240604020018DB18 /* Plugin.swift in Sources */,
+				1B7B1054240615DA0018DB18 /* MovieSearch.swift in Sources */,
+				1B7B104F240604020018DB18 /* TVSearch.swift in Sources */,
+				1B7B104C240604020018DB18 /* Configuration.swift in Sources */,
+				1B7B104D240604020018DB18 /* JSON.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1B7FF3EA24047EE3001457CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B7FF40924048024001457CE /* Search.swift in Sources */,
+				1B7FF40824048024001457CE /* Plugin.swift in Sources */,
+				1B7FF40724048024001457CE /* JSON.swift in Sources */,
+				1B7FF40A24048024001457CE /* Token.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1B8CB90814ACD62000F859F7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2211,6 +2461,7 @@
 				1BEA6FA9106EFC3F004B1A7F /* MetaChangeNotification.m in Sources */,
 				1B3185881841E167001EDE79 /* NSData+MZCleanUTF8.m in Sources */,
 				1B0F08A81F632A2D00032E83 /* GTMNSString+URLArguments.m in Sources */,
+				1B7FF3E024047DE5001457CE /* URLSession-dataSync.swift in Sources */,
 				1BEA6FAB106EFC3F004B1A7F /* MZTag.m in Sources */,
 				1BEA6FAE106EFC3F004B1A7F /* MZPlugin.m in Sources */,
 				1BEA6FB0106EFC3F004B1A7F /* MZPluginController.m in Sources */,
@@ -2222,11 +2473,12 @@
 				1BBB39AA1087083600C9E17F /* MZPriorObserverFix.m in Sources */,
 				1B92BB1D10876FBA0057EFD7 /* PureMetaEdits.m in Sources */,
 				1B92BC58108890090057EFD7 /* NSObject+ProtectedKeyValue.m in Sources */,
-				1BD3D2BC108CC5D700BE6943 /* MZRemoteData.m in Sources */,
 				1B99355110AC818300E78D2D /* NSXMLNode+MZExtensions.m in Sources */,
+				1B7FF40C24059A43001457CE /* Search.swift in Sources */,
 				1B0330AE10B1010700B28E3A /* NSDate+UTC.m in Sources */,
 				1B82647510B3C25000DF101B /* MetaEditsUndoManager.m in Sources */,
 				1BCECD8A10E39AE200D0AD35 /* MZLogger.m in Sources */,
+				1B7FF3DF24047DE5001457CE /* Array-safe-get.swift in Sources */,
 				1B0F08A41F632A2D00032E83 /* GTMLogger.m in Sources */,
 				1BBC026110FC115F001DDB1C /* MZTaskOperation.m in Sources */,
 				1B3AD7D911057E9200B33F85 /* MZErrorOperation.m in Sources */,
@@ -2238,15 +2490,19 @@
 				1B0604AE1199E24700589ACE /* MZSearchProviderPlugin.m in Sources */,
 				1BAC91BE13F060300022D625 /* NSString+MZAllInCharacterSet.m in Sources */,
 				1B523C1513FDCC9600C20B7D /* ASIHTTPRequest.m in Sources */,
+				1B27653A240B5F2900723C13 /* Data+Base64URL.swift in Sources */,
 				1B523C4113FDCCC300C20B7D /* ASIDownloadCache.m in Sources */,
 				1B523C4613FDCCD000C20B7D /* ASIInputStream.m in Sources */,
 				1B523C4B13FDCCDA00C20B7D /* ASIDataDecompressor.m in Sources */,
 				1B36E75E1406612F009F542A /* ASIDataCompressor.m in Sources */,
-				1B36E78D14066727009F542A /* MZASISearch.m in Sources */,
+				1B7FF3E224047DE5001457CE /* String-matches-mimetype-pattern.swift in Sources */,
 				1B0696D8149BFB2D00B5FA90 /* NSString+MZQueryString.m in Sources */,
 				1B3185BF1841F5A1001EDE79 /* MZVersion.m in Sources */,
 				1B4CFFE8161CE0ED00B12009 /* AEVTBuilder.m in Sources */,
+				1BFA198F240CAAEA002D3E48 /* Normalize.swift in Sources */,
 				1BD55C5F16483F5E00F9C579 /* MZActionsPlugin.m in Sources */,
+				1B7FF3E124047DE5001457CE /* SearchDelegate.swift in Sources */,
+				1B7FF3DE24047DE4001457CE /* RemoteData.swift in Sources */,
 				1BD55C631648431D00F9C579 /* MZScriptActionsPlugin.m in Sources */,
 				1BD55C671648466700F9C579 /* NSError+MZScriptError.m in Sources */,
 				1B4C1F4116554B0600011621 /* MZHTTPRequest.m in Sources */,
@@ -2392,6 +2648,36 @@
 			target = 1B4F53B3116E9F44003221B1 /* TheTVDB */;
 			targetProxy = 1B4F53D1116EA0B7003221B1 /* PBXContainerItemProxy */;
 		};
+		1B7B1033240603930018DB18 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			targetProxy = 1B7B1034240603930018DB18 /* PBXContainerItemProxy */;
+		};
+		1B7B1035240603930018DB18 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B2022F810B393CA00EE548A /* Plist Marcos */;
+			targetProxy = 1B7B1036240603930018DB18 /* PBXContainerItemProxy */;
+		};
+		1B7B1051240605780018DB18 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B7B1032240603930018DB18 /* TheMovieDbNG */;
+			targetProxy = 1B7B1050240605780018DB18 /* PBXContainerItemProxy */;
+		};
+		1B7FF3E424047EE3001457CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B2022F810B393CA00EE548A /* Plist Marcos */;
+			targetProxy = 1B7FF3E524047EE3001457CE /* PBXContainerItemProxy */;
+		};
+		1B7FF3E624047EE3001457CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1BA325C310545ACA00276F57 /* MetaZKit */;
+			targetProxy = 1B7FF3E724047EE3001457CE /* PBXContainerItemProxy */;
+		};
+		1B7FF3F624047F16001457CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B7FF3E324047EE3001457CE /* TheTVDB3 */;
+			targetProxy = 1B7FF3F524047F16001457CE /* PBXContainerItemProxy */;
+		};
 		1B8CB91214ACD63100F859F7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1BA325C310545ACA00276F57 /* MetaZKit */;
@@ -2438,7 +2724,7 @@
 		1B0DEDD910610132009D293F /* ImageEdit.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1B0DEDDA10610132009D293F /* English */,
+				1B7223A4240219E7005DEE47 /* Base */,
 			);
 			name = ImageEdit.xib;
 			sourceTree = "<group>";
@@ -2454,7 +2740,7 @@
 		1B31C37C16538DC300853E10 /* SearchView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1B31C37D16538DC300853E10 /* English */,
+				1B7223A7240219E8005DEE47 /* Base */,
 			);
 			name = SearchView.xib;
 			sourceTree = "<group>";
@@ -2486,7 +2772,7 @@
 		1BA3269E10546F4600276F57 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1BA3269F10546F4600276F57 /* English */,
+				1B7223A5240219E7005DEE47 /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -2502,7 +2788,7 @@
 		1BC0661710AE223A005C2A9F /* PresetsPanel.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1BC0661810AE223A005C2A9F /* English */,
+				1B7223A6240219E8005DEE47 /* Base */,
 			);
 			name = PresetsPanel.xib;
 			sourceTree = "<group>";
@@ -2510,7 +2796,7 @@
 		1BD6E7A6105DC4D000E40151 /* Queue.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1BD6E7A7105DC4D000E40151 /* English */,
+				1B7223A3240219E7005DEE47 /* Base */,
 			);
 			name = Queue.xib;
 			sourceTree = "<group>";
@@ -2518,7 +2804,7 @@
 		1BEA6DD8106ED837004B1A7F /* PreferencesWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1BEA6DD9106ED837004B1A7F /* English */,
+				1B7223A2240219E7005DEE47 /* Base */,
 			);
 			name = PreferencesWindow.xib;
 			sourceTree = "<group>";
@@ -2530,6 +2816,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2557,6 +2844,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -2582,6 +2870,7 @@
 		1B2022F910B393CB00EE548A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				PRODUCT_NAME = "Plist Macos";
 			};
 			name = Debug;
@@ -2589,6 +2878,7 @@
 		1B2022FA10B393CB00EE548A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				PRODUCT_NAME = "Plist Macos";
 			};
 			name = Release;
@@ -2597,9 +2887,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2615,9 +2905,8 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = OSXNotificationPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = OSXNotification;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/OSXNotification/**";
 				WRAPPER_EXTENSION = mzactions;
@@ -2628,7 +2917,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -2643,9 +2932,8 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = OSXNotificationPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = OSXNotification;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/OSXNotification/**";
 				WRAPPER_EXTENSION = mzactions;
@@ -2656,8 +2944,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -2672,9 +2960,8 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = OSXNotificationPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = OSXNotification;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/OSXNotification/**";
 				WRAPPER_EXTENSION = mzactions;
@@ -2688,12 +2975,20 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_LINK_OBJC_RUNTIME = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -2712,6 +3007,10 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRIP_INSTALLED_PRODUCT = NO;
+				STRIP_SWIFT_SYMBOLS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				USE_HEADERMAP = NO;
 			};
 			name = "Remote Debug";
@@ -2719,7 +3018,9 @@
 		1B44937F10C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2754,7 +3055,10 @@
 		1B44938010C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
 				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2773,6 +3077,11 @@
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -2781,6 +3090,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = MetaZKit;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = Framework/src;
 			};
@@ -2789,6 +3100,7 @@
 		1B44938110C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2809,8 +3121,8 @@
 					"-framework",
 					MetaZKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:identifier}";
-				PRODUCT_NAME = AtomicParsleyPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:identifier}";
+				PRODUCT_NAME = AtomicParsley;
 				SKIP_INSTALL = YES;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
@@ -2822,6 +3134,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2849,6 +3162,7 @@
 		1B44938510C95B0A00B9C751 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				PRODUCT_NAME = "Plist Macos";
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 			};
@@ -2857,6 +3171,7 @@
 		1B4F53C6116E9F44003221B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -2873,8 +3188,8 @@
 					AppKit,
 					"-lz",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = TheTVDBPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = TheTVDB;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
@@ -2884,6 +3199,7 @@
 		1B4F53C7116E9F44003221B1 /* Remote Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -2901,8 +3217,8 @@
 					AppKit,
 					"-lz",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = TheTVDBPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = TheTVDB;
 				SKIP_INSTALL = YES;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
@@ -2913,6 +3229,7 @@
 		1B4F53C8116E9F44003221B1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/include";
@@ -2928,8 +3245,180 @@
 					AppKit,
 					"-lz",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = TheTVDBPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = TheTVDB;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
+				WRAPPER_EXTENSION = mzsearchprovider;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		1B7B103E240603930018DB18 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/TheMovieDbNG/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
+				WRAPPER_EXTENSION = mzsearchprovider;
+			};
+			name = Debug;
+		};
+		1B7B103F240603930018DB18 /* Remote Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/TheMovieDbNG/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
+				WRAPPER_EXTENSION = mzsearchprovider;
+			};
+			name = "Remote Debug";
+		};
+		1B7B1040240603930018DB18 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Plugins/TheMovieDbNG/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
+				WRAPPER_EXTENSION = mzsearchprovider;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		1B7FF3F024047EE3001457CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = Plugins/TheTVDB3/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+					"-lz",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
+				WRAPPER_EXTENSION = mzsearchprovider;
+			};
+			name = Debug;
+		};
+		1B7FF3F124047EE3001457CE /* Remote Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/include";
+				INFOPLIST_FILE = Plugins/TheTVDB3/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+					"-lz",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
+				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
+				WRAPPER_EXTENSION = mzsearchprovider;
+			};
+			name = "Remote Debug";
+		};
+		1B7FF3F224047EE3001457CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_MODEL_TUNING = G5;
+				HEADER_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/include";
+				INFOPLIST_FILE = Plugins/TheTVDB3/Info.plist;
+				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-C";
+				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
+				INFOPLIST_PREPROCESS = YES;
+				INSTALL_PATH = "$(HOME)/Library/Application Support/MetaZ/Plugins";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+					"-lz",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
@@ -2941,6 +3430,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -2958,7 +3448,7 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = TheMovieDb;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
@@ -2970,6 +3460,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -2984,7 +3475,7 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = TheMovieDb;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
@@ -2996,6 +3487,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3011,7 +3503,7 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = TheMovieDb;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
@@ -3023,7 +3515,10 @@
 		1BA325C610545ACB00276F57 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
 				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -3043,6 +3538,11 @@
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3051,6 +3551,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = MetaZKit;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				USER_HEADER_SEARCH_PATHS = Framework/src;
 			};
 			name = Debug;
@@ -3058,7 +3560,10 @@
 		1BA325C710545ACB00276F57 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = YES;
+				DEFINES_MODULE = YES;
 				DOCUMENTATION_FOLDER_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Documentation";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -3075,6 +3580,11 @@
 				INFOPLIST_PREFIX_HEADER = "$(CONFIGURATION_TEMP_DIR)/Plist Marcos.build/PlistMacros.h";
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "@executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3083,6 +3593,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = MetaZKit;
+				SWIFT_VERSION = 4.2;
 				USER_HEADER_SEARCH_PATHS = Framework/src;
 				ZERO_LINK = NO;
 			};
@@ -3092,9 +3603,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3110,9 +3621,8 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = AlertWindowPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = AlertWindow;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = mzactions;
 			};
@@ -3122,7 +3632,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3137,9 +3647,8 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = AlertWindowPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = AlertWindow;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = mzactions;
 			};
@@ -3149,8 +3658,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3165,9 +3674,8 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = AlertWindowPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = AlertWindow;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = mzactions;
 				ZERO_LINK = NO;
@@ -3177,6 +3685,7 @@
 		1BEA6E74106EF2A1004B1A7F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3197,8 +3706,8 @@
 					"-framework",
 					MetaZKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:identifier}";
-				PRODUCT_NAME = AtomicParsleyPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:identifier}";
+				PRODUCT_NAME = AtomicParsley;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
 				WRAPPER_EXTENSION = mzdataprovider;
@@ -3208,6 +3717,7 @@
 		1BEA6E75106EF2A1004B1A7F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/**";
 				GCC_MODEL_TUNING = G5;
@@ -3226,8 +3736,8 @@
 					"-framework",
 					MetaZKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:identifier}";
-				PRODUCT_NAME = AtomicParsleyPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:identifier}";
+				PRODUCT_NAME = AtomicParsley;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
 				WRAPPER_EXTENSION = mzdataprovider;
@@ -3238,7 +3748,9 @@
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3272,7 +3784,9 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3308,12 +3822,20 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_LINK_OBJC_RUNTIME = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -3332,6 +3854,10 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRIP_INSTALLED_PRODUCT = NO;
+				STRIP_SWIFT_SYMBOLS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				USE_HEADERMAP = NO;
 			};
 			name = Debug;
@@ -3342,12 +3868,20 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_LINK_OBJC_RUNTIME = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -3364,6 +3898,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				SDKROOT = macosx;
+				STRIP_INSTALLED_PRODUCT = YES;
+				STRIP_SWIFT_SYMBOLS = YES;
+				SWIFT_VERSION = 4.2;
 				USE_HEADERMAP = NO;
 			};
 			name = Release;
@@ -3407,6 +3944,26 @@
 				1B4F53C6116E9F44003221B1 /* Debug */,
 				1B4F53C7116E9F44003221B1 /* Remote Debug */,
 				1B4F53C8116E9F44003221B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1B7B103D240603930018DB18 /* Build configuration list for PBXNativeTarget "TheMovieDbNG" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B7B103E240603930018DB18 /* Debug */,
+				1B7B103F240603930018DB18 /* Remote Debug */,
+				1B7B1040240603930018DB18 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1B7FF3EF24047EE3001457CE /* Build configuration list for PBXNativeTarget "TheTVDB3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B7FF3F024047EE3001457CE /* Debug */,
+				1B7FF3F124047EE3001457CE /* Remote Debug */,
+				1B7FF3F224047EE3001457CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

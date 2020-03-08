@@ -33,8 +33,8 @@
 	<key>enabledActionPlugins</key>
 	<array>
 		<string>Update iTunes</string>
-		<string>org.maven-group.metaz.plugin.OSXNotificationPlugin</string>
-		<string>org.maven-group.metaz.plugin.AlertWindowPlugin</string>
+		<string>io.metaz.plugin.OSXNotification</string>
+		<string>io.metaz.plugin.AlertWindow</string>
 	</array>
 </dict>
 </plist>

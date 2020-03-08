@@ -29,7 +29,7 @@
 {
     return [self profileWithIdentifier:@"unknown" mainTag:MZTitleTagIdent 
         tag:[NSArray arrayWithObjects:
-            MZTitleTagIdent, MZChaptersTagIdent, nil]];
+            MZTitleTagIdent, MZDateTagIdent, MZChaptersTagIdent, nil]];
 }
 
 + (SearchProfile*)tvShowProfile
@@ -44,7 +44,7 @@
 {
     return [self profileWithIdentifier:@"movie" mainTag:MZTitleTagIdent
         tag:[NSArray arrayWithObjects:
-            MZTitleTagIdent, MZVideoTypeTagIdent, MZChaptersTagIdent, nil]];
+            MZTitleTagIdent, MZVideoTypeTagIdent, MZDateTagIdent, MZChaptersTagIdent, nil]];
 }
 
 + (id)profileWithIdentifier:(NSString *)ident mainTag:(NSString *)main tag:(NSArray *)tags;

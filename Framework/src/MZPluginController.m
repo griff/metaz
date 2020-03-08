@@ -12,7 +12,6 @@
 #import <MetaZKit/MZScriptActionsPlugin.h>
 #import <MetaZKit/GTMNSString+URLArguments.h>
 #import <MetaZKit/MZVersion.h>
-#import "MZPlugin+Private.h"
 
 const NSInteger errMZPluginMissingInstallLocation = -1;
 const NSInteger errMZPluginAlreadyExists = -2;

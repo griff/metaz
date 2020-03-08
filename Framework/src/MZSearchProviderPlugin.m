@@ -11,7 +11,7 @@
 
 @implementation MZSearchProviderPlugin
 
-- (id)init
+- (MZSearchProviderPlugin * )init
 {
     self = [super init];
     if(self)

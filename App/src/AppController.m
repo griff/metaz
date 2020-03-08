@@ -462,7 +462,7 @@ NSDictionary* findBinding(NSWindow* window) {
     if(action == @selector(showImageEditor:))
     {
         id value = [filesController protectedValueForKeyPath:@"selection.picture"];
-        return [value isKindOfClass:[NSData class]] || [value isKindOfClass:[MZRemoteData class]];
+        return [value isKindOfClass:[NSData class]] || [value isKindOfClass:[RemoteData class]];
     }
     if(action == @selector(searchForImages:))
     {

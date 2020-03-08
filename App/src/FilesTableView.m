@@ -558,6 +558,9 @@
     [[status headerCell] setImage:image];
 
     [self setDataSource:self];
+
+    NSSortDescriptor* sort = [NSSortDescriptor sortDescriptorWithKey:@"fileName" ascending:YES selector:@selector(numericCompare:)];
+    [self setSortDescriptors:[NSArray arrayWithObject:sort]];
 }
 
 - (void)keyDown:(NSEvent *)theEvent {

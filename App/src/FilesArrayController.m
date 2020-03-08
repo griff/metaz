@@ -60,7 +60,7 @@
     for(NSString* key in [source allKeys])
     {
         id value = [source objectForKey:key];
-        if([value isKindOfClass:[MZRemoteData class]])
+        if([value isKindOfClass:[RemoteData class]])
         {
             if(![value isLoaded])
                 return NO;
@@ -100,8 +100,13 @@
             if(![edit getterChangedForKey:[tag identifier]])
             {
                 id value = [source objectForKey:[tag identifier]];
-                if([value isKindOfClass:[MZRemoteData class]])
+                if([value isKindOfClass:[RemoteData class]])
                     value = [value data];
+                if([value isKindOfClass:[NSArray class]] &&
+                   [value count] == 0)
+                {
+                    continue;
+                }
                 if(value)
                     [edit setterValue:value forKey:[tag identifier]];
             }

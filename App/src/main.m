@@ -78,7 +78,7 @@ int main(int argc, const char *argv[])
                 if(whenDone == 4 || whenDone == 5)
                     [enabled addObject:@"Quit MetaZ"];
                 if(whenDone == 2 || whenDone == 3 || whenDone == 5)
-                    [enabled addObject:@"org.maven-group.metaz.plugin.GrowlPlugin"];
+                    [enabled addObject:@"org.maven-group.metaz.plugin.OSXNotificationPlugin"];
                 [[NSUserDefaults standardUserDefaults] setObject:enabled forKey:@"enabledActionPlugins"];
             }
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"whenDoneAction"];
@@ -96,20 +96,70 @@ int main(int argc, const char *argv[])
         [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"version"];
     }
 
-    if(version == 2)
+    if(version == 2 || version == 3)
     {
-        if([[MZVersion systemVersion] isGreaterThanOrEqualTo:[MZVersion versionWithString:@"10.8"]])
+        NSArray* actions = [[NSUserDefaults standardUserDefaults] arrayForKey:@"enabledActionPlugins"];
+        if([actions indexOfObject:@"org.maven-group.metaz.plugin.GrowlPlugin"] != NSNotFound)
         {
-            NSArray* actions = [[NSUserDefaults standardUserDefaults] arrayForKey:@"enabledActionPlugins"];
-            if([actions indexOfObject:@"org.maven-group.metaz.plugin.GrowlPlugin"] != NSNotFound)
-            {
-                NSMutableArray* enabled = [NSMutableArray arrayWithArray:actions];
-                [enabled removeObject:@"org.maven-group.metaz.plugin.GrowlPlugin"];
-                [enabled addObject:@"org.maven-group.metaz.plugin.OSXNotificationPlugin"];
-                [[NSUserDefaults standardUserDefaults] setObject:enabled forKey:@"enabledActionPlugins"];
+            NSMutableArray* enabled = [NSMutableArray arrayWithArray:actions];
+            [enabled removeObject:@"org.maven-group.metaz.plugin.GrowlPlugin"];
+            [enabled addObject:@"org.maven-group.metaz.plugin.OSXNotificationPlugin"];
+            [[NSUserDefaults standardUserDefaults] setObject:enabled forKey:@"enabledActionPlugins"];
+        }
+        version = 4;
+        [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"version"];
+    }
+    if(version == 4)
+    {
+        NSArray* actions = [[NSUserDefaults standardUserDefaults] arrayForKey:@"enabledActionPlugins"];
+        NSMutableArray* enabled = [NSMutableArray array];
+        for (NSString* key in actions) {
+            if([key isEqualToString:@"org.maven-group.metaz.plugin.OSXNotificationPlugin"]) {
+                [enabled addObject:@"io.metaz.plugin.OSXNotification"];
+            } else if ([key isEqualToString:@"org.maven-group.metaz.plugin.AlertWindowPlugin"]) {
+                [enabled addObject:@"io.metaz.plugin.AlertWindow"];
+            } else if ([key isEqualToString:@"org.maven-group.metaz.plugin.GrowlPlugin"]) {
+            } else {
+                [enabled addObject:key];
             }
         }
-        version = 3;
+        [[NSUserDefaults standardUserDefaults] setObject:enabled forKey:@"enabledActionPlugins"];
+
+        NSArray* plugins = [[NSUserDefaults standardUserDefaults] arrayForKey:@"disabledPlugins"];
+        NSMutableArray* disabled = [NSMutableArray array];
+        for (NSString* key in plugins) {
+            if([key isEqualToString:@"org.maven-group.metaz.TheTVDBPlugin"]) {
+                [disabled addObject:@"io.metaz.plugin.TheTVDB"];
+            } else if ([key isEqualToString:@"org.maven-group.metaz.TheTVDB"]) {
+                [disabled addObject:@"io.metaz.plugin.TheTVDB"];
+            } else if ([key isEqualToString:@"org.maven-group.metaz.TheMovieDb"]) {
+                [disabled addObject:@"io.metaz.plugin.TheMovieDb"];
+            } else if ([key isEqualToString:@"org.maven-group.metaz.TheMovieDbNG"]) {
+                [disabled addObject:@"io.metaz.plugin.TheMovieDbNG"];
+            } else if ([key isEqualToString:@"org.maven-group.metaz.TheTVDB3"]) {
+                [disabled addObject:@"io.metaz.plugin.TheTVDB3"];
+            } else if ([key isEqualToString:@"org.maven-group.metaz.TagChimp"]) {
+            } else {
+                [disabled addObject:key];
+            }
+        }
+        version = 5;
+        [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"version"];
+    }
+    if(version == 5)
+    {
+        NSArray* plugins = [[NSUserDefaults standardUserDefaults] arrayForKey:@"disabledPlugins"];
+        NSMutableArray* disabled = [NSMutableArray array];
+        if([disabled indexOfObject:@"io.metaz.plugin.TheMovieDb"] == NSNotFound)
+        {
+            [disabled addObject:@"io.metaz.plugin.TheMovieDb"];
+        }
+        if([plugins indexOfObject:@"io.metaz.plugin.TheTVDB"] == NSNotFound)
+        {
+            [disabled addObject:@"io.metaz.plugin.TheTVDB"];
+        }
+        [[NSUserDefaults standardUserDefaults] setObject:disabled forKey:@"disabledPlugins"];
+        version = 6;
         [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"version"];
     }
 

@@ -7,13 +7,12 @@
 //
 
 #import <MetaZKit/MZPlugin.h>
-#import "MZPlugin+Private.h"
 
 #define DISABLED_KEY @"disabledPlugins"
 
 @implementation MZPlugin
 
-- (id)initWithBundle:(NSBundle *)theBundle
+- (MZPlugin *)initWithBundle:(NSBundle *)theBundle
 {
     self = [super init];
     if(self)
@@ -23,7 +22,7 @@
     return self;
 }
 
-- (id)init
+- (MZPlugin *)init
 {
     return [self initWithBundle:[NSBundle bundleForClass:[self class]]];
 }
