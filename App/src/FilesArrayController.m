@@ -102,6 +102,11 @@
                 id value = [source objectForKey:[tag identifier]];
                 if([value isKindOfClass:[RemoteData class]])
                     value = [value data];
+                if([value isKindOfClass:[NSArray class]] &&
+                   [value count] == 0)
+                {
+                    continue;
+                }
                 if(value)
                     [edit setterValue:value forKey:[tag identifier]];
             }

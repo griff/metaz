@@ -29,6 +29,12 @@
     if([[data objectForKey:MZPictureTagIdent] isKindOfClass:[NSArray class]])
     {
         id picture = [self valueForKeyPath:@"selection.self"];
+        if(picture == NSMultipleValuesMarker ||
+           picture == NSNotApplicableMarker ||
+           picture == NSNoSelectionMarker)
+        {
+            return;
+        }
         if([picture isKindOfClass:[RemoteData class]])
             picture = [picture data];
         if(picture)
