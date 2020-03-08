@@ -146,6 +146,22 @@ int main(int argc, const char *argv[])
         version = 5;
         [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"version"];
     }
+    if(version == 5)
+    {
+        NSArray* plugins = [[NSUserDefaults standardUserDefaults] arrayForKey:@"disabledPlugins"];
+        NSMutableArray* disabled = [NSMutableArray array];
+        if([disabled indexOfObject:@"io.metaz.plugin.TheMovieDb"] == NSNotFound)
+        {
+            [disabled addObject:@"io.metaz.plugin.TheMovieDb"];
+        }
+        if([plugins indexOfObject:@"io.metaz.plugin.TheTVDB"] == NSNotFound)
+        {
+            [disabled addObject:@"io.metaz.plugin.TheTVDB"];
+        }
+        [[NSUserDefaults standardUserDefaults] setObject:disabled forKey:@"disabledPlugins"];
+        version = 6;
+        [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"version"];
+    }
 
     [pool release];
     return NSApplicationMain(argc,  argv);
