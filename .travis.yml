@@ -19,8 +19,8 @@ before_deploy:
 - mv Upload/MetaZ-*+dSYM.zip Upload/Debug.dSYM.zip
 - mv Upload/MetaZ-*.json Upload/Sparkle.json
 - rm Upload/*.dmg
-after_deploy:
-- bash Scripts/trigger-site.bash
+#after_deploy:
+#- bash Scripts/trigger-site.bash
 deploy:
 - provider: releases
   api_key:

@@ -1,7 +1,11 @@
+#!/bin/bash
+if [ -z "$MESSAGE" ]; then
+  export MESSAGE="MetaZ build $TRAVIS_BUILD_NUMBER"
+fi
 body="{
 \"request\": {
 \"branch\":\"master\",
-\"message\": \"MetaZ build $TRAVIS_BUILD_NUMBER\"
+\"message\": \"$MESSAGE\"
 }}"
 
 curl -s -X POST \
