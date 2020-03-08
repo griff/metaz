@@ -198,7 +198,6 @@
 		1BA326A010546F4600276F57 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BA3269E10546F4600276F57 /* MainMenu.xib */; };
 		1BA326A310546F9700276F57 /* MZTags.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BA326A110546F9700276F57 /* MZTags.strings */; };
 		1BA326C61054723000276F57 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
-		1BA9B57C2089578D00DDC17F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA9B579208954BA00DDC17F /* Sparkle.framework */; };
 		1BA9B57D208957B200DDC17F /* MetaZKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1BAC8EDA13EB32110022D625 /* MetaZ.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1BAC8ED913EB32110022D625 /* MetaZ.icns */; };
 		1BAC8FEB13ECAFF20022D625 /* metaz.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BAC8FEA13ECAFF20022D625 /* metaz.png */; };
@@ -294,6 +293,8 @@
 		7F67C0FF23B1C3DD005BCE8E /* Example Actions.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 7F67C0FB23B1C3DD005BCE8E /* Example Actions.applescript */; };
 		7F67C10023B1C3DD005BCE8E /* Quit MetaZ.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 7F67C0FC23B1C3DD005BCE8E /* Quit MetaZ.applescript */; };
 		7F67C10123B1C3DD005BCE8E /* Update iTunes.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 7F67C0FD23B1C3DD005BCE8E /* Update iTunes.applescript */; };
+		7FD0562C2415E555005BCE8E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FD056292415E52C005BCE8E /* Sparkle.framework */; };
+		7FD0562D2415E555005BCE8E /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 7FD056292415E52C005BCE8E /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -484,6 +485,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				1BA9B57D208957B200DDC17F /* MetaZKit.framework in Copy Frameworks */,
+				7FD0562D2415E555005BCE8E /* Sparkle.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,9 +498,6 @@
 			files = (
 				1B7B1052240605820018DB18 /* TheMovieDbNG.mzsearchprovider in Copy Plugins */,
 				1B7FF3F724047F27001457CE /* TheTVDB3.mzsearchprovider in Copy Plugins */,
-				1B492FA91F65537800A2FD3F /* Add to iTunes.scpt in Copy Plugins */,
-				1B492FAB1F65537800A2FD3F /* Quit MetaZ.scpt in Copy Plugins */,
-				1B492FAC1F65537800A2FD3F /* Update iTunes.scpt in Copy Plugins */,
 				1B3185B81841EB18001EDE79 /* OSXNotification.mzactions in Copy Plugins */,
 				1BD562471648F43A00F9C579 /* AlertWindow.mzactions in Copy Plugins */,
 				1B299DB714AE4D3A0048B7C0 /* TheMovieDb.mzsearchprovider in Copy Plugins */,
@@ -798,7 +797,6 @@
 		1BA326A210546F9700276F57 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = Framework/English.lproj/MZTags.strings; sourceTree = "<group>"; };
 		1BA326EE1054823100276F57 /* MZWriteQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZWriteQueue.h; sourceTree = "<group>"; };
 		1BA326EF1054823100276F57 /* MZWriteQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZWriteQueue.m; sourceTree = "<group>"; };
-		1BA9B579208954BA00DDC17F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		1BA9B57F2089580C00DDC17F /* Checkouts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Checkouts; path = Carthage/Checkouts; sourceTree = "<group>"; };
 		1BAC8ED913EB32110022D625 /* MetaZ.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MetaZ.icns; path = App/resources/MetaZ.icns; sourceTree = "<group>"; };
 		1BAC8FEA13ECAFF20022D625 /* metaz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = metaz.png; path = App/resources/metaz.png; sourceTree = "<group>"; };
@@ -903,6 +901,7 @@
 		7F67C0FB23B1C3DD005BCE8E /* Example Actions.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Example Actions.applescript"; sourceTree = "<group>"; };
 		7F67C0FC23B1C3DD005BCE8E /* Quit MetaZ.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Quit MetaZ.applescript"; sourceTree = "<group>"; };
 		7F67C0FD23B1C3DD005BCE8E /* Update iTunes.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = "Update iTunes.applescript"; sourceTree = "<group>"; };
+		7FD056292415E52C005BCE8E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Externals/Sparkle.framework; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = App/Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MetaZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetaZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -990,7 +989,7 @@
 				1BA326C61054723000276F57 /* MetaZKit.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				1B0DEDE010610412009D293F /* Quartz.framework in Frameworks */,
-				1BA9B57C2089578D00DDC17F /* Sparkle.framework in Frameworks */,
+				7FD0562C2415E555005BCE8E /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1098,7 +1097,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1BA9B579208954BA00DDC17F /* Sparkle.framework */,
+				7FD056292415E52C005BCE8E /* Sparkle.framework */,
 				1B0DEDDF10610412009D293F /* Quartz.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				1B523B8813F4B39400C20B7D /* SystemConfiguration.framework */,
@@ -1689,7 +1688,6 @@
 				7F67C0FD23B1C3DD005BCE8E /* Update iTunes.applescript */,
 				1B7B1043240604020018DB18 /* TheMovieDbNG */,
 				1B7FF3FB24048024001457CE /* TheTVDB3 */,
-				1B492F901F654FC800A2FD3F /* AppleScript */,
 				1B31858B1841E7A8001EDE79 /* OSXNotification */,
 				1BD561F01648F06700F9C579 /* AlertWindow */,
 				1B8CB8FA14ACD5C700F859F7 /* TheMovieDb */,
@@ -2058,7 +2056,6 @@
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
 				1BB6C11E1052B199001D3D1D /* Copy Frameworks */,
-				1BA9B57B2089550F00DDC17F /* carthage copy-frameworks */,
 				1BEA6F2F106EF6D5004B1A7F /* Copy Plugins */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
@@ -2337,8 +2334,10 @@
 			shellPath = /bin/sh;
 			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/make_diskimage.bash\n";
 		};
+		1BB6BF3B1050ED38001D3D1D /* Sparkle Sign  */ = {
 		1B76F8EB2415C2AE00CB8810 /* Sparkle Sign */ = {
 			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -2347,6 +2346,7 @@
 			inputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(PROJECT_NAME)-$(VERSION).zip",
 			);
+			name = "Sparkle Sign ";
 			name = "Sparkle Sign";
 			outputFileListPaths = (
 			);
@@ -2354,6 +2354,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(PROJECT_NAME)-$(VERSION).xml",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
 			shellPath = /bin/sh;
 			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/sparkle_sign.bash\n";
 		};
@@ -3058,9 +3059,11 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					"\"$(SRCROOT)/Externals\"",
 					"\"$(PROJECT_DIR)/Carthage/Build/Mac\"",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Externals",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -3812,9 +3815,11 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					"\"$(SRCROOT)/Externals\"",
 					"\"$(PROJECT_DIR)/Carthage/Build/Mac\"",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Externals",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -3849,9 +3854,11 @@
 				DEPLOYMENT_POSTPROCESSING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					"\"$(SRCROOT)/Externals\"",
 					"\"$(PROJECT_DIR)/Carthage/Build/Mac\"",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Externals",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
