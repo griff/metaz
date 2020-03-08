@@ -139,10 +139,4 @@
                                path:nil];
 }
 
-- (NSString *)label;
-{
-    return @"Show OS X Notification";
-}
-
-
 @end

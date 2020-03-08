@@ -82,7 +82,7 @@
 		1B3185881841E167001EDE79 /* NSData+MZCleanUTF8.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3185861841E167001EDE79 /* NSData+MZCleanUTF8.m */; };
 		1B31858A1841E2B0001EDE79 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B3185891841E2B0001EDE79 /* libiconv.dylib */; };
 		1B3185AA1841E9D6001EDE79 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
-		1B3185B81841EB18001EDE79 /* OSXNotificationPlugin.mzactions in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B3185B21841E9D6001EDE79 /* OSXNotificationPlugin.mzactions */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		1B3185B81841EB18001EDE79 /* OSXNotification.mzactions in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B3185B21841E9D6001EDE79 /* OSXNotification.mzactions */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1B3185BB1841EB4A001EDE79 /* OSXNotificationPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3185BA1841EB4A001EDE79 /* OSXNotificationPlugin.m */; };
 		1B3185BE1841F5A1001EDE79 /* MZVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B3185BC1841F5A1001EDE79 /* MZVersion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B3185BF1841F5A1001EDE79 /* MZVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3185BD1841F5A1001EDE79 /* MZVersion.m */; };
@@ -116,7 +116,7 @@
 		1B4C1F4116554B0600011621 /* MZHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4C1F3D1655490D00011621 /* MZHTTPRequest.m */; };
 		1B4CFFE8161CE0ED00B12009 /* AEVTBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4CFF90161CDF0100B12009 /* AEVTBuilder.m */; };
 		1B4F53C4116E9F44003221B1 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
-		1B4F53D8116EA0BE003221B1 /* TheTVDBPlugin.mzsearchprovider in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzsearchprovider */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		1B4F53D8116EA0BE003221B1 /* TheTVDB.mzsearchprovider in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1B4F53C9116E9F44003221B1 /* TheTVDB.mzsearchprovider */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1B4F53DF116EA1B5003221B1 /* TheTVDBPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4F53DE116EA1B5003221B1 /* TheTVDBPlugin.m */; };
 		1B523C0F13F4B3F500C20B7D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B523B8813F4B39400C20B7D /* SystemConfiguration.framework */; };
 		1B523C1413FDCC9600C20B7D /* ASIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B523B5413F4B2B500C20B7D /* ASIHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -230,7 +230,7 @@
 		1BD55C671648466700F9C579 /* NSError+MZScriptError.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD55C651648466700F9C579 /* NSError+MZScriptError.m */; };
 		1BD562111648F18900F9C579 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1BD5622F1648F2B200F9C579 /* AlertWindowPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD5622E1648F2B200F9C579 /* AlertWindowPlugin.m */; };
-		1BD562471648F43A00F9C579 /* AlertWindowPlugin.mzactions in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1BD562071648F17C00F9C579 /* AlertWindowPlugin.mzactions */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		1BD562471648F43A00F9C579 /* AlertWindow.mzactions in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1BD562071648F17C00F9C579 /* AlertWindow.mzactions */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1BD6E752105DADCC00E40151 /* AddToQueue.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74D105DADCC00E40151 /* AddToQueue.tiff */; };
 		1BD6E753105DADCC00E40151 /* Pause.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74E105DADCC00E40151 /* Pause.tiff */; };
 		1BD6E754105DADCC00E40151 /* Play.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1BD6E74F105DADCC00E40151 /* Play.tiff */; };
@@ -248,7 +248,7 @@
 		1BEA6DDD106ED8E4004B1A7F /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6DDC106ED8E4004B1A7F /* PreferencesWindowController.m */; };
 		1BEA6E91106EF534004B1A7F /* AtomicParsleyPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BEA6E90106EF534004B1A7F /* AtomicParsleyPlugin.m */; };
 		1BEA6E97106EF662004B1A7F /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
-		1BEA6F33106EF6FC004B1A7F /* AtomicParsleyPlugin.mzdataprovider in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1BEA6E72106EF2A0004B1A7F /* AtomicParsleyPlugin.mzdataprovider */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		1BEA6F33106EF6FC004B1A7F /* AtomicParsley.mzdataprovider in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 1BEA6E72106EF2A0004B1A7F /* AtomicParsley.mzdataprovider */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1BEA6F9A106EFC3F004B1A7F /* MetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B119FCA104304C5004C93D3 /* MetaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA6F9B106EFC3F004B1A7F /* MetaEdits.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B119FC7104300ED004C93D3 /* MetaEdits.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BEA6F9C106EFC3F004B1A7F /* MetaEdits.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B119FC8104300ED004C93D3 /* MetaEdits.m */; };
@@ -478,11 +478,11 @@
 				1B492FA91F65537800A2FD3F /* Add to iTunes.scpt in Copy Plugins */,
 				1B492FAB1F65537800A2FD3F /* Quit MetaZ.scpt in Copy Plugins */,
 				1B492FAC1F65537800A2FD3F /* Update iTunes.scpt in Copy Plugins */,
-				1B3185B81841EB18001EDE79 /* OSXNotificationPlugin.mzactions in Copy Plugins */,
-				1BD562471648F43A00F9C579 /* AlertWindowPlugin.mzactions in Copy Plugins */,
+				1B3185B81841EB18001EDE79 /* OSXNotification.mzactions in Copy Plugins */,
+				1BD562471648F43A00F9C579 /* AlertWindow.mzactions in Copy Plugins */,
 				1B299DB714AE4D3A0048B7C0 /* TheMovieDb.mzsearchprovider in Copy Plugins */,
-				1B4F53D8116EA0BE003221B1 /* TheTVDBPlugin.mzsearchprovider in Copy Plugins */,
-				1BEA6F33106EF6FC004B1A7F /* AtomicParsleyPlugin.mzdataprovider in Copy Plugins */,
+				1B4F53D8116EA0BE003221B1 /* TheTVDB.mzsearchprovider in Copy Plugins */,
+				1BEA6F33106EF6FC004B1A7F /* AtomicParsley.mzdataprovider in Copy Plugins */,
 			);
 			name = "Copy Plugins";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -590,7 +590,7 @@
 		1B3185851841E167001EDE79 /* NSData+MZCleanUTF8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MZCleanUTF8.h"; sourceTree = "<group>"; };
 		1B3185861841E167001EDE79 /* NSData+MZCleanUTF8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MZCleanUTF8.m"; sourceTree = "<group>"; };
 		1B3185891841E2B0001EDE79 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
-		1B3185B21841E9D6001EDE79 /* OSXNotificationPlugin.mzactions */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSXNotificationPlugin.mzactions; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B3185B21841E9D6001EDE79 /* OSXNotification.mzactions */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OSXNotification.mzactions; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B3185B41841EAC7001EDE79 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = OSXNotification/Info.plist; sourceTree = "<group>"; };
 		1B3185B91841EB4A001EDE79 /* OSXNotificationPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSXNotificationPlugin.h; sourceTree = "<group>"; };
 		1B3185BA1841EB4A001EDE79 /* OSXNotificationPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSXNotificationPlugin.m; sourceTree = "<group>"; };
@@ -644,7 +644,7 @@
 		1B4CFF8F161CDF0100B12009 /* AEVTBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEVTBuilder.h; sourceTree = "<group>"; };
 		1B4CFF90161CDF0100B12009 /* AEVTBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEVTBuilder.m; sourceTree = "<group>"; };
 		1B4F5394116E9EFC003221B1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
-		1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzsearchprovider */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheTVDBPlugin.mzsearchprovider; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B4F53C9116E9F44003221B1 /* TheTVDB.mzsearchprovider */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheTVDB.mzsearchprovider; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B4F53DD116EA1B5003221B1 /* TheTVDBPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheTVDBPlugin.h; sourceTree = "<group>"; };
 		1B4F53DE116EA1B5003221B1 /* TheTVDBPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheTVDBPlugin.m; sourceTree = "<group>"; };
 		1B521CEA1F65558600979D60 /* document_types.bash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = document_types.bash; path = Scripts/document_types.bash; sourceTree = "<group>"; };
@@ -836,7 +836,7 @@
 		1BD55C611648431D00F9C579 /* MZScriptActionsPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZScriptActionsPlugin.m; sourceTree = "<group>"; };
 		1BD55C641648466700F9C579 /* NSError+MZScriptError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MZScriptError.h"; sourceTree = "<group>"; };
 		1BD55C651648466700F9C579 /* NSError+MZScriptError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MZScriptError.m"; sourceTree = "<group>"; };
-		1BD562071648F17C00F9C579 /* AlertWindowPlugin.mzactions */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlertWindowPlugin.mzactions; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BD562071648F17C00F9C579 /* AlertWindow.mzactions */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlertWindow.mzactions; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BD562081648F17C00F9C579 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = AlertWindow/Info.plist; sourceTree = "<group>"; };
 		1BD5622D1648F2B200F9C579 /* AlertWindowPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertWindowPlugin.h; sourceTree = "<group>"; };
 		1BD5622E1648F2B200F9C579 /* AlertWindowPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertWindowPlugin.m; sourceTree = "<group>"; };
@@ -863,7 +863,7 @@
 		1BEA6DAD106EC632004B1A7F /* MZPluginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZPluginController.m; sourceTree = "<group>"; };
 		1BEA6DDB106ED8E4004B1A7F /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
 		1BEA6DDC106ED8E4004B1A7F /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
-		1BEA6E72106EF2A0004B1A7F /* AtomicParsleyPlugin.mzdataprovider */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AtomicParsleyPlugin.mzdataprovider; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BEA6E72106EF2A0004B1A7F /* AtomicParsley.mzdataprovider */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AtomicParsley.mzdataprovider; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEA6E8D106EF522004B1A7F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		1BEA6E8F106EF534004B1A7F /* AtomicParsleyPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtomicParsleyPlugin.h; sourceTree = "<group>"; };
 		1BEA6E90106EF534004B1A7F /* AtomicParsleyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtomicParsleyPlugin.m; sourceTree = "<group>"; };
@@ -1108,12 +1108,12 @@
 			children = (
 				1BA325C410545ACA00276F57 /* MetaZKit.framework */,
 				8D1107320486CEB800E47090 /* MetaZ.app */,
-				1BEA6E72106EF2A0004B1A7F /* AtomicParsleyPlugin.mzdataprovider */,
+				1BEA6E72106EF2A0004B1A7F /* AtomicParsley.mzdataprovider */,
 				1B03304310B0CD3C00B28E3A /* MetaZKitTest.octest */,
-				1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzsearchprovider */,
+				1B4F53C9116E9F44003221B1 /* TheTVDB.mzsearchprovider */,
 				1B8CB90B14ACD62000F859F7 /* TheMovieDb.mzsearchprovider */,
-				1BD562071648F17C00F9C579 /* AlertWindowPlugin.mzactions */,
-				1B3185B21841E9D6001EDE79 /* OSXNotificationPlugin.mzactions */,
+				1BD562071648F17C00F9C579 /* AlertWindow.mzactions */,
+				1B3185B21841E9D6001EDE79 /* OSXNotification.mzactions */,
 				1B7FF3F324047EE3001457CE /* TheTVDB3.mzsearchprovider */,
 				1B7B1041240603930018DB18 /* TheMovieDbNG.mzsearchprovider */,
 			);
@@ -1921,7 +1921,7 @@
 			);
 			name = OSXNotificationPlugin;
 			productName = GrowlPlugin;
-			productReference = 1B3185B21841E9D6001EDE79 /* OSXNotificationPlugin.mzactions */;
+			productReference = 1B3185B21841E9D6001EDE79 /* OSXNotification.mzactions */;
 			productType = "com.apple.product-type.bundle";
 		};
 		1B4F53B3116E9F44003221B1 /* TheTVDB */ = {
@@ -1940,7 +1940,7 @@
 			);
 			name = TheTVDB;
 			productName = Amazon;
-			productReference = 1B4F53C9116E9F44003221B1 /* TheTVDBPlugin.mzsearchprovider */;
+			productReference = 1B4F53C9116E9F44003221B1 /* TheTVDB.mzsearchprovider */;
 			productType = "com.apple.product-type.bundle";
 		};
 		1B7B1032240603930018DB18 /* TheMovieDbNG */ = {
@@ -2036,7 +2036,7 @@
 			);
 			name = AlertWindowPlugin;
 			productName = AlertWindowPlugin;
-			productReference = 1BD562071648F17C00F9C579 /* AlertWindowPlugin.mzactions */;
+			productReference = 1BD562071648F17C00F9C579 /* AlertWindow.mzactions */;
 			productType = "com.apple.product-type.bundle";
 		};
 		1BEA6E71106EF2A0004B1A7F /* AtomicParsley */ = {
@@ -2055,7 +2055,7 @@
 			);
 			name = AtomicParsley;
 			productName = AtomicParsleyPlugin;
-			productReference = 1BEA6E72106EF2A0004B1A7F /* AtomicParsleyPlugin.mzdataprovider */;
+			productReference = 1BEA6E72106EF2A0004B1A7F /* AtomicParsley.mzdataprovider */;
 			productType = "com.apple.product-type.bundle";
 		};
 		8D1107260486CEB800E47090 /* MetaZ */ = {
@@ -2905,8 +2905,8 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = OSXNotificationPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = OSXNotification;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/OSXNotification/**";
 				WRAPPER_EXTENSION = mzactions;
@@ -2932,8 +2932,8 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = OSXNotificationPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = OSXNotification;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/OSXNotification/**";
 				WRAPPER_EXTENSION = mzactions;
@@ -2960,8 +2960,8 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = OSXNotificationPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = OSXNotification;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/OSXNotification/**";
 				WRAPPER_EXTENSION = mzactions;
@@ -3121,8 +3121,8 @@
 					"-framework",
 					MetaZKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:identifier}";
-				PRODUCT_NAME = AtomicParsleyPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:identifier}";
+				PRODUCT_NAME = AtomicParsley;
 				SKIP_INSTALL = YES;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
@@ -3188,8 +3188,8 @@
 					AppKit,
 					"-lz",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = TheTVDBPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = TheTVDB;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
@@ -3217,8 +3217,8 @@
 					AppKit,
 					"-lz",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = TheTVDBPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = TheTVDB;
 				SKIP_INSTALL = YES;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
@@ -3245,8 +3245,8 @@
 					AppKit,
 					"-lz",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = TheTVDBPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = TheTVDB;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
@@ -3276,7 +3276,7 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
@@ -3303,7 +3303,7 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
@@ -3331,7 +3331,7 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
@@ -3360,7 +3360,7 @@
 					AppKit,
 					"-lz",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
@@ -3389,7 +3389,7 @@
 					AppKit,
 					"-lz",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SYMROOT = /Volumes/ibsoar/Documents/MetaZ;
@@ -3417,7 +3417,7 @@
 					AppKit,
 					"-lz",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
@@ -3448,7 +3448,7 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = TheMovieDb;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
@@ -3475,7 +3475,7 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = TheMovieDb;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
@@ -3503,7 +3503,7 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = TheMovieDb;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheMovieDb/**";
@@ -3621,8 +3621,8 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = AlertWindowPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = AlertWindow;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = mzactions;
 			};
@@ -3647,8 +3647,8 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = AlertWindowPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = AlertWindow;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = mzactions;
 			};
@@ -3674,8 +3674,8 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = AlertWindowPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = AlertWindow;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = mzactions;
 				ZERO_LINK = NO;
@@ -3706,8 +3706,8 @@
 					"-framework",
 					MetaZKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:identifier}";
-				PRODUCT_NAME = AtomicParsleyPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:identifier}";
+				PRODUCT_NAME = AtomicParsley;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
 				WRAPPER_EXTENSION = mzdataprovider;
@@ -3736,8 +3736,8 @@
 					"-framework",
 					MetaZKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.maven-group.metaz.${PRODUCT_NAME:identifier}";
-				PRODUCT_NAME = AtomicParsleyPlugin;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.metaz.plugin.${PRODUCT_NAME:identifier}";
+				PRODUCT_NAME = AtomicParsley;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = Plugins/AtomicParsley/src;
 				WRAPPER_EXTENSION = mzdataprovider;

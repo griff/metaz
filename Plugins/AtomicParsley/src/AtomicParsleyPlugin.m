@@ -83,19 +83,17 @@
 
 + (NSString *)launchPath
 {
-    CFBundleRef myBundle = CFBundleGetBundleWithIdentifier(CFSTR("org.maven-group.metaz.AtomicParsleyPlugin"));
-    CFURLRef pathUrl = CFBundleCopyResourceURL(myBundle, CFSTR("AtomicParsley"), NULL, NULL);
+    NSBundle* myBundle = [NSBundle bundleForClass:[AtomicParsleyPlugin class]];
+    CFURLRef pathUrl = (CFURLRef)[myBundle URLForResource:@"AtomicParsley" withExtension:NULL];
     NSString* path = (NSString*)CFURLCopyFileSystemPath(pathUrl, kCFURLPOSIXPathStyle);
-    CFRelease(pathUrl);
     return [path autorelease];
 }
 
 + (NSString *)launchChapsPath
 {
-    CFBundleRef myBundle = CFBundleGetBundleWithIdentifier(CFSTR("org.maven-group.metaz.AtomicParsleyPlugin"));
-    CFURLRef pathUrl = CFBundleCopyResourceURL(myBundle, CFSTR("mp4chaps"), NULL, NULL);
+    NSBundle* myBundle = [NSBundle bundleForClass:[AtomicParsleyPlugin class]];
+    CFURLRef pathUrl = (CFURLRef)[myBundle URLForResource:@"mp4chaps" withExtension:NULL];
     NSString* path = (NSString*)CFURLCopyFileSystemPath(pathUrl, kCFURLPOSIXPathStyle);
-    CFRelease(pathUrl);
     return [path autorelease];
 }
 

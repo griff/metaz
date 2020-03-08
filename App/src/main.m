@@ -109,6 +109,43 @@ int main(int argc, const char *argv[])
         version = 4;
         [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"version"];
     }
+    if(version == 4)
+    {
+        NSArray* actions = [[NSUserDefaults standardUserDefaults] arrayForKey:@"enabledActionPlugins"];
+        NSMutableArray* enabled = [NSMutableArray array];
+        for (NSString* key in actions) {
+            if([key isEqualToString:@"org.maven-group.metaz.plugin.OSXNotificationPlugin"]) {
+                [enabled addObject:@"io.metaz.plugin.OSXNotification"];
+            } else if ([key isEqualToString:@"org.maven-group.metaz.plugin.AlertWindowPlugin"]) {
+                [enabled addObject:@"io.metaz.plugin.AlertWindow"];
+            } else if ([key isEqualToString:@"org.maven-group.metaz.plugin.GrowlPlugin"]) {
+            } else {
+                [enabled addObject:key];
+            }
+        }
+        [[NSUserDefaults standardUserDefaults] setObject:enabled forKey:@"enabledActionPlugins"];
+
+        NSArray* plugins = [[NSUserDefaults standardUserDefaults] arrayForKey:@"disabledPlugins"];
+        NSMutableArray* disabled = [NSMutableArray array];
+        for (NSString* key in plugins) {
+            if([key isEqualToString:@"org.maven-group.metaz.TheTVDBPlugin"]) {
+                [disabled addObject:@"io.metaz.plugin.TheTVDB"];
+            } else if ([key isEqualToString:@"org.maven-group.metaz.TheTVDB"]) {
+                [disabled addObject:@"io.metaz.plugin.TheTVDB"];
+            } else if ([key isEqualToString:@"org.maven-group.metaz.TheMovieDb"]) {
+                [disabled addObject:@"io.metaz.plugin.TheMovieDb"];
+            } else if ([key isEqualToString:@"org.maven-group.metaz.TheMovieDbNG"]) {
+                [disabled addObject:@"io.metaz.plugin.TheMovieDbNG"];
+            } else if ([key isEqualToString:@"org.maven-group.metaz.TheTVDB3"]) {
+                [disabled addObject:@"io.metaz.plugin.TheTVDB3"];
+            } else if ([key isEqualToString:@"org.maven-group.metaz.TagChimp"]) {
+            } else {
+                [disabled addObject:key];
+            }
+        }
+        version = 5;
+        [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"version"];
+    }
 
     [pool release];
     return NSApplicationMain(argc,  argv);

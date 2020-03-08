@@ -26,5 +26,7 @@
 	<string>logo.png</string>
 	<key>NSPrincipalClass</key>
 	<string>TheMovieDbNGPlugin</string>
+	<key>CFBundleDisplayName</key>
+	<string>The Movie DB Next Gen</string>
 </dict>
 </plist>

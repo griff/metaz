@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1BD562061648F17C00F9C579"
-               BuildableName = "AlertWindowPlugin.mzactions"
+               BuildableName = "AlertWindow.mzactions"
                BlueprintName = "AlertWindowPlugin"
                ReferencedContainer = "container:MetaZ.xcodeproj">
             </BuildableReference>
@@ -29,6 +29,8 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -44,11 +46,13 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1BD562061648F17C00F9C579"
-            BuildableName = "AlertWindowPlugin.mzactions"
+            BuildableName = "AlertWindow.mzactions"
             BlueprintName = "AlertWindowPlugin"
             ReferencedContainer = "container:MetaZ.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

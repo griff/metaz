@@ -26,5 +26,7 @@
 	<string>logo2.png</string>
 	<key>NSPrincipalClass</key>
 	<string>TheTVDB3Plugin</string>
+	<key>CFBundleDisplayName</key>
+	<string>TheTVDB 3</string>
 </dict>
 </plist>
