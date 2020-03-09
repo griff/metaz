@@ -1,4 +1,8 @@
 if [[ "$TRAVIS_BRANCH" != "$TRAVIS_TAG" ]]; then
+  if [[ "$TRAVIS_BRANCH" != "develop" ]]; then
+    echo "Skipping tag for $TRAVIS_BRANCH branch."
+    exit 0
+  fi
   VERSION=$(/usr/libexec/PlistBuddy -c "print :CFBundleShortVersionString" "build/Release/MetaZ.app/Contents/Info.plist")
 
   git config --global user.email "builds@travis-ci.com"
