@@ -4,6 +4,8 @@ name: Rebuild Site
 # events but only for the master branch
 on:
   release:
+    types:
+      - released
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -17,8 +19,11 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
     - name: Trigger rebuild of site
+      env:
+        SITE_TOKEN: ${{ secrets.SITE_TOKEN }}
       run: |
         echo "Event $GITHUB_EVENT_NAME"
-        cat $GITHUB_EVENT_PATH
-        export MESSAGE="MetaZ release $GITHUB_EVENT_NAME"
-        bash Scripts/trigger-site.bash
+        export NAME="$(jq -r .release.name $GITHUB_EVENT_PATH)"
+        export SENDER="$(jq -r .sender.login $GITHUB_EVENT_PATH)"
+        export MESSAGE="MetaZ release $NAME triggered by $SENDER"
+        ./Scripts/trigger-site.bash

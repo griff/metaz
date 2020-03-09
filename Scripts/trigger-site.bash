@@ -1,4 +1,6 @@
 #!/bin/bash
+set -o errexit
+
 if [ -z "$MESSAGE" ]; then
   export MESSAGE="MetaZ build $TRAVIS_BUILD_NUMBER"
 fi
