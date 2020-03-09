@@ -149,6 +149,7 @@
 		1B6E43CB108468B100DFE165 /* MZSearchResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6E43C9108468B100DFE165 /* MZSearchResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B6E43CC108468B100DFE165 /* MZSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6E43CA108468B100DFE165 /* MZSearchResult.m */; };
 		1B6E43DD10846DBC00DFE165 /* TagData.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B6E43D610846BDA00DFE165 /* TagData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B76F8ED241696C000CB8810 /* Return iTunes selected.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 1B76F8EC241696C000CB8810 /* Return iTunes selected.scpt */; };
 		1B7B103C240603930018DB18 /* MetaZKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA325C410545ACA00276F57 /* MetaZKit.framework */; };
 		1B7B104C240604020018DB18 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B1046240604020018DB18 /* Configuration.swift */; };
 		1B7B104D240604020018DB18 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7B1047240604020018DB18 /* JSON.swift */; };
@@ -234,7 +235,6 @@
 		1BCECD8A10E39AE200D0AD35 /* MZLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCECD8810E39AE200D0AD35 /* MZLogger.m */; };
 		1BCECEC510E98E4200D0AD35 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 1BCECEC410E98E4200D0AD35 /* Credits.html */; };
 		1BD3D311108DD03E00BE6943 /* PictureEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD3D310108DD03E00BE6943 /* PictureEditor.m */; };
-		1BD55BED16482D7600F9C579 /* Return iTunes selected.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 1B63A36616458A1C00461FC9 /* Return iTunes selected.applescript */; };
 		1BD55C5E16483F5E00F9C579 /* MZActionsPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD55C5C16483F5E00F9C579 /* MZActionsPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BD55C5F16483F5E00F9C579 /* MZActionsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD55C5D16483F5E00F9C579 /* MZActionsPlugin.m */; };
 		1BD55C621648431D00F9C579 /* MZScriptActionsPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD55C601648431D00F9C579 /* MZScriptActionsPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -737,6 +737,8 @@
 		1B7223A5240219E7005DEE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = App/Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		1B7223A6240219E8005DEE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = App/Base.lproj/PresetsPanel.xib; sourceTree = "<group>"; };
 		1B7223A7240219E8005DEE47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = App/Base.lproj/SearchView.xib; sourceTree = "<group>"; };
+		1B76F8EC241696C000CB8810 /* Return iTunes selected.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Return iTunes selected.scpt"; path = "App/resources/Return iTunes selected.scpt"; sourceTree = "<group>"; };
+		1B76F8EF24169BCA00CB8810 /* sign_applescript.bash */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = sign_applescript.bash; path = Scripts/sign_applescript.bash; sourceTree = "<group>"; };
 		1B78A499105032A50072D89E /* MZMethodData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZMethodData.h; sourceTree = "<group>"; };
 		1B78A49A105032A50072D89E /* MZMethodData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZMethodData.m; sourceTree = "<group>"; };
 		1B7B1041240603930018DB18 /* TheMovieDbNG.mzsearchprovider */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheMovieDbNG.mzsearchprovider; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1348,6 +1350,7 @@
 				1B521CEB1F65558600979D60 /* make_diskimage.bash */,
 				1B521CEC1F65558600979D60 /* plist.bash */,
 				1B521CED1F65558600979D60 /* sparkle_sign.bash */,
+				1B76F8EF24169BCA00CB8810 /* sign_applescript.bash */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
@@ -1789,6 +1792,7 @@
 				1BFEDDFD18349138008A17D3 /* PosterBackground.png */,
 				1BFEDDFE18349138008A17D3 /* PosterBackgroundError.png */,
 				1BFEDDFF18349138008A17D3 /* PosterBackgroundMultiple.png */,
+				1B76F8EC241696C000CB8810 /* Return iTunes selected.scpt */,
 				1B63A36616458A1C00461FC9 /* Return iTunes selected.applescript */,
 				1B8CB5DF14AA31C500F859F7 /* modified_header.tiff */,
 				1B8CB5E014AA31C500F859F7 /* modified_selected.tiff */,
@@ -2089,6 +2093,7 @@
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				1B56A4BB17065FC300BDE79D /* Copy document types from plugins */,
+				1B76F8EE24169B9900CB8810 /* Sign AppleScript */,
 			);
 			buildRules = (
 			);
@@ -2252,6 +2257,7 @@
 				1BA3269D10546EC800276F57 /* InfoPlist.strings in Resources */,
 				1BA326A010546F4600276F57 /* MainMenu.xib in Resources */,
 				1BD6E752105DADCC00E40151 /* AddToQueue.tiff in Resources */,
+				1B76F8ED241696C000CB8810 /* Return iTunes selected.scpt in Resources */,
 				1BD6E753105DADCC00E40151 /* Pause.tiff in Resources */,
 				1BD6E754105DADCC00E40151 /* Play.tiff in Resources */,
 				1BFEDE0118349138008A17D3 /* PosterBackgroundError.png in Resources */,
@@ -2382,6 +2388,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/sparkle_sign.bash\n";
+		};
+		1B76F8EE24169B9900CB8810 /* Sign AppleScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(PLUGINS_FOLDER_PATH)/Add to iTunes.scpt",
+				"$(BUILT_PRODUCTS_DIR)/$(PLUGINS_FOLDER_PATH)/Quit MetaZ.scpt",
+				"$(BUILT_PRODUCTS_DIR)/$(PLUGINS_FOLDER_PATH)/Update iTunes.scpt",
+				"$(BUILT_PRODUCTS_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Return iTunes selected.scpt",
+			);
+			name = "Sign AppleScript";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/sign_applescript.bash\n";
 		};
 		1BA9B57B2089550F00DDC17F /* carthage copy-frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2613,7 +2641,6 @@
 				1B89073116420437008C5C8B /* MZScriptingEnums.m in Sources */,
 				1B8908E416424790008C5C8B /* MZSelectedMetaDataDocument.m in Sources */,
 				1B63A1D31644D8D100461FC9 /* MZArrayController.m in Sources */,
-				1BD55BED16482D7600F9C579 /* Return iTunes selected.applescript in Sources */,
 				1B26B818164ACE1200238517 /* SearchController.m in Sources */,
 				1B26B88D164B1EEB00238517 /* MZTextView.m in Sources */,
 				1B26B8FB164B264400238517 /* MZTextField.m in Sources */,
@@ -3844,7 +3871,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
