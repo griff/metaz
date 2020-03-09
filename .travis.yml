@@ -9,7 +9,7 @@ install:
 - gem install xcpretty-travis-formatter
 script:
 - xcodebuild -version
-- xcodebuild
+- xcodebuild -target Package
 before_deploy:
 - source Scripts/tag-beta.bash
 - mkdir Upload

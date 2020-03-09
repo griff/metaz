@@ -18,6 +18,19 @@
 			name = "Plist Marcos";
 			productName = "Plist Macos";
 		};
+		1B76F8E32415C09F00CB8810 /* Package */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 1B76F8E42415C0A000CB8810 /* Build configuration list for PBXAggregateTarget "Package" */;
+			buildPhases = (
+				1B76F8EA2415C0C400CB8810 /* Make Disk image */,
+				1B76F8EB2415C2AE00CB8810 /* Sparkle Sign */,
+			);
+			dependencies = (
+				1B76F8E92415C0A700CB8810 /* PBXTargetDependency */,
+			);
+			name = Package;
+			productName = Package;
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -354,6 +367,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1B4F53B3116E9F44003221B1;
 			remoteInfo = TheTVDB;
+		};
+		1B76F8E82415C0A700CB8810 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D1107260486CEB800E47090;
+			remoteInfo = MetaZ;
 		};
 		1B7B1034240603930018DB18 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -2069,8 +2089,6 @@
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				1B56A4BB17065FC300BDE79D /* Copy document types from plugins */,
-				1B8262A710B39DE400DF101B /* Make Disk Image */,
-				1BB6BF3B1050ED38001D3D1D /* Sparkle Sign  */,
 			);
 			buildRules = (
 			);
@@ -2099,6 +2117,9 @@
 			attributes = {
 				LastUpgradeCheck = 1010;
 				TargetAttributes = {
+					1B76F8E32415C09F00CB8810 = {
+						CreatedOnToolsVersion = 10.1;
+					};
 					1BA325C310545ACA00276F57 = {
 						LastSwiftMigration = 1010;
 					};
@@ -2147,6 +2168,7 @@
 				1B3185A01841E9D6001EDE79 /* OSXNotificationPlugin */,
 				1B7FF3E324047EE3001457CE /* TheTVDB3 */,
 				1B7B1032240603930018DB18 /* TheMovieDbNG */,
+				1B76F8E32415C09F00CB8810 /* Package */,
 			);
 		};
 /* End PBXProject section */
@@ -2314,12 +2336,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/document_types.bash";
+			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/document_types.bash\n";
 		};
-		1B8262A710B39DE400DF101B /* Make Disk Image */ = {
+		1B76F8EA2415C0C400CB8810 /* Make Disk image */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"$(SRCROOT)/Release/template.dmg.zip",
@@ -2327,7 +2351,9 @@
 				"$(SRCROOT)/License.txt",
 				"$(BUILT_PRODUCTS_DIR)/$(PROJECT_NAME).app",
 			);
-			name = "Make Disk Image";
+			name = "Make Disk image";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(PROJECT_NAME)-$(VERSION).dmg",
 				"$(CONFIGURATION_TEMP_DIR)/wc.dmg",
@@ -2335,8 +2361,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/make_diskimage.bash";
-			showEnvVarsInLog = 0;
+			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/make_diskimage.bash\n";
+		};
+		1B76F8EB2415C2AE00CB8810 /* Sparkle Sign */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(PROJECT_NAME)-$(VERSION).zip",
+			);
+			name = "Sparkle Sign";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(PROJECT_NAME)-$(VERSION).xml",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/sparkle_sign.bash\n";
 		};
 		1BA9B57B2089550F00DDC17F /* carthage copy-frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2353,23 +2398,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "PATH=${PATH}:/usr/local/bin:/opt/local/bin\ncarthage copy-frameworks\n";
-		};
-		1BB6BF3B1050ED38001D3D1D /* Sparkle Sign  */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(PROJECT_NAME)-$(VERSION).zip",
-			);
-			name = "Sparkle Sign ";
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(PROJECT_NAME)-$(VERSION).xml",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/sparkle_sign.bash\n";
-			showEnvVarsInLog = 0;
 		};
 		1BEA6D70106EA6D1004B1A7F /* Build Documentation */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2647,6 +2675,11 @@
 			isa = PBXTargetDependency;
 			target = 1B4F53B3116E9F44003221B1 /* TheTVDB */;
 			targetProxy = 1B4F53D1116EA0B7003221B1 /* PBXContainerItemProxy */;
+		};
+		1B76F8E92415C0A700CB8810 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D1107260486CEB800E47090 /* MetaZ */;
+			targetProxy = 1B76F8E82415C0A700CB8810 /* PBXContainerItemProxy */;
 		};
 		1B7B1033240603930018DB18 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3251,6 +3284,30 @@
 				USER_HEADER_SEARCH_PATHS = "Plugins/TheTVDB/**";
 				WRAPPER_EXTENSION = mzsearchprovider;
 				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		1B76F8E52415C0A000CB8810 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1B76F8E62415C0A000CB8810 /* Remote Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = "Remote Debug";
+		};
+		1B76F8E72415C0A000CB8810 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -3944,6 +4001,16 @@
 				1B4F53C6116E9F44003221B1 /* Debug */,
 				1B4F53C7116E9F44003221B1 /* Remote Debug */,
 				1B4F53C8116E9F44003221B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1B76F8E42415C0A000CB8810 /* Build configuration list for PBXAggregateTarget "Package" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B76F8E52415C0A000CB8810 /* Debug */,
+				1B76F8E62415C0A000CB8810 /* Remote Debug */,
+				1B76F8E72415C0A000CB8810 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

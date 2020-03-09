@@ -1,15 +1,15 @@
 PATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin
 set -o errexit
-#set -x
+set -x
 
 if [ "${CONFIGURATION}" != "Release" ]; then exit; fi
 
 rm -f "$BUILT_PRODUCTS_DIR/$PROJECT_NAME"*.dmg
 
 VERSION=$(/usr/libexec/PlistBuddy -c "print :CFBundleShortVersionString" "$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info.plist")
-SOURCE_FILES=($CODESIGNING_FOLDER_PATH Thanks.txt License.txt)
+SOURCE_FILES=($BUILT_PRODUCTS_DIR/${PROJECT_NAME}.app Thanks.txt License.txt)
 TEMPLATE_DMG=$SRCROOT/Release/template.dmg
-MASTER_DMG=$BUILT_PRODUCTS_DIR/$PROJECT_NAME-${VERSION}.dmg
+MASTER_DMG=$BUILT_PRODUCTS_DIR/${PROJECT_NAME}-${VERSION}.dmg
 WC_DMG=$CONFIGURATION_TEMP_DIR/wc.dmg
 WC_DIR=$CONFIGURATION_TEMP_DIR/wc
 ARCHIVE_FILENAME="$PROJECT_NAME-$VERSION.zip"
@@ -54,7 +54,7 @@ if [ ! -z "${EULA_RSRC}" -a "${EULA_RSRC}" != "-null-" ]; then
 fi
 
 app=`which seticon || echo 'non'`
-if [ -x $app ] ; then 
+if [ -x $app ] ; then
 	seticon "$WC_DMG" "$MASTER_DMG"
 else
 	echo warning Missing stuff
@@ -71,5 +71,3 @@ cp -R *.dSYM DSYMS/
 #ditto -ck --keepParent "$PROJECT_NAME.app.dSYM" "$PROJECT_NAME-$VERSION-$GITV+dSYM.zip"
 ditto -ck DSYMS "$PROJECT_NAME-$VERSION-$GITV+dSYM.zip"
 rm -rf DSYMS
-
-
