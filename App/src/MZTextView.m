@@ -243,6 +243,22 @@
 
 @implementation MZTextView
 
+-(void)setString:(NSString *)string
+{
+    NSDictionary<NSAttributedStringKey, id>* defaultAttribute =
+        [NSDictionary dictionaryWithObjectsAndKeys:
+            NSColor.textColor, NSForegroundColorAttributeName,
+         nil];
+
+    NSAttributedString* attributedText = [[NSAttributedString alloc] initWithString:string attributes:defaultAttribute];
+    [self.textStorage setAttributedString:attributedText];
+}
+
+- (NSString *)string
+{
+    return self.textStorage.string;
+}
+
 - (void)bind:(NSString *)binding toObject:(id)observableController
         withKeyPath:(NSString *)keyPath
             options:(NSDictionary *)options
