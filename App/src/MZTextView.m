@@ -243,6 +243,11 @@
 
 @implementation MZTextView
 
+-(void)awakeFromNib {
+    self.textColor = NSColor.textColor;
+    self.insertionPointColor = NSColor.textColor;
+}
+
 -(void)setString:(NSString *)string
 {
     NSDictionary<NSAttributedStringKey, id>* defaultAttribute =
