@@ -2327,7 +2327,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/plist.bash\n";
+			shellScript = "set -o errexit\nbash \"$SRCROOT/Scripts/plist.bash\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1B56A4BB17065FC300BDE79D /* Copy document types from plugins */ = {
