@@ -7,7 +7,7 @@ if [ "${CONFIGURATION}" != "Release" ]; then exit; fi
 rm -f "$BUILT_PRODUCTS_DIR/$PROJECT_NAME"*.dmg
 
 VERSION=$(/usr/libexec/PlistBuddy -c "print :CFBundleShortVersionString" "$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info.plist")
-SOURCE_FILES=($BUILT_PRODUCTS_DIR/${PROJECT_NAME}.app Thanks.txt License.txt)
+SOURCE_APP="${BUILT_PRODUCTS_DIR}/${PROJECT_NAME}.app"
 TEMPLATE_DMG=$SRCROOT/Release/template.dmg
 MASTER_DMG=$BUILT_PRODUCTS_DIR/${PROJECT_NAME}-${VERSION}.dmg
 WC_DMG=$CONFIGURATION_TEMP_DIR/wc.dmg
@@ -33,11 +33,9 @@ rm -r "${TEMPLATE_DMG}"
 mkdir -p "$WC_DIR"
 
 hdiutil attach "$WC_DMG" -noautoopen -quiet -mountpoint "$WC_DIR"
-for i in $SOURCE_FILES; do
-	base=`basename $i`
-	rm -rf "$WC_DIR/$base"
-	ditto -rsrc "$i" "$WC_DIR/$base"
-done
+base=`basename "SOURCE_APP"`
+rm -rf "$WC_DIR/$base"
+ditto -rsrc "$i" "$WC_DIR/$base"
 #rm -f "$@"
 #hdiutil create -srcfolder "$(WC_DIR)" -format UDZO -imagekey zlib-level=9 "$@" -volname "$(NAME) $(VERSION)" -scrub -quiet
 WC_DEV=`hdiutil info | grep "$WC_DIR" | grep "Apple_HFS" | awk '{print $1}'` && \
