@@ -2343,7 +2343,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/document_types.bash\n";
+			shellScript = "set -o errexit\nbash \"$SRCROOT/Scripts/document_types.bash\"\n";
 		};
 		1B76F8EA2415C0C400CB8810 /* Make Disk image */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2368,7 +2368,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/make_diskimage.bash\n";
+			shellScript = "set -o errexit\nbash \"$SRCROOT/Scripts/make_diskimage.bash\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1B76F8EB2415C2AE00CB8810 /* Sparkle Sign */ = {
@@ -2389,7 +2389,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/sparkle_sign.bash\n";
+			shellScript = "set -o errexit\nbash \"$SRCROOT/Scripts/sparkle_sign.bash\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1B76F8EE24169B9900CB8810 /* Sign AppleScript */ = {
@@ -2412,7 +2412,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -o errexit\nbash $SRCROOT/Scripts/sign_applescript.bash\n";
+			shellScript = "set -o errexit\nbash \"$SRCROOT/Scripts/sign_applescript.bash\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1BA9B57B2089550F00DDC17F /* Carthage Update Frameworks */ = {
