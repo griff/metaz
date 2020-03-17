@@ -33,37 +33,24 @@ respond to. To get the template [click here](https://github.com/downloads/griff/
 
 ## Building
 
-There are some files missing in the git repository that you will need if you
-are going to build your own version of MetaZ.
+To build the project you need to have Xcode and
+[Carthage](https://github.com/Carthage/Carthage#quick-start) installed.
 
-`Plugins/Amazon/Access.h`  
-This file contains Amazon AWS access credentials.  
-Copy `Plugins/Amazon/Access_template.h` and insert your own credentials.
+Before you can build the project with Xcode you first need to download the
+needed submodules:
 
-`App/resources/CowHead.png`  
-`App/resources/faded_cow*.png`  
-`App/resources/presets.png`  
-These files are mostly just taken from MetaX but since I don't have the rights
-to use them they are not included in the repository.  
-I have though made a tar with these files and uploaded it to github:
-[missing.tar.gz](http://github.com/downloads/griff/metaz/missing.tar.gz)
-
-### Building with Xcode 5
-
-It seems possible to build the project with Xcode 5 while still compiling with
-the 10.5 SDK. What you need to do is manually install the SDK from the Xcode 3.2.6 DMG.
-
-```bash
-# Download and mount the Xcode 3.2.6 DMG from Apple
-
-open /Volumes/Xcode\ and\ iOS\ SDK/Packages/MacOSX10.5.pkg
-# Install the SDK and choose a location like your user home 
-# You should now have the directory MacOSX10.5.sdk in ~/SDKs
-
-# Make a link from the Xcode 5 install location to the installed SDK
-cd /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs
-sudo ln -s ~/SDKs/MacOSX10.5.sdk MacOSX10.5.sdk
 ```
+git submodule update --init
+```
+
+And then bootstrap the dependencies managed by Carthage:
+
+```
+cathage bootstrap
+```
+
+After those two steps you should be able to compile the project with Xcode
+normally.
 
 ## Contribution steps
 
@@ -88,7 +75,7 @@ This _also_ means that you _could_ push your commits directly to
 griff/metaz without going through a pull request. We ask that you not do
 this, however, so that any code on master has been reviewed. This does not apply
 to branches other than master; if there is long-term collaboration happening,
-create a feature branch and feel free to push directly to that (but have 
+create a feature branch and feel free to push directly to that (but have
 commits reviewed before merging that branch into master).
 
 We reserve the right to take away this permission, but in general we trust you
