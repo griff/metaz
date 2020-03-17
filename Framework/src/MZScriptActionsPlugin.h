@@ -21,5 +21,6 @@
 - (id)initWithURL:(NSURL *)url;
 - (NSString *)label;
 - (BOOL)loadAndReturnError:(NSError **)error;
+- (id)objectForInfoDictionaryKey:(NSString *)key;
 
 @end

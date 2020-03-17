@@ -33,7 +33,8 @@ enum {
 
 - (id)initWithURL:(NSURL *)theURL;
 {
-    self = [super initWithBundle:nil];
+    NSBundle* bundle = [NSBundle bundleWithURL:theURL];
+    self = [super initWithBundle:bundle];
     if(self)
     {
         url = [theURL retain];
@@ -99,6 +100,11 @@ enum {
         }
     }
     return YES;
+}
+
+- (id)objectForInfoDictionaryKey:(NSString *)key;
+{
+    return [self.bundle objectForInfoDictionaryKey:key];
 }
 
 - (void)registerObservers

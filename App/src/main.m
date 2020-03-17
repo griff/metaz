@@ -163,6 +163,32 @@ int main(int argc, const char *argv[])
         [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"version"];
     }
 
+    NSString* lastRunVersionStr = [[NSUserDefaults standardUserDefaults] stringForKey:@"lastRunVersion"];
+    MZVersion* lastRunVersion = nil;
+    if (lastRunVersionStr) {
+        lastRunVersion = [MZVersion versionWithString:lastRunVersionStr];
+    }
+    MZVersion* catalina = [MZVersion versionWithString:@"10.15.0"];
+    MZVersion* system = [MZVersion systemVersion];
+    if ([system isGreaterThanOrEqualTo:catalina] &&
+        (!lastRunVersion || [lastRunVersion isLessThan:system]))
+    {
+        // Upgraded to Catalina
+        NSArray* actions = [[NSUserDefaults standardUserDefaults] arrayForKey:@"enabledActionPlugins"];
+        NSMutableArray* enabled = [NSMutableArray array];
+        for (NSString* key in actions) {
+            if([key isEqualToString:@"Add to iTunes"]) {
+                [enabled addObject:@"Add to TV app"];
+            } else if ([key isEqualToString:@"Update iTunes"]) {
+                [enabled addObject:@"Update TV app"];
+            } else {
+                [enabled addObject:key];
+            }
+        }
+        [[NSUserDefaults standardUserDefaults] setObject:enabled forKey:@"enabledActionPlugins"];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:system.description forKey:@"lastRunVersion"];
+
     [pool release];
     return NSApplicationMain(argc,  argv);
 }

@@ -175,6 +175,20 @@
 				<string>com.apple.iTunes</string>
 			</dict>
 		</dict>
+		<dict>
+			<key>NSMessage</key>
+			<string>doTVApp</string>
+			<key>NSMenuItem</key>
+			<dict>
+				<key>default</key>
+				<string>Open selected tracks in MetaZ</string>
+			</dict>
+			<key>NSRequiredContext</key>
+			<dict>
+				<key>NSApplicationIdentifier</key>
+				<string>com.apple.TV</string>
+			</dict>
+		</dict>
 	</array>
 	<key>OSAScriptingDefinition</key>
 	<string>MetaZ.sdef</string>
@@ -186,6 +200,8 @@
 	<string>https://metaz.io/appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>sparkle_public.pem</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Please give access to sync metadata with iTunes and TV app</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
