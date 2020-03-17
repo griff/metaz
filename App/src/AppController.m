@@ -711,6 +711,11 @@ NSDictionary* findBinding(NSWindow* window) {
 
 -(void)doiTunesMetadata:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error {
     NSDictionary* prop = [pboard propertyListForType:iTunesMetadataPboardType];
+    BOOL tv = NO;
+    if(!prop) {
+        prop = [pboard propertyListForType:TVAppMetadataPboardType];
+        tv = YES;
+    }
     if(!prop)
         prop = [pboard propertyListForType:iTunesPboardType]; 
 
@@ -725,7 +730,14 @@ NSDictionary* findBinding(NSWindow* window) {
             [names addObject:[location path]];
 
             NSString* persistentId = [track objectForKey:@"Persistent ID"];
-            NSDictionary* data = [NSDictionary dictionaryWithObject:persistentId forKey:MZiTunesPersistentIDTagIdent];
+            NSDictionary* data;
+            if (tv) {
+                data = [NSDictionary dictionaryWithObject:persistentId
+                                                forKey:MZTVAppPersistentIDTagIdent];
+            } else {
+                data = [NSDictionary dictionaryWithObject:persistentId
+                                                   forKey:MZiTunesPersistentIDTagIdent];
+            }
             [dataDicts addObject:data];
         }
         [[MZMetaLoader sharedLoader] loadFromFiles:names withMetaData:dataDicts];
@@ -733,7 +745,20 @@ NSDictionary* findBinding(NSWindow* window) {
 }
 
 -(void)doiTunes:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error {
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"Return iTunes selected" ofType:@"scpt"];
+    [self doiTunes:@"Return iTunes selected"
+               tag:MZiTunesPersistentIDTagIdent
+             error:error];
+}
+
+-(void)doTVApp:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error {
+    [self doiTunes:@"Return TV app selected"
+               tag:MZTVAppPersistentIDTagIdent
+             error:error];
+}
+
+
+-(void)doiTunes:(NSString *)filename tag:(NSString *)tagName error:(NSString **)error {
+    NSString* path = [[NSBundle mainBundle] pathForResource:filename ofType:@"scptd"];
     NSURL* url = [NSURL fileURLWithPath:path];
     NSDictionary* errDict = nil;
     NSAppleScript* script = [[[NSAppleScript alloc] initWithContentsOfURL:url error:&errDict] autorelease];
@@ -773,7 +798,7 @@ NSDictionary* findBinding(NSWindow* window) {
                         [names addObject:[o objectForKey:@"mylocation"]];
                         if(!dataDicts)
                             dataDicts = [NSMutableArray array];
-                        [dataDicts addObject:[NSDictionary dictionaryWithObject:[o objectForKey:@"myid"] forKey:MZiTunesPersistentIDTagIdent]];
+                        [dataDicts addObject:[NSDictionary dictionaryWithObject:[o objectForKey:@"myid"] forKey:tagName]];
                     }
                     else
                     {
@@ -789,10 +814,12 @@ NSDictionary* findBinding(NSWindow* window) {
             }
             else if([obj isKindOfClass:[NSString class]])
                 [[MZMetaLoader sharedLoader] loadFromFile:obj];
-            else if([obj isKindOfClass:[NSDictionary class]])
+            else if([obj isKindOfClass:[NSDictionary class]]) {
+                NSDictionary* data = [NSDictionary dictionaryWithObject:[obj objectForKey:@"myid"]
+                                                                 forKey:tagName];
                 [[MZMetaLoader sharedLoader] loadFromFile:[obj objectForKey:@"mylocation"]
-                                             withMetaData:[NSDictionary dictionaryWithObject:[obj objectForKey:@"myid"]
-                                                                                      forKey:MZiTunesPersistentIDTagIdent]];
+                                             withMetaData:data];
+            }
             else {
                 NSString* err = [NSString stringWithFormat:@"Unsupported return type %@", obj];
                 if(error)

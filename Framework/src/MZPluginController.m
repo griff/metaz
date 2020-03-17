@@ -22,6 +22,7 @@ const NSInteger errMZPluginFailedToLoadSource = -6;
 const NSInteger errMZPluginFailedLSMinimumSystemVersionCheck = -7;
 const NSInteger errMZPluginFailedToLoadPrincipalClass = -8;
 const NSInteger errMZPluginFailedToCreatePrincipalClass = -9;
+const NSInteger errMZPluginFailedMZMaximumSystemVersionCheck = -10;
 
 
 @interface MZWriteNotification : NSObject <MZDataWriteDelegate>
@@ -388,8 +389,9 @@ static MZPluginController *gInstance = NULL;
         }
         ret = plugin;
     }
-    else if(UTTypeEqual(uti, kMZUTAppleScriptText) || UTTypeConformsTo(uti, kMZUTAppleScriptText) ||
-            UTTypeEqual(uti, kMZUTAppleScript) || UTTypeConformsTo(uti, kMZUTAppleScript) ||
+    else if(UTTypeEqual(uti, kUTTypeAppleScript) || UTTypeConformsTo(uti, kUTTypeAppleScript) ||
+            UTTypeEqual(uti, kUTTypeOSAScript) || UTTypeConformsTo(uti, kUTTypeOSAScript) ||
+            UTTypeEqual(uti, kUTTypeOSAScriptBundle) || UTTypeConformsTo(uti, kUTTypeOSAScriptBundle) ||
             UTTypeEqual(uti, kMZUTAppleScriptBundle) || UTTypeConformsTo(uti, kMZUTAppleScriptBundle))
     {
         NSURL* url = [NSURL URLWithString:[name gtm_stringByEscapingForURLArgument] relativeToURL:pathURL];
@@ -470,7 +472,58 @@ static MZPluginController *gInstance = NULL;
             MZLoggerError(@"%@", msg);
         return NO;
     }
-                
+
+    if([source respondsToSelector:@selector(objectForInfoDictionaryKey:)])
+    {
+        NSString* minimumVersionStr = [source objectForInfoDictionaryKey:@"LSMinimumSystemVersion"];
+        if(minimumVersionStr)
+        {
+            MZLoggerInfo(@"Minimum version %@", minimumVersionStr);
+            MZVersion* minimumVersion = [MZVersion versionWithString:minimumVersionStr];
+            if([minimumVersion compare:[MZVersion systemVersion]] > NSOrderedSame)
+            {
+                NSString* msg = [NSString stringWithFormat:
+                                 @"Plugin %@ requires at least macOS version %@, but is being run on %@, and so is ignored.",
+                                 identifier, minimumVersion, [MZVersion systemVersion]];
+                if(error)
+                {
+                    NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys:
+                                          msg, NSLocalizedDescriptionKey,
+                                          identifier, @"MZPlugin",
+                                          nil];
+                    *error = [NSError errorWithDomain:@"MZPluginController" code:errMZPluginFailedLSMinimumSystemVersionCheck userInfo:info];
+                }
+                else
+                    MZLoggerError(@"%@", msg);
+                return NO;
+            }
+        }
+        NSString* maximumVersionStr = [source objectForInfoDictionaryKey:@"MZMaximumSystemVersion"];
+        if(maximumVersionStr)
+        {
+            MZLoggerInfo(@"Maximum version %@", maximumVersionStr);
+            MZVersion* maximumVersion = [MZVersion versionWithString:maximumVersionStr];
+            if([maximumVersion compare:[MZVersion systemVersion]] < NSOrderedSame)
+            {
+                NSString* msg = [NSString stringWithFormat:
+                                 @"Plugin %@ can only run on macOS versions up to %@, but is being run on %@, and so is ignored.",
+                                 identifier, maximumVersion, [MZVersion systemVersion]];
+                if(error)
+                {
+                    NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys:
+                                          msg, NSLocalizedDescriptionKey,
+                                          identifier, @"MZPlugin",
+                                          nil];
+                    *error = [NSError errorWithDomain:@"MZPluginController" code:errMZPluginFailedMZMaximumSystemVersionCheck userInfo:info];
+                }
+                else
+                    MZLoggerError(@"%@", msg);
+                return NO;
+            }
+        }
+
+    }
+
     MZPlugin* plugin;
     NSError* err = nil;
     if(![source loadAndReturnError:&err])
@@ -493,28 +546,6 @@ static MZPluginController *gInstance = NULL;
                 
     if([source isKindOfClass:[NSBundle class]])
     {
-        NSString* minimumVersionStr = [source objectForInfoDictionaryKey:@"LSMinimumSystemVersion"];
-        if(minimumVersionStr)
-        {
-            MZVersion* minimumVersion = [MZVersion versionWithString:minimumVersionStr];
-            if([minimumVersion compare:[MZVersion systemVersion]] > NSOrderedSame)
-            {
-                NSString* msg = [NSString stringWithFormat:
-                                 @"Plugin %@ requires at least Mac OS X version %@, but is being run on %@, and so is ignored.",
-                                 identifier, minimumVersion, [MZVersion systemVersion]];
-                if(error)
-                {
-                    NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys:
-                        msg, NSLocalizedDescriptionKey,
-                        identifier, @"MZPlugin",
-                        nil];
-                    *error = [NSError errorWithDomain:@"MZPluginController" code:errMZPluginFailedLSMinimumSystemVersionCheck userInfo:info];
-                }
-                else
-                    MZLoggerError(@"%@", msg);
-                return NO;
-            }
-        }
         Class cls = [source principalClass];
         if(cls == Nil)
         {

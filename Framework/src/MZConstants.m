@@ -71,6 +71,7 @@ NSString* const MZASINTagIdent = @"asin";
 NSString* const MZDVDSeasonTagIdent = @"dvdSeason";
 NSString* const MZDVDEpisodeTagIdent = @"dvdEpisode";
 NSString* const MZiTunesPersistentIDTagIdent = @"iTunesPersistentID";
+NSString* const MZTVAppPersistentIDTagIdent = @"TVAppPersistentID";
 
 /* Notifications */
 NSString* const MZDataProviderLoadedNotification = @"MZDataProviderLoadedNotification";
@@ -100,6 +101,7 @@ NSString* const MZNSErrorKey = @"MZNSErrorKey";
 NSString* const MZDataProviderFileAlreadyLoadedWarningKey = @"alerts.warnings.fileAlreadyLoaded";
 
 NSString* const iTunesMetadataPboardType = @"com.apple.itunes.metadata";
+NSString* const TVAppMetadataPboardType = @"com.apple.tv.metadata";
 NSString* const iTunesPboardType = @"CorePasteboardFlavorType 0x6974756E";
 
 // Plugin UTI

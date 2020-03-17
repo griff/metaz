@@ -47,8 +47,8 @@
         [self registerForDraggedTypes:
                 [NSArray arrayWithObjects:MZFilesTableRows,
                     MZMetaEditsDataType, iTunesMetadataPboardType,
-                    iTunesPboardType, NSFilenamesPboardType,
-                    NSStringPboardType, nil] ];
+                    TVAppMetadataPboardType, iTunesPboardType,
+                    NSFilenamesPboardType, NSStringPboardType, nil] ];
     }
     return self;
 }
@@ -61,8 +61,8 @@
         [self registerForDraggedTypes:
                 [NSArray arrayWithObjects:MZFilesTableRows,
                     MZMetaEditsDataType, iTunesMetadataPboardType,
-                    iTunesPboardType, NSFilenamesPboardType, 
-                    NSStringPboardType, nil] ];
+                    TVAppMetadataPboardType, iTunesPboardType,
+                    NSFilenamesPboardType, NSStringPboardType, nil] ];
     }
     return self;
 }
@@ -116,9 +116,11 @@
 -(IBAction)paste:(id)sender
 {
     NSPasteboard *pb = [NSPasteboard generalPasteboard];
+    NSLog(@"Pasteboard Types %@", pb.types);
     NSArray *types = [NSArray arrayWithObjects:MZMetaEditsDataType,
-            iTunesMetadataPboardType, iTunesPboardType, NSFilenamesPboardType,
-            NSStringPboardType, nil];
+                      iTunesMetadataPboardType, TVAppMetadataPboardType,
+                      iTunesPboardType, NSFilenamesPboardType,
+                      NSStringPboardType, nil];
     NSString *bestType = [pb availableTypeFromArray:types];
     if (bestType != nil)
     {
@@ -151,9 +153,16 @@
             for(MetaEdits* edit in edits)
                 [self registerUndoName:edit.undoManager];
         }
-        if([bestType isEqualToString:iTunesMetadataPboardType] || [bestType isEqualToString:iTunesMetadataPboardType])
+        if([bestType isEqualToString:iTunesMetadataPboardType] ||
+           [bestType isEqualToString:TVAppMetadataPboardType] ||
+           [bestType isEqualToString:iTunesPboardType])
         {
             NSDictionary* prop = [pb propertyListForType:iTunesMetadataPboardType];
+            BOOL tv = NO;
+            if(!prop) {
+                prop = [pb propertyListForType:TVAppMetadataPboardType];
+                tv = YES;
+            }
             if(!prop)
                 prop = [pb propertyListForType:iTunesPboardType]; 
 
@@ -168,7 +177,14 @@
                     [names addObject:[location path]];
 
                     NSString* persistentId = [track objectForKey:@"Persistent ID"];
-                    NSDictionary* data = [NSDictionary dictionaryWithObject:persistentId forKey:MZiTunesPersistentIDTagIdent];
+                    NSDictionary* data;
+                    if (tv) {
+                        data = [NSDictionary dictionaryWithObject:persistentId
+                                                           forKey:MZTVAppPersistentIDTagIdent];
+                    } else {
+                        data = [NSDictionary dictionaryWithObject:persistentId
+                                                           forKey:MZiTunesPersistentIDTagIdent];
+                    }
                     [dataDicts addObject:data];
                 }
                 [[MZMetaLoader sharedLoader] loadFromFiles:names withMetaData:dataDicts];
@@ -193,9 +209,11 @@
 
 - (BOOL)pasteboardHasTypes {
     NSPasteboard *pb = [NSPasteboard generalPasteboard];
+    NSLog(@"Pasteboard Types %@", pb.types);
     NSArray *types = [NSArray arrayWithObjects:MZMetaEditsDataType,
-            iTunesMetadataPboardType, iTunesPboardType, NSFilenamesPboardType,
-            NSStringPboardType, nil];
+                      iTunesMetadataPboardType, TVAppMetadataPboardType,
+                      iTunesPboardType, NSFilenamesPboardType,
+                      NSStringPboardType, nil];
     NSString *bestType = [pb availableTypeFromArray:types];
     if(bestType != nil && [bestType isEqualToString:MZMetaEditsDataType])
         return [self numberOfSelectedRows] > 0;
@@ -217,10 +235,14 @@
                 return NO;
         }
     }
-    if(bestType != nil && ([bestType isEqualToString:iTunesMetadataPboardType] || 
-            [bestType isEqualToString:iTunesPboardType]))
+    if(bestType != nil &&
+       ([bestType isEqualToString:iTunesMetadataPboardType] ||
+        [bestType isEqualToString:TVAppMetadataPboardType] ||
+        [bestType isEqualToString:iTunesPboardType]))
     {
         NSDictionary* prop = [pb propertyListForType:iTunesMetadataPboardType];
+        if(!prop)
+            prop = [pb propertyListForType:TVAppMetadataPboardType];
         if(!prop)
             prop = [pb propertyListForType:iTunesPboardType]; 
 
@@ -351,7 +373,8 @@
 
     NSPasteboard* pboard = [info draggingPasteboard];
     NSArray *types = [NSArray arrayWithObjects:MZFilesTableRows,
-            MZMetaEditsDataType, iTunesMetadataPboardType, iTunesPboardType, 
+                      MZMetaEditsDataType, iTunesMetadataPboardType,
+                      TVAppMetadataPboardType, iTunesPboardType,
             NSFilenamesPboardType, NSStringPboardType, nil];
     //NSDragOperation operation = [info draggingSourceOperationMask];        
     NSString *bestType = [pboard availableTypeFromArray:types];
@@ -380,7 +403,8 @@
             }
             return NSDragOperationGeneric;
         }
-        if([bestType isEqualToString:iTunesMetadataPboardType] || 
+        if([bestType isEqualToString:iTunesMetadataPboardType] ||
+            [bestType isEqualToString:TVAppMetadataPboardType] ||
             [bestType isEqualToString:iTunesPboardType])
         {
             return NSDragOperationGeneric;
@@ -395,8 +419,9 @@
 {
     NSPasteboard* pboard = [info draggingPasteboard];
     NSArray *types = [NSArray arrayWithObjects:MZFilesTableRows,
-            MZMetaEditsDataType, iTunesMetadataPboardType, iTunesPboardType,
-            NSFilenamesPboardType, NSStringPboardType, nil];
+                      MZMetaEditsDataType, iTunesMetadataPboardType,
+                      TVAppMetadataPboardType, iTunesPboardType,
+                      NSFilenamesPboardType, NSStringPboardType, nil];
     NSString *bestType = [pboard availableTypeFromArray:types];
     if (bestType != nil)
     {
@@ -409,9 +434,16 @@
             [[MZMetaLoader sharedLoader] moveObjects:edits toIndex:row];
             return YES;
         }
-        if([bestType isEqualToString:iTunesMetadataPboardType] || [bestType isEqualToString:iTunesMetadataPboardType])
+        if([bestType isEqualToString:iTunesMetadataPboardType] ||
+           [bestType isEqualToString:TVAppMetadataPboardType] ||
+           [bestType isEqualToString:iTunesPboardType])
         {
             NSDictionary* prop = [pboard propertyListForType:iTunesMetadataPboardType];
+            BOOL tv = NO;
+            if(!prop) {
+                prop = [pboard propertyListForType:TVAppMetadataPboardType];
+                tv = YES;
+            }
             if(!prop)
                 prop = [pboard propertyListForType:iTunesPboardType]; 
 
@@ -426,7 +458,9 @@
                 }
                 if(![filesController commitEditing])
                     return NO;
-                NSArray* params = [NSArray arrayWithObjects:prop, [NSNumber numberWithInteger:row], nil];
+                NSArray* params = [NSArray arrayWithObjects:prop,
+                                   [NSNumber numberWithInteger:row],
+                                   [NSNumber numberWithBool:tv], nil];
                 [self performSelector:@selector(loadFiles:) withObject:params afterDelay:1];
                 return YES;
             }
@@ -470,6 +504,10 @@
 {
     id first = [params objectAtIndex:0];
     NSInteger row = [[params objectAtIndex:1] integerValue];
+    BOOL tv = NO;
+    if ([params count] == 3) {
+        tv = [[params objectAtIndex:2] boolValue];
+    }
     
     if([first isKindOfClass:[NSDictionary class]])
     {
@@ -482,7 +520,14 @@
             [names addObject:[location path]];
 
             NSString* persistentId = [track objectForKey:@"Persistent ID"];
-            NSDictionary* data = [NSDictionary dictionaryWithObject:persistentId forKey:MZiTunesPersistentIDTagIdent];
+            NSDictionary* data;
+            if (tv) {
+                data = [NSDictionary dictionaryWithObject:persistentId
+                                                   forKey:MZTVAppPersistentIDTagIdent];
+            } else {
+                data = [NSDictionary dictionaryWithObject:persistentId
+                                                   forKey:MZiTunesPersistentIDTagIdent];
+            }
             [dataDicts addObject:data];
         }
         [[MZMetaLoader sharedLoader] loadFromFiles:names toIndex:row withMetaData:dataDicts];
