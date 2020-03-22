@@ -7,11 +7,11 @@ if [ "${CONFIGURATION}" != "Release" ]; then exit; fi
 rm -f "$BUILT_PRODUCTS_DIR/$PROJECT_NAME"*.dmg
 
 VERSION=$(/usr/libexec/PlistBuddy -c "print :CFBundleShortVersionString" "$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info.plist")
-SOURCE_FILES=($BUILT_PRODUCTS_DIR/${PROJECT_NAME}.app Thanks.txt License.txt)
-TEMPLATE_DMG=$SRCROOT/Release/template.dmg
-MASTER_DMG=$BUILT_PRODUCTS_DIR/${PROJECT_NAME}-${VERSION}.dmg
-WC_DMG=$CONFIGURATION_TEMP_DIR/wc.dmg
-WC_DIR=$CONFIGURATION_TEMP_DIR/wc
+SOURCE_FILES=("$BUILT_PRODUCTS_DIR/${PROJECT_NAME}.app" License.txt)
+TEMPLATE_DMG="$SRCROOT/Release/template.dmg"
+MASTER_DMG="$BUILT_PRODUCTS_DIR/${PROJECT_NAME}-${VERSION}.dmg"
+WC_DMG="$CONFIGURATION_TEMP_DIR/wc.dmg"
+WC_DIR="$CONFIGURATION_TEMP_DIR/wc"
 ARCHIVE_FILENAME="$PROJECT_NAME-$VERSION.zip"
 export GITV=`git log -n1 --pretty=oneline --format=%h`
 
@@ -33,7 +33,7 @@ rm -r "${TEMPLATE_DMG}"
 mkdir -p "$WC_DIR"
 
 hdiutil attach "$WC_DMG" -noautoopen -quiet -mountpoint "$WC_DIR"
-for i in $SOURCE_FILES; do
+for i in "${SOURCE_FILES[@]}" ; do
 	base=`basename $i`
 	rm -rf "$WC_DIR/$base"
 	ditto -rsrc "$i" "$WC_DIR/$base"
@@ -41,7 +41,7 @@ done
 #rm -f "$@"
 #hdiutil create -srcfolder "$(WC_DIR)" -format UDZO -imagekey zlib-level=9 "$@" -volname "$(NAME) $(VERSION)" -scrub -quiet
 WC_DEV=`hdiutil info | grep "$WC_DIR" | grep "Apple_HFS" | awk '{print $1}'` && \
-	hdiutil detach $WC_DEV -quiet -force
+	hdiutil detach "$WC_DEV" -quiet -force
 rm -f "$MASTER_DMG"
 hdiutil convert "$WC_DMG" -quiet -format UDZO -imagekey zlib-level=9 -o "$MASTER_DMG"
 rm -rf "$WC_DIR"

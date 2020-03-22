@@ -6,7 +6,7 @@
 #  Created by Brian Olsen on 09/03/2020.
 #
 #set -o errexit
-# set -x
+set -x
 
 if [ "$CODE_SIGNING_ALLOWED" == "YES" ]; then
     counter=0
