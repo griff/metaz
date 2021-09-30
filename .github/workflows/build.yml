@@ -19,7 +19,6 @@ jobs:
         xcodebuild -version
         xcodebuild -target Package
     - name: Tag release
-      uses: mathieudutour/github-tag-action@v5.6
       if: "github.ref == 'refs/heads/develop'"
       run: |
         Scripts/tag-beta
