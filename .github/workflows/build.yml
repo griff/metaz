@@ -12,6 +12,7 @@ jobs:
         submodules: recursive
     - name: Setup | Install
       run: |
+        gem install bundler
         bundle install
         carthage bootstrap
         gem install xcpretty-travis-formatter
