@@ -19,11 +19,9 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
     - name: Trigger rebuild of site
-      env:
-        SITE_TOKEN: ${{ secrets.SITE_TOKEN }}
-      run: |
-        echo "Event $GITHUB_EVENT_NAME"
-        export NAME="$(jq -r .release.name $GITHUB_EVENT_PATH)"
-        export SENDER="$(jq -r .sender.login $GITHUB_EVENT_PATH)"
-        export MESSAGE="MetaZ release $NAME triggered by $SENDER"
-        ./Scripts/trigger-site.bash
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.SITE_TOKEN }}
+          repository: griff/metaz.maven-group.org
+          event-type: build-site
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
