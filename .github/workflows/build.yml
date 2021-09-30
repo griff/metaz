@@ -8,8 +8,11 @@ jobs:
     steps:
     - name: Setup | Checkout
       uses: actions/checkout@v2
+      with:
+        submodules: recursive
     - name: Setup | Install
       run: |
+        bundle install
         carthage bootstrap
         gem install xcpretty-travis-formatter
     - name: Build
