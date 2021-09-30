@@ -17,11 +17,13 @@ minor="$(echo $release | cut -d . -f 2 -)"
 while git show-ref --tags --quiet --verify -- "refs/tags/v${major}.${minor}" ; do
   ((minor = $minor + 1))
 done
-if [[ "$TRAVIS_BRANCH" != "$TRAVIS_TAG" ]]; then
-  release="${major}.${minor}.beta-$TRAVIS_BUILD_NUMBER"
+if [[ $GITHUB_REF != refs/tags/* ]]; then
+  #number="$(git rev-list --count $GITHUB_REF)"
+  ((number = $GITHUB_RUN_NUMBER + 116))
+  release="${major}.${minor}.beta-$number"
 else
   ((minors = $minor - 1))
-  if [[ "$TRAVIS_TAG" == "v${major}.${minors}" ]]; then
+  if [[ "$GITHUB_REF" == "refs/tags/v${major}.${minors}" ]]; then
     release="${major}.${minors}"
   else
     release="${major}.${minor}"

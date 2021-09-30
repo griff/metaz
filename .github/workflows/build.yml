@@ -1,0 +1,27 @@
+name: "Build and deploy"
+on:
+  push:
+  pull_request:
+jobs:
+  build:
+    runs-on: macos-10.15
+    steps:
+    - name: Setup | Checkout
+      uses: actions/checkout@v2
+    - name: Setup | Ruby
+      uses: ruby/setup-ruby@v1
+    - name: Setup | Install
+      run: |
+        carthage bootstrap
+        gem install xcpretty-travis-formatter
+    - name: Build
+      run: |
+        xcodebuild -version
+        xcodebuild -target Package
+    - name: Tag release
+      uses: mathieudutour/github-tag-action@v5.6
+      if: "github.ref == 'refs/heads/develop'"
+      run: |
+        Scripts/tag-beta
+      #env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
