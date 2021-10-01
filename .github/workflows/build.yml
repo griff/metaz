@@ -9,6 +9,7 @@ jobs:
     - name: Setup | Checkout
       uses: actions/checkout@v2
       with:
+        token: ${{secrets.SITE_TOKEN}}
         submodules: recursive
     - name: Setup | Ruby
       uses: ruby/setup-ruby@v1
