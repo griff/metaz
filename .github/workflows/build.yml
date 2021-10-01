@@ -56,6 +56,4 @@ jobs:
         token: ${{ secrets.SITE_TOKEN }}
         files: 'Upload/*'
         prerelease: true
-        draft: true
         name: ${{ env.RELEASE_NAME }}
-        tag_name: ${{ github.ref }}
