@@ -22,7 +22,7 @@ jobs:
         xcodebuild -target Package
     - name: Tag release
       if: "github.ref == 'refs/heads/develop'"
+      env:
+          SITE_TOKEN: ${{ secrets.SITE_TOKEN }}
       run: |
         . Scripts/tag-beta.bash
-      #env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
