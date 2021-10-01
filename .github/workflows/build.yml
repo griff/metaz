@@ -11,6 +11,7 @@ jobs:
       with:
         token: ${{secrets.SITE_TOKEN}}
         submodules: recursive
+        fetch-depth: '0'
     - name: Setup | Ruby
       uses: ruby/setup-ruby@v1
     - name: Setup | Install
