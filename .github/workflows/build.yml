@@ -18,6 +18,8 @@ jobs:
         carthage bootstrap
         gem install xcpretty-travis-formatter
     - name: Build
+      env:
+          SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY }}
       run: |
         xcodebuild -version
         xcodebuild -target Package
@@ -27,3 +29,31 @@ jobs:
           SITE_TOKEN: ${{ secrets.SITE_TOKEN }}
       run: |
         . Scripts/tag-beta.bash
+
+    - name: Release | Setup
+      if: startsWith(github.ref, 'refs/tags/')
+      run: |
+        Scripts/release-notes.rb
+        Scripts/release-notes.rb > build/Release/Release-notes.md
+        VERSION=$(/usr/libexec/PlistBuddy -c "print :CFBundleShortVersionString" "build/Release/MetaZ.app/Contents/Info.plist")
+        RELEASE_NAME="$(echo "$VERSION" | sed -e 's/.beta-/ Beta /')"
+        echo "RELEASE_NAME=$RELEASE_NAME" >> $GITHUB_ENV
+        mkdir Upload
+        cp build/Release/MetaZ-* Upload/
+        ls Upload/
+        rm Upload/MetaZ-*.xml
+        mv Upload/MetaZ-*+dSYM.zip Upload/Debug.dSYM.zip
+        mv Upload/MetaZ-*.json Upload/Sparkle.json
+        rm Upload/*.dmg
+    - name: Release | Create
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        body_path: build/Release/Release-notes.md
+        # note you'll typically need to create a personal access token
+        # with permissions to create releases in the other repo
+        token: ${{ secrets.SITE_TOKEN }}
+        files: 'Upload/*'
+        prerelease: true
+        draft: true
+        name: ${{ env.RELEASE_NAME }}
