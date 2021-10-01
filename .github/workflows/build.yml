@@ -23,6 +23,6 @@ jobs:
     - name: Tag release
       if: "github.ref == 'refs/heads/develop'"
       run: |
-        Scripts/tag-beta
+        . Scripts/tag-beta.bash
       #env:
       #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
