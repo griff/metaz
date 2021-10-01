@@ -19,9 +19,9 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
     - name: Trigger rebuild of site
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          token: ${{ secrets.SITE_TOKEN }}
-          repository: griff/metaz.maven-group.org
-          event-type: build-site
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.SITE_TOKEN }}
+        repository: griff/metaz.maven-group.org
+        event-type: build-site
+        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
