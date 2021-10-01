@@ -19,8 +19,7 @@ while git show-ref --tags --quiet --verify -- "refs/tags/v${major}.${minor}" ; d
 done
 if [[ -n "$GITHUB_REF" ]]; then
   if [[ $GITHUB_REF != refs/tags/* ]]; then
-    #number="$(git rev-list --count $GITHUB_REF)"
-    ((number = $GITHUB_RUN_NUMBER + 116))
+    number="$(git rev-list --count "$GITHUB_REF")"
     release="${major}.${minor}.beta-$number"
   else
     ((minors = $minor - 1))
