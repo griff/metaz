@@ -3,8 +3,12 @@ set -x
 
 if [ "${CONFIGURATION}" != "Release" ]; then exit; fi
 if [[ ! -f "sparkle_private.pem" ]] ; then 
-  echo "No sparkle_private.pem found so skipping package sign"
-  exit
+  if [ -n "$SPARKLE_PRIVATE_KEY" ]; then
+    echo "$SPARKLE_PRIVATE_KEY" > sparkle_private.pem
+  else
+    echo "No sparkle_private.pem found so skipping package sign"
+    exit
+  fi
 fi
 
 PATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin
