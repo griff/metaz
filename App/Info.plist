@@ -197,7 +197,7 @@
 	<key>SUEnableSystemProfiling</key>
 	<string>YES</string>
 	<key>SUFeedURL</key>
-	<string>https://metaz.io/appcast.xml</string>
+	<string>https://metaz.maven-group.org/appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>sparkle_public.pem</string>
 	<key>NSAppleEventsUsageDescription</key>
