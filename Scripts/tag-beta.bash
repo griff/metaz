@@ -10,7 +10,7 @@ if [[ $GITHUB_REF != refs/tags/* ]]; then
     export GIT_TAG=v${VERSION}
     echo git tag $GIT_TAG -a -m "Generated tag from CI for build $GITHUB_RUN_NUMBER"
     git tag $GIT_TAG -a -m "Generated tag from CI for build $GITHUB_RUN_NUMBER"
-    git push -q https://$SITE_TOKEN@github.com/griff/metaz --tags
+    git push -q https://$GITHUB_TOKEN@github.com/griff/metaz --tags
     #export RELEASE_NAME="$(echo "$VERSION" | sed -e 's/.beta-/ Beta /')"
   fi
 else
@@ -24,7 +24,7 @@ fi
 #    Scripts/release-notes.rb
 #    Scripts/release-notes.rb > build/Release/Release-notes.md
 #    bundle exec Scripts/github_release.rb \
-#        --secret "$SITE_TOKEN" \
+#        --secret "$GITHUB_TOKEN" \
 #        --repo-slug griff/metaz \
 #        --changelog-file build/Release/Release-notes.md \
 #        --tag $GIT_TAG
