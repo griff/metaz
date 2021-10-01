@@ -27,7 +27,7 @@ cd "$BUILT_PRODUCTS_DIR"
 
 SIZE=$(stat -f %z "$ARCHIVE_FILENAME")
 PUBDATE=$(date +"%a, %d %b %G %T %z")
-SIGNATURE=$(openssl dgst -sha1 -binary < "$ARCHIVE_FILENAME" | openssl dgst -dss1 -sign "$WD/sparkle_private.pem" | openssl enc -base64)
+SIGNATURE=$(openssl dgst -sha1 -binary "$ARCHIVE_FILENAME" | openssl dgst -sha1 -sign "$WD/sparkle_private.pem" | openssl enc -base64)
 
 [ $SIGNATURE ] || { echo "Unable to load signing key from sparkle_private.pem"; false; }
 
