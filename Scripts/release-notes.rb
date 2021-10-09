@@ -7,7 +7,7 @@ require 'date'
 
 if ENV['GITHUB_TOKEN'] != ''
   all_releases = open('https://api.github.com/repos/griff/metaz/releases',
-    http_basic_authentication: ['griff', ENV['GITHUB_TOKEN']] ) do |f|
+      "authorization" => "Bearer " + ENV['GITHUB_TOKEN']) do |f|
     JSON.parse(f.read, symbolize_names: true)
   end
 else

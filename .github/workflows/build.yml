@@ -30,6 +30,8 @@ jobs:
 
     - name: Release | Setup
       if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/develop'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         Scripts/release-notes.rb
         Scripts/release-notes.rb > build/Release/Release-notes.md
