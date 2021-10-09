@@ -9,7 +9,7 @@ set -x
 PATH=$PATH:/usr/local/bin:/usr/bin:/sw/bin:/opt/local/bin
 buildid=`git log -n1 --pretty=oneline --format=%h`
 release=`cat "$SCRIPT_INPUT_FILE_0"`
-builddate=`date +%y.%m.%d.%H`
+builddate=`date +%y.%m%d.%H%M`
 
 major="$(echo $release | cut -d . -f 1 -)"
 minor="$(echo $release | cut -d . -f 2 -)"
