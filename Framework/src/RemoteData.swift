@@ -7,6 +7,25 @@
 
 import Foundation
 
+fileprivate class RemoteCaching {
+    // Used a session that caches its results
+    static let remoteLoadSession: URLSession = {
+        // Create URL Session Configuration
+        let configuration = URLSessionConfiguration.default.copy() as! URLSessionConfiguration
+
+        // Set the in-memory cache to 128 MB
+        let cache = URLCache()
+        cache.memoryCapacity = 128 * 1024 * 1024
+        configuration.urlCache = cache
+
+        // Define Request Cache Policy
+        configuration.requestCachePolicy = .useProtocolCachePolicy
+        configuration.urlCache = cache
+
+        return URLSession(configuration: configuration)
+    }()
+}
+
 @objc public class RemoteData : NSObject {
     private static let queue = DispatchQueue(label: "io.metaz.RemoteDataQueue")
     
@@ -97,8 +116,7 @@ import Foundation
                 if self.data == nil {
                     return;
                 }
-                
-                URLSession.dataTask(url: url) { (d, resp, err) in
+                RemoteCaching.remoteLoadSession.dataTask(with: url) { (d, resp, err) in
                     if let error = err {
                         let info = [NSLocalizedDescriptionKey: error.localizedDescription]
                         let statusCode = (resp as? HTTPURLResponse)?.statusCode ?? 0
