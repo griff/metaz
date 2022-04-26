@@ -7,9 +7,27 @@
 
 import Foundation
 
+// Limit the number of simultaneous downloads
+private let RemoteDownloadLimiter = DispatchSemaphore(value: 10)
+
+// A URLSession that caches its results
+private let RemoteLoadSession: URLSession = {
+    // Create URL Session Configuration
+    let configuration = URLSessionConfiguration.default.copy() as! URLSessionConfiguration
+
+    // Set the in-memory cache to 128 MB
+    let cache = URLCache()
+    cache.memoryCapacity = 128 * 1024 * 1024
+    configuration.urlCache = cache
+
+    // Define Request Cache Policy
+    configuration.requestCachePolicy = .useProtocolCachePolicy
+    configuration.urlCache = cache
+
+    return URLSession(configuration: configuration)
+}()
+
 @objc public class RemoteData : NSObject {
-    private static let queue = DispatchQueue(label: "io.metaz.RemoteDataQueue")
-    
     public let url : URL
     public let expectedMimeType : String
 
@@ -91,14 +109,19 @@ import Foundation
 
             let url = self.data!.url
             let expectedMimeType = self.data!.expectedMimeType
-            RemoteData.queue.async {
+
+            DispatchQueue.global(qos: .utility).async {
+                RemoteDownloadLimiter.wait()
+                defer {
+                    RemoteDownloadLimiter.signal()
+                }
+
                 var downloadData : Data?, responseError : NSError?
                 let signal = DispatchSemaphore(value: 0)
                 if self.data == nil {
                     return;
                 }
-                
-                URLSession.dataTask(url: url) { (d, resp, err) in
+                RemoteLoadSession.dataTask(with: url) { (d, resp, err) in
                     if let error = err {
                         let info = [NSLocalizedDescriptionKey: error.localizedDescription]
                         let statusCode = (resp as? HTTPURLResponse)?.statusCode ?? 0
