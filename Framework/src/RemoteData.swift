@@ -7,9 +7,6 @@
 
 import Foundation
 
-// Limit the number of simultaneous downloads
-private let RemoteDownloadLimiter = DispatchSemaphore(value: 10)
-
 // A URLSession that caches its results
 private let RemoteLoadSession: URLSession = {
     // Create URL Session Configuration
@@ -28,6 +25,8 @@ private let RemoteLoadSession: URLSession = {
 }()
 
 @objc public class RemoteData : NSObject {
+    private static let queue = DispatchQueue(label: "io.metaz.RemoteDataQueue")
+
     public let url : URL
     public let expectedMimeType : String
 
@@ -110,11 +109,7 @@ private let RemoteLoadSession: URLSession = {
             let url = self.data!.url
             let expectedMimeType = self.data!.expectedMimeType
 
-            DispatchQueue.global(qos: .utility).async {
-                RemoteDownloadLimiter.wait()
-                defer {
-                    RemoteDownloadLimiter.signal()
-                }
+            RemoteData.queue.async {
 
                 var downloadData : Data?, responseError : NSError?
                 let signal = DispatchSemaphore(value: 0)
