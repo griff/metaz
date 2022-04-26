@@ -18,17 +18,20 @@ while git show-ref --tags --quiet --verify -- "refs/tags/v${major}.${minor}" ; d
   ((minor = $minor + 1))
 done
 if [[ -n "$GITHUB_REF" ]]; then
-  if [[ $GITHUB_REF != refs/tags/* ]]; then
-    number="$(git rev-list --count "$GITHUB_REF")"
-    release="${major}.${minor}.beta-$number"
-  else
+  if [[ $GITHUB_REF = refs/tags/* ]]; then
     ((minors = $minor - 1))
     if [[ "$GITHUB_REF" == "refs/tags/v${major}.${minors}" ]]; then
-      release="${major}.${minors}"
+        release="${major}.${minors}"
     else
-      release=${GITHUB_REF#refs/tags/v}
-      #release="${major}.${minor}"
+        release=${GITHUB_REF#refs/tags/v}
+        #release="${major}.${minor}"
     fi
+  elif [[ $GITHUB_REF = refs/pull/* ]]; then
+    number="$(echo "$GITHUB_REF" | awk -F / '{ print $3 }')"
+    release="${major}.${minor}.pr-$number"
+  else
+    number="$(git rev-list --count "$GITHUB_REF")"
+    release="${major}.${minor}.beta-$number"
   fi
 else
   release="${major}.${minor}"
