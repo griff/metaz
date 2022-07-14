@@ -46,7 +46,7 @@ git submodule update --init
 And then bootstrap the dependencies managed by Carthage:
 
 ```
-cathage bootstrap
+carthage bootstrap
 ```
 
 After those two steps you should be able to compile the project with Xcode
