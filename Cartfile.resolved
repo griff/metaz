@@ -1,1 +1,1 @@
-github "sparkle-project/Sparkle" "1.22.0"
+binary "https://sparkle-project.org/Carthage/Sparkle.json" "1.27.1"
